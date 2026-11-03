@@ -1,0 +1,14 @@
+name: Prueba de fuentes
+on: workflow_dispatch
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          B=https://coastwatch.pfeg.noaa.gov/erddap/griddap
+          for ds in ncdcOisst21Agg_LonPM180 ncdcOisst21NrtAgg_LonPM180 ncdcOisst2Agg_LonPM180; do
+            echo "== $ds"; curl -s -m 60 "$B/$ds.json?anom%5B(last)%5D%5B(0.0)%5D%5B(-20):8:(2)%5D%5B(-92):8:(-70)%5D" | head -c 900; echo
+          done
+          echo "== tiempo"; curl -s -m 60 "$B/ncdcOisst21Agg_LonPM180.csv?time%5B(last)%5D" | tail -2
+          echo "== nrt tiempo"; curl -s -m 60 "$B/ncdcOisst21NrtAgg_LonPM180.csv?time%5B(last)%5D" | tail -2
+          echo "== 1997-12-15"; curl -s -m 60 "$B/ncdcOisst21Agg_LonPM180.csv?anom%5B(1997-12-15)%5D%5B(0.0)%5D%5B(-6):1:(-5)%5D%5B(-82):1:(-81)%5D" | tail -3
