@@ -39,7 +39,7 @@ def bajar(t0: str, t1: str, datasets: list[str] = DATASETS_SST) -> pd.DataFrame 
                     d["fecha"] = d["time"].str[:10]
                     print(f"  {dataset}: {d['fecha'].nunique()} días, {len(d)} celdas")
                     return d[["fecha", "lat", "lon", "anom"]]
-                print(f"  {dataset} -> HTTP {r.status_code}, reintento {intento + 1}")
+                print(f"  {dataset} -> HTTP {r.status_code}, reintento {intento + 1}: {r.text[:160]!r}")
                 if 400 <= r.status_code < 500:
                     break  # el periodo no existe en este conjunto: probar el siguiente
             except Exception as error:
@@ -77,9 +77,10 @@ def main() -> None:
     for anio, dia in PICOS.items():
         archivo = picos / f"{anio}.csv.gz"
         if not archivo.exists():
-            t = bajar(dia, dia, DATASETS_HIST)  # los picos están en la versión definitiva
+            d = date.fromisoformat(dia)  # promedio de 3 días alrededor del pico (versión definitiva)
+            t = bajar((d - timedelta(days=1)).isoformat(), (d + timedelta(days=1)).isoformat(), DATASETS_HIST)
             if t is not None:
-                t[["lat", "lon", "anom"]].round(2).to_csv(archivo, index=False)
+                t.groupby(["lat", "lon"], as_index=False)["anom"].mean().round(2).to_csv(archivo, index=False)
     print(f"Histórico: {len(list(HIST_MAR.glob('*.csv.gz')))} días guardados.")
 
 
