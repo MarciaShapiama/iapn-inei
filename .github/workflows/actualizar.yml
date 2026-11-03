@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
 jobs:
   actualizar:
     runs-on: ubuntu-latest
@@ -34,4 +38,5 @@ jobs:
           git add data dashboard/data
           git diff --cached --quiet && echo "Sin cambios" && exit 0
           git commit -m "Actualiza datos $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
           git push
