@@ -5,8 +5,8 @@ Cada día queda en su propio archivo data/historico/mar/AAAA-MM-DD.csv.gz (lat, 
 borra: así se va formando el histórico. También guarda, una sola vez, los días pico de episodios pasados
 (data/historico/picos/AAAA.csv.gz) para comparar.
 
-Fuente: NOAA OISST v2.1 vía ERDDAP de NOAA CoastWatch (versión de tiempo casi real; si no responde,
-se usa la definitiva).
+Fuente: NOAA OISST v2.1 vía ERDDAP de NOAA CoastWatch o su espejo (versión de tiempo casi real; si no
+responde, se usa la definitiva).
 
 Uso: python src/descargar_mar.py
 """
@@ -19,43 +19,45 @@ from datetime import date, timedelta
 import pandas as pd
 import requests
 
-from config import (DATA, DATASETS_HIST, DATASETS_SST, DIAS_VENTANA, ERDDAP, HIST_MAR, LAT_MAX, LAT_MIN, LON_MAX,
+from config import (DATA, DATASETS_HIST, DATASETS_SST, DIAS_VENTANA, ERDDAPS, HIST_MAR, LAT_MAX, LAT_MIN, LON_MAX,
                     LON_MIN, PASO, PICOS)
 
 
-def consulta(dataset: str, t0: str, t1: str) -> str:
-    return (f"{ERDDAP}/{dataset}.csv?anom%5B({t0}):1:({t1})%5D%5B(0.0)%5D"
+def consulta(servidor: str, dataset: str, t0: str, t1: str) -> str:
+    return (f"{servidor}/{dataset}.csv?anom%5B({t0}):1:({t1})%5D%5B(0.0)%5D"
             f"%5B({LAT_MIN}):{PASO}:({LAT_MAX})%5D%5B({LON_MIN}):{PASO}:({LON_MAX})%5D")
 
 
 def bajar(t0: str, t1: str, datasets: list[str] = DATASETS_SST) -> pd.DataFrame | None:
-    for dataset in datasets:
-        for intento in range(4):
+    """Prueba cada conjunto de datos en el servidor principal y en el espejo, con reintentos."""
+    for dataset, servidor in [(d, s) for d in datasets for s in ERDDAPS]:
+        for intento in range(3):
             try:
-                r = requests.get(consulta(dataset, t0, t1), timeout=120)
+                r = requests.get(consulta(servidor, dataset, t0, t1), timeout=120)
                 if r.status_code == 200:
                     d = pd.read_csv(io.StringIO(r.text), skiprows=[1])
                     d = d.rename(columns={"latitude": "lat", "longitude": "lon"}).dropna(subset=["anom"])
                     d["fecha"] = d["time"].str[:10]
                     print(f"  {dataset}: {d['fecha'].nunique()} días, {len(d)} celdas")
                     return d[["fecha", "lat", "lon", "anom"]]
-                print(f"  {dataset} -> HTTP {r.status_code}, reintento {intento + 1}: {r.text[:160]!r}")
+                print(f"  {servidor[8:20]} {dataset} -> HTTP {r.status_code}: {r.text[:120]!r}")
                 if 400 <= r.status_code < 500:
-                    break  # el periodo no existe en este conjunto: probar el siguiente
+                    break  # no está en este servidor o conjunto: probar el siguiente
             except Exception as error:
                 print(f"  {dataset} -> {error}, reintento {intento + 1}")
-            time.sleep(15 * (intento + 1))
+            time.sleep(10 * (intento + 1))
     return None
 
 
 def ultimo_disponible() -> str | None:
     for dataset in DATASETS_SST:
-        try:
-            r = requests.get(f"{ERDDAP}/{dataset}.csv?time%5B(last)%5D", timeout=60)
-            if r.status_code == 200:
-                return r.text.strip().splitlines()[-1][:10]
-        except Exception:
-            pass
+        for servidor in ERDDAPS:
+            try:
+                r = requests.get(f"{servidor}/{dataset}.csv?time%5B(last)%5D", timeout=60)
+                if r.status_code == 200:
+                    return r.text.strip().splitlines()[-1][:10]
+            except Exception:
+                pass
     return None
 
 

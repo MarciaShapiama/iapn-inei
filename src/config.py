@@ -16,7 +16,7 @@ LAT_MIN, LAT_MAX = -19.0, 1.0
 LON_MIN, LON_MAX = -86.0, -70.0
 PASO = 2
 
-ERDDAP = "https://coastwatch.pfeg.noaa.gov/erddap/griddap"
+ERDDAPS = ["https://coastwatch.pfeg.noaa.gov/erddap/griddap", "https://upwell.pfeg.noaa.gov/erddap/griddap"]  # principal y espejo
 DATASETS_SST = ["ncdcOisst21NrtAgg_LonPM180", "ncdcOisst21Agg_LonPM180"]   # tiempo casi real; definitivo
 DATASETS_HIST = ["ncdcOisst21Agg_LonPM180", "ncdcOisst2Agg_LonPM180"]      # para los picos históricos
 
