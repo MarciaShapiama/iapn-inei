@@ -19,7 +19,7 @@ from datetime import date, timedelta
 import pandas as pd
 import requests
 
-from config import (DATA, DATASETS_SST, DIAS_VENTANA, ERDDAP, HIST_MAR, LAT_MAX, LAT_MIN, LON_MAX,
+from config import (DATA, DATASETS_HIST, DATASETS_SST, DIAS_VENTANA, ERDDAP, HIST_MAR, LAT_MAX, LAT_MIN, LON_MAX,
                     LON_MIN, PASO, PICOS)
 
 
@@ -77,7 +77,7 @@ def main() -> None:
     for anio, dia in PICOS.items():
         archivo = picos / f"{anio}.csv.gz"
         if not archivo.exists():
-            t = bajar(dia, dia, list(reversed(DATASETS_SST)))  # los picos están en la versión definitiva
+            t = bajar(dia, dia, DATASETS_HIST)  # los picos están en la versión definitiva
             if t is not None:
                 t[["lat", "lon", "anom"]].round(2).to_csv(archivo, index=False)
     print(f"Histórico: {len(list(HIST_MAR.glob('*.csv.gz')))} días guardados.")

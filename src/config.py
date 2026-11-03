@@ -18,6 +18,7 @@ PASO = 2
 
 ERDDAP = "https://coastwatch.pfeg.noaa.gov/erddap/griddap"
 DATASETS_SST = ["ncdcOisst21NrtAgg_LonPM180", "ncdcOisst21Agg_LonPM180"]   # tiempo casi real; definitivo
+DATASETS_HIST = ["ncdcOisst21Agg_LonPM180", "ncdcOisst2Agg_LonPM180"]      # para los picos históricos
 
 # Departamentos con litoral (nombres como en data/departamentos.geojson).
 COSTEROS = ["TUMBES", "PIURA", "LAMBAYEQUE", "LA LIBERTAD", "ANCASH", "LIMA", "CALLAO",
