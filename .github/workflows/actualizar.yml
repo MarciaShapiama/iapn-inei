@@ -24,17 +24,17 @@ jobs:
           python-version: "3.11"
       - run: pip install -q -r requirements.txt
       - name: Mar día a día (NOAA OISST, últimos 20 días)
-        run: python src/descargar_mar.py
+        run: python -u src/descargar_mar.py
         continue-on-error: true
       - name: Índices, producción y electricidad
-        run: python src/descargar_indicadores.py
+        run: python -u src/descargar_indicadores.py
         continue-on-error: true
       - name: Zonas afectadas (lluvia y ríos)
-        run: python src/descargar_zonas.py
+        run: python -u src/descargar_zonas.py
         timeout-minutes: 45
         continue-on-error: true
       - name: Preparar datos del tablero
-        run: python src/construir.py
+        run: python -u src/construir.py
       - name: Guardar
         run: |
           git config user.name "Actualización automática"

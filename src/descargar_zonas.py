@@ -25,6 +25,12 @@ from shapely.geometry import shape
 from config import DATA, DIAS_VENTANA
 
 UA = {"User-Agent": "Monitor El Nino Costero (PEU-CD INEI)"}
+PRESUPUESTO_S = 8 * 60      # tiempo máximo por corrida para completar las normales (sigue al día siguiente)
+INICIO_RELOJ = time.time()
+
+
+def queda_tiempo() -> bool:
+    return time.time() - INICIO_RELOJ < PRESUPUESTO_S
 PRONOSTICO = 7
 ANIOS_NORMAL = range(1991, 2021)
 
@@ -60,6 +66,9 @@ def pedir(url: str, params: dict, intentos: int = 4):
             print(f"  {url.split('/')[2]} HTTP {r.status_code}: {r.text[:120]}")
             if r.status_code == 400:
                 return None
+            if r.status_code == 429:  # límite por minuto: esperar y reintentar
+                time.sleep(65)
+                continue
         except Exception as error:
             print(f"  {url.split('/')[2]}: {error}")
         time.sleep(20 * (i + 1))
@@ -98,35 +107,39 @@ def _ventana(inicio: date, fin: date, anio: int) -> tuple[str, str]:
     return a.isoformat(), (a + (fin - inicio)).isoformat()
 
 
-def lluvia_normal(z: pd.DataFrame, inicio: date, fin: date) -> pd.DataFrame:
-    """Lluvia promedio 1991-2020 para cada día (mes-día) de la ventana. Se guarda y se reutiliza."""
-    carpeta = DATA / "normales"; carpeta.mkdir(parents=True, exist_ok=True)
-    ruta = carpeta / "lluvia_diaria.csv"
-    previo = pd.read_csv(ruta) if ruta.exists() else pd.DataFrame(columns=["provincia", "md", "lluvia_normal"])
-    mds = [(inicio + timedelta(days=i)).strftime("%m-%d") for i in range((fin - inicio).days + 1)]
-    faltan = [m for m in mds if m not in set(previo["md"])]
-    if not faltan:
-        return previo
-    a, b = date(2001, int(faltan[0][:2]), int(faltan[0][3:])), date(2001, int(faltan[-1][:2]), int(faltan[-1][3:]))
-    if b < a:  # la ventana cruza el año nuevo: se calcula todo el bloque
-        a, b = date(2001, 1, 1), date(2001, 12, 31)
-    filas = []
+def lluvia_normal(z: pd.DataFrame) -> pd.DataFrame | None:
+    """Lluvia promedio 1991-2020 por día del año (suavizada ±7 días).
+
+    Cada año se descarga una sola vez (todas las provincias) y se guarda en data/normales/lluvia_anios/.
+    Si un día no alcanza el tiempo, sigue al día siguiente; la normal se calcula con los años que ya hay.
+    """
+    carpeta = DATA / "normales" / "lluvia_anios"; carpeta.mkdir(parents=True, exist_ok=True)
     for anio in ANIOS_NORMAL:
-        t0, t1 = _ventana(a, b, anio)
+        ruta = carpeta / f"{anio}.csv.gz"
+        if ruta.exists() or not queda_tiempo():
+            continue
         j = pedir("https://archive-api.open-meteo.com/v1/archive", {
             "latitude": ",".join(map(str, z["lat"])), "longitude": ",".join(map(str, z["lon"])),
-            "start_date": t0, "end_date": t1, "daily": "precipitation_sum", "timezone": "America/Lima"})
-        for k, loc in enumerate(como_lista(j or [])):
-            for f, ll in zip(loc["daily"]["time"], loc["daily"]["precipitation_sum"]):
-                filas.append({"provincia": z["provincia"][k], "md": f[5:], "ll": ll})
-        time.sleep(1)
-    if not filas:
-        return previo
-    nuevo = pd.DataFrame(filas).groupby(["provincia", "md"], as_index=False)["ll"].mean()
-    nuevo = nuevo.rename(columns={"ll": "lluvia_normal"}).round(2)
-    t = pd.concat([previo, nuevo[nuevo["md"].isin(faltan)]]).drop_duplicates(["provincia", "md"], keep="last")
-    t.to_csv(ruta, index=False)
-    return t
+            "start_date": f"{anio}-01-01", "end_date": f"{anio}-12-31", "daily": "precipitation_sum",
+            "timezone": "America/Lima"}, intentos=2)
+        filas = [{"provincia": z["provincia"][k], "fecha": f, "ll": v}
+                 for k, loc in enumerate(como_lista(j or [])) for f, v in zip(loc["daily"]["time"], loc["daily"]["precipitation_sum"])]
+        if filas:
+            pd.DataFrame(filas).to_csv(ruta, index=False)
+            print(f"  lluvia {anio}: listo")
+        time.sleep(3)
+    anios = sorted(carpeta.glob("*.csv.gz"))
+    print(f"  normal de lluvia con {len(anios)} de {len(ANIOS_NORMAL)} años")
+    if not anios:
+        return None
+    t = pd.concat(pd.read_csv(a) for a in anios)
+    t["md"] = t["fecha"].str[5:]
+    t = t[t["md"] != "02-29"]
+    clim = t.groupby(["provincia", "md"])["ll"].mean().unstack("md")
+    suave = pd.concat([clim.iloc[:, -7:], clim, clim.iloc[:, :7]], axis=1).T.rolling(15, center=True).mean().T.iloc[:, 7:-7]
+    out = suave.stack().rename("lluvia_normal").reset_index().round(2)
+    out.to_csv(DATA / "normales" / "lluvia_diaria.csv", index=False)
+    return out
 
 
 def elegir_celdas_rio() -> pd.DataFrame:
@@ -166,29 +179,31 @@ def caudal(rios: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(filas)
 
 
-def caudal_normal(rios: pd.DataFrame, inicio: date, fin: date) -> pd.DataFrame:
-    """Mediana 1991-2020 del caudal para cada día (mes-día) de la ventana; se guarda y reutiliza."""
-    ruta = DATA / "normales" / "caudal_diario.csv"
-    previo = pd.read_csv(ruta) if ruta.exists() else pd.DataFrame(columns=["rio", "md", "caudal_normal", "caudal_p90"])
-    mds = [(inicio + timedelta(days=i)).strftime("%m-%d") for i in range((fin - inicio).days + 1)]
-    faltan = [m for m in mds if m not in set(previo["md"])]
-    if not faltan:
-        return previo
-    filas = []
-    for _, r in rios.iterrows():  # un río por pedido (30 años de datos diarios)
+def caudal_normal(rios: pd.DataFrame) -> pd.DataFrame | None:
+    """Mediana y percentil 90 del caudal 1991-2020 por día del año; cada río se baja una vez y se guarda."""
+    carpeta = DATA / "normales" / "caudal_rios"; carpeta.mkdir(parents=True, exist_ok=True)
+    for _, r in rios.iterrows():
+        ruta = carpeta / f"{r['rio']}.csv.gz"
+        if ruta.exists() or not queda_tiempo():
+            continue
         j = pedir("https://flood-api.open-meteo.com/v1/flood", {
             "latitude": r["lat"], "longitude": r["lon"], "daily": "river_discharge",
-            "start_date": "1991-01-01", "end_date": "2020-12-31"})
-        for loc in como_lista(j or []):
-            for f, q in zip(loc["daily"]["time"], loc["daily"]["river_discharge"]):
-                filas.append({"rio": r["rio"], "md": f[5:], "q": q})
-        time.sleep(2)
-    if not filas:
-        return previo
-    t = pd.DataFrame(filas)
-    nuevo = t.groupby(["rio", "md"])["q"].agg(caudal_normal="median", caudal_p90=lambda x: x.quantile(.9)).reset_index()
-    nuevo.round(2).to_csv(ruta, index=False)  # todo el año de una vez: no se vuelve a pedir
-    return nuevo.round(2)
+            "start_date": "1991-01-01", "end_date": "2020-12-31"}, intentos=2)
+        if j:
+            d = j["daily"]
+            pd.DataFrame({"fecha": d["time"], "q": d["river_discharge"]}).to_csv(ruta, index=False)
+            print(f"  caudal {r['rio']}: listo")
+        time.sleep(3)
+    partes = []
+    for ruta in carpeta.glob("*.csv.gz"):
+        t = pd.read_csv(ruta); t["rio"] = ruta.name[:-7]; partes.append(t)
+    print(f"  normal de caudal para {len(partes)} de {len(rios)} ríos")
+    if not partes:
+        return None
+    t = pd.concat(partes); t["md"] = t["fecha"].str[5:]
+    out = t.groupby(["rio", "md"])["q"].agg(caudal_normal="median", caudal_p90=lambda x: x.quantile(.9)).reset_index().round(2)
+    out.to_csv(DATA / "normales" / "caudal_diario.csv", index=False)
+    return out
 
 
 def main() -> None:
@@ -198,13 +213,10 @@ def main() -> None:
     z.to_csv(DATA / "zonas_puntos.csv", index=False)
     ll = lluvia_reciente(z)
     print(f"Lluvia: {len(ll)} filas")
-    nl = lluvia_normal(z, inicio, fin)
-    print(f"Lluvia normal: {len(nl)} filas")
     rios = elegir_celdas_rio()
     q = caudal(rios) if len(rios) else pd.DataFrame()
     print(f"Caudal: {len(q)} filas")
-    nq = caudal_normal(rios, inicio, fin) if len(rios) else pd.DataFrame()
-    print(f"Caudal normal: {len(nq)} filas")
+    # lo de hoy primero (rápido); las normales después, con presupuesto de tiempo
     if len(ll):
         ll.to_csv(DATA / "zonas_lluvia.csv", index=False)
     if len(q):
@@ -214,6 +226,9 @@ def main() -> None:
         ll[ll["fecha"] < hoy.isoformat()].to_csv(hist / f"{hoy.isoformat()}_lluvia.csv.gz", index=False)
     if len(q):
         q[q["fecha"] < hoy.isoformat()].to_csv(hist / f"{hoy.isoformat()}_caudal.csv.gz", index=False)
+    lluvia_normal(z)
+    if len(rios):
+        caudal_normal(rios)
 
 
 if __name__ == "__main__":
