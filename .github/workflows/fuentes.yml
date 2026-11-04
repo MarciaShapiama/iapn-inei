@@ -8,17 +8,10 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           mkdir -p data/validacion/ems2017; cd data/validacion/ems2017
-          curl -sS "https://mapping.emergency.copernicus.eu/activations/api/activations/EMSR199/" -o api.json -w "api %{http_code} %{size_download}\n" || true
-          python3 - <<'P'
-          import json,re
-          try:
-              s=open('api.json').read()
-              urls=sorted(set(re.findall(r'https://[^"]+?\.zip',s)))
-              open('urls.txt','w').write("\n".join(urls))
-              print(len(urls)); print("\n".join(u for u in urls if re.search('PIURA|SULLANA|PARACHIQUE',u,re.I)))
-          except Exception as e: print("api", e)
-          P
-          for u in $(grep -iE 'PIURA|SULLANA|PARACHIQUE' urls.txt | grep -i vector); do curl -sSLO "$u" -w "%{http_code} %{size_download} $u\n"; done
+          B=https://cems-mapping-website.s3.eu-west-1.amazonaws.com/static/activations/EMSR199
+          for f in 10PIURA_DELINEATION_OVERVIEW_v2 10PIURA_DELINEATION_OVERVIEW-MONIT01_v3 08SULLANA_DELINEATION_OVERVIEW_v2 08Sullana_DELINEATION_OVERVIEW_v2 11PARACHIQUE_DELINEATION_OVERVIEW_v1 11PARACHIQUE_DELINEATION_OVERVIEW-MONIT01_v2 12PIURANORTH_DELINEATION_OVERVIEW_v1 12PiuraNorth_DELINEATION_OVERVIEW_v1 12PIURANORTH_DELINEATION_OVERVIEW-MONIT01_v1 12PiuraNorth_DELINEATION_OVERVIEW-MONIT01_v1 15PIURAEAST_GRADING_OVERVIEW_v2 15PiuraEast_GRADING_OVERVIEW_v2 16PIURAWEST_GRADING_OVERVIEW_v2 16PiuraWest_GRADING_OVERVIEW_v2; do
+            c=$(curl -sS -o EMSR199_${f}_vector.zip -w "%{http_code}" "$B/EMSR199_${f}_vector.zip"); echo "$c $f"; [ "$c" = 200 ] || rm -f EMSR199_${f}_vector.zip; done
+          curl -sS "https://mapping.emergency.copernicus.eu/activations/EMSR199/" -o pagina.html; grep -oE 'EMSR199_[A-Za-z0-9_-]+_vector\.zip' pagina.html | sort -u | head -60; rm -f pagina.html urls.txt
           ls -la; rm -f api.json
       - run: |
           git config user.name "MarciaShapiama"; git config user.email "13100817@ue.edu.pe"
