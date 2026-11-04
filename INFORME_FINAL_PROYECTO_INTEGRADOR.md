@@ -1,10 +1,8 @@
 # Informe final · Proyecto integrador PEU Ciencia de Datos (INEI)
 
-## Alerta Niño: inundaciones, exposición y alerta temprana en Tumbes y Piura
+## Exposición potencial a inundaciones asociadas a El Niño en Tumbes y Piura: un tablero estadístico reproducible por UBIGEO
 
-*Exposición potencial a inundaciones asociadas a El Niño: un tablero estadístico reproducible por UBIGEO*
-
-**Equipo:** Marcia, Christopher, Maykol y Luz Ángela · **Fecha:** 4 de noviembre de 2026
+**Equipo:** Christopher, Maykol, Marcia y Luz Ángela · **Fecha:** 4 de noviembre de 2026
 **Repositorio:** `MarciaShapiama/iapn-inei` · **Tablero:** https://marciashapiama.github.io/iapn-inei/ · **Documentos de soporte:** `docs/01` a `docs/05` y `docs/evidencia/`
 
 ---

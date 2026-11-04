@@ -1,6 +1,4 @@
-# Alerta Niño: inundaciones, exposición y alerta temprana en Tumbes y Piura
-
-Proyecto integrador · Programa de Especialización en Ciencia de Datos (PEU-CD) del INEI. **Equipo:** Marcia, Christopher, Maykol y Luz Ángela.
+# Inundaciones por El Niño en Tumbes y Piura
 
 Tablero público sobre la **exposición potencial** a inundaciones en **Tumbes y Piura**. Incluye:
 
