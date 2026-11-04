@@ -1,0 +1,36 @@
+# Fotos satelitales antes/después (Sentinel-2) de Tumbes y Piura. Los eventos pasados se calculan una vez;
+# "lo más reciente" se renueva cada semana.
+name: Fotos satelitales
+
+on:
+  schedule:
+    - cron: "25 16 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
+jobs:
+  satelite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r requirements.txt -r requirements-inundaciones.txt
+      - run: python -u src/satelite.py
+      - name: Guardar
+        run: |
+          git config user.name "Actualización automática"
+          git config user.email "actions@users.noreply.github.com"
+          git add dashboard/data/sat
+          git diff --cached --quiet && echo "Sin cambios" && exit 0
+          git commit -m "Fotos satelitales $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push
