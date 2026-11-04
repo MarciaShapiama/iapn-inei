@@ -24,7 +24,7 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 | Alerta por distrito | Riesgo de emergencia en las próximas 4 semanas (modelo de machine learning), su validación y los modelos comparados |
 | Lluvia y ríos | Las 8 provincias de Tumbes y Piura: lluvia de 20 días frente a lo normal, caudal y pronóstico de 7 días |
 | El mar y El Niño | Anomalía diaria del mar (últimos 20 días), Niño 1+2 semanal e ICEN |
-| Método y fuentes | De dónde sale cada cifra, sus límites y quién hizo qué |
+| Método y fuentes | De dónde sale cada cifra, sus límites y los autores |
 
 ### Autores
 
