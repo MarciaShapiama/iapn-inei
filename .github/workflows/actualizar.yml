@@ -4,7 +4,7 @@ name: Actualizar datos
 
 on:
   schedule:
-    - cron: "20 13 * * *"
+    - cron: "21 13 * * *"
   workflow_dispatch:
 
 permissions:

@@ -4,7 +4,7 @@ name: Inundaciones Tumbes y Piura
 
 on:
   schedule:
-    - cron: "40 14 * * 1,4"
+    - cron: "41 14 * * 1,4"
   workflow_dispatch:
 
 permissions:
