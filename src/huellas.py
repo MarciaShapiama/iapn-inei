@@ -34,7 +34,7 @@ STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 
 def eventos() -> dict:
     hoy = datetime.now(ZoneInfo("America/Lima")).date()
-    ref_anio = hoy.year if hoy.month >= 12 else hoy.year - 1
+    ref_anio = hoy.year if hoy.month >= 11 else hoy.year - 1
     return {
         "2017": {"nombre": "El Niño costero 2017", "evento": ("2017-02-01", "2017-04-30"), "ref": ("2016-08-01", "2016-11-30")},
         "2023": {"nombre": "Ciclón Yaku 2023", "evento": ("2023-03-01", "2023-04-15"), "ref": ("2022-08-01", "2022-11-30")},
@@ -55,10 +55,11 @@ def cargar_vv(cat, t0: str, t1: str, geobox=None):
     if not len(items):
         return None, []
     kw = {"geobox": geobox} if geobox is not None else {"crs": "EPSG:4326", "resolution": RES, "bbox": CAJA}
-    ds = odc.stac.load(items, bands=["vv"], chunks={"x": 2048, "y": 2048}, groupby="solar_day",
+    ds = odc.stac.load(items, bands=["vv"], chunks={"latitude": 2048, "longitude": 2048}, groupby="solar_day",
                        resampling="average", **kw)
     vv = ds["vv"].where(ds["vv"] > 0)
-    vv = vv.rolling(x=3, y=3, center=True, min_periods=4).mean()          # reduce el moteado (speckle)
+    yx = {d: 3 for d in vv.dims if d != "time"}
+    vv = vv.rolling(yx, center=True, min_periods=4).mean()          # reduce el moteado (speckle)
     db = 10 * np.log10(vv)
     fechas = sorted({str(i.datetime.date()) for i in items})
     return db, fechas
@@ -67,7 +68,7 @@ def cargar_vv(cat, t0: str, t1: str, geobox=None):
 def dem(cat, geobox):
     import odc.stac
     items = cat.search(collections=["cop-dem-glo-30"], bbox=CAJA).item_collection()
-    d = odc.stac.load(items, bands=["data"], geobox=geobox, chunks={"x": 2048, "y": 2048}, resampling="bilinear")
+    d = odc.stac.load(items, bands=["data"], geobox=geobox, chunks={"latitude": 2048, "longitude": 2048}, resampling="bilinear")
     return d["data"].max("time").compute().values.astype("float32")
 
 

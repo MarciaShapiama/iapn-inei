@@ -118,7 +118,17 @@ def colegios(forzar: bool) -> None:
     else:
         o, s, e, n = CAJA
         q = (f'[out:json][timeout:300];(nwr["amenity"~"^(school|kindergarten|college)$"]({s},{o},{n},{e}););out center tags;')
-        j = requests.post(OVERPASS, data={"data": q}, headers=UA, timeout=400).json()
+        j = None
+        for servidor in (OVERPASS, "https://overpass.kumi.systems/api/interpreter", "https://overpass.private.coffee/api/interpreter"):
+            try:
+                r = requests.post(servidor, data={"data": q}, headers=UA, timeout=400)
+                if r.status_code == 200 and r.text.lstrip().startswith("{"):
+                    j = r.json(); break
+                print(f"  {servidor}: HTTP {r.status_code} {r.text[:100]!r}")
+            except Exception as error:
+                print(f"  {servidor}: {error}")
+        if j is None:
+            raise RuntimeError("OpenStreetMap no respondió")
         filas = []
         for el in j["elements"]:
             c = el.get("center", el)
