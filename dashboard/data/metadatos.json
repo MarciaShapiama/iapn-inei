@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-04T12:14-05:00",
+ "generado": "2026-11-04T13:04-05:00",
  "hoy": "2026-11-04",
  "resumen_estado": {
   "vigente": 9,
@@ -325,7 +325,7 @@
    "version": "v2.1 NRT",
    "naturaleza": "observado (satélite + boyas, interpolado)",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-02",
+   "dato_mas_reciente": "2026-11-03",
    "tolerancia_dias": 3,
    "frecuencia": "diaria (rezago ~1-2 días)",
    "metodo": "Interpolación óptima (OI) de satélite AVHRR, boyas y barcos.",
@@ -399,7 +399,7 @@
    "metodo": "Mejor combinación de modelos numéricos para días pasados; pronóstico de 7 días.",
    "advertencias": [
     "No son lecturas de pluviómetros del SENAMHI.",
-    "Incluye pronóstico hasta 2026-11-10: el pronóstico no es observación.",
+    "Incluye pronóstico hasta 2026-11-11: el pronóstico no es observación.",
     "Los avisos oficiales los emite SENAMHI."
    ],
    "estado": "estimado",
