@@ -3,7 +3,7 @@
 ## Exposición potencial a inundaciones asociadas a El Niño en Tumbes y Piura: un tablero estadístico reproducible por UBIGEO
 
 **Equipo:** Christopher, Maykol, Marcia y Luz Ángela · **Fecha:** 4 de noviembre de 2026
-**Repositorio:** `marciashapiama/iapn-inei` · **Documentos de soporte:** `docs/01` a `docs/05` y `docs/evidencia/`
+**Repositorio:** `angeluzmenn/iapn-inei` (fork de `MarciaShapiama/iapn-inei`) · **Tablero:** https://angeluzmenn.github.io/iapn-inei/ · **Documentos de soporte:** `docs/01` a `docs/05` y `docs/evidencia/`
 
 ---
 
@@ -155,7 +155,7 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 
 | Prioridad | Tarea | Esfuerzo | Depende de | Responsable sugerido | Criterio de aceptación |
 |---|---|---|---|---|---|
-| **P0** | Fusionar la rama `auditoria-mvp-piloto` (ya subida a GitHub) en `main` para publicar | 0,5 d | revisión del equipo | Marcia | Pages muestra `mapa2d.html`; el smoke test contra el sitio pasa |
+| **P0** | Proponer los cambios del fork al repositorio del equipo (pull request) | 0,5 d | revisión del equipo | Marcia | PR fusionado; el sitio del equipo muestra `mapa2d.html` |
 | P0 | Volver a correr `base_modelo.py` completo (con red) | 0,5 d | — | Luz Ángela | Pruebas pasan; métricas registradas |
 | P0 | Quitar `__pycache__` versionado; dibujar gráficos D3 al mostrar la pestaña (E14) | 0,5 d | — | Maykol | Sin errores en la consola |
 | **P1** | Límites distritales oficiales INEI/IGN (78 distritos) | 2 d | pedido al INEI | equipo + INEI | 78 UBIGEO; prueba de cobertura |
@@ -211,11 +211,11 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 | README actualizado | Hecho | `README.md` | — |
 | Recálculo del radar «vivo» | Hecho | `data/huellas/vivo.json`, `metadatos.json` | 27,2 km²; estado vigente |
 | Commit y push de la rama | Hecho | rama `auditoria-mvp-piloto` en GitHub; workflow «Pruebas» en verde | — |
-| Publicación en GitHub Pages | Parcial | — | Falta fusionar la rama en `main` |
+| Publicación en GitHub Pages | Hecho | https://angeluzmenn.github.io/iapn-inei/ | Fork del repositorio del equipo; falta proponer los cambios al original con un pull request |
 
-**Problemas abiertos:** fusionar en `main`; límites oficiales; padrón ESCALE; licencia GADM; validación independiente del radar; emergencias después de 2015.
+**Problemas abiertos:** llevar los cambios al repositorio del equipo; límites oficiales; padrón ESCALE; licencia GADM; validación independiente del radar; emergencias después de 2015.
 
 **Tres próximos pasos:**
-1. Revisar y fusionar la rama `auditoria-mvp-piloto` en `main` para publicar el tablero corregido.
+1. Proponer los cambios al repositorio del equipo con un pull request desde el fork.
 2. Conseguir los límites oficiales del INEI y el padrón ESCALE.
 3. Construir la referencia independiente 2017/2023 para los casos A y B.
