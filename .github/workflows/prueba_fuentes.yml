@@ -1,15 +1,24 @@
 name: Prueba de fuentes
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   probar:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
-      - run: pip install -q pystac-client planetary-computer
-      - run: |
-          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
-          set +e
-          echo "== ENFEN"; curl -sS -A "$UA" -L --max-time 60 -o /tmp/e.html -w "%{http_code} %{size_download}\n" "https://www.gob.pe/institucion/senamhi/colecciones/1308-comunicados-enfen"; grep -o 'href="/institucion/[a-z]*/informes-publicaciones/[0-9]*-[^"]*"' /tmp/e.html | head -6
-          L=$(grep -o '/institucion/[a-z]*/informes-publicaciones/[0-9]*-comunicado-oficial-enfen[^"]*' /tmp/e.html | head -1); echo "ultimo: $L"; curl -sS -A "$UA" -L --max-time 60 "https://www.gob.pe$L" -o /tmp/c.html; grep -o '<title>[^<]*' /tmp/c.html; grep -io 'estado del sistema de alerta[^<]\{0,200\}' /tmp/c.html | head -3; grep -o 'https://cdn.www.gob.pe/uploads/document/file/[^"?]*' /tmp/c.html | head -2; grep -o 'datetime="[^"]*"' /tmp/c.html | head -2
-          echo "== ESCALE"; for u in "https://escale.minedu.gob.pe/web/inicio/padron-de-iiee" "https://sigmed.minedu.gob.pe/mapaeducativo/" "https://www.datosabiertos.gob.pe/search/field_topic/educaci%C3%B3n-1080?query=padron" "https://www.datosabiertos.gob.pe/dataset/padr%C3%B3n-de-instituciones-educativas" ; do echo "-- $u"; curl -sS -A "$UA" -L --max-time 60 -o /tmp/x.html -w "%{http_code} %{size_download}\n" "$u"; grep -o 'href="[^"]*\(\.zip\|\.csv\|\.xlsx\|\.dbf\)"' /tmp/x.html | head -8; grep -o '<title>[^<]*' /tmp/x.html | head -1; done
-          echo "== OVERPASS"; curl -sS -A "$UA" --max-time 120 --data-urlencode 'data=[out:json][timeout:60];way["highway"~"^(trunk|primary)$"](-5.3,-80.7,-5.2,-80.6);out count;' https://overpass.kumi.systems/api/interpreter | head -c 300; echo
-          echo "== WORLDCOVER"; python3 -c "import pystac_client,planetary_computer as pc;c=pystac_client.Client.open('https://planetarycomputer.microsoft.com/api/stac/v1',modifier=pc.sign_inplace);it=c.search(collections=['esa-worldcover'],bbox=[-81.4,-6.4,-79.15,-3.35]).item_collection();print(len(it),[i.id for i in it][:6], list(it[0].assets) if len(it) else None)"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r requirements.txt -r requirements-inundaciones.txt
+      - run: python -u src/exposicion_extra.py
+      - name: Guardar
+        run: |
+          git config user.name "Actualización automática"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/exposicion dashboard/data/enfen.json || true
+          git diff --cached --quiet && echo "Sin cambios" && exit 0
+          git commit -m "Exposición adicional: edades, cultivos, vías y ENFEN"
+          git pull --rebase origin main
+          git push

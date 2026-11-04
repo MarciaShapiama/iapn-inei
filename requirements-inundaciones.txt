@@ -7,3 +7,4 @@ dask[array]>=2024.1
 scipy>=1.11
 pyarrow>=14
 Pillow>=10
+pdfplumber>=0.10
