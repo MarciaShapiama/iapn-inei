@@ -166,8 +166,31 @@ def exposicion_distrito() -> pd.DataFrame:
     return pd.DataFrame(list(filas.values()))
 
 
+TABLAS_INDECI = ["7162639-tabla-1-emergencias-y-danos-2003-2024-indeci", "7162698-tabla-2-peligros-2003-2024-indeci",
+                  "7162767-tabla-3-damnificados-2003-2024-indeci", "7162837-tabla-4-afectados-2003-2024-indeci"]
+
+
+def tablas_indeci() -> None:
+    """Tablas estadísticas del INDECI 2003-2024 (totales por provincia y distrito, sin fechas) de Tumbes y Piura.
+    Se guardan tal cual en data/modelo/indeci/ para validar DÓNDE ocurren más emergencias."""
+    import re
+    destino = CARPETA / "indeci"; destino.mkdir(exist_ok=True)
+    nav = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"}
+    for pagina in TABLAS_INDECI:
+        try:
+            html = requests.get(f"https://www.gob.pe/institucion/indeci/informes-publicaciones/{pagina}", headers=nav, timeout=120).text
+            for url in sorted(set(re.findall(r'https://cdn\.www\.gob\.pe/uploads/document/file/[^"?]+', html))):
+                nombre = url.rsplit("/", 1)[-1].lower()
+                if ("piura" in nombre or "tumbes" in nombre) and not (destino / nombre).exists():
+                    (destino / nombre).write_bytes(requests.get(url, headers=nav, timeout=180).content)
+                    print(f"  INDECI: {nombre}")
+        except Exception as error:
+            print(f"  INDECI {pagina}: {error}")
+
+
 def main() -> None:
     CARPETA.mkdir(parents=True, exist_ok=True)
+    tablas_indeci()
     em = emergencias()
     d = distritos()
     em["clave"] = em["name0"].apply(normal) + em["name2"].apply(normal)
