@@ -1,0 +1,25 @@
+name: Prueba de fuentes
+on: workflow_dispatch
+permissions: {contents: write}
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p data/validacion/ems2017; cd data/validacion/ems2017
+          curl -sS "https://mapping.emergency.copernicus.eu/activations/api/activations/EMSR199/" -o api.json -w "api %{http_code} %{size_download}\n" || true
+          python3 - <<'P'
+          import json,re
+          try:
+              s=open('api.json').read()
+              urls=sorted(set(re.findall(r'https://[^"]+?\.zip',s)))
+              open('urls.txt','w').write("\n".join(urls))
+              print(len(urls)); print("\n".join(u for u in urls if re.search('PIURA|SULLANA|PARACHIQUE',u,re.I)))
+          except Exception as e: print("api", e)
+          P
+          for u in $(grep -iE 'PIURA|SULLANA|PARACHIQUE' urls.txt | grep -i vector); do curl -sSLO "$u" -w "%{http_code} %{size_download} $u\n"; done
+          ls -la; rm -f api.json
+      - run: |
+          git config user.name "MarciaShapiama"; git config user.email "13100817@ue.edu.pe"
+          git add data/validacion && git commit -qm "Mapas oficiales Copernicus EMS de la inundación 2017 (EMSR199) para validar el radar" && git push || echo nada
