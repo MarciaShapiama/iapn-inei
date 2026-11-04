@@ -121,7 +121,7 @@ def test_qa_radar_marca_solape_de_referencia(inund):
 
 def test_poblacion_alineada_con_edificaciones():
     """El ráster WorldPop debe coincidir con la densidad de Open Buildings (fuente independiente): desplazamiento 0."""
-    import rasterio
+    rasterio = pytest.importorskip("rasterio")
     from exposicion import CARPETA
     from reparar_poblacion import desplazamiento_optimo
     with rasterio.open(CARPETA / "poblacion_100m.tif") as s:
