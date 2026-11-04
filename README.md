@@ -18,7 +18,7 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 
 | Pestaña | Qué muestra |
 |---|---|
-| Resumen | Las cifras principales en una frase, lo que pasa esta semana y lo que pasó en 2017 y 2023 |
+| Resumen | Las cifras principales en una frase (personas, edificaciones, colegios, salud, niños de 0 a 4 años, adultos de 65 o más, cultivos y carreteras), el estado oficial del ENFEN, lo que pasa esta semana y lo que pasó en 2017 y 2023 |
 | Mapa de inundación | Vista 3D sobre el relieve: zona inundable por profundidad, edificaciones, colegios y salud |
 | Antes y después | Fotos Sentinel-2 de 2017, 2023 y de estos días en Piura, Tumbes y Sechura, con comparador deslizable |
 | Alerta por distrito | Riesgo de emergencia en las próximas 4 semanas (modelo de machine learning), su validación y los modelos comparados |

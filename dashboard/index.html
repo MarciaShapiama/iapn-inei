@@ -464,7 +464,7 @@ function resumenVista(){
     if(X.ninos_0a4!=null)k2.push(["Niños de 0 a 4 años",redondo(X.ninos_0a4),"en la misma zona inundable"]);
     if(X.mayores_65!=null)k2.push(["Personas de 65 años o más",redondo(X.mayores_65),"en la misma zona inundable"]);
     if(X.cultivo_ha!=null)k2.push(["Cultivos en zona inundable",redondo(X.cultivo_ha)+" ha","tierras de cultivo (ESA WorldCover 2021)"]);
-    if(X.vias_km_total!=null)k2.push(["Carreteras principales",fmtN(X.vias_km_total,0)+" km",X.puentes!=null?`y ${miles(X.puentes)} puentes dentro o junto a la zona`:"dentro de la zona"]);
+    if(X.vias_km_total!=null)k2.push(["Carreteras principales",miles(X.vias_km_total)+" km",X.puentes!=null?`y ${miles(X.puentes)} puentes dentro o junto a la zona`:"dentro de la zona"]);
     if(k2.length)document.getElementById("r-kpis2").innerHTML=k2.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra" style="font-size:32px">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");}
   // esta semana
   const filas=[];
@@ -669,7 +669,7 @@ function panelInund(){
     if(X.ninos_0a4!=null)f.push(`Niños de 0 a 4 años: <b>${nf(X.ninos_0a4)}</b>`);
     if(X.mayores_65!=null)f.push(`Personas de 65 años o más: <b>${nf(X.mayores_65)}</b>`);
     if(X.cultivo_ha!=null)f.push(`Cultivos: <b>${nf(X.cultivo_ha)} ha</b>`);
-    if(X.vias_km_total!=null)f.push(`Carreteras principales: <b>${fmtN(X.vias_km_total,0)} km</b>`+(X.vias_km&&X.vias_km["Troncal (red nacional)"]?` (${fmtN(X.vias_km["Troncal (red nacional)"],0)} km de red nacional)`:""));
+    if(X.vias_km_total!=null)f.push(`Carreteras principales: <b>${nf(X.vias_km_total)} km</b>`+(X.vias_km&&X.vias_km["Troncal (red nacional)"]?` (${nf(X.vias_km["Troncal (red nacional)"])} km de red nacional)`:""));
     if(X.puentes!=null)f.push(`Puentes dentro o a 100 m o menos: <b>${nf(X.puentes)}</b>`);
     if(f.length)extra=`<div class="i-valida"><b>Además, en esta zona</b><br>${f.join("<br>")}</div>`+extra;}
   document.getElementById("i-valida").innerHTML=extra;

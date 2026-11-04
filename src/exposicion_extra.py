@@ -166,7 +166,8 @@ def enfen() -> None:
             salida["estado"] = est.group(1)
         tit = re.search(r"Coster[oa]\s*\d?\s+([A-ZÁÉÍÓÚÑ0-9 ,.\-]{20,160}?)\s+[A-Z][a-záéíóú]", texto)
         if tit:
-            salida["titular"] = tit.group(1).strip().capitalize()
+            t = tit.group(1).strip().capitalize()
+            salida["titular"] = re.sub(r"\bniño\b", "Niño", re.sub(r"\bniña\b", "Niña", t))
         mag = re.search(r"mantendría una magnitud ([a-záéíóú]+)\d?\s+hasta ([a-záéíóú]+ de \d{4})", texto)
         if mag:
             salida["magnitud_esperada"] = f"{mag.group(1)} hasta {mag.group(2)}"
@@ -188,6 +189,12 @@ def padron_minedu() -> None:
 if __name__ == "__main__":
     CARPETA.mkdir(parents=True, exist_ok=True)
     forzar = "--forzar" in sys.argv
+    if "--solo-enfen" in sys.argv:          # corrida diaria: solo el comunicado del ENFEN
+        try:
+            enfen()
+        except Exception as error:
+            print(f"  ERROR {error}")
+        raise SystemExit(0)
     for paso in (enfen, padron_minedu, lambda: edades(forzar), lambda: cultivos(forzar), lambda: vias(forzar)):
         try:
             paso()

@@ -27,6 +27,9 @@ jobs:
       - run: pip install -q -r requirements-dev.txt
       - name: ETL de inundaciones (exposición, Sentinel-1, impacto, panel, metadatos; registra fallos)
         run: python -u src/etl.py inundacion
+      - name: Exposición adicional (edades, cultivos, vías) e impacto adicional
+        run: python -u src/exposicion_extra.py && python -u src/impacto_extra.py
+        continue-on-error: true
       - name: Pruebas de consistencia antes de guardar (si fallan, se conserva el último resultado válido)
         run: python -m pytest -q tests/test_datos.py tests/test_unidades.py
       - name: Guardar

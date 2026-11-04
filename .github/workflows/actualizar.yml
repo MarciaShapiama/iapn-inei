@@ -27,6 +27,9 @@ jobs:
       - name: ETL diario (mar, índices, lluvia y ríos, tablero, metadatos; registra fallos y conserva lo último válido)
         run: python -u src/etl.py diario
         timeout-minutes: 60
+      - name: Último comunicado oficial del ENFEN
+        run: pip install -q pdfplumber && python -u src/exposicion_extra.py --solo-enfen
+        continue-on-error: true
       - name: Pruebas de consistencia antes de guardar
         run: python -m pytest -q tests/test_datos.py tests/test_unidades.py
       - name: Guardar
