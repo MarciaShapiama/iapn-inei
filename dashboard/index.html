@@ -348,6 +348,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
     <li><b>Lo que vio el radar:</b> satélite Sentinel-1 (radar, ve a través de las nubes). Se compara cada imagen del evento con la temporada seca anterior; un lugar cuenta como agua nueva si su señal baja más de 3 dB y queda por debajo de −17 dB. Se excluyen el mar, el agua permanente, lo que está a más de 250 m de altura y las pendientes. El radar no ve bien el agua entre edificios ni bajo árboles: <b>sus cifras son un mínimo</b>.</li>
     <li><b>Fotos antes y después:</b> satélite Sentinel-2 (10 m), escena con menos nubes dentro de cada zona.</li>
   </ul>
+  <div id="m-valida"></div>
 
   <h3>2. ¿A quién afecta?</h3>
   <ul>
@@ -417,11 +418,21 @@ const chipMag=(m,corto)=>`<span class="chip"><i style="background:var(${MAGCOL[m
 
 function hayWebGL(){if(/[?&]sin3d=1/.test(location.search))return false;try{const c=document.createElement("canvas");return !!(window.WebGLRenderingContext&&(c.getContext("webgl2")||c.getContext("webgl")))}catch(e){return false}}
 const SIN_GPU=`<div style="padding:24px;color:#eef3f5;max-width:560px"><b>Este navegador no puede crear un contexto WebGL</b> (aceleración gráfica desactivada, controlador o máquina virtual sin GPU). No es una falla del servidor ni de los datos.<br><br><a href="mapa2d.html" style="color:#7fb4e0;font-weight:700">Abrir el mapa 2D accesible</a> con las mismas capas, cifras, metadatos y descargas.</div>`;
+function validacionVista(V){
+  const pc=x=>x==null?"—":Math.round(x*100)+" %", km=x=>fmtN(x,0)+" km²", T=V.total;
+  const filas=Object.values(V.areas).filter(a=>a.radar&&a.radar.km2_copernicus>=5).map(a=>`<tr><td>${a.nombre}</td><td class="n">${km(a.radar.km2_copernicus)}</td><td class="n">${pc(a.radar.acierto)}</td><td class="n">${pc(a.radar.precision)}</td><td class="n">${a.jrc_rp100?pc(a.jrc_rp100.acierto):"—"}</td></tr>`).join("");
+  document.getElementById("m-valida").innerHTML=`<h3>¿Qué tan bien acierta? Comparación con el mapa oficial de 2017</h3>
+  <p>En marzo de 2017 el Servicio de Gestión de Emergencias de Copernicus (Unión Europea, activación EMSR199) delimitó, con imágenes satelitales de alta resolución, las zonas que estaban bajo el agua en varias áreas de Piura. Ese mapa se usa aquí como referencia. En esas áreas Copernicus marcó <b>${km(T.radar.km2_copernicus)}</b> inundados.</p>
+  <ul><li><b>Radar del proyecto (Sentinel-1):</b> encontró el <b>${pc(T.radar.acierto)}</b> del área que marcó Copernicus, y el <b>${pc(T.radar.precision)}</b> de lo que detectó coincide con ese mapa. Es decir, cuando marca agua suele acertar, pero se le escapa más de la mitad de la inundación: es una cifra mínima.</li>
+  <li><b>Zona inundable de JRC (crecida de 1 en 100 años):</b> cubre el <b>${pc(T.jrc_rp100.acierto)}</b> de lo que se inundó en 2017. Es más amplia que lo observado ese año, como se espera de un escenario de 1 en 100 años.</li></ul>
+  <table class="tabla"><tr><th>Área de Copernicus</th><th style="text-align:right">Inundado según Copernicus</th><th style="text-align:right">Radar: acierto</th><th style="text-align:right">Radar: precisión</th><th style="text-align:right">JRC cubre</th></tr>${filas}</table>
+  <p class="nota">Acierto: parte del área de Copernicus que también se detectó. Precisión: parte de lo detectado que también marcó Copernicus. Copernicus no cartografió Tumbes, y sus mapas son de días puntuales (23 al 30 de marzo), mientras que el radar del proyecto resume febrero a abril. Casi la mitad del área de Copernicus ya se veía oscura en el radar en la temporada seca de 2016 (agosto a noviembre), y el método la descartó como si fuera agua permanente; esa es la principal razón de lo que no se detecta. Fuente: <a href="https://mapping.emergency.copernicus.eu/activations/EMSR199" target="_blank" rel="noopener" style="color:var(--ink)">Copernicus EMS, EMSR199</a>.</p>`}
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
 Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen")])
-.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF])=>{
+  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017")])
+.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL])=>{
+  if(VAL&&VAL.total&&VAL.total.radar)try{validacionVista(VAL)}catch(e){console.error("validacion",e)}
   // solo las provincias de Tumbes y Piura
   if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
   if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
