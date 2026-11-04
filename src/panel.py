@@ -87,7 +87,7 @@ def construir() -> pd.DataFrame:
 
 
 def _n(v, d=0):
-    return "s/d" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{v:,.{d}f}".replace(",", " ")
+    return "s/d" if v is None or (isinstance(v, float) and np.isnan(v)) else f"{v:,.{d}f}".replace(",", " ").replace(".", ",")
 
 
 def ficha(r: dict) -> str:
@@ -98,7 +98,7 @@ def ficha(r: dict) -> str:
         t += f"El radar detectó {_n(r['km2_radar_2017'], 1)} km² de agua nueva en 2017 y {_n(r.get('km2_radar_2023'), 1)} km² en 2023 (detección automática). "
     t += (f"Exposición: unas {_n(r['personas_rp100'])} personas ({_n(r['pct_poblacion_rp100'], 1)} % de la población modelada) y "
           f"{_n(r['edificaciones_rp100'])} edificaciones dentro de la zona 1 en 100 años; "
-          f"{_n(r.get('colegios_dentro_rp100'))} colegios y {_n(r.get('salud_dentro_rp100'))} establecimientos de salud dentro "
+          f"{_n(r.get('colegios_dentro_rp100'))} locales escolares y {_n(r.get('salud_dentro_rp100'))} establecimientos de salud dentro "
           f"({_n(r.get('colegios_acum_1km_rp100'))} y {_n(r.get('salud_acum_1km_rp100'))} a ≤ 1 km). "
           f"Vulnerabilidad: pobreza monetaria {_n(r['pct_pobreza_total'], 1)} % (2018), IDH {_n(r['idh_2019'], 3)} (2019). "
           f"Prioridad de revisión: {r['prioridad_revision']} (índice relativo {_n(r['riesgo_estimado'], 0)}/100). "

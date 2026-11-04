@@ -40,3 +40,5 @@ fecha,etiqueta,archivo,bytes,sha256,cambio
 2026-11-04T15:20-05:00,impacto,exposicion_distritos.csv,31400,2ba4eb64ec08a27f08ffd913a3c145f16314860fd22ee82bfed3fcf103153b30,modificado
 2026-11-04T15:20-05:00,panel,panel_distritos.csv,64331,16aec80ebd0662a92f5d1d3be972444e00deea3ddc3a4a9a843892dd9e9079ad,modificado
 2026-11-04T15:20-05:00,panel,panel_distritos.json,107228,76573b9afa10daa01fc9568e30a23bac4c4029a629d5f85283d300066c95ee01,modificado
+2026-11-04T16:01-05:00,panel,panel_distritos.csv,65015,4f09c6ce0c0d387aa244fce8ffb7c3572aeb10be3975c18e3726f64db5de2889,modificado
+2026-11-04T16:01-05:00,panel,panel_distritos.json,107912,e2d068f9341ef81f9ee4eb282e525ddcb26de8c8ad39ab791e112dc68747e3d8,modificado
