@@ -5,11 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
-          curl -sS -A "$UA" -L --max-time 60 https://desinventar-api.undrr.org/DesInventar/download.jsp | grep -io 'href="[^"]*per[^"]*"' | head -5 || true
-          for u in "https://desinventar-api.undrr.org/DesInventar/download/DI_export_per.zip" \
-                   "https://www.desinventar.net/DesInventar/download/DI_export_per.zip" \
-                   "https://desinventar.cimafoundation.org/DesInventar/download/DI_export_per.zip"; do
-            echo "== $u"; curl -sS -A "$UA" -o /tmp/x -w "%{http_code} %{size_download} %{content_type}\n" -L --max-time 300 "$u" || true
-            head -c 4 /tmp/x | xxd | head -1; done
-          ls -la /tmp/x; unzip -l /tmp/x 2>/dev/null | head || true
+          curl -sS -L --max-time 300 -o /tmp/d.zip "https://www.desinventar.net/DesInventar/download/DI_export_per.zip"
+          cd /tmp && unzip -o -q d.zip && ls -la /tmp/*.xml
+          F=$(ls /tmp/*.xml | head -1)
+          python3 - "$F" <<'PY'
+          import sys,re
+          t=open(sys.argv[1],encoding="utf-8",errors="replace").read()
+          print("tamaño",len(t))
+          tags=re.findall(r"<([A-Za-z_]+)[ >]",t[:3000000]);
+          from collections import Counter; print(Counter(tags).most_common(40))
+          i=t.find("<fichas"); print(t[i:i+3000] if i>=0 else t[:3000])
+          j=t.find("<lev2"); print(t[j:j+800])
+          j=t.find("<eventos"); print(t[j:j+1500])
+          import collections
+          years=collections.Counter(re.findall(r"<fechano>(\d{4})</fechano>",t)); print(sorted(years.items())[-25:])
+
+          PY
