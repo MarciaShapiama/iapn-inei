@@ -213,7 +213,10 @@ def main() -> None:
     for clave, ev in eventos().items():
         if clave not in pedidos:
             continue
-        if clave != "vivo" and (CARPETA / f"{clave}.tif").exists() and "--forzar" not in sys.argv:
+        previo = CARPETA / f"{clave}.json"
+        mismo_criterio = previo.exists() and (PERMANENTE != "gsw" or "Global Surface Water" in
+                                              json.load(open(previo, encoding="utf-8")).get("agua_permanente", ""))
+        if clave != "vivo" and (CARPETA / f"{clave}.tif").exists() and mismo_criterio and "--forzar" not in sys.argv:
             print(f"Evento {clave}: ya calculado"); continue
         try:
             z, geobox = procesar(cat, clave, ev, z, geobox)

@@ -8,3 +8,5 @@ scipy>=1.11
 pyarrow>=14
 Pillow>=10
 pdfplumber>=0.10
+geopandas>=0.14
+pyogrio>=0.7
