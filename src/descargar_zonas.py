@@ -16,7 +16,9 @@ from __future__ import annotations
 
 import json
 import time
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
@@ -207,7 +209,7 @@ def caudal_normal(rios: pd.DataFrame) -> pd.DataFrame | None:
 
 
 def main() -> None:
-    hoy = date.today()
+    hoy = datetime.now(ZoneInfo("America/Lima")).date()
     inicio, fin = hoy - timedelta(days=DIAS_VENTANA), hoy + timedelta(days=PRONOSTICO)
     z = puntos_zonas()
     z.to_csv(DATA / "zonas_puntos.csv", index=False)

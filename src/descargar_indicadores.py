@@ -16,6 +16,8 @@ import re
 import time
 from datetime import date, datetime, timedelta
 
+from zoneinfo import ZoneInfo
+
 import pandas as pd
 import requests
 
@@ -91,7 +93,7 @@ def coes_total(inicio: date, fin: date) -> float | None:
 
 def coes_diario() -> pd.DataFrame:
     """Últimos DIAS_VENTANA días (SCADA, MWh) y los mismos días del año anterior."""
-    hoy = date.today()
+    hoy = datetime.now(ZoneInfo("America/Lima")).date()
     filas = []
     for i in range(1, DIAS_VENTANA + 1):
         d = hoy - timedelta(days=i)
@@ -107,7 +109,7 @@ def coes_diario() -> pd.DataFrame:
 def coes_mensual(desde: str = "2015-01") -> pd.DataFrame:
     archivo = DATA / "coes_mensual.csv"
     previo = pd.read_csv(archivo) if archivo.exists() else pd.DataFrame(columns=["fecha", "mwh", "dias"])
-    hoy = date.today()
+    hoy = datetime.now(ZoneInfo("America/Lima")).date()
     meses = pd.period_range(desde, pd.Period(hoy, "M") - 1, freq="M")
     ya = set(previo["fecha"].astype(str)) - {str(meses[-1])}
     nuevas = []
