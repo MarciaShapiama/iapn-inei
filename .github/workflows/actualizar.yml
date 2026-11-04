@@ -31,6 +31,7 @@ jobs:
         continue-on-error: true
       - name: Zonas afectadas (lluvia y ríos)
         run: python src/descargar_zonas.py
+        timeout-minutes: 45
         continue-on-error: true
       - name: Preparar datos del tablero
         run: python src/construir.py

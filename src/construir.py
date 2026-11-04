@@ -7,6 +7,8 @@
     economia.json   producción por sector (INEI vía BCRP) y electricidad COES mensual y diaria
     picos.json      rejilla de los días pico de 1983, 1998, 2017 y 2023 para comparar
     resumen.json    titulares del día
+    zonas.json      zonas afectadas (provincias costeras): mar de enfrente, lluvia, río e índice de alerta
+    zonas.geojson   contorno de esas provincias
 
 El mar de cada región costera son las celdas a menos de 150 km de su territorio (se asigna cada
 celda a la región más cercana).
@@ -18,6 +20,7 @@ from __future__ import annotations
 import json
 import math
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
@@ -196,6 +199,92 @@ def resumen(reg: dict, idx: dict, eco: dict, n_dias: int) -> dict:
     }
 
 
+def _limite(x: float, a: float = 0.0, b: float = 1.0) -> float:
+    return max(a, min(b, x))
+
+
+def zonas(mar: pd.DataFrame) -> tuple[dict, dict] | None:
+    """Provincias costeras: mar a menos de 100 km, lluvia vs. normal, caudal del río vs. normal, alerta."""
+    if not (DATA / "zonas_lluvia.csv").exists():
+        return None
+    from descargar_zonas import RIOS, ZONAS
+    g = json.load(open(DATA / "provincias.geojson", encoding="utf-8"))
+    formas = {(f["properties"]["departamento"], f["properties"]["provincia"]): f for f in g["features"]}
+    pts = pd.read_csv(DATA / "zonas_puntos.csv")
+    ll = pd.read_csv(DATA / "zonas_lluvia.csv")
+    nl = leer_csv("normales/lluvia_diaria")
+    q = leer_csv("rios_caudal")
+    nq = leer_csv("normales/caudal_diario")
+    celdas_rio = leer_csv("normales/rios_celdas")
+    hoy = datetime.now(ZoneInfo("America/Lima")).date().isoformat()
+    fechas = sorted(ll["fecha"].unique())
+    fechas_mar = sorted(mar["fecha"].unique())[-DIAS_VENTANA:]
+    ventana = mar[mar["fecha"].isin(fechas_mar)]
+    celdas = ventana[["lat", "lon"]].drop_duplicates()
+    salida, geo = [], {"type": "FeatureCollection", "features": []}
+    for dep, prov in ZONAS:
+        f = formas[(dep, prov)]
+        forma = shape(f["geometry"])
+        p = pts[pts["provincia"] == prov].iloc[0]
+        # mar de enfrente: celdas a menos de 100 km del territorio de la provincia
+        cerca = [(la, lo) for la, lo in zip(celdas["lat"], celdas["lon"]) if forma.distance(Point(lo, la)) * KM_GRADO <= 100]
+        m = ventana.set_index(["lat", "lon"]).loc[cerca].reset_index() if cerca else ventana.iloc[0:0]
+        mar_dia = m.groupby("fecha")["anom"].mean().reindex(fechas_mar)
+        # lluvia y su normal (promedio 1991-2020 del mismo día del año)
+        x = ll[ll["provincia"] == prov].set_index("fecha").reindex(fechas)
+        normal = (nl[nl["provincia"] == prov].set_index("md")["lluvia_normal"] if nl is not None else pd.Series(dtype=float))
+        x["normal"] = [normal.get(fe[5:], np.nan) for fe in fechas]
+        obs = x[x.index < hoy]
+        ll20, n20 = float(obs["lluvia_mm"].sum()), float(obs["normal"].sum())
+        pron7 = float(x[x.index >= hoy]["lluvia_mm"].sum())
+        # río más cercano (a menos de 60 km)
+        rio = None
+        if celdas_rio is not None and q is not None:
+            dist = {r: forma.distance(Point(lo, la)) * KM_GRADO for r, (la, lo) in RIOS.items()}
+            nombre, km = min(dist.items(), key=lambda t: t[1])
+            if km <= 60 and nombre in set(q["rio"]):
+                y = q[q["rio"] == nombre].set_index("fecha").reindex(fechas)
+                nr = nq[nq["rio"] == nombre].set_index("md") if nq is not None else pd.DataFrame()
+                y["normal"] = [nr["caudal_normal"].get(fe[5:], np.nan) if len(nr) else np.nan for fe in fechas]
+                y["p90"] = [nr["caudal_p90"].get(fe[5:], np.nan) if len(nr) else np.nan for fe in fechas]
+                c = celdas_rio[celdas_rio["rio"] == nombre].iloc[0]
+                pasado = y[y.index < hoy]
+                q_hoy = float(pasado["caudal_m3s"].dropna().iloc[-1]) if pasado["caudal_m3s"].notna().any() else None
+                q_max = float(y["caudal_m3s"].max()) if y["caudal_m3s"].notna().any() else None
+                rio = {"nombre": nombre, "lat": float(c["lat"]), "lon": float(c["lon"]),
+                       "caudal": [None if pd.isna(v) else round(float(v), 1) for v in y["caudal_m3s"]],
+                       "normal": [None if pd.isna(v) else round(float(v), 1) for v in y["normal"]],
+                       "p90": [None if pd.isna(v) else round(float(v), 1) for v in y["p90"]],
+                       "hoy": q_hoy, "max_27d": q_max,
+                       "normal_hoy": None if pasado["normal"].dropna().empty else float(pasado["normal"].dropna().iloc[-1])}
+        # índice de alerta (0-100): mar 50, lluvia 25, río 25 (lectura indicativa, ver Método)
+        a_mar = _limite((float(mar_dia.dropna().iloc[-1]) if mar_dia.notna().any() else 0) / 4) * 50
+        a_ll = _limite((ll20 + pron7 - n20) / 50) * 25
+        a_rio = 0.0
+        if rio and rio["max_27d"] is not None:
+            p90 = max([v for v in rio["p90"] if v is not None] or [np.nan])
+            if p90 and not np.isnan(p90):
+                a_rio = _limite(rio["max_27d"] / p90 / 1.5) * 25
+        indice = round(a_mar + a_ll + a_rio)
+        nivel = "Alerta alta" if indice >= 60 else "Alerta" if indice >= 40 else "Vigilancia" if indice >= 20 else "Normal"
+        b = forma.bounds
+        salida.append({
+            "departamento": dep, "provincia": prov, "lat": float(p["lat"]), "lon": float(p["lon"]),
+            "bbox": [round(v, 3) for v in b],
+            "mar": [None if pd.isna(v) else round(float(v), 2) for v in mar_dia],
+            "mar_celdas": len(cerca),
+            "lluvia": [None if pd.isna(v) else round(float(v), 1) for v in x["lluvia_mm"]],
+            "lluvia_normal": [None if pd.isna(v) else round(float(v), 2) for v in x["normal"]],
+            "tmax": [None if pd.isna(v) else round(float(v), 1) for v in x["tmax"]],
+            "lluvia_20d": round(ll20, 1), "normal_20d": round(n20, 1), "pronostico_7d": round(pron7, 1),
+            "rio": rio, "indice": indice, "nivel": nivel,
+            "componentes": {"mar": round(a_mar), "lluvia": round(a_ll), "rio": round(a_rio)},
+        })
+        geo["features"].append({"type": "Feature", "properties": {"provincia": prov, "departamento": dep},
+                                "geometry": json.loads(json.dumps(forma.simplify(0.003).__geo_interface__))})
+    return {"fechas": fechas, "hoy": hoy, "fechas_mar": fechas_mar, "zonas": salida}, geo
+
+
 def escribir(nombre: str, obj) -> None:
     DASH_DATA.mkdir(parents=True, exist_ok=True)
     with open(DASH_DATA / f"{nombre}.json", "w", encoding="utf-8") as f:
@@ -218,6 +307,11 @@ def main() -> None:
     escribir("mar", rj)
     escribir("picos", picos(rj["lats"], rj["lons"], celdas))
     escribir("resumen", resumen(reg, idx, eco, int(mar["fecha"].nunique())))
+    z = zonas(mar)
+    if z:
+        escribir("zonas", z[0])
+        with open(DASH_DATA / "zonas.geojson", "w", encoding="utf-8") as f:
+            json.dump(z[1], f, ensure_ascii=False, separators=(",", ":"))
 
 
 if __name__ == "__main__":

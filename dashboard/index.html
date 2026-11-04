@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400..700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://unpkg.com/deck.gl@9.0.38/dist.min.js"></script>
 <style>
 :root{
   --bg:#f3f1ec; --panel:#fff; --panel-2:#f7f5f1; --ink:#13202b; --ink-2:#3d4a55; --ink-3:#6b7680;
@@ -81,6 +82,41 @@ table.tabla td.n{text-align:right;font-variant-numeric:tabular-nums}
 .metodo h3{font-size:15px;margin:18px 0 4px}
 .metodo p,.metodo li{color:var(--ink-2);max-width:860px}
 .aviso{font-size:12.5px;color:var(--ink-3);border-left:3px solid var(--line-2);padding-left:10px;margin-top:10px}
+
+/* zonas afectadas */
+.z-wrap{display:grid;grid-template-columns:minmax(0,1fr) 380px;height:780px;background:#0b1620;border-radius:14px;overflow:hidden;box-shadow:var(--sombra);color:#e8eef2;min-height:640px}
+@media (max-width:900px){.z-wrap{grid-template-columns:1fr;height:auto}.z-mapa{height:480px}}
+.z-mapa{position:relative;min-height:520px;background:#0b1620}
+.z-mapa canvas{border-radius:0}
+.z-modos{position:absolute;top:12px;left:12px;z-index:3;display:flex;background:rgba(11,22,32,.85);border:1px solid #2a3d4c;border-radius:999px;padding:3px}
+.z-modos button{background:none;border:0;color:#c5d2db;font:600 13px "Public Sans";padding:6px 13px;border-radius:999px;cursor:pointer}
+.z-modos button[aria-pressed=true]{background:#7fb4e0;color:#0b1620}
+.z-leyenda{position:absolute;left:12px;bottom:12px;z-index:3;background:rgba(11,22,32,.85);border:1px solid #2a3d4c;border-radius:10px;padding:8px 10px;font-size:12px;color:#c5d2db;max-width:calc(100% - 24px)}
+.z-leyenda div{display:flex;align-items:center;gap:7px;margin:2px 0}
+.z-leyenda i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.z-panel{padding:16px 18px;border-left:1px solid #1f3140;overflow-y:auto}
+.z-panel .eti{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8ea3b3;font-weight:700;margin:14px 0 6px}
+.z-panel select{width:100%;background:#13232f;color:#e8eef2;border:1px solid #2a3d4c;font-size:14px;padding:8px}
+.z-panel h3{font-family:Archivo;font-size:28px;font-weight:800;font-stretch:88%;margin:12px 0 0;line-height:1.1}
+.z-sub{color:#9fb3bf;font-size:13.5px}
+.z-nivel{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;margin-top:8px;border:1px solid}
+.z-kpis{display:grid;grid-template-columns:1fr 1fr;border:1px solid #1f3140;border-radius:10px;margin-top:12px}
+.z-kpis>div{padding:10px 12px;border-bottom:1px solid #1f3140}
+.z-kpis>div:nth-child(odd){border-right:1px solid #1f3140}
+.z-kpis>div:nth-last-child(-n+2){border-bottom:0}
+.z-kpis .k{font-size:12px;color:#9fb3bf}
+.z-kpis .v{font-family:Archivo;font-size:22px;font-weight:800;font-stretch:88%}
+.z-kpis .d{font-size:11.5px;color:#8ea3b3}
+.z-dia{background:#13232f;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:13px}
+.z-dia b{color:#fff}
+.z-barra{display:flex;height:10px;border-radius:5px;overflow:hidden;background:#1f3140;margin:6px 0}
+.z-panel svg text{fill:#8ea3b3}
+.z-panel .eje path,.z-panel .eje line{stroke:#2a3d4c}
+.z-ctrl{display:flex;gap:8px;align-items:center;margin-top:10px}
+.z-ctrl input{flex:1}
+.z-ctrl button{background:#7fb4e0;color:#0b1620;border:0;border-radius:8px;font:700 13px "Public Sans";padding:6px 11px;cursor:pointer}
+.z-nota{font-size:11.5px;color:#7f93a2;margin-top:10px}
+.z-rank{margin-top:16px}
 footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:var(--ink-3)}
 @media (max-width:480px){.g4{grid-template-columns:1fr}}
 @media (max-width:600px){main{padding:16px 16px 40px}.barra{padding:12px 16px 0}.kpi .cifra{font-size:28px}}
@@ -98,6 +134,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <nav role="tablist" id="pestanas">
     <button class="tab" role="tab" data-v="situacion">Situación</button>
     <button class="tab" role="tab" data-v="mar">El mar · 20 días</button>
+    <button class="tab" role="tab" data-v="zonas">Zonas afectadas</button>
     <button class="tab" role="tab" data-v="regiones">Regiones costeras</button>
     <button class="tab" role="tab" data-v="historia">¿Cómo en 1998?</button>
     <button class="tab" role="tab" data-v="economia">Economía</button>
@@ -140,6 +177,36 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div id="tabla-dia"></div>
     </div>
   </div>
+</section>
+
+
+<!-- ZONAS AFECTADAS -->
+<section class="vista" id="v-zonas">
+  <p class="titular">Zonas afectadas, día a día, sobre el terreno</p>
+  <p class="bajada">Las 34 provincias de la costa. Para cada una: el mar que tiene enfrente, la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal y el pronóstico de 7 días. Con eso se arma un índice de alerta de 0 a 100. Mueve la vista con el mouse (clic derecho o Ctrl para inclinar).</p>
+  <div class="z-wrap">
+    <div class="z-mapa" id="z-mapa">
+      <div class="z-modos" id="z-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
+      <div class="z-leyenda" id="z-leyenda"></div>
+    </div>
+    <div class="z-panel">
+      <div class="eti">Zona (ordenadas por alerta)</div>
+      <select id="z-sel"></select>
+      <h3 id="z-nombre">—</h3>
+      <div class="z-sub" id="z-sub"></div>
+      <div id="z-nivel"></div>
+      <div class="z-kpis" id="z-kpis"></div>
+      <div class="eti">Índice de alerta</div>
+      <div id="z-indice"></div>
+      <div class="z-ctrl"><button id="z-play">▶</button><input type="range" id="z-dia" min="0" max="0" value="0" aria-label="Día"></div>
+      <div class="z-dia" id="z-dia-txt"></div>
+      <div class="eti">Lluvia diaria (mm) · normal 1991-2020</div><svg id="z-g-lluvia" style="width:100%;display:block"></svg>
+      <div class="eti" id="z-t-rio">Caudal del río (m³/s)</div><svg id="z-g-rio" style="width:100%;display:block"></svg>
+      <div class="eti">Mar de enfrente (°C de anomalía)</div><svg id="z-g-mar" style="width:100%;display:block"></svg>
+      <p class="z-nota">Lluvia: modelos meteorológicos (Open-Meteo) y su normal con el reanálisis ERA5. Caudal: GloFAS v4 (Copernicus), es un modelo hidrológico, no una medición en estación. Lo sombreado es pronóstico. Relieve: teselas públicas de elevación (AWS Terrain Tiles); imagen: Esri World Imagery.</p>
+    </div>
+  </div>
+  <div class="panel z-rank"><h2>Las 34 zonas</h2><p class="nota">Clic en una fila para verla en 3D.</p><div id="z-tabla"></div></div>
 </section>
 
 <!-- REGIONES -->
@@ -197,10 +264,13 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
     <li>Cada día se guarda en su propio archivo con su fecha (<code>data/historico/mar/AAAA-MM-DD.csv.gz</code>). Lo que ya existe no se vuelve a bajar y <b>nada se borra</b>: así el histórico crece un día cada día, como pidió el asesor.</li>
     <li>Cada celda de mar se asigna a la región costera más cercana si está a menos de 150 km; el promedio de esas celdas es el mar de la región.</li>
     <li>Se descargan también Niño 1+2, 3, 3.4 y 4 (NOAA CPC), el ICEN (IGP), la producción por sector (INEI vía BCRP) y la electricidad diaria y mensual del COES. Cada descarga queda fechada en <code>data/historico/economia/</code>.</li>
+    <li><b>Zonas afectadas</b>: para las 34 provincias de la costa se descarga la lluvia diaria (últimos 20 días y pronóstico de 7, Open-Meteo) y su normal 1991-2020 (reanálisis ERA5), y el caudal del río principal de cada cuenca (GloFAS v4 de Copernicus) con su mediana y percentil 90 de 1991-2020. Cada día queda guardado en <code>data/historico/zonas/</code>.</li>
     <li>Un programa prepara los archivos del tablero y GitHub Pages lo publica.</li>
   </ol>
   <h3>Magnitud</h3>
   <p>Se usan los umbrales del ICEN (ENFEN): normal &lt; 0,4 °C; débil 0,4–1,0; moderado 1,0–1,7; fuerte 1,7–3,0; extraordinario &gt; 3,0. Aplicarlos a un solo día o a una región es una lectura indicativa: la declaración oficial usa el ICEN de 3 meses.</p>
+  <h3>Índice de alerta de las zonas (0 a 100)</h3>
+  <p>Es una lectura propia, indicativa, para ordenar las zonas; no reemplaza los avisos del ENFEN, SENAMHI ni INDECI. Suma tres partes: <b>mar</b> (hasta 50 puntos: anomalía del mar a menos de 100 km de la provincia, 4 °C o más da el máximo), <b>lluvia</b> (hasta 25: lluvia de los últimos 20 días más el pronóstico de 7, por encima de su normal; 50 mm de exceso da el máximo) y <b>río</b> (hasta 25: caudal máximo de los 27 días frente a su percentil 90 histórico; 1,5 veces el p90 da el máximo). Niveles: normal &lt; 20, vigilancia 20-39, alerta 40-59, alerta alta ≥ 60.</p>
   <h3>Fuentes</h3>
   <ul>
     <li>NOAA NCEI, Optimum Interpolation SST v2.1 (Huang et al., 2021), vía ERDDAP de NOAA CoastWatch.</li>
@@ -208,7 +278,10 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
     <li>Instituto Geofísico del Perú, Índice Costero El Niño (ICEN).</li>
     <li>INEI, producción nacional y sectorial, publicada en BCRPData (Banco Central de Reserva del Perú).</li>
     <li>COES-SINAC, producción de energía eléctrica del SEIN (SCADA).</li>
-    <li>Límites departamentales: INEI.</li>
+    <li>Open-Meteo: lluvia diaria (modelos meteorológicos) y reanálisis ERA5 (Copernicus/ECMWF) para la normal.</li>
+    <li>GloFAS v4, Copernicus Emergency Management Service: caudal diario de los ríos, vía Open-Meteo.</li>
+    <li>Relieve: AWS Terrain Tiles (SRTM y otros); imagen satelital: Esri World Imagery.</li>
+    <li>Límites departamentales y provinciales: INEI.</li>
   </ul>
   <p class="aviso">Datos preliminares de tiempo casi real: NOAA puede revisar los últimos días. Código y datos: <a href="https://github.com/MarciaShapiama/iapn-inei">github.com/MarciaShapiama/iapn-inei</a>.</p>
 </section>
@@ -232,10 +305,12 @@ const MAGCOL={"Normal":"--n0","Cálido débil":"--w1","Cálido moderado":"--w2",
 const chipMag=(m,corto)=>`<span class="chip"><i style="background:var(${MAGCOL[m]||"--n0"})"></i>${corto&&m!=="Normal"?m.replace("Cálido ","").replace(/^./,c=>c.toUpperCase()):m}</span>`;
 
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
-Promise.all(["resumen","regiones","mar","picos","indices","economia","departamentos"].map(n=>n==="departamentos"?fetch("data/departamentos.geojson").then(r=>r.json()):get(n)))
-.then(([R,REG,MAR,PIC,IDX,ECO,GEO])=>{
-  window.D={R,REG,MAR,PIC,IDX,ECO,GEO};
+const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
+Promise.all([get("resumen"),get("regiones"),get("mar"),get("picos"),get("indices"),get("economia"),geo("departamentos"),get("zonas"),geo("zonas")])
+.then(([R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO])=>{
+  window.D={R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO};
   pestanas(); estado(); situacion(); mar(); tarjetas(); historia(); economia(); indices();
+  try{ if(visible("v-zonas"))zonasVista(); else document.querySelector('[data-v="zonas"]').addEventListener("click",()=>{if(!Z3.deck)setTimeout(zonasVista,30)},{once:true}); window.addEventListener("hashchange",()=>{if(visible("v-zonas")&&!Z3.deck)setTimeout(zonasVista,30)}); }catch(e){console.error(e)}
   ["ley1","ley2","ley3"].forEach(leyenda);
 });
 
@@ -325,6 +400,132 @@ function mar(){
 }
 const visible=id=>document.getElementById(id).classList.contains("activa");
 const debounce=(f,t)=>{let h;return()=>{clearTimeout(h);h=setTimeout(f,t)}};
+
+
+/* ---------- ZONAS AFECTADAS (3D) ---------- */
+const NIVEL={"Alerta alta":["#ff6b5a","rgba(255,107,90,.15)"],"Alerta":["#f5a142","rgba(245,161,66,.15)"],"Vigilancia":["#f2d36b","rgba(242,211,107,.12)"],"Normal":["#4cc49b","rgba(76,196,155,.12)"]};
+const nivelChip=n=>`<span class="z-nivel" style="color:${NIVEL[n][0]};border-color:${NIVEL[n][0]};background:${NIVEL[n][1]}">◆ ${n}</span>`;
+const rgb=h=>{const c=d3.color(h);return [c.r,c.g,c.b]};
+const TEX={sat:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  relieve:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}",
+  calles:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"};
+const Z3={modo:"sat",dia:0,i:0,deck:null,timer:null};
+function zonasVista(){
+  const Z=D.ZON; if(!Z||!window.deck){document.getElementById("z-nombre").textContent="Datos en preparación";return}
+  const orden=Z.zonas.map((z,i)=>i).sort((a,b)=>Z.zonas[b].indice-Z.zonas[a].indice);
+  const sel=document.getElementById("z-sel");
+  sel.innerHTML=orden.map(i=>{const z=Z.zonas[i];return `<option value="${i}">${z.provincia} (${z.departamento}) · ${z.nivel.toLowerCase()} ${z.indice}</option>`}).join("");
+  const kHoy=Math.max(0,Z.fechas.indexOf(Z.hoy)-1);
+  const sl=document.getElementById("z-dia"); sl.max=Z.fechas.length-1; sl.value=kHoy; Z3.dia=kHoy;
+  document.getElementById("z-leyenda").innerHTML=`<div><i style="background:#fff;height:3px"></i>Límite de la provincia</div><div><i style="background:#3d8bfd;border-radius:50%"></i>Río principal (tamaño = caudal)</div><div><i style="background:#7fd3ff"></i>Columna = lluvia del día</div><div><i style="background:linear-gradient(90deg,${["--n0","--w1","--w2","--w3","--w4","--w5","--w6"].map(css).join(",")})"></i>Mar: anomalía del día</div>`;
+  const el=document.getElementById("z-mapa");
+  Z3.deck=new deck.Deck({parent:el,width:"100%",height:"100%",controller:{dragRotate:true,touchRotate:true},
+    initialViewState:{longitude:-79,latitude:-8,zoom:8,pitch:55,bearing:70},
+    getTooltip:({object,layer})=>object&&layer&&layer.id==="mar"?{html:`Mar: <b>${fmt(object.v,2)} °C</b>`,style:{background:"#0c2230",color:"#eef3f5",fontSize:"12px",borderRadius:"6px"}}:object&&layer&&layer.id==="rio"?{html:`Río ${object.n}<br><b>${fmtN(object.q,1)} m³/s</b>`,style:{background:"#0c2230",color:"#eef3f5",fontSize:"12px",borderRadius:"6px"}}:null});
+  document.querySelectorAll("#z-modos button").forEach(b=>b.onclick=()=>{Z3.modo=b.dataset.m;document.querySelectorAll("#z-modos button").forEach(x=>x.setAttribute("aria-pressed",x===b));capas3D()});
+  sel.onchange=()=>elegirZona(+sel.value,true);
+  sl.oninput=()=>{Z3.dia=+sl.value;capas3D();panelDia()};
+  const bp=document.getElementById("z-play");
+  bp.onclick=()=>{if(Z3.timer){clearInterval(Z3.timer);Z3.timer=null;bp.textContent="▶";return}
+    if(+sl.value>=+sl.max)sl.value=0;bp.textContent="■";
+    Z3.timer=setInterval(()=>{if(+sl.value>=+sl.max){clearInterval(Z3.timer);Z3.timer=null;bp.textContent="▶";return}sl.value=+sl.value+1;Z3.dia=+sl.value;capas3D();panelDia()},600)};
+  // tabla
+  document.getElementById("z-tabla").innerHTML=`<table class="tabla"><tr><th>Zona</th><th>Nivel</th><th style="text-align:right">Índice</th><th style="text-align:right">Mar hoy</th><th style="text-align:right">Lluvia 20 d / normal</th><th>Río</th></tr>`+
+    orden.map(i=>{const z=Z.zonas[i],m=z.mar.filter(v=>v!=null).at(-1);return `<tr data-i="${i}" style="cursor:pointer"><td><b>${z.provincia}</b> <span style="color:var(--ink-3)">${z.departamento}</span></td><td><span class="chip"><i style="background:${NIVEL[z.nivel][0]}"></i>${z.nivel}</span></td><td class="n"><b>${z.indice}</b></td><td class="n">${fmt(m,1)} °C</td><td class="n">${fmtN(z.lluvia_20d,1)} / ${fmtN(z.normal_20d,1)} mm</td><td>${z.rio?z.rio.nombre+(z.rio.hoy!=null?` · ${fmtN(z.rio.hoy,0)} m³/s`:""):"—"}</td></tr>`}).join("")+"</table>";
+  document.querySelectorAll("#z-tabla tr[data-i]").forEach(tr=>tr.onclick=()=>{sel.value=tr.dataset.i;elegirZona(+tr.dataset.i,true);document.getElementById("z-mapa").scrollIntoView({behavior:"smooth",block:"center"})});
+  elegirZona(orden[0],false);
+}
+function vistaZona(z){
+  const el=document.getElementById("z-mapa"),w=el.clientWidth||800,h=el.clientHeight||600;
+  const [x0,y0,x1,y1]=z.bbox, vp=new deck.WebMercatorViewport({width:w,height:h}).fitBounds([[x0-0.25,y0],[x1,y1]],{padding:30});
+  return {longitude:vp.longitude,latitude:vp.latitude,zoom:Math.min(11,vp.zoom+0.3),pitch:58,bearing:62};
+}
+function elegirZona(i,volar){
+  const Z=D.ZON,z=Z.zonas[i]; Z3.i=i;
+  document.getElementById("z-nombre").textContent=z.provincia;
+  document.getElementById("z-sub").textContent=`Provincia de ${z.provincia} · ${z.departamento} · costa`;
+  document.getElementById("z-nivel").innerHTML=nivelChip(z.nivel)+` <span class="z-sub">índice ${z.indice} de 100</span>`;
+  const m=z.mar.filter(v=>v!=null).at(-1), r=z.rio;
+  const pct=z.normal_20d>0.5?Math.round(100*z.lluvia_20d/z.normal_20d)+" % de lo normal":"normal: casi sin lluvia";
+  document.getElementById("z-kpis").innerHTML=[
+    ["Mar de enfrente",fmt(m,1)+" °C",`${z.mar_celdas} celdas a < 100 km`],
+    ["Lluvia 20 días",fmtN(z.lluvia_20d,1)+" mm",pct],
+    [r?"Río "+r.nombre:"Río","" +(r&&r.hoy!=null?fmtN(r.hoy,0)+" m³/s":"—"),r&&r.normal_hoy?`normal ${fmtN(r.normal_hoy,0)} m³/s`:"sin río cercano"],
+    ["Pronóstico 7 días",fmtN(z.pronostico_7d,1)+" mm","lluvia esperada"]].map(k=>`<div><div class="k">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join("");
+  const c=z.componentes;
+  document.getElementById("z-indice").innerHTML=`<div class="z-barra"><span style="width:${c.mar}%;background:#ef9550"></span><span style="width:${c.lluvia}%;background:#7fd3ff"></span><span style="width:${c.rio}%;background:#3d8bfd"></span></div><div class="z-sub" style="font-size:12px">Mar ${c.mar}/50 · Lluvia ${c.lluvia}/25 · Río ${c.rio}/25</div>`;
+  graficosZona(z);
+  if(volar)Z3.deck.setProps({initialViewState:{...vistaZona(z),transitionDuration:1800,transitionInterpolator:new deck.FlyToInterpolator()}});
+  else Z3.deck.setProps({initialViewState:vistaZona(z)});
+  capas3D(); panelDia();
+}
+function panelDia(){
+  const Z=D.ZON,z=Z.zonas[Z3.i],k=Z3.dia,f=Z.fechas[k],pron=f>=Z.hoy;
+  const km=Z.fechas_mar.indexOf(f), m=km>=0?z.mar[km]:null;
+  const r=z.rio;
+  document.getElementById("z-dia-txt").innerHTML=`<b>Día ${k+1} de ${Z.fechas.length} · ${fechaTxt(f)}</b>${pron?' · <span style="color:#f2d36b">pronóstico</span>':""}<br>`+
+    `Lluvia: <b>${fmtN(z.lluvia[k],1)} mm</b> (normal ${fmtN(z.lluvia_normal[k],1)})`+(r?` · Río: <b>${fmtN(r.caudal[k],0)} m³/s</b> (normal ${fmtN(r.normal[k],0)})`:"")+
+    (m!=null?` · Mar: <b>${fmt(m,1)} °C</b>`:"");
+  ["z-g-lluvia","z-g-rio","z-g-mar"].forEach(id=>{const g=d3.select("#"+id).select(".cursor");if(!g.empty()){const X=d3.select("#"+id).node().__X;g.attr("x1",X(f)+X.bandwidth()/2).attr("x2",X(f)+X.bandwidth()/2)}});
+}
+function capas3D(){
+  const Z=D.ZON,z=Z.zonas[Z3.i],f=Z.fechas[Z3.dia],M=D.MAR;
+  const fm=M.fechas.includes(f)?f:M.fechas.filter(x=>x<=f).at(-1)||M.fechas.at(-1);
+  const gr=M.anom[fm],s=M.paso/2,celdas=[];
+  M.lats.forEach((la,i)=>M.lons.forEach((lo,j)=>{const v=gr[i][j];if(v==null)return;
+    if(Math.abs(la-z.lat)>3||Math.abs(lo-z.lon)>3)return;
+    celdas.push({p:[[lo-s,la-s],[lo+s,la-s],[lo+s,la+s],[lo-s,la+s]],v})}));
+  const T=new deck._TerrainExtension();
+  const ll=z.lluvia[Z3.dia]||0, r=z.rio, q=r?r.caudal[Z3.dia]:null, qn=r?r.normal[Z3.dia]:null;
+  const capas=[
+    new deck.TerrainLayer({id:"terreno-"+Z3.modo,minZoom:0,maxZoom:12,strategy:"no-overlap",operation:"terrain+draw",
+      elevationDecoder:{rScaler:256*1.6,gScaler:1.6,bScaler:1.6/256,offset:-32768*1.6},
+      elevationData:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",texture:TEX[Z3.modo],color:[255,255,255]}),
+    new deck.SolidPolygonLayer({id:"mar",data:celdas,getPolygon:d=>d.p,getFillColor:d=>[...rgb(color(d.v)),215],pickable:true,
+      updateTriggers:{getFillColor:fm},parameters:{depthTest:true}}),
+    new deck.GeoJsonLayer({id:"provincia",data:{type:"FeatureCollection",features:D.ZGEO.features.filter(x=>x.properties.provincia===z.provincia)},
+      filled:false,stroked:true,getLineColor:[255,255,255,240],lineWidthMinPixels:2.5,extensions:[T]}),
+    new deck.GeoJsonLayer({id:"vecinas",data:D.ZGEO,filled:false,stroked:true,getLineColor:[255,255,255,90],lineWidthMinPixels:1,extensions:[T]}),
+    new deck.ColumnLayer({id:"lluvia",data:[{p:[z.lon,z.lat],h:ll}],getPosition:d=>d.p,diskResolution:24,radius:1800,extruded:true,
+      getElevation:d=>Math.max(30,d.h*400),getFillColor:[127,211,255,ll>0?230:90],extensions:[T],terrainDrawMode:"offset",
+      updateTriggers:{getElevation:ll,getFillColor:ll}}),
+    new deck.TextLayer({id:"nombre",data:[{p:[z.lon,z.lat],t:z.provincia}],getPosition:d=>d.p,getText:d=>d.t,getSize:15,getColor:[255,255,255],
+      fontWeight:800,outlineWidth:3,outlineColor:[11,22,32,230],fontSettings:{sdf:true},getPixelOffset:[0,-26],extensions:[T],terrainDrawMode:"offset",characterSet:"auto"})];
+  if(r)capas.push(new deck.ScatterplotLayer({id:"rio",data:[{p:[r.lon,r.lat],q,n:r.nombre}],getPosition:d=>d.p,pickable:true,radiusUnits:"pixels",
+      getRadius:()=>q==null?6:Math.max(6,Math.min(26,6+10*(q/Math.max(1,qn||q)))),getFillColor:[61,139,253,230],stroked:true,getLineColor:[255,255,255],lineWidthUnits:"pixels",getLineWidth:2,
+      extensions:[T],terrainDrawMode:"offset",updateTriggers:{getRadius:[q,qn]}}),
+    new deck.TextLayer({id:"rio-txt",data:[{p:[r.lon,r.lat],t:"Río "+r.nombre}],getPosition:d=>d.p,getText:d=>d.t,getSize:12,getColor:[200,225,255],outlineWidth:3,outlineColor:[11,22,32,230],fontSettings:{sdf:true},getPixelOffset:[0,22],extensions:[T],terrainDrawMode:"offset",characterSet:"auto"}));
+  Z3.deck.setProps({layers:capas});
+}
+function graficosZona(z){
+  const Z=D.ZON,F=Z.fechas;
+  const base=(id,h)=>{const el=document.getElementById(id),w=Math.max(260,el.parentNode.clientWidth-36),m={t:8,r:6,b:20,l:34},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
+    const X=d3.scaleBand().domain(F).range([m.l,w-m.r]).padding(.18); el.__X=X;
+    const kh=F.indexOf(Z.hoy); if(kh>=0)svg.append("rect").attr("x",X(Z.hoy)).attr("width",w-m.r-X(Z.hoy)).attr("y",m.t).attr("height",h-m.t-m.b).attr("fill","#f2d36b").attr("opacity",.08);
+    svg.append("g").attr("class","eje").attr("transform",`translate(0,${h-m.b})`).call(d3.axisBottom(X).tickValues(F.filter((f,i)=>i%7===0)).tickFormat(f=>fechaTxt(f).replace(/ \d{4}$/,"")).tickSizeOuter(0));
+    return {svg,X,w,h,m}};
+  const cursor=(o)=>o.svg.append("line").attr("class","cursor").attr("y1",o.m.t).attr("y2",o.h-o.m.b).attr("stroke","#fff").attr("stroke-width",1.2).attr("opacity",.7);
+  { const o=base("z-g-lluvia",120),mx=Math.max(2,d3.max(z.lluvia.concat(z.lluvia_normal).filter(v=>v!=null)));
+    const Y=d3.scaleLinear().domain([0,mx]).nice().range([o.h-o.m.b,o.m.t]);
+    o.svg.append("g").attr("class","eje").attr("transform",`translate(${o.m.l},0)`).call(d3.axisLeft(Y).ticks(3)).select(".domain").remove();
+    o.svg.selectAll(".b").data(F).join("rect").attr("x",f=>o.X(f)).attr("width",o.X.bandwidth()).attr("y",(f,i)=>Y(z.lluvia[i]||0)).attr("height",(f,i)=>Y(0)-Y(z.lluvia[i]||0)).attr("rx",2).attr("fill","#7fd3ff");
+    o.svg.append("path").attr("d",d3.line().defined(v=>v!=null).x((v,i)=>o.X(F[i])+o.X.bandwidth()/2).y(v=>Y(v))(z.lluvia_normal)).attr("fill","none").attr("stroke","#f2d36b").attr("stroke-width",1.6).attr("stroke-dasharray","4 3");
+    cursor(o);}
+  { const r=z.rio, o=base("z-g-rio",120);
+    document.getElementById("z-t-rio").textContent=r?`Caudal del río ${r.nombre} (m³/s) · normal y percentil 90`:"Caudal: no hay un río principal a menos de 60 km";
+    if(r){const vals=r.caudal.concat(r.p90).filter(v=>v!=null),Y=d3.scaleLinear().domain([0,Math.max(1,d3.max(vals))]).nice().range([o.h-o.m.b,o.m.t]);
+      o.svg.append("g").attr("class","eje").attr("transform",`translate(${o.m.l},0)`).call(d3.axisLeft(Y).ticks(3)).select(".domain").remove();
+      const cx=(v,i)=>o.X(F[i])+o.X.bandwidth()/2;
+      o.svg.append("path").attr("d",d3.area().defined((v,i)=>r.p90[i]!=null&&r.normal[i]!=null).x(cx).y0((v,i)=>Y(r.normal[i])).y1((v,i)=>Y(r.p90[i]))(F)).attr("fill","#3d8bfd").attr("opacity",.18);
+      o.svg.append("path").attr("d",d3.line().defined(v=>v!=null).x(cx).y(v=>Y(v))(r.normal)).attr("fill","none").attr("stroke","#f2d36b").attr("stroke-width",1.4).attr("stroke-dasharray","4 3");
+      o.svg.append("path").attr("d",d3.line().defined(v=>v!=null).x(cx).y(v=>Y(v))(r.caudal)).attr("fill","none").attr("stroke","#3d8bfd").attr("stroke-width",2.2);}
+    cursor(o);}
+  { const o=base("z-g-mar",100), FM=Z.fechas_mar;
+    const Y=d3.scaleLinear().domain([Math.min(0,d3.min(z.mar.filter(v=>v!=null))||0),Math.max(1,d3.max(z.mar.filter(v=>v!=null))||1)]).nice().range([o.h-o.m.b,o.m.t]);
+    o.svg.append("g").attr("class","eje").attr("transform",`translate(${o.m.l},0)`).call(d3.axisLeft(Y).ticks(3)).select(".domain").remove();
+    o.svg.selectAll(".b").data(FM).join("rect").filter(f=>o.X(f)!=null).attr("x",f=>o.X(f)).attr("width",o.X.bandwidth()).attr("y",(f,i)=>Y(Math.max(0,z.mar[i]||0))).attr("height",(f,i)=>Math.abs(Y(z.mar[i]||0)-Y(0))).attr("rx",2).attr("fill",(f,i)=>color(z.mar[i]));
+    cursor(o);}
+}
 
 /* ---------- TARJETAS ---------- */
 function tarjetas(){
