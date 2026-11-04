@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-04T15:20-05:00",
+ "generado": "2026-11-04T15:54-05:00",
  "hoy": "2026-11-04",
  "resumen_estado": {
   "vigente": 9,
@@ -431,7 +431,7 @@
   },
   {
    "id": "indice_provincial",
-   "nombre": "Índice de alerta provincial (propio, 0-100)",
+   "nombre": "Indicador de condiciones por provincia (propio, 0-100; no es una alerta)",
    "fuente": "Cálculo del proyecto (src/construir.py)",
    "url": "",
    "licencia": "—",

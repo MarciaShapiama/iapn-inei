@@ -128,7 +128,7 @@ tr[data-ub]:hover{background:color-mix(in srgb,var(--acento) 10%,transparent)}
 <script>
 "use strict";
 const $=s=>document.querySelector(s);
-const nf=(v,d=0)=>v==null||Number.isNaN(v)?"s/d":Number(v).toLocaleString("es-PE",{maximumFractionDigits:d,minimumFractionDigits:d});
+const nf=(v,d=0)=>v==null||Number.isNaN(v)?"s/d":Number(v).toLocaleString("en-US",{maximumFractionDigits:d,minimumFractionDigits:d}).replace(/,/g," ").replace(".",",");
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const jget=n=>fetch("data/"+n).then(r=>r.ok?r.json():null).catch(()=>null);
 const ETQ={rp100:"Peligro: crecida 1 en 100 años (JRC)",rp10:"Peligro: crecida 1 en 10 años (JRC)","2017":"Radar 2017: El Niño costero","2023":"Radar 2023: ciclón Yaku",vivo:"Radar: últimos 24 días"};
@@ -275,12 +275,12 @@ function actualizar(volar){
     ["Superficie de la mancha",nf(K.km2,1)+" km²",e.tipo==="peligro"?"escenario JRC":"detección radar (mínimo)"],
     ["Población potencialmente expuesta",nf(K.personas),K.personas_500m!=null?`${nf(K.personas_500m)} hasta 500 m · WorldPop 2026`:"WorldPop 2026 (modelada)"],
     ["Edificaciones potencialmente expuestas",nf(K.edif),`${nf(K.edif500)} hasta 500 m · Open Buildings`],
-    ["Colegios",nf(K.col[0])+" dentro",`acumulado: ${nf(K.col[1])} hasta 500 m · ${nf(K.col[2])} hasta 1 km`],
+    ["Locales escolares",nf(K.col[0])+" dentro",`acumulado: ${nf(K.col[1])} hasta 500 m · ${nf(K.col[2])} hasta 1 km`],
     ["Establecimientos de salud",nf(K.sal[0])+" dentro",`acumulado: ${nf(K.sal[1])} hasta 500 m · ${nf(K.sal[2])} hasta 1 km`],
-    ["Control de suma",todo?nf(e.conciliacion&&e.conciliacion.edificaciones_sin_distrito):"—",todo?"edificaciones fuera de los 76 polígonos (incluidas en el total)":"suma de los distritos seleccionados"]
+    ["Control de suma",todo?nf(e.conciliacion&&e.conciliacion.edificaciones_sin_distrito):"—",todo?"edificaciones fuera de los distritos de Tumbes y Piura (no se cuentan)":"suma de los distritos seleccionados"]
   ].map(x=>`<div class="kpi"><div class="e">${x[0]}</div><div class="n">${x[1]}</div><div class="e">${x[2]}</div></div>`).join("");
   $("#sel-nota").innerHTML=(e.tipo==="radar"&&e.qa&&e.qa.referencia_solapa_evento?"<b>Atención:</b> esta capa no pasó el control de calidad (la referencia seca se solapa con el periodo del evento). ":"")+(S.esc==="vivo"?"En temporada seca el agua nueva corresponde sobre todo a riego y humedales, no a desbordes. ":"")+
-    "Los colegios provienen de OpenStreetMap (no del padrón ESCALE) y la caja incluye locales de Ecuador, que se cuentan en el total pero no en ningún distrito.";
+    "Los locales escolares vienen del padrón ESCALE (MINEDU) y los establecimientos de salud de RENIPRESS; solo se cuenta lo que está dentro de Tumbes y Piura.";
   // ficha y vista
   if(s.dis){const r=(D.PANEL&&D.PANEL.distritos||[]).find(x=>x.distrito===s.dis&&x.provincia===s.prov);$("#ficha").textContent=r?r.ficha:"Sin ficha para este distrito."}
   else $("#ficha").innerHTML="<span class='vacio'>Elija un distrito en el selector, en el mapa o en la tabla.</span>";

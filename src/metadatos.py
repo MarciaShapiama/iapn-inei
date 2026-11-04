@@ -170,7 +170,7 @@ def capas(hoy: date | None = None) -> list[dict]:
          unidades="m³/s", cobertura="Ríos principales de la costa", resolucion="0,05° (~5 km)", version="GloFAS v4", naturaleza="modelado",
          periodo=None, ultima=caudal, tolerancia=3, frecuencia="diaria", metodo="Modelo hidrológico LISFLOOD forzado con meteorología.",
          advertencias=["Caudal simulado, no medido: contrastar con estaciones hidrométricas ANA/SENAMHI."], archivo="zonas.json")
-    capa("indice_provincial", "Índice de alerta provincial (propio, 0-100)", fuente="Cálculo del proyecto (src/construir.py)",
+    capa("indice_provincial", "Indicador de condiciones por provincia (propio, 0-100; no es una alerta)", fuente="Cálculo del proyecto (src/construir.py)",
          url="", licencia="—", definicion="mar (hasta 50) + lluvia 20 d + pronóstico 7 d frente a la normal (hasta 25) + caudal frente al p90 (hasta 25).",
          unidades="puntos", cobertura="34 provincias costeras", resolucion="provincia", version="2026-11", naturaleza="modelado",
          periodo=None, ultima=lluvia_obs, tolerancia=2, frecuencia="diaria", metodo="Suma ponderada con topes; pesos fijados por el equipo, sin calibrar.",
