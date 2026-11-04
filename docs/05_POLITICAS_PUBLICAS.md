@@ -11,8 +11,8 @@
 
 | # | Política | Activador en los datos | Responsable principal | Costo |
 |---|---|---|---|---|
-| P1 | Continuidad educativa en locales expuestos | 684 colegios dentro de la zona 1/100; 2.636 hasta 1 km | MINEDU, DRE/UGEL, gobiernos regionales | Bajo–medio |
-| P2 | Continuidad de servicios de salud | 146 establecimientos dentro; 577 hasta 1 km | MINSA, DIRESA, gobiernos regionales | Medio |
+| P1 | Continuidad educativa en locales expuestos | 682 locales escolares dentro de la zona 1/100 (124.385 alumnos); 2.633 hasta 1 km | MINEDU, DRE/UGEL, gobiernos regionales | Bajo–medio |
+| P2 | Continuidad de servicios de salud | 145 establecimientos dentro; 577 hasta 1 km | MINSA, DIRESA, gobiernos regionales | Medio |
 | P3 | Ordenamiento territorial: restringir la expansión en zonas inundables | Bernal, Rinconada Llicuar y Bellavista de la Unión con > 95 % de su área en 1/100 | Municipalidades provinciales, gobiernos regionales, CENEPRED | Bajo (normativo) |
 | P4 | Mantenimiento de drenes y cauces focalizado y sustentado en estudios | Bajo Piura y cuenca baja del Tumbes con mucha exposición | ANA, gobiernos regionales, municipalidades | Medio–alto |
 | P5 | Rutas de evacuación y refugios temporales | Distritos con gran población expuesta y profundidad > 1,5 m | Municipalidades, INDECI, gobiernos regionales | Medio |
@@ -24,24 +24,24 @@
 ## P1. Continuidad educativa en locales potencialmente expuestos
 
 - **Problema:** los colegios en zonas inundables pierden días de clase y equipamiento, y a veces se usan como albergue sin estar preparados.
-- **Evidencia que la activa:** zona 1/100: **684 colegios dentro**, 1.952 hasta 500 m y 2.636 hasta 1 km (acumulados). Zona 1/10: 446 dentro. Por distrito (1/100): Castilla 111, Catacaos 90, Piura 58, La Arena 37, Cura Mori 22, Tumbes 22.
+- **Evidencia que la activa:** zona 1/100: **682 locales escolares dentro**, con **124.385 alumnos** (Censo Educativo 2025), 2.001 hasta 500 m y 2.633 hasta 1 km (acumulados). Zona 1/10: 449 dentro, con 68.180 alumnos. Por distrito (1/100): Catacaos 106, Castilla 97, Piura 80, La Unión 55, La Arena 41, Tumbes 33. Fuente: padrón ESCALE (MINEDU), un local por código de local.
 - **Población objetivo:** estudiantes y docentes de los locales dentro o a menos de 500 m.
 - **Cobertura:** 76 distritos con UBIGEO 20xxxx y 24xxxx; empezar por Castilla (200104), Catacaos (200105), Piura (200101), La Arena (200109) y Tumbes (240101).
 - **Responsables:** MINEDU (PREVAED), DRE Piura y Tumbes, UGEL, gobiernos regionales.
-- **Intervención:** (1) **conciliar la lista con el padrón ESCALE**: hoy los locales vienen de OpenStreetMap, sin código modular, y 49 están fuera de los distritos de estudio; (2) plan de contingencia y calendario alterno; (3) evaluación estructural de los locales con profundidad > 0,5 m; (4) no usar como albergue los locales que estén dentro de la mancha.
-- **Línea base:** 684 / 2.636 (OSM). **Meta a validar:** 100 % de los locales del padrón dentro de la zona 1/100 con plan de contingencia aprobado.
+- **Intervención:** (1) usar la lista de locales del padrón ESCALE, que ya trae código de local y matrícula, para asignar responsables por UGEL; (2) plan de contingencia y calendario alterno; (3) evaluación estructural de los locales con profundidad > 0,5 m; (4) no usar como albergue los locales que estén dentro de la mancha.
+- **Línea base:** 682 / 2.633 locales (ESCALE); 124.385 alumnos dentro. **Meta a validar:** 100 % de los locales del padrón dentro de la zona 1/100 con plan de contingencia aprobado.
 - **Seguimiento:** porcentaje de locales con plan; días lectivos perdidos por evento (MINEDU).
-- **Riesgos de inequidad:** los colegios rurales con menos datos en OSM podrían quedar fuera de la priorización. Por eso hay que conciliar con ESCALE antes de priorizar.
-- **Límites de la evidencia:** OSM incompleto; el JRC no modela la inundación pluvial urbana, que también cierra colegios.
+- **Riesgos de inequidad:** unos pocos locales no tienen coordenadas o matrícula en ESCALE (28 dentro de la zona sin dato de alumnos) y podrían quedar fuera de la priorización; hay que completarlos con las UGEL.
+- **Límites de la evidencia:** coordenadas del padrón por verificar en campo; el JRC no modela la inundación pluvial urbana, que también cierra colegios.
 
 ## P2. Continuidad de servicios de salud
 
 - **Problema:** perder un establecimiento durante una emergencia corta la atención justo cuando aumentan la demanda y las enfermedades asociadas a las lluvias.
-- **Evidencia:** zona 1/100: **146 establecimientos dentro**, 431 hasta 500 m y 577 hasta 1 km (RENIPRESS, activos, I-1 a III). Castilla tiene 50 dentro y Piura 17.
+- **Evidencia:** zona 1/100: **145 establecimientos dentro**, 429 hasta 500 m y 577 hasta 1 km (RENIPRESS, activos, I-1 a III). Castilla tiene 50 dentro y Piura 17.
 - **Población objetivo:** usuarios de los establecimientos expuestos; priorizar hospitales y centros con internamiento (I-4 o más).
 - **Responsables:** MINSA (DIGERD), DIRESA Piura y Tumbes, gobiernos regionales; EsSalud y privados según el caso.
 - **Intervención:** plan de continuidad operativa, reubicación de equipos críticos por encima de la cota de inundación, rutas alternas de referencia y stock prepositado.
-- **Línea base:** 146 / 577. **Meta a validar:** todos los establecimientos con internamiento dentro de la zona 1/100 con plan de continuidad probado en simulacro.
+- **Línea base:** 145 / 577. **Meta a validar:** todos los establecimientos con internamiento dentro de la zona 1/100 con plan de continuidad probado en simulacro.
 - **Seguimiento:** simulacros realizados; días de cierre por evento.
 - **Riesgos de inequidad:** las postas I-1 rurales son las más frágiles y también las que menos aparecen en los planes.
 - **Límites:** las coordenadas declaradas en RENIPRESS pueden estar desplazadas; hay que verificar en campo los establecimientos cerca del borde.
@@ -52,7 +52,7 @@
 - **Evidencia:** porcentaje del área distrital en la zona 1/100: Rinconada Llicuar 98,7 %, Bernal 98,5 %, Bellavista de la Unión 95,2 %, Colán 70,2 %, El Tallán 49,5 %, La Arena 46,3 %. Catacaos tiene **85 %** de su población modelada en la zona 1/100.
 - **Responsables:** municipalidades provinciales (planes de desarrollo urbano y de acondicionamiento territorial), gobiernos regionales, CENEPRED (lineamientos), MVCS.
 - **Intervención:** usar el mapa como **insumo de alerta temprana para la planificación**, para identificar dónde pedir primero estudios EVAR de detalle antes de aprobar habilitaciones urbanas. **No** usar este mapa de 90 m para zonificar lote por lote.
-- **Línea base:** edificaciones dentro de la zona 1/100 por distrito (152.486 en total). **Meta a validar:** cero habilitaciones nuevas aprobadas en zona 1/100 sin estudio de riesgo de detalle.
+- **Línea base:** edificaciones dentro de la zona 1/100 por distrito (148.348 en total en Tumbes y Piura). **Meta a validar:** cero habilitaciones nuevas aprobadas en zona 1/100 sin estudio de riesgo de detalle.
 - **Seguimiento:** comparar la versión de Open Buildings (o la próxima fuente de edificaciones) con la actual: crecimiento de edificaciones dentro de la mancha.
 - **Riesgos de inequidad:** las restricciones pueden empujar la ocupación informal hacia zonas peores si no hay oferta de suelo seguro y asequible.
 - **Límites:** el JRC no considera diques ni defensas locales y tiene 90 m de resolución.

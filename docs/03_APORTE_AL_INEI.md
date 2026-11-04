@@ -27,7 +27,7 @@ Escala de 1 (bajo) a 5 (alto). En «esfuerzo», 5 significa poco esfuerzo.
 - **Desagregaciones:** dentro de la mancha / hasta 500 m / hasta 1 km (acumulados); clase de profundidad (< 0,5; 0,5–1,5; > 1,5 m).
 - **Unidad:** personas y %. **Periodicidad:** anual (con cada nueva estimación de población) o cuando cambie el escenario.
 - **Advertencia obligatoria:** «exposición potencial ante un escenario; no son personas afectadas».
-- **Valores actuales:** 408.970 personas en Tumbes y Piura (`dashboard/data/descargas/exposicion_distritos.csv`). Por ejemplo, **Catacaos 70.167 (85 % de su población modelada)**, **Castilla 71.184** y **Piura 55.762**.
+- **Valores actuales:** 399.506 personas en Tumbes y Piura (`dashboard/data/descargas/exposicion_distritos.csv`). Por ejemplo, **Catacaos 70.167 (85 % de su población modelada)**, **Castilla 71.184** y **Piura 55.762**.
 
 ## 4. Propuesta de integración
 

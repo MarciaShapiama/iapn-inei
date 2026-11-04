@@ -15,7 +15,7 @@ Lo que encontré:
 
 1. **Población mal ubicada (error crítico, corregido).** El ráster WorldPop recortado estaba **86 columnas (0,072°, unos 7,9 km) al oeste** de su lugar. La caja de recorte empezaba en −81,40°, pero el archivo de Perú empieza cerca de −81,33°. La población de Castilla aparecía en Piura, la de Tumbes en Corrales y la de Sullana en Miguel Checa. Los totales de la caja casi no cambiaban, pero **las cifras por distrito y por evento estaban equivocadas**. En 2023, la «población en la mancha» bajó de 4.756 a **62** personas. Lo detecté porque la población por distrito no coincidía con las estimaciones 2020 (Catacaos 419.523 frente a 82.327). Lo comprobé correlacionando la población con la densidad de edificaciones de Open Buildings, que es una fuente independiente: r = 0,00 sin corregir y **r = 0,80** con el desplazamiento de 86 columnas.
 2. **Colegios y salud: anillos rotulados como si fueran acumulados (error de rotulado, corregido).** «684 dentro / 1.268 a ≤ 500 m / 684 a ≤ 1 km» eran **anillos que no se superponen**: dentro, de 0 a 500 m y de 500 m a 1 km. Que aparezca dos veces 684 es una coincidencia; la recalculé directamente desde el ráster. El acumulado correcto hasta 1 km es **2.636 colegios** y **577 establecimientos de salud**.
-3. **Piura + Tumbes no daba el total (error de agregación, corregido).** Las 4.138 edificaciones que faltaban en la zona 1 en 100 años caen dentro de la caja de estudio pero **fuera de los 76 polígonos distritales**: 1.871 al sur (Lambayeque), 439 al norte (Ecuador) y 1.828 en bordes simplificados. Ahora aparecen como «Sin distrito asignado» y la suma coincide con el total.
+3. **Piura + Tumbes no daba el total (error de agregación, corregido).** Las 4.138 edificaciones que faltaban en la zona 1 en 100 años caen dentro de la caja de estudio pero **fuera de los 76 polígonos distritales**: 1.871 al sur (Lambayeque), 439 al norte (Ecuador) y 1.828 en bordes simplificados. Primero aparecieron como «Sin distrito asignado»; desde el 4/11/2026 la zona inundable se recorta a los distritos de Tumbes y Piura, así que ya no se cuentan (§10).
 4. **2023: 728 km² con solo 19 edificaciones no es un error de proyección.** El 86 % de la mancha está en el distrito de **Sechura**, en la depresión desértica donde se forma la laguna La Niña, que está casi deshabitada. El CRS, la rejilla y las fechas son coherentes. Lo que sí estaba mal eran las 4.756 personas (punto 1).
 5. **El radar no detecta la inundación urbana documentada de 2017.** En Catacaos, inundado por el desborde del río Piura en marzo de 2017, el radar solo detecta 1,1 km². La capa 2017 sirve como mínimo y para la planicie desértica, **no como verdad-terreno**.
 6. **La capa «vivo» no pasaba el control de calidad.** Su periodo de referencia seca (1/8–31/10/2026) se solapaba con el periodo del evento (10/10–3/11/2026). Corregí la función que calcula los periodos y **recalculé la capa el 4/11/2026**: referencia del 1/8 al 10/10 (42 pasadas), evento del 11/10 al 4/11 (13 pasadas). Resultado: 27,2 km² de agua nueva en tierra (77 % en Sechura), 24 personas y 8 edificaciones dentro. Estado `vigente`. El umbral Otsu de diagnóstico resultó −16,8 dB, cercano al fijo de −17 dB.
@@ -220,11 +220,13 @@ No repetí las descargas de WorldPop, Open Buildings ni NASA POWER. Sentinel-1 s
 
 | Indicador | Valor | Definición |
 |---|---|---|
-| Superficie | 5.594,0 km² | incluye 1.730,9 km² del desierto de Sechura |
-| Población potencialmente expuesta | 408.970 (Piura 374.561 · Tumbes 24.945 · sin distrito 9.464) | WorldPop 2026 modelada, dentro de la mancha |
-| Edificaciones potencialmente expuestas | 152.486 (Piura 137.542 · Tumbes 10.806 · sin distrito 4.138) | Open Buildings v3 |
-| Colegios | 684 dentro · 1.952 hasta 500 m · 2.636 hasta 1 km | OSM; incluye locales de Ecuador |
-| Salud | 146 dentro · 431 hasta 500 m · 577 hasta 1 km | RENIPRESS |
+| Superficie | 3.793,1 km² | solo dentro de los distritos de Tumbes y Piura |
+| Población potencialmente expuesta | 399.506 (Piura 374.561 · Tumbes 24.945) | WorldPop 2026 modelada, dentro de la mancha |
+| Edificaciones potencialmente expuestas | 148.348 (Piura 137.542 · Tumbes 10.806) | Open Buildings v3 |
+| Locales escolares | 682 dentro · 2.001 hasta 500 m · 2.633 hasta 1 km; 124.385 alumnos dentro | padrón ESCALE (MINEDU) y Censo Educativo 2025 |
+| Salud | 145 dentro · 429 hasta 500 m · 577 hasta 1 km | RENIPRESS |
+
+Valores al 4/11/2026 (ver §10). Las cifras de las secciones 1 a 7 y 9 son las de la auditoría original y se dejan como registro.
 
 ---
 
@@ -236,3 +238,15 @@ No repetí las descargas de WorldPop, Open Buildings ni NASA POWER. Sentinel-1 s
 4. **Exportar:** `exposicion_2017_Catacaos.csv` (cabecera con fuente y advertencia) y `locales_2017.geojson` (86 KB, propiedad `clase`). Los generé capturando el contenido en la página, sin descargarlos al disco.
 5. **Móvil (375×812):** una sola columna y sin desplazamiento horizontal (`scrollWidth = innerWidth`); 76 filas en el panel y 3 eventos en el comparador.
 6. **Sin WebGL:** `index.html?sin3d=1` muestra el aviso y el enlace al 2D. **Con WebGL:** deck.gl funciona y muestra 416.612 personas (cifra anterior a la corrección E1; después de corregir es 408.970).
+
+---
+
+## 10. Actualización del 4 de noviembre de 2026
+
+1. **Exposición solo en Tumbes y Piura.** El mapa de JRC también cubre Ecuador (Huaquillas) y Lambayeque (Mórrope, Olmos) dentro de la caja de estudio. Esas zonas se sumaban al total: 9.464 personas y 4.138 edificaciones. Ahora la zona inundable se recorta a los 76 polígonos distritales antes de contar. Zona 1/100: 399.506 personas, 148.348 edificaciones, 682 locales escolares y 145 establecimientos de salud dentro. Zona 1/10: 277.632 personas y 108.156 edificaciones.
+2. **Alumnos.** Matrícula del Censo Educativo 2025 (ESCALE, archivo `00_Padron`, campo `TALUM`), guardada en `data/exposicion/matricula_escale_2025.csv`: 7.924 servicios de Tumbes y Piura, 697.437 alumnos. El 96 % de los locales tiene el dato; en el 8,5 % de los servicios MINEDU imputó la cifra.
+3. **Validación con un mapa oficial.** Copernicus EMS (EMSR199, marzo de 2017, Piura): la zona 1/100 de JRC cubre el 85 % del área inundada; el radar del proyecto detecta el 42 % y el 63 % de lo que marca coincide (`src/validar_radar.py`, `dashboard/data/validacion_2017.json`).
+4. **Radar: agua permanente.** Se toma de JRC Global Surface Water (ocurrencia ≥ 75 %) y ya no de la referencia seca, que confundía arena y suelo seco con agua. Acierto en 2017: de 37 % a 42 %.
+5. **Población frente al censo.** WorldPop da 2.120.104 habitantes en Piura; los Censos Nacionales 2025 del INEI, 2.115.000 (diferencia de 0,2 %).
+6. **Pendiente:** el mapa de distritos (GADM 4.1) no tiene Veintiséis de Octubre ni Canoas de Punta Sal; sus cifras se suman a los distritos vecinos.
+

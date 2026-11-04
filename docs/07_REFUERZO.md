@@ -62,6 +62,6 @@ Fuentes de apoyo usadas solo para la primera verificación cruzada (ya no hacen 
 
 - `padron_escale.csv` se guardó en `data/exposicion/`. Los colegios del tablero ahora salen del padrón ESCALE y no de OpenStreetMap.
 - Se cuenta **un local escolar por CODLOCAL** (5 761 locales con 8 141 servicios), para no contar el mismo edificio varias veces cuando tiene inicial, primaria y secundaria.
-- Con ESCALE, los locales dentro de la zona inundable de 1 en 100 años son 686; con OpenStreetMap eran 684. Las dos fuentes, independientes, casi coinciden.
+- Con ESCALE, los locales dentro de la zona inundable de 1 en 100 años eran 686; con OpenStreetMap eran 684. Las dos fuentes, independientes, casi coinciden. (Desde el 4/11/2026 son 682: la zona inundable se recorta a los distritos de Tumbes y Piura.)
 - Se repitió la comprobación de los 5 distritos contra `docs/evidencia/IDH-2019-PNUD-oficial.xlsx` y el extracto del INEI: coincide.
 - Se actualizó la descripción de la fuente de pobreza e IDH en `src/metadatos.py` y `src/panel.py`.
