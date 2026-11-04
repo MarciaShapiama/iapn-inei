@@ -117,6 +117,25 @@ table.tabla td.n{text-align:right;font-variant-numeric:tabular-nums}
 .z-ctrl button{background:#7fb4e0;color:#0b1620;border:0;border-radius:8px;font:700 13px "Public Sans";padding:6px 11px;cursor:pointer}
 .z-nota{font-size:11.5px;color:#7f93a2;margin-top:10px}
 .z-rank{margin-top:16px}
+
+/* inundaciones */
+.i-botones{display:flex;flex-wrap:wrap;gap:6px}
+.i-botones button{background:#13232f;border:1px solid #2a3d4c;color:#c5d2db;font:600 13px "Public Sans";padding:6px 11px;border-radius:999px;cursor:pointer}
+.i-botones button[aria-pressed=true]{background:#1e90ff;border-color:#1e90ff;color:#fff}
+.i-capas{position:absolute;top:56px;left:12px;z-index:3;background:rgba(11,22,32,.85);border:1px solid #2a3d4c;border-radius:10px;padding:8px 10px;font-size:12.5px;color:#d5e0e7}
+.i-capas label{display:flex;align-items:center;gap:7px;margin:3px 0;cursor:pointer}
+.i-ir{position:absolute;top:12px;right:12px;z-index:3;display:flex;gap:6px}
+.i-ir button{background:rgba(11,22,32,.85);border:1px solid #2a3d4c;color:#e8eef2;font:700 12.5px "Public Sans";padding:6px 11px;border-radius:999px;cursor:pointer}
+.i-big{font-family:Archivo;font-size:30px;font-weight:800;font-stretch:86%;line-height:1}
+.i-lista{font-size:12.5px;max-height:220px;overflow-y:auto;border:1px solid #1f3140;border-radius:8px}
+.i-lista div{display:flex;justify-content:space-between;gap:8px;padding:6px 9px;border-bottom:1px solid #1f3140;cursor:pointer}
+.i-lista div:hover{background:#13232f}
+.i-lista small{color:#8ea3b3}
+.i-dist{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:12.5px;align-items:center}
+.i-dist .b{grid-column:1/3;height:5px;border-radius:3px;background:#1e90ff;margin-bottom:5px}
+.i-valida{background:#13232f;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#c5d2db;margin-top:10px}
+.i-valida b{color:#fff}
+.i-aviso{background:rgba(242,211,107,.12);border:1px solid rgba(242,211,107,.5);color:#f2d36b;border-radius:10px;padding:9px 11px;font-size:12.5px;margin-top:10px}
 footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:var(--ink-3)}
 @media (max-width:480px){.g4{grid-template-columns:1fr}}
 @media (max-width:600px){main{padding:16px 16px 40px}.barra{padding:12px 16px 0}.kpi .cifra{font-size:28px}}
@@ -127,12 +146,13 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <div class="fila">
     <div>
       <h1>Monitor de <span>El Niño</span> Costero</h1>
-      <div class="sub">Temperatura del mar frente al Perú, día a día · Proyecto integrador PEU-CD · INEI</div>
+      <div class="sub">Inundaciones en Tumbes y Piura: personas, viviendas, colegios y salud · Proyecto integrador PEU-CD · INEI</div>
     </div>
     <div class="estado" id="estado">Cargando datos…</div>
   </div>
   <nav role="tablist" id="pestanas">
-    <button class="tab" role="tab" data-v="situacion">Situación</button>
+    <button class="tab" role="tab" data-v="inundaciones">Inundaciones · Tumbes y Piura</button>
+    <button class="tab" role="tab" data-v="situacion">El mar hoy</button>
     <button class="tab" role="tab" data-v="mar">El mar · 20 días</button>
     <button class="tab" role="tab" data-v="zonas">Zonas afectadas</button>
     <button class="tab" role="tab" data-v="regiones">Regiones costeras</button>
@@ -144,6 +164,38 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 </header>
 
 <main>
+
+<!-- INUNDACIONES -->
+<section class="vista" id="v-inundaciones">
+  <p class="titular" id="i-titular">Inundaciones en Tumbes y Piura: ¿a quién afectan?</p>
+  <p class="bajada">Mancha inundada vista por el radar satelital Sentinel-1 (que ve a través de las nubes), cruzada con la población (WorldPop 2026), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. Elige un evento. La pregunta es: <b>si hoy se repitiera una inundación como esa, ¿a cuántos afectaría?</b></p>
+  <div class="z-wrap">
+    <div class="z-mapa" id="i-mapa">
+      <div class="z-modos" id="i-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
+      <div class="i-ir"><button data-ir="piura">Bajo Piura</button><button data-ir="sullana">Chira · Sullana</button><button data-ir="tumbes">Tumbes</button><button data-ir="todo">Todo</button></div>
+      <div class="i-capas" id="i-capas">
+        <label><input type="checkbox" data-c="agua" checked> <span style="color:#1e90ff">■</span> Zona inundada</label>
+        <label><input type="checkbox" data-c="viv" checked> <span style="color:#ff7a45">●</span> Viviendas afectadas</label>
+        <label><input type="checkbox" data-c="col" checked> <span style="color:#ffd23f">●</span> Colegios</label>
+        <label><input type="checkbox" data-c="sal" checked> <span style="color:#ff4d6d">✚</span> Salud</label>
+        <label><input type="checkbox" data-c="dis" checked> <span>▢</span> Distritos</label>
+      </div>
+    </div>
+    <div class="z-panel">
+      <div class="eti">Evento</div>
+      <div class="i-botones" id="i-eventos"></div>
+      <div class="z-sub" id="i-periodo" style="margin-top:8px"></div>
+      <div class="z-kpis" id="i-kpis" style="margin-top:12px"></div>
+      <div id="i-valida"></div>
+      <div class="eti">Distritos con más viviendas en zona inundada</div>
+      <div class="i-dist" id="i-distritos"></div>
+      <div class="eti">Colegios y salud cerca de la zona inundada</div>
+      <div class="i-lista" id="i-lista"></div>
+      <p class="z-nota" id="i-nota"></p>
+    </div>
+  </div>
+</section>
+
 <!-- SITUACIÓN -->
 <section class="vista" id="v-situacion">
   <p class="titular" id="titular">—</p>
@@ -306,10 +358,13 @@ const chipMag=(m,corto)=>`<span class="chip"><i style="background:var(${MAGCOL[m
 
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
-Promise.all([get("resumen"),get("regiones"),get("mar"),get("picos"),get("indices"),get("economia"),geo("departamentos"),get("zonas"),geo("zonas")])
-.then(([R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO])=>{
-  window.D={R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO};
+Promise.all([get("resumen"),get("regiones"),get("mar"),get("picos"),get("indices"),get("economia"),geo("departamentos"),get("zonas"),geo("zonas"),
+  get("inundacion"),geo("distritos_tumbes_piura"),get("colegios_tumbes_piura"),get("salud_tumbes_piura")])
+.then(([R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO,IN,DIST,COL,SAL])=>{
+  window.D={R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO,IN,DIST,COL,SAL};
   pestanas(); estado(); situacion(); mar(); tarjetas(); historia(); economia(); indices();
+  try{ const ini=()=>{if(visible("v-inundaciones")&&!I3.deck)setTimeout(inundacionesVista,30)}; ini(); window.addEventListener("hashchange",ini);
+    document.querySelector('[data-v="inundaciones"]').addEventListener("click",ini); }catch(e){console.error(e)}
   try{ if(visible("v-zonas"))zonasVista(); else document.querySelector('[data-v="zonas"]').addEventListener("click",()=>{if(!Z3.deck)setTimeout(zonasVista,30)},{once:true}); window.addEventListener("hashchange",()=>{if(visible("v-zonas")&&!Z3.deck)setTimeout(zonasVista,30)}); }catch(e){console.error(e)}
   ["ley1","ley2","ley3"].forEach(leyenda);
 });
@@ -320,7 +375,7 @@ function pestanas(){
     document.querySelectorAll(".vista").forEach(s=>s.classList.toggle("activa",s.id==="v-"+v));
     window.dispatchEvent(new Event("resize"))};
   tabs.forEach(t=>t.onclick=()=>{history.replaceState(null,"","#"+t.dataset.v);ir(t.dataset.v)});
-  const desdeHash=()=>{const h=location.hash.slice(1);ir(tabs.some(t=>t.dataset.v===h)?h:"situacion")};
+  const desdeHash=()=>{const h=location.hash.slice(1);ir(tabs.some(t=>t.dataset.v===h)?h:"inundaciones")};
   window.addEventListener("hashchange",desdeHash); desdeHash();
 }
 function estado(){const R=D.R;if(!R)return;
@@ -401,6 +456,71 @@ function mar(){
 const visible=id=>document.getElementById(id).classList.contains("activa");
 const debounce=(f,t)=>{let h;return()=>{clearTimeout(h);h=setTimeout(f,t)}};
 
+
+
+/* ---------- INUNDACIONES (3D) ---------- */
+const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col:true,sal:true,dis:true},sel:null};
+const VISTAS={piura:{longitude:-80.68,latitude:-5.30,zoom:10.4,pitch:58,bearing:25},sullana:{longitude:-80.70,latitude:-4.90,zoom:10.6,pitch:58,bearing:20},
+  tumbes:{longitude:-80.45,latitude:-3.62,zoom:10.8,pitch:58,bearing:15},todo:{longitude:-80.40,latitude:-4.85,zoom:7.9,pitch:45,bearing:10}};
+const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE");
+function inundacionesVista(){
+  const IN=D.IN; const el=document.getElementById("i-mapa");
+  if(!IN||!Object.keys(IN.eventos||{}).length||!window.deck){document.getElementById("i-kpis").innerHTML="<div style='grid-column:1/3'><div class='k'>Las huellas de inundación se están calculando en GitHub. Vuelve en unos minutos.</div></div>";return}
+  const claves=["2017","2023","vivo"].filter(k=>IN.eventos[k]);
+  I3.ev=claves.includes("2017")?"2017":claves[0];
+  document.getElementById("i-eventos").innerHTML=claves.map(k=>`<button data-e="${k}" aria-pressed="${k===I3.ev}">${k==="vivo"?"Últimos 24 días":IN.eventos[k].nombre}</button>`).join("");
+  document.querySelectorAll("#i-eventos button").forEach(b=>b.onclick=()=>{I3.ev=b.dataset.e;document.querySelectorAll("#i-eventos button").forEach(x=>x.setAttribute("aria-pressed",x===b));panelInund();capasInund()});
+  document.querySelectorAll("#i-modos button").forEach(b=>b.onclick=()=>{I3.modo=b.dataset.m;document.querySelectorAll("#i-modos button").forEach(x=>x.setAttribute("aria-pressed",x===b));capasInund()});
+  document.querySelectorAll("#i-capas input").forEach(c=>c.onchange=()=>{I3.capas[c.dataset.c]=c.checked;capasInund()});
+  const volar=v=>I3.deck.setProps({initialViewState:{...VISTAS[v],transitionDuration:1600,transitionInterpolator:new deck.FlyToInterpolator()}});
+  document.querySelectorAll(".i-ir button").forEach(b=>b.onclick=()=>volar(b.dataset.ir));
+  I3.volarA=(lon,lat)=>I3.deck.setProps({initialViewState:{longitude:lon,latitude:lat,zoom:14,pitch:60,bearing:20,transitionDuration:1500,transitionInterpolator:new deck.FlyToInterpolator()}});
+  const tipEstilo={background:"#0c2230",color:"#eef3f5",fontSize:"12.5px",borderRadius:"8px",maxWidth:"260px"};
+  I3.deck=new deck.Deck({parent:el,width:"100%",height:"100%",controller:{dragRotate:true,touchRotate:true},initialViewState:VISTAS.piura,
+    getTooltip:({object,layer})=>{if(!object||!layer)return null;
+      if(layer.id==="col"||layer.id==="sal")return {html:`<b>${object.nombre}</b><br>${object.tipo||object.nivel||""}${object.distrito?" · "+object.distrito:""}<br>${object.estado||""}${object.dist_m>0?" ("+nf(object.dist_m)+" m)":""}${object.alumnos?"<br>"+nf(object.alumnos)+" alumnos":""}`,style:tipEstilo};
+      if(layer.id==="dis")return {html:`<b>${object.properties.distrito}</b><br>${object.properties.provincia}, ${object.properties.departamento}`,style:tipEstilo};
+      if(layer.id==="viv")return {html:"Edificación en la zona inundada",style:tipEstilo};return null}});
+  panelInund(); capasInund();
+}
+function capasInund(){
+  const IN=D.IN,e=IN.eventos[I3.ev],T=new deck._TerrainExtension();
+  const estadoDe=x=>{const c=(e[x._t+"_lista"]||[]).find(y=>y.nombre===x.nombre&&Math.abs(y.lat-x.lat)<1e-5);return c};
+  const fac=(lista,t)=>(lista||[]).map(x=>{const c=estadoDe({...x,_t:t});return {...x,estado:c?c.estado:"Fuera",dist_m:c?c.dist_m:null}});
+  const COLOR={"Dentro de la zona inundada":[255,59,48],"A ≤ 500 m":[255,149,0],"A ≤ 1 km":[255,214,10],"Fuera":[200,210,220]};
+  const capas=[new deck.TerrainLayer({id:"terreno-"+I3.modo,minZoom:0,maxZoom:13,strategy:"no-overlap",operation:"terrain+draw",
+      elevationDecoder:{rScaler:256*2.5,gScaler:2.5,bScaler:2.5/256,offset:-32768*2.5},
+      elevationData:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",texture:TEX[I3.modo],color:[255,255,255]})];
+  if(I3.capas.agua)capas.push(new deck.BitmapLayer({id:"agua-"+I3.ev,image:"data/"+e.imagen,bounds:e.limites,extensions:[T],opacity:.9}));
+  if(I3.capas.dis&&D.DIST)capas.push(new deck.GeoJsonLayer({id:"dis",data:D.DIST,filled:false,stroked:true,pickable:true,getLineColor:[255,255,255,150],lineWidthMinPixels:1.2,extensions:[T]}));
+  if(I3.capas.viv&&e.viviendas_puntos)capas.push(new deck.ScatterplotLayer({id:"viv",data:e.viviendas_puntos,getPosition:d=>d,radiusUnits:"meters",getRadius:9,radiusMinPixels:1.2,radiusMaxPixels:6,
+      getFillColor:[255,122,69,230],pickable:true,extensions:[T],terrainDrawMode:"offset"}));
+  const pinta=(id,datos,relleno)=>new deck.ScatterplotLayer({id,data:datos,getPosition:d=>[d.lon,d.lat],pickable:true,radiusUnits:"pixels",
+      getRadius:d=>d.estado==="Fuera"?3.5:7,stroked:true,lineWidthUnits:"pixels",getLineWidth:d=>d.estado==="Fuera"?0.8:3,
+      getFillColor:relleno,getLineColor:d=>COLOR[d.estado],extensions:[T],terrainDrawMode:"offset",updateTriggers:{getRadius:I3.ev,getLineWidth:I3.ev,getLineColor:I3.ev}});
+  if(I3.capas.col&&D.COL)capas.push(pinta("col",fac(D.COL,"colegios"),[255,210,63,240]));
+  if(I3.capas.sal&&D.SAL)capas.push(pinta("sal",fac(D.SAL,"salud"),[255,77,109,240]));
+  I3.deck.setProps({layers:capas});
+}
+function panelInund(){
+  const IN=D.IN,e=IN.eventos[I3.ev];
+  document.getElementById("i-periodo").innerHTML=`${e.periodo[0]} a ${e.periodo[1]} · ${e.imagenes.length} imágenes de radar · <b>${fmtN(e.km2,1)} km²</b> inundados`;
+  const s=e.salud||{},c=e.colegios||{},D_="Dentro de la zona inundada";
+  const k=[["Personas en zona inundada",nf(e.personas),`${nf(e.personas_500m)} a ≤ 500 m`],
+    ["Viviendas afectadas",nf(e.viviendas),`${nf(e.viviendas_100m)} a ≤ 100 m`],
+    ["Colegios",nf(c[D_]),`dentro · ${nf(c["A ≤ 500 m"])} a ≤ 500 m · ${nf(c["A ≤ 1 km"])} a ≤ 1 km`],
+    ["Salud (hospitales y postas)",nf(s[D_]),`dentro · ${nf(s["A ≤ 500 m"])} a ≤ 500 m · ${nf(s["A ≤ 1 km"])} a ≤ 1 km`]];
+  document.getElementById("i-kpis").innerHTML=k.map(x=>`<div><div class="k">${x[0]}</div><div class="i-big">${x[1]}</div><div class="d">${x[2]}</div></div>`).join("");
+  const v=IN.validacion[I3.ev];
+  document.getElementById("i-valida").innerHTML=v?`<div class="i-valida"><b>¿Cuadra con lo oficial?</b><br>Viviendas en la mancha (radar): Piura <b>${nf((e.viviendas_por_departamento||{}).Piura)}</b>, Tumbes <b>${nf((e.viviendas_por_departamento||{}).Tumbes)}</b>.<br>INDECI reportó viviendas afectadas: Piura <b>${nf(v.Piura)}</b>, Tumbes <b>${nf(v.Tumbes)}</b>. ${v.nota} <a href="${v.url}" target="_blank" rel="noopener" style="color:#7fb4e0">Fuente</a></div>`
+    : I3.ev==="vivo"&&(e.km2||0)<1?`<div class="i-aviso">En los últimos 24 días el radar no detecta inundaciones: es temporada seca. Las lluvias fuertes en Tumbes y Piura suelen llegar entre enero y abril; esta capa se actualiza los lunes y jueves.</div>`:"";
+  const dd=(e.distritos||[]).slice(0,8), mx=d3.max(dd,x=>x.viviendas||0)||1;
+  document.getElementById("i-distritos").innerHTML=dd.length?dd.map(x=>`<span>${x.distrito} <small style="color:#8ea3b3">${x.provincia}</small></span><b>${nf(x.viviendas)}</b><span class="b" style="width:${100*(x.viviendas||0)/mx}%"></span>`).join(""):"<span class='z-sub'>Sin viviendas en la zona inundada.</span>";
+  const lista=[...(e.salud_lista||[]).map(x=>({...x,_i:"✚",_c:"#ff4d6d"})),...(e.colegios_lista||[]).map(x=>({...x,_i:"●",_c:"#ffd23f"}))].sort((a,b)=>a.dist_m-b.dist_m).slice(0,60);
+  document.getElementById("i-lista").innerHTML=lista.length?lista.map((x,i)=>`<div data-k="${i}"><span><span style="color:${x._c}">${x._i}</span> ${x.nombre}<br><small>${x.tipo||x.nivel||""}${x.distrito?" · "+x.distrito:""}</small></span><small style="text-align:right;white-space:nowrap">${x.dist_m<=0?"<b style='color:#ff3b30'>dentro</b>":nf(x.dist_m)+" m"}</small></div>`).join(""):"<div><span class='z-sub'>Ninguno a menos de 1 km.</span></div>";
+  document.querySelectorAll("#i-lista div[data-k]").forEach(d=>d.onclick=()=>{const x=lista[+d.dataset.k];I3.volarA(x.lon,x.lat)});
+  document.getElementById("i-nota").innerHTML=`Método: radar Sentinel-1 (Copernicus, vía Microsoft Planetary Computer), detección de cambios frente a la temporada seca; se excluye el agua permanente, lo alto (&gt; 250 m) y las pendientes. El radar no ve bien el agua bajo árboles ni entre edificios muy juntos: <b>las cifras son un mínimo</b>. Población: WorldPop 2026 (100 m). Viviendas: Google Open Buildings v3. Salud: RENIPRESS. Colegios: ${IN.fuentes_exposicion.colegios||"—"}. Se cruzan la población y las edificaciones de hoy con la mancha de cada evento.`;
+}
 
 /* ---------- ZONAS AFECTADAS (3D) ---------- */
 const NIVEL={"Alerta alta":["#ff6b5a","rgba(255,107,90,.15)"],"Alerta":["#f5a142","rgba(245,161,66,.15)"],"Vigilancia":["#f2d36b","rgba(242,211,107,.12)"],"Normal":["#4cc49b","rgba(76,196,155,.12)"]};
