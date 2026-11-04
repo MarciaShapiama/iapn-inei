@@ -1,0 +1,35 @@
+# Base distrito-semana para el modelo de emergencias por inundación (Tumbes y Piura). Se actualiza los lunes.
+name: Base para el modelo
+
+on:
+  schedule:
+    - cron: "10 15 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
+jobs:
+  base:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r requirements.txt
+      - run: python -u src/base_modelo.py
+      - name: Guardar
+        run: |
+          git config user.name "Actualización automática"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/modelo
+          git diff --cached --quiet && echo "Sin cambios" && exit 0
+          git commit -m "Base distrito-semana $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push
