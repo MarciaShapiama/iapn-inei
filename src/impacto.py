@@ -139,8 +139,12 @@ def cargar_capas():
         ruta = EXPO / f"peligro_rp{rp}.tif"
         if ruta.exists():
             with rasterio.open(ruta) as src:
-                capas[clave] = (nombre, "peligro", src.read(1).astype("float32"), src.transform,
-                                {"periodo": None, "imagenes": [], "periodo_retorno": rp, "qa": {}})
+                v, tv = src.read(1).astype("float32"), src.transform
+            # Solo Tumbes y Piura: el mapa de JRC también cubre Ecuador y Lambayeque dentro de la caja de estudio.
+            dr_v, _ = rasterizar_distritos(tv, v.shape)
+            v[dr_v == 0] = 0
+            capas[clave] = (nombre, "peligro", v, tv,
+                            {"periodo": None, "imagenes": [], "periodo_retorno": rp, "qa": {}})
     return capas
 
 
@@ -215,11 +219,13 @@ def main() -> None:
         mx, my = metros(t)
         dist = ndi.distance_transform_edt(~inund, sampling=(my, mx)).astype("float32")
         dr, nombres = rasterizar_distritos(t, inund.shape)
-        p, p500, por_d, pob_d = personas(inund, t, dr, dist <= 500)
+        p, p500, por_d, pob_d = personas(inund, t, dr, (dist <= 500) & (dr > 0))
         fil, col, ok = indices(edif["lon"], edif["lat"], t, inund.shape)
         dv = np.full(len(edif), np.inf, dtype="float32"); dv[ok] = dist[fil[ok], col[ok]]
         prof = np.zeros(len(edif), dtype="float32"); prof[ok] = valor[fil[ok], col[ok]]
         dist_d = np.zeros(len(edif), dtype=int); dist_d[ok] = dr[fil[ok], col[ok]]
+        en_tp = dist_d > 0                                         # edificaciones dentro de Tumbes y Piura
+        dv[~en_tp] = np.inf
         dentro = dv <= 0
         r = {"nombre": nombre, "tipo": tipo, "periodo": meta["periodo"], "imagenes": meta["imagenes"],
              "periodo_retorno": meta.get("periodo_retorno"), "qa": meta.get("qa", {}),

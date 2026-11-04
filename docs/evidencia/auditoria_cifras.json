@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-04T15:06-05:00",
+ "calculado": "2026-11-04T15:20-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
@@ -54,18 +54,18 @@
     "personas_suma_departamentos": 34
    },
    "rp10": {
-    "edificaciones_total": 111160,
-    "edificaciones_suma_departamentos": 111160,
-    "edificaciones_sin_distrito": 3004,
-    "personas_total": 284820,
-    "personas_suma_departamentos": 284823
+    "edificaciones_total": 108156,
+    "edificaciones_suma_departamentos": 108156,
+    "edificaciones_sin_distrito": 0,
+    "personas_total": 277632,
+    "personas_suma_departamentos": 277634
    },
    "rp100": {
-    "edificaciones_total": 152486,
-    "edificaciones_suma_departamentos": 152486,
-    "edificaciones_sin_distrito": 4138,
-    "personas_total": 408970,
-    "personas_suma_departamentos": 408970
+    "edificaciones_total": 148348,
+    "edificaciones_suma_departamentos": 148348,
+    "edificaciones_sin_distrito": 0,
+    "personas_total": 399506,
+    "personas_suma_departamentos": 399506
    }
   },
   "rp100_sin_distrito_por_zona": {

@@ -79,28 +79,27 @@
   },
   "rp10": {
    "nombre": "Zona inundable: crecida de 1 en 10 años",
-   "ninos_0a4": 26026,
+   "ninos_0a4": 25319,
    "ninos_0a4_por_departamento": {
     "Piura": 23760,
     "Tumbes": 1558
    },
-   "mayores_65": 22710,
+   "mayores_65": 22067,
    "mayores_65_por_departamento": {
     "Piura": 20877,
     "Tumbes": 1189
    },
-   "cultivo_ha": 54630,
+   "cultivo_ha": 48112,
    "vias_km": {
-    "Terciaria": 493.6,
-    "Secundaria": 145.8,
-    "Primaria": 109.5,
-    "Troncal (red nacional)": 78.4,
-    "Autopista": 21.5
+    "Terciaria": 403.1,
+    "Secundaria": 130.3,
+    "Primaria": 103.0,
+    "Troncal (red nacional)": 51.4,
+    "Autopista": 11.2
    },
-   "vias_km_total": 848.8,
-   "puentes": 258,
+   "vias_km_total": 699.0,
+   "puentes": 213,
    "puentes_nombres": [
-    "A Imbana",
     "Antigua Carretera Panamericana Norte",
     "Avenida Andrés Avelino Cáceres",
     "Avenida Bolognesi",
@@ -114,38 +113,37 @@
     "Avenida Progreso",
     "Avenida Ramón Castilla",
     "Avenida Sánchez Cerro",
-    "Avenida Tumbes Norte"
+    "Avenida Tumbes Norte",
+    "Avenida las Flores"
    ]
   },
   "rp100": {
    "nombre": "Zona inundable: crecida de 1 en 100 años",
-   "ninos_0a4": 37168,
+   "ninos_0a4": 36239,
    "ninos_0a4_por_departamento": {
     "Piura": 34026,
     "Tumbes": 2213
    },
-   "mayores_65": 33024,
+   "mayores_65": 32161,
    "mayores_65_por_departamento": {
     "Piura": 30423,
     "Tumbes": 1737
    },
-   "cultivo_ha": 61135,
+   "cultivo_ha": 52678,
    "vias_km": {
-    "Terciaria": 584.7,
-    "Secundaria": 183.4,
-    "Primaria": 156.6,
-    "Troncal (red nacional)": 104.0,
-    "Autopista": 23.1
+    "Terciaria": 465.9,
+    "Secundaria": 163.6,
+    "Primaria": 148.5,
+    "Troncal (red nacional)": 68.4,
+    "Autopista": 11.7
    },
-   "vias_km_total": 1051.8,
-   "puentes": 278,
+   "vias_km_total": 858.1,
+   "puentes": 229,
    "puentes_nombres": [
-    "A Imbana",
     "Antigua Carretera Panamericana Norte",
     "Avenida Andrés Avelino Cáceres",
     "Avenida Bolognesi",
     "Avenida Francia",
-    "Avenida Franco Aguirre",
     "Avenida Grau",
     "Avenida Guardia Civil",
     "Avenida José Gálvez",
@@ -154,7 +152,9 @@
     "Avenida Luis Felipe Agurto",
     "Avenida Progreso",
     "Avenida Ramón Castilla",
-    "Avenida Sánchez Cerro"
+    "Avenida Sánchez Cerro",
+    "Avenida Tumbes Norte",
+    "Avenida las Flores"
    ]
   }
  }
