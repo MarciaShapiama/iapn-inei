@@ -1,0 +1,14 @@
+name: Prueba de fuentes
+on: workflow_dispatch
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+          curl -sS -A "$UA" -L --max-time 120 -o /tmp/col.html -w "coleccion %{http_code} %{size_download}\n" "https://www.gob.pe/institucion/indeci/colecciones/45005-tablas-estadisticas-indeci" || true
+          grep -o 'href="[^"]*informes-publicaciones[^"]*"' /tmp/col.html | sort -u | head -40 || true
+          grep -o 'https://cdn.www.gob.pe/uploads/document/file/[^"]*' /tmp/col.html | sort -u | head -20 || true
+          for u in "https://cdn.www.gob.pe/uploads/document/file/1048401/20180227171454120200726-15599-1ptpifw.pdf" \
+                   "https://cdn.www.gob.pe/uploads/document/file/5591372/4965310-compendio-final-af-2023-indeci.pdf"; do
+            curl -sS -A "$UA" -L --max-time 180 -o /tmp/x.pdf -w "%{http_code} %{size_download} %{content_type}\n" "$u" || true; head -c 5 /tmp/x.pdf; echo; done
