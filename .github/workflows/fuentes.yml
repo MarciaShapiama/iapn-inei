@@ -1,0 +1,15 @@
+name: Prueba de fuentes
+on: workflow_dispatch
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir out; UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
+          B="https://escale.minedu.gob.pe/documents/inicio/Bases%20de%20datos/A.%20Censo%20Educativo"
+          for y in 2025 2024; do curl -sSL -A "$UA" -o out/ce_$y.html "$B/$y/" -w "$y %{http_code} %{size_download}\n"; done
+          curl -sSL -A "$UA" -o out/bases.html "https://escale.minedu.gob.pe/bases-de-datos" -w "bases %{http_code} %{size_download}\n"
+          curl -sSL -A "$UA" -o out/dic2025.pdf "$B/2025/00_Diccionario%20marco%20censal%202025.pdf" -w "dic %{http_code} %{size_download}\n"
+          for f in out/*.html; do echo "== $f"; grep -oiE 'href="[^"]+"' $f | grep -iE 'zip|rar|dbf|censo|marco|matr|padron' | head -60; done
+      - uses: actions/upload-artifact@v4
+        with: {name: fuentes, path: out}
