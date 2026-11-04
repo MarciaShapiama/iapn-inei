@@ -177,13 +177,13 @@ def capas(hoy: date | None = None) -> list[dict]:
          advertencias=["Pesos no calibrados contra eventos observados.", "La mitad del puntaje es la anomalía del mar: con mar cálido y sin lluvia el índice puede marcar 'Alerta'.",
                        "No es una alerta oficial."], archivo="zonas.json")
     capa("vulnerabilidad", "Pobreza monetaria y IDH distrital (contexto de vulnerabilidad)",
-         fuente="Tabla UBIGEO compilada (jmcastagnetto/ubigeo-peru-aumentado, MIT) con datos declarados de INEI (pobreza 2018) y PNUD (IDH 2019)",
-         url="https://github.com/jmcastagnetto/ubigeo-peru-aumentado", licencia="MIT (compilación); fuentes originales INEI/PNUD",
+         fuente="Pobreza: INEI, Mapa de Pobreza Monetaria Provincial y Distrital 2018, anexos 03 (punto medio del intervalo de confianza al 95 %). IDH: PNUD, Índice de Desarrollo Humano Perú 2019, hoja Distrital. Se leen de la tabla UBIGEO compilada (jmcastagnetto/ubigeo-peru-aumentado).",
+         url="https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib1718/Libro.pdf", licencia="Fuentes oficiales INEI y PNUD; compilación MIT",
          definicion="% de población en pobreza monetaria total; IDH.", unidades="%; índice 0-1", cobertura="78 distritos de Tumbes y Piura",
-         resolucion="distrito", version="pobreza 2018, IDH 2019", naturaleza="estimación oficial de área pequeña (de terceros)",
+         resolucion="distrito", version="pobreza 2018, IDH 2019", naturaleza="estimación oficial de área pequeña",
          periodo=["2018", "2019"], ultima="2019-12-31", tolerancia=None, frecuencia="sin actualización en la compilación",
          metodo="Empate por nombre normalizado con los distritos GADM (76/76 empatados).",
-         advertencias=["Verificar contra la publicación original del INEI antes de citar.",
+         advertencias=["Verificado el 4/11/2026 en 5 distritos contra los documentos originales: el IDH coincide con el PNUD hasta la sexta cifra decimal y la pobreza con el punto medio del intervalo del INEI (anexo 03.21, pág. 193). PNUD: https://www.undp.org/sites/g/files/zskgke326/files/migration/pe/IDH-2019.xlsx",
                        "No incluye discapacidad, edad, material de vivienda ni saneamiento (requiere Censo 2017 / REDATAM)."],
          archivo="panel_distritos.json")
     return L

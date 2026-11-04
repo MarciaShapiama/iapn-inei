@@ -46,6 +46,7 @@ Marcia, Christopher, Maykol y Luz Ángela.
 | [docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md](docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación del piloto contra INDECI y viabilidad de expandir al norte y a todo el Perú |
 | `docs/presentacion/presentacion_avance.tex` · `.pdf` | Presentación del avance (Beamer 16:9, 17 diapositivas) |
 | `docs/presentacion/presentacion_validacion_expansion.tex` · `.pdf` | Presentación de la validación con INDECI y la viabilidad de expansión (Beamer 16:9, 13 diapositivas) |
+| [docs/07_REFUERZO.md](docs/07_REFUERZO.md) | Padrón oficial de colegios (ESCALE) y verificación de pobreza e IDH contra el INEI y el PNUD |
 | [docs/modelo_inundacion.md](docs/modelo_inundacion.md) | Modelo de alerta (documento original del equipo) |
 | `docs/evidencia/` | Salidas de pruebas, auditoría de cifras, ML y verificación de DOI |
 

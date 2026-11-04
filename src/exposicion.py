@@ -115,12 +115,26 @@ def colegios(forzar: bool) -> None:
     # (columnas CODLOCAL, CEN_EDU, NLAT_IE, NLONG_IE, D_NIV_MOD, TALUMNO, D_DPTO), se usa ese.
     padron = CARPETA / "padron_escale.csv"
     if padron.exists():
-        p = pd.read_csv(padron, dtype=str, encoding="latin1")
-        p = p[p["D_DPTO"].str.upper().isin(DEPARTAMENTOS)]
-        out = pd.DataFrame({"nombre": p["CEN_EDU"], "nivel": p.get("D_NIV_MOD"),
-                            "alumnos": pd.to_numeric(p.get("TALUMNO"), errors="coerce"),
-                            "lat": pd.to_numeric(p["NLAT_IE"], errors="coerce"),
-                            "lon": pd.to_numeric(p["NLONG_IE"], errors="coerce"), "fuente": "ESCALE"})
+        try:
+            p = pd.read_csv(padron, dtype=str, encoding="utf-8")
+        except UnicodeDecodeError:
+            p = pd.read_csv(padron, dtype=str, encoding="latin1")
+        p = p[p["D_DPTO"].str.upper().isin(DEPARTAMENTOS)].copy()
+        p["lat"] = pd.to_numeric(p["NLAT_IE"], errors="coerce")
+        p["lon"] = pd.to_numeric(p["NLONG_IE"], errors="coerce")
+        p["alumnos"] = pd.to_numeric(p.get("TALUMNO"), errors="coerce")
+        # Un local escolar (CODLOCAL) puede tener varios servicios (inicial, primaria, secundaria) en el mismo
+        # edificio: se cuenta una vez por local para no contar el mismo edificio varias veces.
+        g = p.groupby("CODLOCAL")
+        out = pd.DataFrame({
+            "nombre": g["CEN_EDU"].first().str.strip().str.title().where(~g["CEN_EDU"].first().str.strip().str.fullmatch(r"\d+"),
+                                                                       "I.E. N° " + g["CEN_EDU"].first().str.strip()),
+            "nivel": g["D_NIV_MOD"].agg(lambda x: " · ".join(sorted(set(x.dropna())))),
+            "servicios": g.size(),
+            "alumnos": g["alumnos"].sum(min_count=1),
+            "distrito": g["D_DIST"].first().str.title() if "D_DIST" in p else None,
+            "lat": g["lat"].first(), "lon": g["lon"].first(),
+            "fuente": "ESCALE (MINEDU), padrón de servicios educativos, corte 30-10-2026"}).reset_index(drop=True)
     else:
         o, s, e, n = CAJA
         q = (f'[out:json][timeout:300];(nwr["amenity"~"^(school|kindergarten|college)$"]({s},{o},{n},{e}););out center tags;')

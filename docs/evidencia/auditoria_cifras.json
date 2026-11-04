@@ -1,14 +1,14 @@
 {
- "calculado": "2026-11-04T02:07-05:00",
+ "calculado": "2026-11-04T12:14-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
-    "dentro": 684,
-    "anillo_0_500m": 1268,
-    "anillo_500m_1km": 684,
-    "acum_500m": 1952,
+    "dentro": 686,
+    "anillo_0_500m": 1320,
+    "anillo_500m_1km": 630,
+    "acum_500m": 2006,
     "acum_1km": 2636,
-    "total_locales": 7111,
+    "total_locales": 5761,
     "fuera_del_raster": 0
    },
    "salud": {

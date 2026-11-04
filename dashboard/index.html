@@ -352,7 +352,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <ul>
     <li><b>Personas:</b> WorldPop 2026, población estimada cada 100 m. Se cuenta la población de las celdas que caen en la zona inundable.</li>
     <li><b>Edificaciones:</b> Google Open Buildings v3 (confianza ≥ 0,75). Incluye viviendas y cualquier otro tipo de construcción, por eso se habla de edificaciones y no de viviendas.</li>
-    <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales educativos de OpenStreetMap (el padrón ESCALE del MINEDU no permite la descarga automática).</li>
+    <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales escolares del padrón de servicios educativos ESCALE (MINEDU, corte del 30 de octubre de 2026). Un local con inicial, primaria y secundaria cuenta una vez. El padrón no incluye el número de alumnos.</li>
     <li><b>Niños y adultos mayores:</b> WorldPop 2026 por edad y sexo (100 m): de 0 a 4 años y de 65 años a más. <b>Cultivos:</b> ESA WorldCover 2021 (10 m), clase «tierras de cultivo». <b>Carreteras y puentes:</b> OpenStreetMap, vías troncales, primarias, secundarias y terciarias.</li>
     <li><b>Estado oficial:</b> último Comunicado Oficial del ENFEN, leído de su documento publicado en gob.pe.</li>
     <li>Las distancias se cuentan de dos formas: <b>dentro</b> de la zona y <b>acumulado</b> hasta 500 m o 1 km.</li>
@@ -383,7 +383,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <ul>
     <li>Copernicus Sentinel-1 y Sentinel-2 (ESA), vía Microsoft Planetary Computer.</li>
     <li>JRC, CEMS-GloFAS flood hazard maps v2; GloFAS v4 (Copernicus Emergency Management Service).</li>
-    <li>WorldPop (2026), población total y por edad y sexo; Google Open Buildings v3; RENIPRESS (SUSALUD); OpenStreetMap; ESA WorldCover 2021.</li>
+    <li>WorldPop (2026), población total y por edad y sexo; Google Open Buildings v3; RENIPRESS (SUSALUD); padrón ESCALE (MINEDU); OpenStreetMap (carreteras); ESA WorldCover 2021.</li>
+    <li>Pobreza: INEI, Mapa de Pobreza Monetaria Provincial y Distrital 2018. IDH: PNUD, Índice de Desarrollo Humano Perú 2019.</li>
     <li>ENFEN, comunicados oficiales (gob.pe).</li>
     <li>DesInventar (UNDRR), registros de INDECI; tablas estadísticas del INDECI 2003-2024.</li>
     <li>NASA POWER; Open-Meteo y reanálisis ERA5 (ECMWF); NOAA OISST v2.1 y NOAA CPC; IGP (ICEN).</li>
@@ -456,7 +457,7 @@ function resumenVista(){
   document.getElementById("r-bajada").innerHTML=`Una crecida «de 1 en 100 años» es la que tiene 1 % de probabilidad de ocurrir cada año. Con una crecida más frecuente, de 1 en 10 años, la zona inundable abarcaría a unas ${redondo(e10&&e10.personas)} personas. Son cifras de <b>exposición</b>: dicen quién está en la zona inundable, no cuántos resultarán damnificados.`;
   const k=[["Personas en zona inundable",redondo(e.personas),"WorldPop 2026, crecida de 1 en 100 años"],
     ["Edificaciones en zona inundable",redondo(e.edificaciones),`viviendas, locales y otros · ${redondo(e.edificaciones_profundidad&&e.edificaciones_profundidad["más de 1,5 m"])} con más de 1,5 m de agua`],
-    ["Colegios dentro de la zona",miles(co.dentro),`y ${miles(co.acum_1km)} a 1 km o menos del agua`],
+    ["Locales escolares dentro de la zona",miles(co.dentro),`y ${miles(co.acum_1km)} a 1 km o menos del agua (padrón ESCALE)`],
     ["Centros de salud dentro de la zona",miles(sa.dentro),`y ${miles(sa.acum_1km)} a 1 km o menos (postas, centros y hospitales)`]];
   document.getElementById("r-kpis").innerHTML=k.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");
   const X=D.EX&&D.EX.capas&&D.EX.capas.rp100;
