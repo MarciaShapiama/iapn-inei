@@ -33,5 +33,5 @@ jobs:
           git add data/modelo dashboard/data/riesgo.json
           git diff --cached --quiet && echo "Sin cambios" && exit 0
           git commit -m "Base distrito-semana $(date -u +%Y-%m-%d)"
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git push
