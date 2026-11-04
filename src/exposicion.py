@@ -144,7 +144,7 @@ def colegios(forzar: bool) -> None:
 
 def distritos(forzar: bool) -> None:
     destino = CARPETA / "distritos.geojson"
-    if destino.exists() and not forzar and "SanJuan" not in destino.read_text(encoding="utf-8"):
+    if destino.exists() and not forzar and "Juande" not in destino.read_text(encoding="utf-8"):
         return
     z = zipfile.ZipFile(io.BytesIO(bajar(GADM3)))
     g = json.loads(z.read(z.namelist()[0]))
@@ -152,6 +152,7 @@ def distritos(forzar: bool) -> None:
 
     def nombre(x: str) -> str:  # GADM pega las palabras: "SanJuandeBigote" -> "San Juan de Bigote"
         x = re.sub(r"(?<=[a-záéíóúñ])(de|del|la|las|los|el)(?=[A-ZÁÉÍÓÚÑ])", r" \1 ", x)
+        x = re.sub(r"(?<=[a-záéíóúñ])(de|del)(?= (la|las|los|el) )", r" \1", x)    # "Juandela Virgen"
         return re.sub(r"(?<=[a-záéíóúñ])(?=[A-ZÁÉÍÓÚÑ])", " ", x).replace("  ", " ").strip()
     feats = []
     for f in g["features"]:
