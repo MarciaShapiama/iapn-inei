@@ -5,17 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for u in \
-            "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2026/PER/v1/100m/constrained/per_pop_2026_CN_100m_R2025A_v1.tif" \
-            "https://data.source.coop/vida/google-microsoft-open-buildings/geoparquet/by_country_s2/country_iso=PER/" \
-            "https://www.datosabiertos.gob.pe/sites/default/files/RENIPRESS_30-09-2026.csv" \
-            "https://escale.minedu.gob.pe/documents/inicio/Bases%20de%20datos/A.%20Censo%20Educativo/2025/Padron_web.zip" \
-            "https://escale.minedu.gob.pe/documents/inicio/Bases%20de%20datos/A.%20Censo%20Educativo/2025/" \
-            "https://escale.minedu.gob.pe/padron-de-iiee" \
-            "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc" \
-            "https://planetarycomputer.microsoft.com/api/sas/v1/token/sentinel-1-rtc" ; do
-            echo "== $u"; curl -sS -o /tmp/x -w "%{http_code} %{size_download} %{content_type}\n" -L --max-time 60 -r 0-2000 "$u"; head -c 300 /tmp/x | tr -d '\0' | tr '\n' ' '; echo; done
-          echo "== CKAN padron"; curl -sS --max-time 60 "https://www.datosabiertos.gob.pe/api/3/action/package_search?q=padron%20instituciones%20educativas&rows=5" | python3 -c "import json,sys;j=json.load(sys.stdin);[print(p['title'],[ (r.get('url'),r.get('format')) for r in p['resources']][:3]) for p in j['result']['results']]" || true
-          echo "== STAC S1 Piura 2017-03"; curl -sS --max-time 60 -X POST https://planetarycomputer.microsoft.com/api/stac/v1/search -H 'Content-Type: application/json' -d '{"collections":["sentinel-1-rtc"],"bbox":[-81.0,-5.6,-80.2,-4.8],"datetime":"2017-02-15/2017-04-15","limit":20}' | python3 -c "import json,sys;j=json.load(sys.stdin);print(len(j['features']));[print(f['id'],f['properties'].get('sat:orbit_state')) for f in j['features']]"
-          echo "== STAC S1 Tumbes 2023-03"; curl -sS --max-time 60 -X POST https://planetarycomputer.microsoft.com/api/stac/v1/search -H 'Content-Type: application/json' -d '{"collections":["sentinel-1-rtc"],"bbox":[-80.6,-3.9,-80.2,-3.5],"datetime":"2023-02-15/2023-04-15","limit":20}' | python3 -c "import json,sys;j=json.load(sys.stdin);print(len(j['features']));[print(f['id']) for f in j['features']]"
-          echo "== STAC S1 Piura 2026-10"; curl -sS --max-time 60 -X POST https://planetarycomputer.microsoft.com/api/stac/v1/search -H 'Content-Type: application/json' -d '{"collections":["sentinel-1-rtc"],"bbox":[-81.0,-5.6,-80.2,-4.8],"datetime":"2026-10-01/2026-11-03","limit":20}' | python3 -c "import json,sys;j=json.load(sys.stdin);print(len(j['features']));[print(f['id']) for f in j['features']]"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+          for u in "https://www.datosabiertos.gob.pe/sites/default/files/RENIPRESS_30-09-2026.csv" \
+                   "https://www.datosabiertos.gob.pe/dataset/renipress" \
+                   "http://app20.susalud.gob.pe:8080/registro-renipress-webapp/listadoEstablecimientosRegistrados.htm" \
+                   "https://data.source.coop/vida/google-microsoft-open-buildings/geoparquet/by_country_s2/country_iso=PER/10394307939971104768.parquet"; do
+            echo "== $u"; curl -sS -A "$UA" -o /tmp/x -w "%{http_code} %{size_download} %{content_type}\n" -L --max-time 90 -r 0-3000 "$u"; head -c 400 /tmp/x | tr -d '\0' | tr '\n' ' '; echo; done
+          echo "== OVERPASS"
+          Q='[out:json][timeout:120];area["name"="Piura"]["admin_level"="4"]->.p;area["name"="Tumbes"]["admin_level"="4"]->.t;(nwr["amenity"~"^(school|hospital|clinic|doctors|kindergarten)$"](area.p);nwr["amenity"~"^(school|hospital|clinic|doctors|kindergarten)$"](area.t);nwr["healthcare"](area.p);nwr["healthcare"](area.t););out center tags;'
+          curl -sS --max-time 180 -A "$UA" --data-urlencode "data=$Q" https://overpass-api.de/api/interpreter -o /tmp/o.json -w "%{http_code} %{size_download}\n"
+          python3 -c "import json,collections;j=json.load(open('/tmp/o.json'));c=collections.Counter((e['tags'].get('amenity') or 'hc:'+e['tags'].get('healthcare','')) for e in j['elements']);print(len(j['elements']),c.most_common(10));print([e['tags'].get('name') for e in j['elements'][:8]])"
