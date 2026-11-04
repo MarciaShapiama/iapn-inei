@@ -227,7 +227,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
     <div class="panel"><h2>Distritos con más riesgo</h2><p class="nota" id="a-nota-lista"></p><div id="a-lista"></div></div>
   </div>
   <div class="grid g2" style="margin-top:16px">
-    <div class="panel"><h2>¿Funciona?</h2><div id="a-valida"></div></div>
+    <div class="panel"><h2>¿Funciona?</h2><p class="nota"><b>Límite importante:</b> el modelo pesa sobre todo dónde y en qué época del año se ha inundado antes; la lluvia, el caudal y el mar aportan poco a su resultado. Supera solo por poco a la referencia sin modelo (tabla de al lado). Úsalo para ordenar distritos, no como pronóstico.</p><div id="a-valida"></div></div>
     <div class="panel"><h2>Modelos comparados</h2><p class="nota">Mismos datos y misma prueba: se entrena con los años anteriores y se evalúa en el año siguiente (2008 a 2015).</p><div id="a-modelos"></div></div>
   </div>
 </section>
@@ -255,6 +255,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div class="i-botones" id="i-eventos"></div>
       <div class="z-sub" id="i-periodo" style="margin-top:8px"></div>
       <div class="z-kpis" id="i-kpis" style="margin-top:12px"></div>
+      <div class="i-valida" id="i-aviso"><b>Cómo leer estas cifras</b><br>Son estimaciones, no un conteo: dicen cuántas personas y edificaciones hay dentro de la zona que podría inundarse, no cuántas resultarían afectadas. Los mapas de JRC (Comisión Europea) no consideran diques ni defensas ribereñas, por eso donde existen pueden marcar más área de la real. La población viene de un modelo (WorldPop), con su propio margen de error.</div>
       <div id="i-valida"></div>
       <div class="eti">Distritos con más edificaciones en la mancha</div>
       <div class="i-dist" id="i-distritos"></div>
@@ -539,7 +540,7 @@ function alertaVista(){
   };
   dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-alerta"))dib()},150));
   const top=RIE.distritos_hoy.slice(0,12);
-  document.getElementById("a-nota-lista").textContent="Riesgo de 0 a 100, lluvia de los últimos 30 días y caudal del río más cercano frente a lo normal.";
+  document.getElementById("a-nota-lista").textContent="Riesgo de 0 a 100, lluvia de los últimos 30 días y caudal del río más cercano frente a lo normal. La lluvia de NASA POWER se publica con unos 4 días de retraso, así que la semana más reciente puede no incluir los últimos días de lluvia.";
   document.getElementById("a-lista").innerHTML=`<table class="tabla"><tr><th>Distrito</th><th style="text-align:right">Riesgo</th><th style="text-align:right">Lluvia 30 d</th><th style="text-align:right">Río</th></tr>`+
     top.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--ink-3)">${d.provincia}</span></td><td class="n"><span class="chip"><i style="background:${esc(d.riesgo)}"></i>${fmtN(d.riesgo,0)}</span></td><td class="n">${fmtN(d.lluvia_30d,0)} mm</td><td class="n">${fmtN(d.caudal_razon,1)}×</td></tr>`).join("")+"</table>";
   const rv=RIE.revision||{};
