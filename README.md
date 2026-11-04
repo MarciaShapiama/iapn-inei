@@ -1,9 +1,9 @@
-# Monitor de El Niño Costero · Perú
+# Inundaciones por El Niño en Tumbes y Piura
 
-Tablero público que sigue, **día a día**, la temperatura del mar frente al Perú y su relación con la producción.
+Tablero público sobre las inundaciones por El Niño en **Tumbes y Piura**: zona inundable y lo que vio el radar satelital, personas, viviendas, colegios y establecimientos de salud expuestos, y un modelo de alerta temprana (machine learning) por distrito y semana. Incluye el monitoreo diario del mar frente al Perú.
 Proyecto integrador del Programa de Especialización en Ciencia de Datos (PEU-CD) del INEI.
 
-**Tablero:** https://marciashapiama.github.io/iapn-inei/
+**Tablero:** https://marciashapiama.github.io/inundaciones-nino-tumbes-piura/
 
 ## Qué muestra
 
