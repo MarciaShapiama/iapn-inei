@@ -282,7 +282,11 @@ def zonas(mar: pd.DataFrame) -> tuple[dict, dict] | None:
         })
         geo["features"].append({"type": "Feature", "properties": {"provincia": prov, "departamento": dep},
                                 "geometry": json.loads(json.dumps(forma.simplify(0.003).__geo_interface__))})
-    return {"fechas": fechas, "hoy": hoy, "fechas_mar": fechas_mar, "zonas": salida}, geo
+    anios = sorted(int(x.name[:4]) for x in (DATA / "normales" / "lluvia_anios").glob("*.csv.gz"))
+    rios_n = len(list((DATA / "normales" / "caudal_rios").glob("*.csv.gz")))
+    normal = {"lluvia_anios": len(anios), "lluvia_desde": anios[0] if anios else None, "lluvia_hasta": anios[-1] if anios else None,
+              "rios_con_normal": rios_n}
+    return {"fechas": fechas, "hoy": hoy, "fechas_mar": fechas_mar, "zonas": salida, "normal": normal}, geo
 
 
 def escribir(nombre: str, obj) -> None:

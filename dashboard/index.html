@@ -234,7 +234,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 
 <!-- INUNDACIONES -->
 <section class="vista" id="v-inundaciones">
-  <p class="titular" id="i-titular">Mapa de inundación: ¿qué queda bajo el agua?</p>
+  <p class="titular" id="i-titular">Mapa de inundación: ¿qué quedaría bajo el agua?</p>
   <p class="bajada">Dos miradas a la zona inundada: el <b>mapa de peligro</b> (lo que cubre una crecida de 1 en 10 o 1 en 100 años, con su profundidad) y lo que el <b>radar satelital Sentinel-1</b> vio inundado en 2017, 2023 y estos días. Cada una se cruza con la población (WorldPop 2026), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. La pregunta: <b>si hoy pasara algo así, ¿cuánto quedaría expuesto?</b> «Expuesto» no significa afectado ni damnificado.</p>
   <div class="z-wrap">
     <div class="z-mapa" id="i-mapa">
@@ -302,24 +302,24 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 <!-- ZONAS AFECTADAS -->
 <section class="vista" id="v-zonas">
   <p class="titular">Lluvia y ríos en las provincias de Tumbes y Piura, día a día</p>
-  <p class="bajada">Para cada una de las 8 provincias: la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal, el pronóstico de 7 días y el mar que tiene enfrente. Es un indicador propio para ordenar las provincias, no un aviso oficial (los avisos son de SENAMHI e INDECI). Mueve la vista con el mouse.</p>
+  <p class="bajada">Para cada una de las 8 provincias: la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal, el pronóstico de 7 días y el mar que tiene enfrente. El indicador de 0 a 100 dice qué tan fuera de lo normal están el mar, la lluvia y el río; no es una alerta. La alerta por distrito está en su pestaña, y los avisos oficiales son de SENAMHI, INDECI y ENFEN. Mueve la vista con el mouse.</p>
   <div class="z-wrap">
     <div class="z-mapa" id="z-mapa">
       <div class="z-modos" id="z-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
       <div class="z-leyenda" id="z-leyenda"></div>
     </div>
     <div class="z-panel">
-      <div class="eti">Zona (ordenadas por alerta)</div>
+      <div class="eti">Provincia (ordenadas por el indicador)</div>
       <select id="z-sel"></select>
       <h3 id="z-nombre">—</h3>
       <div class="z-sub" id="z-sub"></div>
       <div id="z-nivel"></div>
       <div class="z-kpis" id="z-kpis"></div>
-      <div class="eti">Índice de alerta</div>
+      <div class="eti">Indicador de condiciones (0 a 100)</div>
       <div id="z-indice"></div>
       <div class="z-ctrl"><button id="z-play">▶</button><input type="range" id="z-dia" min="0" max="0" value="0" aria-label="Día"></div>
       <div class="z-dia" id="z-dia-txt"></div>
-      <div class="eti">Lluvia diaria (mm) · normal 1991-2020</div><svg id="z-g-lluvia" style="width:100%;display:block"></svg>
+      <div class="eti" id="z-t-lluvia">Lluvia diaria (mm) · normal</div><svg id="z-g-lluvia" style="width:100%;display:block"></svg>
       <div class="eti" id="z-t-rio">Caudal del río (m³/s)</div><svg id="z-g-rio" style="width:100%;display:block"></svg>
       <div class="eti">Mar de enfrente (°C de anomalía)</div><svg id="z-g-mar" style="width:100%;display:block"></svg>
       <p class="z-nota">Lluvia: modelos meteorológicos (Open-Meteo) y su normal con el reanálisis ERA5. Caudal: GloFAS v4 (Copernicus), es un modelo hidrológico, no una medición en estación. Lo sombreado es pronóstico. Relieve: teselas públicas de elevación (AWS Terrain Tiles); imagen: Esri World Imagery.</p>
@@ -368,7 +368,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 
   <h3>4. Lluvia, ríos y mar</h3>
   <ul>
-    <li><b>Lluvia diaria y pronóstico:</b> Open-Meteo (modelos meteorológicos, no pluviómetros). Lo normal: promedio 1991-2020 del reanálisis ERA5.</li>
+    <li><b>Lluvia diaria y pronóstico:</b> Open-Meteo (modelos meteorológicos, no pluviómetros). Lo normal: promedio del mismo día en los años 1991 a 2020 del reanálisis ERA5; mientras se completan los 30 años, el tablero indica cuántos años usa.</li>
     <li><b>Caudal:</b> GloFAS v4 (Copernicus), modelo hidrológico, no medición en estación.</li>
     <li><b>Mar:</b> anomalía diaria NOAA OISST v2.1; índices semanales Niño de NOAA CPC; ICEN del Instituto Geofísico del Perú. Magnitud según el ENFEN: débil desde 0,4 °C, moderado desde 1,0, fuerte desde 1,7 y extraordinario desde 3,0.</li>
   </ul>
@@ -483,7 +483,7 @@ function resumenVista(){
   if(e17)pas.push(["2017 · lo que vio el radar",`${fmtN(e17.km2,0)} km² con agua nueva entre febrero y abril (${e17.imagenes.length} imágenes Sentinel-1).`]);
   if(e23)pas.push(["2023 · ciclón Yaku",`${fmtN(e23.km2,0)} km² con agua nueva; la mayor parte en la depresión del desierto de Sechura, donde en años de El Niño fuerte se forma la laguna La Niña (en 2017, IMARPE midió su extensión).`]);
   document.getElementById("r-pasado").innerHTML=pas.map(f=>`<div class="r-fila" style="display:block"><b style="font-size:15px">${f[0]}</b><div style="color:var(--ink-2);margin-top:2px">${f[1]}</div></div>`).join("");
-  const guia=[["inundaciones","Mapa de inundación","Qué queda bajo el agua, en 3D: zonas, edificaciones, colegios y salud."],
+  const guia=[["inundaciones","Mapa de inundación","Qué quedaría bajo el agua, en 3D: zonas, edificaciones, colegios y salud."],
     ["satelite","Antes y después","Fotos reales del satélite de 2017, 2023 y de estos días."],
     ["alerta","Alerta por distrito","Qué distritos tienen más riesgo en las próximas semanas."],
     ["zonas","Lluvia y ríos","Cuánto llovió y cómo van los ríos en cada provincia."],
@@ -684,7 +684,9 @@ function panelInund(){
 
 /* ---------- ZONAS AFECTADAS (3D) ---------- */
 const NIVEL={"Alerta alta":["#ff6b5a","rgba(255,107,90,.15)"],"Alerta":["#f5a142","rgba(245,161,66,.15)"],"Vigilancia":["#f2d36b","rgba(242,211,107,.12)"],"Normal":["#4cc49b","rgba(76,196,155,.12)"]};
-const nivelChip=n=>`<span class="z-nivel" style="color:${NIVEL[n][0]};border-color:${NIVEL[n][0]};background:${NIVEL[n][1]}">◆ ${n}</span>`;
+// El indicador provincial NO es una alerta (la alerta es la del modelo por distrito): se rotula como condiciones.
+const COND={"Alerta alta":"Muy por encima de lo normal","Alerta":"Por encima de lo normal","Vigilancia":"Algo por encima de lo normal","Normal":"Normal"};
+const nivelChip=n=>`<span class="z-nivel" style="color:${NIVEL[n][0]};border-color:${NIVEL[n][0]};background:${NIVEL[n][1]}">◆ ${COND[n]||n}</span>`;
 const rgb=h=>{const c=d3.color(h);return [c.r,c.g,c.b]};
 const TEX={sat:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   relieve:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}",
@@ -695,7 +697,7 @@ function zonasVista(){
   const Z=D.ZON; if(!Z||!window.deck){document.getElementById("z-nombre").textContent="Datos en preparación";return}
   const orden=Z.zonas.map((z,i)=>i).sort((a,b)=>Z.zonas[b].indice-Z.zonas[a].indice);
   const sel=document.getElementById("z-sel");
-  sel.innerHTML=orden.map(i=>{const z=Z.zonas[i];return `<option value="${i}">${z.provincia} (${z.departamento}) · ${z.nivel.toLowerCase()} ${z.indice}</option>`}).join("");
+  sel.innerHTML=orden.map(i=>{const z=Z.zonas[i];return `<option value="${i}">${z.provincia} (${z.departamento}) · indicador ${z.indice} de 100</option>`}).join("");
   const kHoy=Math.max(0,Z.fechas.indexOf(Z.hoy)-1);
   const sl=document.getElementById("z-dia"); sl.max=Z.fechas.length-1; sl.value=kHoy; Z3.dia=kHoy;
   document.getElementById("z-leyenda").innerHTML=`<div><i style="background:#fff;height:3px"></i>Límite de la provincia</div><div><i style="background:#3d8bfd;border-radius:50%"></i>Río principal (tamaño = caudal)</div><div><i style="background:#7fd3ff"></i>Columna = lluvia del día</div><div><i style="background:linear-gradient(90deg,${["--n0","--w1","--w2","--w3","--w4","--w5","--w6"].map(css).join(",")})"></i>Mar: anomalía del día</div>`;
@@ -711,8 +713,8 @@ function zonasVista(){
     if(+sl.value>=+sl.max)sl.value=0;bp.textContent="■";
     Z3.timer=setInterval(()=>{if(+sl.value>=+sl.max){clearInterval(Z3.timer);Z3.timer=null;bp.textContent="▶";return}sl.value=+sl.value+1;Z3.dia=+sl.value;capas3D();panelDia()},600)};
   // tabla
-  document.getElementById("z-tabla").innerHTML=`<table class="tabla"><tr><th>Zona</th><th>Nivel</th><th style="text-align:right">Índice</th><th style="text-align:right">Mar hoy</th><th style="text-align:right">Lluvia 20 d / normal</th><th>Río</th></tr>`+
-    orden.map(i=>{const z=Z.zonas[i],m=z.mar.filter(v=>v!=null).at(-1);return `<tr data-i="${i}" style="cursor:pointer"><td><b>${z.provincia}</b> <span style="color:var(--ink-3)">${z.departamento}</span></td><td><span class="chip"><i style="background:${NIVEL[z.nivel][0]}"></i>${z.nivel}</span></td><td class="n"><b>${z.indice}</b></td><td class="n">${fmt(m,1)} °C</td><td class="n">${fmtN(z.lluvia_20d,1)} / ${fmtN(z.normal_20d,1)} mm</td><td>${z.rio?z.rio.nombre+(z.rio.hoy!=null?` · ${fmtN(z.rio.hoy,0)} m³/s`:""):"—"}</td></tr>`}).join("")+"</table>";
+  document.getElementById("z-tabla").innerHTML=`<table class="tabla"><tr><th>Zona</th><th>Condiciones</th><th style="text-align:right">Indicador</th><th style="text-align:right">Mar hoy</th><th style="text-align:right">Lluvia 20 d / normal</th><th>Río</th></tr>`+
+    orden.map(i=>{const z=Z.zonas[i],m=z.mar.filter(v=>v!=null).at(-1);return `<tr data-i="${i}" style="cursor:pointer"><td><b>${z.provincia}</b> <span style="color:var(--ink-3)">${z.departamento}</span></td><td><span class="chip"><i style="background:${NIVEL[z.nivel][0]}"></i>${COND[z.nivel]||z.nivel}</span></td><td class="n"><b>${z.indice}</b></td><td class="n">${fmt(m,1)} °C</td><td class="n">${fmtN(z.lluvia_20d,1)} / ${fmtN(z.normal_20d,1)} mm</td><td>${z.rio?z.rio.nombre+(z.rio.hoy!=null?` · ${fmtN(z.rio.hoy,0)} m³/s`:""):"—"}</td></tr>`}).join("")+"</table>";
   document.querySelectorAll("#z-tabla tr[data-i]").forEach(tr=>tr.onclick=()=>{sel.value=tr.dataset.i;elegirZona(+tr.dataset.i,true);document.getElementById("z-mapa").scrollIntoView({behavior:"smooth",block:"center"})});
   elegirZona(orden[0],false);
 }
@@ -725,7 +727,7 @@ function elegirZona(i,volar){
   const Z=D.ZON,z=Z.zonas[i]; Z3.i=i;
   document.getElementById("z-nombre").textContent=z.provincia;
   document.getElementById("z-sub").textContent=`Provincia de ${z.provincia} · ${z.departamento} · costa`;
-  document.getElementById("z-nivel").innerHTML=nivelChip(z.nivel)+` <span class="z-sub">índice ${z.indice} de 100</span>`;
+  document.getElementById("z-nivel").innerHTML=nivelChip(z.nivel)+` <span class="z-sub">indicador ${z.indice} de 100</span>`;
   const m=z.mar.filter(v=>v!=null).at(-1), r=z.rio;
   const pct=z.normal_20d>0.5?Math.round(100*z.lluvia_20d/z.normal_20d)+" % de lo normal":"normal: casi sin lluvia";
   document.getElementById("z-kpis").innerHTML=[
@@ -779,7 +781,8 @@ function capas3D(){
   Z3.deck.setProps({layers:capas});
 }
 function graficosZona(z){
-  const Z=D.ZON,F=Z.fechas;
+  const Z=D.ZON,F=Z.fechas, NN=Z.normal;
+  document.getElementById("z-t-lluvia").textContent=NN&&NN.lluvia_anios?`Lluvia diaria (mm) · normal = promedio ${NN.lluvia_desde}-${NN.lluvia_hasta} (${NN.lluvia_anios} años)`:"Lluvia diaria (mm) · normal";
   const base=(id,h)=>{const el=document.getElementById(id),w=Math.max(260,el.parentNode.clientWidth-36),m={t:8,r:6,b:20,l:34},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
     const X=d3.scaleBand().domain(F).range([m.l,w-m.r]).padding(.18); el.__X=X;
     const kh=F.indexOf(Z.hoy); if(kh>=0)svg.append("rect").attr("x",X(Z.hoy)).attr("width",w-m.r-X(Z.hoy)).attr("y",m.t).attr("height",h-m.t-m.b).attr("fill","#f2d36b").attr("opacity",.08);

@@ -27,12 +27,18 @@ from shapely.geometry import shape
 from config import DATA, DIAS_VENTANA
 
 UA = {"User-Agent": "Monitor El Nino Costero (PEU-CD INEI)"}
-PRESUPUESTO_S = 8 * 60      # tiempo máximo por corrida para completar las normales (sigue al día siguiente)
+PRESUPUESTO_S = 6 * 60      # tiempo máximo por corrida para CADA normal (sigue al día siguiente)
 INICIO_RELOJ = time.time()
 
 
 def queda_tiempo() -> bool:
     return time.time() - INICIO_RELOJ < PRESUPUESTO_S
+
+
+def reiniciar_reloj() -> None:
+    """Cada normal (lluvia y caudal) tiene su propio tiempo, para que una no deje sin tiempo a la otra."""
+    global INICIO_RELOJ
+    INICIO_RELOJ = time.time()
 PRONOSTICO = 7
 ANIOS_NORMAL = range(1991, 2021)
 
@@ -184,16 +190,22 @@ def caudal(rios: pd.DataFrame) -> pd.DataFrame:
 def caudal_normal(rios: pd.DataFrame) -> pd.DataFrame | None:
     """Mediana y percentil 90 del caudal 1991-2020 por día del año; cada río se baja una vez y se guarda."""
     carpeta = DATA / "normales" / "caudal_rios"; carpeta.mkdir(parents=True, exist_ok=True)
+    primero = ["Tumbes", "Chira", "Piura"]                     # los ríos de Tumbes y Piura van primero
+    rios = rios.assign(_o=rios["rio"].map(lambda x: primero.index(x) if x in primero else 9)).sort_values("_o")
     for _, r in rios.iterrows():
         ruta = carpeta / f"{r['rio']}.csv.gz"
         if ruta.exists() or not queda_tiempo():
             continue
-        j = pedir("https://flood-api.open-meteo.com/v1/flood", {
-            "latitude": r["lat"], "longitude": r["lon"], "daily": "river_discharge",
-            "start_date": "1991-01-01", "end_date": "2020-12-31"}, intentos=2)
-        if j:
-            d = j["daily"]
-            pd.DataFrame({"fecha": d["time"], "q": d["river_discharge"]}).to_csv(ruta, index=False)
+        partes_rio = []
+        for t0, t1 in (("1991-01-01", "2000-12-31"), ("2001-01-01", "2010-12-31"), ("2011-01-01", "2020-12-31")):
+            j = pedir("https://flood-api.open-meteo.com/v1/flood", {
+                "latitude": r["lat"], "longitude": r["lon"], "daily": "river_discharge",
+                "start_date": t0, "end_date": t1}, intentos=2)
+            if not j:
+                break
+            partes_rio.append(pd.DataFrame({"fecha": j["daily"]["time"], "q": j["daily"]["river_discharge"]}))
+        if len(partes_rio) == 3:                       # solo se guarda si están los 30 años
+            pd.concat(partes_rio).to_csv(ruta, index=False)
             print(f"  caudal {r['rio']}: listo")
         time.sleep(3)
     partes = []
@@ -228,9 +240,11 @@ def main() -> None:
         ll[ll["fecha"] < hoy.isoformat()].to_csv(hist / f"{hoy.isoformat()}_lluvia.csv.gz", index=False)
     if len(q):
         q[q["fecha"] < hoy.isoformat()].to_csv(hist / f"{hoy.isoformat()}_caudal.csv.gz", index=False)
-    lluvia_normal(z)
+    reiniciar_reloj()
     if len(rios):
-        caudal_normal(rios)
+        caudal_normal(rios)          # primero el caudal: estaba en 0 de 24 ríos
+    reiniciar_reloj()
+    lluvia_normal(z)
 
 
 if __name__ == "__main__":
