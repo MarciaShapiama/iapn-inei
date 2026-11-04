@@ -1,10 +1,10 @@
 {
- "generado": "2026-11-04T01:08-05:00",
+ "generado": "2026-11-04T02:07-05:00",
  "hoy": "2026-11-04",
  "resumen_estado": {
-  "vigente": 8,
+  "vigente": 9,
   "rezagado": 1,
-  "no disponible": 1,
+  "no disponible": 0,
   "estimado": 6
  },
  "capas": [
@@ -179,25 +179,23 @@
    "version": "RTC (Planetary Computer)",
    "naturaleza": "observado (derivado)",
    "periodo": [
-    "2026-10-10",
-    "2026-11-03"
+    "2026-10-11",
+    "2026-11-04"
    ],
    "dato_mas_reciente": "2026-11-02",
    "tolerancia_dias": 12,
    "frecuencia": "lunes y jueves",
    "metodo": "Detección de cambios VV; máscaras de agua permanente, altura > 250 m, pendiente > 5°, manchas < 5 px.",
    "advertencias": [
-    "CONTROL DE CALIDAD FALLIDO: la referencia seca se solapa con el periodo del evento (2026-08-01–2026-10-31 vs 2026-10-10–2026-11-03). Recalcular con src/huellas.py.",
     "Detección automática sin validación de campo: no es verdad-terreno.",
     "El radar no detecta agua bajo vegetación densa ni entre edificios: subestima en ciudades.",
     "Umbral fijo VV −17 dB y caída ≥ 3 dB, compuesto mínimo del periodo: tiende a sobredetectar en arena lisa y salinas.",
     "Puede confundir riego por inundación (arrozales), humedales y lagunas temporales con inundación.",
     "Noviembre es temporada seca: el agua nueva corresponde sobre todo a riego y humedales, no a desbordes."
    ],
-   "estado": "no disponible",
+   "estado": "vigente",
    "archivo": "capa_vivo.geojson",
    "imagenes": [
-    "2026-10-10",
     "2026-10-12",
     "2026-10-13",
     "2026-10-16",
@@ -212,8 +210,8 @@
     "2026-10-31",
     "2026-11-02"
    ],
-   "imagenes_referencia": 54,
-   "calculado": "2026-11-03T20:55-05:00"
+   "imagenes_referencia": 42,
+   "calculado": "2026-11-04T02:06-05:00"
   },
   {
    "id": "poblacion",

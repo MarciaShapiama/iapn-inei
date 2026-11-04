@@ -25,7 +25,7 @@
 - **Población desplazada unos 7,9 km al oeste** por un error de recorte del ráster WorldPop. Esto alteraba todas las cifras de población por distrito y por evento. Corregido y verificado contra la densidad de edificaciones (fuente independiente): correlación 0,00 antes y 0,80 después. Consecuencias: la población dentro de la mancha de 2023 pasó de 4.756 a **62**; la zona 1/100 pasó de 416.612 a **408.970**.
 - **Conteos de colegios y salud:** eran anillos que no se superponen, pero se rotulaban como acumulados. Hasta 1 km hay **2.636 colegios**, no 684.
 - **Suma de Piura + Tumbes:** faltaban **4.138 edificaciones** fuera de los polígonos distritales. Ahora se informan como «sin distrito asignado».
-- **Capa de radar «últimos 24 días»:** su periodo de referencia se solapaba con el evento. Se marcó `no disponible` y se corrigió el código.
+- **Capa de radar «últimos 24 días»:** su periodo de referencia se solapaba con el evento. Se corrigió el código y se **recalculó la capa** con Sentinel-1 (27,2 km² de agua nueva en tierra, sobre todo en Sechura; estado vigente).
 - **«Viviendas»** eran huellas de edificación de cualquier uso. Ahora se rotulan **edificaciones**.
 
 **Cifras principales (zona inundable de 1 en 100 años, JRC; exposición potencial, no afectados).** 5.594 km²; **408.970 personas** (WorldPop, modelada); **152.486 edificaciones**; **684 colegios** y **146 establecimientos de salud** dentro de la mancha (2.636 y 577 hasta 1 km). Distritos con prioridad alta de revisión según el índice relativo: La Arena, Bernal, La Unión, El Tallán, Colán, Cura Mori, Cristo Nos Valga, Tambo Grande, Catacaos, entre otros (15 de 76).
@@ -36,7 +36,7 @@
 
 **Políticas.** Siete opciones para evaluar (doc 05): continuidad educativa y de salud, ordenamiento territorial, mantenimiento focalizado de drenes, rutas y refugios, comunicación de riesgo y levantamiento de datos.
 
-**Limitaciones principales.** El JRC es un escenario (90 m, sin defensas ni inundación pluvial). El radar subdetecta en ciudades (Catacaos 2017: 1,1 km²). La población es modelada. Faltan 2 distritos en los límites usados. Los colegios no vienen del padrón oficial. No se volvió a procesar Sentinel-1 en esta entrega.
+**Limitaciones principales.** El JRC es un escenario (90 m, sin defensas ni inundación pluvial). El radar subdetecta en ciudades (Catacaos 2017: 1,1 km²). La población es modelada. Faltan 2 distritos en los límites usados. Los colegios no vienen del padrón oficial. El umbral adaptativo del radar está implementado, pero aún no se eligió con una referencia independiente.
 
 ---
 
@@ -155,8 +155,7 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 
 | Prioridad | Tarea | Esfuerzo | Depende de | Responsable sugerido | Criterio de aceptación |
 |---|---|---|---|---|---|
-| **P0** | Publicar estas correcciones (push y despliegue) | 0,5 d | autorización del equipo | Marcia | Pages muestra `mapa2d.html`; el smoke test contra el sitio pasa |
-| P0 | Recalcular el radar «vivo» con la referencia corregida | 0,5 d | Actions | Christopher | `radar_vivo` en estado `vigente` y `referencia_solapa_evento=false` |
+| **P0** | Fusionar la rama `auditoria-mvp-piloto` (ya subida a GitHub) en `main` para publicar | 0,5 d | revisión del equipo | Marcia | Pages muestra `mapa2d.html`; el smoke test contra el sitio pasa |
 | P0 | Volver a correr `base_modelo.py` completo (con red) | 0,5 d | — | Luz Ángela | Pruebas pasan; métricas registradas |
 | P0 | Quitar `__pycache__` versionado; dibujar gráficos D3 al mostrar la pestaña (E14) | 0,5 d | — | Maykol | Sin errores en la consola |
 | **P1** | Límites distritales oficiales INEI/IGN (78 distritos) | 2 d | pedido al INEI | equipo + INEI | 78 UBIGEO; prueba de cobertura |
@@ -207,13 +206,16 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 | Bibliografía (`docs/04`) | Hecho | `crossref_verificacion.txt` | Detalles de 4 trabajos recientes solo desde el resumen |
 | Políticas públicas (`docs/05`) | Hecho | archivo | — |
 | Informe final (Markdown) | Hecho | este archivo | — |
-| Informe en PDF | No hecho | — | Se puede generar si el equipo lo pide |
+| Informe en Word | Hecho | `INFORME_FINAL_PROYECTO_INTEGRADOR.docx` | Generado con `herramientas/md_a_docx.py`; índice actualizado en Word |
+| Informe de avance para el docente (LaTeX) | Hecho | `docs/avance_latex/avance_proyecto.tex` y `.pdf` | 10 páginas; figuras en `docs/avance_latex/figuras/` |
 | README actualizado | Hecho | `README.md` | — |
-| Commit, push y despliegue | No hecho | — | Requiere autorización del equipo |
+| Recálculo del radar «vivo» | Hecho | `data/huellas/vivo.json`, `metadatos.json` | 27,2 km²; estado vigente |
+| Commit y push de la rama | Hecho | rama `auditoria-mvp-piloto` en GitHub; workflow «Pruebas» en verde | — |
+| Publicación en GitHub Pages | Parcial | — | Falta fusionar la rama en `main` |
 
-**Problemas abiertos:** radar «vivo» por recalcular; límites oficiales; padrón ESCALE; licencia GADM; validación independiente del radar; emergencias después de 2015.
+**Problemas abiertos:** fusionar en `main`; límites oficiales; padrón ESCALE; licencia GADM; validación independiente del radar; emergencias después de 2015.
 
 **Tres próximos pasos:**
-1. Autorizar el push y el despliegue, y recalcular el radar con la referencia corregida.
+1. Revisar y fusionar la rama `auditoria-mvp-piloto` en `main` para publicar el tablero corregido.
 2. Conseguir los límites oficiales del INEI y el padrón ESCALE.
 3. Construir la referencia independiente 2017/2023 para los casos A y B.

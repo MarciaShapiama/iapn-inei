@@ -24,7 +24,8 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 | [docs/03_APORTE_AL_INEI.md](docs/03_APORTE_AL_INEI.md) | Opciones de aporte estadístico, indicador principal y gobernanza |
 | [docs/04_ESTADO_DEL_ARTE_Y_BIBLIOGRAFIA.md](docs/04_ESTADO_DEL_ARTE_Y_BIBLIOGRAFIA.md) | 21 referencias con DOI verificados (APA 7) |
 | [docs/05_POLITICAS_PUBLICAS.md](docs/05_POLITICAS_PUBLICAS.md) | 7 opciones de política vinculadas a los resultados |
-| [INFORME_FINAL_PROYECTO_INTEGRADOR.md](INFORME_FINAL_PROYECTO_INTEGRADOR.md) | Informe para la evaluación del curso, con resumen ejecutivo y preguntas del jurado |
+| [INFORME_FINAL_PROYECTO_INTEGRADOR.md](INFORME_FINAL_PROYECTO_INTEGRADOR.md) · `.docx` | Informe para la evaluación del curso (Markdown y Word), con resumen ejecutivo y preguntas del jurado |
+| `docs/avance_latex/avance_proyecto.tex` · `.pdf` | Informe de avance para el docente (LaTeX); se compila con `pdflatex` (dos pasadas) |
 | [docs/modelo_inundacion.md](docs/modelo_inundacion.md) | Modelo de alerta (documento original del equipo) |
 | `docs/evidencia/` | Salidas de pruebas, auditoría de cifras, ML y verificación de DOI |
 
@@ -81,6 +82,8 @@ Pasos sueltos útiles:
 | `python src/modelo_inundacion.py` | Reentrena y evalúa el modelo de emergencias |
 | `python src/ml_evaluacion.py` | Bootstrap por años, calibración y falsos negativos |
 | `python src/auditoria.py` | Regenera `docs/evidencia/auditoria_cifras.json` |
+| `python herramientas/md_a_docx.py` | Genera el informe en Word desde el Markdown |
+| `python herramientas/figuras_avance.py` | Regenera las figuras del informe LaTeX |
 
 ### Variables de entorno (opcionales)
 
@@ -130,7 +133,7 @@ Son 38 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, esta
 | El mapa 3D sale en negro o muestra «no puede crear un contexto WebGL» | Navegador o máquina sin aceleración gráfica | Use `mapa2d.html`. No es un fallo del servidor |
 | «No se pudieron cargar los archivos del mapa» | El HTML se abrió sin servidor | `python -m http.server 8765 --directory dashboard` |
 | Una capa aparece `rezagado` | Falló la descarga de esa fuente o la fuente se retrasó | Revise `data/registro/*.json` y vuelva a correr el perfil; el tablero sigue mostrando el último dato válido |
-| `radar_vivo` aparece `no disponible` | Control de calidad: la referencia seca se solapaba con el evento (capa calculada antes de la corrección) | `python src/huellas.py vivo` y después `python src/etl.py local` |
+| `radar_vivo` aparece `no disponible` | Control de calidad fallido (por ejemplo, referencia seca solapada con el evento) | `python src/huellas.py vivo` y después `python src/etl.py local` |
 | `UnicodeEncodeError` en Windows | Consola en cp1252 | `set PYTHONIOENCODING=utf-8` |
 | Falla `test_poblacion_alineada_con_edificaciones` | Se volvió a descargar WorldPop con un recorte desalineado | `python src/reparar_poblacion.py` |
 | Overpass, ERDDAP u Open-Meteo devuelven 429 o 5xx | Límite de uso | Los reintentos son automáticos; espere y vuelva a correr |

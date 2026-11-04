@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-04T01:08-05:00",
+ "calculado": "2026-11-04T02:07-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
@@ -47,11 +47,11 @@
     "personas_suma_departamentos": 60
    },
    "vivo": {
-    "edificaciones_total": 5,
-    "edificaciones_suma_departamentos": 5,
+    "edificaciones_total": 8,
+    "edificaciones_suma_departamentos": 8,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 19,
-    "personas_suma_departamentos": 18
+    "personas_total": 24,
+    "personas_suma_departamentos": 24
    },
    "rp10": {
     "edificaciones_total": 111160,
@@ -174,47 +174,47 @@
    "fraccion_bruta_en_poligonos_distritales": 0.078
   },
   "vivo": {
-   "km2_mancha": 25.4,
-   "edificaciones": 5,
-   "personas": 19,
+   "km2_mancha": 27.2,
+   "edificaciones": 8,
+   "personas": 24,
    "qa": {
-    "km2_deteccion_bruta_caja": 126.9,
-    "km2_agua_permanente_tierra": 1135.6,
-    "km2_tras_mascara_tierra_y_limpieza": 25.4,
-    "fraccion_retenida": 0.2,
+    "km2_deteccion_bruta_caja": 334.8,
+    "km2_agua_permanente_tierra": 1153.0,
+    "km2_tras_mascara_tierra_y_limpieza": 27.2,
+    "fraccion_retenida": 0.081,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
     "referencia": [
      "2026-08-01",
-     "2026-10-31"
+     "2026-10-10"
     ],
-    "referencia_solapa_evento": true
+    "referencia_solapa_evento": false
    },
-   "imagenes": 14,
+   "imagenes": 13,
    "primera_y_ultima_imagen": [
-    "2026-10-10",
+    "2026-10-12",
     "2026-11-02"
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 20.49
+     "Sechura": 20.94
     },
     {
-     "Tumbes": 1.11
+     "La Brea": 1.35
     },
     {
-     "La Brea": 1.04
+     "Tumbes": 1.34
     },
     {
-     "Zarumilla": 0.7
+     "Zarumilla": 0.74
     },
     {
-     "Vichayal": 0.4
+     "Sullana": 0.56
     }
    ],
-   "fraccion_en_sechura": 0.807,
-   "fraccion_bruta_en_poligonos_distritales": 0.216
+   "fraccion_en_sechura": 0.77,
+   "fraccion_bruta_en_poligonos_distritales": 0.087
   }
  },
  "5_poblacion": {

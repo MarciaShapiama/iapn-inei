@@ -18,7 +18,7 @@ Lo que encontré:
 3. **Piura + Tumbes no daba el total (error de agregación, corregido).** Las 4.138 edificaciones que faltaban en la zona 1 en 100 años caen dentro de la caja de estudio pero **fuera de los 76 polígonos distritales**: 1.871 al sur (Lambayeque), 439 al norte (Ecuador) y 1.828 en bordes simplificados. Ahora aparecen como «Sin distrito asignado» y la suma coincide con el total.
 4. **2023: 728 km² con solo 19 edificaciones no es un error de proyección.** El 86 % de la mancha está en el distrito de **Sechura**, en la depresión desértica donde se forma la laguna La Niña, que está casi deshabitada. El CRS, la rejilla y las fechas son coherentes. Lo que sí estaba mal eran las 4.756 personas (punto 1).
 5. **El radar no detecta la inundación urbana documentada de 2017.** En Catacaos, inundado por el desborde del río Piura en marzo de 2017, el radar solo detecta 1,1 km². La capa 2017 sirve como mínimo y para la planicie desértica, **no como verdad-terreno**.
-6. **La capa «vivo» no pasa el control de calidad.** Su periodo de referencia seca (1/8–31/10/2026) se solapa con el periodo del evento (10/10–3/11/2026). Corregí la función que calcula los periodos; la capa publicada queda como `no disponible` hasta que se recalcule.
+6. **La capa «vivo» no pasaba el control de calidad.** Su periodo de referencia seca (1/8–31/10/2026) se solapaba con el periodo del evento (10/10–3/11/2026). Corregí la función que calcula los periodos y **recalculé la capa el 4/11/2026**: referencia del 1/8 al 10/10 (42 pasadas), evento del 11/10 al 4/11 (13 pasadas). Resultado: 27,2 km² de agua nueva en tierra (77 % en Sechura), 24 personas y 8 edificaciones dentro. Estado `vigente`. El umbral Otsu de diagnóstico resultó −16,8 dB, cercano al fijo de −17 dB.
 7. **«Viviendas»** eran huellas de edificación de Google Open Buildings (cualquier uso). Ahora se rotulan como **edificaciones potencialmente expuestas**.
 8. **No hubo mapa sin GPU.** El tablero dependía por completo de deck.gl/WebGL. Ahora detecta si hay WebGL y, si no, ofrece `mapa2d.html` (Leaflet, Canvas/SVG, sin GPU).
 
@@ -84,7 +84,7 @@ El estado se calcula a partir de la fecha **leída en los archivos** (`src/metad
 |---|---|---|---|---|---|---|
 | Peligro 1/10 y 1/100 años | JRC CEMS-GloFAS flood hazard v2 (`jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/CEMS-GLOFAS/flood_hazard/`) | CC BY 4.0 | ~90 m | sin actualización periódica | (versión v2) | **estimado** (escenario) |
 | Agua por radar 2017 / 2023 | Sentinel-1 RTC, Microsoft Planetary Computer | Copernicus libre y abierto | ~55 m | una vez | 29/4/2017 · 15/4/2023 | vigente (histórico) |
-| Agua por radar «vivo» | Sentinel-1 RTC | idem | ~55 m | lun y jue | 2/11/2026 | **no disponible** (QA, E4) |
+| Agua por radar «vivo» | Sentinel-1 RTC | idem | ~55 m | lun y jue | 2/11/2026 | vigente (recalculada tras corregir E4) |
 | Población | WorldPop R2025A 2026, 100 m, constrained | CC BY 4.0 | 100 m | anual | 2026 | **estimado** (modelado) |
 | Edificaciones | Google Open Buildings v3 vía VIDA/source.coop | CC BY 4.0 / ODbL | huella | — | v3 | vigente (línea base) |
 | Colegios | OpenStreetMap (Overpass) | ODbL 1.0 | punto | una vez | 3/11/2026 | vigente; **no es el padrón ESCALE** |
@@ -175,7 +175,7 @@ Agregué `hayWebGL()` (canvas `webgl2`/`webgl`) y el parámetro `?sin3d=1` para 
 | E1 | **Crítica** | Población desplazada ~7,9 km al oeste; cifras por distrito y por evento equivocadas | La ventana de `from_bounds` salía del ráster de Perú y `window_transform` conservaba el origen pedido | `exposicion.py`: intersección de ventana; `reparar_poblacion.py` corrige el archivo actual; prueba de alineación (r > 0,7, desplazamiento 0) | `docs/evidencia/cifras_antes_despues.csv`; `test_poblacion_alineada_con_edificaciones` |
 | E2 | Alta | Anillos rotulados como acumulados (684 / 1.268 / 684) | `np.select` daba clases disjuntas; el rótulo decía «≤» | Claves explícitas de anillo y acumulado; rótulos «0–500 m», «500 m–1 km» y «acumulado» | `test_acumulados_monotonos`; `auditoria_cifras.json` §1 |
 | E3 | Alta | Piura + Tumbes ≠ total (4.138) | Edificaciones fuera de los polígonos se descartaban en silencio | Fila «Sin distrito asignado» y bloque `conciliacion` | `test_suma_de_departamentos_igual_al_total` |
-| E4 | Alta | Referencia seca «vivo» solapada con el evento | `ref_anio` fijo de agosto a octubre aunque el evento empezara en octubre | `referencia_seca()` termina el día anterior al evento; `assert` en `procesar`; capa publicada marcada `no disponible` | `test_referencia_no_se_solapa_con_el_evento` (5 fechas) |
+| E4 | Alta | Referencia seca «vivo» solapada con el evento | `ref_anio` fijo de agosto a octubre aunque el evento empezara en octubre | `referencia_seca()` termina el día anterior al evento; `assert` en `procesar`; capa **recalculada** (27,2 km²; estado vigente) | `test_referencia_no_se_solapa_con_el_evento` (5 fechas) |
 | E5 | Alta (metodológica) | El radar subdetecta inundación urbana (Catacaos 2017: 1,1 km²) | VV con umbral fijo; doble rebote en ciudades; sin referencia independiente | Advertencias en metadatos; rótulo «mínimo»; plan de validación (doc 02, caso B) | §4.4 |
 | E6 | Media | Sin mapa sin GPU | Todo dependía de deck.gl | `mapa2d.html` (Leaflet) y detección de WebGL | Recorrido §9; `test_respaldo_sin_webgl_presente` |
 | E7 | Media | «Viviendas» = edificaciones; «afectar» en vez de «exponer» | Rótulo heredado | Rótulos y claves `edificaciones*`; prueba contra «damnificad» y `"viviendas"` | `test_sin_rotulos_engañosos` |
@@ -209,9 +209,10 @@ Agregué `hayWebGL()` (canvas `webgl2`/`webgl`) y el parámetro `?sin3d=1` para 
 | `python src/reparar_poblacion.py` (dos veces) | 1.ª: «desplazamiento óptimo: 86 columnas (r = 0.798) · origen −81,40000 → −81,32833»; 2.ª: «ya alineado: sin cambios» |
 | `python src/modelo_inundacion.py` (base original) | PR-AUC: climatología 0,095 · logística simple 0,114 · completa 0,122 · LightGBM 0,082. **Idénticas a `docs/modelo_inundacion.md`** |
 | `python -m pytest -q` | **38 passed** (`docs/evidencia/pytest_salida.txt`) |
-| `python src/metadatos.py` | vigente 8 · rezagado 1 (ICEN) · no disponible 1 (radar vivo) · estimado 6 |
+| `python src/metadatos.py` | vigente 9 · rezagado 1 (ICEN) · estimado 6 (tras recalcular el radar «vivo») |
+| `python src/huellas.py vivo` | «42 imágenes de referencia, 13 del evento: 334.8 km² inundados» (bruto en la caja; 27,2 km² en tierra tras máscaras) |
 
-No repetí las descargas en línea (WorldPop, Open Buildings, Sentinel-1, NASA POWER). Los pasos que necesitan red están en los perfiles `diario` e `inundacion` de `etl.py` y en sus workflows.
+No repetí las descargas de WorldPop, Open Buildings ni NASA POWER. Sentinel-1 sí se volvió a procesar para la capa «vivo». Los pasos que necesitan red están en los perfiles `diario` e `inundacion` de `etl.py` y en sus workflows.
 
 ---
 

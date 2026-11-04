@@ -279,7 +279,7 @@ function actualizar(volar){
     ["Establecimientos de salud",nf(K.sal[0])+" dentro",`acumulado: ${nf(K.sal[1])} hasta 500 m · ${nf(K.sal[2])} hasta 1 km`],
     ["Control de suma",todo?nf(e.conciliacion&&e.conciliacion.edificaciones_sin_distrito):"—",todo?"edificaciones fuera de los 76 polígonos (incluidas en el total)":"suma de los distritos seleccionados"]
   ].map(x=>`<div class="kpi"><div class="e">${x[0]}</div><div class="n">${x[1]}</div><div class="e">${x[2]}</div></div>`).join("");
-  $("#sel-nota").innerHTML=(e.tipo==="radar"&&S.esc==="vivo"?"<b>Atención:</b> esta capa no pasó el control de calidad (la referencia seca se solapa con el periodo del evento) y en noviembre el agua nueva es sobre todo riego. ":"")+
+  $("#sel-nota").innerHTML=(e.tipo==="radar"&&e.qa&&e.qa.referencia_solapa_evento?"<b>Atención:</b> esta capa no pasó el control de calidad (la referencia seca se solapa con el periodo del evento). ":"")+(S.esc==="vivo"?"En temporada seca el agua nueva corresponde sobre todo a riego y humedales, no a desbordes. ":"")+
     "Los colegios provienen de OpenStreetMap (no del padrón ESCALE) y la caja incluye locales de Ecuador, que se cuentan en el total pero no en ningún distrito.";
   // ficha y vista
   if(s.dis){const r=(D.PANEL&&D.PANEL.distritos||[]).find(x=>x.distrito===s.dis&&x.provincia===s.prov);$("#ficha").textContent=r?r.ficha:"Sin ficha para este distrito."}
