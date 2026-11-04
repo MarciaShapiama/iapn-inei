@@ -174,7 +174,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div class="z-modos" id="i-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
       <div class="i-ir"><button data-ir="piura">Bajo Piura</button><button data-ir="sullana">Chira · Sullana</button><button data-ir="tumbes">Tumbes</button><button data-ir="todo">Todo</button></div>
       <div class="i-capas" id="i-capas">
-        <label><input type="checkbox" data-c="agua" checked> <span style="color:#1e90ff">■</span> Zona inundada</label>
+        <label><input type="checkbox" data-c="agua" checked> <span style="color:#2171b5">■</span> Zona inundada (azul más oscuro = más profundo)</label>
         <label><input type="checkbox" data-c="viv" checked> <span style="color:#ff7a45">●</span> Viviendas afectadas</label>
         <label><input type="checkbox" data-c="col" checked> <span style="color:#ffd23f">●</span> Colegios</label>
         <label><input type="checkbox" data-c="sal" checked> <span style="color:#ff4d6d">✚</span> Salud</label>
@@ -466,9 +466,10 @@ const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE");
 function inundacionesVista(){
   const IN=D.IN; const el=document.getElementById("i-mapa");
   if(!IN||!Object.keys(IN.eventos||{}).length||!window.deck){document.getElementById("i-kpis").innerHTML="<div style='grid-column:1/3'><div class='k'>Las huellas de inundación se están calculando en GitHub. Vuelve en unos minutos.</div></div>";return}
-  const claves=["2017","2023","vivo"].filter(k=>IN.eventos[k]);
-  I3.ev=claves.includes("2017")?"2017":claves[0];
-  document.getElementById("i-eventos").innerHTML=claves.map(k=>`<button data-e="${k}" aria-pressed="${k===I3.ev}">${k==="vivo"?"Últimos 24 días":IN.eventos[k].nombre}</button>`).join("");
+  const claves=["rp100","rp10","2017","2023","vivo"].filter(k=>IN.eventos[k]);
+  I3.ev=claves[0];
+  const ETQ={rp100:"Peligro 1 en 100 años",rp10:"Peligro 1 en 10 años","2017":"Visto 2017 (radar)","2023":"Visto 2023 (radar)",vivo:"Últimos 24 días (radar)"};
+  document.getElementById("i-eventos").innerHTML=claves.map(k=>`<button data-e="${k}" aria-pressed="${k===I3.ev}">${ETQ[k]}</button>`).join("");
   document.querySelectorAll("#i-eventos button").forEach(b=>b.onclick=()=>{I3.ev=b.dataset.e;document.querySelectorAll("#i-eventos button").forEach(x=>x.setAttribute("aria-pressed",x===b));panelInund();capasInund()});
   document.querySelectorAll("#i-modos button").forEach(b=>b.onclick=()=>{I3.modo=b.dataset.m;document.querySelectorAll("#i-modos button").forEach(x=>x.setAttribute("aria-pressed",x===b));capasInund()});
   document.querySelectorAll("#i-capas input").forEach(c=>c.onchange=()=>{I3.capas[c.dataset.c]=c.checked;capasInund()});
@@ -504,16 +505,22 @@ function capasInund(){
 }
 function panelInund(){
   const IN=D.IN,e=IN.eventos[I3.ev];
-  document.getElementById("i-periodo").innerHTML=`${e.periodo[0]} a ${e.periodo[1]} · ${e.imagenes.length} imágenes de radar · <b>${fmtN(e.km2,1)} km²</b> inundados`;
+  document.getElementById("i-periodo").innerHTML=e.tipo==="peligro"
+    ?`Mapa de peligro del JRC (Comisión Europea): zona que se inunda con una crecida de ríos que ocurre en promedio <b>una vez cada ${e.periodo_retorno} años</b> · <b>${fmtN(e.km2,1)} km²</b>`
+    :`${e.periodo[0]} a ${e.periodo[1]} · ${e.imagenes.length} imágenes de radar Sentinel-1 · <b>${fmtN(e.km2,1)} km²</b> con agua nueva`;
   const s=e.salud||{},c=e.colegios||{},D_="Dentro de la zona inundada";
   const k=[["Personas en zona inundada",nf(e.personas),`${nf(e.personas_500m)} a ≤ 500 m`],
-    ["Viviendas afectadas",nf(e.viviendas),`${nf(e.viviendas_100m)} a ≤ 100 m`],
+    ["Viviendas en zona inundada",nf(e.viviendas),`${nf(e.viviendas_500m)} a ≤ 500 m`],
     ["Colegios",nf(c[D_]),`dentro · ${nf(c["A ≤ 500 m"])} a ≤ 500 m · ${nf(c["A ≤ 1 km"])} a ≤ 1 km`],
     ["Salud (hospitales y postas)",nf(s[D_]),`dentro · ${nf(s["A ≤ 500 m"])} a ≤ 500 m · ${nf(s["A ≤ 1 km"])} a ≤ 1 km`]];
   document.getElementById("i-kpis").innerHTML=k.map(x=>`<div><div class="k">${x[0]}</div><div class="i-big">${x[1]}</div><div class="d">${x[2]}</div></div>`).join("");
-  const v=IN.validacion[I3.ev];
-  document.getElementById("i-valida").innerHTML=v?`<div class="i-valida"><b>¿Cuadra con lo oficial?</b><br>Viviendas en la mancha (radar): Piura <b>${nf((e.viviendas_por_departamento||{}).Piura)}</b>, Tumbes <b>${nf((e.viviendas_por_departamento||{}).Tumbes)}</b>.<br>INDECI reportó viviendas afectadas: Piura <b>${nf(v.Piura)}</b>, Tumbes <b>${nf(v.Tumbes)}</b>. ${v.nota} <a href="${v.url}" target="_blank" rel="noopener" style="color:#7fb4e0">Fuente</a></div>`
-    : I3.ev==="vivo"&&(e.km2||0)<1?`<div class="i-aviso">En los últimos 24 días el radar no detecta inundaciones: es temporada seca. Las lluvias fuertes en Tumbes y Piura suelen llegar entre enero y abril; esta capa se actualiza los lunes y jueves.</div>`:"";
+  const v=IN.validacion[I3.ev], pd_=e.por_departamento||{}, g=(d,c)=>(pd_[d]||{})[c];
+  let extra="";
+  if(e.viviendas_profundidad)extra=`<div class="i-valida"><b>Viviendas en zona inundable, según la profundidad del agua</b><br>`+Object.entries(e.viviendas_profundidad).map(([a,b])=>`${a}: <b>${nf(b)}</b>`).join(" · ")+
+    `<br>Piura <b>${nf(g("Piura","viviendas"))}</b> · Tumbes <b>${nf(g("Tumbes","viviendas"))}</b></div>`;
+  if(v)extra+=`<div class="i-valida"><b>¿Cuadra con lo oficial?</b> Viviendas que el radar vio en el agua o a ≤ 500 m: Piura <b>${nf(g("Piura","viviendas_500m"))}</b>, Tumbes <b>${nf(g("Tumbes","viviendas_500m"))}</b>. INDECI reportó viviendas afectadas: Piura <b>${nf(v.Piura)}</b>, Tumbes <b>${nf(v.Tumbes)}</b>. ${v.nota} El radar no ve el agua entre casas: su cifra es un mínimo. <a href="${v.url}" target="_blank" rel="noopener" style="color:#7fb4e0">Fuente</a></div>`;
+  if(I3.ev==="vivo")extra+=`<div class="i-aviso">Es temporada seca: el agua nueva de estos días es sobre todo riego por inundación de arrozales (Bajo Piura, San Lorenzo), no desbordes. Las lluvias fuertes suelen llegar entre enero y abril; esta capa se actualiza los lunes y jueves.</div>`;
+  document.getElementById("i-valida").innerHTML=extra;
   const dd=(e.distritos||[]).slice(0,8), mx=d3.max(dd,x=>x.viviendas||0)||1;
   document.getElementById("i-distritos").innerHTML=dd.length?dd.map(x=>`<span>${x.distrito} <small style="color:#8ea3b3">${x.provincia}</small></span><b>${nf(x.viviendas)}</b><span class="b" style="width:${100*(x.viviendas||0)/mx}%"></span>`).join(""):"<span class='z-sub'>Sin viviendas en la zona inundada.</span>";
   const lista=[...(e.salud_lista||[]).map(x=>({...x,_i:"✚",_c:"#ff4d6d"})),...(e.colegios_lista||[]).map(x=>({...x,_i:"●",_c:"#ffd23f"}))].sort((a,b)=>a.dist_m-b.dist_m).slice(0,60);

@@ -1,40 +1,43 @@
-"""Impacto de cada huella de inundación en Tumbes y Piura: personas, viviendas, colegios y salud.
+"""Impacto de las inundaciones en Tumbes y Piura: personas, viviendas, colegios y salud.
 
-Para cada evento (2017, 2023, vivo):
-    personas   WorldPop 2026 (100 m) × fracción inundada de cada celda; también a ≤ 500 m de la mancha
-    viviendas  edificaciones de Google Open Buildings cuyo centro cae en un píxel inundado; y a ≤ 100 m
-    colegios / establecimientos de salud: dentro de la mancha, a ≤ 500 m y a ≤ 1 km
-    por distrito: km² inundados, personas y viviendas
-Nota: se usa la población y las edificaciones de HOY sobre la huella de 2017 o 2023, es decir, la
-pregunta es "¿a cuántos afectaría hoy una inundación como la de 2017?".
+Dos tipos de capa:
+    radar    lo que el satélite Sentinel-1 vio inundado en 2017, 2023 y los últimos 24 días (data/huellas/).
+             Es un MÍNIMO: el radar no ve el agua entre edificios ni bajo árboles.
+    peligro  zona que se inunda con una crecida de 1 en 10 y de 1 en 100 años, con su profundidad
+             (JRC CEMS-GloFAS v2, 90 m; data/exposicion/peligro_rp*.tif).
+Para cada capa:
+    personas   WorldPop 2026 (100 m) × fracción inundada de cada celda; también a ≤ 500 m
+    viviendas  edificaciones de Google Open Buildings dentro, a ≤ 100 m y a ≤ 500 m (y por profundidad)
+    colegios y salud: dentro, a ≤ 500 m y a ≤ 1 km
+    por distrito: km², personas y viviendas
+Se cruzan la población y las edificaciones de HOY: "¿a cuántos afectaría hoy algo así?".
 
-Salidas: dashboard/data/inundacion.json y dashboard/data/huella_{evento}.png (capa para el mapa).
+Salidas: dashboard/data/inundacion.json y dashboard/data/capa_{clave}.png
 
 Uso: python src/impacto.py
 """
 from __future__ import annotations
 
 import json
+import shutil
 
 import numpy as np
 import pandas as pd
 
-from config import DASH_DATA, DATA
+from config import DASH_DATA
 from exposicion import CAJA, CARPETA as EXPO
-from huellas import CARPETA as HUELLAS, RES, eventos
+from huellas import CARPETA as HUELLAS, eventos
 
 LAT0 = (CAJA[1] + CAJA[3]) / 2
-M_X, M_Y = RES * 111_320 * np.cos(np.radians(LAT0)), RES * 110_600       # metros por píxel
 VALIDACION = {"2017": {"Piura": 74348, "Tumbes": 11395,
                        "fuente": "INDECI, citado en OCHA, Perú: Temporada de lluvias, informe n.º 10 (10 may 2017)",
                        "url": "https://reliefweb.int/report/peru/peru-rainy-season-situation-report-no-10-10-may-2017",
-                       "nota": "Viviendas afectadas por lluvias, inundaciones y huaicos (no solo inundación)."}}
+                       "nota": "INDECI cuenta viviendas afectadas por lluvias, inundaciones y huaicos, no solo por inundación."}}
+PELIGROS = {"rp10": ("Zona inundable: crecida de 1 en 10 años", 10), "rp100": ("Zona inundable: crecida de 1 en 100 años", 100)}
 
 
-def leer_huella(clave: str):
-    import rasterio
-    with rasterio.open(HUELLAS / f"{clave}.tif") as src:
-        return src.read(1), src.transform
+def metros(t) -> tuple[float, float]:
+    return abs(t.a) * 111_320 * np.cos(np.radians(LAT0)), abs(t.e) * 110_600
 
 
 def indices(lon, lat, t, forma):
@@ -44,12 +47,7 @@ def indices(lon, lat, t, forma):
     return fil, col, ok
 
 
-def distancia_m(inund: np.ndarray) -> np.ndarray:
-    from scipy import ndimage as ndi
-    return ndi.distance_transform_edt(~inund, sampling=(M_Y, M_X)).astype("float32")
-
-
-def raster_distritos(t, forma):
+def rasterizar_distritos(t, forma):
     from rasterio import features
     from shapely.geometry import shape
     g = json.load(open(EXPO / "distritos.geojson", encoding="utf-8"))
@@ -59,137 +57,136 @@ def raster_distritos(t, forma):
     return r, nombres
 
 
-def personas(inund: np.ndarray, t, mascara_extra: np.ndarray | None = None, distritos=None):
-    """Población dentro de la máscara: se lleva la máscara a la grilla de WorldPop (fracción por celda)."""
+def cargar_capas():
+    """Devuelve {clave: (nombre, tipo, profundidad_o_mascara, transform, meta)}."""
+    import rasterio
+    from scipy import ndimage as ndi
+    capas = {}
+    for clave, ev in eventos().items():
+        ruta = HUELLAS / f"{clave}.tif"
+        if not ruta.exists():
+            continue
+        with rasterio.open(ruta) as src:
+            m, t = src.read(1), src.transform
+        meta = json.load(open(HUELLAS / f"{clave}.json", encoding="utf-8"))
+        dr, _ = rasterizar_distritos(t, m.shape)
+        tierra = ndi.binary_erosion(dr > 0, iterations=4)       # solo tierra de Tumbes y Piura, sin la orilla del mar
+        inund = (m == 1) & tierra
+        lab, n = ndi.label(inund)                                # quita manchas sueltas (< 0,03 km²)
+        if n:
+            tam = np.bincount(lab.ravel()); ok = tam >= 10; ok[0] = False; inund = ok[lab]
+        capas[clave] = (ev["nombre"], "radar", inund.astype("float32"), t,
+                        {"periodo": meta["periodo"], "imagenes": meta["imagenes_evento"]})
+    for clave, (nombre, rp) in PELIGROS.items():
+        ruta = EXPO / f"peligro_rp{rp}.tif"
+        if ruta.exists():
+            with rasterio.open(ruta) as src:
+                capas[clave] = (nombre, "peligro", src.read(1).astype("float32"), src.transform,
+                                {"periodo": None, "imagenes": [], "periodo_retorno": rp})
+    return capas
+
+
+def personas(mascara, t, distritos, extra=None):
     import rasterio
     from rasterio.warp import Resampling, reproject
     with rasterio.open(EXPO / "poblacion_100m.tif") as src:
-        pob = src.read(1).astype("float64")
-        tp, crs = src.transform, src.crs
+        pob, tp = src.read(1).astype("float64"), src.transform
     def frac(m):
         dst = np.zeros(pob.shape, dtype="float32")
-        reproject(m.astype("float32"), dst, src_transform=t, src_crs="EPSG:4326", dst_transform=tp, dst_crs=crs,
+        reproject(m.astype("float32"), dst, src_transform=t, src_crs="EPSG:4326", dst_transform=tp, dst_crs="EPSG:4326",
                   resampling=Resampling.average)
         return dst
-    f = frac(inund)
-    total = float((pob * f).sum())
-    cerca = float((pob * frac(mascara_extra)).sum()) if mascara_extra is not None else None
-    por_d = None
-    if distritos is not None:
-        dr = np.zeros(pob.shape, dtype="float32")
-        reproject(distritos[0].astype("float32"), dr, src_transform=t, src_crs="EPSG:4326", dst_transform=tp,
-                  dst_crs=crs, resampling=Resampling.nearest)
-        por_d = pd.Series((pob * f).ravel()).groupby(dr.astype(int).ravel()).sum()
-    return total, cerca, por_d
+    f = frac(mascara)
+    dr = np.zeros(pob.shape, dtype="float32")
+    reproject(distritos.astype("float32"), dr, src_transform=t, src_crs="EPSG:4326", dst_transform=tp, dst_crs="EPSG:4326",
+              resampling=Resampling.nearest)
+    por_d = pd.Series((pob * f).ravel()).groupby(dr.astype(int).ravel()).sum()
+    return float((pob * f).sum()), (float((pob * frac(extra)).sum()) if extra is not None else None), por_d
 
 
-def puntos_cercanos(tabla: pd.DataFrame, dist: np.ndarray, t) -> pd.DataFrame:
-    fil, col, ok = indices(tabla["lon"], tabla["lat"], t, dist.shape)
-    d = np.full(len(tabla), np.nan)
-    d[ok] = dist[fil[ok], col[ok]]
-    x = tabla.copy()
-    x["dist_m"] = np.round(d)
-    x["estado"] = np.select([x["dist_m"] <= 0, x["dist_m"] <= 500, x["dist_m"] <= 1000],
-                            ["Dentro de la zona inundada", "A ≤ 500 m", "A ≤ 1 km"], "Fuera")
-    return x
-
-
-def png(clave: str, m: np.ndarray, t) -> dict:
-    """Capa del mapa: agua inundada en azul intenso, agua permanente en azul tenue (reducida a ~110 m)."""
+def png(clave: str, tipo: str, valor: np.ndarray, t) -> dict:
+    """Capa del mapa. Radar: agua celeste brillante. Peligro: azules según profundidad."""
     from PIL import Image
-    k = 2
-    h, w = (m.shape[0] // k) * k, (m.shape[1] // k) * k
-    b = m[:h, :w].reshape(h // k, k, w // k, k)
-    inund = (b == 1).any(axis=(1, 3))
-    perm = (b == 2).any(axis=(1, 3)) & ~inund
-    rgba = np.zeros(inund.shape + (4,), dtype="uint8")
-    rgba[inund] = (30, 144, 255, 235)
-    rgba[perm] = (120, 170, 210, 120)
-    Image.fromarray(rgba, "RGBA").save(DASH_DATA / f"huella_{clave}.png", optimize=True)
-    oeste, norte = t.c, t.f
-    este, sur = oeste + t.a * w, norte + t.e * h
-    return {"imagen": f"huella_{clave}.png", "limites": [oeste, sur, este, norte]}
+    k = 2 if tipo == "radar" else 1
+    h, w = (valor.shape[0] // k) * k, (valor.shape[1] // k) * k
+    v = valor[:h, :w].reshape(h // k, k, w // k, k).max(axis=(1, 3))
+    rgba = np.zeros(v.shape + (4,), dtype="uint8")
+    if tipo == "radar":
+        rgba[v > 0] = (0, 200, 255, 240)
+    else:
+        for lim, color in [(0, (158, 202, 225, 170)), (0.5, (66, 146, 198, 200)), (1.5, (33, 113, 181, 225)), (3, (8, 48, 107, 240))]:
+            rgba[v > lim] = color
+    Image.fromarray(rgba, "RGBA").save(DASH_DATA / f"capa_{clave}.png", optimize=True)
+    return {"imagen": f"capa_{clave}.png", "limites": [t.c, t.f + t.e * h, t.c + t.a * w, t.f]}
 
 
 def main() -> None:
+    from scipy import ndimage as ndi
     DASH_DATA.mkdir(parents=True, exist_ok=True)
-    viv = pd.read_parquet(EXPO / "viviendas.parquet") if (EXPO / "viviendas.parquet").exists() else None
-    salud = pd.read_csv(EXPO / "salud.csv") if (EXPO / "salud.csv").exists() else None
-    cole = pd.read_csv(EXPO / "colegios.csv") if (EXPO / "colegios.csv").exists() else None
+    viv = pd.read_parquet(EXPO / "viviendas.parquet")
+    tablas = {n: pd.read_csv(EXPO / f"{n}.csv") for n in ("salud", "colegios") if (EXPO / f"{n}.csv").exists()}
     salida = {"caja": CAJA, "eventos": {}, "validacion": VALIDACION,
               "fuentes_exposicion": {"poblacion": "WorldPop 2026, 100 m", "viviendas": "Google Open Buildings v3 (confianza ≥ 0,75)",
                                      "salud": "RENIPRESS (SUSALUD)",
-                                     "colegios": None if cole is None else cole["fuente"].iloc[0]}}
-    distritos = None
-    for clave, ev in eventos().items():
-        if not (HUELLAS / f"{clave}.tif").exists():
-            continue
-        m, t = leer_huella(clave)
-        meta = json.load(open(HUELLAS / f"{clave}.json", encoding="utf-8"))
-        inund = m == 1
-        if distritos is None and (EXPO / "distritos.geojson").exists():
-            distritos = raster_distritos(t, m.shape)
-        dist = distancia_m(inund)
-        r = {"nombre": ev["nombre"], "periodo": meta["periodo"], "imagenes": meta["imagenes_evento"],
-             "km2": meta["km2"], **png(clave, m, t)}
-        if (EXPO / "poblacion_100m.tif").exists():
-            p, p500, por_d = personas(inund, t, dist <= 500, distritos)
-            r["personas"], r["personas_500m"] = round(p), round(p500)
-        else:
-            por_d = None
-        dist_viv = None
-        if viv is not None:
-            fil, col, ok = indices(viv["lon"], viv["lat"], t, m.shape)
-            dist_viv = np.full(len(viv), np.inf)
-            dist_viv[ok] = dist[fil[ok], col[ok]]
-            dentro = dist_viv <= 0
-            r["viviendas"], r["viviendas_100m"] = int(dentro.sum()), int((dist_viv <= 100).sum())
-            muestra = viv[dentro]
-            if len(muestra) > 40000:
-                muestra = muestra.sample(40000, random_state=1)
-            r["viviendas_puntos"] = np.round(muestra[["lon", "lat"]].to_numpy(), 5).tolist()
-        for nombre, tabla in (("salud", salud), ("colegios", cole)):
-            if tabla is None:
-                continue
-            x = puntos_cercanos(tabla, dist, t)
-            r[nombre] = {e: int((x["estado"] == e).sum()) for e in ["Dentro de la zona inundada", "A ≤ 500 m", "A ≤ 1 km"]}
+                                     "colegios": tablas["colegios"]["fuente"].iloc[0] if "colegios" in tablas else None,
+                                     "peligro": "JRC CEMS-GloFAS flood hazard v2 (90 m)"}}
+    for clave, (nombre, tipo, valor, t, meta) in cargar_capas().items():
+        inund = valor > 0
+        mx, my = metros(t)
+        dist = ndi.distance_transform_edt(~inund, sampling=(my, mx)).astype("float32")
+        dr, nombres = rasterizar_distritos(t, inund.shape)
+        p, p500, por_d = personas(inund, t, dr, dist <= 500)
+        fil, col, ok = indices(viv["lon"], viv["lat"], t, inund.shape)
+        dv = np.full(len(viv), np.inf, dtype="float32"); dv[ok] = dist[fil[ok], col[ok]]
+        prof = np.zeros(len(viv), dtype="float32"); prof[ok] = valor[fil[ok], col[ok]]
+        dist_d = np.zeros(len(viv), dtype=int); dist_d[ok] = dr[fil[ok], col[ok]]
+        dentro = dv <= 0
+        r = {"nombre": nombre, "tipo": tipo, "periodo": meta["periodo"], "imagenes": meta["imagenes"],
+             "periodo_retorno": meta.get("periodo_retorno"),
+             "km2": round(float(inund.sum() * mx * my / 1e6), 1), **png(clave, tipo, valor, t),
+             "personas": round(p), "personas_500m": round(p500),
+             "viviendas": int(dentro.sum()), "viviendas_100m": int((dv <= 100).sum()), "viviendas_500m": int((dv <= 500).sum())}
+        if tipo == "peligro":
+            r["viviendas_profundidad"] = {"hasta 0,5 m": int((dentro & (prof <= 0.5)).sum()),
+                                          "0,5 a 1,5 m": int((dentro & (prof > 0.5) & (prof <= 1.5)).sum()),
+                                          "más de 1,5 m": int((dentro & (prof > 1.5)).sum())}
+        muestra = viv[dentro] if dentro.sum() else viv[dv <= 100]
+        if len(muestra) > 45000:
+            muestra = muestra.sample(45000, random_state=1)
+        r["viviendas_puntos"] = np.round(muestra[["lon", "lat"]].to_numpy(), 5).tolist()
+        r["viviendas_puntos_cerca"] = bool(not dentro.sum())
+        for n, tabla in tablas.items():
+            f2, c2, ok2 = indices(tabla["lon"], tabla["lat"], t, inund.shape)
+            d = np.full(len(tabla), np.nan); d[ok2] = dist[f2[ok2], c2[ok2]]
+            x = tabla.assign(dist_m=np.round(d))
+            x["estado"] = np.select([x["dist_m"] <= 0, x["dist_m"] <= 500, x["dist_m"] <= 1000],
+                                    ["Dentro de la zona inundada", "A ≤ 500 m", "A ≤ 1 km"], "Fuera")
+            r[n] = {e: int((x["estado"] == e).sum()) for e in ["Dentro de la zona inundada", "A ≤ 500 m", "A ≤ 1 km"]}
             cols = [c for c in ["nombre", "tipo", "categoria", "nivel", "alumnos", "distrito", "lat", "lon", "dist_m", "estado"] if c in x]
-            cerca = x[x["estado"] != "Fuera"].sort_values("dist_m")[cols]
-            r[nombre + "_lista"] = json.loads(cerca.to_json(orient="records", force_ascii=False))
-        if distritos is not None:
-            dr, nombres = distritos
-            area = pd.Series(inund.ravel()).groupby(dr.ravel()).sum() * M_X * M_Y / 1e6
-            filas = []
-            for k, (dep, prov, dis) in enumerate(nombres, start=1):
-                a = float(area.get(k, 0))
-                fila = {"departamento": dep, "provincia": prov, "distrito": dis, "km2": round(a, 2)}
-                if por_d is not None:
-                    fila["personas"] = round(float(por_d.get(k, 0)))
-                filas.append(fila)
-            if viv is not None and dist_viv is not None:
-                fil, col, ok = indices(viv["lon"], viv["lat"], t, m.shape)
-                dvi = np.zeros(len(viv), dtype=int)
-                dvi[ok] = dr[fil[ok], col[ok]]
-                cuenta = pd.Series(dvi[dist_viv <= 0]).value_counts()
-                for k, fila in enumerate(filas, start=1):
-                    fila["viviendas"] = int(cuenta.get(k, 0))
-            r["distritos"] = sorted([f for f in filas if f["km2"] > 0 or f.get("viviendas", 0) > 0],
-                                    key=lambda f: -f.get("viviendas", f["km2"]))
-            por_dep = {}
-            for f in filas:
-                por_dep.setdefault(f["departamento"], 0)
-                por_dep[f["departamento"]] += f.get("viviendas", 0)
-            r["viviendas_por_departamento"] = por_dep
+            r[n + "_lista"] = json.loads(x[x["estado"] != "Fuera"].sort_values("dist_m")[cols].to_json(orient="records", force_ascii=False))
+        area = pd.Series(inund.ravel()).groupby(dr.ravel()).sum() * mx * my / 1e6
+        cuenta = pd.Series(dist_d[dentro]).value_counts()
+        cuenta500 = pd.Series(dist_d[dv <= 500]).value_counts()
+        filas = [{"departamento": dep, "provincia": prov, "distrito": dis, "km2": round(float(area.get(k, 0)), 2),
+                  "personas": round(float(por_d.get(k, 0))), "viviendas": int(cuenta.get(k, 0)),
+                  "viviendas_500m": int(cuenta500.get(k, 0))}
+                 for k, (dep, prov, dis) in enumerate(nombres, start=1)]
+        r["distritos"] = sorted([f for f in filas if f["km2"] > 0 or f["viviendas_500m"] > 0],
+                                key=lambda f: (-f["viviendas"], -f["viviendas_500m"]))
+        por_dep = {}
+        for f in filas:
+            d0 = por_dep.setdefault(f["departamento"], {"viviendas": 0, "viviendas_500m": 0, "personas": 0})
+            d0["viviendas"] += f["viviendas"]; d0["viviendas_500m"] += f["viviendas_500m"]; d0["personas"] += f["personas"]
+        r["por_departamento"] = por_dep
         salida["eventos"][clave] = r
-        print(f"{clave}: {r['km2']} km², {r.get('personas')} personas, {r.get('viviendas')} viviendas, "
-              f"salud {r.get('salud')}, colegios {r.get('colegios')}")
-    if (EXPO / "distritos.geojson").exists():
-        import shutil
-        shutil.copy(EXPO / "distritos.geojson", DASH_DATA / "distritos_tumbes_piura.geojson")
-    for nombre, tabla in (("salud", salud), ("colegios", cole)):
-        if tabla is not None:
-            cols = [c for c in ["nombre", "tipo", "nivel", "alumnos", "distrito", "lat", "lon"] if c in tabla]
-            tabla[cols].to_json(DASH_DATA / f"{nombre}_tumbes_piura.json", orient="records", force_ascii=False)
+        print(f"{clave}: {r['km2']} km², {r['personas']:,} personas, {r['viviendas']:,} viviendas "
+              f"({r['viviendas_500m']:,} a ≤ 500 m), salud {r.get('salud')}, colegios {r.get('colegios')}")
+    shutil.copy(EXPO / "distritos.geojson", DASH_DATA / "distritos_tumbes_piura.geojson")
+    for n, tabla in tablas.items():
+        cols = [c for c in ["nombre", "tipo", "nivel", "alumnos", "distrito", "lat", "lon"] if c in tabla]
+        tabla[cols].to_json(DASH_DATA / f"{n}_tumbes_piura.json", orient="records", force_ascii=False)
+    for viejo in DASH_DATA.glob("huella_*.png"):
+        viejo.unlink()
     json.dump(salida, open(DASH_DATA / "inundacion.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print(f"inundacion.json: {(DASH_DATA / 'inundacion.json').stat().st_size // 1024} KB")
 

@@ -5,6 +5,7 @@
     salud.csv            establecimientos de salud activos (RENIPRESS, SUSALUD): hospitales, centros, postas
     colegios.csv         locales educativos: padrón ESCALE (MINEDU) si se puede descargar; si no, OpenStreetMap
     distritos.geojson    distritos de Tumbes y Piura (GADM 4.1)
+    peligro_rp{N}.tif    profundidad de inundación de ríos con periodo de retorno N años (JRC CEMS-GloFAS v2, 90 m)
 
 Método de viviendas y población tomado del repositorio del curso (alexanderquispe/incendios-peru).
 
@@ -161,10 +162,48 @@ def distritos(forzar: bool) -> None:
     print(f"  distritos: {len(feats)}")
 
 
+JRC = "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/CEMS-GLOFAS/flood_hazard/"
+
+
+def peligro(forzar: bool, periodos=(10, 100)) -> None:
+    """Mapa de peligro de inundación del JRC (profundidad en m), recortado a Tumbes-Piura."""
+    import rasterio
+    from rasterio.merge import merge
+    from shapely.geometry import box, shape
+    if all((CARPETA / f"peligro_rp{rp}.tif").exists() for rp in periodos) and not forzar:
+        return
+    ext = requests.get(JRC + "tile_extents.geojson", headers=UA, timeout=120).json()
+    caja = box(*CAJA)
+    teselas = [f["properties"] for f in ext["features"] if shape(f["geometry"]).intersects(caja)]
+    print(f"  JRC: {len(teselas)} teselas: {teselas[:3]}")
+    for rp in periodos:
+        rutas = []
+        for props in teselas:
+            for valor in props.values():
+                url = f"{JRC}RP{rp}/{valor}_RP{rp}_depth.tif"
+                r = requests.get(url, headers=UA, timeout=600)
+                if r.status_code == 200 and r.content[:2] in (b"II", b"MM"):
+                    ruta = CARPETA / f"_jrc_{valor}_{rp}.tif"; ruta.write_bytes(r.content); rutas.append(ruta)
+                    break
+        if not rutas:
+            print(f"  JRC RP{rp}: no se encontraron teselas"); continue
+        fuentes = [rasterio.open(x) for x in rutas]
+        datos, t = merge(fuentes, bounds=CAJA, nodata=0)
+        perfil = fuentes[0].profile | {"height": datos.shape[1], "width": datos.shape[2], "transform": t, "nodata": 0,
+                                       "compress": "deflate", "dtype": "float32", "count": 1}
+        with rasterio.open(CARPETA / f"peligro_rp{rp}.tif", "w", **perfil) as dst:
+            dst.write(np.nan_to_num(datos[0]).clip(0, 50).astype("float32"), 1)
+        for f in fuentes:
+            f.close()
+        for x in rutas:
+            x.unlink()
+        print(f"  JRC RP{rp}: {(datos[0] > 0).sum():,} píxeles con peligro")
+
+
 if __name__ == "__main__":
     CARPETA.mkdir(parents=True, exist_ok=True)
     forzar = "--forzar" in sys.argv
-    for paso in (distritos, salud, colegios, poblacion, viviendas):
+    for paso in (distritos, salud, colegios, poblacion, viviendas, peligro):
         try:
             paso(forzar)
         except Exception as error:  # una fuente caída no detiene las demás
