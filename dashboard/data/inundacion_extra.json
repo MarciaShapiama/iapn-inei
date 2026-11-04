@@ -7,25 +7,25 @@
  "capas": {
   "2017": {
    "nombre": "El Niño costero 2017",
-   "ninos_0a4": 95,
+   "ninos_0a4": 93,
    "ninos_0a4_por_departamento": {
-    "Piura": 94,
+    "Piura": 93,
     "Tumbes": 1
    },
-   "mayores_65": 118,
+   "mayores_65": 116,
    "mayores_65_por_departamento": {
-    "Piura": 117,
+    "Piura": 115,
     "Tumbes": 1
    },
    "cultivo_ha": 2487,
    "vias_km": {
-    "Terciaria": 18.9,
+    "Terciaria": 19.4,
     "Primaria": 7.1,
     "Secundaria": 4.9,
     "Troncal (red nacional)": 0.8
    },
-   "vias_km_total": 31.7,
-   "puentes": 5,
+   "vias_km_total": 32.2,
+   "puentes": 4,
    "puentes_nombres": [
     "Antigua Carretera Panamericana Norte",
     "Carretera Panamericana Norte",
@@ -36,7 +36,7 @@
    "nombre": "Ciclón Yaku 2023",
    "ninos_0a4": 6,
    "ninos_0a4_por_departamento": {
-    "Piura": 6,
+    "Piura": 5,
     "Tumbes": 0
    },
    "mayores_65": 6,
@@ -44,26 +44,26 @@
     "Piura": 5,
     "Tumbes": 0
    },
-   "cultivo_ha": 679,
+   "cultivo_ha": 678,
    "vias_km": {
     "Primaria": 6.5,
-    "Terciaria": 5.1,
+    "Terciaria": 5.0,
     "Secundaria": 0.5
    },
-   "vias_km_total": 12.1,
-   "puentes": 3,
+   "vias_km_total": 12.0,
+   "puentes": 2,
    "puentes_nombres": [
     "Antigua Carretera Panamericana Norte"
    ]
   },
   "vivo": {
    "nombre": "Últimos 24 días",
-   "ninos_0a4": 2,
+   "ninos_0a4": 3,
    "ninos_0a4_por_departamento": {
-    "Piura": 2,
+    "Piura": 3,
     "Tumbes": 0
    },
-   "mayores_65": 2,
+   "mayores_65": 3,
    "mayores_65_por_departamento": {
     "Piura": 2,
     "Tumbes": 0

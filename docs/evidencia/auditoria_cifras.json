@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-04T14:04-05:00",
+ "calculado": "2026-11-04T15:06-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
@@ -33,25 +33,25 @@
  "2_conciliacion": {
   "por_escenario": {
    "2017": {
-    "edificaciones_total": 761,
-    "edificaciones_suma_departamentos": 761,
+    "edificaciones_total": 759,
+    "edificaciones_suma_departamentos": 759,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 1045,
-    "personas_suma_departamentos": 1044
+    "personas_total": 1024,
+    "personas_suma_departamentos": 1022
    },
    "2023": {
-    "edificaciones_total": 19,
-    "edificaciones_suma_departamentos": 19,
+    "edificaciones_total": 18,
+    "edificaciones_suma_departamentos": 18,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 62,
-    "personas_suma_departamentos": 60
+    "personas_total": 59,
+    "personas_suma_departamentos": 57
    },
    "vivo": {
     "edificaciones_total": 8,
     "edificaciones_suma_departamentos": 8,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 24,
-    "personas_suma_departamentos": 24
+    "personas_total": 34,
+    "personas_suma_departamentos": 34
    },
    "rp10": {
     "edificaciones_total": 111160,
@@ -88,14 +88,14 @@
  },
  "3_radar": {
   "2017": {
-   "km2_mancha": 797.8,
-   "edificaciones": 761,
-   "personas": 1045,
+   "km2_mancha": 950.8,
+   "edificaciones": 759,
+   "personas": 1024,
    "qa": {
-    "km2_deteccion_bruta_caja": 5656.8,
-    "km2_agua_permanente_tierra": 2559.1,
-    "km2_tras_mascara_tierra_y_limpieza": 797.8,
-    "fraccion_retenida": 0.141,
+    "km2_deteccion_bruta_caja": 4410.8,
+    "km2_agua_permanente_tierra": 102.5,
+    "km2_tras_mascara_tierra_y_limpieza": 950.8,
+    "fraccion_retenida": 0.216,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
@@ -112,33 +112,33 @@
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 619.95
+     "Sechura": 785.82
     },
     {
-     "La Brea": 35.84
+     "La Brea": 36.21
     },
     {
-     "Cristo Nos Valga": 33.64
+     "Cristo Nos Valga": 33.99
     },
     {
-     "Vichayal": 21.47
+     "Vichayal": 21.37
     },
     {
-     "Lancones": 13.6
+     "Colan": 9.78
     }
    ],
-   "fraccion_en_sechura": 0.777,
-   "fraccion_bruta_en_poligonos_distritales": 0.144
+   "fraccion_en_sechura": 0.826,
+   "fraccion_bruta_en_poligonos_distritales": 0.218
   },
   "2023": {
-   "km2_mancha": 728.3,
-   "edificaciones": 19,
-   "personas": 62,
+   "km2_mancha": 717.2,
+   "edificaciones": 18,
+   "personas": 59,
    "qa": {
-    "km2_deteccion_bruta_caja": 9574.9,
-    "km2_agua_permanente_tierra": 1076.9,
-    "km2_tras_mascara_tierra_y_limpieza": 728.3,
-    "fraccion_retenida": 0.076,
+    "km2_deteccion_bruta_caja": 3917.0,
+    "km2_agua_permanente_tierra": 102.5,
+    "km2_tras_mascara_tierra_y_limpieza": 717.2,
+    "fraccion_retenida": 0.183,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
@@ -155,33 +155,33 @@
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 627.48
+     "Sechura": 635.57
     },
     {
-     "La Brea": 36.43
+     "La Brea": 36.45
     },
     {
-     "Lancones": 16.64
+     "Vichayal": 16.36
     },
     {
-     "Vichayal": 16.25
+     "Cristo Nos Valga": 15.52
     },
     {
-     "Cristo Nos Valga": 16.2
+     "Lancones": 4.19
     }
    ],
-   "fraccion_en_sechura": 0.862,
-   "fraccion_bruta_en_poligonos_distritales": 0.078
+   "fraccion_en_sechura": 0.886,
+   "fraccion_bruta_en_poligonos_distritales": 0.185
   },
   "vivo": {
-   "km2_mancha": 27.2,
+   "km2_mancha": 80.5,
    "edificaciones": 8,
-   "personas": 24,
+   "personas": 34,
    "qa": {
-    "km2_deteccion_bruta_caja": 334.8,
-    "km2_agua_permanente_tierra": 1153.0,
-    "km2_tras_mascara_tierra_y_limpieza": 27.2,
-    "fraccion_retenida": 0.081,
+    "km2_deteccion_bruta_caja": 1500.9,
+    "km2_agua_permanente_tierra": 102.5,
+    "km2_tras_mascara_tierra_y_limpieza": 80.5,
+    "fraccion_retenida": 0.054,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
@@ -191,30 +191,30 @@
     ],
     "referencia_solapa_evento": false
    },
-   "imagenes": 13,
+   "imagenes": 14,
    "primera_y_ultima_imagen": [
     "2026-10-12",
-    "2026-11-02"
+    "2026-11-03"
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 20.94
+     "Sechura": 73.93
     },
     {
-     "La Brea": 1.35
+     "La Brea": 2.34
     },
     {
-     "Tumbes": 1.34
+     "Tumbes": 0.8
     },
     {
-     "Zarumilla": 0.74
+     "Sullana": 0.58
     },
     {
-     "Sullana": 0.56
+     "Castilla": 0.52
     }
    ],
-   "fraccion_en_sechura": 0.77,
-   "fraccion_bruta_en_poligonos_distritales": 0.087
+   "fraccion_en_sechura": 0.918,
+   "fraccion_bruta_en_poligonos_distritales": 0.055
   }
  },
  "5_poblacion": {

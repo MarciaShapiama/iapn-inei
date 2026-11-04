@@ -56,8 +56,15 @@
   "2022-11-26",
   "2022-11-29"
  ],
- "km2": 9574.9,
+ "km2": 3917.0,
  "resolucion_grados": 0.0005,
  "metodo": "Sentinel-1 RTC VV, detección de cambios",
- "calculado": "2026-11-03T20:29-05:00"
+ "umbral_db": -17.0,
+ "umbral_modo": "fijo",
+ "umbral_otsu_diagnostico": -15.859375,
+ "caida_db": 3.0,
+ "compuesto_evento": "minimo",
+ "polarizacion": "VV",
+ "agua_permanente": "JRC Global Surface Water, ocurrencia >= 75 %",
+ "calculado": "2026-11-04T14:58-05:00"
 }

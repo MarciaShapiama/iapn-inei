@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-04T14:04-05:00",
+ "generado": "2026-11-04T15:06-05:00",
  "hoy": "2026-11-04",
  "resumen_estado": {
   "vigente": 9,
@@ -118,7 +118,7 @@
     "2017-04-29"
    ],
    "imagenes_referencia": 26,
-   "calculado": "2026-11-03T20:25-05:00"
+   "calculado": "2026-11-04T14:52-05:00"
   },
   {
    "id": "radar_2023",
@@ -164,7 +164,7 @@
     "2023-04-15"
    ],
    "imagenes_referencia": 30,
-   "calculado": "2026-11-03T20:29-05:00"
+   "calculado": "2026-11-04T14:58-05:00"
   },
   {
    "id": "radar_vivo",
@@ -182,7 +182,7 @@
     "2026-10-11",
     "2026-11-04"
    ],
-   "dato_mas_reciente": "2026-11-02",
+   "dato_mas_reciente": "2026-11-03",
    "tolerancia_dias": 12,
    "frecuencia": "lunes y jueves",
    "metodo": "Detección de cambios VV; máscaras de agua permanente, altura > 250 m, pendiente > 5°, manchas < 5 px.",
@@ -208,10 +208,11 @@
     "2026-10-28",
     "2026-10-30",
     "2026-10-31",
-    "2026-11-02"
+    "2026-11-02",
+    "2026-11-03"
    ],
    "imagenes_referencia": 42,
-   "calculado": "2026-11-04T02:06-05:00"
+   "calculado": "2026-11-04T15:05-05:00"
   },
   {
    "id": "poblacion",
