@@ -123,6 +123,16 @@ def colegios(forzar: bool) -> None:
         p["lat"] = pd.to_numeric(p["NLAT_IE"], errors="coerce")
         p["lon"] = pd.to_numeric(p["NLONG_IE"], errors="coerce")
         p["alumnos"] = pd.to_numeric(p.get("TALUMNO"), errors="coerce")
+        # El padrón de servicios no trae alumnos: se toman del Censo Educativo 2025 (ESCALE, archivo 00_Padron,
+        # campo TALUM), guardado en data/exposicion/matricula_escale_2025.csv. Se suma por código modular
+        # (incluye anexos) y se asigna una sola vez por código modular para no duplicar.
+        mat = CARPETA / "matricula_escale_2025.csv"
+        if mat.exists():
+            m = pd.read_csv(mat, dtype={"COD_MOD": str, "ANEXO": str, "CODLOCAL": str})
+            m["COD_MOD"] = m["COD_MOD"].str.zfill(7)
+            m = m.groupby("COD_MOD")["TALUM"].sum()
+            cod = p["COD_MOD"].astype(str).str.zfill(7)
+            p["alumnos"] = cod.map(m).where(~cod.duplicated())
         # Un local escolar (CODLOCAL) puede tener varios servicios (inicial, primaria, secundaria) en el mismo
         # edificio: se cuenta una vez por local para no contar el mismo edificio varias veces.
         g = p.groupby("CODLOCAL")
@@ -134,7 +144,7 @@ def colegios(forzar: bool) -> None:
             "alumnos": g["alumnos"].sum(min_count=1),
             "distrito": g["D_DIST"].first().str.title() if "D_DIST" in p else None,
             "lat": g["lat"].first(), "lon": g["lon"].first(),
-            "fuente": "ESCALE (MINEDU), padrón de servicios educativos, corte 30-10-2026"}).reset_index(drop=True)
+            "fuente": "ESCALE (MINEDU): padrón de servicios educativos, corte 30-10-2026; alumnos del Censo Educativo 2025"}).reset_index(drop=True)
     else:
         o, s, e, n = CAJA
         q = (f'[out:json][timeout:300];(nwr["amenity"~"^(school|kindergarten|college)$"]({s},{o},{n},{e}););out center tags;')

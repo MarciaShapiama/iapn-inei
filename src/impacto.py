@@ -244,6 +244,12 @@ def main() -> None:
             clase = clasificar_distancia(d)
             x = tabla.assign(dist_m=np.round(d), clase=clase, estado=[ETIQUETA_ESTADO[c] for c in clase])
             r[n] = contar_anillos(clase)
+            if "alumnos" in x and x["alumnos"].notna().any():
+                al = pd.to_numeric(x["alumnos"], errors="coerce").fillna(0)
+                s_ = {a: int(al[clase == a].sum()) for a in ANILLOS}
+                r[n]["alumnos"] = {"dentro": s_["dentro"], "acum_500m": s_["dentro"] + s_["anillo_0_500m"],
+                                   "acum_1km": s_["dentro"] + s_["anillo_0_500m"] + s_["anillo_500m_1km"],
+                                   "locales_sin_dato_dentro": int((x["alumnos"].isna() & (clase == "dentro")).sum())}
             dd = np.zeros(len(tabla), dtype=int); dd[ok2] = dr[f2[ok2], c2[ok2]]
             if "distrito" not in x:   # OpenStreetMap no trae distrito: se asigna por el polígono que lo contiene
                 x["distrito"] = [nombres[k - 1][2] if k > 0 else SIN_DISTRITO for k in dd]
