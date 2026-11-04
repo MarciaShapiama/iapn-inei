@@ -27,6 +27,8 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 | [docs/05_POLITICAS_PUBLICAS.md](docs/05_POLITICAS_PUBLICAS.md) | 7 opciones de política vinculadas a los resultados |
 | [INFORME_FINAL_PROYECTO_INTEGRADOR.md](INFORME_FINAL_PROYECTO_INTEGRADOR.md) · `.docx` | Informe para la evaluación del curso (Markdown y Word), con resumen ejecutivo y preguntas del jurado |
 | `docs/avance_latex/avance_proyecto.tex` · `.pdf` | Informe de avance para el docente (LaTeX); se compila con `pdflatex` (dos pasadas) |
+| [docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md](docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación del piloto contra INDECI y viabilidad de expandir al norte y a todo el Perú |
+| `docs/presentacion/presentacion_avance.tex` · `.pdf` | Presentación del avance (Beamer 16:9, 17 diapositivas) |
 | [docs/modelo_inundacion.md](docs/modelo_inundacion.md) | Modelo de alerta (documento original del equipo) |
 | `docs/evidencia/` | Salidas de pruebas, auditoría de cifras, ML y verificación de DOI |
 
@@ -85,6 +87,9 @@ Pasos sueltos útiles:
 | `python src/auditoria.py` | Regenera `docs/evidencia/auditoria_cifras.json` |
 | `python herramientas/md_a_docx.py` | Genera el informe en Word desde el Markdown |
 | `python herramientas/figuras_avance.py` | Regenera las figuras del informe LaTeX |
+| `python herramientas/validacion_indeci.py` | Validación externa con registros INDECI 2003-2024 |
+| `python herramientas/viabilidad_expansion.py` | Estima el costo de expandir a otros departamentos |
+| `python herramientas/figuras_presentacion.py` | Figuras de la presentación |
 
 ### Variables de entorno (opcionales)
 
