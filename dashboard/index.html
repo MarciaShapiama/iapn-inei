@@ -192,6 +192,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <p class="titular" id="r-titular">—</p>
   <p class="bajada" id="r-bajada"></p>
   <div class="grid g4" id="r-kpis"></div>
+  <div class="grid g4" id="r-kpis2" style="margin-top:16px"></div>
   <div class="grid g2" style="margin-top:16px">
     <div class="panel"><h2>Esta semana</h2><p class="nota" id="r-fecha"></p><div id="r-semana"></div></div>
     <div class="panel"><h2>Lo que ya pasó</h2><p class="nota">Dos eventos recientes que sirven de referencia.</p><div id="r-pasado"></div></div>
@@ -352,6 +353,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
     <li><b>Personas:</b> WorldPop 2026, población estimada cada 100 m. Se cuenta la población de las celdas que caen en la zona inundable.</li>
     <li><b>Edificaciones:</b> Google Open Buildings v3 (confianza ≥ 0,75). Incluye viviendas y cualquier otro tipo de construcción, por eso se habla de edificaciones y no de viviendas.</li>
     <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales educativos de OpenStreetMap (el padrón ESCALE del MINEDU no permite la descarga automática).</li>
+    <li><b>Niños y adultos mayores:</b> WorldPop 2026 por edad y sexo (100 m): de 0 a 4 años y de 65 años a más. <b>Cultivos:</b> ESA WorldCover 2021 (10 m), clase «tierras de cultivo». <b>Carreteras y puentes:</b> OpenStreetMap, vías troncales, primarias, secundarias y terciarias.</li>
+    <li><b>Estado oficial:</b> último Comunicado Oficial del ENFEN, leído de su documento publicado en gob.pe.</li>
     <li>Las distancias se cuentan de dos formas: <b>dentro</b> de la zona y <b>acumulado</b> hasta 500 m o 1 km.</li>
     <li>Es <b>exposición</b>: dice quién está en la zona, no cuántos resultarán afectados. Para comparar, en 2017 INDECI registró 74 348 viviendas afectadas en Piura y 11 395 en Tumbes (OCHA, informe n.º 10, mayo de 2017).</li>
   </ul>
@@ -380,7 +383,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <ul>
     <li>Copernicus Sentinel-1 y Sentinel-2 (ESA), vía Microsoft Planetary Computer.</li>
     <li>JRC, CEMS-GloFAS flood hazard maps v2; GloFAS v4 (Copernicus Emergency Management Service).</li>
-    <li>WorldPop (2026); Google Open Buildings v3; RENIPRESS (SUSALUD); OpenStreetMap.</li>
+    <li>WorldPop (2026), población total y por edad y sexo; Google Open Buildings v3; RENIPRESS (SUSALUD); OpenStreetMap; ESA WorldCover 2021.</li>
+    <li>ENFEN, comunicados oficiales (gob.pe).</li>
     <li>DesInventar (UNDRR), registros de INDECI; tablas estadísticas del INDECI 2003-2024.</li>
     <li>NASA POWER; Open-Meteo y reanálisis ERA5 (ECMWF); NOAA OISST v2.1 y NOAA CPC; IGP (ICEN).</li>
     <li>Límites distritales: GADM 4.1 con UBIGEO del INEI. Relieve: AWS Terrain Tiles. Imagen de fondo: Esri World Imagery.</li>
@@ -414,12 +418,12 @@ const SIN_GPU=`<div style="padding:24px;color:#eef3f5;max-width:560px"><b>Este n
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
 Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null)])
-.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT])=>{
+  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen")])
+.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF])=>{
   // solo las provincias de Tumbes y Piura
   if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
   if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
-  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT};
+  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF};
   pestanas(); estado();
   const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
   seguro(resumenVista,"resumen"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
@@ -455,14 +459,23 @@ function resumenVista(){
     ["Colegios dentro de la zona",miles(co.dentro),`y ${miles(co.acum_1km)} a 1 km o menos del agua`],
     ["Centros de salud dentro de la zona",miles(sa.dentro),`y ${miles(sa.acum_1km)} a 1 km o menos (postas, centros y hospitales)`]];
   document.getElementById("r-kpis").innerHTML=k.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");
+  const X=D.EX&&D.EX.capas&&D.EX.capas.rp100;
+  if(X){const k2=[];
+    if(X.ninos_0a4!=null)k2.push(["Niños de 0 a 4 años",redondo(X.ninos_0a4),"en la misma zona inundable"]);
+    if(X.mayores_65!=null)k2.push(["Personas de 65 años o más",redondo(X.mayores_65),"en la misma zona inundable"]);
+    if(X.cultivo_ha!=null)k2.push(["Cultivos en zona inundable",redondo(X.cultivo_ha)+" ha","tierras de cultivo (ESA WorldCover 2021)"]);
+    if(X.vias_km_total!=null)k2.push(["Carreteras principales",fmtN(X.vias_km_total,0)+" km",X.puentes!=null?`y ${miles(X.puentes)} puentes dentro o junto a la zona`:"dentro de la zona"]);
+    if(k2.length)document.getElementById("r-kpis2").innerHTML=k2.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra" style="font-size:32px">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");}
   // esta semana
   const filas=[];
+  if(D.ENF&&D.ENF.estado)filas.push([`Estado oficial (ENFEN, comunicado n.º ${D.ENF.numero}${D.ENF.fecha?", "+D.ENF.fecha:""})`,`<a href="${D.ENF.enlace}" target="_blank" rel="noopener" style="color:var(--ink)">${D.ENF.estado}</a>`]);
   if(R&&R.nino12_semana&&R.nino12_semana.valor!=null)filas.push(["Mar frente al Perú (Niño 1+2), semana del "+fechaTxt(R.nino12_semana.semana),fmt(R.nino12_semana.valor)+" °C sobre lo normal"]);
   if(R&&R.icen_ultimo&&R.icen_ultimo.valor!=null)filas.push(["Índice Costero El Niño (ICEN), "+fechaTxt(R.icen_ultimo.fecha),fmt(R.icen_ultimo.valor,2)+" °C · "+R.icen_ultimo.magnitud.toLowerCase()]);
   if(Z)["Tumbes","Piura"].forEach(p=>{const z=Z.zonas.find(x=>x.provincia===p&&x.departamento===p);if(z)filas.push([`Lluvia en la provincia de ${p}, últimos 20 días`,`${fmtN(z.lluvia_20d,0)} mm (lo normal: ${fmtN(z.normal_20d,0)} mm)`])});
   if(RIE){const n=RIE.distritos_hoy.filter(d=>d.alerta).length, top=RIE.distritos_hoy[0];filas.push([`Distritos en alerta según el modelo (semana del ${fechaTxt(RIE.semana_actual)})`,`${n} de ${RIE.distritos_hoy.length}`+(top?` · el más alto: ${top.distrito}`:"")]);}
   document.getElementById("r-fecha").textContent=R?`Datos al ${fechaTxt(R.ultimo_dia_mar||R.actualizado.slice(0,10))}. Se actualizan solos todos los días.`:"";
-  document.getElementById("r-semana").innerHTML=filas.map(f=>`<div class="r-fila"><span>${f[0]}</span><b>${f[1]}</b></div>`).join("");
+  document.getElementById("r-semana").innerHTML=filas.map(f=>`<div class="r-fila"><span>${f[0]}</span><b>${f[1]}</b></div>`).join("")+
+    (D.ENF&&D.ENF.titular?`<p class="nota" style="margin-top:8px">ENFEN: «${D.ENF.titular}»${D.ENF.magnitud_esperada?`; magnitud ${D.ENF.magnitud_esperada}`:""}.</p>`:"");
   const v=(IN.validacion||{})["2017"], e17=IN.eventos["2017"], e23=IN.eventos["2023"];
   const pas=[];
   if(v)pas.push(["2017 · El Niño costero",`INDECI registró ${miles(v.Piura)} viviendas afectadas en Piura y ${miles(v.Tumbes)} en Tumbes. El río Piura se desbordó el 27 de marzo.`]);
@@ -651,6 +664,14 @@ function panelInund(){
     `<br>Piura <b>${nf(g("Piura","edificaciones"))}</b> · Tumbes <b>${nf(g("Tumbes","edificaciones"))}</b> · fuera de los distritos <b>${nf(g("Sin distrito asignado","edificaciones"))}</b> (la suma da el total)</div>`;
   if(v)extra+=`<div class="i-valida"><b>¿Cuadra con lo oficial?</b> Edificaciones en la mancha del radar o hasta 500 m: Piura <b>${nf(g("Piura","edificaciones_500m"))}</b>, Tumbes <b>${nf(g("Tumbes","edificaciones_500m"))}</b>. INDECI reportó viviendas afectadas: Piura <b>${nf(v.Piura)}</b>, Tumbes <b>${nf(v.Tumbes)}</b>. ${v.nota} El radar no ve el agua entre casas: su cifra es un mínimo y solo sirve como orden de magnitud. <a href="${v.url}" target="_blank" rel="noopener" style="color:#7fb4e0">Fuente</a></div>`;
   if(I3.ev==="vivo")extra+=`<div class="i-aviso">Es temporada seca: el agua nueva de estos días es sobre todo riego por inundación de arrozales (Bajo Piura, San Lorenzo), no desbordes. Las lluvias fuertes suelen llegar entre enero y abril; esta capa se actualiza los lunes y jueves.</div>`;
+  const X=D.EX&&D.EX.capas&&D.EX.capas[I3.ev];
+  if(X){const f=[];
+    if(X.ninos_0a4!=null)f.push(`Niños de 0 a 4 años: <b>${nf(X.ninos_0a4)}</b>`);
+    if(X.mayores_65!=null)f.push(`Personas de 65 años o más: <b>${nf(X.mayores_65)}</b>`);
+    if(X.cultivo_ha!=null)f.push(`Cultivos: <b>${nf(X.cultivo_ha)} ha</b>`);
+    if(X.vias_km_total!=null)f.push(`Carreteras principales: <b>${fmtN(X.vias_km_total,0)} km</b>`+(X.vias_km&&X.vias_km["Troncal (red nacional)"]?` (${fmtN(X.vias_km["Troncal (red nacional)"],0)} km de red nacional)`:""));
+    if(X.puentes!=null)f.push(`Puentes dentro o a 100 m o menos: <b>${nf(X.puentes)}</b>`);
+    if(f.length)extra=`<div class="i-valida"><b>Además, en esta zona</b><br>${f.join("<br>")}</div>`+extra;}
   document.getElementById("i-valida").innerHTML=extra;
   const dd=(e.distritos||[]).filter(x=>x.departamento!=="Sin distrito asignado").slice(0,8), mx=d3.max(dd,x=>x.edificaciones||0)||1;
   document.getElementById("i-distritos").innerHTML=dd.length?dd.map(x=>`<span>${x.distrito} <small style="color:#8ea3b3">${x.provincia}</small></span><b>${nf(x.edificaciones)}</b><span class="b" style="width:${100*(x.edificaciones||0)/mx}%"></span>`).join(""):"<span class='z-sub'>Sin edificaciones en la mancha.</span>";
