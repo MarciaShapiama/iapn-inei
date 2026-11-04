@@ -131,12 +131,20 @@ def caudal_historico() -> pd.DataFrame:
         pd.DataFrame([(k, *v) for k, v in RIOS.items()], columns=["rio", "lat", "lon"])
     celdas = celdas[celdas["rio"].isin(["Tumbes", "Chira", "Piura"])]
     partes = []
+    hoy = pd.Timestamp.today()
+    tramos = [(pd.Timestamp(a, 1, 1), min(pd.Timestamp(a + 4, 12, 31), hoy)) for a in range(2001, hoy.year + 1, 5)]
     for _, r in celdas.iterrows():
-        j = requests.get(FLOOD, params={"latitude": r["lat"], "longitude": r["lon"], "daily": "river_discharge",
-                                        "start_date": INICIO, "end_date": pd.Timestamp.today().strftime("%Y-%m-%d")},
-                         headers=UA, timeout=300).json()
-        partes.append(pd.DataFrame({"rio": r["rio"], "fecha": j["daily"]["time"], "caudal": j["daily"]["river_discharge"]}))
-        time.sleep(3)
+        for t0, t1 in tramos:                      # de 5 en 5 años: pedidos más livianos
+            for intento in range(4):
+                try:
+                    j = requests.get(FLOOD, params={"latitude": r["lat"], "longitude": r["lon"], "daily": "river_discharge",
+                                                    "start_date": t0.strftime("%Y-%m-%d"), "end_date": t1.strftime("%Y-%m-%d")},
+                                     headers=UA, timeout=180).json()
+                    partes.append(pd.DataFrame({"rio": r["rio"], "fecha": j["daily"]["time"], "caudal": j["daily"]["river_discharge"]}))
+                    break
+                except Exception as error:
+                    print(f"  caudal {r['rio']} {t0.year}: {error}"); time.sleep(20 * (intento + 1))
+            time.sleep(2)
     t = pd.concat(partes, ignore_index=True)
     t.to_csv(ruta, index=False)
     return t
