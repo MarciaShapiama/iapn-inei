@@ -144,17 +144,22 @@ def colegios(forzar: bool) -> None:
 
 def distritos(forzar: bool) -> None:
     destino = CARPETA / "distritos.geojson"
-    if destino.exists() and not forzar:
+    if destino.exists() and not forzar and "SanJuan" not in destino.read_text(encoding="utf-8"):
         return
     z = zipfile.ZipFile(io.BytesIO(bajar(GADM3)))
     g = json.loads(z.read(z.namelist()[0]))
+    import re
+
+    def nombre(x: str) -> str:  # GADM pega las palabras: "SanJuandeBigote" -> "San Juan de Bigote"
+        x = re.sub(r"(?<=[a-záéíóúñ])(de|del|la|las|los|el)(?=[A-ZÁÉÍÓÚÑ])", r" \1 ", x)
+        return re.sub(r"(?<=[a-záéíóúñ])(?=[A-ZÁÉÍÓÚÑ])", " ", x).replace("  ", " ").strip()
     feats = []
     for f in g["features"]:
         p = f["properties"]
         dep = p["NAME_1"].upper()
         if dep in DEPARTAMENTOS:
             feats.append({"type": "Feature", "geometry": f["geometry"],
-                          "properties": {"departamento": p["NAME_1"], "provincia": p["NAME_2"], "distrito": p["NAME_3"]}})
+                          "properties": {"departamento": p["NAME_1"], "provincia": nombre(p["NAME_2"]), "distrito": nombre(p["NAME_3"])}})
     from shapely.geometry import mapping, shape
     for f in feats:
         f["geometry"] = mapping(shape(f["geometry"]).simplify(0.0015))
@@ -179,12 +184,14 @@ def peligro(forzar: bool, periodos=(10, 100)) -> None:
     for rp in periodos:
         rutas = []
         for props in teselas:
-            for valor in props.values():
+            for valor in (f"ID{props.get('id')}_{props.get('name')}", props.get("name"), f"ID{props.get('id')}"):
                 url = f"{JRC}RP{rp}/{valor}_RP{rp}_depth.tif"
-                r = requests.get(url, headers=UA, timeout=600)
+                r = requests.get(url, headers=UA, timeout=900)
                 if r.status_code == 200 and r.content[:2] in (b"II", b"MM"):
                     ruta = CARPETA / f"_jrc_{valor}_{rp}.tif"; ruta.write_bytes(r.content); rutas.append(ruta)
+                    print(f"  JRC RP{rp}: {valor} ({len(r.content) // 1_000_000} MB)")
                     break
+                print(f"  JRC RP{rp}: {url} -> HTTP {r.status_code}")
         if not rutas:
             print(f"  JRC RP{rp}: no se encontraron teselas"); continue
         fuentes = [rasterio.open(x) for x in rutas]
