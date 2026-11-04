@@ -168,7 +168,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 <!-- INUNDACIONES -->
 <section class="vista" id="v-inundaciones">
   <p class="titular" id="i-titular">Inundaciones en Tumbes y Piura: ¿a quién afectan?</p>
-  <p class="bajada">Mancha inundada vista por el radar satelital Sentinel-1 (que ve a través de las nubes), cruzada con la población (WorldPop 2026), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. Elige un evento. La pregunta es: <b>si hoy se repitiera una inundación como esa, ¿a cuántos afectaría?</b></p>
+  <p class="bajada">Dos miradas a la zona inundada: el <b>mapa de peligro</b> (lo que cubre una crecida de 1 en 10 o 1 en 100 años, con su profundidad) y lo que el <b>radar satelital Sentinel-1</b> vio inundado en 2017, 2023 y estos días. Cada una se cruza con la población (WorldPop 2026), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. La pregunta: <b>si hoy pasara algo así, ¿a cuántos afectaría?</b></p>
   <div class="z-wrap">
     <div class="z-mapa" id="i-mapa">
       <div class="z-modos" id="i-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
@@ -176,8 +176,10 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div class="i-capas" id="i-capas">
         <label><input type="checkbox" data-c="agua" checked> <span style="color:#2171b5">■</span> Zona inundada (azul más oscuro = más profundo)</label>
         <label><input type="checkbox" data-c="viv" checked> <span style="color:#ff7a45">●</span> Viviendas afectadas</label>
-        <label><input type="checkbox" data-c="col" checked> <span style="color:#ffd23f">●</span> Colegios</label>
-        <label><input type="checkbox" data-c="sal" checked> <span style="color:#ff4d6d">✚</span> Salud</label>
+        <label><input type="checkbox" data-c="col3d" checked> <span style="color:#f03b20">▮</span> Columnas: concentración de viviendas</label>
+        <label><input type="checkbox" data-c="col" checked> <span style="color:#ffd23f">●</span> Colegios a ≤ 1 km del agua</label>
+        <label><input type="checkbox" data-c="sal" checked> <span style="color:#ff4d6d">●</span> Salud a ≤ 1 km del agua</label>
+        <div style="font-size:11.5px;color:#9fb3bf;margin-top:4px">Borde: <span style="color:#ff3b30">■</span> dentro · <span style="color:#ff9500">■</span> ≤ 500 m · <span style="color:#ffd60a">■</span> ≤ 1 km</div>
         <label><input type="checkbox" data-c="dis" checked> <span>▢</span> Distritos</label>
       </div>
     </div>
@@ -359,7 +361,7 @@ const chipMag=(m,corto)=>`<span class="chip"><i style="background:var(${MAGCOL[m
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
 Promise.all([get("resumen"),get("regiones"),get("mar"),get("picos"),get("indices"),get("economia"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),get("colegios_tumbes_piura"),get("salud_tumbes_piura")])
+  get("inundacion"),geo("distritos_tumbes_piura"),null,null])
 .then(([R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO,IN,DIST,COL,SAL])=>{
   window.D={R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO,IN,DIST,COL,SAL};
   pestanas(); estado(); situacion(); mar(); tarjetas(); historia(); economia(); indices();
@@ -459,7 +461,7 @@ const debounce=(f,t)=>{let h;return()=>{clearTimeout(h);h=setTimeout(f,t)}};
 
 
 /* ---------- INUNDACIONES (3D) ---------- */
-const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col:true,sal:true,dis:true},sel:null};
+const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col3d:true,col:true,sal:true,dis:true},sel:null};
 const VISTAS={piura:{longitude:-80.68,latitude:-5.30,zoom:10.4,pitch:58,bearing:25},sullana:{longitude:-80.70,latitude:-4.90,zoom:10.6,pitch:58,bearing:20},
   tumbes:{longitude:-80.45,latitude:-3.62,zoom:10.8,pitch:58,bearing:15},todo:{longitude:-80.40,latitude:-4.85,zoom:7.9,pitch:45,bearing:10}};
 const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE");
@@ -481,7 +483,8 @@ function inundacionesVista(){
     getTooltip:({object,layer})=>{if(!object||!layer)return null;
       if(layer.id==="col"||layer.id==="sal")return {html:`<b>${object.nombre}</b><br>${object.tipo||object.nivel||""}${object.distrito?" · "+object.distrito:""}<br>${object.estado||""}${object.dist_m>0?" ("+nf(object.dist_m)+" m)":""}${object.alumnos?"<br>"+nf(object.alumnos)+" alumnos":""}`,style:tipEstilo};
       if(layer.id==="dis")return {html:`<b>${object.properties.distrito}</b><br>${object.properties.provincia}, ${object.properties.departamento}`,style:tipEstilo};
-      if(layer.id==="viv")return {html:"Edificación en la zona inundada",style:tipEstilo};return null}});
+      if(layer.id==="viv")return {html:"Edificación en la zona inundada",style:tipEstilo};
+      if(layer.id.startsWith("hex"))return {html:`<b>${nf(object.points?object.points.length:object.count)}</b> viviendas en esta zona (hexágono de ~450 m)`,style:tipEstilo};return null}});
   panelInund(); capasInund();
 }
 function capasInund(){
@@ -492,15 +495,23 @@ function capasInund(){
   const capas=[new deck.TerrainLayer({id:"terreno-"+I3.modo,minZoom:0,maxZoom:13,strategy:"no-overlap",operation:"terrain+draw",
       elevationDecoder:{rScaler:256*2.5,gScaler:2.5,bScaler:2.5/256,offset:-32768*2.5},
       elevationData:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",texture:TEX[I3.modo],color:[255,255,255]})];
-  if(I3.capas.agua)capas.push(new deck.BitmapLayer({id:"agua-"+I3.ev,image:"data/"+e.imagen,bounds:e.limites,extensions:[T],opacity:.9}));
+  const AZUL={radar:{1:[0,200,255,215]},peligro:{1:[158,202,225,175],2:[66,146,198,205],3:[33,113,181,225],4:[8,48,107,240]}};
+  if(I3.capas.agua&&e.capa)capas.push(new deck.GeoJsonLayer({id:"agua-"+I3.ev,data:"data/"+e.capa,filled:true,stroked:true,
+      getFillColor:f=>AZUL[e.tipo][f.properties.c]||[0,200,255,200],getLineColor:[255,255,255,90],lineWidthMinPixels:.6,extensions:[T]}));
   if(I3.capas.dis&&D.DIST)capas.push(new deck.GeoJsonLayer({id:"dis",data:D.DIST,filled:false,stroked:true,pickable:true,getLineColor:[255,255,255,150],lineWidthMinPixels:1.2,extensions:[T]}));
+  if(I3.capas.col3d&&e.viviendas_puntos&&e.viviendas_puntos.length)capas.push(new deck.HexagonLayer({id:"hex-"+I3.ev,data:e.viviendas_puntos,getPosition:d=>d,
+      radius:450,coverage:.82,extruded:true,elevationScale:e.viviendas_puntos.length>5000?4:14,upperPercentile:99,pickable:true,opacity:.92,
+      colorRange:[[255,237,160],[254,217,118],[254,178,76],[253,141,60],[240,59,32],[189,0,38]],
+      material:{ambient:.6,diffuse:.6,shininess:30},
+      onHover:null}));
   if(I3.capas.viv&&e.viviendas_puntos)capas.push(new deck.ScatterplotLayer({id:"viv",data:e.viviendas_puntos,getPosition:d=>d,radiusUnits:"meters",getRadius:9,radiusMinPixels:1.2,radiusMaxPixels:6,
       getFillColor:[255,122,69,230],pickable:true,extensions:[T],terrainDrawMode:"offset"}));
   const pinta=(id,datos,relleno)=>new deck.ScatterplotLayer({id,data:datos,getPosition:d=>[d.lon,d.lat],pickable:true,radiusUnits:"pixels",
       getRadius:d=>d.estado==="Fuera"?3.5:7,stroked:true,lineWidthUnits:"pixels",getLineWidth:d=>d.estado==="Fuera"?0.8:3,
       getFillColor:relleno,getLineColor:d=>COLOR[d.estado],extensions:[T],terrainDrawMode:"offset",updateTriggers:{getRadius:I3.ev,getLineWidth:I3.ev,getLineColor:I3.ev}});
-  if(I3.capas.col&&D.COL)capas.push(pinta("col",fac(D.COL,"colegios"),[255,210,63,240]));
-  if(I3.capas.sal&&D.SAL)capas.push(pinta("sal",fac(D.SAL,"salud"),[255,77,109,240]));
+  const cerca=(lista,t)=>(e[t+"_lista"]||[]);   // solo los que están a ≤ 1 km del agua
+  if(I3.capas.col)capas.push(pinta("col",cerca(D.COL,"colegios"),[255,210,63,245]));
+  if(I3.capas.sal)capas.push(pinta("sal",cerca(D.SAL,"salud"),[255,77,109,245]));
   I3.deck.setProps({layers:capas});
 }
 function panelInund(){

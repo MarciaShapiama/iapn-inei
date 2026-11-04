@@ -12,7 +12,7 @@ Para cada capa:
     por distrito: km², personas y viviendas
 Se cruzan la población y las edificaciones de HOY: "¿a cuántos afectaría hoy algo así?".
 
-Salidas: dashboard/data/inundacion.json y dashboard/data/capa_{clave}.png
+Salidas: dashboard/data/inundacion.json y dashboard/data/capa_{clave}.geojson
 
 Uso: python src/impacto.py
 """
@@ -104,20 +104,30 @@ def personas(mascara, t, distritos, extra=None):
     return float((pob * f).sum()), (float((pob * frac(extra)).sum()) if extra is not None else None), por_d
 
 
-def png(clave: str, tipo: str, valor: np.ndarray, t) -> dict:
-    """Capa del mapa. Radar: agua celeste brillante. Peligro: azules según profundidad."""
-    from PIL import Image
-    k = 2 if tipo == "radar" else 1
+def poligonos(clave: str, tipo: str, valor: np.ndarray, t) -> dict:
+    """Capa del mapa en polígonos (se ven nítidos sobre el relieve 3D). Peligro: 4 clases de profundidad."""
+    from affine import Affine
+    from rasterio import features
+    from shapely.geometry import mapping, shape
+    k = 2
     h, w = (valor.shape[0] // k) * k, (valor.shape[1] // k) * k
     v = valor[:h, :w].reshape(h // k, k, w // k, k).max(axis=(1, 3))
-    rgba = np.zeros(v.shape + (4,), dtype="uint8")
+    tk = t * Affine.scale(k)
     if tipo == "radar":
-        rgba[v > 0] = (0, 200, 255, 240)
+        clase = (v > 0).astype("uint8")
     else:
-        for lim, color in [(0, (158, 202, 225, 170)), (0.5, (66, 146, 198, 200)), (1.5, (33, 113, 181, 225)), (3, (8, 48, 107, 240))]:
-            rgba[v > lim] = color
-    Image.fromarray(rgba, "RGBA").save(DASH_DATA / f"capa_{clave}.png", optimize=True)
-    return {"imagen": f"capa_{clave}.png", "limites": [t.c, t.f + t.e * h, t.c + t.a * w, t.f]}
+        clase = np.digitize(v, [0.0001, 0.5, 1.5, 3.0]).astype("uint8")       # 1: < 0,5 m … 4: > 3 m
+    feats = []
+    for geom, c in features.shapes(clase, mask=clase > 0, transform=tk):
+        g = shape(geom).simplify(abs(tk.a) * 0.6, preserve_topology=True)
+        if g.is_empty or g.area < (abs(tk.a) ** 2) * 1.5:
+            continue
+        m = json.loads(json.dumps(mapping(g)), parse_float=lambda x: round(float(x), 5))
+        feats.append({"type": "Feature", "properties": {"c": int(c)}, "geometry": m})
+    ruta = DASH_DATA / f"capa_{clave}.geojson"
+    json.dump({"type": "FeatureCollection", "features": feats}, open(ruta, "w"), separators=(",", ":"))
+    print(f"  capa_{clave}.geojson: {len(feats)} polígonos, {ruta.stat().st_size // 1024} KB")
+    return {"capa": f"capa_{clave}.geojson"}
 
 
 def main() -> None:
@@ -143,7 +153,7 @@ def main() -> None:
         dentro = dv <= 0
         r = {"nombre": nombre, "tipo": tipo, "periodo": meta["periodo"], "imagenes": meta["imagenes"],
              "periodo_retorno": meta.get("periodo_retorno"),
-             "km2": round(float(inund.sum() * mx * my / 1e6), 1), **png(clave, tipo, valor, t),
+             "km2": round(float(inund.sum() * mx * my / 1e6), 1), **poligonos(clave, tipo, valor, t),
              "personas": round(p), "personas_500m": round(p500),
              "viviendas": int(dentro.sum()), "viviendas_100m": int((dv <= 100).sum()), "viviendas_500m": int((dv <= 500).sum())}
         if tipo == "peligro":
@@ -151,9 +161,9 @@ def main() -> None:
                                           "0,5 a 1,5 m": int((dentro & (prof > 0.5) & (prof <= 1.5)).sum()),
                                           "más de 1,5 m": int((dentro & (prof > 1.5)).sum())}
         muestra = viv[dentro] if dentro.sum() else viv[dv <= 100]
-        if len(muestra) > 45000:
-            muestra = muestra.sample(45000, random_state=1)
-        r["viviendas_puntos"] = np.round(muestra[["lon", "lat"]].to_numpy(), 5).tolist()
+        if len(muestra) > 25000:
+            muestra = muestra.sample(25000, random_state=1)
+        r["viviendas_puntos"] = np.round(muestra[["lon", "lat"]].to_numpy(), 4).tolist()
         r["viviendas_puntos_cerca"] = bool(not dentro.sum())
         for n, tabla in tablas.items():
             f2, c2, ok2 = indices(tabla["lon"], tabla["lat"], t, inund.shape)
@@ -185,7 +195,7 @@ def main() -> None:
     for n, tabla in tablas.items():
         cols = [c for c in ["nombre", "tipo", "nivel", "alumnos", "distrito", "lat", "lon"] if c in tabla]
         tabla[cols].to_json(DASH_DATA / f"{n}_tumbes_piura.json", orient="records", force_ascii=False)
-    for viejo in DASH_DATA.glob("huella_*.png"):
+    for viejo in list(DASH_DATA.glob("huella_*.png")) + list(DASH_DATA.glob("capa_*.png")) + list(DASH_DATA.glob("_test*.png")):
         viejo.unlink()
     json.dump(salida, open(DASH_DATA / "inundacion.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print(f"inundacion.json: {(DASH_DATA / 'inundacion.json').stat().st_size // 1024} KB")
