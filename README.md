@@ -29,6 +29,7 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 | `docs/avance_latex/avance_proyecto.tex` · `.pdf` | Informe de avance para el docente (LaTeX); se compila con `pdflatex` (dos pasadas) |
 | [docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md](docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación del piloto contra INDECI y viabilidad de expandir al norte y a todo el Perú |
 | `docs/presentacion/presentacion_avance.tex` · `.pdf` | Presentación del avance (Beamer 16:9, 17 diapositivas) |
+| `docs/presentacion/presentacion_validacion_expansion.tex` · `.pdf` | Presentación de la validación con INDECI y la viabilidad de expansión (Beamer 16:9, 13 diapositivas) |
 | [docs/modelo_inundacion.md](docs/modelo_inundacion.md) | Modelo de alerta (documento original del equipo) |
 | `docs/evidencia/` | Salidas de pruebas, auditoría de cifras, ML y verificación de DOI |
 

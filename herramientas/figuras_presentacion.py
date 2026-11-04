@@ -49,3 +49,40 @@ ax.legend(handles=[Patch(color=COL[0], label="Piloto (hecho): Tumbes, Piura"),
                    Patch(color=COL[3], label="Fase 3: resto del Perú")], loc="lower left", fontsize=10, frameon=False)
 fig.tight_layout(); fig.savefig(F / "fases_expansion.png", dpi=220); plt.close(fig)
 print(sorted(p.name for p in F.glob("*.png")))
+
+# 3. Dispersión de rangos: edificaciones expuestas vs afectados por inundación (INDECI)
+import sys
+import pandas as pd
+sys.path.insert(0, str(R / "herramientas"))
+import validacion_indeci as vi  # noqa: E402
+t = pd.concat([vi.tabla_distritos(vi.IND / f"7162837-{d.lower()}_afect_prov_dist_peligro.xlsx", d, ("INUNDACION",)) for d in vi.PROV])
+t["k"] = t.dep.map(vi.norm) + "|" + t.prov + "|" + t.dist
+pn = pd.read_csv(R / "dashboard/data/descargas/panel_distritos.csv")
+pn["k"] = [vi.norm(a) + "|" + vi.norm(c) + "|" + vi.norm(b) for a, b, c in zip(pn.departamento, pn.distrito, pn.provincia)]
+z = pn.merge(t[["k", "valor"]], on="k")
+z["r_exp"] = z.edificaciones_rp100.rank(ascending=False); z["r_ind"] = z.valor.rank(ascending=False)
+fig, ax = plt.subplots(figsize=(6.4, 4.2))
+c = np.where(z.departamento == "Tumbes", NAR, AZ)
+ax.scatter(z.r_exp, z.r_ind, c=c, s=26, alpha=.85, edgecolor="white", lw=.4)
+ax.plot([1, 76], [1, 76], ls="--", color=GR, lw=1)
+for _, r in z.nsmallest(8, "r_ind").iterrows():
+    ax.annotate(r.distrito, (r.r_exp, r.r_ind), fontsize=7.5, xytext=(4, 2), textcoords="offset points")
+ax.invert_xaxis(); ax.invert_yaxis()
+ax.set_xlabel("Puesto por edificaciones expuestas (zona 1/100)  →  1 = más expuesto")
+ax.set_ylabel("Puesto por afectados por inundación\n(INDECI 2003-2024)")
+ax.legend(handles=[Patch(color=AZ, label="Piura"), Patch(color=NAR, label="Tumbes")], frameon=False, fontsize=8, loc="lower right")
+ax.set_title("Cada punto es un distrito: cerca de la diagonal = el modelo acierta el orden", fontsize=9.5)
+fig.tight_layout(); fig.savefig(F / "dispersion_rangos.png", dpi=220); plt.close(fig)
+
+# 4. Costo de expansión: factor de área y horas de radar por evento
+e = json.load(open(R / "docs/evidencia/viabilidad_expansion.json", encoding="utf-8"))["escenarios"]
+nombres = ["Piloto\nTumbes-Piura", "Norte costero\n(4 dptos.)", "Norte ampliado\n(6 dptos.)", "Perú\n(25 dptos.)"]
+horas = [x["estimacion"]["sentinel1_por_evento_min (1 caja, secuencial)"] / 60 for x in e]
+fig, ax = plt.subplots(figsize=(6.4, 3.4))
+b = ax.bar(nombres, horas, color=[COL[0], COL[1], COL[2], "#9aa7b1"])
+ax.axhline(6, color="#b3261e", ls="--", lw=1); ax.text(3.45, 6.4, "límite de un job\nde GitHub Actions (6 h)", fontsize=7.5, color="#b3261e", ha="right")
+for xi, h in enumerate(horas): ax.text(xi, h + .4, f"{h:.1f} h", ha="center", fontsize=8.5)
+ax.set_ylabel("Horas de radar por evento\n(una caja, secuencial)")
+ax.set_title("Costo de cómputo estimado con los tiempos medidos en el piloto", fontsize=9.5)
+fig.tight_layout(); fig.savefig(F / "costo_expansion.png", dpi=220); plt.close(fig)
+print("extra ok")
