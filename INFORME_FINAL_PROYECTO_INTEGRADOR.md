@@ -3,7 +3,7 @@
 ## Exposición potencial a inundaciones asociadas a El Niño en Tumbes y Piura: un tablero estadístico reproducible por UBIGEO
 
 **Equipo:** Christopher, Maykol, Marcia y Luz Ángela · **Fecha:** 4 de noviembre de 2026
-**Repositorio:** `angeluzmenn/iapn-inei` (fork de `MarciaShapiama/iapn-inei`) · **Tablero:** https://angeluzmenn.github.io/iapn-inei/ · **Documentos de soporte:** `docs/01` a `docs/05` y `docs/evidencia/`
+**Repositorio:** `MarciaShapiama/iapn-inei` · **Tablero:** https://marciashapiama.github.io/iapn-inei/ · **Documentos de soporte:** `docs/01` a `docs/05` y `docs/evidencia/`
 
 ---
 
@@ -211,7 +211,7 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 | README actualizado | Hecho | `README.md` | — |
 | Recálculo del radar «vivo» | Hecho | `data/huellas/vivo.json`, `metadatos.json` | 27,2 km²; estado vigente |
 | Commit y push de la rama | Hecho | rama `auditoria-mvp-piloto` en GitHub; workflow «Pruebas» en verde | — |
-| Publicación en GitHub Pages | Hecho | https://angeluzmenn.github.io/iapn-inei/ | Fork del repositorio del equipo; falta proponer los cambios al original con un pull request |
+| Publicación en GitHub Pages | Hecho | https://marciashapiama.github.io/iapn-inei/ | Fork del repositorio del equipo; falta proponer los cambios al original con un pull request |
 
 **Problemas abiertos:** llevar los cambios al repositorio del equipo; límites oficiales; padrón ESCALE; licencia GADM; validación independiente del radar; emergencias después de 2015.
 

@@ -11,7 +11,7 @@
 | Las sumas por distrito coinciden con el total; dentro ≤ 500 m ≤ 1 km | Se cumple (38 pruebas automáticas, también en GitHub Actions) |
 | La población está en su lugar (correlación con edificaciones, fuente independiente) | r = 0,80; antes de la corrección era 0,00 |
 | Población WorldPop por distrito frente a la estimación 2020 | Razón entre 0,85 y 1,10 en los distritos de más de 40 mil habitantes (Piura 1,75 porque absorbe a Veintiséis de Octubre) |
-| Tablero publicado, mapa 2D y descargas | 11/11 pruebas contra `angeluzmenn.github.io/iapn-inei` |
+| Tablero publicado, mapa 2D y descargas | 11/11 pruebas contra `marciashapiama.github.io/iapn-inei` |
 
 ### 1.2 Validación externa contra los registros de INDECI (2003–2024)
 

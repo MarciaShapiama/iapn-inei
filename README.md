@@ -11,7 +11,7 @@ Tablero público sobre la **exposición potencial** a inundaciones en **Tumbes y
 Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos (PEU-CD) del INEI.
 
 - **Tablero 3D:** `dashboard/index.html` · **Mapa 2D sin GPU, panel y metadatos:** `dashboard/mapa2d.html`
-- **Sitio publicado (copia de Luz Ángela):** https://angeluzmenn.github.io/iapn-inei/ · mapa 2D: https://angeluzmenn.github.io/iapn-inei/mapa2d.html
+- **Sitio publicado:** https://marciashapiama.github.io/iapn-inei/ · mapa 2D: https://marciashapiama.github.io/iapn-inei/mapa2d.html
 - **Repositorio del equipo (original):** https://github.com/MarciaShapiama/iapn-inei · sitio https://marciashapiama.github.io/iapn-inei/. Este repositorio es un *fork* de ese.
 
 > «Expuesto» significa que está dentro o cerca de una zona inundable o de agua detectada por satélite. **No equivale a afectados ni damnificados**: esas cifras las registra INDECI/COEN. Un escenario de 1 en 100 años **no anuncia una inundación este año**. Este tablero **no emite alertas**: las alertas oficiales son de SENAMHI, ENFEN e INDECI.
@@ -38,7 +38,7 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 Requisitos: Python 3.11 o superior (probado con 3.11 en Actions y 3.14 en Windows) y git.
 
 ```bash
-git clone https://github.com/angeluzmenn/iapn-inei.git
+git clone https://github.com/MarciaShapiama/iapn-inei.git
 ```
 
 ```bash
@@ -131,7 +131,7 @@ Son 38 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, esta
 1. Ejecute `python src/etl.py local` y `python -m pytest -q`. Las pruebas deben pasar.
 2. Haga commit de `src/`, `dashboard/`, `data/`, `docs/` y `tests/`.
 3. Haga `git push` a `main`. `pages.yml` publica automáticamente. También puede lanzarlo a mano en *Actions → Publicar tablero → Run workflow*.
-4. Compruebe el sitio con `IAPN_URL_SITIO=https://angeluzmenn.github.io/iapn-inei python -m pytest tests/test_sitio.py` (el workflow «Pruebas» usa automáticamente la cuenta dueña del repositorio).
+4. Compruebe el sitio con `IAPN_URL_SITIO=https://marciashapiama.github.io/iapn-inei python -m pytest tests/test_sitio.py` (el workflow «Pruebas» usa automáticamente la cuenta dueña del repositorio).
 
 ## Solución de fallos
 
