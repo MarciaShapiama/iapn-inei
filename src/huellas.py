@@ -4,8 +4,12 @@ Método de detección de cambios (estándar para inundaciones con radar):
     1. Referencia seca: mediana de las imágenes VV de la temporada seca anterior (agosto-noviembre).
     2. Evento: para cada píxel, el valor VV más bajo de las imágenes del periodo del evento.
     3. Inundado si: VV del evento < -17 dB (el agua calma refleja poco) y bajó más de 3 dB frente a la
-       referencia; se descarta el agua permanente (ya < -17 dB en la referencia), lo que está a más de
-       250 m de altura y las pendientes > 5° (Copernicus DEM 30 m), y las manchas de menos de 5 píxeles.
+       referencia; se descarta el agua permanente, lo que está a más de 250 m de altura y las pendientes > 5° (Copernicus DEM 30 m), y las manchas de menos de 5 píxeles.
+
+Agua permanente: por defecto se toma del mapa mundial JRC Global Surface Water (agua presente al menos el 75 %
+del tiempo entre 1984 y 2021). Antes se tomaba de la propia referencia seca (VV < -17 dB), pero la validación con el
+mapa oficial de Copernicus EMS de 2017 mostró que en Piura mucha arena y suelo seco ya se ven oscuros en la temporada
+seca y quedaban descartados como "agua". Con IAPN_S1_PERMANENTE=referencia se vuelve al criterio anterior.
 
 Eventos: 2017 (El Niño costero, feb-abr), 2023 (ciclón Yaku, mar-abr) y "vivo" (últimos 24 días).
 Salidas en data/huellas/: {evento}.tif (1 = inundado) y {evento}.json (imágenes usadas).
@@ -36,6 +40,8 @@ ALTURA_MAX, PENDIENTE_MAX, MIN_PIX = 250.0, 5.0, 5
 UMBRAL_MODO = os.getenv("IAPN_S1_UMBRAL_MODO", "fijo")            # "fijo" u "otsu" (adaptativo, acotado)
 COMPUESTO = os.getenv("IAPN_S1_COMPUESTO", "minimo")              # "minimo" o "p10" (percentil 10, menos ruido)
 OTSU_LIMITES = (-24.0, -14.0)
+PERMANENTE = os.getenv("IAPN_S1_PERMANENTE", "gsw")              # "gsw" (JRC Global Surface Water) o "referencia"
+GSW_MIN = 75                                                      # % del tiempo con agua para considerarla permanente
 STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 
 
@@ -113,6 +119,19 @@ def dem(cat, geobox):
     return d["data"].max("time").compute().values.astype("float32")
 
 
+def agua_permanente_gsw(cat, geobox):
+    """Ocurrencia de agua (0-100 %) de JRC Global Surface Water en la misma grilla; None si no se puede cargar."""
+    import odc.stac
+    items = cat.search(collections=["jrc-gsw"], bbox=CAJA).item_collection()
+    if not len(items):
+        return None
+    d = odc.stac.load(items, bands=["occurrence"], geobox=geobox, chunks={"latitude": 2048, "longitude": 2048},
+                      resampling="nearest")
+    occ = d["occurrence"].max("time").compute().values.astype("float32")
+    occ[occ > 100] = 0                                                         # 255 = sin dato
+    return occ
+
+
 def pendiente(z: np.ndarray, lat0: float) -> np.ndarray:
     dy = RES * 110_600
     dx = RES * 111_320 * np.cos(np.radians(lat0))
@@ -160,7 +179,16 @@ def procesar(cat, clave: str, ev: dict, z=None, geobox=None):
     apto = (z < ALTURA_MAX) & (pendiente(z, lat0) < PENDIENTE_MAX)
     u_otsu = otsu(np.where(apto, e, np.nan)[::4, ::4])
     umbral = u_otsu if (UMBRAL_MODO == "otsu" and u_otsu is not None) else UMBRAL_AGUA
+    criterio = "referencia seca (VV < umbral)"
     permanente = r < umbral
+    if PERMANENTE == "gsw":
+        try:
+            occ = agua_permanente_gsw(cat, geobox)
+            if occ is not None:
+                permanente = occ >= GSW_MIN
+                criterio = f"JRC Global Surface Water, ocurrencia >= {GSW_MIN} %"
+        except Exception as error:  # noqa: BLE001
+            print(f"  JRC GSW no disponible ({error}); se usa la referencia seca")
     inund = (e < umbral) & ((r - e) > CAIDA_DB) & apto & ~permanente & np.isfinite(e) & np.isfinite(r)
     inund = limpiar(inund)
     m = np.where(inund, 1, 0).astype("uint8")
@@ -172,6 +200,7 @@ def procesar(cat, clave: str, ev: dict, z=None, geobox=None):
                                "resolucion_grados": RES, "metodo": "Sentinel-1 RTC VV, detección de cambios",
                                "umbral_db": umbral, "umbral_modo": UMBRAL_MODO, "umbral_otsu_diagnostico": u_otsu,
                                "caida_db": CAIDA_DB, "compuesto_evento": COMPUESTO, "polarizacion": "VV",
+                               "agua_permanente": criterio,
                                "calculado": datetime.now(ZoneInfo("America/Lima")).isoformat(timespec="minutes")})
     return z, geobox
 

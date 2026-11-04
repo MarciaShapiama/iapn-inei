@@ -1,0 +1,17 @@
+name: Prueba del radar
+on: workflow_dispatch
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -q -r requirements.txt -r requirements-inundaciones.txt -r requirements-dev.txt geopandas pyogrio
+      - name: Antes (capa publicada)
+        run: python -u src/validar_radar.py
+      - name: Radar 2017 con agua permanente de JRC GSW
+        run: python -u src/huellas.py 2017 --forzar && python -u src/validar_radar.py
+      - uses: actions/upload-artifact@v4
+        with: {name: radar2017, path: "data/huellas/2017.*"}
