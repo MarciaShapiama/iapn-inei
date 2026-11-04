@@ -12,7 +12,23 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 
 - **Tablero 3D:** `dashboard/index.html` · **Mapa 2D sin GPU, panel y metadatos:** `dashboard/mapa2d.html`
 - **Sitio publicado:** https://marciashapiama.github.io/iapn-inei/ · mapa 2D: https://marciashapiama.github.io/iapn-inei/mapa2d.html
-- **Repositorio del equipo (original):** https://github.com/MarciaShapiama/iapn-inei · sitio https://marciashapiama.github.io/iapn-inei/. Este repositorio es un *fork* de ese.
+- **Repositorio:** https://github.com/MarciaShapiama/iapn-inei
+
+### Qué tiene el tablero
+
+| Pestaña | Qué muestra |
+|---|---|
+| Resumen | Las cifras principales en una frase, lo que pasa esta semana y lo que pasó en 2017 y 2023 |
+| Mapa de inundación | Vista 3D sobre el relieve: zona inundable por profundidad, edificaciones, colegios y salud |
+| Antes y después | Fotos Sentinel-2 de 2017, 2023 y de estos días en Piura, Tumbes y Sechura, con comparador deslizable |
+| Alerta por distrito | Riesgo de emergencia en las próximas 4 semanas (modelo de machine learning), su validación y los modelos comparados |
+| Lluvia y ríos | Las 8 provincias de Tumbes y Piura: lluvia de 20 días frente a lo normal, caudal y pronóstico de 7 días |
+| El mar y El Niño | Anomalía diaria del mar (últimos 20 días), Niño 1+2 semanal e ICEN |
+| Método y fuentes | De dónde sale cada cifra, sus límites y quién hizo qué |
+
+### Equipo
+
+Marcia Shapiama (coordinación, tablero y modelo de alerta), Christopher (datos), Maykol Ramírez (monitor de lluvias y comparador satelital, [FENOMENO-NI-O-PI](https://github.com/maykolramirez/FENOMENO-NI-O-PI)) y Luz Ángela (auditoría, pruebas, mapa 2D, informe y presentaciones).
 
 > «Expuesto» significa que está dentro o cerca de una zona inundable o de agua detectada por satélite. **No equivale a afectados ni damnificados**: esas cifras las registra INDECI/COEN. Un escenario de 1 en 100 años **no anuncia una inundación este año**. Este tablero **no emite alertas**: las alertas oficiales son de SENAMHI, ENFEN e INDECI.
 

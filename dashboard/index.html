@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Monitor de El Niño Costero · Perú</title>
+<title>Inundaciones por El Niño · Tumbes y Piura</title>
 <meta name="description" content="Temperatura del mar frente al Perú día a día, por región costera, con los últimos 20 días, comparación con 1983, 1998, 2017 y 2023, y su relación con la producción y la electricidad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -136,6 +136,29 @@ table.tabla td.n{text-align:right;font-variant-numeric:tabular-nums}
 .i-valida{background:#13232f;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#c5d2db;margin-top:10px}
 .i-valida b{color:#fff}
 .i-aviso{background:rgba(242,211,107,.12);border:1px solid rgba(242,211,107,.5);color:#f2d36b;border-radius:10px;padding:9px 11px;font-size:12.5px;margin-top:10px}
+
+/* resumen */
+.r-cifra{font-family:Archivo;font-size:40px;font-weight:800;font-stretch:84%;line-height:1;margin:6px 0 4px}
+.r-fila{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.r-fila:last-child{border-bottom:0}
+.r-fila b{font-family:Archivo;font-size:17px;white-space:nowrap}
+@media (max-width:600px){.r-fila{flex-direction:column;gap:2px}.r-fila b{white-space:normal}}
+.r-guia{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.r-guia a{display:block;text-decoration:none;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.r-guia a:hover{border-color:var(--accent)}
+.r-guia b{display:block;color:var(--accent);margin-bottom:3px}
+.r-guia span{font-size:13px;color:var(--ink-2)}
+/* antes y después */
+.s-comp{position:relative;width:100%;max-width:900px;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#0b1620;box-shadow:var(--sombra);user-select:none}
+.s-comp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.s-der{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.s-linea{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 6px rgba(0,0,0,.5);pointer-events:none}
+.s-linea span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#0c2230;border-radius:999px;padding:4px 9px;font-weight:800;font-size:14px}
+.s-et{position:absolute;top:10px;background:rgba(11,22,32,.82);color:#fff;font-size:12.5px;padding:6px 9px;border-radius:8px;line-height:1.35;max-width:46%}
+.s-et-a{left:10px}.s-et-b{right:10px;text-align:right}
+.s-comp input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.controles label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2)}
+.btn.sec[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
 footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:var(--ink-3)}
 @media (max-width:480px){.g4{grid-template-columns:1fr}}
 @media (max-width:600px){main{padding:16px 16px 40px}.barra{padding:12px 16px 0}.kpi .cifra{font-size:28px}}
@@ -145,29 +168,72 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 <header class="barra">
   <div class="fila">
     <div>
-      <h1>Monitor de <span>El Niño</span> Costero</h1>
-      <div class="sub">Inundaciones en Tumbes y Piura: población, edificaciones, colegios y salud potencialmente expuestos · Proyecto integrador PEU-CD · INEI · <a href="mapa2d.html" style="color:#7fb4e0">Mapa 2D, panel de decisiones y metadatos</a></div>
+      <h1>Inundaciones por <span>El Niño</span> · Tumbes y Piura</h1>
+      <div class="sub">Quiénes viven donde el agua puede llegar, qué colegios y centros de salud están cerca, y qué distritos están en alerta esta semana · Proyecto integrador PEU-CD · INEI</div>
     </div>
     <div class="estado" id="estado">Cargando datos…</div>
   </div>
   <nav role="tablist" id="pestanas">
-    <button class="tab" role="tab" data-v="inundaciones">Inundaciones · Tumbes y Piura</button>
-    <button class="tab" role="tab" data-v="situacion">El mar hoy</button>
-    <button class="tab" role="tab" data-v="mar">El mar · 20 días</button>
-    <button class="tab" role="tab" data-v="zonas">Lluvia, ríos y mar por provincia</button>
-    <button class="tab" role="tab" data-v="regiones">Regiones costeras</button>
-    <button class="tab" role="tab" data-v="historia">¿Cómo en 1998?</button>
-    <button class="tab" role="tab" data-v="economia">Economía</button>
-    <button class="tab" role="tab" data-v="indices">Índices oficiales</button>
+    <button class="tab" role="tab" data-v="resumen">Resumen</button>
+    <button class="tab" role="tab" data-v="inundaciones">Mapa de inundación</button>
+    <button class="tab" role="tab" data-v="satelite">Antes y después</button>
+    <button class="tab" role="tab" data-v="alerta">Alerta por distrito</button>
+    <button class="tab" role="tab" data-v="zonas">Lluvia y ríos</button>
+    <button class="tab" role="tab" data-v="mar">El mar y El Niño</button>
     <button class="tab" role="tab" data-v="metodo">Método y fuentes</button>
   </nav>
 </header>
 
 <main>
 
+
+<!-- RESUMEN -->
+<section class="vista" id="v-resumen">
+  <p class="titular" id="r-titular">—</p>
+  <p class="bajada" id="r-bajada"></p>
+  <div class="grid g4" id="r-kpis"></div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="panel"><h2>Esta semana</h2><p class="nota" id="r-fecha"></p><div id="r-semana"></div></div>
+    <div class="panel"><h2>Lo que ya pasó</h2><p class="nota">Dos eventos recientes que sirven de referencia.</p><div id="r-pasado"></div></div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h2>Cómo leer este tablero</h2><div id="r-guia" class="r-guia"></div></div>
+</section>
+
+<!-- ANTES Y DESPUÉS -->
+<section class="vista" id="v-satelite">
+  <p class="titular">Antes y después, visto desde el satélite</p>
+  <p class="bajada">Fotos reales del satélite Sentinel-2 (10 m de detalle). Arrastra la línea del centro para comparar. En «Agua», el azul intenso marca agua y suelo muy húmedo. Cada foto indica su fecha y qué parte tenía nubes.</p>
+  <div class="controles">
+    <label>Zona <select id="s-zona"></select></label>
+    <label>Comparar <select id="s-par"></select></label>
+    <span class="i-botones" id="s-vista" style="display:inline-flex"><button class="btn sec" data-t="rgb" aria-pressed="true">Color real</button><button class="btn sec" data-t="agua" aria-pressed="false">Agua</button></span>
+  </div>
+  <div class="s-comp" id="s-comp">
+    <img id="s-img-a" alt=""><div class="s-der" id="s-der"><img id="s-img-b" alt=""></div>
+    <div class="s-linea" id="s-linea"><span>⟷</span></div>
+    <div class="s-et s-et-a" id="s-et-a"></div><div class="s-et s-et-b" id="s-et-b"></div>
+    <input type="range" id="s-rango" min="0" max="100" value="50" aria-label="Comparar antes y después">
+  </div>
+  <p class="nota" id="s-nota" style="margin-top:10px"></p>
+</section>
+
+<!-- ALERTA POR DISTRITO -->
+<section class="vista" id="v-alerta">
+  <p class="titular" id="a-titular">Alerta por distrito</p>
+  <p class="bajada">Un modelo de machine learning estima, para cada distrito y cada semana, qué tan probable es que haya una emergencia por inundación o lluvias en las <b>próximas 4 semanas</b>. Aprendió de las emergencias registradas por INDECI entre 2001 y 2015 y usa la lluvia acumulada, el caudal del río, la temperatura del mar y la época del año.</p>
+  <div class="grid g32">
+    <div class="panel"><h2 id="a-t-mapa">Riesgo esta semana</h2><p class="nota">0 = como una semana tranquila; 100 = más alto que cualquier semana de 2001 a 2015. Pasa el cursor sobre un distrito.</p><svg id="a-mapa" style="width:100%;display:block"></svg><div class="leyenda" id="a-ley"></div></div>
+    <div class="panel"><h2>Distritos con más riesgo</h2><p class="nota" id="a-nota-lista"></p><div id="a-lista"></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="panel"><h2>¿Funciona?</h2><div id="a-valida"></div></div>
+    <div class="panel"><h2>Modelos comparados</h2><p class="nota">Mismos datos y misma prueba: se entrena con los años anteriores y se evalúa en el año siguiente (2008 a 2015).</p><div id="a-modelos"></div></div>
+  </div>
+</section>
+
 <!-- INUNDACIONES -->
 <section class="vista" id="v-inundaciones">
-  <p class="titular" id="i-titular">Inundaciones en Tumbes y Piura: ¿a quién afectan?</p>
+  <p class="titular" id="i-titular">Mapa de inundación: ¿qué queda bajo el agua?</p>
   <p class="bajada">Dos miradas a la zona inundada: el <b>mapa de peligro</b> (lo que cubre una crecida de 1 en 10 o 1 en 100 años, con su profundidad) y lo que el <b>radar satelital Sentinel-1</b> vio inundado en 2017, 2023 y estos días. Cada una se cruza con la población (WorldPop 2026), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. La pregunta: <b>si hoy pasara algo así, ¿cuánto quedaría expuesto?</b> «Expuesto» no significa afectado ni damnificado.</p>
   <div class="z-wrap">
     <div class="z-mapa" id="i-mapa">
@@ -198,21 +264,12 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   </div>
 </section>
 
-<!-- SITUACIÓN -->
-<section class="vista" id="v-situacion">
-  <p class="titular" id="titular">—</p>
-  <p class="bajada" id="bajada"></p>
-  <div class="grid g4" id="kpis"></div>
-  <div class="panel" style="margin-top:16px">
-    <h2>La franja costera: cada región, cada día</h2>
-    <p class="nota">Anomalía media del mar frente a cada región (°C respecto al promedio 1991-2020), de norte a sur. Lee de izquierda a derecha: así cambió el mar en los últimos 20 días.</p>
-    <div class="franja-wrap"><svg id="franja"></svg></div>
-    <div class="leyenda" id="ley1"></div>
-  </div>
-</section>
+
 
 <!-- MAR -->
 <section class="vista" id="v-mar">
+  <p class="titular">El mar frente al Perú, día a día</p>
+  <p class="bajada">El Niño costero empieza en el mar: cuando el agua frente a Tumbes y Piura se calienta, llueve más en la costa norte. El mapa muestra cuánto más caliente que lo normal estuvo el mar cada uno de los últimos 20 días.</p>
   <div class="grid g32">
     <div class="panel">
       <h2>Anomalía de la temperatura del mar</h2>
@@ -231,13 +288,20 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div id="tabla-dia"></div>
     </div>
   </div>
+  <p class="titular" style="margin-top:28px;font-size:24px">Los índices oficiales</p>
+  <p class="bajada">Niño 1+2 es el mar frente a Perú y Ecuador, el que manda en El Niño costero. El ICEN es el promedio de 3 meses de Niño 1+2 con el que el ENFEN declara la magnitud del evento.</p>
+  <div class="panel"><h2>Anomalía semanal por región Niño (°C)</h2>
+    <div class="controles"><button class="btn sec" data-r="5">5 años</button><button class="btn sec" data-r="12">Desde 2014</button></div>
+    <svg id="g-semanal" style="width:100%;display:block"></svg><div class="leyenda" id="ley-sem"></div></div>
+  <div class="panel" style="margin-top:16px"><h2>Índice Costero El Niño (ICEN), mensual desde 1980</h2><p class="nota">Cada barra, un mes; el color indica la magnitud.</p><svg id="g-icen" style="width:100%;display:block"></svg></div>
+
 </section>
 
 
 <!-- ZONAS AFECTADAS -->
 <section class="vista" id="v-zonas">
-  <p class="titular">Lluvia, ríos y mar por provincia, día a día (indicadores, no alertas oficiales)</p>
-  <p class="bajada">Las 34 provincias de la costa. Para cada una: el mar que tiene enfrente, la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal y el pronóstico de 7 días. Con eso se arma un índice de alerta de 0 a 100. Mueve la vista con el mouse (clic derecho o Ctrl para inclinar).</p>
+  <p class="titular">Lluvia y ríos en las provincias de Tumbes y Piura, día a día</p>
+  <p class="bajada">Para cada una de las 8 provincias: la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal, el pronóstico de 7 días y el mar que tiene enfrente. Es un indicador propio para ordenar las provincias, no un aviso oficial (los avisos son de SENAMHI e INDECI). Mueve la vista con el mouse.</p>
   <div class="z-wrap">
     <div class="z-mapa" id="z-mapa">
       <div class="z-modos" id="z-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
@@ -260,87 +324,74 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <p class="z-nota">Lluvia: modelos meteorológicos (Open-Meteo) y su normal con el reanálisis ERA5. Caudal: GloFAS v4 (Copernicus), es un modelo hidrológico, no una medición en estación. Lo sombreado es pronóstico. Relieve: teselas públicas de elevación (AWS Terrain Tiles); imagen: Esri World Imagery.</p>
     </div>
   </div>
-  <div class="panel z-rank"><h2>Las 34 zonas</h2><p class="nota">Clic en una fila para verla en 3D.</p><div id="z-tabla"></div></div>
+  <div class="panel z-rank"><h2>Las 8 provincias</h2><p class="nota">Clic en una fila para verla en 3D.</p><div id="z-tabla"></div></div>
 </section>
 
-<!-- REGIONES -->
-<section class="vista" id="v-regiones">
-  <p class="titular">Las 11 regiones costeras</p>
-  <p class="bajada">Para cada región: anomalía de hoy, su magnitud según los umbrales del ENFEN, la tendencia de los últimos 20 días (°C por semana) y cuántos días seguidos lleva su mar en condición cálida. La línea muestra todo el histórico guardado: crece un día cada día.</p>
-  <div class="tarjetas" id="tarjetas"></div>
-</section>
 
-<!-- HISTORIA -->
-<section class="vista" id="v-historia">
-  <p class="titular">¿Qué tan cerca estamos de los grandes Niños?</p>
-  <p class="bajada">El mar de hoy junto al día pico de un episodio pasado. La barra indica qué porcentaje del calentamiento de ese episodio tiene hoy cada región.</p>
-  <div class="controles"><label for="epi">Comparar con:</label>
-    <select id="epi"></select></div>
-  <div class="grid g2">
-    <div class="panel"><h2 id="t-hoy">Hoy</h2><svg id="mapa-hoy" style="width:100%;display:block"></svg></div>
-    <div class="panel"><h2 id="t-pico">Pico</h2><svg id="mapa-pico" style="width:100%;display:block"></svg></div>
-  </div>
-  <div class="panel" style="margin-top:16px"><h2>Región por región</h2><p class="nota">Anomalía media (°C) hoy y en el pico del episodio elegido.</p><div id="tabla-epi"></div></div>
-  <div class="leyenda" id="ley3"></div>
-</section>
 
-<!-- ECONOMÍA -->
-<section class="vista" id="v-economia">
-  <p class="titular">El mar y la producción</p>
-  <p class="bajada">Variación porcentual interanual de la producción (INEI, vía BCRP). Las franjas sombreadas son los meses con ICEN cálido (≥ 0,4 °C): ahí suele caer la pesca y la agricultura del norte.</p>
-  <div class="panel">
-    <div class="controles"><label for="sector">Sector:</label><select id="sector"></select>
-      <span class="chip"><i style="background:var(--w1)"></i>Meses con El Niño costero (ICEN)</span></div>
-    <svg id="g-sector" style="width:100%;display:block"></svg>
-  </div>
-  <div class="grid g2" style="margin-top:16px">
-    <div class="panel"><h2>Electricidad: últimos 20 días</h2><p class="nota">Variación % de la producción diaria del SEIN (COES) frente al mismo día del año anterior. Es el dato económico más rápido: sale al día siguiente.</p><svg id="g-coes-d" style="width:100%;display:block"></svg></div>
-    <div class="panel"><h2>Electricidad: mensual</h2><p class="nota">Variación % interanual de la producción eléctrica (COES). Se adelanta unos dos meses a la cifra oficial.</p><svg id="g-coes-m" style="width:100%;display:block"></svg></div>
-  </div>
-</section>
 
-<!-- ÍNDICES -->
-<section class="vista" id="v-indices">
-  <p class="titular">Los índices que vigila el ENFEN</p>
-  <p class="bajada">Niño 1+2 es el mar frente a Perú y Ecuador (manda en El Niño costero); Niño 3.4 es el Pacífico central (manda en El Niño global). El ICEN es el promedio móvil de 3 meses de Niño 1+2 con el que el ENFEN declara la magnitud.</p>
-  <div class="panel"><h2>Anomalía semanal por región Niño (°C)</h2>
-    <div class="controles"><button class="btn sec" data-r="5">5 años</button><button class="btn sec" data-r="12">Desde 2014</button></div>
-    <svg id="g-semanal" style="width:100%;display:block"></svg><div class="leyenda" id="ley-sem"></div></div>
-  <div class="panel" style="margin-top:16px"><h2>Índice Costero El Niño (ICEN), mensual desde 1980</h2><p class="nota">Cada barra, un mes; el color indica la magnitud.</p><svg id="g-icen" style="width:100%;display:block"></svg></div>
-</section>
+
+
+
+
 
 <!-- MÉTODO -->
 <section class="vista metodo" id="v-metodo">
   <p class="titular">Método y fuentes</p>
-  <h3>Cómo se arma, todos los días</h3>
-  <ol>
-    <li>A las 8:20 a. m. (hora de Lima), GitHub Actions descarga del ERDDAP de NOAA la anomalía diaria de la temperatura del mar (OISST v2.1) entre 19° S y 1° N, 86° O y 70° O, y revisa los <b>últimos 20 días</b>.</li>
-    <li>Cada día se guarda en su propio archivo con su fecha (<code>data/historico/mar/AAAA-MM-DD.csv.gz</code>). Lo que ya existe no se vuelve a bajar y <b>nada se borra</b>: así el histórico crece un día cada día, como pidió el asesor.</li>
-    <li>Cada celda de mar se asigna a la región costera más cercana si está a menos de 150 km; el promedio de esas celdas es el mar de la región.</li>
-    <li>Se descargan también Niño 1+2, 3, 3.4 y 4 (NOAA CPC), el ICEN (IGP), la producción por sector (INEI vía BCRP) y la electricidad diaria y mensual del COES. Cada descarga queda fechada en <code>data/historico/economia/</code>.</li>
-    <li><b>Zonas afectadas</b>: para las 34 provincias de la costa se descarga la lluvia diaria (últimos 20 días y pronóstico de 7, Open-Meteo) y su normal 1991-2020 (reanálisis ERA5), y el caudal del río principal de cada cuenca (GloFAS v4 de Copernicus) con su mediana y percentil 90 de 1991-2020. Cada día queda guardado en <code>data/historico/zonas/</code>.</li>
-    <li>Un programa prepara los archivos del tablero y GitHub Pages lo publica.</li>
-  </ol>
-  <h3>Magnitud</h3>
-  <p>Se usan los umbrales del ICEN (ENFEN): normal &lt; 0,4 °C; débil 0,4–1,0; moderado 1,0–1,7; fuerte 1,7–3,0; extraordinario &gt; 3,0. Aplicarlos a un solo día o a una región es una lectura indicativa: la declaración oficial usa el ICEN de 3 meses.</p>
-  <h3>Índice de alerta de las zonas (0 a 100)</h3>
-  <p>Es una lectura propia, indicativa, para ordenar las zonas; no reemplaza los avisos del ENFEN, SENAMHI ni INDECI. Suma tres partes: <b>mar</b> (hasta 50 puntos: anomalía del mar a menos de 100 km de la provincia, 4 °C o más da el máximo), <b>lluvia</b> (hasta 25: lluvia de los últimos 20 días más el pronóstico de 7, por encima de su normal; 50 mm de exceso da el máximo) y <b>río</b> (hasta 25: caudal máximo de los 27 días frente a su percentil 90 histórico; 1,5 veces el p90 da el máximo). Niveles: normal &lt; 20, vigilancia 20-39, alerta 40-59, alerta alta ≥ 60.</p>
+  <p class="bajada">Todas las cifras salen de fuentes públicas y se pueden volver a calcular con el código del repositorio. Aquí se explica de dónde viene cada una y qué no puede decir.</p>
+
+  <h3>1. ¿Dónde se inunda?</h3>
+  <ul>
+    <li><b>Zona inundable:</b> mapas de peligro del Centro Común de Investigación de la Comisión Europea (JRC, CEMS-GloFAS v2, 90 m). Marcan hasta dónde llega el agua y con qué profundidad en una crecida de ríos de 1 en 10 y de 1 en 100 años.</li>
+    <li><b>Lo que vio el radar:</b> satélite Sentinel-1 (radar, ve a través de las nubes). Se compara cada imagen del evento con la temporada seca anterior; un lugar cuenta como agua nueva si su señal baja más de 3 dB y queda por debajo de −17 dB. Se excluyen el mar, el agua permanente, lo que está a más de 250 m de altura y las pendientes. El radar no ve bien el agua entre edificios ni bajo árboles: <b>sus cifras son un mínimo</b>.</li>
+    <li><b>Fotos antes y después:</b> satélite Sentinel-2 (10 m), escena con menos nubes dentro de cada zona.</li>
+  </ul>
+
+  <h3>2. ¿A quién afecta?</h3>
+  <ul>
+    <li><b>Personas:</b> WorldPop 2026, población estimada cada 100 m. Se cuenta la población de las celdas que caen en la zona inundable.</li>
+    <li><b>Edificaciones:</b> Google Open Buildings v3 (confianza ≥ 0,75). Incluye viviendas y cualquier otro tipo de construcción, por eso se habla de edificaciones y no de viviendas.</li>
+    <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales educativos de OpenStreetMap (el padrón ESCALE del MINEDU no permite la descarga automática).</li>
+    <li>Las distancias se cuentan de dos formas: <b>dentro</b> de la zona y <b>acumulado</b> hasta 500 m o 1 km.</li>
+    <li>Es <b>exposición</b>: dice quién está en la zona, no cuántos resultarán afectados. Para comparar, en 2017 INDECI registró 74 348 viviendas afectadas en Piura y 11 395 en Tumbes (OCHA, informe n.º 10, mayo de 2017).</li>
+  </ul>
+
+  <h3>3. Alerta por distrito (machine learning)</h3>
+  <ul>
+    <li>Base de 75 distritos por semana desde 2001. Las emergencias por inundación y lluvias vienen de DesInventar (registros de INDECI, con fecha hasta 2015).</li>
+    <li>Variables: lluvia de 30 días (NASA POWER), caudal del río más cercano (GloFAS), temperatura del mar (Niño 1+2), historia del distrito y época del año.</li>
+    <li>Se compararon cuatro modelos con validación temporal: se entrena con los años anteriores y se prueba en el siguiente. Ganó una regresión logística simple. El índice de 0 a 100 compara cada semana con todas las semanas de 2001 a 2015; 95 o más es alerta.</li>
+  </ul>
+
+  <h3>4. Lluvia, ríos y mar</h3>
+  <ul>
+    <li><b>Lluvia diaria y pronóstico:</b> Open-Meteo (modelos meteorológicos, no pluviómetros). Lo normal: promedio 1991-2020 del reanálisis ERA5.</li>
+    <li><b>Caudal:</b> GloFAS v4 (Copernicus), modelo hidrológico, no medición en estación.</li>
+    <li><b>Mar:</b> anomalía diaria NOAA OISST v2.1; índices semanales Niño de NOAA CPC; ICEN del Instituto Geofísico del Perú. Magnitud según el ENFEN: débil desde 0,4 °C, moderado desde 1,0, fuerte desde 1,7 y extraordinario desde 3,0.</li>
+  </ul>
+
+  <h3>5. Cómo se actualiza</h3>
+  <p>GitHub Actions descarga los datos solo: el mar y la lluvia todos los días; el radar los lunes y jueves; las fotos y el modelo cada semana. Cada día se guarda en un archivo con su fecha y nada se borra, así el histórico crece día a día. El último día de cada fuente puede ser revisado después por quien lo publica.</p>
+
+  <h3>Lo que este tablero no es</h3>
+  <p>No reemplaza los avisos oficiales de SENAMHI, INDECI, ENFEN ni COEN. Es una herramienta académica para ordenar dónde mirar primero.</p>
+
   <h3>Fuentes</h3>
   <ul>
-    <li>NOAA NCEI, Optimum Interpolation SST v2.1 (Huang et al., 2021), vía ERDDAP de NOAA CoastWatch.</li>
-    <li>NOAA Climate Prediction Center, índices semanales de las regiones Niño (base 1991-2020).</li>
-    <li>Instituto Geofísico del Perú, Índice Costero El Niño (ICEN).</li>
-    <li>INEI, producción nacional y sectorial, publicada en BCRPData (Banco Central de Reserva del Perú).</li>
-    <li>COES-SINAC, producción de energía eléctrica del SEIN (SCADA).</li>
-    <li>Open-Meteo: lluvia diaria (modelos meteorológicos) y reanálisis ERA5 (Copernicus/ECMWF) para la normal.</li>
-    <li>GloFAS v4, Copernicus Emergency Management Service: caudal diario de los ríos, vía Open-Meteo.</li>
-    <li>Relieve: AWS Terrain Tiles (SRTM y otros); imagen satelital: Esri World Imagery.</li>
-    <li>Límites departamentales y provinciales: INEI.</li>
+    <li>Copernicus Sentinel-1 y Sentinel-2 (ESA), vía Microsoft Planetary Computer.</li>
+    <li>JRC, CEMS-GloFAS flood hazard maps v2; GloFAS v4 (Copernicus Emergency Management Service).</li>
+    <li>WorldPop (2026); Google Open Buildings v3; RENIPRESS (SUSALUD); OpenStreetMap.</li>
+    <li>DesInventar (UNDRR), registros de INDECI; tablas estadísticas del INDECI 2003-2024.</li>
+    <li>NASA POWER; Open-Meteo y reanálisis ERA5 (ECMWF); NOAA OISST v2.1 y NOAA CPC; IGP (ICEN).</li>
+    <li>Límites distritales: GADM 4.1 con UBIGEO del INEI. Relieve: AWS Terrain Tiles. Imagen de fondo: Esri World Imagery.</li>
   </ul>
-  <p class="aviso">Datos preliminares de tiempo casi real: NOAA puede revisar los últimos días. Código y datos: <a href="https://github.com/MarciaShapiama/iapn-inei">github.com/MarciaShapiama/iapn-inei</a>.</p>
+
+  <h3>Quién hizo qué</h3>
+  <p><b>Marcia Shapiama:</b> coordinación, tablero, mapa de inundación y modelo de alerta. <b>Christopher:</b> descarga y revisión de datos. <b>Maykol Ramírez:</b> monitor de lluvias y comparador satelital antes y después. <b>Luz Ángela:</b> auditoría de datos, correcciones, pruebas automáticas, mapa 2D, informe y presentaciones.</p>
+  <p class="aviso">Código y datos: <a href="https://github.com/MarciaShapiama/iapn-inei">github.com/MarciaShapiama/iapn-inei</a> · Mapa 2D para equipos sin tarjeta gráfica: <a href="mapa2d.html">mapa2d.html</a>.</p>
 </section>
 </main>
-<footer id="pie">Equipo: Christopher, Maykol, Marcia y Luz Ángela · Programa de Especialización en Ciencia de Datos, INEI.</footer>
+<footer id="pie">Equipo: Marcia, Christopher, Maykol y Luz Ángela · Proyecto integrador del Programa de Extensión Universitaria: Ciencia del Dato (PEU-CD), INEI · 2026</footer>
 <div class="tip" id="tip"></div>
 
 <script>
@@ -362,15 +413,20 @@ function hayWebGL(){if(/[?&]sin3d=1/.test(location.search))return false;try{cons
 const SIN_GPU=`<div style="padding:24px;color:#eef3f5;max-width:560px"><b>Este navegador no puede crear un contexto WebGL</b> (aceleración gráfica desactivada, controlador o máquina virtual sin GPU). No es una falla del servidor ni de los datos.<br><br><a href="mapa2d.html" style="color:#7fb4e0;font-weight:700">Abrir el mapa 2D accesible</a> con las mismas capas, cifras, metadatos y descargas.</div>`;
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
-Promise.all([get("resumen"),get("regiones"),get("mar"),get("picos"),get("indices"),get("economia"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),null,null])
-.then(([R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO,IN,DIST,COL,SAL])=>{
-  window.D={R,REG,MAR,PIC,IDX,ECO,GEO,ZON,ZGEO,IN,DIST,COL,SAL};
-  pestanas(); estado(); situacion(); mar(); tarjetas(); historia(); economia(); indices();
+Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("departamentos"),get("zonas"),geo("zonas"),
+  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null)])
+.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT])=>{
+  // solo las provincias de Tumbes y Piura
+  if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
+  if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
+  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT};
+  pestanas(); estado();
+  const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
+  seguro(resumenVista,"resumen"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
   try{ const ini=()=>{if(visible("v-inundaciones")&&!I3.deck)setTimeout(inundacionesVista,30)}; ini(); window.addEventListener("hashchange",ini);
     document.querySelector('[data-v="inundaciones"]').addEventListener("click",ini); }catch(e){console.error(e)}
   try{ if(visible("v-zonas"))zonasVista(); else document.querySelector('[data-v="zonas"]').addEventListener("click",()=>{if(!Z3.deck)setTimeout(zonasVista,30)},{once:true}); window.addEventListener("hashchange",()=>{if(visible("v-zonas")&&!Z3.deck)setTimeout(zonasVista,30)}); }catch(e){console.error(e)}
-  ["ley1","ley2","ley3"].forEach(leyenda);
+  ["ley2"].forEach(id=>{if(document.getElementById(id))leyenda(id)});
 });
 
 function pestanas(){
@@ -379,46 +435,107 @@ function pestanas(){
     document.querySelectorAll(".vista").forEach(s=>s.classList.toggle("activa",s.id==="v-"+v));
     window.dispatchEvent(new Event("resize"))};
   tabs.forEach(t=>t.onclick=()=>{history.replaceState(null,"","#"+t.dataset.v);ir(t.dataset.v)});
-  const desdeHash=()=>{const h=location.hash.slice(1);ir(tabs.some(t=>t.dataset.v===h)?h:"inundaciones")};
+  const desdeHash=()=>{const h=location.hash.slice(1);ir(tabs.some(t=>t.dataset.v===h)?h:"resumen")};
   window.addEventListener("hashchange",desdeHash); desdeHash();
 }
 function estado(){const R=D.R;if(!R)return;
   document.getElementById("estado").innerHTML=`Mar al <b>${R.ultimo_dia_mar?fechaTxt(R.ultimo_dia_mar):"—"}</b> · histórico: <b>${R.dias_historico} días</b><br>Actualizado ${R.actualizado}`}
 
-/* ---------- SITUACIÓN ---------- */
-function situacion(){
-  const R=D.R, REG=D.REG; if(!R||!REG)return;
-  const r=REG.regiones, orden=REG.orden;
-  const norte=R.norte_media, mc=R.region_mas_calida;
-  const mag=norte>=0.4?"cálido":"normal";
-  document.getElementById("titular").textContent= norte>=0.4
-    ? `El mar del norte está ${fmt(norte)} °C sobre lo normal: condición ${({"Cálido débil":"cálida débil","Cálido moderado":"cálida moderada","Cálido fuerte":"cálida fuerte","Cálido extraordinario":"cálida extraordinaria"})[D.R.magnitudes.find(m=>norte>=m.desde&&norte<m.hasta).nombre]}.`
-    : `El mar frente a la costa norte está dentro de lo normal (${fmt(norte)} °C).`;
-  const i=R.icen_ultimo||{}, n12=R.nino12_semana||{};
-  document.getElementById("bajada").innerHTML=`${R.regiones_calidas} de ${R.regiones_total} regiones costeras tienen hoy su mar en condición cálida (≥ 0,4 °C). La más cálida es <b>${mc.region}</b> (${fmt(mc.anom)} °C). `+
-    (i.valor!=null?`El último ICEN oficial (${fechaTxt(i.fecha)}) es ${fmt(i.valor,2)} °C: ${i.magnitud.toLowerCase()}.`:"");
-  const k=[
-    {e:"Costa norte hoy",c:fmt(norte)+" °C",d:"Tumbes a La Libertad · "+chipMag(D.R.magnitudes.find(m=>norte>=m.desde&&norte<m.hasta).nombre)},
-    {e:"Región más cálida",c:mc.region,d:fmt(mc.anom)+" °C · "+chipMag(mc.magnitud)},
-    {e:"Niño 1+2 (semana)",c:fmt(n12.valor)+" °C",d:n12.semana?"Semana del "+fechaTxt(n12.semana)+" · NOAA":""},
-    {e:"ICEN oficial",c:fmt(i.valor,2)+" °C",d:i.fecha?fechaTxt(i.fecha)+" · "+chipMag(i.magnitud):""}];
-  document.getElementById("kpis").innerHTML=k.map(x=>`<div class="panel kpi"><div class="eti">${x.e}</div><div class="cifra">${x.c}</div><div class="det">${x.d}</div></div>`).join("");
-  // franja
-  const fechas=r[orden[0]].fechas.slice(-20);
-  const svg=d3.select("#franja"), izq=96, cw=Math.max(26,Math.min(48,(document.querySelector(".franja-wrap").clientWidth-izq-10)/fechas.length)), ch=30;
-  const W=izq+cw*fechas.length+10, H=ch*orden.length+40;
-  svg.attr("width",W).attr("height",H).selectAll("*").remove();
-  orden.forEach((reg,j)=>{
-    const x=r[reg], off=x.fechas.length-fechas.length;
-    svg.append("text").attr("x",izq-8).attr("y",22+j*ch+ch/2+4).attr("text-anchor","end").style("fill","var(--ink)").style("font-weight",600).text(x.nombre);
-    fechas.forEach((f,t)=>{const v=x.media[off+t];
-      svg.append("rect").attr("x",izq+t*cw+1).attr("y",22+j*ch+1).attr("width",cw-2).attr("height",ch-2).attr("rx",3).attr("fill",color(v))
-        .on("mousemove",e=>mostrar(e,`<b>${x.nombre}</b> · ${fechaTxt(f)}<br>Anomalía media: <b>${fmt(v,2)} °C</b><br>Máxima: ${fmt(x.max[off+t],2)} °C · celdas cálidas: ${x.p_calido[off+t]} %`)).on("mouseleave",ocultar);
-      if(t===fechas.length-1)svg.append("text").attr("x",izq+t*cw+cw/2).attr("y",22+j*ch+ch/2+4).attr("text-anchor","middle").style("font-size","10.5px").style("font-weight",700).style("fill",v>=1.7||v<=-1?"#fff":"var(--ink)").text(fmtN(v));
-    });
-  });
-  const wrap=document.querySelector(".franja-wrap"); requestAnimationFrame(()=>wrap.scrollLeft=wrap.scrollWidth);
-  fechas.forEach((f,t)=>{if(t%Math.ceil(fechas.length/7)===0||t===fechas.length-1)svg.append("text").attr("x",izq+t*cw+cw/2).attr("y",14).attr("text-anchor","middle").text(fechaTxt(f).replace(/ \d{4}$/,""))});
+
+/* ---------- RESUMEN ---------- */
+const miles=v=>v==null?"—":Math.round(v).toLocaleString("es-PE").replace(/,/g," ");
+const redondo=v=>v==null?"—":v>=1e5?`${Math.round(v/1e3).toLocaleString("es-PE").replace(/,/g," ")} mil`:miles(v);
+function resumenVista(){
+  const IN=D.IN, R=D.R, RIE=D.RIE, Z=D.ZON; if(!IN||!IN.eventos.rp100)return;
+  const e=IN.eventos.rp100, e10=IN.eventos.rp10, sa=e.salud||{}, co=e.colegios||{};
+  document.getElementById("r-titular").textContent=`En Tumbes y Piura, unas ${redondo(e.personas)} personas viven donde una crecida grande de los ríos puede inundar.`;
+  document.getElementById("r-bajada").innerHTML=`Una crecida «de 1 en 100 años» es la que tiene 1 % de probabilidad de ocurrir cada año. Con una crecida más frecuente, de 1 en 10 años, la zona inundable abarcaría a unas ${redondo(e10&&e10.personas)} personas. Son cifras de <b>exposición</b>: dicen quién está en la zona inundable, no cuántos resultarán damnificados.`;
+  const k=[["Personas en zona inundable",redondo(e.personas),"WorldPop 2026, crecida de 1 en 100 años"],
+    ["Edificaciones en zona inundable",redondo(e.edificaciones),`viviendas, locales y otros · ${redondo(e.edificaciones_profundidad&&e.edificaciones_profundidad["más de 1,5 m"])} con más de 1,5 m de agua`],
+    ["Colegios dentro de la zona",miles(co.dentro),`y ${miles(co.acum_1km)} a 1 km o menos del agua`],
+    ["Centros de salud dentro de la zona",miles(sa.dentro),`y ${miles(sa.acum_1km)} a 1 km o menos (postas, centros y hospitales)`]];
+  document.getElementById("r-kpis").innerHTML=k.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");
+  // esta semana
+  const filas=[];
+  if(R&&R.nino12_semana&&R.nino12_semana.valor!=null)filas.push(["Mar frente al Perú (Niño 1+2), semana del "+fechaTxt(R.nino12_semana.semana),fmt(R.nino12_semana.valor)+" °C sobre lo normal"]);
+  if(R&&R.icen_ultimo&&R.icen_ultimo.valor!=null)filas.push(["Índice Costero El Niño (ICEN), "+fechaTxt(R.icen_ultimo.fecha),fmt(R.icen_ultimo.valor,2)+" °C · "+R.icen_ultimo.magnitud.toLowerCase()]);
+  if(Z)["Tumbes","Piura"].forEach(p=>{const z=Z.zonas.find(x=>x.provincia===p&&x.departamento===p);if(z)filas.push([`Lluvia en la provincia de ${p}, últimos 20 días`,`${fmtN(z.lluvia_20d,0)} mm (lo normal: ${fmtN(z.normal_20d,0)} mm)`])});
+  if(RIE){const n=RIE.distritos_hoy.filter(d=>d.alerta).length, top=RIE.distritos_hoy[0];filas.push([`Distritos en alerta según el modelo (semana del ${fechaTxt(RIE.semana_actual)})`,`${n} de ${RIE.distritos_hoy.length}`+(top?` · el más alto: ${top.distrito}`:"")]);}
+  document.getElementById("r-fecha").textContent=R?`Datos al ${fechaTxt(R.ultimo_dia_mar||R.actualizado.slice(0,10))}. Se actualizan solos todos los días.`:"";
+  document.getElementById("r-semana").innerHTML=filas.map(f=>`<div class="r-fila"><span>${f[0]}</span><b>${f[1]}</b></div>`).join("");
+  const v=(IN.validacion||{})["2017"], e17=IN.eventos["2017"], e23=IN.eventos["2023"];
+  const pas=[];
+  if(v)pas.push(["2017 · El Niño costero",`INDECI registró ${miles(v.Piura)} viviendas afectadas en Piura y ${miles(v.Tumbes)} en Tumbes. El río Piura se desbordó el 27 de marzo.`]);
+  if(e17)pas.push(["2017 · lo que vio el radar",`${fmtN(e17.km2,0)} km² con agua nueva entre febrero y abril (${e17.imagenes.length} imágenes Sentinel-1).`]);
+  if(e23)pas.push(["2023 · ciclón Yaku",`${fmtN(e23.km2,0)} km² con agua nueva; la mayor parte en la depresión del desierto de Sechura, donde en años de El Niño fuerte se forma la laguna La Niña (en 2017, IMARPE midió su extensión).`]);
+  document.getElementById("r-pasado").innerHTML=pas.map(f=>`<div class="r-fila" style="display:block"><b style="font-size:15px">${f[0]}</b><div style="color:var(--ink-2);margin-top:2px">${f[1]}</div></div>`).join("");
+  const guia=[["inundaciones","Mapa de inundación","Qué queda bajo el agua, en 3D: zonas, edificaciones, colegios y salud."],
+    ["satelite","Antes y después","Fotos reales del satélite de 2017, 2023 y de estos días."],
+    ["alerta","Alerta por distrito","Qué distritos tienen más riesgo en las próximas semanas."],
+    ["zonas","Lluvia y ríos","Cuánto llovió y cómo van los ríos en cada provincia."],
+    ["mar","El mar y El Niño","La temperatura del mar, que es donde empieza El Niño."],
+    ["metodo","Método y fuentes","De dónde sale cada cifra y sus límites."]];
+  document.getElementById("r-guia").innerHTML=guia.map(g=>`<a href="#${g[0]}"><b>${g[1]} →</b><span>${g[2]}</span></a>`).join("");
+}
+
+/* ---------- ANTES Y DESPUÉS ---------- */
+function sateliteVista(){
+  const S=D.SAT; if(!S)return;
+  const PARES=[["antes_2017","despues_2017","2017: antes y después"],["antes_2023","despues_2023","2023: antes y después"],["antes_2023","hoy","Temporada seca frente a hoy"]];
+  const zs=document.getElementById("s-zona"), ps=document.getElementById("s-par");
+  zs.innerHTML=S.zonas.map(z=>`<option value="${z.id}">${z.nombre}</option>`).join("");
+  ps.innerHTML=PARES.map((p,i)=>`<option value="${i}">${p[2]}</option>`).join("");
+  let tipo="rgb";
+  document.querySelectorAll("#s-vista button").forEach(b=>b.onclick=()=>{tipo=b.dataset.t;document.querySelectorAll("#s-vista button").forEach(x=>x.setAttribute("aria-pressed",x===b));pinta()});
+  const et=e=>e?`<b>${e.etiqueta}</b><br>${fechaTxt(e.fecha)} · nubes en la zona: ${fmtN(e.nubes_en_zona_pct,0)} %`:"Sin imagen";
+  const pinta=()=>{
+    const z=S.zonas.find(x=>x.id===zs.value), [pa,pb]=PARES[+ps.value];
+    const ea=z.escenas.find(e=>e.periodo===pa), eb=z.escenas.find(e=>e.periodo===pb);
+    document.getElementById("s-img-a").src=ea?`data/sat/${z.id}_${pa}_${tipo}.jpg`:"";
+    document.getElementById("s-img-b").src=eb?`data/sat/${z.id}_${pb}_${tipo}.jpg`:"";
+    document.getElementById("s-et-a").innerHTML=et(ea); document.getElementById("s-et-b").innerHTML=et(eb);
+    const dif=(ea&&eb)?(eb.agua_pct-ea.agua_pct):null;
+    document.getElementById("s-nota").innerHTML=`<b>${z.nombre}</b>: ${z.nota}. `+(dif!=null?`Superficie con agua o suelo muy húmedo: ${fmtN(ea.agua_pct,1)} % antes y ${fmtN(eb.agua_pct,1)} % después. `:"")+
+      `Imágenes Copernicus Sentinel-2 (ESA), elegidas por tener menos nubes dentro de la zona.`;
+  };
+  const r=document.getElementById("s-rango");
+  r.oninput=()=>{document.getElementById("s-der").style.clipPath=`inset(0 0 0 ${r.value}%)`;document.getElementById("s-linea").style.left=r.value+"%"};
+  zs.onchange=pinta; ps.onchange=pinta; pinta();
+}
+
+/* ---------- ALERTA POR DISTRITO ---------- */
+const sinTilde=x=>String(x).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z]/g,"");
+function alertaVista(){
+  const RIE=D.RIE, DIST=D.DIST; if(!RIE||!DIST)return;
+  const porNombre={}; RIE.distritos_hoy.forEach(d=>porNombre[sinTilde(d.departamento)+sinTilde(d.distrito)]=d);
+  const dato=f=>porNombre[sinTilde(f.properties.departamento)+sinTilde(f.properties.distrito)];
+  const esc=d3.scaleThreshold().domain([50,75,90,95]).range(["#f1eee6","#f7d29c","#ef9550","#d4472c","#8b1a1a"]);
+  const n=RIE.distritos_hoy.filter(d=>d.alerta).length;
+  document.getElementById("a-titular").textContent=`Alerta por distrito: ${n} de ${RIE.distritos_hoy.length} distritos en alerta esta semana`;
+  document.getElementById("a-t-mapa").textContent=`Riesgo en la semana del ${fechaTxt(RIE.semana_actual)}`;
+  document.getElementById("a-ley").innerHTML=[["menos de 50","#f1eee6"],["50 a 74","#f7d29c"],["75 a 89","#ef9550"],["90 a 94","#d4472c"],["95 o más · alerta","#8b1a1a"]].map(x=>`<span><i style="background:${x[1]}"></i>${x[0]}</span>`).join("");
+  const dib=()=>{
+    const el=document.getElementById("a-mapa"), w=Math.max(280,el.parentNode.clientWidth-36), h=w*1.15;
+    const svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`); svg.selectAll("*").remove();
+    const p=d3.geoMercator().fitExtent([[6,6],[w-6,h-6]],DIST), path=d3.geoPath(p);
+    svg.append("g").selectAll("path").data(DIST.features).join("path").attr("d",path)
+      .attr("fill",f=>{const d=dato(f);return d?esc(d.riesgo):"#e7e9eb"}).attr("stroke","#fff").attr("stroke-width",.8)
+      .on("mousemove",(ev,f)=>{const d=dato(f);mostrar(ev,`<b>${f.properties.distrito}</b> · ${f.properties.provincia}<br>`+(d?`Riesgo: <b>${fmtN(d.riesgo,0)}</b> de 100${d.alerta?" · <b>en alerta</b>":""}<br>Lluvia de 30 días: ${fmtN(d.lluvia_30d,0)} mm<br>Río: ${fmtN(d.caudal_razon,1)} veces su caudal normal`:"Sin dato"))})
+      .on("mouseleave",ocultar);
+  };
+  dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-alerta"))dib()},150));
+  const top=RIE.distritos_hoy.slice(0,12);
+  document.getElementById("a-nota-lista").textContent="Riesgo de 0 a 100, lluvia de los últimos 30 días y caudal del río más cercano frente a lo normal.";
+  document.getElementById("a-lista").innerHTML=`<table class="tabla"><tr><th>Distrito</th><th style="text-align:right">Riesgo</th><th style="text-align:right">Lluvia 30 d</th><th style="text-align:right">Río</th></tr>`+
+    top.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--ink-3)">${d.provincia}</span></td><td class="n"><span class="chip"><i style="background:${esc(d.riesgo)}"></i>${fmtN(d.riesgo,0)}</span></td><td class="n">${fmtN(d.lluvia_30d,0)} mm</td><td class="n">${fmtN(d.caudal_razon,1)}×</td></tr>`).join("")+"</table>";
+  const rv=RIE.revision||{};
+  document.getElementById("a-valida").innerHTML=`<p>Se probó con años que el modelo <b>no vio</b> al entrenarse. Entre 2016 y 2026, comparando los meses de enero a abril, el modelo puso a <b>2017 en el puesto ${rv.puesto_2017}</b> y a <b>2023 en el puesto ${rv.puesto_2023}</b> de ${rv.anios_comparados} años. Fueron justamente los dos años con más inundaciones.</p>
+    <p>Lo que más pesa es la historia de cada distrito y la época del año. La lluvia, el caudal y el mar suben el riesgo, pero con un efecto moderado.</p>
+    <p class="aviso">Límites: las emergencias con fecha llegan solo hasta 2015 y la lluvia viene en cuadros de unos 50 km, así que distritos vecinos comparten valores. Es una herramienta para priorizar, no un aviso oficial.</p>`;
+  const NOM={climatologia:"Referencia sin modelo (historia y época)",logistica_simple:"Regresión logística (el que se usa)",logistica_completa:"Regresión logística con 20 variables",lightgbm:"LightGBM (árboles)"};
+  document.getElementById("a-modelos").innerHTML=`<table class="tabla"><tr><th>Modelo</th><th style="text-align:right">PR-AUC</th><th style="text-align:right">ROC-AUC</th></tr>`+
+    RIE.metricas.map(m=>`<tr${m.modelo===RIE.modelo_principal?' style="font-weight:700"':""}><td>${NOM[m.modelo]||m.modelo}</td><td class="n">${fmtN(m.pr_auc,3)}</td><td class="n">${fmtN(m.roc_auc,3)}</td></tr>`).join("")+
+    `</table><p class="nota" style="margin-top:8px">PR-AUC es la medida principal cuando el evento es raro (aquí, 0,3 % de las semanas). Se eligió la logística simple: casi iguala a la de 20 variables, todos sus efectos tienen sentido y sí reconoce 2017; LightGBM no superó a la referencia con tan pocos casos.</p>`;
 }
 
 /* ---------- MAPA ---------- */
@@ -466,7 +583,7 @@ const debounce=(f,t)=>{let h;return()=>{clearTimeout(h);h=setTimeout(f,t)}};
 const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col3d:true,col:true,sal:true,dis:true},sel:null};
 const VISTAS={piura:{longitude:-80.68,latitude:-5.30,zoom:10.4,pitch:58,bearing:25},sullana:{longitude:-80.70,latitude:-4.90,zoom:10.6,pitch:58,bearing:20},
   tumbes:{longitude:-80.45,latitude:-3.62,zoom:10.8,pitch:58,bearing:15},todo:{longitude:-80.40,latitude:-4.85,zoom:7.9,pitch:45,bearing:10}};
-const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE");
+const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE").replace(/,/g," ");
 function inundacionesVista(){
   const IN=D.IN; const el=document.getElementById("i-mapa");
   if(!hayWebGL()){el.innerHTML=SIN_GPU;return}
@@ -592,7 +709,7 @@ function elegirZona(i,volar){
   document.getElementById("z-kpis").innerHTML=[
     ["Mar de enfrente",fmt(m,1)+" °C",`${z.mar_celdas} celdas a < 100 km`],
     ["Lluvia 20 días",fmtN(z.lluvia_20d,1)+" mm",pct],
-    [r?"Río "+r.nombre:"Río","" +(r&&r.hoy!=null?fmtN(r.hoy,0)+" m³/s":"—"),r&&r.normal_hoy?`normal ${fmtN(r.normal_hoy,0)} m³/s`:"sin río cercano"],
+    [r?"Río "+r.nombre:"Río","" +(r&&r.hoy!=null?fmtN(r.hoy,0)+" m³/s":"—"),r?(r.normal_hoy?`normal ${fmtN(r.normal_hoy,0)} m³/s`:"aún sin normal histórica"):"sin río cercano"],
     ["Pronóstico 7 días",fmtN(z.pronostico_7d,1)+" mm","lluvia esperada"]].map(k=>`<div><div class="k">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join("");
   const c=z.componentes;
   document.getElementById("z-indice").innerHTML=`<div class="z-barra"><span style="width:${c.mar}%;background:#ef9550"></span><span style="width:${c.lluvia}%;background:#7fd3ff"></span><span style="width:${c.rio}%;background:#3d8bfd"></span></div><div class="z-sub" style="font-size:12px">Mar ${c.mar}/50 · Lluvia ${c.lluvia}/25 · Río ${c.rio}/25</div>`;
@@ -669,45 +786,6 @@ function graficosZona(z){
     cursor(o);}
 }
 
-/* ---------- TARJETAS ---------- */
-function tarjetas(){
-  const REG=D.REG; if(!REG)return;
-  const cont=document.getElementById("tarjetas");
-  cont.innerHTML=REG.orden.map(r=>{const x=REG.regiones[r],t=x.tendencia_semana;
-    const fl=t==null?"":t>0.05?`<span class="flecha-up">▲ ${fmt(t,2)} °C/sem</span>`:t<-0.05?`<span class="flecha-down">▼ ${fmt(t,2)} °C/sem</span>`:`<span>▬ estable</span>`;
-    return `<div class="tarjeta"><h3>${x.nombre}${chipMag(x.magnitud,true)}</h3>
-      <div style="display:flex;align-items:baseline;gap:10px"><span class="num">${fmt(x.hoy,2)} °C</span><span class="mini">máx. ${fmt(x.max_hoy,1)}</span></div>
-      <div class="mini">${fl} · ${!x.racha_calida?"sin racha cálida":x.racha_calida>=x.fechas.length?`cálido en los <b>${x.fechas.length}</b> días registrados`:`<b>${x.racha_calida}</b> días seguidos cálido`}</div>
-      <svg class="spark" data-r="${r}" style="width:100%;height:56px;display:block;margin-top:6px"></svg></div>`}).join("");
-  const sp=()=>cont.querySelectorAll("svg.spark").forEach(el=>{
-    const x=REG.regiones[el.dataset.r], w=el.clientWidth||220, h=56, s=d3.select(el); s.selectAll("*").remove(); s.attr("viewBox",`0 0 ${w} ${h}`);
-    const X=d3.scalePoint().domain(x.fechas).range([2,w-2]), ext=d3.extent(x.media), pad=Math.max(.4,(ext[1]-ext[0])*.25);
-    const Y=d3.scaleLinear().domain([ext[0]-pad,ext[1]+pad]).range([h-4,4]);
-    s.append("path").attr("d",d3.area().x((d,i)=>X(x.fechas[i])).y0(h).y1(d=>Y(d)).defined(d=>d!=null)(x.media)).attr("fill",color(x.hoy)).attr("opacity",.18);
-    s.append("text").attr("x",w-2).attr("y",11).attr("text-anchor","end").style("font-size","10px").text(`${fmtN(ext[0])} a ${fmtN(ext[1])} °C`);
-    s.append("path").attr("d",d3.line().x((d,i)=>X(x.fechas[i])).y(d=>Y(d)).defined(d=>d!=null)(x.media)).attr("fill","none").attr("stroke",css("--accent")).attr("stroke-width",2);
-    s.append("circle").attr("cx",X(x.fechas.at(-1))).attr("cy",Y(x.media.at(-1))).attr("r",3.5).attr("fill",css("--accent")).attr("stroke","#fff").attr("stroke-width",2);
-    s.append("rect").attr("width",w).attr("height",h).attr("fill","transparent").on("mousemove",e=>{const [mx]=d3.pointer(e),i=Math.round((mx-2)/(w-4)*(x.fechas.length-1));const k=Math.max(0,Math.min(x.fechas.length-1,i));mostrar(e,`${x.nombre} · ${fechaTxt(x.fechas[k])}<br><b>${fmt(x.media[k],2)} °C</b>`)}).on("mouseleave",ocultar);
-  });
-  sp(); window.addEventListener("resize",debounce(()=>{if(visible("v-regiones"))sp()},150));
-}
-
-/* ---------- HISTORIA ---------- */
-function historia(){
-  const P=D.PIC||{}, M=D.MAR, REG=D.REG, sel=document.getElementById("epi"), anios=Object.keys(P);
-  if(!anios.length||!M){document.getElementById("tabla-epi").innerHTML="<p class='nota'>Los días pico aún se están descargando.</p>";return}
-  const NOM={"1983":"El Niño 1982-83 (extraordinario)","1998":"El Niño 1997-98 (extraordinario)","2017":"El Niño costero 2017 (moderado)","2023":"El Niño costero 2023 (fuerte)"};
-  sel.innerHTML=anios.map(a=>`<option value="${a}" ${a==="1998"?"selected":""}>${NOM[a]||a}</option>`).join("");
-  const dib=()=>{const a=sel.value, hoy=M.fechas.at(-1), w=Math.max(260,document.getElementById("mapa-hoy").parentNode.clientWidth-36);
-    document.getElementById("t-hoy").textContent="Hoy · "+fechaTxt(hoy); document.getElementById("t-pico").textContent="Pico · "+fechaTxt(P[a].fecha);
-    dibujarMapa("#mapa-hoy",M.anom[hoy],w); dibujarMapa("#mapa-pico",P[a].anom,w);
-    const filas=REG.orden.map(r=>{const x=REG.regiones[r],pk=P[a].regiones[r];return {n:x.nombre,h:x.hoy,p:pk,pct:pk>0.1?Math.max(0,100*x.hoy/pk):null}});
-    document.getElementById("tabla-epi").innerHTML=`<table class="tabla"><tr><th>Región</th><th style="text-align:right">Hoy</th><th style="text-align:right">Pico ${a}</th><th>Cuánto del pico tiene hoy</th></tr>`+
-      filas.map(f=>`<tr><td>${f.n}</td><td class="n"><b>${fmt(f.h,2)}</b></td><td class="n">${fmt(f.p,2)}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="barra-pct" style="flex:1"><span style="width:${Math.min(100,f.pct||0)}%;background:${color(f.h)}"></span></div><span style="min-width:42px;text-align:right;font-variant-numeric:tabular-nums">${f.pct==null?"—":Math.round(f.pct)+" %"}</span></div></td></tr>`).join("")+"</table>";
-  };
-  sel.onchange=dib; dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-historia"))dib()},150));
-}
-
 /* ---------- GRÁFICOS DE LÍNEA ---------- */
 function ejes(svg,X,Y,w,h,m,fx){
   svg.append("g").attr("class","rejilla").attr("transform",`translate(${m.l},0)`).call(d3.axisLeft(Y).ticks(5).tickSize(-(w-m.l-m.r)).tickFormat("")).select(".domain").remove();
@@ -724,50 +802,6 @@ function crosshair(svg,X,Y,w,h,m,serie,etiqueta){
    .on("mousemove",e=>{const [mx]=d3.pointer(e),i=Math.max(0,Math.min(fechas.length-1,d3.bisectCenter(fechas,X.invert(mx)))),d=serie[i];
      foco.style("display",null).select("line").attr("x1",X(d.x)).attr("x2",X(d.x));pt.attr("cx",X(d.x)).attr("cy",Y(d.y??0)).style("display",d.y==null?"none":null);mostrar(e,etiqueta(d,i))})
    .on("mouseleave",()=>{foco.style("display","none");ocultar()});
-}
-function economia(){
-  const E=D.ECO||{}, I=D.IDX||{};
-  const S=E.sectores; if(S){
-    const sel=document.getElementById("sector"), nombres=Object.keys(S.series);
-    sel.innerHTML=nombres.map(n=>`<option ${n==="Pesca"?"selected":""}>${n}</option>`).join("");
-    const nino=new Set((I.icen?I.icen.fecha.filter((f,i)=>I.icen.valor[i]>=0.4):[]));
-    const dib=()=>{const el=document.getElementById("g-sector"),w=el.parentNode.clientWidth-36,h=Math.max(260,Math.min(380,w*.42)),m={t:12,r:12,b:26,l:40};
-      const svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`); svg.selectAll("*").remove();
-      const serie=S.fechas.map((f,i)=>({x:mes(f),f,y:S.series[sel.value][i]})).filter(d=>d.x>=mes("2014-01"));
-      const vals=serie.map(d=>d.y).filter(v=>v!=null), lim=d3.quantile(vals.map(Math.abs).sort(d3.ascending),.98);
-      const X=d3.scaleTime().domain(d3.extent(serie,d=>d.x)).range([m.l,w-m.r]), Y=d3.scaleLinear().domain([-lim*1.05,lim*1.05]).nice().range([h-m.b,m.t]).clamp(true);
-      serie.forEach(d=>{if(nino.has(d.f))svg.append("rect").attr("x",X(d.x)).attr("width",Math.max(1,X(d3.timeMonth.offset(d.x,1))-X(d.x))).attr("y",m.t).attr("height",h-m.t-m.b).attr("fill",css("--w1")).attr("opacity",.55)});
-      svg.append("rect").attr("x",X(mes("2020-03"))).attr("width",X(mes("2021-12"))-X(mes("2020-03"))).attr("y",m.t).attr("height",h-m.t-m.b).attr("fill",css("--line")).attr("opacity",.5);
-      svg.append("text").attr("x",X(mes("2020-03"))+4).attr("y",m.t+12).text("pandemia");
-      ejes(svg,X,Y,w,h,m,fmes);
-      svg.append("line").attr("x1",m.l).attr("x2",w-m.r).attr("y1",Y(0)).attr("y2",Y(0)).attr("stroke",css("--ink-3"));
-      svg.append("path").attr("d",d3.line().defined(d=>d.y!=null).x(d=>X(d.x)).y(d=>Y(d.y))(serie)).attr("fill","none").attr("stroke",css("--accent")).attr("stroke-width",2);
-      crosshair(svg,X,Y,w,h,m,serie,d=>`<b>${sel.value}</b> · ${fechaTxt(d.f)}<br>Var. interanual: <b>${fmt(d.y,1)} %</b>${nino.has(d.f)?"<br>Mes con El Niño costero":""}`);
-    };
-    sel.onchange=dib; dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-economia"))dib()},150));
-  }
-  const C=E.coes_diario; if(C){const dib=()=>{
-    const el=document.getElementById("g-coes-d"),w=el.parentNode.clientWidth-36,h=240,m={t:12,r:10,b:26,l:36},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
-    const d=C.fecha.map((f,i)=>({f,a:C.gwh[i],b:C.gwh_anterior[i],v:C.var_pct[i]})).filter(x=>x.v!=null);
-    const lim=Math.max(5,d3.max(d,x=>Math.abs(x.v)));
-    const X=d3.scaleBand().domain(d.map(x=>x.f)).range([m.l,w-m.r]).padding(.22), Y=d3.scaleLinear().domain([-lim,lim]).nice().range([h-m.b,m.t]);
-    svg.append("g").attr("class","rejilla").attr("transform",`translate(${m.l},0)`).call(d3.axisLeft(Y).ticks(5).tickSize(-(w-m.l-m.r)).tickFormat("")).select(".domain").remove();
-    svg.append("g").attr("class","eje").attr("transform",`translate(${m.l},0)`).call(d3.axisLeft(Y).ticks(5).tickFormat(v=>fmtN(v,0)+" %")).select(".domain").remove();
-    svg.append("g").attr("class","eje").attr("transform",`translate(0,${h-m.b})`).call(d3.axisBottom(X).tickValues(d.filter((x,i)=>i%4===0||i===d.length-1).map(x=>x.f)).tickFormat(f=>fechaTxt(f).replace(/ \d{4}$/,"")).tickSizeOuter(0));
-    svg.selectAll(".b").data(d).join("rect").attr("x",x=>X(x.f)).attr("width",X.bandwidth()).attr("y",x=>Y(Math.max(0,x.v))).attr("height",x=>Math.abs(Y(x.v)-Y(0))).attr("rx",3)
-      .attr("fill",x=>x.v>=0?css("--accent"):css("--w2"))
-      .on("mousemove",(e,x)=>mostrar(e,`${fechaTxt(x.f)}<br>Producción: <b>${fmtN(x.a,1)} GWh</b><br>Mismo día ${+x.f.slice(0,4)-1}: ${fmtN(x.b,1)} GWh<br>Variación: <b>${fmt(x.v,1)} %</b>`)).on("mouseleave",ocultar);
-    svg.append("line").attr("x1",m.l).attr("x2",w-m.r).attr("y1",Y(0)).attr("y2",Y(0)).attr("stroke",css("--ink-3"));
-    const prom=d3.mean(d,x=>x.v); svg.append("text").attr("x",w-m.r).attr("y",m.t+4).attr("text-anchor","end").style("font-weight",600).style("fill","var(--ink-2)").text(`Promedio de los ${d.length} días: ${fmt(prom,1)} %`);
-  };dib();window.addEventListener("resize",debounce(()=>{if(visible("v-economia"))dib()},150));}
-  const CM=E.coes_mensual; if(CM){const dib=()=>{
-    const el=document.getElementById("g-coes-m"),w=el.parentNode.clientWidth-36,h=240,m={t:12,r:10,b:26,l:40},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
-    const s=CM.fecha.map((f,i)=>({x:mes(f),f,y:CM.var12[i]})).filter(d=>d.y!=null&&d.x>=mes("2017-01"));
-    const X=d3.scaleTime().domain(d3.extent(s,d=>d.x)).range([m.l,w-m.r]),Y=d3.scaleLinear().domain([-12,15]).range([h-m.b,m.t]).clamp(true);
-    ejes(svg,X,Y,w,h,m,fmes); svg.append("line").attr("x1",m.l).attr("x2",w-m.r).attr("y1",Y(0)).attr("y2",Y(0)).attr("stroke",css("--ink-3"));
-    svg.append("path").attr("d",d3.line().x(d=>X(d.x)).y(d=>Y(d.y))(s)).attr("fill","none").attr("stroke",css("--accent")).attr("stroke-width",2);
-    crosshair(svg,X,Y,w,h,m,s,d=>`Electricidad · ${fechaTxt(d.f)}<br>Var. interanual: <b>${fmt(d.y,1)} %</b>`);
-  };dib();window.addEventListener("resize",debounce(()=>{if(visible("v-economia"))dib()},150));}
 }
 function indices(){
   const I=D.IDX||{}, S=I.semanal;
@@ -786,7 +820,7 @@ function indices(){
     crosshair(svg,X,Y,w,h,m,serie,d=>`Semana del ${fechaTxt(S.semana[d.i])}<br>`+SER.map(s=>`${s[1]}: <b>${fmt(S[s[0]][d.i],1)} °C</b>`).join("<br>"));
   };
   document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{anios=+b.dataset.r;dib()});
-  dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-indices"))dib()},150));}
+  dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-mar"))dib()},150));}
   const IC=I.icen; if(IC){const dib=()=>{
     const el=document.getElementById("g-icen"),w=el.parentNode.clientWidth-36,h=240,m={t:12,r:10,b:26,l:36},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
     const d=IC.fecha.map((f,i)=>({x:mes(f),f,y:IC.valor[i]}));
@@ -797,7 +831,7 @@ function indices(){
     svg.append("line").attr("x1",m.l).attr("x2",w-m.r).attr("y1",Y(0)).attr("y2",Y(0)).attr("stroke",css("--ink-3"));
     [["1982-06","1983-12","1982-83"],["1997-04","1998-12","1997-98"],["2017-01","2017-06","2017"],["2023-03","2024-03","2023"],["2026-01","2027-12","2026"]].forEach(([a,b,t])=>{const tr=d.filter(z=>z.f>=a&&z.f<=b),v=tr.length?tr.reduce((p,q)=>q.y>p.y?q:p):null;if(v)svg.append("text").attr("x",X(v.x)).attr("y",Y(v.y)-4).attr("text-anchor","middle").style("font-weight",600).style("fill","var(--ink-2)").text(t)});
     crosshair(svg,X,Y,w,h,m,d,v=>`ICEN · ${fechaTxt(v.f)}<br><b>${fmt(v.y,2)} °C</b>`);
-  };dib();window.addEventListener("resize",debounce(()=>{if(visible("v-indices"))dib()},150));}
+  };dib();window.addEventListener("resize",debounce(()=>{if(visible("v-mar"))dib()},150));}
 }
 </script>
 </body>
