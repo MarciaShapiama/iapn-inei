@@ -26,9 +26,9 @@ Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos
 | El mar y El Niño | Anomalía diaria del mar (últimos 20 días), Niño 1+2 semanal e ICEN |
 | Método y fuentes | De dónde sale cada cifra, sus límites y quién hizo qué |
 
-### Equipo
+### Autores
 
-Marcia Shapiama (coordinación, tablero y modelo de alerta), Christopher (datos), Maykol Ramírez (monitor de lluvias y comparador satelital, [FENOMENO-NI-O-PI](https://github.com/maykolramirez/FENOMENO-NI-O-PI)) y Luz Ángela (auditoría, pruebas, mapa 2D, informe y presentaciones).
+Marcia, Christopher, Maykol y Luz Ángela.
 
 > «Expuesto» significa que está dentro o cerca de una zona inundable o de agua detectada por satélite. **No equivale a afectados ni damnificados**: esas cifras las registra INDECI/COEN. Un escenario de 1 en 100 años **no anuncia una inundación este año**. Este tablero **no emite alertas**: las alertas oficiales son de SENAMHI, ENFEN e INDECI.
 
