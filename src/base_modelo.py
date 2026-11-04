@@ -158,10 +158,13 @@ def exposicion_distrito() -> pd.DataFrame:
         if not ev:
             continue
         for f in ev["distritos"]:
+            if f["departamento"] == "Sin distrito asignado":
+                continue
             k = normal(f["departamento"]) + normal(f["distrito"])
             fila = filas.setdefault(k, {"clave": k})
             fila[f"km2_inundable_{sufijo}"] = f["km2"]
-            fila[f"viviendas_{sufijo}"] = f["viviendas"]
+            # nombre de columna heredado ("viviendas_*"); son edificaciones de Open Buildings
+            fila[f"viviendas_{sufijo}"] = f.get("edificaciones", f.get("viviendas"))
             fila[f"personas_{sufijo}"] = f["personas"]
     return pd.DataFrame(list(filas.values()))
 

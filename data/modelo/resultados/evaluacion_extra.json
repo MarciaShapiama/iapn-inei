@@ -1,0 +1,443 @@
+{
+ "calculado": "2026-11-04T01:09-05:00",
+ "archivo": "data\\modelo\\resultados\\predicciones_validacion.csv",
+ "n": 31008,
+ "positivos": 311,
+ "incertidumbre": {
+  "climatologia": {
+   "pr_auc": 0.095,
+   "pr_auc_ic90": [
+    0.057,
+    0.165
+   ],
+   "roc_auc": 0.829,
+   "roc_auc_ic90": [
+    0.779,
+    0.871
+   ]
+  },
+  "logistica_simple": {
+   "pr_auc": 0.111,
+   "pr_auc_ic90": [
+    0.08,
+    0.17
+   ],
+   "roc_auc": 0.865,
+   "roc_auc_ic90": [
+    0.842,
+    0.9
+   ],
+   "dif_pr_auc_vs_climatologia_ic90": [
+    -0.003,
+    0.039
+   ],
+   "prob_supera_climatologia": 0.921
+  },
+  "logistica_completa": {
+   "pr_auc": 0.121,
+   "pr_auc_ic90": [
+    0.074,
+    0.212
+   ],
+   "roc_auc": 0.845,
+   "roc_auc_ic90": [
+    0.801,
+    0.895
+   ],
+   "dif_pr_auc_vs_climatologia_ic90": [
+    0.0,
+    0.07
+   ],
+   "prob_supera_climatologia": 0.953
+  },
+  "lightgbm": {
+   "pr_auc": 0.079,
+   "pr_auc_ic90": [
+    0.054,
+    0.148
+   ],
+   "roc_auc": 0.811,
+   "roc_auc_ic90": [
+    0.786,
+    0.866
+   ],
+   "dif_pr_auc_vs_climatologia_ic90": [
+    -0.048,
+    0.014
+   ],
+   "prob_supera_climatologia": 0.21
+  },
+  "_nota": "2000 remuestreos de los 8 años de prueba (bloques anuales). Tasa base de positivos: 0.0100 (PR-AUC de un modelo al azar ≈ tasa base)."
+ },
+ "calibracion": {
+  "climatologia": {
+   "brier": 0.0096,
+   "brier_recalibrado_loyo": 0.0097,
+   "brier_referencia_tasa_base": 0.0099,
+   "deciles": [
+    {
+     "dec": 0,
+     "prob_media": 0.0004,
+     "prob_recalibrada": 0.0002,
+     "tasa_observada": 0.0003,
+     "n": 3101
+    },
+    {
+     "dec": 1,
+     "prob_media": 0.0009,
+     "prob_recalibrada": 0.0004,
+     "tasa_observada": 0.0013,
+     "n": 3101
+    },
+    {
+     "dec": 2,
+     "prob_media": 0.0014,
+     "prob_recalibrada": 0.0009,
+     "tasa_observada": 0.0,
+     "n": 3101
+    },
+    {
+     "dec": 3,
+     "prob_media": 0.0019,
+     "prob_recalibrada": 0.0023,
+     "tasa_observada": 0.0042,
+     "n": 3100
+    },
+    {
+     "dec": 4,
+     "prob_media": 0.0024,
+     "prob_recalibrada": 0.0028,
+     "tasa_observada": 0.0026,
+     "n": 3101
+    },
+    {
+     "dec": 5,
+     "prob_media": 0.0036,
+     "prob_recalibrada": 0.0034,
+     "tasa_observada": 0.001,
+     "n": 3101
+    },
+    {
+     "dec": 6,
+     "prob_media": 0.0085,
+     "prob_recalibrada": 0.0068,
+     "tasa_observada": 0.0077,
+     "n": 3100
+    },
+    {
+     "dec": 7,
+     "prob_media": 0.0156,
+     "prob_recalibrada": 0.0131,
+     "tasa_observada": 0.0197,
+     "n": 3101
+    },
+    {
+     "dec": 8,
+     "prob_media": 0.0215,
+     "prob_recalibrada": 0.0192,
+     "tasa_observada": 0.0158,
+     "n": 3101
+    },
+    {
+     "dec": 9,
+     "prob_media": 0.0692,
+     "prob_recalibrada": 0.0522,
+     "tasa_observada": 0.0477,
+     "n": 3101
+    }
+   ]
+  },
+  "logistica_simple": {
+   "brier": 0.1438,
+   "brier_recalibrado_loyo": 0.0095,
+   "brier_referencia_tasa_base": 0.0099,
+   "deciles": [
+    {
+     "dec": 0,
+     "prob_media": 0.0228,
+     "prob_recalibrada": 0.0,
+     "tasa_observada": 0.0,
+     "n": 3101
+    },
+    {
+     "dec": 1,
+     "prob_media": 0.0376,
+     "prob_recalibrada": 0.0,
+     "tasa_observada": 0.0,
+     "n": 3101
+    },
+    {
+     "dec": 2,
+     "prob_media": 0.0622,
+     "prob_recalibrada": 0.0001,
+     "tasa_observada": 0.0003,
+     "n": 3101
+    },
+    {
+     "dec": 3,
+     "prob_media": 0.1042,
+     "prob_recalibrada": 0.0017,
+     "tasa_observada": 0.0023,
+     "n": 3100
+    },
+    {
+     "dec": 4,
+     "prob_media": 0.1675,
+     "prob_recalibrada": 0.0019,
+     "tasa_observada": 0.0016,
+     "n": 3101
+    },
+    {
+     "dec": 5,
+     "prob_media": 0.2539,
+     "prob_recalibrada": 0.0023,
+     "tasa_observada": 0.0019,
+     "n": 3101
+    },
+    {
+     "dec": 6,
+     "prob_media": 0.3513,
+     "prob_recalibrada": 0.0058,
+     "tasa_observada": 0.009,
+     "n": 3100
+    },
+    {
+     "dec": 7,
+     "prob_media": 0.4397,
+     "prob_recalibrada": 0.0118,
+     "tasa_observada": 0.009,
+     "n": 3101
+    },
+    {
+     "dec": 8,
+     "prob_media": 0.5699,
+     "prob_recalibrada": 0.021,
+     "tasa_observada": 0.0203,
+     "n": 3101
+    },
+    {
+     "dec": 9,
+     "prob_media": 0.842,
+     "prob_recalibrada": 0.0557,
+     "tasa_observada": 0.0558,
+     "n": 3101
+    }
+   ]
+  },
+  "logistica_completa": {
+   "brier": 0.1468,
+   "brier_recalibrado_loyo": 0.0096,
+   "brier_referencia_tasa_base": 0.0099,
+   "deciles": [
+    {
+     "dec": 0,
+     "prob_media": 0.0234,
+     "prob_recalibrada": 0.0,
+     "tasa_observada": 0.0,
+     "n": 3101
+    },
+    {
+     "dec": 1,
+     "prob_media": 0.0416,
+     "prob_recalibrada": 0.0005,
+     "tasa_observada": 0.0006,
+     "n": 3101
+    },
+    {
+     "dec": 2,
+     "prob_media": 0.0604,
+     "prob_recalibrada": 0.0013,
+     "tasa_observada": 0.0013,
+     "n": 3101
+    },
+    {
+     "dec": 3,
+     "prob_media": 0.0892,
+     "prob_recalibrada": 0.0018,
+     "tasa_observada": 0.0023,
+     "n": 3100
+    },
+    {
+     "dec": 4,
+     "prob_media": 0.1354,
+     "prob_recalibrada": 0.002,
+     "tasa_observada": 0.0023,
+     "n": 3101
+    },
+    {
+     "dec": 5,
+     "prob_media": 0.2077,
+     "prob_recalibrada": 0.0055,
+     "tasa_observada": 0.0071,
+     "n": 3101
+    },
+    {
+     "dec": 6,
+     "prob_media": 0.305,
+     "prob_recalibrada": 0.0056,
+     "tasa_observada": 0.0035,
+     "n": 3100
+    },
+    {
+     "dec": 7,
+     "prob_media": 0.4304,
+     "prob_recalibrada": 0.0088,
+     "tasa_observada": 0.0084,
+     "n": 3101
+    },
+    {
+     "dec": 8,
+     "prob_media": 0.6073,
+     "prob_recalibrada": 0.0223,
+     "tasa_observada": 0.0229,
+     "n": 3101
+    },
+    {
+     "dec": 9,
+     "prob_media": 0.8758,
+     "prob_recalibrada": 0.0531,
+     "tasa_observada": 0.0519,
+     "n": 3101
+    }
+   ]
+  },
+  "lightgbm": {
+   "brier": 0.0127,
+   "brier_recalibrado_loyo": 0.0098,
+   "brier_referencia_tasa_base": 0.0099,
+   "deciles": [
+    {
+     "dec": 0,
+     "prob_media": 0.0007,
+     "prob_recalibrada": 0.0,
+     "tasa_observada": 0.0,
+     "n": 3101
+    },
+    {
+     "dec": 1,
+     "prob_media": 0.0011,
+     "prob_recalibrada": 0.0001,
+     "tasa_observada": 0.0003,
+     "n": 3101
+    },
+    {
+     "dec": 2,
+     "prob_media": 0.0017,
+     "prob_recalibrada": 0.0031,
+     "tasa_observada": 0.0035,
+     "n": 3101
+    },
+    {
+     "dec": 3,
+     "prob_media": 0.0028,
+     "prob_recalibrada": 0.0042,
+     "tasa_observada": 0.0048,
+     "n": 3100
+    },
+    {
+     "dec": 4,
+     "prob_media": 0.0048,
+     "prob_recalibrada": 0.0045,
+     "tasa_observada": 0.0074,
+     "n": 3101
+    },
+    {
+     "dec": 5,
+     "prob_media": 0.0088,
+     "prob_recalibrada": 0.0044,
+     "tasa_observada": 0.0032,
+     "n": 3101
+    },
+    {
+     "dec": 6,
+     "prob_media": 0.0168,
+     "prob_recalibrada": 0.0055,
+     "tasa_observada": 0.0039,
+     "n": 3100
+    },
+    {
+     "dec": 7,
+     "prob_media": 0.0317,
+     "prob_recalibrada": 0.0074,
+     "tasa_observada": 0.0074,
+     "n": 3101
+    },
+    {
+     "dec": 8,
+     "prob_media": 0.0622,
+     "prob_recalibrada": 0.0193,
+     "tasa_observada": 0.0193,
+     "n": 3101
+    },
+    {
+     "dec": 9,
+     "prob_media": 0.2068,
+     "prob_recalibrada": 0.0533,
+     "tasa_observada": 0.0503,
+     "n": 3101
+    }
+   ]
+  }
+ },
+ "falsos_negativos": {
+  "modelo": "logistica_simple",
+  "umbral_top": 0.05,
+  "positivos": 311,
+  "capturados": 94,
+  "falsos_negativos": 217,
+  "fn_por_mes": {
+   "1": 39,
+   "2": 54,
+   "3": 65,
+   "4": 24,
+   "5": 3,
+   "6": 3,
+   "10": 11,
+   "11": 6,
+   "12": 12
+  },
+  "fn_por_anio": {
+   "2008": 29,
+   "2009": 15,
+   "2010": 73,
+   "2011": 17,
+   "2012": 1,
+   "2013": 21,
+   "2014": 24,
+   "2015": 37
+  },
+  "fn_top_distritos": {
+   "Pampas de Hospital": 20,
+   "San Jacinto": 20,
+   "San Juande la Virgen": 17,
+   "Zarumilla": 17,
+   "Sullana": 12,
+   "Corrales": 11,
+   "Huancabamba": 9,
+   "Ayabaca": 8,
+   "Mancora": 8,
+   "Castilla": 8
+  },
+  "captura_por_mes": {
+   "1": 0.391,
+   "2": 0.341,
+   "3": 0.235,
+   "4": 0.2,
+   "5": 0.4,
+   "6": 0.0,
+   "9": 1.0,
+   "10": 0.083,
+   "11": 0.0,
+   "12": 0.429
+  },
+  "fn_por_departamento": {
+   "Piura": 112,
+   "Tumbes": 105
+  },
+  "captura_por_departamento": {
+   "Piura": 0.051,
+   "Tumbes": 0.456
+  },
+  "lectura": "217 de 311 emergencias (70%) quedan fuera del 5 % de mayor riesgo. El 84% de esos falsos negativos ocurre entre enero y abril (meses con más casos: 3, 2, 1), es decir, en plena temporada de lluvias, no fuera de ella. Por departamento: Piura 52% de los falsos negativos (captura 5%), Tumbes 48% de los falsos negativos (captura 46%)."
+ }
+}

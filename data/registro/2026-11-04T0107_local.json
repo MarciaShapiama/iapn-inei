@@ -1,0 +1,81 @@
+{
+ "perfil": "local",
+ "inicio": "2026-11-04T01:07-05:00",
+ "fin": "2026-11-04T01:08-05:00",
+ "pasos": [
+  {
+   "paso": "impacto.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 22.4,
+   "salida_final": [
+    "2023: 728.3 km², 62 personas, 19 edificaciones (sin distrito 0), colegios {'dentro': 0, 'anillo_0_500m': 10, 'anillo_500m_1km': 44, 'acum_500m': 10, 'acum_1km': 54}",
+    "  capa_vivo.geojson: 106 polígonos, 30 KB",
+    "vivo: 25.4 km², 19 personas, 5 edificaciones (sin distrito 0), colegios {'dentro': 0, 'anillo_0_500m': 9, 'anillo_500m_1km': 52, 'acum_500m': 9, 'acum_1km': 61}",
+    "  capa_rp10.geojson: 7135 polígonos, 2448 KB",
+    "rp10: 4782.5 km², 284,820 personas, 111,160 edificaciones (sin distrito 3,004), colegios {'dentro': 446, 'anillo_0_500m': 1340, 'anillo_500m_1km': 745, 'acum_500m': 1786, 'acum_1km': 2531}",
+    "  capa_rp100.geojson: 7336 polígonos, 2592 KB",
+    "rp100: 5594.0 km², 408,970 personas, 152,486 edificaciones (sin distrito 4,138), colegios {'dentro': 684, 'anillo_0_500m': 1268, 'anillo_500m_1km': 684, 'acum_500m': 1952, 'acum_1km': 2636}",
+    "inundacion.json: 3472 KB · exposicion_distritos.csv: 385 filas"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "panel.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.7,
+   "salida_final": [
+    "             Cura Mori     Piura           23.57           13147          31.866930             75.4               Alta",
+    "      Cristo Nos Valga   Sechura           44.30            3810          34.470296             75.4               Alta",
+    "          Tambo Grande     Piura            7.26           12646          38.073700             72.4               Alta",
+    "     Rinconada Llicuar   Sechura           98.74            2646          25.803800             71.7               Alta",
+    "              Vichayal     Paita           41.27            3874          29.242720             71.0               Alta",
+    "               Sechura   Sechura           29.96            7123          25.803800             69.5               Alta",
+    "Bellavista de la Union   Sechura           95.17            2954          20.591766             69.3               Alta",
+    "76 distritos; prioridad: {'Media': 40, 'Baja': 21, 'Alta': 15}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "metadatos.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.6,
+   "salida_final": [
+    "  vigente        mar                último dato 2026-11-02",
+    "  vigente        nino12             último dato 2026-10-28",
+    "  rezagado       icen               último dato 2026-08",
+    "  estimado       lluvia             último dato 2026-11-03",
+    "  estimado       caudal             último dato 2026-11-03",
+    "  estimado       indice_provincial  último dato 2026-11-03",
+    "  vigente        vulnerabilidad     último dato 2019-12-31",
+    "Resumen: {'vigente': 8, 'rezagado': 1, 'no disponible': 1, 'estimado': 6}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "auditoria.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 2.3,
+   "salida_final": [
+    "  },",
+    "  \"estimacion_2020_tabla_ubigeo\": {",
+    "   \"PIURA\": 2069446.0,",
+    "   \"TUMBES\": 248097.0",
+    "  },",
+    "  \"nota\": \"La estimación 2020 incluye 2 distritos ausentes en GADM (200115, 240203). Para validar con cifras oficiales use el Censo 2017 (INEI) o las proyecciones distritales oficiales vigentes.\"",
+    " }",
+    "}"
+   ],
+   "error_final": []
+  }
+ ],
+ "ok": true,
+ "fallidos": []
+}

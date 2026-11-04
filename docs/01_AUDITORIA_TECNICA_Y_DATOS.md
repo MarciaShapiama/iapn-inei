@@ -1,0 +1,237 @@
+# 01 · Auditoría técnica y de datos
+
+**Proyecto:** Inundaciones por El Niño en Tumbes y Piura (proyecto integrador PEU Ciencia de Datos, INEI)
+**Fecha de la auditoría:** 4 de noviembre de 2026 (hora de Lima)
+**Código auditado:** `https://github.com/marciashapiama/iapn-inei`, rama `main`, commit `0915db6` (clon público de solo lectura en `D:\iapn-inei`).
+**Alcance:** código, datos versionados, flujos de GitHub Actions, tablero publicado (archivos de `dashboard/`). Todas las cifras de este documento se recalcularon con los archivos del repositorio; los comandos están al final.
+
+> **Procedencia del código.** El repositorio enlazado desde la sección de métodos del sitio (`MarciaShapiama/inundaciones-nino-tumbes-piura`) devuelve *Repository not found* sin autenticación (comprobado con `git ls-remote` el 4/11/2026). El último commit de `iapn-inei` se titula «Enlaces con el nuevo nombre del repositorio», así que probablemente es el mismo proyecto con otro nombre. El README todavía enlaza el nombre antiguo. Esta auditoría se hizo sobre `iapn-inei`. El monitor complementario (`maykolramirez/FENOMENO-NI-O-PI`) se clonó **solo para leerlo** y no se modificó.
+
+---
+
+## 1. Resumen
+
+Lo que encontré:
+
+1. **Población mal ubicada (error crítico, corregido).** El ráster WorldPop recortado estaba **86 columnas (0,072°, unos 7,9 km) al oeste** de su lugar. La caja de recorte empezaba en −81,40°, pero el archivo de Perú empieza cerca de −81,33°. La población de Castilla aparecía en Piura, la de Tumbes en Corrales y la de Sullana en Miguel Checa. Los totales de la caja casi no cambiaban, pero **las cifras por distrito y por evento estaban equivocadas**. En 2023, la «población en la mancha» bajó de 4.756 a **62** personas. Lo detecté porque la población por distrito no coincidía con las estimaciones 2020 (Catacaos 419.523 frente a 82.327). Lo comprobé correlacionando la población con la densidad de edificaciones de Open Buildings, que es una fuente independiente: r = 0,00 sin corregir y **r = 0,80** con el desplazamiento de 86 columnas.
+2. **Colegios y salud: anillos rotulados como si fueran acumulados (error de rotulado, corregido).** «684 dentro / 1.268 a ≤ 500 m / 684 a ≤ 1 km» eran **anillos que no se superponen**: dentro, de 0 a 500 m y de 500 m a 1 km. Que aparezca dos veces 684 es una coincidencia; la recalculé directamente desde el ráster. El acumulado correcto hasta 1 km es **2.636 colegios** y **577 establecimientos de salud**.
+3. **Piura + Tumbes no daba el total (error de agregación, corregido).** Las 4.138 edificaciones que faltaban en la zona 1 en 100 años caen dentro de la caja de estudio pero **fuera de los 76 polígonos distritales**: 1.871 al sur (Lambayeque), 439 al norte (Ecuador) y 1.828 en bordes simplificados. Ahora aparecen como «Sin distrito asignado» y la suma coincide con el total.
+4. **2023: 728 km² con solo 19 edificaciones no es un error de proyección.** El 86 % de la mancha está en el distrito de **Sechura**, en la depresión desértica donde se forma la laguna La Niña, que está casi deshabitada. El CRS, la rejilla y las fechas son coherentes. Lo que sí estaba mal eran las 4.756 personas (punto 1).
+5. **El radar no detecta la inundación urbana documentada de 2017.** En Catacaos, inundado por el desborde del río Piura en marzo de 2017, el radar solo detecta 1,1 km². La capa 2017 sirve como mínimo y para la planicie desértica, **no como verdad-terreno**.
+6. **La capa «vivo» no pasa el control de calidad.** Su periodo de referencia seca (1/8–31/10/2026) se solapa con el periodo del evento (10/10–3/11/2026). Corregí la función que calcula los periodos; la capa publicada queda como `no disponible` hasta que se recalcule.
+7. **«Viviendas»** eran huellas de edificación de Google Open Buildings (cualquier uso). Ahora se rotulan como **edificaciones potencialmente expuestas**.
+8. **No hubo mapa sin GPU.** El tablero dependía por completo de deck.gl/WebGL. Ahora detecta si hay WebGL y, si no, ofrece `mapa2d.html` (Leaflet, Canvas/SVG, sin GPU).
+
+---
+
+## 2. Arquitectura existente
+
+```
+GitHub Actions (cron)                         data/ (versionado en git)             dashboard/ (GitHub Pages)
+─────────────────────                         ─────────────────────────             ─────────────────────────
+actualizar.yml  diario 13:20 UTC ──► descargar_mar.py ──► historico/mar/AAAA-MM-DD.csv.gz ─┐
+                                    descargar_indicadores.py ─► icen.csv, noaa_semanal.csv,  ├─► construir.py ─► data/*.json
+                                                               bcrp, coes (+ copias fechadas)│                 (mar, regiones,
+                                    descargar_zonas.py ─► zonas_lluvia.csv, rios_caudal.csv ─┘                  zonas, índices…)
+inundaciones.yml lun/jue ─► exposicion.py ─► exposicion/ (WorldPop, Open Buildings, RENIPRESS, OSM, GADM, JRC)
+                            huellas.py ─► huellas/{2017,2023,vivo}.tif (Sentinel-1, Planetary Computer)
+                            impacto.py ─► inundacion.json, capa_*.geojson
+base_modelo.yml  lunes ─► base_modelo.py ─► modelo/base_distrito_semana.csv (DesInventar, NASA POWER, GloFAS)
+                          modelo_inundacion.py ─► modelo/resultados/, riesgo.json
+pages.yml  (push a dashboard/ o al terminar «Actualizar datos») ─► publica dashboard/
+```
+
+No hay backend: es un sitio estático con archivos JSON/GeoJSON precalculados. **Es una arquitectura sostenible y gratuita**, por eso la mantuve.
+
+### 2.1 Archivos y responsabilidades (antes de la auditoría)
+
+| Archivo | Responsabilidad | ¿Funciona? (verificado) |
+|---|---|---|
+| `src/config.py` | Rutas, caja marina, umbrales ENFEN, series BCRP | Sí |
+| `src/descargar_mar.py` | OISST v2.1 diario vía ERDDAP (principal + espejo) | Sí: 20 días 13/10–2/11/2026 en `data/historico/mar` |
+| `src/descargar_indicadores.py` | Niño 1+2/3/3.4/4 (CPC), ICEN (IGP), BCRP, COES | Sí: ICEN hasta 2026-08, Niño semanal hasta 2026-10-28 |
+| `src/descargar_zonas.py` | Lluvia Open-Meteo, normal ERA5, caudal GloFAS (34 provincias) | Sí: hasta 2026-11-03 observado y pronóstico hasta 2026-11-10 |
+| `src/construir.py` | Une todo y calcula el índice provincial (mar 50 + lluvia 25 + caudal 25) | Sí; pesos sin calibrar (ver §6) |
+| `src/exposicion.py` | Descarga WorldPop, Open Buildings, RENIPRESS, OSM, GADM, JRC | Parcial: **recorte de WorldPop desplazado** (E1) y nombres GADM mal separados (E9) |
+| `src/huellas.py` | Sentinel-1 RTC: detección de cambios VV, máscaras DEM | Parcial: referencia «vivo» solapada (E4); umbral fijo; compuesto mínimo |
+| `src/impacto.py` | Cruce de manchas con población, edificaciones, colegios y salud | Parcial: rótulos de anillos (E2), suma por departamento (E3) |
+| `src/base_modelo.py`, `src/modelo_inundacion.py` | Base distrito-semana y modelos de alerta | Sí; reproducido con las mismas métricas (§7) |
+| `dashboard/index.html` | Tablero D3 + deck.gl 9.0.38 (3D) | Sí con WebGL; **sin respaldo 2D** (E6) |
+
+### 2.2 Archivos que agregué o modifiqué
+
+| Archivo | Cambio |
+|---|---|
+| `src/comun.py` (nuevo) | Descargas con reintentos y espera exponencial limitada, estado de vigencia, manifiesto SHA-256 de versiones, escritura atómica de JSON, configuración por variables de entorno |
+| `src/etl.py` (nuevo) | Orquestador con perfiles `local`, `diario` e `inundacion`; registro en `data/registro/`; conserva el último resultado válido; anotaciones `::warning::` en Actions |
+| `src/ubigeo.py` (nuevo) | UBIGEO INEI de los 76 distritos (empate por nombre normalizado; 76/76) |
+| `src/reparar_poblacion.py` (nuevo) | Estima y corrige el desplazamiento del ráster WorldPop (idempotente) |
+| `src/impacto.py` | Anillos y acumulados explícitos, «Sin distrito asignado», edificaciones, UBIGEO, QA del radar, CSV por distrito |
+| `src/huellas.py` | Referencia seca que nunca se solapa con el evento, parámetros por entorno, Otsu acotado (diagnóstico u opcional), compuesto p10 opcional, metadatos del umbral |
+| `src/exposicion.py` | Recorte de WorldPop corregido; corrección de 4 nombres de distrito |
+| `src/metadatos.py`, `src/panel.py`, `src/auditoria.py`, `src/ml_evaluacion.py`, `src/actualizar_exposicion_base.py` (nuevos) | Trazabilidad, panel de decisiones, evidencia reproducible, evaluación de ML |
+| `dashboard/mapa2d.html` (nuevo) | Mapa 2D accesible sin GPU, selectores, comparador, metadatos, panel y descargas |
+| `dashboard/index.html` | Detección de WebGL y desvío a 2D, rótulos corregidos, claves nuevas del JSON |
+| `tests/` (nuevo), `.github/workflows/pruebas.yml` (nuevo), demás workflows | 38 pruebas; las actualizaciones pasan por `etl.py` y por pruebas antes de guardar |
+
+---
+
+## 3. Fuentes, licencias y vigencia
+
+El estado se calcula a partir de la fecha **leída en los archivos** (`src/metadatos.py`, con `IAPN_HOY=2026-11-04`). Se publica en `dashboard/data/metadatos.json` y se muestra en el mapa 2D.
+
+| Variable | Fuente / URL | Licencia | Resolución / versión | Frecuencia | Último dato | Estado |
+|---|---|---|---|---|---|---|
+| Peligro 1/10 y 1/100 años | JRC CEMS-GloFAS flood hazard v2 (`jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/CEMS-GLOFAS/flood_hazard/`) | CC BY 4.0 | ~90 m | sin actualización periódica | (versión v2) | **estimado** (escenario) |
+| Agua por radar 2017 / 2023 | Sentinel-1 RTC, Microsoft Planetary Computer | Copernicus libre y abierto | ~55 m | una vez | 29/4/2017 · 15/4/2023 | vigente (histórico) |
+| Agua por radar «vivo» | Sentinel-1 RTC | idem | ~55 m | lun y jue | 2/11/2026 | **no disponible** (QA, E4) |
+| Población | WorldPop R2025A 2026, 100 m, constrained | CC BY 4.0 | 100 m | anual | 2026 | **estimado** (modelado) |
+| Edificaciones | Google Open Buildings v3 vía VIDA/source.coop | CC BY 4.0 / ODbL | huella | — | v3 | vigente (línea base) |
+| Colegios | OpenStreetMap (Overpass) | ODbL 1.0 | punto | una vez | 3/11/2026 | vigente; **no es el padrón ESCALE** |
+| Salud | RENIPRESS (SUSALUD), corte 30/9/2026 | Datos abiertos (atribución) | punto | mensual | 30/9/2026 | vigente |
+| Distritos | GADM 4.1 | **solo uso académico/no comercial; redistribución no permitida sin permiso** | — | — | 4.1 | vigente; riesgo de licencia (E12) |
+| TSM diaria | NOAA OISST v2.1 NRT (ERDDAP) | dominio público | 0,25° | diaria | 2/11/2026 | vigente |
+| Niño 1+2 semanal | NOAA CPC `wksst9120.for` | dominio público | semanal | semanal | 28/10/2026 | vigente |
+| ICEN | IGP `met.igp.gob.pe/datos/ICEN.txt` | pública | mensual | mensual (~2 meses de rezago) | 2026-08 | **rezagado** (tolerancia 75 días) |
+| Lluvia | Open-Meteo (modelos) + normal ERA5 | CC BY 4.0 | punto | diaria | 3/11/2026 (+ pronóstico al 10/11) | estimado (modelado) |
+| Caudal | GloFAS v4 vía Open-Meteo Flood API | CC BY 4.0 | ~5 km | diaria | 3/11/2026 | estimado (modelado) |
+| Pobreza / IDH | Compilación `jmcastagnetto/ubigeo-peru-aumentado` (MIT); declara INEI 2018 y PNUD 2019 | MIT (compilación) | distrito | — | 2019 | vigente; **verificar contra el original** |
+| Emergencias | DesInventar (fuente INDECI) | — | distrito-fecha | — | 2015 | histórico: no tiene fechas después de 2015 |
+
+**Costos y límites de APIs:** todas las fuentes son gratuitas y no piden credenciales. Open-Meteo pide uso no comercial y razonable (el script limita el tiempo a 8 minutos por corrida). Overpass y ERDDAP tienen límites por IP; el código ya prueba servidores espejo. Planetary Computer firma las URL con tokens temporales y no necesita cuenta para leer catálogos públicos. GitHub Actions es gratuito en repositorios públicos.
+
+---
+
+## 4. Pruebas que pidió el enunciado
+
+### 4.1 Coherencia de conteos dentro / 500 m / 1 km (E2)
+
+Recalculado desde `peligro_rp100.tif` con transformada de distancia euclidiana en metros (`src/auditoria.py`):
+
+| Escenario 1/100 | dentro | 0–500 m (anillo) | 500 m–1 km (anillo) | **≤ 500 m (acum.)** | **≤ 1 km (acum.)** |
+|---|---|---|---|---|---|
+| Colegios (7.111 en la caja) | 684 | 1.268 | 684 | **1.952** | **2.636** |
+| Salud (1.009) | 146 | 285 | 146 | **431** | **577** |
+
+**Causa:** `np.select` en `impacto.py` asignaba cada local a una sola clase (anillo), pero el tablero las rotulaba «a ≤ 500 m» y «a ≤ 1 km». **Corrección:** el JSON trae `dentro`, `anillo_0_500m`, `anillo_500m_1km`, `acum_500m` y `acum_1km`. Una prueba exige `dentro ≤ acum_500m ≤ acum_1km` y que la lista tenga exactamente `acum_1km` elementos.
+
+### 4.2 Sumas de subregiones frente al total (E3)
+
+Antes: total 152.486 frente a Piura 137.542 + Tumbes 10.806 = 148.348. **Diferencia: 4.138**, igual a las edificaciones con `id_distrito = 0`. Por zona: sur de la caja (Lambayeque) 1.871; bordes y simplificación 1.828; norte (Ecuador) 439. No hay denominadores distintos ni doble conteo. **Corrección:** una fila «Sin distrito asignado» en `por_departamento`, en `distritos` y en el CSV, y un bloque `conciliacion` en el JSON.
+
+### 4.3 El caso 2023: 728,3 km², 4.756 personas y 19 «viviendas»
+
+| Revisión | Resultado |
+|---|---|
+| CRS y rejilla | Todos los rásteres en EPSG:4326 con el mismo origen (−81,40; −3,35). La huella está a 0,0005° y el peligro a 1/1200°. Sin errores |
+| Fechas | 13 pasadas del 2/3 al 15/4/2023; referencia seca del 1/8 al 30/11/2022 (30 pasadas). Sin solape |
+| Recorte | Detección bruta en la caja: 9.574,9 km². Solo el **7,8 %** cae dentro de polígonos distritales; el resto es mar o Ecuador. Queda 728,3 km² en tierra después de erosionar la costa y quitar manchas de menos de 10 px |
+| Agua permanente | 1.076,9 km² en tierra marcados como permanentes en la referencia y excluidos |
+| Distribución | **86 % de la mancha en Sechura** (627,5 km²), en el desierto. Le siguen La Brea, Lancones, Vichayal y Cristo Nos Valga |
+| Población | **Error real**: con la población desplazada salían 4.756 personas; corregido, **62** dentro y 6.594 hasta 500 m |
+| Edificaciones | 19 dentro y 4.315 hasta 500 m. Es coherente con una mancha en el desierto |
+
+**Conclusión:** la superficie y las edificaciones son coherentes. La población estaba mal por E1. El radar con umbral fijo y compuesto mínimo detecta sobre todo la planicie desértica y **subdetecta el agua en las ciudades**.
+
+### 4.4 Validez del radar en zonas urbanas (E5)
+
+| Distrito | Radar 2017 (km²) | Radar 2023 (km²) | Zona 1/100 (km²) |
+|---|---|---|---|
+| Catacaos | 1,05 | 0,00 | 113,7 |
+| Piura | 3,73 | 0,08 | — |
+| Castilla | 2,22 | 0,50 | — |
+| Cura Mori | 6,02 | 0,00 | — |
+
+La comparación de 2017 con INDECI (Piura 74.348 viviendas afectadas frente a ~18 mil edificaciones a ≤ 500 m del agua detectada) muestra el mismo sesgo. Además mezcla dos unidades distintas (viviendas afectadas por lluvias, huaicos e inundación frente a edificaciones). **Recomendación:** validar con una referencia independiente (por ejemplo, mapas de activaciones de emergencia o imágenes ópticas de alta resolución de fechas cercanas) antes de usar el radar como «observado». No verifiqué qué productos de referencia existen para Piura 2017.
+
+### 4.5 Umbral SAR fijo
+
+- Este proyecto: VV < **−17 dB** en el **mínimo** de todas las pasadas del evento y caída > 3 dB frente a la mediana seca. Con 30 pasadas (2017), el mínimo acumula el moteado (*speckle*) y favorece los falsos positivos en arena lisa y salinas.
+- Monitor complementario (`src/agua_radar.py`, leído y sin modificar): VV < **−18 dB** fijo, más «nueva» si la referencia es ≥ −15 dB.
+- La literatura muestra que el umbral óptimo cambia con el lugar, el ángulo de incidencia, la órbita, la temporada y la polarización. Por eso se usan umbrales automáticos como Otsu, Bmax/Otsu por teselas o la división jerárquica (Martinis et al., 2009; Chini et al., 2017). Breña Aliaga et al. (2026) calibran Bmax Otsu con PlanetScope en el río Tumbes (ver doc 04).
+- **Cambio:** `huellas.py` calcula y guarda el umbral Otsu como diagnóstico (`umbral_otsu_diagnostico`), acotado a [−24, −14] dB. Permite `IAPN_S1_UMBRAL_MODO=otsu` e `IAPN_S1_COMPUESTO=p10`. No lo dejé activado por defecto porque **no pude volver a procesar Sentinel-1 en esta sesión** (varios GB vía Planetary Computer) y porque necesita datos de referencia independientes para elegir el método.
+
+### 4.6 Unidades, índices y fechas
+
+| Revisión | Resultado |
+|---|---|
+| Unidades | TSM en °C, lluvia en mm/día, caudal en m³/s, superficies en km² (aproximación equirrectangular con cos(lat₀); error < 1 % en la caja). Correctas |
+| ICEN | Es la **media corrida de 3 meses** de Niño 1+2 (definición ENFEN). El tablero aplica los umbrales ENFEN (0,4/1,0/1,7/3,0 °C) a la **anomalía diaria regional** y la llama «magnitud». Eso es una **extrapolación**: los umbrales se definieron para el ICEN. La rotulé como referencia en los metadatos. No verifiqué la versión vigente en 2026 de la nota técnica ENFEN ni el comunicado oficial más reciente; hay que revisarlos en enfen.imarpe.gob.pe / igp.gob.pe |
+| Valores extremos | Anomalía regional de Piura +7,4 °C y Niño 1+2 semanal 5,4 °C (28/10/2026). Son consistentes entre fuentes (OISST diario y CPC semanal), pero muy altos: conviene contrastarlos con el comunicado ENFEN |
+| Fechas Lima/UTC | La corrida diaria (13:20 UTC = 8:20 Lima) usa fecha de Lima. `resumen.json` usa UTC («2026-11-04 01:07 UTC»). Hay un commit que borró `historico/zonas/2026-11-04_*.csv.gz`, señal de que se mezcló la fecha UTC con la de Lima en una corrida nocturna |
+| Histórico | `data/historico/mar` tiene solo 20 archivos: el proyecto empezó el 3/11/2026 y descargó la ventana completa. No faltan días |
+| Nulos | `construir.py` reemplaza los NaN por `null` en el JSON; el tablero los muestra como «—» |
+
+### 4.7 Prueba sin WebGL (E6)
+
+Agregué `hayWebGL()` (canvas `webgl2`/`webgl`) y el parámetro `?sin3d=1` para forzar el modo sin GPU. Recorrido real en el navegador integrado: con `index.html?sin3d=1#inundaciones` aparece el mensaje *«Este navegador no puede crear un contexto WebGL… No es una falla del servidor»* con un enlace a `mapa2d.html`. Sin el parámetro, deck.gl se inicializa (`I3.deck = true`) y la consola no muestra errores de deck/WebGL. **No pude reproducir la falla original de WebGL** con un navegador sin GPU real; la simulé con el parámetro.
+
+---
+
+## 5. Tabla de errores
+
+| ID | Severidad | Error | Causa | Arreglo | Evidencia |
+|---|---|---|---|---|---|
+| E1 | **Crítica** | Población desplazada ~7,9 km al oeste; cifras por distrito y por evento equivocadas | La ventana de `from_bounds` salía del ráster de Perú y `window_transform` conservaba el origen pedido | `exposicion.py`: intersección de ventana; `reparar_poblacion.py` corrige el archivo actual; prueba de alineación (r > 0,7, desplazamiento 0) | `docs/evidencia/cifras_antes_despues.csv`; `test_poblacion_alineada_con_edificaciones` |
+| E2 | Alta | Anillos rotulados como acumulados (684 / 1.268 / 684) | `np.select` daba clases disjuntas; el rótulo decía «≤» | Claves explícitas de anillo y acumulado; rótulos «0–500 m», «500 m–1 km» y «acumulado» | `test_acumulados_monotonos`; `auditoria_cifras.json` §1 |
+| E3 | Alta | Piura + Tumbes ≠ total (4.138) | Edificaciones fuera de los polígonos se descartaban en silencio | Fila «Sin distrito asignado» y bloque `conciliacion` | `test_suma_de_departamentos_igual_al_total` |
+| E4 | Alta | Referencia seca «vivo» solapada con el evento | `ref_anio` fijo de agosto a octubre aunque el evento empezara en octubre | `referencia_seca()` termina el día anterior al evento; `assert` en `procesar`; capa publicada marcada `no disponible` | `test_referencia_no_se_solapa_con_el_evento` (5 fechas) |
+| E5 | Alta (metodológica) | El radar subdetecta inundación urbana (Catacaos 2017: 1,1 km²) | VV con umbral fijo; doble rebote en ciudades; sin referencia independiente | Advertencias en metadatos; rótulo «mínimo»; plan de validación (doc 02, caso B) | §4.4 |
+| E6 | Media | Sin mapa sin GPU | Todo dependía de deck.gl | `mapa2d.html` (Leaflet) y detección de WebGL | Recorrido §9; `test_respaldo_sin_webgl_presente` |
+| E7 | Media | «Viviendas» = edificaciones; «afectar» en vez de «exponer» | Rótulo heredado | Rótulos y claves `edificaciones*`; prueba contra «damnificad» y `"viviendas"` | `test_sin_rotulos_engañosos` |
+| E8 | Media | Colegios de OSM incluyen locales de Ecuador y no son el padrón oficial | Consulta Overpass por caja | Distrito asignado por polígono; los de Ecuador quedan «Sin distrito»; advertencia; hay ruta preparada para ESCALE | 271 colegios sin distrito a ≤ 1 km (1/100) |
+| E9 | Baja | Nombres GADM mal separados («Migu el Checa», «San Juande la Virgen»…) | Expresión regular de separación | `CORRECCIONES_NOMBRE`; GeoJSON corregido | `test_distritos_76_nombres_corregidos` |
+| E10 | Media | Faltan 2 distritos INEI en GADM: 200115 Veintiséis de Octubre (~130 mil hab.) y 240203 Canoas de Punta Sal | GADM 4.1 desactualizado | Documentado; Piura absorbe a Veintiséis de Octubre (razón WorldPop/estimación 1,75). **Pendiente P1:** límites oficiales INEI/IGN | `ubigeo.py`; `test_poblacion_distrital_plausible` |
+| E11 | Media | Algunas actualizaciones no se publicaban | `pages.yml` solo se activaba con «Actualizar datos»; los push hechos con `GITHUB_TOKEN` no activan otros workflows | `workflow_run` incluye «Inundaciones» y «Base para el modelo» | `.github/workflows/pages.yml` |
+| E12 | Media (legal) | Se redistribuyen polígonos GADM en un sitio público | La licencia GADM no permite redistribuir | Documentado; el mapa 2D **no ofrece descargar los polígonos**. Pendiente: cambiar a límites del INEI | §3 |
+| E13 | Media | Probabilidades de la logística sin calibrar (Brier 0,144 frente a 0,0099 de la tasa base) | `class_weight="balanced"` | Recalibración isotónica dejando un año fuera; Brier 0,0095 (doc 02) | `docs/evidencia/ml_evaluacion.json` |
+| E14 | Baja | Gráficos D3 con ancho negativo en pestañas ocultas (errores `<rect> width -88` en la consola) | Se dibujan con contenedor de ancho 0 | No corregido (cosmético); se recomienda dibujar al mostrar la pestaña | Consola del navegador |
+| E15 | Baja | Índice provincial: la mitad del puntaje es el mar; con mar cálido y sin lluvia puede marcar «Alerta» | Pesos fijos sin calibrar | Advertencia en metadatos; pestaña renombrada «Lluvia, ríos y mar por provincia (indicadores, no alertas oficiales)» | `metadatos.json` |
+| E16 | Baja | `src/__pycache__` versionado | Sin `.gitignore` | `.gitignore` agregado (los archivos ya versionados siguen; se quitan con `git rm --cached`) | `git ls-files src/__pycache__` |
+| E17 | Baja | Pobreza con valores repetidos (57 valores únicos en 78 distritos) | La compilación parece usar estimaciones por grupo de distritos | Advertencia; verificar contra la publicación INEI | `ubigeo_distritos.csv` |
+
+---
+
+## 6. Riesgos
+
+- **Metodológicos:** el índice provincial no está calibrado; el radar no tiene validación independiente; WorldPop es una estimación modelada; el JRC no modela inundación pluvial ni quebradas.
+- **Operativos:** los workflows hacen `git push` cada día y el histórico crece (unos 117 MB hoy). Con huellas TIFF y bases CSV de 24 MB conviene Git LFS o publicar los históricos como *releases*. Hay dependencia de servicios gratuitos que pueden cambiar su API sin aviso.
+- **Legales:** GADM (E12); ODbL exige atribución y compartir igual para derivados de OSM; Open-Meteo pide uso no comercial.
+- **Comunicacionales:** confundir escenario con pronóstico, exposición con afectación, índice propio con alerta oficial. Mitigado con rótulos, aviso fijo en el mapa 2D y advertencias por capa.
+
+---
+
+## 7. Resultados reproducibles
+
+| Comando | Resultado (4/11/2026) |
+|---|---|
+| `python src/etl.py local` | `[OK] impacto.py (22,4 s)`, `[OK] panel.py`, `[OK] metadatos.py`, `[OK] auditoria.py` |
+| `python src/reparar_poblacion.py` (dos veces) | 1.ª: «desplazamiento óptimo: 86 columnas (r = 0.798) · origen −81,40000 → −81,32833»; 2.ª: «ya alineado: sin cambios» |
+| `python src/modelo_inundacion.py` (base original) | PR-AUC: climatología 0,095 · logística simple 0,114 · completa 0,122 · LightGBM 0,082. **Idénticas a `docs/modelo_inundacion.md`** |
+| `python -m pytest -q` | **38 passed** (`docs/evidencia/pytest_salida.txt`) |
+| `python src/metadatos.py` | vigente 8 · rezagado 1 (ICEN) · no disponible 1 (radar vivo) · estimado 6 |
+
+No repetí las descargas en línea (WorldPop, Open Buildings, Sentinel-1, NASA POWER). Los pasos que necesitan red están en los perfiles `diario` e `inundacion` de `etl.py` y en sus workflows.
+
+---
+
+## 8. Cifras corregidas (zona inundable 1 en 100 años, JRC)
+
+| Indicador | Valor | Definición |
+|---|---|---|
+| Superficie | 5.594,0 km² | incluye 1.730,9 km² del desierto de Sechura |
+| Población potencialmente expuesta | 408.970 (Piura 374.561 · Tumbes 24.945 · sin distrito 9.464) | WorldPop 2026 modelada, dentro de la mancha |
+| Edificaciones potencialmente expuestas | 152.486 (Piura 137.542 · Tumbes 10.806 · sin distrito 4.138) | Open Buildings v3 |
+| Colegios | 684 dentro · 1.952 hasta 500 m · 2.636 hasta 1 km | OSM; incluye locales de Ecuador |
+| Salud | 146 dentro · 431 hasta 500 m · 577 hasta 1 km | RENIPRESS |
+
+---
+
+## 9. Recorrido de usuario verificado (navegador integrado, servidor local `http://localhost:8765`)
+
+1. `mapa2d.html` → departamento **Piura** → provincia **Piura** → distrito **Catacaos**: el mapa se acerca y resalta el distrito. Cifras (1/100, antes de corregir la población): 113,7 km², 27.602 edificaciones, 90 colegios dentro (104 a ≤ 500 m, 105 a ≤ 1 km), 14 establecimientos de salud dentro. Ficha con UBIGEO 200105.
+2. Cambio de escenario a **Radar 2017**: «vigente · 30 pasadas, 2017-02-03 a 2017-04-29»; Catacaos 1,1 km² y 0 edificaciones dentro (§4.4).
+3. **Metadatos:** 16 capas con su estado y advertencias desplegables.
+4. **Exportar:** `exposicion_2017_Catacaos.csv` (cabecera con fuente y advertencia) y `locales_2017.geojson` (86 KB, propiedad `clase`). Los generé capturando el contenido en la página, sin descargarlos al disco.
+5. **Móvil (375×812):** una sola columna y sin desplazamiento horizontal (`scrollWidth = innerWidth`); 76 filas en el panel y 3 eventos en el comparador.
+6. **Sin WebGL:** `index.html?sin3d=1` muestra el aviso y el enlace al 2D. **Con WebGL:** deck.gl funciona y muestra 416.612 personas (cifra anterior a la corrección E1; después de corregir es 408.970).

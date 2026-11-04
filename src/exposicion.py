@@ -52,8 +52,13 @@ def poblacion(forzar: bool) -> None:
         return
     tmp = CARPETA / "_worldpop.tif"
     tmp.write_bytes(bajar(WORLDPOP, 1200))
+    from rasterio.windows import Window
     with rasterio.open(tmp) as src:
-        ventana = from_bounds(*CAJA, transform=src.transform)
+        # La caja sale del borde oeste del archivo de Perú (-81,33°). Sin recortar la ventana al ráster, rasterio
+        # lee solo la parte que existe pero window_transform() conserva el origen pedido (-81,40°): la población
+        # quedaba desplazada ~7,9 km al oeste (corregido 2026-11-04; ver docs/01_AUDITORIA_TECNICA_Y_DATOS.md).
+        ventana = from_bounds(*CAJA, transform=src.transform).round_offsets().round_lengths()
+        ventana = ventana.intersection(Window(0, 0, src.width, src.height))
         datos = src.read(1, window=ventana)
         datos = np.where(datos < 0, 0, datos).astype("float32")
         perfil = src.profile | {"height": datos.shape[0], "width": datos.shape[1], "nodata": 0,
@@ -153,7 +158,8 @@ def distritos(forzar: bool) -> None:
     def nombre(x: str) -> str:  # GADM pega las palabras: "SanJuandeBigote" -> "San Juan de Bigote"
         x = re.sub(r"(?<=[a-záéíóúñ])(de|del|la|las|los|el)(?=[A-ZÁÉÍÓÚÑ])", r" \1 ", x)
         x = re.sub(r"(?<=[a-záéíóúñ])(de|del)(?= (la|las|los|el) )", r" \1", x)    # "Juandela Virgen"
-        return re.sub(r"(?<=[a-záéíóúñ])(?=[A-ZÁÉÍÓÚÑ])", " ", x).replace("  ", " ").strip()
+        x = re.sub(r"(?<=[a-záéíóúñ])(?=[A-ZÁÉÍÓÚÑ])", " ", x).replace("  ", " ").strip()
+        return CORRECCIONES_NOMBRE.get(x, x)
     feats = []
     for f in g["features"]:
         p = f["properties"]
@@ -167,6 +173,10 @@ def distritos(forzar: bool) -> None:
     json.dump({"type": "FeatureCollection", "features": feats}, open(destino, "w", encoding="utf-8"), ensure_ascii=False)
     print(f"  distritos: {len(feats)}")
 
+
+# Casos que la regla de separación de palabras de GADM deja mal (verificados contra la tabla UBIGEO del INEI).
+CORRECCIONES_NOMBRE = {"Bellavistade la Union": "Bellavista de la Union", "El Carmende la Frontera": "El Carmen de la Frontera",
+                       "San Juande la Virgen": "San Juan de la Virgen", "Migu el Checa": "Miguel Checa"}
 
 JRC = "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/CEMS-GLOFAS/flood_hazard/"
 

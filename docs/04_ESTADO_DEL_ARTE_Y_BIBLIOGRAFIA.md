@@ -1,0 +1,116 @@
+# 04 · Estado del arte y bibliografía
+
+**Verificación:** los 20 DOI se consultaron en la API pública de Crossref el 4/11/2026 y los 20 respondieron HTTP 200. Autores, año, título, revista, volumen y páginas salen de esa respuesta (`docs/evidencia/crossref_verificacion.txt`). El preprint de Open Buildings se verificó en la API de arXiv. Para los trabajos de 2023–2026 (Breña-Aliaga y Cruz-Machacuay; Breña Aliaga et al.; Ashhar et al.; Dawson et al.), el **método y las métricas se toman del resumen publicado en Crossref**; no leí el texto completo. Para los trabajos clásicos, la descripción viene de su contenido conocido y conviene revisarla en el original antes de citarla textualmente.
+
+**Tipos:** [A] artículo arbitrado · [C] actas arbitradas de congreso · [P] preprint · [T] documentación técnica o conjunto de datos · [I] informe o fuente institucional.
+
+## 1. Trabajos aplicados a la cuenca del Tumbes (prioridad)
+
+**1. [A]** Breña-Aliaga, J. C., & Cruz-Machacuay, J. (2026). Estimación de umbrales y dinámica de inundaciones integrando Random Forest, el índice SDWI de Sentinel-1, el modelo HAND y datos SAR en la cuenca del río Tumbes. *Ingeniería del Agua, 30*(3), 211–228. https://doi.org/10.4995/ia.25917 (CC BY-NC-SA 4.0)
+- **Método y datos:** Sentinel-1 en Google Earth Engine; Random Forest + índice SDWI + HAND; resta del espejo de agua permanente y máscaras de exclusión; relación caudal–área con validación cruzada dejando uno fuera (LOOCV).
+- **Escala:** cuenca baja del Tumbes, 13 eventos (2023–2025).
+- **Métricas (resumen):** exactitud global 91,0 %, F1 0,80, IoU 69,0 %; regresión polinómica de grado 2 caudal → área con RMSE ±0,87 km².
+- **Limitaciones:** pocos eventos y una sola cuenca; la exactitud global se infla cuando domina la clase «no agua».
+- **Aplicación aquí:** es la línea base del caso B (doc 02). Muestra que HAND + SDWI + RF es viable en el Tumbes y sugiere reemplazar el umbral fijo de −17 dB.
+
+**2. [A]** Breña Aliaga, J. C., Vidal, J., Felipe, O., Bourrel, L., Rau, P., & Lavado-Casimiro, W. (2026). Estimation of flood thresholds for hydrological warning purposes using Sentinel-1 SAR imagery-based modeling in the Tumbes River basin (Peru). *Remote Sensing, 18*(10), 1493. https://doi.org/10.3390/rs18101493 (CC BY 4.0)
+- **Método:** Bmax Otsu y Edge Otsu calibrados con PlanetScope, restringidos con HAND y comparados con detección de cambios; serie temporal para separar el agua permanente; relación caudal pico–extensión validada con reportes de daños de INDECI.
+- **Escala:** río Tumbes, 7 eventos (2017–2024).
+- **Métricas (resumen):** exactitud global 95,8 % (Bmax) frente a 95,7 % (Edge); Kappa 66,1 % frente a 63,7 %; IoU 45,6 % frente a 45,0 %. Umbral de activación de impactos significativos: **743,49 m³/s** (151 ha inundadas, 157 habitantes afectados); hasta 1.629,02 m³/s (1.234 ha agrícolas, 749 habitantes).
+- **Limitaciones:** IoU moderado (~0,46), aunque la exactitud global es alta.
+- **Aplicación aquí:** (i) justifica un umbral **adaptativo** (implementado como diagnóstico en `huellas.py`); (ii) da un umbral hidrométrico para una futura capa de alerta en el Tumbes que hay que contrastar con caudal **observado** (ANA/SENAMHI), no con GloFAS.
+
+## 2. Detección de inundaciones con SAR
+
+**3. [A]** Twele, A., Cao, W., Plank, S., & Martinis, S. (2016). Sentinel-1-based flood mapping: A fully automated processing chain. *International Journal of Remote Sensing, 37*(13), 2990–3004. https://doi.org/10.1080/01431161.2016.1192304
+- **Método:** cadena automática con umbral por teselas, lógica difusa con HAND, pendiente y tamaño de mancha, y crecimiento de regiones. **Datos:** Sentinel-1 GRD. **Escala:** casos de estudio regionales.
+- **Limitaciones:** sensible a superficies que parecen agua (arena, asfalto) y ciega en zonas urbanas.
+- **Aplicación:** referencia para agregar la lógica difusa HAND/pendiente en lugar de los cortes fijos de altura < 250 m y pendiente < 5°.
+
+**4. [A]** Martinis, S., Twele, A., & Voigt, S. (2009). Towards operational near real-time flood detection using a split-based automatic thresholding procedure on high resolution TerraSAR-X data. *Natural Hazards and Earth System Sciences, 9*(2), 303–314. https://doi.org/10.5194/nhess-9-303-2009
+- **Método:** divide la imagen en teselas y elige las bimodales para el umbral automático. **Aplicación:** resuelve el problema de un Otsu global con poca agua en la escena, como en Tumbes-Piura en temporada seca.
+
+**5. [A]** Chini, M., Hostache, R., Giustarini, L., & Matgen, P. (2017). A hierarchical split-based approach for parametric thresholding of SAR images: Flood inundation as a test case. *IEEE Transactions on Geoscience and Remote Sensing, 55*(12), 6975–6988. https://doi.org/10.1109/TGRS.2017.2737664
+- **Método:** división jerárquica (HSBA) y ajuste paramétrico de distribuciones; es la base de las variantes «Bmax». **Aplicación:** método candidato del caso B.
+
+**6. [A]** Otsu, N. (1979). A threshold selection method from gray-level histograms. *IEEE Transactions on Systems, Man, and Cybernetics, 9*(1), 62–66. https://doi.org/10.1109/TSMC.1979.4310076
+- **Aplicación:** algoritmo implementado en `huellas.otsu()` y probado con un histograma bimodal sintético (`tests/test_unidades.py`).
+
+**7. [A]** Clement, M. A., Kilsby, C. G., & Moore, P. (2018). Multi-temporal synthetic aperture radar flood mapping using change detection. *Journal of Flood Risk Management, 11*(2), 152–168. https://doi.org/10.1111/jfr3.12303
+- **Método:** detección de cambios multitemporal con Sentinel-1. **Aplicación:** fundamento del enfoque «evento frente a referencia seca» del proyecto y de la necesidad de que **la referencia no se solape** con el evento (error E4).
+
+**8. [A]** Ashhar, M., Keesara, V. R., & Sridhar, V. (2025). Flood inundation mapping of a river stretch using machine learning algorithms in the Google Earth Engine environment. *Journal of Flood Risk Management, 18*(2), e70062. https://doi.org/10.1111/jfr3.70062 (CC BY-NC-ND 4.0)
+- **Método y datos (resumen):** Sentinel-1 del 6 al 20/7/2022 en el río Godavari (India); SVM, RF, GBT y CART comparados con Otsu.
+- **Resultados:** Otsu clasificó 359.253 ha frente a ~57–60 mil ha de los clasificadores. RF obtuvo exactitud global de 84 % sobre **100 puntos** (70 inundados y 30 no inundados) tomados del mapa del NRSC.
+- **Limitaciones:** muestra de validación muy pequeña y referencia derivada de otro producto satelital.
+- **Aplicación:** muestra cuánto cambia el área según el método. Advierte también que no conviene validar con pocos puntos.
+
+**9. [C]** Bonafilia, D., Tellman, B., Anderson, T., & Issenberg, E. (2020). Sen1Floods11: A georeferenced dataset to train and test deep learning flood algorithms for Sentinel-1. En *2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)* (pp. 835–845). https://doi.org/10.1109/CVPRW50498.2020.00113
+- **Datos:** chips de Sentinel-1 etiquetados a mano y con Sentinel-2, de 11 eventos en varios países. **Aplicación:** fuente de entrenamiento previo o de comparación para el caso B, y ejemplo de cómo construir etiquetas independientes del SAR.
+
+## 3. Exposición, población y edificaciones
+
+**10. [A]** Tellman, B., Sullivan, J. A., Kuhn, C., Kettner, A. J., Doyle, C. S., Brakenridge, G. R., Erickson, T. A., & Slayback, D. A. (2021). Satellite imaging reveals increased proportion of population exposed to floods. *Nature, 596*(7870), 80–86. https://doi.org/10.1038/s41586-021-03695-w
+- **Método:** 913 eventos observados con MODIS (2000–2018) cruzados con población. **Escala:** global, 250 m.
+- **Limitaciones:** resolución gruesa; el sensor óptico no ve a través de las nubes.
+- **Aplicación:** es el marco conceptual de «población expuesta» frente a «afectada» que usa el proyecto.
+
+**11. [A]** Tatem, A. J. (2017). WorldPop, open data for spatial demography. *Scientific Data, 4*, 170004. https://doi.org/10.1038/sdata.2017.4
+- **Aplicación:** fuente y limitaciones de la población modelada de 100 m. Justifica que se la rotule como **estimado** y no como cifra oficial.
+
+**12. [P]** Sirko, W., Kashubin, S., Ritter, M., Annkah, A., Bouchareb, Y. S. E., Dauphin, Y., Keysers, D., Neumann, M., Cisse, M., & Quinn, J. (2021). *Continental-scale building detection from high resolution satellite imagery* (arXiv:2107.12283). arXiv. https://arxiv.org/abs/2107.12283
+- **Aplicación:** método detrás de Google Open Buildings. Detecta **edificaciones**, no viviendas: justifica el cambio de rótulo (E7).
+
+## 4. Peligro, hidrología y pronóstico
+
+**13. [A]** Dottori, F., Salamon, P., Bianchi, A., Alfieri, L., Hirpa, F. A., & Feyen, L. (2016). Development and evaluation of a framework for global flood hazard mapping. *Advances in Water Resources, 94*, 87–102. https://doi.org/10.1016/j.advwatres.2016.05.002
+- **Aplicación:** método de los mapas de peligro del JRC que usa el proyecto. Sus limitaciones (ríos pequeños, defensas, flujo pluvial) se trasladan a las advertencias de los metadatos.
+
+**14. [A]** Alfieri, L., Burek, P., Dutra, E., Krzeminski, B., Muraro, D., Thielen, J., & Pappenberger, F. (2013). GloFAS – global ensemble streamflow forecasting and flood early warning. *Hydrology and Earth System Sciences, 17*(3), 1161–1175. https://doi.org/10.5194/hess-17-1161-2013
+- **Aplicación:** origen del caudal modelado (vía Open-Meteo). Justifica rotularlo «modelado» y contrastarlo con estaciones.
+
+**15. [A]** Nearing, G., Cohen, D., Dube, V., Gauch, M., Gilon, O., Harrigan, S., Hassidim, A., Klotz, D., Kratzert, F., Metzger, A., Nevo, S., Pappenberger, F., Prudhomme, C., Shalev, G., Shenzis, S., Tekalign, T. Y., Weitzner, D., & Matias, Y. (2024). Global prediction of extreme floods in ungauged watersheds. *Nature, 627*(8004), 559–563. https://doi.org/10.1038/s41586-024-07145-1
+- **Método:** LSTM entrenada con miles de cuencas instrumentadas y evaluada en cuencas no vistas, comparada con GloFAS.
+- **Aplicación:** muestra **cuándo** se justifica una red recurrente (con miles de cuencas). Con 75 distritos y 311 positivos (caso C) no se justifica.
+
+**16. [A]** Nobre, A. D., Cuartas, L. A., Hodnett, M., Rennó, C. D., Rodrigues, G., Silveira, A., Waterloo, M., & Saleska, S. (2011). Height Above the Nearest Drainage – a hydrologically relevant new terrain model. *Journal of Hydrology, 404*(1–2), 13–29. https://doi.org/10.1016/j.jhydrol.2011.03.051
+- **Aplicación:** variable clave que falta para los casos A y B. Se calcularía con el DEM Copernicus GLO-30.
+
+## 5. Machine learning y validación
+
+**17. [A]** Dawson, G., Butt, J., Jones, A., & Fraccaro, P. (2023). Flood susceptibility mapping at the country scale using machine learning approaches. *Applied AI Letters, 4*(4), e88. https://doi.org/10.1002/ail2.88
+- **Método y datos (resumen):** susceptibilidad fluvial y pluvial en Inglaterra con eventos pasados; CART, RF y XGBoost; SHAP.
+- **Métricas:** XGBoost con AUC 0,93; buen desempeño en «áreas no vistas».
+- **Limitaciones:** el AUC con fondo abundante puede ser optimista; transferirlo al desierto costero peruano no es directo.
+- **Aplicación:** diseño del caso A con validación espacial y SHAP.
+
+**18. [A]** Roberts, D. R., Bahn, V., Ciuti, S., Boyce, M. S., Elith, J., Guillera-Arroita, G., Hauenstein, S., Lahoz-Monfort, J. J., Schröder, B., Thuiller, W., Warton, D. I., Wintle, B. A., Hartig, F., & Dormann, C. F. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. *Ecography, 40*(8), 913–929. https://doi.org/10.1111/ecog.02881
+- **Aplicación:** fundamento de la validación por años (caso C) y por cuencas o eventos (casos A y B), en lugar de una partición aleatoria de píxeles.
+
+**19. [A]** Mosavi, A., Ozturk, P., & Chau, K. (2018). Flood prediction using machine learning models: Literature review. *Water, 10*(11), 1536. https://doi.org/10.3390/w10111536
+- **Aplicación:** panorama de modelos. Sirve para justificar que se compare cada modelo contra líneas base simples.
+
+## 6. El Niño costero
+
+**20. [A]** Garreaud, R. D. (2018). A plausible atmospheric trigger for the 2017 coastal El Niño. *International Journal of Climatology, 38*(S1). https://doi.org/10.1002/joc.5426 *(Crossref no informa páginas; completarlas con el registro de la revista)*
+
+**21. [A]** Rodríguez-Morata, C., Díaz, H. F., Ballesteros-Canovas, J. A., Rohrer, M., & Stoffel, M. (2019). The anomalous 2017 coastal El Niño event in Peru. *Climate Dynamics, 52*(9–10), 5605–5622. https://doi.org/10.1007/s00382-018-4466-y
+- **Aplicación (20 y 21):** contexto físico de 2017. El Niño costero puede darse sin un Niño en el Pacífico central, y las lluvias extremas dependen del calentamiento local. Por eso **la anomalía del mar sola no determina una inundación local**.
+
+> **Pendiente de verificar:** páginas exactas de Garreaud (2018). Crossref no devuelve el campo «page».
+
+## 7. Fuentes oficiales y técnicas con las que contrastar (acceso y licencia por verificar)
+
+| Fuente | Qué aporta | Estado en el proyecto |
+|---|---|---|
+| INEI: Censo 2017, proyecciones, cartografía censal, IDE | Población oficial, límites, vulnerabilidad | **Falta.** Se usa WorldPop y una compilación UBIGEO de terceros |
+| SIGRID / CENEPRED: escenarios de riesgo y estudios EVAR (incluidos los actualizados en 2026) | Peligro y riesgo oficiales | **No integrado.** No verifiqué los estudios de 2026 ni su licencia |
+| SENAMHI: avisos meteorológicos y estaciones | Lluvia y caudal observados; avisos oficiales | No integrado (se usa Open-Meteo y GloFAS, modelados) |
+| ANA: registros hidrométricos y red hidrográfica | Caudal observado y ríos | No integrado |
+| INDECI / COEN / SINPAD: daños | Afectados, damnificados, viviendas | DesInventar hasta 2015 y tablas INDECI 2003–2024 sin fecha |
+| ENFEN / IGP: ICEN y comunicados | Estado oficial de El Niño | ICEN integrado (hasta 2026-08); comunicados no |
+| Copernicus Sentinel-1/2 (ESA) vía Planetary Computer | Radar y óptico | Sentinel-1 integrado |
+| JRC CEMS-GloFAS flood hazard v2 | Peligro fluvial | Integrado |
+| NOAA OISST / CPC | Mar e índices Niño | Integrado |
+| ECMWF / GloFAS | Caudal | Integrado vía Open-Meteo |
+| WorldPop, Google Open Buildings | Población y edificaciones | Integrados |

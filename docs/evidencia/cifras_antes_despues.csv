@@ -1,0 +1,61 @@
+﻿escenario,indicador,publicado_antes,corregido,motivo
+2017,km2,797.8,797.8,
+2017,personas (dentro),11283.0,1045.0,corrección de alineación WorldPop
+2017,personas hasta 500 m,92903.0,34530.0,corrección de alineación WorldPop
+2017,"edificaciones dentro (antes ""viviendas"")",761.0,761.0,solo cambia el rótulo
+2017,edificaciones hasta 500 m,18927.0,18927.0,
+2017,colegios dentro,4.0,4.0,
+2017,"colegios rotulado ""a ≤ 500 m"" / ahora acumulado ≤ 500 m",70.0,74.0,antes era el anillo 0-500 m
+2017,"colegios rotulado ""a ≤ 1 km"" / ahora acumulado ≤ 1 km",244.0,318.0,antes era el anillo 500 m-1 km
+2017,salud dentro,1.0,1.0,
+2017,salud acumulado ≤ 1 km,48.0,62.0,antes era el anillo 500 m-1 km
+2017,suma Piura+Tumbes edificaciones,761.0,761.0,"la diferencia con el total es ""Sin distrito asignado"""
+2017,edificaciones sin distrito asignado,,0.0,nuevo
+2023,km2,728.3,728.3,
+2023,personas (dentro),4756.0,62.0,corrección de alineación WorldPop
+2023,personas hasta 500 m,30210.0,6594.0,corrección de alineación WorldPop
+2023,"edificaciones dentro (antes ""viviendas"")",19.0,19.0,solo cambia el rótulo
+2023,edificaciones hasta 500 m,4315.0,4315.0,
+2023,colegios dentro,0.0,0.0,
+2023,"colegios rotulado ""a ≤ 500 m"" / ahora acumulado ≤ 500 m",10.0,10.0,antes era el anillo 0-500 m
+2023,"colegios rotulado ""a ≤ 1 km"" / ahora acumulado ≤ 1 km",44.0,54.0,antes era el anillo 500 m-1 km
+2023,salud dentro,0.0,0.0,
+2023,salud acumulado ≤ 1 km,11.0,12.0,antes era el anillo 500 m-1 km
+2023,suma Piura+Tumbes edificaciones,19.0,19.0,"la diferencia con el total es ""Sin distrito asignado"""
+2023,edificaciones sin distrito asignado,,0.0,nuevo
+vivo,km2,25.4,25.4,
+vivo,personas (dentro),524.0,19.0,corrección de alineación WorldPop
+vivo,personas hasta 500 m,10332.0,5847.0,corrección de alineación WorldPop
+vivo,"edificaciones dentro (antes ""viviendas"")",5.0,5.0,solo cambia el rótulo
+vivo,edificaciones hasta 500 m,2007.0,2007.0,
+vivo,colegios dentro,0.0,0.0,
+vivo,"colegios rotulado ""a ≤ 500 m"" / ahora acumulado ≤ 500 m",9.0,9.0,antes era el anillo 0-500 m
+vivo,"colegios rotulado ""a ≤ 1 km"" / ahora acumulado ≤ 1 km",52.0,61.0,antes era el anillo 500 m-1 km
+vivo,salud dentro,0.0,0.0,
+vivo,salud acumulado ≤ 1 km,42.0,46.0,antes era el anillo 500 m-1 km
+vivo,suma Piura+Tumbes edificaciones,5.0,5.0,"la diferencia con el total es ""Sin distrito asignado"""
+vivo,edificaciones sin distrito asignado,,0.0,nuevo
+rp10,km2,4782.5,4782.5,
+rp10,personas (dentro),380099.0,284820.0,corrección de alineación WorldPop
+rp10,personas hasta 500 m,659567.0,929673.0,corrección de alineación WorldPop
+rp10,"edificaciones dentro (antes ""viviendas"")",111160.0,111160.0,solo cambia el rótulo
+rp10,edificaciones hasta 500 m,355795.0,355795.0,
+rp10,colegios dentro,446.0,446.0,
+rp10,"colegios rotulado ""a ≤ 500 m"" / ahora acumulado ≤ 500 m",1340.0,1786.0,antes era el anillo 0-500 m
+rp10,"colegios rotulado ""a ≤ 1 km"" / ahora acumulado ≤ 1 km",745.0,2531.0,antes era el anillo 500 m-1 km
+rp10,salud dentro,96.0,96.0,
+rp10,salud acumulado ≤ 1 km,152.0,534.0,antes era el anillo 500 m-1 km
+rp10,suma Piura+Tumbes edificaciones,108156.0,108156.0,"la diferencia con el total es ""Sin distrito asignado"""
+rp10,edificaciones sin distrito asignado,,3004.0,nuevo
+rp100,km2,5594.0,5594.0,
+rp100,personas (dentro),416612.0,408970.0,corrección de alineación WorldPop
+rp100,personas hasta 500 m,683585.0,1021783.0,corrección de alineación WorldPop
+rp100,"edificaciones dentro (antes ""viviendas"")",152486.0,152486.0,solo cambia el rótulo
+rp100,edificaciones hasta 500 m,385900.0,385900.0,
+rp100,colegios dentro,684.0,684.0,
+rp100,"colegios rotulado ""a ≤ 500 m"" / ahora acumulado ≤ 500 m",1268.0,1952.0,antes era el anillo 0-500 m
+rp100,"colegios rotulado ""a ≤ 1 km"" / ahora acumulado ≤ 1 km",684.0,2636.0,antes era el anillo 500 m-1 km
+rp100,salud dentro,146.0,146.0,
+rp100,salud acumulado ≤ 1 km,146.0,577.0,antes era el anillo 500 m-1 km
+rp100,suma Piura+Tumbes edificaciones,148348.0,148348.0,"la diferencia con el total es ""Sin distrito asignado"""
+rp100,edificaciones sin distrito asignado,,4138.0,nuevo

@@ -1,0 +1,4 @@
+# Pruebas y experimento de ML (además de requirements.txt y requirements-inundaciones.txt)
+pytest>=8
+scikit-learn>=1.4
+lightgbm>=4.3

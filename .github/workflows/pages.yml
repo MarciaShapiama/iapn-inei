@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths: ["dashboard/**"]
   workflow_run:
-    workflows: ["Actualizar datos"]
+    workflows: ["Actualizar datos", "Inundaciones Tumbes y Piura", "Base para el modelo"]
     types: [completed]
   workflow_dispatch:
 

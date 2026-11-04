@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapa 2D y panel de decisiones · Inundaciones Tumbes y Piura</title>
+<meta name="description" content="Mapa 2D accesible (sin aceleración gráfica) de peligro, agua detectada por radar y exposición en Tumbes y Piura, con metadatos, panel de decisiones por distrito y descargas.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{--bg:#f6f7f8;--panel:#ffffff;--tx:#14212b;--tx2:#4a5b68;--borde:#d5dde3;--acento:#0b5d8f;--ok:#1b7f4b;--warn:#a35d00;--mal:#b3261e;--est:#5b4bb5;--foco:#ffbf00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a22;--panel:#13242f;--tx:#eaf1f5;--tx2:#a9bccb;--borde:#2b4253;--acento:#69b4e6;--ok:#5fd39a;--warn:#f0b35a;--mal:#ff8a80;--est:#b3a6ff}}
+:root[data-theme="dark"]{--bg:#0e1a22;--panel:#13242f;--tx:#eaf1f5;--tx2:#a9bccb;--borde:#2b4253;--acento:#69b4e6;--ok:#5fd39a;--warn:#f0b35a;--mal:#ff8a80;--est:#b3a6ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acento)}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+header{padding:12px 16px;border-bottom:1px solid var(--borde);background:var(--panel);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+header h1{font-size:18px;margin:0}
+header p{margin:2px 0 0;color:var(--tx2);font-size:13px}
+.aviso{margin:10px 16px 0;padding:10px 12px;border:1px solid var(--warn);border-radius:8px;font-size:13px;background:color-mix(in srgb,var(--warn) 10%,transparent)}
+.controles{display:flex;flex-wrap:wrap;gap:8px 12px;padding:10px 16px;align-items:end}
+.controles label{display:flex;flex-direction:column;font-size:12px;color:var(--tx2);gap:3px}
+select,button{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--borde);border-radius:6px;background:var(--panel);color:var(--tx);min-height:36px}
+button{cursor:pointer}
+button.prim{background:var(--acento);color:#fff;border-color:var(--acento)}
+.cuerpo{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(320px,1fr);gap:12px;padding:0 16px 16px}
+#mapa{height:72vh;min-height:420px;border:1px solid var(--borde);border-radius:10px}
+.lado{display:flex;flex-direction:column;gap:12px;min-width:0}
+.caja{background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:12px}
+.caja h2{font-size:15px;margin:0 0 8px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpi{border:1px solid var(--borde);border-radius:8px;padding:8px}
+.kpi .n{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.kpi .e{font-size:12px;color:var(--tx2)}
+.chip{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid currentColor}
+.vigente{color:var(--ok)}.rezagado{color:var(--warn)}.no-disponible{color:var(--mal)}.estimado{color:var(--est)}
+.capas label{display:flex;gap:6px;align-items:center;font-size:14px;padding:2px 0}
+.ley i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px;border:1px solid #0003}
+.ley div{font-size:13px;margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:5px 6px;border-bottom:1px solid var(--borde);text-align:left;vertical-align:top}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+th{position:sticky;top:0;background:var(--panel);cursor:pointer}
+.tabla-scroll{max-height:380px;overflow:auto}
+tr[data-ub]{cursor:pointer}
+tr[data-ub]:hover{background:color-mix(in srgb,var(--acento) 10%,transparent)}
+.meta dt{font-weight:600;font-size:12.5px;margin-top:6px}.meta dd{margin:0;font-size:13px;color:var(--tx2)}
+.meta ul{margin:4px 0 0 18px;padding:0;font-size:13px}
+.ficha{font-size:13.5px;line-height:1.5}
+.comparador td{font-size:12.5px}
+.vacio{color:var(--tx2);font-style:italic}
+.sr{position:absolute;left:-9999px}
+@media (max-width:900px){.cuerpo{grid-template-columns:1fr}#mapa{height:58vh;min-height:320px}.kpi .n{font-size:19px}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Inundaciones en Tumbes y Piura · mapa 2D y panel de decisiones</h1>
+    <p>Funciona sin aceleración gráfica (WebGL). Cada cifra indica su fuente, definición y estado. <a href="index.html">Volver al tablero 3D</a> · <a href="#metadatos">Metadatos</a> · <a href="#panel">Panel por distrito</a></p>
+  </div>
+  <div id="estado-global" aria-live="polite">Cargando datos…</div>
+</header>
+<div class="aviso" role="note"><b>Cómo leer:</b> «expuesto» significa que está dentro (o cerca) de una zona inundable o de agua detectada por satélite. No equivale a afectados ni damnificados (esas cifras solo las registra INDECI/COEN). Un escenario de 1 en 100 años no anuncia una inundación este año.</div>
+
+<form class="controles" id="controles" onsubmit="return false" aria-label="Filtros del mapa">
+  <label>Departamento<select id="f-dep"><option value="">Tumbes y Piura</option></select></label>
+  <label>Provincia<select id="f-prov"><option value="">Todas</option></select></label>
+  <label>Distrito<select id="f-dis"><option value="">Todos</option></select></label>
+  <label>Ámbito de cuenca (aprox.)<select id="f-cuenca"><option value="">—</option></select></label>
+  <label>Escenario o evento<select id="f-esc"></select></label>
+  <label>Mapa base<select id="f-base"><option value="osm">Calles (OpenStreetMap)</option><option value="sat">Satélite (Esri)</option><option value="ninguno">Sin mapa base</option></select></label>
+  <button type="button" id="b-csv" class="prim">Descargar tabla CSV</button>
+  <button type="button" id="b-geo">Descargar puntos GeoJSON</button>
+</form>
+
+<div class="cuerpo">
+  <div>
+    <div id="mapa" role="region" aria-label="Mapa de Tumbes y Piura"></div>
+    <div class="caja" style="margin-top:12px" id="comparador-caja">
+      <h2>Comparador temporal del radar (Sentinel-1)</h2>
+      <p style="margin:0 0 6px;font-size:13px;color:var(--tx2)">Superponga dos eventos y revise las fechas exactas de cada pasada, la cobertura y los controles de calidad.</p>
+      <div class="controles" style="padding:0 0 8px">
+        <label>Evento A<select id="c-a"></select></label>
+        <label>Evento B<select id="c-b"></select></label>
+        <button type="button" id="c-ver">Superponer A y B</button>
+        <button type="button" id="c-quitar">Quitar</button>
+      </div>
+      <div id="comparador"></div>
+    </div>
+  </div>
+  <div class="lado">
+    <div class="caja" aria-live="polite">
+      <h2 id="sel-titulo">Selección</h2>
+      <div id="sel-estado" style="margin-bottom:8px"></div>
+      <div class="kpis" id="kpis"></div>
+      <p id="sel-nota" style="font-size:12.5px;color:var(--tx2);margin:8px 0 0"></p>
+    </div>
+    <div class="caja capas">
+      <h2>Capas</h2>
+      <label><input type="checkbox" id="k-mancha" checked> Mancha del escenario/evento</label>
+      <label><input type="checkbox" id="k-dist" checked> Límites distritales</label>
+      <label><input type="checkbox" id="k-pob"> Población expuesta por distrito (coropleta)</label>
+      <label><input type="checkbox" id="k-col" checked> Colegios a ≤ 1 km</label>
+      <label><input type="checkbox" id="k-sal" checked> Salud a ≤ 1 km</label>
+      <label><input type="checkbox" id="k-edif"> Edificaciones dentro (muestra)</label>
+      <label>Mostrar locales: <select id="k-anillo"><option value="acum_1km">dentro y hasta 1 km</option><option value="acum_500m">dentro y hasta 500 m</option><option value="dentro">solo dentro</option></select></label>
+      <div class="ley" id="leyenda" style="margin-top:8px"></div>
+    </div>
+    <div class="caja"><h2>Ficha territorial</h2><div class="ficha" id="ficha"><span class="vacio">Elija un distrito en el selector, en el mapa o en la tabla.</span></div></div>
+  </div>
+</div>
+
+<div class="cuerpo" style="grid-template-columns:1fr">
+  <div class="caja" id="panel">
+    <h2>Panel de decisiones: distritos para revisión prioritaria</h2>
+    <p style="font-size:13px;color:var(--tx2);margin:0 0 8px">Cuatro dimensiones separadas. <b>Peligro</b>: % del distrito en zona inundable 1 en 100 años (JRC). <b>Exposición</b>: población modelada dentro de esa zona. <b>Vulnerabilidad</b>: pobreza monetaria 2018. <b>Riesgo estimado</b>: promedio de los percentiles de las tres, 0–100, relativo a estos 76 distritos; sirve para ordenar revisiones, <b>no es una evaluación oficial de riesgo</b> (EVAR/CENEPRED).</p>
+    <div class="tabla-scroll"><table id="tabla" aria-describedby="panel"><thead></thead><tbody></tbody></table></div>
+  </div>
+  <div class="caja" id="metadatos">
+    <h2>Metadatos y estado de las capas</h2>
+    <div id="meta-resumen" style="margin-bottom:8px"></div>
+    <div id="meta"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const nf=(v,d=0)=>v==null||Number.isNaN(v)?"s/d":Number(v).toLocaleString("es-PE",{maximumFractionDigits:d,minimumFractionDigits:d});
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const jget=n=>fetch("data/"+n).then(r=>r.ok?r.json():null).catch(()=>null);
+const ETQ={rp100:"Peligro: crecida 1 en 100 años (JRC)",rp10:"Peligro: crecida 1 en 10 años (JRC)","2017":"Radar 2017: El Niño costero","2023":"Radar 2023: ciclón Yaku",vivo:"Radar: últimos 24 días"};
+const META_ID={rp100:"peligro_rp100",rp10:"peligro_rp10","2017":"radar_2017","2023":"radar_2023",vivo:"radar_vivo"};
+const CUENCAS={
+  "Bajo Piura":["Piura","Castilla","Catacaos","Cura Mori","El Tallan","La Arena","La Union","Bernal","Cristo Nos Valga","Rinconada Llicuar","Vice","Bellavista de la Union","Sechura"],
+  "Medio Piura":["Tambo Grande","Chulucanas","La Matanza","Morropon","Buenos Aires","Salitral|Morropón"],
+  "Chira (Sullana-Paita)":["Sullana","Bellavista","Miguel Checa","Marcavelica","Querecotillo","Salitral|Sullana","Ignacio Escudero","Lancones","Amotape","Arenal","La Huaca","Tamarindo","Vichayal","Colan","Paita"],
+  "Bajo Tumbes":["Tumbes","Corrales","San Juan de la Virgen","Pampas de Hospital","San Jacinto","La Cruz"],
+  "Zarumilla":["Zarumilla","Aguas Verdes","Matapalo","Papayal"]};
+const COL_PEL={1:"#c6dbef",2:"#6baed6",3:"#2171b5",4:"#08306b"};
+const S={esc:null,sel:{dep:"",prov:"",dis:"",cuenca:""},capas:{},comp:[]};
+let D={},mapa,base,grp={};
+
+function hayWebGL(){try{const c=document.createElement("canvas");return !!(c.getContext("webgl2")||c.getContext("webgl"))}catch(e){return false}}
+
+async function inicio(){
+  const [IN,DIST,PANEL,META,EST]=await Promise.all([jget("inundacion.json"),jget("distritos_tumbes_piura.geojson"),jget("panel_distritos.json"),jget("metadatos.json"),jget("estado_actualizacion.json")]);
+  D={IN,DIST,PANEL,META,EST};
+  if(!IN||!DIST){$("#estado-global").innerHTML="<span class='chip no-disponible'>Sin datos</span> No se pudieron cargar los archivos del mapa. Revise que <code>dashboard/data/</code> exista y sirva el sitio con un servidor HTTP.";return}
+  $("#estado-global").innerHTML=`Datos calculados ${esc((IN.calculado||"").replace("T"," "))} · WebGL ${hayWebGL()?"disponible (este mapa no lo usa)":"no disponible: use este mapa"}`;
+  const claves=["rp100","rp10","2017","2023","vivo"].filter(k=>IN.eventos[k]);
+  $("#f-esc").innerHTML=claves.map(k=>`<option value="${k}">${ETQ[k]}</option>`).join("");
+  const radar=claves.filter(k=>IN.eventos[k].tipo==="radar");
+  $("#c-a").innerHTML=radar.map(k=>`<option value="${k}">${ETQ[k]}</option>`).join("");
+  $("#c-b").innerHTML=radar.map((k,i)=>`<option value="${k}" ${i===1?"selected":""}>${ETQ[k]}</option>`).join("");
+  S.esc=claves[0];
+  const p=new URLSearchParams(location.search);
+  if(p.get("esc")&&IN.eventos[p.get("esc")])S.esc=p.get("esc");
+  $("#f-esc").value=S.esc;
+  // selectores territoriales
+  const props=DIST.features.map(f=>f.properties);
+  const deps=[...new Set(props.map(x=>x.departamento))].sort();
+  $("#f-dep").innerHTML+=deps.map(d=>`<option>${esc(d)}</option>`).join("");
+  $("#f-cuenca").innerHTML+=Object.keys(CUENCAS).map(c=>`<option>${esc(c)}</option>`).join("");
+  llenarProv();
+  // mapa
+  mapa=L.map("mapa",{preferCanvas:true,zoomSnap:.5}).setView([-4.9,-80.5],8);
+  L.control.scale({imperial:false,position:"bottomleft"}).addTo(mapa);
+  ponerBase("osm");
+  grp.dist=L.geoJSON(DIST,{style:()=>({color:"#33424d",weight:1,fill:true,fillOpacity:0,opacity:.7}),
+    onEachFeature:(f,l)=>{l.bindTooltip(`${esc(f.properties.distrito)} · ${esc(f.properties.provincia)}`,{sticky:true});l.on("click",()=>elegirDistrito(f.properties))}}).addTo(mapa);
+  // eventos de interfaz
+  $("#f-dep").onchange=e=>{S.sel={dep:e.target.value,prov:"",dis:"",cuenca:""};$("#f-cuenca").value="";llenarProv();actualizar(true)};
+  $("#f-prov").onchange=e=>{S.sel.prov=e.target.value;S.sel.dis="";S.sel.cuenca="";$("#f-cuenca").value="";llenarDis();actualizar(true)};
+  $("#f-dis").onchange=e=>{S.sel.dis=e.target.value;S.sel.cuenca="";$("#f-cuenca").value="";actualizar(true)};
+  $("#f-cuenca").onchange=e=>{S.sel={dep:"",prov:"",dis:"",cuenca:e.target.value};$("#f-dep").value="";llenarProv();actualizar(true)};
+  $("#f-esc").onchange=e=>{S.esc=e.target.value;dibujarCapa();actualizar(false)};
+  $("#f-base").onchange=e=>ponerBase(e.target.value);
+  ["k-mancha","k-dist","k-pob","k-col","k-sal","k-edif","k-anillo"].forEach(id=>$("#"+id).onchange=()=>{dibujarCapa();actualizar(false)});
+  $("#b-csv").onclick=descargarCSV; $("#b-geo").onclick=descargarGeo;
+  $("#c-ver").onclick=superponer; $("#c-quitar").onclick=()=>{S.comp.forEach(l=>mapa.removeLayer(l));S.comp=[];comparador()};
+  tablaPanel(); metadatos(); comparador();
+  await dibujarCapa(); actualizar(false);
+}
+
+function ponerBase(t){
+  if(base)mapa.removeLayer(base);base=null;
+  if(t==="osm")base=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© colaboradores de OpenStreetMap"});
+  if(t==="sat")base=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:18,attribution:"Imágenes © Esri y proveedores"});
+  if(base)base.addTo(mapa).bringToBack();
+}
+function llenarProv(){
+  const props=D.DIST.features.map(f=>f.properties).filter(x=>!S.sel.dep||x.departamento===S.sel.dep);
+  $("#f-prov").innerHTML=`<option value="">Todas</option>`+[...new Set(props.map(x=>x.provincia))].sort().map(p=>`<option>${esc(p)}</option>`).join("");
+  llenarDis();
+}
+function llenarDis(){
+  const props=D.DIST.features.map(f=>f.properties).filter(x=>(!S.sel.dep||x.departamento===S.sel.dep)&&(!S.sel.prov||x.provincia===S.sel.prov));
+  $("#f-dis").innerHTML=`<option value="">Todos</option>`+props.map(x=>x.distrito).sort().map(d=>`<option>${esc(d)}</option>`).join("");
+  $("#f-dis").value=S.sel.dis||"";
+}
+function enCuenca(p,c){return (CUENCAS[c]||[]).some(x=>{const [d,pr]=x.split("|");return p.distrito===d&&(!pr||p.provincia===pr)})}
+function coincide(p){
+  const s=S.sel;
+  if(s.cuenca)return enCuenca(p,s.cuenca);
+  return (!s.dep||p.departamento===s.dep)&&(!s.prov||p.provincia===s.prov)&&(!s.dis||p.distrito===s.dis);
+}
+function elegirDistrito(p){
+  S.sel={dep:p.departamento,prov:p.provincia,dis:p.distrito,cuenca:""};
+  $("#f-dep").value=p.departamento;$("#f-cuenca").value="";llenarProv();$("#f-prov").value=p.provincia;llenarDis();$("#f-dis").value=p.distrito;
+  actualizar(true);
+}
+const cacheGeo={};
+async function capaGeo(k){if(!cacheGeo[k]){const e=D.IN.eventos[k];cacheGeo[k]=e&&e.capa?await jget(e.capa):null}return cacheGeo[k]}
+
+async function dibujarCapa(){
+  ["mancha","pob","col","sal","edif"].forEach(n=>{if(grp[n]){mapa.removeLayer(grp[n]);grp[n]=null}});
+  const e=D.IN.eventos[S.esc];
+  if($("#k-dist").checked){if(!mapa.hasLayer(grp.dist))grp.dist.addTo(mapa)}else mapa.removeLayer(grp.dist);
+  if($("#k-mancha").checked){
+    const g=await capaGeo(S.esc);
+    if(g)grp.mancha=L.geoJSON(g,{interactive:false,style:f=>e.tipo==="peligro"?{stroke:false,fillColor:COL_PEL[f.properties.c]||"#6baed6",fillOpacity:.65}:{stroke:false,fillColor:"#00a6d6",fillOpacity:.75}}).addTo(mapa);
+  }
+  if($("#k-pob").checked){
+    const filas={};(e.distritos||[]).forEach(r=>filas[r.distrito+"|"+r.provincia]=r);
+    const mx=Math.max(1,...Object.values(filas).map(r=>r.personas||0));
+    grp.pob=L.geoJSON(D.DIST,{interactive:false,style:f=>{const r=filas[f.properties.distrito+"|"+f.properties.provincia];const v=r?r.personas/mx:0;
+      return {stroke:false,fillColor:v>.5?"#7a0177":v>.2?"#c51b8a":v>.05?"#f768a1":v>0?"#fbb4b9":"#ffffff",fillOpacity:v>0?.55:0}}}).addTo(mapa);
+    grp.pob.bringToBack(); if(base)base.bringToBack();
+  }
+  const anillo=$("#k-anillo").value, ok=c=>anillo==="dentro"?c==="dentro":anillo==="acum_500m"?(c==="dentro"||c==="anillo_0_500m"):c!=="fuera";
+  const COLOR={dentro:"#b3261e",anillo_0_500m:"#e8710a",anillo_500m_1km:"#f2c200"};
+  const puntos=(lista,forma)=>L.layerGroup((lista||[]).filter(x=>ok(x.clase)).map(x=>L.circleMarker([x.lat,x.lon],{radius:forma==="sal"?6:5,weight:2,color:forma==="sal"?"#7a0019":"#1d1d1d",fillColor:COLOR[x.clase],fillOpacity:.95})
+      .bindPopup(`<b>${esc(x.nombre)}</b><br>${esc(x.tipo||x.nivel||"")} ${x.distrito?"· "+esc(x.distrito):""}<br>${esc(x.estado)}${x.dist_m>0?" ("+nf(x.dist_m)+" m)":""}`)));
+  if($("#k-col").checked)grp.col=puntos(e.colegios_lista,"col").addTo(mapa);
+  if($("#k-sal").checked)grp.sal=puntos(e.salud_lista,"sal").addTo(mapa);
+  if($("#k-edif").checked&&e.edificaciones_puntos){
+    const r=L.canvas({padding:.3});
+    grp.edif=L.layerGroup(e.edificaciones_puntos.slice(0,15000).map(p=>L.circleMarker([p[1],p[0]],{renderer:r,radius:1.6,stroke:false,fillColor:"#ff7a45",fillOpacity:.8,interactive:false}))).addTo(mapa);
+  }
+  leyenda(e);
+}
+function leyenda(e){
+  let h=e.tipo==="peligro"?`<div><b>Profundidad (JRC)</b></div>`+[["< 0,5 m",1],["0,5–1,5 m",2],["1,5–3 m",3],["> 3 m",4]].map(([t,c])=>`<div><i style="background:${COL_PEL[c]}"></i>${t}</div>`).join("")
+    :`<div><i style="background:#00a6d6"></i>Agua nueva detectada por radar (mínimo)</div>`;
+  h+=`<div style="margin-top:4px"><b>Locales (distancia al borde de la mancha)</b></div><div><i style="background:#b3261e"></i>dentro</div><div><i style="background:#e8710a"></i>0–500 m</div><div><i style="background:#f2c200"></i>500 m–1 km</div><div>Borde oscuro: colegio · borde granate y más grande: salud</div>`;
+  if($("#k-pob").checked)h+=`<div style="margin-top:4px"><b>Población expuesta (relativa al máximo distrital)</b></div><div><i style="background:#fbb4b9"></i>&gt; 0</div><div><i style="background:#f768a1"></i>&gt; 5 %</div><div><i style="background:#c51b8a"></i>&gt; 20 %</div><div><i style="background:#7a0177"></i>&gt; 50 %</div>`;
+  $("#leyenda").innerHTML=h;
+}
+function filasSel(){
+  const e=D.IN.eventos[S.esc];
+  return (e.distritos||[]).filter(r=>r.departamento!=="Sin distrito asignado"&&coincide(r));
+}
+function actualizar(volar){
+  const e=D.IN.eventos[S.esc], s=S.sel, todo=!s.dep&&!s.prov&&!s.dis&&!s.cuenca;
+  const nombre=s.cuenca?`Ámbito ${s.cuenca} (agrupación aproximada de distritos)`:s.dis?`${s.dis} (${s.prov}, ${s.dep})`:s.prov?`Provincia ${s.prov}`:s.dep?`Departamento ${s.dep}`:"Tumbes y Piura (caja de estudio)";
+  $("#sel-titulo").textContent=nombre;
+  const m=(D.META&&D.META.capas||[]).find(c=>c.id===META_ID[S.esc]);
+  $("#sel-estado").innerHTML=`${esc(ETQ[S.esc])} · ${m?`<span class="chip ${m.estado.replace(" ","-")}">${esc(m.estado)}</span>`:""}`+
+    (e.tipo==="radar"?` · ${e.imagenes.length} pasadas, ${esc(e.imagenes[0])} a ${esc(e.imagenes[e.imagenes.length-1])}`:"");
+  let K;
+  if(todo){
+    const c=e.colegios||{},sa=e.salud||{};
+    K={km2:e.km2,personas:e.personas,personas_500m:e.personas_500m,edif:e.edificaciones,edif500:e.edificaciones_500m,
+       col:[c.dentro,c.acum_500m,c.acum_1km],sal:[sa.dentro,sa.acum_500m,sa.acum_1km]};
+  }else{
+    const f=filasSel(),sum=k=>f.reduce((a,r)=>a+(r[k]||0),0);
+    K={km2:sum("km2"),personas:sum("personas"),personas_500m:null,edif:sum("edificaciones"),edif500:sum("edificaciones_500m"),
+       col:[sum("colegios_dentro"),sum("colegios_dentro")+sum("colegios_anillo_0_500m"),sum("colegios_acum_1km")],
+       sal:[sum("salud_dentro"),sum("salud_dentro")+sum("salud_anillo_0_500m"),sum("salud_acum_1km")]};
+  }
+  $("#kpis").innerHTML=[
+    ["Superficie de la mancha",nf(K.km2,1)+" km²",e.tipo==="peligro"?"escenario JRC":"detección radar (mínimo)"],
+    ["Población potencialmente expuesta",nf(K.personas),K.personas_500m!=null?`${nf(K.personas_500m)} hasta 500 m · WorldPop 2026`:"WorldPop 2026 (modelada)"],
+    ["Edificaciones potencialmente expuestas",nf(K.edif),`${nf(K.edif500)} hasta 500 m · Open Buildings`],
+    ["Colegios",nf(K.col[0])+" dentro",`acumulado: ${nf(K.col[1])} hasta 500 m · ${nf(K.col[2])} hasta 1 km`],
+    ["Establecimientos de salud",nf(K.sal[0])+" dentro",`acumulado: ${nf(K.sal[1])} hasta 500 m · ${nf(K.sal[2])} hasta 1 km`],
+    ["Control de suma",todo?nf(e.conciliacion&&e.conciliacion.edificaciones_sin_distrito):"—",todo?"edificaciones fuera de los 76 polígonos (incluidas en el total)":"suma de los distritos seleccionados"]
+  ].map(x=>`<div class="kpi"><div class="e">${x[0]}</div><div class="n">${x[1]}</div><div class="e">${x[2]}</div></div>`).join("");
+  $("#sel-nota").innerHTML=(e.tipo==="radar"&&S.esc==="vivo"?"<b>Atención:</b> esta capa no pasó el control de calidad (la referencia seca se solapa con el periodo del evento) y en noviembre el agua nueva es sobre todo riego. ":"")+
+    "Los colegios provienen de OpenStreetMap (no del padrón ESCALE) y la caja incluye locales de Ecuador, que se cuentan en el total pero no en ningún distrito.";
+  // ficha y vista
+  if(s.dis){const r=(D.PANEL&&D.PANEL.distritos||[]).find(x=>x.distrito===s.dis&&x.provincia===s.prov);$("#ficha").textContent=r?r.ficha:"Sin ficha para este distrito."}
+  else $("#ficha").innerHTML="<span class='vacio'>Elija un distrito en el selector, en el mapa o en la tabla.</span>";
+  grp.dist.setStyle(f=>({color:coincide(f.properties)&&!todo?"#d4145a":"#33424d",weight:coincide(f.properties)&&!todo?2.5:1,opacity:.8,fillOpacity:0}));
+  if(volar){
+    const sel=D.DIST.features.filter(f=>coincide(f.properties));
+    if(sel.length)mapa.fitBounds(L.geoJSON({type:"FeatureCollection",features:sel}).getBounds(),{padding:[20,20]});
+  }
+  tablaPanel();
+}
+// --- panel de decisiones ---
+const COLS=[["distrito","Distrito"],["provincia","Provincia"],["ubigeo","UBIGEO"],["pct_area_rp100","Peligro: % área 1/100",1],["km2_radar_2017","Radar 2017 km²",1],
+  ["personas_rp100","Exposición: población",0],["edificaciones_rp100","Edificaciones",0],["colegios_dentro_rp100","Colegios dentro",0],["salud_dentro_rp100","Salud dentro",0],
+  ["pct_pobreza_total","Vulnerab.: % pobreza 2018",1],["riesgo_estimado","Riesgo estimado (relativo)",0],["prioridad_revision","Prioridad"]];
+let orden={k:"riesgo_estimado",asc:false};
+function tablaPanel(){
+  const P=D.PANEL&&D.PANEL.distritos;
+  if(!P){$("#tabla tbody").innerHTML="<tr><td class='vacio'>Panel no disponible: ejecute python src/panel.py</td></tr>";return}
+  $("#tabla thead").innerHTML="<tr>"+COLS.map(([k,t,d])=>`<th scope="col" class="${d!=null?"n":""}" data-k="${k}" tabindex="0" aria-sort="${orden.k===k?(orden.asc?"ascending":"descending"):"none"}">${t}${orden.k===k?(orden.asc?" ▲":" ▼"):""}</th>`).join("")+"</tr>";
+  document.querySelectorAll("#tabla th").forEach(th=>{const f=()=>{orden={k:th.dataset.k,asc:orden.k===th.dataset.k?!orden.asc:false};tablaPanel()};th.onclick=f;th.onkeydown=e=>{if(e.key==="Enter")f()}});
+  const f=P.filter(coincide).sort((a,b)=>{const x=a[orden.k],y=b[orden.k];if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*(orden.asc?1:-1)});
+  $("#tabla tbody").innerHTML=f.length?f.map(r=>`<tr data-ub="${esc(r.ubigeo)}" tabindex="0">`+COLS.map(([k,,d])=>`<td class="${d!=null?"n":""}">${d!=null?nf(r[k],d):esc(r[k])}</td>`).join("")+"</tr>").join(""):"<tr><td class='vacio' colspan='12'>No hay distritos en esta selección.</td></tr>";
+  document.querySelectorAll("#tabla tr[data-ub]").forEach(tr=>{const r=f.find(x=>x.ubigeo===tr.dataset.ub);const g=()=>elegirDistrito(r);tr.onclick=g;tr.onkeydown=e=>{if(e.key==="Enter")g()}});
+}
+function metadatos(){
+  const M=D.META;
+  if(!M){$("#meta").innerHTML="<p class='vacio'>metadatos.json no disponible: ejecute python src/metadatos.py</p>";return}
+  $("#meta-resumen").innerHTML=`Generado ${esc(M.generado)} · `+Object.entries(M.resumen_estado).map(([k,v])=>`<span class="chip ${k.replace(" ","-")}">${v} ${esc(k)}</span>`).join(" ");
+  $("#meta").innerHTML=M.capas.map(c=>`<details><summary><b>${esc(c.nombre)}</b> <span class="chip ${c.estado.replace(" ","-")}">${esc(c.estado)}</span> <small>· dato más reciente: ${esc(c.dato_mas_reciente||"—")}</small></summary>
+    <dl class="meta"><dt>Fuente</dt><dd>${esc(c.fuente)} ${c.url?`· <a href="${esc(c.url)}" target="_blank" rel="noopener">enlace</a>`:""}</dd>
+    <dt>Definición</dt><dd>${esc(c.definicion)}</dd><dt>Unidades · resolución · cobertura</dt><dd>${esc(c.unidades)} · ${esc(c.resolucion)} · ${esc(c.cobertura)}</dd>
+    <dt>Versión · naturaleza · licencia</dt><dd>${esc(c.version)} · ${esc(c.naturaleza)} · ${esc(c.licencia)}</dd>
+    <dt>Periodo · frecuencia</dt><dd>${esc((c.periodo||[]).join(" a ")||"—")} · ${esc(c.frecuencia)}${c.tolerancia_dias!=null?` (se considera rezagado tras ${c.tolerancia_dias} días)`:""}</dd>
+    <dt>Método</dt><dd>${esc(c.metodo)}</dd>${c.advertencias&&c.advertencias.length?`<dt>Advertencias</dt><dd><ul>${c.advertencias.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></dd>`:""}</dl></details>`).join("");
+}
+function comparador(){
+  const ev=D.IN.eventos, ks=["2017","2023","vivo"].filter(k=>ev[k]);
+  const fila=k=>{const e=ev[k],q=e.qa||{},m=(D.META&&D.META.capas||[]).find(c=>c.id===META_ID[k]);
+    return `<tr><th scope="row">${esc(ETQ[k])}</th><td>${esc(e.periodo[0])} a ${esc(e.periodo[1])}</td><td class="n">${e.imagenes.length}</td><td>${esc(e.imagenes.join(", "))}</td>
+    <td>${esc((q.referencia||[]).join(" a "))}${q.referencia_solapa_evento?" <b style='color:var(--mal)'>(se solapa)</b>":""}</td><td class="n">${nf(q.km2_deteccion_bruta_caja,1)}</td><td class="n">${nf(e.km2,1)}</td><td class="n">${nf(q.km2_agua_permanente_tierra,1)}</td>
+    <td>${m?`<span class="chip ${m.estado.replace(" ","-")}">${esc(m.estado)}</span>`:""}</td></tr>`};
+  $("#comparador").innerHTML=`<div class="tabla-scroll"><table class="comparador"><thead><tr><th>Evento</th><th>Periodo</th><th class="n">Pasadas</th><th>Fecha de cada pasada</th><th>Referencia seca</th><th class="n">Detección bruta km²</th><th class="n">Agua nueva en tierra km²</th><th class="n">Agua permanente km²</th><th>Estado</th></tr></thead><tbody>${ks.map(fila).join("")}</tbody></table></div>
+  <p style="font-size:12.5px;color:var(--tx2)">Incertidumbre: «detección bruta» es todo lo que pasó el umbral en la caja (incluye mar y Ecuador); solo se conserva lo que cae en tierra de Tumbes-Piura y en manchas ≥ 10 píxeles. Umbral VV −17 dB fijo y caída ≥ 3 dB: no se ha validado con datos de campo. La mancha es un mínimo en ciudades y puede incluir arrozales, humedales o arena lisa (ambiguos). ${S.comp.length?"<b>Superpuestos:</b> A en naranja, B en azul.":""}</p>`;
+}
+async function superponer(){
+  S.comp.forEach(l=>mapa.removeLayer(l));S.comp=[];
+  const a=$("#c-a").value,b=$("#c-b").value;
+  const [ga,gb]=await Promise.all([capaGeo(a),capaGeo(b)]);
+  if(ga)S.comp.push(L.geoJSON(ga,{interactive:false,style:{stroke:false,fillColor:"#ff7f0e",fillOpacity:.6}}).addTo(mapa));
+  if(gb)S.comp.push(L.geoJSON(gb,{interactive:false,style:{stroke:false,fillColor:"#1f77b4",fillOpacity:.6}}).addTo(mapa));
+  comparador();
+}
+function bajar(nombre,texto,tipo){const b=new Blob([texto],{type:tipo});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=nombre;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function descargarCSV(){
+  const P=(D.PANEL&&D.PANEL.distritos||[]).filter(coincide), e=D.IN.eventos[S.esc];
+  const ex={};(e.distritos||[]).forEach(r=>ex[r.ubigeo]=r);
+  const cab=["ubigeo","departamento","provincia","distrito","escenario","km2_escenario","personas_escenario","edificaciones_escenario","colegios_dentro","colegios_acum_1km","salud_dentro","salud_acum_1km",
+    "pct_area_rp100","personas_rp100","pct_pobreza_total","idh_2019","riesgo_estimado","prioridad_revision"];
+  const q=v=>v==null?"":/[",;\n]/.test(String(v))?`"${String(v).replace(/"/g,'""')}"`:String(v);
+  const filas=P.map(r=>{const x=ex[r.ubigeo]||{};return [r.ubigeo,r.departamento,r.provincia,r.distrito,S.esc,x.km2||0,x.personas||0,x.edificaciones||0,x.colegios_dentro||0,x.colegios_acum_1km||0,x.salud_dentro||0,x.salud_acum_1km||0,
+    r.pct_area_rp100,r.personas_rp100,r.pct_pobreza_total,r.idh_2019,r.riesgo_estimado,r.prioridad_revision].map(q).join(",")});
+  const nota=`# Fuente: proyecto integrador PEU-CD INEI. Escenario ${S.esc}. Poblacion WorldPop 2026 (modelada), edificaciones Google Open Buildings v3, peligro JRC v2, pobreza 2018 (compilacion de terceros). Exposicion potencial, no afectados. Generado ${new Date().toISOString()}`;
+  bajar(`exposicion_${S.esc}_${(S.sel.dis||S.sel.prov||S.sel.dep||S.sel.cuenca||"tumbes_piura").replace(/\s+/g,"_")}.csv`,"﻿"+nota+"\n"+cab.join(",")+"\n"+filas.join("\n"),"text/csv;charset=utf-8");
+}
+function descargarGeo(){
+  const e=D.IN.eventos[S.esc], sel=x=>!S.sel.dis&&!S.sel.prov&&!S.sel.dep&&!S.sel.cuenca?true:(x.distrito&&filasSel().some(r=>r.distrito.toUpperCase()===String(x.distrito).toUpperCase()));
+  const F=[...(e.colegios_lista||[]).map(x=>({...x,capa:"colegio",fuente:"OpenStreetMap (ODbL)"})),...(e.salud_lista||[]).map(x=>({...x,capa:"salud",fuente:"RENIPRESS (SUSALUD)"}))].filter(sel);
+  const gj={type:"FeatureCollection",name:`locales_${S.esc}`,metadata:{escenario:S.esc,definicion:"clase = dentro | anillo_0_500m | anillo_500m_1km respecto del borde de la mancha",generado:new Date().toISOString()},
+    features:F.map(x=>({type:"Feature",geometry:{type:"Point",coordinates:[x.lon,x.lat]},properties:{nombre:x.nombre,capa:x.capa,tipo:x.tipo||x.nivel||null,distrito:x.distrito||null,dist_m:x.dist_m,clase:x.clase,fuente:x.fuente}}))};
+  bajar(`locales_${S.esc}.geojson`,JSON.stringify(gj),"application/geo+json");
+}
+inicio().catch(err=>{console.error(err);$("#estado-global").innerHTML="<span class='chip no-disponible'>Error</span> "+esc(err.message)});
+</script>
+</body>
+</html>

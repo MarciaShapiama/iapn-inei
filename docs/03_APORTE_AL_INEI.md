@@ -1,0 +1,56 @@
+# 03 · Aporte al INEI e integración estadística
+
+## 1. Qué hace y qué no hace el INEI
+
+El INEI **produce y difunde estadísticas oficiales** (censos, encuestas, proyecciones, cartografía censal, registros estadísticos) y coordina el Sistema Estadístico Nacional. **No emite alertas de emergencia**: eso corresponde a SENAMHI (avisos meteorológicos), ENFEN (estado del sistema de alerta ante El Niño), INDECI y COEN (respuesta). **Tampoco ejecuta obras**: eso lo hacen los gobiernos regionales, las municipalidades y los sectores. El aporte de este proyecto es **estadístico**: indicadores territoriales reproducibles que otras entidades pueden usar dentro de sus competencias.
+
+## 2. Opciones de aporte
+
+Escala de 1 (bajo) a 5 (alto). En «esfuerzo», 5 significa poco esfuerzo.
+
+| # | Opción | Relevancia | Datos disponibles | Esfuerzo (5 = bajo) | Novedad | Sostenibilidad | Impacto | **Total** |
+|---|---|---|---|---|---|---|---|---|
+| 1 | **Estadística territorial de población y edificaciones potencialmente expuestas por UBIGEO** (escenarios JRC 1/10 y 1/100, y eventos observados) | 5 | 4 (WorldPop, Open Buildings; falta cruzar con el Censo 2017) | 4 (ya implementado: `exposicion_distritos.csv`) | 3 | 4 (actualización automática) | 4 | **24** |
+| 2 | Factores sociodemográficos de vulnerabilidad (niñez, adultos mayores, discapacidad, material de vivienda, agua y saneamiento, pobreza/NBI) | 5 | 2 (hoy solo pobreza 2018 e IDH de una compilación de terceros; el resto requiere el Censo 2017 por manzana o REDATAM) | 2 | 4 | 3 | 5 | **21** |
+| 3 | Monitoreo de cambios históricos y **vacíos de información geográfica** (dónde el radar no ve, distritos sin registro de emergencias, faltantes de GADM) para priorizar nuevas mediciones | 4 | 3 | 3 | 4 | 3 | 3 | **20** |
+| 4 | Indicadores reproducibles y tableros interoperables para CENEPRED, INDECI, SENAMHI, ANA, MINEDU, MINSA y gobiernos regionales (CSV/GeoJSON con metadatos y diccionario) | 4 | 4 | 3 | 3 | 4 | 4 | **22** |
+| 5 | Locales educativos y de salud expuestos, conciliados con los padrones oficiales (ESCALE, RENIPRESS) | 4 | 3 (RENIPRESS sí; ESCALE pendiente) | 4 | 2 | 4 | 4 | **21** |
+
+**Recomendación:** empezar por la **opción 1** como núcleo e integrar la **5** (sale casi gratis). Proponer la **2** como trabajo con el INEI, porque necesita microdatos censales con resguardo del secreto estadístico. La **4** es el mecanismo de entrega.
+
+## 3. Indicador principal (académico, defendible)
+
+**Población potencialmente expuesta a inundación fluvial con periodo de retorno de 100 años, por distrito (UBIGEO)**
+
+- **Numerador:** población modelada (WorldPop 2026; luego Censo 2017 + proyección INEI) dentro de la zona inundable JRC 1/100.
+- **Denominador:** población total del distrito, de la misma fuente, para que la proporción sea coherente.
+- **Desagregaciones:** dentro de la mancha / hasta 500 m / hasta 1 km (acumulados); clase de profundidad (< 0,5; 0,5–1,5; > 1,5 m).
+- **Unidad:** personas y %. **Periodicidad:** anual (con cada nueva estimación de población) o cuando cambie el escenario.
+- **Advertencia obligatoria:** «exposición potencial ante un escenario; no son personas afectadas».
+- **Valores actuales:** 408.970 personas en Tumbes y Piura (`dashboard/data/descargas/exposicion_distritos.csv`). Por ejemplo, **Catacaos 70.167 (85 % de su población modelada)**, **Castilla 71.184** y **Piura 55.762**.
+
+## 4. Propuesta de integración
+
+| Componente | Propuesta |
+|---|---|
+| **Convenio e interoperabilidad** | Convenio marco de cooperación interinstitucional entre INEI, CENEPRED, SENAMHI y ANA para intercambiar capas en formatos abiertos (GeoPackage/GeoJSON, CSV UTF-8) con UBIGEO como clave común |
+| **Metadatos** | Perfil ISO 19115 o DCAT por capa. El proyecto ya genera `metadatos.json` con fuente, licencia, definición, unidades, cobertura, resolución, versión, periodo, frecuencia, método, advertencias y estado |
+| **Diccionario de variables** | Una fila por columna de `exposicion_distritos.csv` y `panel_distritos.csv`: nombre, definición, unidad, fuente, tipo (oficial / modelada / derivada) |
+| **Periodicidad** | Peligro: según la versión del JRC o de los estudios CENEPRED. Exposición: anual. Eventos observados: por evento. Indicadores del mar y de lluvia: diarios (contexto, no estadística oficial) |
+| **Gobernanza** | Responsable técnico de la serie, registro de versiones (el proyecto ya mantiene `data/versiones/manifiesto.csv` con SHA-256), revisión antes de publicar y canal para reportar errores |
+| **Separación oficial / modelado** | Toda cifra lleva su naturaleza: **oficial** (censo, proyección INEI), **registro administrativo** (RENIPRESS, ESCALE), **modelada** (WorldPop, JRC, GloFAS) o **derivada** (radar) |
+| **Secreto estadístico** | La vulnerabilidad a escala de manzana se publica solo agregada (umbral mínimo de casos) |
+
+## 5. Lo que necesitamos del INEI (pedido realista)
+
+1. **Límites distritales oficiales** (o del IGN) con UBIGEO, que incluyan Veintiséis de Octubre (200115) y Canoas de Punta Sal (240203), con una licencia que permita publicarlos. Reemplazarían a GADM.
+2. **Población por distrito** (Censo 2017 y proyecciones vigentes) para validar WorldPop; idealmente, población por manzana censal para el cruce espacial.
+3. **Variables de vulnerabilidad** del Censo 2017 por distrito o manzana: menores de 5 años, mayores de 65, personas con discapacidad, material de paredes y techos, acceso a agua y desagüe.
+4. Confirmación de la **versión y fuente del mapa de pobreza distrital** vigente.
+
+## 6. Valor para el público beneficiario
+
+- **Gobiernos regionales y municipalidades:** priorizar estudios de detalle, mantenimiento de drenes y limpieza de cauces con un criterio explícito.
+- **MINEDU y MINSA:** lista de locales a menos de 1 km de zonas inundables para planes de contingencia.
+- **CENEPRED e INDECI:** insumo estadístico para escenarios de riesgo; no sustituye sus evaluaciones.
+- **Academia:** una línea base reproducible para medir el efecto de intervenciones.

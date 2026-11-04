@@ -1,0 +1,231 @@
+{
+ "calculado": "2026-11-04T01:08-05:00",
+ "1_anillos_rp100": {
+  "recalculado": {
+   "colegios": {
+    "dentro": 684,
+    "anillo_0_500m": 1268,
+    "anillo_500m_1km": 684,
+    "acum_500m": 1952,
+    "acum_1km": 2636,
+    "total_locales": 7111,
+    "fuera_del_raster": 0
+   },
+   "salud": {
+    "dentro": 146,
+    "anillo_0_500m": 285,
+    "anillo_500m_1km": 146,
+    "acum_500m": 431,
+    "acum_1km": 577,
+    "total_locales": 1009,
+    "fuera_del_raster": 0
+   }
+  },
+  "publicado_antes": {
+   "colegios": {
+    "Dentro": 684,
+    "A ≤ 500 m": 1268,
+    "A ≤ 1 km": 684
+   }
+  },
+  "conclusion": "Los rótulos antiguos 'A ≤ 500 m' y 'A ≤ 1 km' eran anillos disjuntos (0–500 m y 500 m–1 km). La igualdad 684 = 684 es una coincidencia numérica verificada, no un error de suma. Acumulado correcto a ≤ 1 km: 2636 colegios."
+ },
+ "2_conciliacion": {
+  "por_escenario": {
+   "2017": {
+    "edificaciones_total": 761,
+    "edificaciones_suma_departamentos": 761,
+    "edificaciones_sin_distrito": 0,
+    "personas_total": 1045,
+    "personas_suma_departamentos": 1044
+   },
+   "2023": {
+    "edificaciones_total": 19,
+    "edificaciones_suma_departamentos": 19,
+    "edificaciones_sin_distrito": 0,
+    "personas_total": 62,
+    "personas_suma_departamentos": 60
+   },
+   "vivo": {
+    "edificaciones_total": 5,
+    "edificaciones_suma_departamentos": 5,
+    "edificaciones_sin_distrito": 0,
+    "personas_total": 19,
+    "personas_suma_departamentos": 18
+   },
+   "rp10": {
+    "edificaciones_total": 111160,
+    "edificaciones_suma_departamentos": 111160,
+    "edificaciones_sin_distrito": 3004,
+    "personas_total": 284820,
+    "personas_suma_departamentos": 284823
+   },
+   "rp100": {
+    "edificaciones_total": 152486,
+    "edificaciones_suma_departamentos": 152486,
+    "edificaciones_sin_distrito": 4138,
+    "personas_total": 408970,
+    "personas_suma_departamentos": 408970
+   }
+  },
+  "rp100_sin_distrito_por_zona": {
+   "sur de la caja (Lambayeque)": 1871,
+   "borde distrital simplificado / interior": 1828,
+   "norte de la caja (frontera con Ecuador)": 439
+  },
+  "rp100_sin_distrito_lat_lon_cuantiles": {
+   "lat": {
+    "0.05": -6.396,
+    "0.5": -6.23,
+    "0.95": -3.382
+   },
+   "lon": {
+    "0.05": -80.287,
+    "0.5": -79.834,
+    "0.95": -79.472
+   }
+  }
+ },
+ "3_radar": {
+  "2017": {
+   "km2_mancha": 797.8,
+   "edificaciones": 761,
+   "personas": 1045,
+   "qa": {
+    "km2_deteccion_bruta_caja": 5656.8,
+    "km2_agua_permanente_tierra": 2559.1,
+    "km2_tras_mascara_tierra_y_limpieza": 797.8,
+    "fraccion_retenida": 0.141,
+    "umbral_db": -17.0,
+    "caida_db": 3.0,
+    "compuesto_evento": "minimo",
+    "referencia": [
+     "2016-08-01",
+     "2016-11-30"
+    ],
+    "referencia_solapa_evento": false
+   },
+   "imagenes": 30,
+   "primera_y_ultima_imagen": [
+    "2017-02-03",
+    "2017-04-29"
+   ],
+   "top5_distritos_por_km2": [
+    {
+     "Sechura": 619.95
+    },
+    {
+     "La Brea": 35.84
+    },
+    {
+     "Cristo Nos Valga": 33.64
+    },
+    {
+     "Vichayal": 21.47
+    },
+    {
+     "Lancones": 13.6
+    }
+   ],
+   "fraccion_en_sechura": 0.777,
+   "fraccion_bruta_en_poligonos_distritales": 0.144
+  },
+  "2023": {
+   "km2_mancha": 728.3,
+   "edificaciones": 19,
+   "personas": 62,
+   "qa": {
+    "km2_deteccion_bruta_caja": 9574.9,
+    "km2_agua_permanente_tierra": 1076.9,
+    "km2_tras_mascara_tierra_y_limpieza": 728.3,
+    "fraccion_retenida": 0.076,
+    "umbral_db": -17.0,
+    "caida_db": 3.0,
+    "compuesto_evento": "minimo",
+    "referencia": [
+     "2022-08-01",
+     "2022-11-30"
+    ],
+    "referencia_solapa_evento": false
+   },
+   "imagenes": 13,
+   "primera_y_ultima_imagen": [
+    "2023-03-02",
+    "2023-04-15"
+   ],
+   "top5_distritos_por_km2": [
+    {
+     "Sechura": 627.48
+    },
+    {
+     "La Brea": 36.43
+    },
+    {
+     "Lancones": 16.64
+    },
+    {
+     "Vichayal": 16.25
+    },
+    {
+     "Cristo Nos Valga": 16.2
+    }
+   ],
+   "fraccion_en_sechura": 0.862,
+   "fraccion_bruta_en_poligonos_distritales": 0.078
+  },
+  "vivo": {
+   "km2_mancha": 25.4,
+   "edificaciones": 5,
+   "personas": 19,
+   "qa": {
+    "km2_deteccion_bruta_caja": 126.9,
+    "km2_agua_permanente_tierra": 1135.6,
+    "km2_tras_mascara_tierra_y_limpieza": 25.4,
+    "fraccion_retenida": 0.2,
+    "umbral_db": -17.0,
+    "caida_db": 3.0,
+    "compuesto_evento": "minimo",
+    "referencia": [
+     "2026-08-01",
+     "2026-10-31"
+    ],
+    "referencia_solapa_evento": true
+   },
+   "imagenes": 14,
+   "primera_y_ultima_imagen": [
+    "2026-10-10",
+    "2026-11-02"
+   ],
+   "top5_distritos_por_km2": [
+    {
+     "Sechura": 20.49
+    },
+    {
+     "Tumbes": 1.11
+    },
+    {
+     "La Brea": 1.04
+    },
+    {
+     "Zarumilla": 0.7
+    },
+    {
+     "Vichayal": 0.4
+    }
+   ],
+   "fraccion_en_sechura": 0.807,
+   "fraccion_bruta_en_poligonos_distritales": 0.216
+  }
+ },
+ "5_poblacion": {
+  "worldpop_2026_en_distritos": {
+   "Piura": 2120106,
+   "Tumbes": 254537
+  },
+  "estimacion_2020_tabla_ubigeo": {
+   "PIURA": 2069446.0,
+   "TUMBES": 248097.0
+  },
+  "nota": "La estimación 2020 incluye 2 distritos ausentes en GADM (200115, 240203). Para validar con cifras oficiales use el Censo 2017 (INEI) o las proyecciones distritales oficiales vigentes."
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "perfil": "local",
+ "inicio": "2026-11-04T00:55-05:00",
+ "fin": "2026-11-04T00:55-05:00",
+ "pasos": [
+  {
+   "paso": "impacto.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 22.7,
+   "salida_final": [
+    "2023: 728.3 km², 4,756 personas, 19 edificaciones (sin distrito 0), colegios {'dentro': 0, 'anillo_0_500m': 10, 'anillo_500m_1km': 44, 'acum_500m': 10, 'acum_1km': 54}",
+    "  capa_vivo.geojson: 106 polígonos, 30 KB",
+    "vivo: 25.4 km², 524 personas, 5 edificaciones (sin distrito 0), colegios {'dentro': 0, 'anillo_0_500m': 9, 'anillo_500m_1km': 52, 'acum_500m': 9, 'acum_1km': 61}",
+    "  capa_rp10.geojson: 7135 polígonos, 2448 KB",
+    "rp10: 4782.5 km², 380,099 personas, 111,160 edificaciones (sin distrito 3,004), colegios {'dentro': 446, 'anillo_0_500m': 1340, 'anillo_500m_1km': 745, 'acum_500m': 1786, 'acum_1km': 2531}",
+    "  capa_rp100.geojson: 7336 polígonos, 2592 KB",
+    "rp100: 5594.0 km², 416,612 personas, 152,486 edificaciones (sin distrito 4,138), colegios {'dentro': 684, 'anillo_0_500m': 1268, 'anillo_500m_1km': 684, 'acum_500m': 1952, 'acum_1km': 2636}",
+    "inundacion.json: 3344 KB · exposicion_distritos.csv: 385 filas"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "panel.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.7,
+   "salida_final": [
+    "    Tambo Grande     Piura            7.26           22056          38.073700             73.2               Alta",
+    "Cristo Nos Valga   Sechura           44.30             914          34.470296             72.8               Alta",
+    "            Vice   Sechura           23.85            2486          33.414220             72.2               Alta",
+    "      La Matanza  Morropón            5.03           11399          38.734262             71.5               Alta",
+    "        Vichayal     Paita           41.27            3905          29.242720             71.5               Alta",
+    "        Corrales    Tumbes           50.00           98597          14.759960             69.5               Alta",
+    "    Miguel Checa   Sullana           10.05           50145          28.059640             69.5               Alta",
+    "76 distritos; prioridad: {'Media': 36, 'Baja': 23, 'Alta': 17}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "metadatos.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.6,
+   "salida_final": [
+    "  vigente        mar                último dato 2026-11-02",
+    "  vigente        nino12             último dato 2026-10-28",
+    "  rezagado       icen               último dato 2026-08",
+    "  estimado       lluvia             último dato 2026-11-03",
+    "  estimado       caudal             último dato 2026-11-03",
+    "  estimado       indice_provincial  último dato 2026-11-03",
+    "  vigente        vulnerabilidad     último dato 2019-12-31",
+    "Resumen: {'vigente': 8, 'rezagado': 1, 'no disponible': 1, 'estimado': 6}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "auditoria.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 2.3,
+   "salida_final": [
+    "  },",
+    "  \"estimacion_2020_tabla_ubigeo\": {",
+    "   \"PIURA\": 2069446.0,",
+    "   \"TUMBES\": 248097.0",
+    "  },",
+    "  \"nota\": \"La estimación 2020 incluye 2 distritos ausentes en GADM (200115, 240203). Para validar con cifras oficiales use el Censo 2017 (INEI) o las proyecciones distritales oficiales vigentes.\"",
+    " }",
+    "}"
+   ],
+   "error_final": []
+  }
+ ],
+ "ok": true,
+ "fallidos": []
+}

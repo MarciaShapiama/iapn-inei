@@ -1,0 +1,38 @@
+tests/test_datos.py::test_escenarios_presentes PASSED
+tests/test_datos.py::test_acumulados_monotonos
+tests/test_datos.py::test_acumulados_monotonos
+tests/test_datos.py::test_suma_de_departamentos_igual_al_total PASSED
+tests/test_datos.py::test_edificaciones_cerca_contiene_dentro PASSED
+tests/test_datos.py::test_rp100_contiene_a_rp10 PASSED
+tests/test_datos.py::test_sin_rotulos_engañosos PASSED
+tests/test_datos.py::test_csv_por_distrito_concilia PASSED
+tests/test_datos.py::test_capas_geojson_validas_y_dentro_de_la_caja PASSED
+tests/test_datos.py::test_distritos_76_nombres_corregidos PASSED
+tests/test_datos.py::test_panel_dimensiones_separadas PASSED
+tests/test_datos.py::test_metadatos_completos PASSED
+tests/test_datos.py::test_qa_radar_marca_solape_de_referencia PASSED
+tests/test_datos.py::test_poblacion_alineada_con_edificaciones PASSED
+tests/test_datos.py::test_poblacion_distrital_plausible PASSED
+tests/test_sitio.py::test_paginas
+tests/test_sitio.py::test_paginas
+tests/test_sitio.py::test_respaldo_sin_webgl_presente PASSED
+tests/test_sitio.py::test_datos_json
+tests/test_sitio.py::test_datos_json
+tests/test_sitio.py::test_datos_json
+tests/test_sitio.py::test_datos_json
+tests/test_sitio.py::test_datos_json
+tests/test_sitio.py::test_datos_json
+tests/test_sitio.py::test_descargas_csv PASSED
+tests/test_sitio.py::test_tamanos_razonables PASSED
+tests/test_unidades.py::test_anillos_disjuntos_y_acumulados_monotonos PASSED
+tests/test_unidades.py::test_referencia_no_se_solapa_con_el_evento
+tests/test_unidades.py::test_referencia_no_se_solapa_con_el_evento
+tests/test_unidades.py::test_referencia_no_se_solapa_con_el_evento
+tests/test_unidades.py::test_referencia_no_se_solapa_con_el_evento
+tests/test_unidades.py::test_referencia_no_se_solapa_con_el_evento
+tests/test_unidades.py::test_referencia_noviembre_usa_agosto_a_dia_previo PASSED
+tests/test_unidades.py::test_otsu_bimodal_encuentra_valle PASSED
+tests/test_unidades.py::test_otsu_devuelve_none_sin_datos_o_fuera_de_limites PASSED
+tests/test_unidades.py::test_estado_por_fecha PASSED
+tests/test_unidades.py::test_descargar_reintenta_y_luego_funciona PASSED
+tests/test_unidades.py::test_descargar_falla_tras_limite PASSED

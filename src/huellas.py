@@ -17,8 +17,9 @@ Uso: python src/huellas.py [2017 2023 vivo]
 from __future__ import annotations
 
 import json
+import os
 import sys
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -28,19 +29,59 @@ from exposicion import CAJA
 
 CARPETA = DATA / "huellas"
 RES = 0.0005                     # grados (~55 m)
-UMBRAL_AGUA, CAIDA_DB, ALTURA_MAX, PENDIENTE_MAX, MIN_PIX = -17.0, 3.0, 250.0, 5.0, 5
+# Parámetros configurables por variables de entorno (los valores por defecto reproducen las capas publicadas).
+UMBRAL_AGUA = float(os.getenv("IAPN_S1_UMBRAL_DB", "-17.0"))      # dB, VV
+CAIDA_DB = float(os.getenv("IAPN_S1_CAIDA_DB", "3.0"))            # caída mínima frente a la referencia seca
+ALTURA_MAX, PENDIENTE_MAX, MIN_PIX = 250.0, 5.0, 5
+UMBRAL_MODO = os.getenv("IAPN_S1_UMBRAL_MODO", "fijo")            # "fijo" u "otsu" (adaptativo, acotado)
+COMPUESTO = os.getenv("IAPN_S1_COMPUESTO", "minimo")              # "minimo" o "p10" (percentil 10, menos ruido)
+OTSU_LIMITES = (-24.0, -14.0)
 STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 
 
-def eventos() -> dict:
-    hoy = datetime.now(ZoneInfo("America/Lima")).date()
-    ref_anio = hoy.year if hoy.month >= 11 else hoy.year - 1
+def referencia_seca(evento_ini: date) -> tuple[str, str]:
+    """Temporada seca (1 ago - 30 nov) que termina ANTES del inicio del evento: nunca se solapan.
+
+    Si la temporada seca del año en curso aún no tiene al menos 45 días antes del evento, se usa la del año anterior.
+    """
+    y = evento_ini.year if evento_ini.month >= 8 else evento_ini.year - 1
+    ini, fin = date(y, 8, 1), min(date(y, 11, 30), evento_ini - timedelta(days=1))
+    if (fin - ini).days < 45:
+        ini, fin = date(y - 1, 8, 1), date(y - 1, 11, 30)
+    return ini.isoformat(), fin.isoformat()
+
+
+def eventos(hoy: date | None = None) -> dict:
+    hoy = hoy or datetime.now(ZoneInfo("America/Lima")).date()
+    vivo_ini = hoy - timedelta(days=24)
     return {
         "2017": {"nombre": "El Niño costero 2017", "evento": ("2017-02-01", "2017-04-30"), "ref": ("2016-08-01", "2016-11-30")},
         "2023": {"nombre": "Ciclón Yaku 2023", "evento": ("2023-03-01", "2023-04-15"), "ref": ("2022-08-01", "2022-11-30")},
-        "vivo": {"nombre": "Últimos 24 días", "evento": ((hoy - timedelta(days=24)).isoformat(), hoy.isoformat()),
-                 "ref": (f"{ref_anio}-08-01", f"{ref_anio}-10-31")},
+        "vivo": {"nombre": "Últimos 24 días", "evento": (vivo_ini.isoformat(), hoy.isoformat()), "ref": referencia_seca(vivo_ini)},
     }
+
+
+def otsu(valores: np.ndarray, bins: int = 256, limites=OTSU_LIMITES) -> float | None:
+    """Umbral de Otsu sobre valores en dB (ignora NaN), acotado a `limites` para evitar umbrales absurdos.
+
+    Devuelve None si no hay suficientes datos o si el histograma no es bimodal (umbral fuera de límites).
+    """
+    v = np.asarray(valores, dtype="float64")
+    v = v[np.isfinite(v)]
+    if v.size < 1000:
+        return None
+    hist, bordes = np.histogram(v, bins=bins, range=(-35, 5))
+    centros = (bordes[:-1] + bordes[1:]) / 2
+    p = hist / hist.sum()
+    w0 = np.cumsum(p); w1 = 1 - w0
+    m0 = np.cumsum(p * centros) / np.where(w0 > 0, w0, np.nan)
+    mt = (p * centros).sum()
+    m1 = (mt - np.cumsum(p * centros)) / np.where(w1 > 0, w1, np.nan)
+    var = w0 * w1 * (m0 - m1) ** 2
+    if not np.isfinite(var).any():
+        return None
+    u = float(centros[np.nanargmax(var)])
+    return u if limites[0] <= u <= limites[1] else None
 
 
 def catalogo():
@@ -110,14 +151,17 @@ def procesar(cat, clave: str, ev: dict, z=None, geobox=None):
     evento, f_ev = cargar_vv(cat, *ev["evento"], geobox=geobox)
     if evento is None:
         print("  sin imágenes del evento"); return z, geobox
+    assert ev["ref"][1] < ev["evento"][0], "la referencia seca no puede solaparse con el evento"
     r = ref.median("time").compute().values
-    e = evento.min("time").compute().values
+    e = (evento.quantile(0.10, "time") if COMPUESTO == "p10" else evento.min("time")).compute().values
     if z is None:
         z = dem(cat, geobox)
     lat0 = (CAJA[1] + CAJA[3]) / 2
     apto = (z < ALTURA_MAX) & (pendiente(z, lat0) < PENDIENTE_MAX)
-    permanente = r < UMBRAL_AGUA
-    inund = (e < UMBRAL_AGUA) & ((r - e) > CAIDA_DB) & apto & ~permanente & np.isfinite(e) & np.isfinite(r)
+    u_otsu = otsu(np.where(apto, e, np.nan)[::4, ::4])
+    umbral = u_otsu if (UMBRAL_MODO == "otsu" and u_otsu is not None) else UMBRAL_AGUA
+    permanente = r < umbral
+    inund = (e < umbral) & ((r - e) > CAIDA_DB) & apto & ~permanente & np.isfinite(e) & np.isfinite(r)
     inund = limpiar(inund)
     m = np.where(inund, 1, 0).astype("uint8")
     m[permanente & apto] = 2                                                   # agua permanente (referencia)
@@ -126,6 +170,8 @@ def procesar(cat, clave: str, ev: dict, z=None, geobox=None):
     guardar(clave, m, geobox, {"evento": clave, "nombre": ev["nombre"], "periodo": ev["evento"], "referencia": ev["ref"],
                                "imagenes_evento": f_ev, "imagenes_referencia": f_ref, "km2": round(km2, 1),
                                "resolucion_grados": RES, "metodo": "Sentinel-1 RTC VV, detección de cambios",
+                               "umbral_db": umbral, "umbral_modo": UMBRAL_MODO, "umbral_otsu_diagnostico": u_otsu,
+                               "caida_db": CAIDA_DB, "compuesto_evento": COMPUESTO, "polarizacion": "VV",
                                "calculado": datetime.now(ZoneInfo("America/Lima")).isoformat(timespec="minutes")})
     return z, geobox
 
