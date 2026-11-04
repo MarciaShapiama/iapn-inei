@@ -29,6 +29,9 @@ jobs:
       - name: Índices, producción y electricidad
         run: python src/descargar_indicadores.py
         continue-on-error: true
+      - name: Zonas afectadas (lluvia y ríos)
+        run: python src/descargar_zonas.py
+        continue-on-error: true
       - name: Preparar datos del tablero
         run: python src/construir.py
       - name: Guardar
