@@ -1,0 +1,15 @@
+name: Prueba de fuentes
+on: workflow_dispatch
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+          curl -sS -A "$UA" -L --max-time 60 https://desinventar-api.undrr.org/DesInventar/download.jsp | grep -io 'href="[^"]*per[^"]*"' | head -5 || true
+          for u in "https://desinventar-api.undrr.org/DesInventar/download/DI_export_per.zip" \
+                   "https://www.desinventar.net/DesInventar/download/DI_export_per.zip" \
+                   "https://desinventar.cimafoundation.org/DesInventar/download/DI_export_per.zip"; do
+            echo "== $u"; curl -sS -A "$UA" -o /tmp/x -w "%{http_code} %{size_download} %{content_type}\n" -L --max-time 300 "$u" || true
+            head -c 4 /tmp/x | xxd | head -1; done
+          ls -la /tmp/x; unzip -l /tmp/x 2>/dev/null | head || true
