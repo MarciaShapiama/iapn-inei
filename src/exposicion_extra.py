@@ -32,14 +32,22 @@ ENFEN = "https://www.gob.pe/institucion/senamhi/colecciones/1308-comunicados-enf
 
 
 def recorte(url: str):
-    """Lee solo la caja de Tumbes-Piura de un ráster remoto (sin bajar el archivo de todo el Perú)."""
+    """Descarga el ráster de Perú y lee solo la caja de Tumbes-Piura (el servidor no admite lectura parcial)."""
     import rasterio
     from rasterio.windows import Window, from_bounds
-    with rasterio.open("/vsicurl/" + url) as src:
+    tmp = CARPETA / "_edad.tif"
+    with requests.get(url, headers=UA, timeout=1200, stream=True) as r:
+        r.raise_for_status()
+        with open(tmp, "wb") as f:
+            for bloque in r.iter_content(1 << 20):
+                f.write(bloque)
+    with rasterio.open(tmp) as src:
         v = from_bounds(*CAJA, transform=src.transform).round_offsets().round_lengths()
         v = v.intersection(Window(0, 0, src.width, src.height))   # misma corrección que poblacion_100m.tif
         d = src.read(1, window=v).astype("float32")
-        return np.where(d < 0, 0, d), src.window_transform(v), src.crs
+        salida = (np.where(d < 0, 0, d), src.window_transform(v), src.crs)
+    tmp.unlink()
+    return salida
 
 
 def edades(forzar: bool) -> None:
@@ -92,22 +100,35 @@ def vias(forzar: bool) -> None:
     destino = CARPETA / "vias.geojson"
     if destino.exists() and not forzar:
         return
+    import time
     o, s, e, n = CAJA
-    q = (f'[out:json][timeout:300];way["highway"~"^(motorway|trunk|primary|secondary|tertiary)$"]({s},{o},{n},{e});'
-         'out tags geom;')
-    j = None
-    for url in OVERPASS:
-        try:
-            r = requests.post(url, data={"data": q}, headers={**UA, "Accept": "application/json"}, timeout=400)
-            if r.status_code == 200 and r.text.lstrip().startswith("{"):
-                j = r.json(); break
-            print(f"  {url}: HTTP {r.status_code}")
-        except Exception as error:
-            print(f"  {url}: {error}")
-    if j is None:
-        raise RuntimeError("OpenStreetMap no respondió")
+    cab = {"User-Agent": "MonitorInundacionesTumbesPiura/1.0 (proyecto academico PEU-CD INEI)", "Accept": "*/*"}
+    elementos, vistos = [], set()
+    medio_x, medio_y = (o + e) / 2, (s + n) / 2
+    for (a, b, c, d) in [(o, s, medio_x, medio_y), (medio_x, s, e, medio_y), (o, medio_y, medio_x, n), (medio_x, medio_y, e, n)]:
+        q = (f'[out:json][timeout:180];way["highway"~"^(motorway|trunk|primary|secondary|tertiary)$"]({b},{a},{d},{c});'
+             'out tags geom;')
+        j = None
+        for url in OVERPASS:
+            for intento in range(2):
+                try:
+                    r = requests.post(url, data={"data": q}, headers=cab, timeout=300)
+                    if r.status_code == 200 and r.text.lstrip().startswith("{"):
+                        j = r.json(); break
+                    print(f"  {url}: HTTP {r.status_code}")
+                except Exception as error:
+                    print(f"  {url}: {error}")
+                time.sleep(15)
+            if j is not None:
+                break
+        if j is None:
+            raise RuntimeError("OpenStreetMap no respondió")
+        for w in j["elements"]:
+            if w["id"] not in vistos:
+                vistos.add(w["id"]); elementos.append(w)
+        time.sleep(5)
     feats = []
-    for w in j["elements"]:
+    for w in elementos:
         if "geometry" not in w:
             continue
         t = w.get("tags", {})
@@ -136,15 +157,23 @@ def enfen() -> None:
         with pdfplumber.open(io.BytesIO(requests.get(pdf.group(0), headers=nav, timeout=180).content)) as p:
             texto = " ".join((pg.extract_text() or "") for pg in p.pages[:2])
         texto = re.sub(r"\s+", " ", texto)
-        m = re.search(r"Estado del Sistema de Alerta[^:]{0,40}:\s*([^.]{3,90})", texto, flags=re.I)
-        if m:
-            salida["estado"] = m.group(1).strip()
-        f = re.search(r"(\d{1,2} de [a-záéíóú]+ de 20\d\d)", texto, flags=re.I)
-        if f:
-            salida["fecha"] = f.group(1)
+        enc = re.search(r"COMUNICADO OFICIAL ENFEN N°\s*\d+\s*-\s*\d{4}\s+(\d{1,2}(?: de)? [a-záéíóú]+(?: de)? \d{4})", texto, flags=re.I)
+        if enc:
+            salida["fecha"] = enc.group(1)
+        est = re.search(r"(Alerta de (?:El Niño|La Niña) Coster[oa]|Vigilancia de (?:El Niño|La Niña) Coster[oa]|No activo)",
+                        texto[:900], flags=re.I)
+        if est:
+            salida["estado"] = est.group(1)
+        tit = re.search(r"Coster[oa]\s*\d?\s+([A-ZÁÉÍÓÚÑ0-9 ,.\-]{20,160}?)\s+[A-Z][a-záéíóú]", texto)
+        if tit:
+            salida["titular"] = tit.group(1).strip().capitalize()
+        mag = re.search(r"mantendría una magnitud ([a-záéíóú]+)\d?\s+hasta ([a-záéíóú]+ de \d{4})", texto)
+        if mag:
+            salida["magnitud_esperada"] = f"{mag.group(1)} hasta {mag.group(2)}"
         salida["extracto"] = texto[:600]
     json.dump(salida, open(DASH_DATA / "enfen.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print(f"  ENFEN: comunicado {salida['numero']} · {salida['fecha']} · estado: {salida['estado']}")
+    print(f"  ENFEN: comunicado {salida['numero']} · {salida['fecha']} · estado: {salida['estado']} · "
+          f"{salida.get('titular')} · magnitud: {salida.get('magnitud_esperada')}")
 
 
 def padron_minedu() -> None:
