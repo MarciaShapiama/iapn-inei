@@ -1,0 +1,947 @@
+{
+ "metodo": "Prueba del aviso de lluvia con el pasado: ¿la lluvia fuerte o extrema aparece ANTES de los daños reportados?\n\nPedido: «jugar con el pasado». Si el aviso hubiera estado funcionando, ¿habría marcado lluvia fuerte o extrema en los\ndías previos a las inundaciones que salieron en las noticias y que registró INDECI? ¿Y cuántas veces habría avisado\nsin que pasara nada?\n\nQué se usa (todo ya está en el repositorio, no necesita red):\n    lluvia diaria observada por distrito 2001-2026, NASA POWER (satélite + reanálisis), punto en el centro del\n        distrito: data/modelo/lluvia_distritos.csv (src/base_modelo.py)\n    umbrales del MISMO dato: percentiles 95 y 99 de los días con lluvia (>= 1 mm) 2001-2020 de cada distrito\n    emergencias de INDECI (SINPAD, datos abiertos) por distrito y semana 2003-2026:\n        data/modelo/sinpad_tumbes_piura_semanal.csv\n    eventos verificados con noticias: data/eventos/catalogo_verificado.csv, más dos desbordes del río Tumbes con\n        noticias (29/4/2023 y 12/2/2025, docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md)\n\nLímite importante: se usa la lluvia que REALMENTE cayó, no la que se pronosticó. Mide si la regla del aviso (lluvia\nde un día sobre el percentil 95 o 99 del lugar) separa los días de daño de los demás, suponiendo un pronóstico\nperfecto. Es la mejor nota posible del aviso; con el pronóstico real será igual o peor.",
+ "umbrales_distritos": 75,
+ "umbrales_caudal_2001_2020": {
+  "Chira": {
+   "p90": 884,
+   "p95": 1388,
+   "p99": 2420
+  },
+  "Piura": {
+   "p90": 193,
+   "p95": 306,
+   "p99": 854
+  },
+  "Tumbes": {
+   "p90": 574,
+   "p95": 764,
+   "p99": 1278
+  }
+ },
+ "eventos_con_noticias": [
+  {
+   "id": "2017-piura-desborde",
+   "fecha": "2017-03-27",
+   "distrito": "Piura",
+   "tipo": "desborde de río",
+   "descripcion": "El río Piura se desborda en la ciudad de Piura y Castilla (caudal sobre 2 000 m³/s la noche del 26 de marzo)",
+   "fuente": "https://es.mongabay.com/2017/04/emergencia-piura-balance-mes-funesto-norte-del-peru/",
+   "p95_mm": 14.7,
+   "p99_mm": 29.4,
+   "lluvia_10_dias_antes": {
+    "2017-03-17": 2.9,
+    "2017-03-18": 6.0,
+    "2017-03-19": 17.4,
+    "2017-03-20": 2.8,
+    "2017-03-21": 16.9,
+    "2017-03-22": 24.5,
+    "2017-03-23": 0.6,
+    "2017-03-24": 9.6,
+    "2017-03-25": 13.7,
+    "2017-03-26": 42.3,
+    "2017-03-27": 1.6
+   },
+   "max_mm_3_dias_antes": 42.3,
+   "dia_max": "2017-03-26",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2017-03-26"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 1471,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "muy alto (> p99)"
+  },
+  {
+   "id": "2017-catacaos",
+   "fecha": "2017-03-27",
+   "distrito": "Catacaos",
+   "tipo": "desborde de río",
+   "descripcion": "Catacaos queda inundado tras el desborde del río Piura",
+   "fuente": "https://es.mongabay.com/2017/03/peru-rios-inundacion-nino-costero-piura/",
+   "p95_mm": 22.1,
+   "p99_mm": 37.8,
+   "lluvia_10_dias_antes": {
+    "2017-03-17": 3.1,
+    "2017-03-18": 6.3,
+    "2017-03-19": 19.6,
+    "2017-03-20": 2.0,
+    "2017-03-21": 20.3,
+    "2017-03-22": 26.3,
+    "2017-03-23": 0.4,
+    "2017-03-24": 9.2,
+    "2017-03-25": 17.2,
+    "2017-03-26": 49.7,
+    "2017-03-27": 1.6
+   },
+   "max_mm_3_dias_antes": 49.7,
+   "dia_max": "2017-03-26",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2017-03-26"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 1471,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "muy alto (> p99)"
+  },
+  {
+   "id": "2017-cura-mori",
+   "fecha": "2017-03-27",
+   "distrito": "Cura Mori",
+   "tipo": "desborde de río",
+   "descripcion": "Cura Mori (Bajo Piura) queda inundado tras el desborde del río Piura",
+   "fuente": "https://es.mongabay.com/2017/03/peru-rios-inundacion-nino-costero-piura/",
+   "p95_mm": 22.1,
+   "p99_mm": 37.8,
+   "lluvia_10_dias_antes": {
+    "2017-03-17": 3.1,
+    "2017-03-18": 6.3,
+    "2017-03-19": 19.6,
+    "2017-03-20": 2.0,
+    "2017-03-21": 20.3,
+    "2017-03-22": 26.3,
+    "2017-03-23": 0.4,
+    "2017-03-24": 9.2,
+    "2017-03-25": 17.2,
+    "2017-03-26": 49.7,
+    "2017-03-27": 1.6
+   },
+   "max_mm_3_dias_antes": 49.7,
+   "dia_max": "2017-03-26",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2017-03-26"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 1471,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "muy alto (> p99)"
+  },
+  {
+   "id": "2017-chulucanas",
+   "fecha": "2017-03-26",
+   "distrito": "Chulucanas",
+   "tipo": "desborde de río",
+   "descripcion": "Chulucanas, uno de los primeros lugares bajo el agua en la crecida del río Piura",
+   "fuente": "https://rpp.pe/peru/piura/cronica-el-rio-piura-se-llevo-los-bienes-pero-no-las-esperanzas-noticia-1041296",
+   "p95_mm": 10.1,
+   "p99_mm": 19.8,
+   "lluvia_10_dias_antes": {
+    "2017-03-16": 3.5,
+    "2017-03-17": 3.1,
+    "2017-03-18": 9.2,
+    "2017-03-19": 11.1,
+    "2017-03-20": 4.9,
+    "2017-03-21": 14.6,
+    "2017-03-22": 18.1,
+    "2017-03-23": 1.1,
+    "2017-03-24": 8.2,
+    "2017-03-25": 23.8,
+    "2017-03-26": 21.5
+   },
+   "max_mm_3_dias_antes": 23.8,
+   "dia_max": "2017-03-25",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2017-03-25",
+    "2017-03-26"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 1275,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "muy alto (> p99)"
+  },
+  {
+   "id": "2017-tambogrande",
+   "fecha": "2017-03-26",
+   "distrito": "Tambo Grande",
+   "tipo": "desborde de río",
+   "descripcion": "Tambogrande, uno de los primeros lugares bajo el agua en la crecida del río Piura",
+   "fuente": "https://rpp.pe/peru/piura/cronica-el-rio-piura-se-llevo-los-bienes-pero-no-las-esperanzas-noticia-1041296",
+   "p95_mm": 14.7,
+   "p99_mm": 29.4,
+   "lluvia_10_dias_antes": {
+    "2017-03-16": 6.2,
+    "2017-03-17": 2.9,
+    "2017-03-18": 6.0,
+    "2017-03-19": 17.4,
+    "2017-03-20": 2.8,
+    "2017-03-21": 16.9,
+    "2017-03-22": 24.5,
+    "2017-03-23": 0.6,
+    "2017-03-24": 9.6,
+    "2017-03-25": 13.7,
+    "2017-03-26": 42.3
+   },
+   "max_mm_3_dias_antes": 42.3,
+   "dia_max": "2017-03-26",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2017-03-26"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 1275,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "muy alto (> p99)"
+  },
+  {
+   "id": "2023-tambogrande",
+   "fecha": "2023-03-10",
+   "distrito": "Tambo Grande",
+   "tipo": "desborde de río",
+   "descripcion": "Ciclón Yaku: el río Piura se desborda por el Barrio Sur de Tambogrande",
+   "fuente": "https://infomercado.pe/ciclon-yaku-en-vivo-11-de-marzo-ultimas-noticias-en-piura-lambayeque-y-chiclayo-ultimas-noticias-en-directo-regiones-desbordes-de-rio-y-mas-10032023-esm/",
+   "p95_mm": 14.7,
+   "p99_mm": 29.4,
+   "lluvia_10_dias_antes": {
+    "2023-02-28": 0.0,
+    "2023-03-01": 0.0,
+    "2023-03-02": 0.0,
+    "2023-03-03": 0.0,
+    "2023-03-04": 0.0,
+    "2023-03-05": 0.3,
+    "2023-03-06": 7.5,
+    "2023-03-07": 20.4,
+    "2023-03-08": 8.7,
+    "2023-03-09": 4.6,
+    "2023-03-10": 26.7
+   },
+   "max_mm_3_dias_antes": 26.7,
+   "dia_max": "2023-03-10",
+   "nivel": "fuerte",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2023-03-07",
+    "2023-03-10"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 458,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "alto (> p95)"
+  },
+  {
+   "id": "2026-piura-calles",
+   "fecha": "2026-10-20",
+   "distrito": "Piura",
+   "tipo": "lluvia urbana",
+   "descripcion": "Calles de Piura amanecen inundadas por lluvias",
+   "fuente": "https://www.infobae.com/peru/2026/10/20/el-norte-del-peru-empieza-a-sentir-los-estragos-de-el-nino-calles-de-piura-amanecen-inundadas-por-lluvias/",
+   "p95_mm": 14.7,
+   "p99_mm": 29.4,
+   "lluvia_10_dias_antes": {
+    "2026-10-10": 2.8,
+    "2026-10-11": 2.7,
+    "2026-10-12": 1.3,
+    "2026-10-13": 0.9,
+    "2026-10-14": 0.4,
+    "2026-10-15": 1.4,
+    "2026-10-16": 1.5,
+    "2026-10-17": 3.0,
+    "2026-10-18": 2.5,
+    "2026-10-19": 21.1,
+    "2026-10-20": 30.0
+   },
+   "max_mm_3_dias_antes": 30.0,
+   "dia_max": "2026-10-20",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2026-10-19",
+    "2026-10-20"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 54,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "normal"
+  },
+  {
+   "id": "2026-chulucanas",
+   "fecha": "2026-10-20",
+   "distrito": "Chulucanas",
+   "tipo": "lluvia urbana",
+   "descripcion": "Aguacero inunda calles y obliga a cerrar el mercado modelo de Chulucanas",
+   "fuente": "https://rpp.pe/peru/piura/piura-lluvias-torrenciales-inundan-calles-y-obligan-a-cerrar-el-mercado-modelo-en-chulucanas-noticia-1713517",
+   "p95_mm": 10.1,
+   "p99_mm": 19.8,
+   "lluvia_10_dias_antes": {
+    "2026-10-10": 7.1,
+    "2026-10-11": 13.6,
+    "2026-10-12": 9.8,
+    "2026-10-13": 8.4,
+    "2026-10-14": 3.5,
+    "2026-10-15": 6.1,
+    "2026-10-16": 5.0,
+    "2026-10-17": 8.5,
+    "2026-10-18": 12.1,
+    "2026-10-19": 25.9,
+    "2026-10-20": 19.6
+   },
+   "max_mm_3_dias_antes": 25.9,
+   "dia_max": "2026-10-19",
+   "nivel": "extremo",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20"
+   ],
+   "rio": "Piura",
+   "caudal_max_m3s_3_dias_antes": 54,
+   "caudal_p95_m3s": 306,
+   "caudal_p99_m3s": 854,
+   "caudal_nivel": "normal"
+  },
+  {
+   "id": "2026-serran",
+   "fecha": "2026-10-29",
+   "distrito": "Canchaque",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Serrán aísla Canchaque, San Miguel de El Faique, Sondorillo y Sóndor y corta la carretera a Huancabamba (km 53)",
+   "fuente": "https://www.infobae.com/peru/2026/10/30/lluvias-extremas-en-piura-desborde-del-rio-serran-aislo-localidades-de-huancabamba-y-bloqueo-la-carretera-hacia-la-sierra/",
+   "p95_mm": 8.6,
+   "p99_mm": 16.2,
+   "lluvia_10_dias_antes": {
+    "2026-10-19": 10.8,
+    "2026-10-20": 14.9,
+    "2026-10-21": 11.4,
+    "2026-10-22": 9.7,
+    "2026-10-23": 8.9,
+    "2026-10-24": 3.5,
+    "2026-10-25": 5.1,
+    "2026-10-26": 3.9,
+    "2026-10-27": 8.9,
+    "2026-10-28": 3.6,
+    "2026-10-29": 13.5
+   },
+   "max_mm_3_dias_antes": 13.5,
+   "dia_max": "2026-10-29",
+   "nivel": "fuerte",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2026-10-27",
+    "2026-10-29"
+   ],
+   "rio": null,
+   "caudal": "sin punto de caudal (río sin dato GloFAS o sierra)"
+  },
+  {
+   "id": "2026-puerto-peru",
+   "fecha": "2026-11-02",
+   "distrito": "Aguas Verdes",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Zarumilla inunda el asentamiento humano Puerto Perú y Tomás Arizola (Aguas Verdes)",
+   "fuente": "https://elcomercio.pe/peru/tumbes/tumbes-desborde-del-rio-zarumilla-afecta-a-puerto-peru-y-tomas-arizola-fenomeno-el-nino-fen-apuesplan-ultimas-noticia/",
+   "p95_mm": 15.0,
+   "p99_mm": 26.7,
+   "lluvia_10_dias_antes": {
+    "2026-10-23": 7.3,
+    "2026-10-24": 14.1,
+    "2026-10-25": 60.9,
+    "2026-10-26": 30.7,
+    "2026-10-27": 23.9,
+    "2026-10-28": 22.0,
+    "2026-10-29": 23.1,
+    "2026-10-30": 20.5,
+    "2026-10-31": 20.6
+   },
+   "max_mm_3_dias_antes": 20.6,
+   "dia_max": "2026-10-31",
+   "nivel": "fuerte",
+   "dias_sobre_p95_en_los_3_dias_antes": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "rio": null,
+   "caudal": "sin punto de caudal (río sin dato GloFAS o sierra)"
+  },
+  {
+   "id": "2026-vaqueria",
+   "fecha": "2026-11-02",
+   "distrito": "San Jacinto",
+   "tipo": "activación de quebrada",
+   "descripcion": "Se activa la quebrada Vaquería (San Jacinto, Tumbes) junto con otras cinco quebradas; carretera rural afectada",
+   "fuente": "https://www.infobae.com/peru/2026/11/02/lluvias-en-tumbes-y-el-norte-del-peru-precipitaciones-intensas-por-el-fenomeno-el-nino-inundan-calles-y-activan-quebradas-en-la-region/",
+   "p95_mm": 15.5,
+   "p99_mm": 31.7,
+   "lluvia_10_dias_antes": {
+    "2026-10-23": 5.3,
+    "2026-10-24": 3.5,
+    "2026-10-25": 37.7,
+    "2026-10-26": 15.6,
+    "2026-10-27": 15.2,
+    "2026-10-28": 10.9,
+    "2026-10-29": 26.5,
+    "2026-10-30": 15.2,
+    "2026-10-31": 5.1
+   },
+   "max_mm_3_dias_antes": 15.2,
+   "dia_max": "2026-10-30",
+   "nivel": "normal",
+   "dias_sobre_p95_en_los_3_dias_antes": [],
+   "rio": "Tumbes",
+   "caudal_max_m3s_3_dias_antes": 1029,
+   "caudal_p95_m3s": 764,
+   "caudal_p99_m3s": 1278,
+   "caudal_nivel": "alto (> p95)"
+  },
+  {
+   "id": "2026-tumbes-calles",
+   "fecha": "2026-11-02",
+   "distrito": "Tumbes",
+   "tipo": "lluvia urbana",
+   "descripcion": "Lluvias inundan calles y activan quebradas en Tumbes; Senamhi registró 110,3 mm en El Salto (Zarumilla) el 2 de noviembre",
+   "fuente": "https://www.infobae.com/peru/2026/11/02/lluvias-en-tumbes-y-el-norte-del-peru-precipitaciones-intensas-por-el-fenomeno-el-nino-inundan-calles-y-activan-quebradas-en-la-region/",
+   "p95_mm": 18.7,
+   "p99_mm": 39.8,
+   "lluvia_10_dias_antes": {
+    "2026-10-23": 4.0,
+    "2026-10-24": 5.6,
+    "2026-10-25": 65.2,
+    "2026-10-26": 15.5,
+    "2026-10-27": 9.2,
+    "2026-10-28": 9.0,
+    "2026-10-29": 14.7,
+    "2026-10-30": 9.3,
+    "2026-10-31": 3.6
+   },
+   "max_mm_3_dias_antes": 9.3,
+   "dia_max": "2026-10-30",
+   "nivel": "normal",
+   "dias_sobre_p95_en_los_3_dias_antes": [],
+   "rio": "Tumbes",
+   "caudal_max_m3s_3_dias_antes": 1029,
+   "caudal_p95_m3s": 764,
+   "caudal_p99_m3s": 1278,
+   "caudal_nivel": "alto (> p95)"
+  },
+  {
+   "id": "2026-mancora",
+   "fecha": "2026-11-02",
+   "distrito": "Mancora",
+   "tipo": "lluvia urbana",
+   "descripcion": "Lluvia de hora y media inunda calles de Máncora; se activan las quebradas Fernández y Cabo Blanco",
+   "fuente": "https://andina.pe/agencia/noticia-fenomeno-nino-piura-lluvia-hora-y-media-inunda-calles-distrito-mancora-1098350.aspx",
+   "p95_mm": 15.5,
+   "p99_mm": 35.7,
+   "lluvia_10_dias_antes": {
+    "2026-10-23": 2.8,
+    "2026-10-24": 1.3,
+    "2026-10-25": 24.8,
+    "2026-10-26": 0.5,
+    "2026-10-27": 2.6,
+    "2026-10-28": 0.8,
+    "2026-10-29": 3.7,
+    "2026-10-30": 0.1,
+    "2026-10-31": 0.0
+   },
+   "max_mm_3_dias_antes": 0.1,
+   "dia_max": "2026-10-30",
+   "nivel": "normal",
+   "dias_sobre_p95_en_los_3_dias_antes": [],
+   "rio": null,
+   "caudal": "sin punto de caudal (río sin dato GloFAS o sierra)"
+  },
+  {
+   "id": "2023-tumbes-cultivos",
+   "fecha": "2023-04-29",
+   "distrito": "San Jacinto",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Tumbes: unas 1 600 ha de cultivo afectadas",
+   "p95_mm": 15.5,
+   "p99_mm": 31.7,
+   "lluvia_10_dias_antes": {
+    "2023-04-19": 1.5,
+    "2023-04-20": 1.0,
+    "2023-04-21": 1.1,
+    "2023-04-22": 1.0,
+    "2023-04-23": 1.5,
+    "2023-04-24": 0.1,
+    "2023-04-25": 0.6,
+    "2023-04-26": 2.8,
+    "2023-04-27": 2.1,
+    "2023-04-28": 0.4,
+    "2023-04-29": 2.9
+   },
+   "max_mm_3_dias_antes": 2.9,
+   "dia_max": "2023-04-29",
+   "nivel": "normal",
+   "dias_sobre_p95_en_los_3_dias_antes": [],
+   "rio": "Tumbes",
+   "caudal_max_m3s_3_dias_antes": 1182,
+   "caudal_p95_m3s": 764,
+   "caudal_p99_m3s": 1278,
+   "caudal_nivel": "alto (> p95)"
+  },
+  {
+   "id": "2025-tumbes-cultivos",
+   "fecha": "2025-02-12",
+   "distrito": "San Jacinto",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Tumbes: 1 284 ha de cultivo inundadas",
+   "p95_mm": 15.5,
+   "p99_mm": 31.7,
+   "lluvia_10_dias_antes": {
+    "2025-02-02": 0.0,
+    "2025-02-03": 0.0,
+    "2025-02-04": 0.3,
+    "2025-02-05": 0.6,
+    "2025-02-06": 0.9,
+    "2025-02-07": 0.8,
+    "2025-02-08": 1.4,
+    "2025-02-09": 1.5,
+    "2025-02-10": 6.9,
+    "2025-02-11": 3.1,
+    "2025-02-12": 1.0
+   },
+   "max_mm_3_dias_antes": 6.9,
+   "dia_max": "2025-02-10",
+   "nivel": "normal",
+   "dias_sobre_p95_en_los_3_dias_antes": [],
+   "rio": "Tumbes",
+   "caudal_max_m3s_3_dias_antes": 759,
+   "caudal_p95_m3s": 764,
+   "caudal_p99_m3s": 1278,
+   "caudal_nivel": "normal"
+  }
+ ],
+ "sinpad": {
+  "semanas_distrito": 92031,
+  "distritos": 75,
+  "periodo": [
+   "2002-12-30",
+   "2026-06-29"
+  ],
+  "distritos_sinpad_sin_lluvia": [
+   "PIURAVEINTISEISDEOCTUBRE",
+   "TUMBESCANOASDEPUNTASAL"
+  ],
+  "definiciones": {
+   "inundacion": "semana con al menos una emergencia por inundación en SINPAD",
+   "viviendas": "semana con al menos una vivienda afectada en SINPAD (cualquier peligro)"
+  },
+  "inundacion_p95": {
+   "ambito": "todos los distritos",
+   "avisos": 3830,
+   "eventos": 197,
+   "aciertos": 59,
+   "falsas_alarmas": 3771,
+   "no_avisados": 138,
+   "deteccion_pct": 29.9,
+   "falsa_alarma_pct": 98.5,
+   "prob_evento_con_aviso_pct": 1.54,
+   "prob_evento_sin_aviso_pct": 0.16,
+   "veces_mas_probable": 9.6,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 49.4,
+   "avisos_por_distrito_y_anio": 2.17
+  },
+  "inundacion_p99": {
+   "ambito": "todos los distritos",
+   "avisos": 1181,
+   "eventos": 197,
+   "aciertos": 19,
+   "falsas_alarmas": 1162,
+   "no_avisados": 178,
+   "deteccion_pct": 9.6,
+   "falsa_alarma_pct": 98.4,
+   "prob_evento_con_aviso_pct": 1.61,
+   "prob_evento_sin_aviso_pct": 0.2,
+   "veces_mas_probable": 8.1,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 19.3,
+   "avisos_por_distrito_y_anio": 0.67
+  },
+  "inundacion_caudal_p95": {
+   "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
+   "avisos": 5260,
+   "eventos": 133,
+   "aciertos": 87,
+   "falsas_alarmas": 5173,
+   "no_avisados": 46,
+   "deteccion_pct": 65.4,
+   "falsa_alarma_pct": 98.3,
+   "prob_evento_con_aviso_pct": 1.65,
+   "prob_evento_sin_aviso_pct": 0.11,
+   "veces_mas_probable": 15.0,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 82.9,
+   "avisos_por_distrito_y_anio": 5.89
+  },
+  "inundacion_lluvia_o_caudal": {
+   "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
+   "avisos": 5667,
+   "eventos": 133,
+   "aciertos": 93,
+   "falsas_alarmas": 5574,
+   "no_avisados": 40,
+   "deteccion_pct": 69.9,
+   "falsa_alarma_pct": 98.4,
+   "prob_evento_con_aviso_pct": 1.64,
+   "prob_evento_sin_aviso_pct": 0.1,
+   "veces_mas_probable": 16.4,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 85.8,
+   "avisos_por_distrito_y_anio": 6.34
+  },
+  "viviendas_p95": {
+   "ambito": "todos los distritos",
+   "avisos": 3830,
+   "eventos": 2131,
+   "aciertos": 680,
+   "falsas_alarmas": 3150,
+   "no_avisados": 1451,
+   "deteccion_pct": 31.9,
+   "falsa_alarma_pct": 82.2,
+   "prob_evento_con_aviso_pct": 17.75,
+   "prob_evento_sin_aviso_pct": 1.65,
+   "veces_mas_probable": 10.8,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 49.4,
+   "avisos_por_distrito_y_anio": 2.17
+  },
+  "viviendas_p99": {
+   "ambito": "todos los distritos",
+   "avisos": 1181,
+   "eventos": 2131,
+   "aciertos": 238,
+   "falsas_alarmas": 943,
+   "no_avisados": 1893,
+   "deteccion_pct": 11.2,
+   "falsa_alarma_pct": 79.8,
+   "prob_evento_con_aviso_pct": 20.15,
+   "prob_evento_sin_aviso_pct": 2.08,
+   "veces_mas_probable": 9.7,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 19.3,
+   "avisos_por_distrito_y_anio": 0.67
+  },
+  "viviendas_caudal_p95": {
+   "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
+   "avisos": 5260,
+   "eventos": 823,
+   "aciertos": 573,
+   "falsas_alarmas": 4687,
+   "no_avisados": 250,
+   "deteccion_pct": 69.6,
+   "falsa_alarma_pct": 89.1,
+   "prob_evento_con_aviso_pct": 10.89,
+   "prob_evento_sin_aviso_pct": 0.6,
+   "veces_mas_probable": 18.2,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 82.9,
+   "avisos_por_distrito_y_anio": 5.89
+  },
+  "viviendas_lluvia_o_caudal": {
+   "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
+   "avisos": 5667,
+   "eventos": 823,
+   "aciertos": 608,
+   "falsas_alarmas": 5059,
+   "no_avisados": 215,
+   "deteccion_pct": 73.9,
+   "falsa_alarma_pct": 89.3,
+   "prob_evento_con_aviso_pct": 10.73,
+   "prob_evento_sin_aviso_pct": 0.52,
+   "veces_mas_probable": 20.6,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 85.8,
+   "avisos_por_distrito_y_anio": 6.34
+  },
+  "rios_solo_lluvia_p95_inundacion": {
+   "avisos": 1200,
+   "eventos": 133,
+   "aciertos": 34,
+   "deteccion_pct": 25.6
+  },
+  "por_anio_inundacion_p95": {
+   "2002": {
+    "avisos": 0,
+    "eventos": 0,
+    "aciertos": 0,
+    "viv_afectadas": 0
+   },
+   "2003": {
+    "avisos": 177,
+    "eventos": 3,
+    "aciertos": 0,
+    "viv_afectadas": 108
+   },
+   "2004": {
+    "avisos": 136,
+    "eventos": 5,
+    "aciertos": 3,
+    "viv_afectadas": 713
+   },
+   "2005": {
+    "avisos": 34,
+    "eventos": 5,
+    "aciertos": 1,
+    "viv_afectadas": 1011
+   },
+   "2006": {
+    "avisos": 66,
+    "eventos": 12,
+    "aciertos": 1,
+    "viv_afectadas": 19072
+   },
+   "2007": {
+    "avisos": 96,
+    "eventos": 8,
+    "aciertos": 1,
+    "viv_afectadas": 1327
+   },
+   "2008": {
+    "avisos": 224,
+    "eventos": 28,
+    "aciertos": 11,
+    "viv_afectadas": 48283
+   },
+   "2009": {
+    "avisos": 59,
+    "eventos": 6,
+    "aciertos": 0,
+    "viv_afectadas": 2777
+   },
+   "2010": {
+    "avisos": 99,
+    "eventos": 7,
+    "aciertos": 1,
+    "viv_afectadas": 3494
+   },
+   "2011": {
+    "avisos": 126,
+    "eventos": 4,
+    "aciertos": 1,
+    "viv_afectadas": 867
+   },
+   "2012": {
+    "avisos": 152,
+    "eventos": 24,
+    "aciertos": 5,
+    "viv_afectadas": 16969
+   },
+   "2013": {
+    "avisos": 191,
+    "eventos": 0,
+    "aciertos": 0,
+    "viv_afectadas": 861
+   },
+   "2014": {
+    "avisos": 68,
+    "eventos": 3,
+    "aciertos": 0,
+    "viv_afectadas": 682
+   },
+   "2015": {
+    "avisos": 162,
+    "eventos": 16,
+    "aciertos": 7,
+    "viv_afectadas": 40891
+   },
+   "2016": {
+    "avisos": 133,
+    "eventos": 5,
+    "aciertos": 4,
+    "viv_afectadas": 14119
+   },
+   "2017": {
+    "avisos": 612,
+    "eventos": 10,
+    "aciertos": 6,
+    "viv_afectadas": 80035
+   },
+   "2018": {
+    "avisos": 63,
+    "eventos": 0,
+    "aciertos": 0,
+    "viv_afectadas": 1752
+   },
+   "2019": {
+    "avisos": 203,
+    "eventos": 12,
+    "aciertos": 3,
+    "viv_afectadas": 4583
+   },
+   "2020": {
+    "avisos": 109,
+    "eventos": 0,
+    "aciertos": 0,
+    "viv_afectadas": 1281
+   },
+   "2021": {
+    "avisos": 93,
+    "eventos": 8,
+    "aciertos": 3,
+    "viv_afectadas": 9709
+   },
+   "2022": {
+    "avisos": 63,
+    "eventos": 9,
+    "aciertos": 2,
+    "viv_afectadas": 4269
+   },
+   "2023": {
+    "avisos": 431,
+    "eventos": 12,
+    "aciertos": 7,
+    "viv_afectadas": 113364
+   },
+   "2024": {
+    "avisos": 149,
+    "eventos": 2,
+    "aciertos": 1,
+    "viv_afectadas": 15141
+   },
+   "2025": {
+    "avisos": 279,
+    "eventos": 8,
+    "aciertos": 0,
+    "viv_afectadas": 27329
+   },
+   "2026": {
+    "avisos": 105,
+    "eventos": 10,
+    "aciertos": 2,
+    "viv_afectadas": 25456
+   }
+  },
+  "top15_viviendas_afectadas": [
+   {
+    "distrito": "TUMBESTUMBES",
+    "semana": "2015-03-23",
+    "viv_afectadas": 23229,
+    "mm_max": 25.0,
+    "p95": 18.7,
+    "p99": 39.8,
+    "nivel": "fuerte"
+   },
+   {
+    "distrito": "TUMBESTUMBES",
+    "semana": "2006-02-20",
+    "viv_afectadas": 13072,
+    "mm_max": 14.5,
+    "p95": 18.7,
+    "p99": 39.8,
+    "nivel": "normal"
+   },
+   {
+    "distrito": "PIURATAMBOGRANDE",
+    "semana": "2023-04-24",
+    "viv_afectadas": 10124,
+    "mm_max": 7.1,
+    "p95": 14.7,
+    "p99": 29.4,
+    "nivel": "normal"
+   },
+   {
+    "distrito": "PIURATAMBOGRANDE",
+    "semana": "2008-02-11",
+    "viv_afectadas": 8100,
+    "mm_max": 7.0,
+    "p95": 14.7,
+    "p99": 29.4,
+    "nivel": "normal"
+   },
+   {
+    "distrito": "PIURACATACAOS",
+    "semana": "2017-03-27",
+    "viv_afectadas": 8009,
+    "mm_max": 49.7,
+    "p95": 22.1,
+    "p99": 37.8,
+    "nivel": "extremo"
+   },
+   {
+    "distrito": "PIURAPARINAS",
+    "semana": "2008-02-18",
+    "viv_afectadas": 5000,
+    "mm_max": 20.1,
+    "p95": 13.6,
+    "p99": 22.7,
+    "nivel": "fuerte"
+   },
+   {
+    "distrito": "PIURACATACAOS",
+    "semana": "2023-04-17",
+    "viv_afectadas": 3918,
+    "mm_max": 3.7,
+    "p95": 22.1,
+    "p99": 37.8,
+    "nivel": "normal"
+   },
+   {
+    "distrito": "PIURACHULUCANAS",
+    "semana": "2008-01-21",
+    "viv_afectadas": 3738,
+    "mm_max": 1.8,
+    "p95": 10.1,
+    "p99": 19.8,
+    "nivel": "normal"
+   },
+   {
+    "distrito": "PIURALASLOMAS",
+    "semana": "2015-03-23",
+    "viv_afectadas": 3600,
+    "mm_max": 15.6,
+    "p95": 11.3,
+    "p99": 18.9,
+    "nivel": "fuerte"
+   },
+   {
+    "distrito": "PIURATAMBOGRANDE",
+    "semana": "2023-04-03",
+    "viv_afectadas": 3506,
+    "mm_max": 51.4,
+    "p95": 14.7,
+    "p99": 29.4,
+    "nivel": "extremo"
+   },
+   {
+    "distrito": "PIURACATACAOS",
+    "semana": "2023-04-10",
+    "viv_afectadas": 3230,
+    "mm_max": 40.8,
+    "p95": 22.1,
+    "p99": 37.8,
+    "nivel": "extremo"
+   },
+   {
+    "distrito": "PIURACOLAN",
+    "semana": "2017-03-20",
+    "viv_afectadas": 3107,
+    "mm_max": 31.2,
+    "p95": 17.8,
+    "p99": 29.8,
+    "nivel": "extremo"
+   },
+   {
+    "distrito": "PIURATAMBOGRANDE",
+    "semana": "2017-05-08",
+    "viv_afectadas": 3017,
+    "mm_max": 3.8,
+    "p95": 14.7,
+    "p99": 29.4,
+    "nivel": "normal"
+   },
+   {
+    "distrito": "PIURAMARCAVELICA",
+    "semana": "2023-04-10",
+    "viv_afectadas": 2917,
+    "mm_max": 20.6,
+    "p95": 12.2,
+    "p99": 21.1,
+    "nivel": "fuerte"
+   },
+   {
+    "distrito": "PIURACOLAN",
+    "semana": "2016-02-29",
+    "viv_afectadas": 2725,
+    "mm_max": 9.9,
+    "p95": 17.8,
+    "p99": 29.8,
+    "nivel": "normal"
+   }
+  ]
+ },
+ "resumen_eventos": {
+  "extremo": 7,
+  "fuerte": 3,
+  "normal": 5
+ }
+}
