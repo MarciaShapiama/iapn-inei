@@ -1,0 +1,1260 @@
+[
+ {
+  "caso": "Desborde del río Tumbes, 12/2/2025",
+  "bbox": [
+   -80.51,
+   -3.7,
+   -80.39,
+   -3.58
+  ],
+  "fechas": "2025-02-10/2025-02-19",
+  "imagenes": [
+   {
+    "id": "ENSEMBLE_FLOOD_20250215T234529_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-15 23:45",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250215T234504_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-15 23:45",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250215T234439_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-15 23:44",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250212T110150_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-12 11:01",
+    "km2_inundado": 0.39,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250212T110125_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-12 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250210T233721_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-10 23:37",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250210T233656_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-10 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20250210T233631_VV_SA020M_E048N066T3",
+    "fecha": "2025-02-10 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   }
+  ],
+  "n_items": 8
+ },
+ {
+  "caso": "Desborde del río Tumbes, 29/4/2023",
+  "bbox": [
+   -80.51,
+   -3.7,
+   -80.39,
+   -3.58
+  ],
+  "fechas": "2023-04-27/2023-05-08",
+  "imagenes": [
+   {
+    "id": "ENSEMBLE_FLOOD_20230506T110154_VV_SA020M_E048N066T3",
+    "fecha": "2023-05-06 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20230506T110129_VV_SA020M_E048N066T3",
+    "fecha": "2023-05-06 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20230504T233724_VV_SA020M_E048N066T3",
+    "fecha": "2023-05-04 23:37",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20230504T233659_VV_SA020M_E048N066T3",
+    "fecha": "2023-05-04 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20230504T233634_VV_SA020M_E048N066T3",
+    "fecha": "2023-05-04 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20230427T234507_VV_SA020M_E048N066T3",
+    "fecha": "2023-04-27 23:45",
+    "km2_inundado": 0.0,
+    "pixeles": 502581
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20230427T234442_VV_SA020M_E048N066T3",
+    "fecha": "2023-04-27 23:44",
+    "km2_inundado": 0.75,
+    "pixeles": 502581
+   }
+  ],
+  "n_items": 7
+ },
+ {
+  "caso": "Inundación del Bajo Piura, marzo de 2017 (control)",
+  "bbox": [
+   -80.85,
+   -5.65,
+   -80.45,
+   -5.15
+  ],
+  "fechas": "2017-03-20/2017-04-05",
+  "imagenes": [
+   {
+    "id": "ENSEMBLE_FLOOD_20170404T234336_VV_SA020M_E048N063T3",
+    "fecha": "2017-04-04 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170404T234311_VV_SA020M_E048N063T3",
+    "fecha": "2017-04-04 23:43",
+    "km2_inundado": 55.15,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170404T234246_VV_SA020M_E048N063T3",
+    "fecha": "2017-04-04 23:42",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170401T110126_VV_SA020M_E048N063T3",
+    "fecha": "2017-04-01 11:01",
+    "km2_inundado": 45.73,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170401T110101_VV_SA020M_E048N063T3",
+    "fecha": "2017-04-01 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170330T233509_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-30 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170327T105333_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-27 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170326T110224_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-26 11:02",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170326T110159_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-26 11:01",
+    "km2_inundado": 11.75,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170326T110130_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-26 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170323T234336_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-23 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170323T234311_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-23 23:43",
+    "km2_inundado": 67.74,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170323T234246_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-23 23:42",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170320T110133_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-20 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170320T110108_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-20 11:01",
+    "km2_inundado": 48.92,
+    "pixeles": 7021080
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20170320T110043_VV_SA020M_E048N063T3",
+    "fecha": "2017-03-20 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 7021080
+   }
+  ],
+  "n_items": 16
+ },
+ {
+  "caso": "Tumbes y Piura, últimos 25 días",
+  "bbox": [
+   -81.4,
+   -6.4,
+   -79.15,
+   -3.35
+  ],
+  "fechas": "2026-10-11/2026-11-05",
+  "imagenes": [
+   {
+    "id": "ENSEMBLE_FLOOD_20261104T232802_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-04 23:28",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261104T232737_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-04 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261104T232712_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-04 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261104T232712_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-04 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261104T232647_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-04 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261104T232622_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-04 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233630_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-03 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233630_VV_SA020M_E048N066T3",
+    "fecha": "2026-11-03 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233605_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-03 23:36",
+    "km2_inundado": 0.01,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233605_VV_SA020M_E048N066T3",
+    "fecha": "2026-11-03 23:36",
+    "km2_inundado": 1.51,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233540_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-03 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233540_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-03 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233540_VV_SA020M_E048N066T3",
+    "fecha": "2026-11-03 23:35",
+    "km2_inundado": 0.02,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233540_VV_SA020M_E048N063T3",
+    "fecha": "2026-11-03 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233515_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-03 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261103T233450_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-03 23:34",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234411_VV_SA020M_E048N066T3",
+    "fecha": "2026-11-02 23:44",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234346_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234346_VV_SA020M_E048N066T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 3.86,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234346_VV_SA020M_E048N063T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234321_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234321_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 0.23,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234321_VV_SA020M_E048N066T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234321_VV_SA020M_E048N063T3",
+    "fecha": "2026-11-02 23:43",
+    "km2_inundado": 74.65,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234252_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-02 23:42",
+    "km2_inundado": 5.69,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261102T234252_VV_SA020M_E048N063T3",
+    "fecha": "2026-11-02 23:42",
+    "km2_inundado": 73.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261101T104541_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-01 10:45",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261101T104516_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-01 10:45",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261101T104451_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-01 10:44",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261101T104451_VV_SA020M_E051N063T3",
+    "fecha": "2026-11-01 10:44",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261101T104426_VV_SA020M_E051N066T3",
+    "fecha": "2026-11-01 10:44",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105401_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-31 10:54",
+    "km2_inundado": 0.4,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105401_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-31 10:54",
+    "km2_inundado": 0.08,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105336_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-31 10:53",
+    "km2_inundado": 7.23,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105336_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-31 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105311_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-31 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105311_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-31 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105246_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-31 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261031T105221_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-31 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110148_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-30 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110148_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-30 11:01",
+    "km2_inundado": 10.97,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110123_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-30 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110123_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-30 11:01",
+    "km2_inundado": 0.35,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110058_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-30 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110058_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-30 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110058_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-30 11:00",
+    "km2_inundado": 0.5,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110058_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-30 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110033_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-30 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261030T110033_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-30 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261029T232758_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-29 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261029T232733_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-29 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261029T232733_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-29 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261029T232708_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-29 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261029T232643_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-29 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233612_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-28 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233612_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-28 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233547_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-28 23:35",
+    "km2_inundado": 0.01,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233547_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-28 23:35",
+    "km2_inundado": 2.29,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233522_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-28 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233522_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-28 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233522_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-28 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233522_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-28 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233457_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-28 23:34",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261028T233432_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-28 23:34",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105347_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-25 10:53",
+    "km2_inundado": 0.04,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105347_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-25 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105322_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-25 10:53",
+    "km2_inundado": 6.24,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105322_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-25 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105257_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-25 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105257_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-25 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105232_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-25 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261025T105207_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-25 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110150_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110150_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.58,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110125_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110125_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110125_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.08,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110125_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110100_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110100_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-24 11:01",
+    "km2_inundado": 0.67,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110035_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-24 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261024T110035_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-24 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261023T232801_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-23 23:28",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261023T232736_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-23 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261023T232711_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-23 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261023T232711_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-23 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261023T232646_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-23 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261023T232621_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-23 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233631_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-22 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233631_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-22 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233606_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-22 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233606_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-22 23:36",
+    "km2_inundado": 0.52,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233541_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-22 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233541_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-22 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233541_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-22 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233541_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-22 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233516_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-22 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261022T233451_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-22 23:34",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234412_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-21 23:44",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234347_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234347_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 1.1,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234347_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234322_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234322_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 1.22,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234322_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234322_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-21 23:43",
+    "km2_inundado": 63.93,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234252_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-21 23:42",
+    "km2_inundado": 18.3,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261021T234252_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-21 23:42",
+    "km2_inundado": 55.72,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261020T104542_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-20 10:45",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261020T104517_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-20 10:45",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261020T104452_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-20 10:44",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261020T104452_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-20 10:44",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261020T104427_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-20 10:44",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105401_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-19 10:54",
+    "km2_inundado": 0.06,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105401_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-19 10:54",
+    "km2_inundado": 0.01,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105336_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-19 10:53",
+    "km2_inundado": 7.25,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105336_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-19 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105311_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-19 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105311_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-19 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105246_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-19 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261019T105221_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-19 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110148_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-18 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110148_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-18 11:01",
+    "km2_inundado": 0.2,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110123_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-18 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110123_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-18 11:01",
+    "km2_inundado": 0.34,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110058_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-18 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110058_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-18 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110058_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-18 11:00",
+    "km2_inundado": 0.35,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110058_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-18 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110033_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-18 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261018T110033_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-18 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261017T232758_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-17 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261017T232733_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-17 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261017T232733_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-17 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261017T232708_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-17 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261017T232643_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-17 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233612_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-16 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233612_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-16 23:36",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233547_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-16 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233547_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-16 23:35",
+    "km2_inundado": 1.13,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233522_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-16 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233522_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-16 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233522_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-16 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233522_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-16 23:35",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233457_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-16 23:34",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261016T233432_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-16 23:34",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105348_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-13 10:53",
+    "km2_inundado": 0.17,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105348_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-13 10:53",
+    "km2_inundado": 0.01,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105323_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-13 10:53",
+    "km2_inundado": 7.18,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105323_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-13 10:53",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105258_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-13 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105258_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-13 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105233_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-13 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261013T105208_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-13 10:52",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110150_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110150_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 2.81,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110125_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110125_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110125_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.07,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110125_VV_SA020M_E048N063T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 111983355
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110100_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110100_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-12 11:01",
+    "km2_inundado": 0.95,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110035_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-12 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261012T110035_VV_SA020M_E048N066T3",
+    "fecha": "2026-10-12 11:00",
+    "km2_inundado": 0.0,
+    "pixeles": 47873661
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261011T232802_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-11 23:28",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261011T232737_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-11 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261011T232712_VV_SA020M_E051N066T3",
+    "fecha": "2026-10-11 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 24020422
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261011T232712_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-11 23:27",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261011T232647_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-11 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   },
+   {
+    "id": "ENSEMBLE_FLOOD_20261011T232622_VV_SA020M_E051N063T3",
+    "fecha": "2026-10-11 23:26",
+    "km2_inundado": 0.0,
+    "pixeles": 56187210
+   }
+  ],
+  "n_items": 170
+ }
+]
