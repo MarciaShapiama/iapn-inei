@@ -10,7 +10,7 @@ anotaciones ::warning:: por cada paso fallido.
 
 Perfiles:
     local       solo cálculos con los datos ya descargados (impacto, panel, metadatos, auditoría). No usa red.
-    diario      descargas diarias (mar, índices, lluvia/caudal) + construir + metadatos.
+    diario      descargas diarias (mar, índices, lluvia/caudal) + construir + aviso de lluvia + inundaciones reportadas en noticias (noticias.py) + metadatos.
     inundacion  exposición + huellas Sentinel-1 + impacto + panel + metadatos + auditoría.
 Uso: python src/etl.py [local|diario|inundacion]
 """
@@ -27,7 +27,7 @@ from config import DASH_DATA, DATA, RAIZ
 
 PERFILES = {
     "local": ["impacto.py", "panel.py", "metadatos.py", "auditoria.py"],
-    "diario": ["descargar_mar.py", "descargar_indicadores.py", "descargar_zonas.py", "construir.py", "aviso_lluvia.py", "metadatos.py"],
+    "diario": ["descargar_mar.py", "descargar_indicadores.py", "descargar_zonas.py", "construir.py", "aviso_lluvia.py", "noticias.py", "metadatos.py"],
     "inundacion": ["exposicion.py", "reparar_poblacion.py", "ubigeo.py", "huellas.py", "impacto.py", "validar_radar.py", "panel.py", "metadatos.py", "auditoria.py"],
 }
 CRITICOS = {"construir.py", "impacto.py", "metadatos.py"}     # su fallo se marca como error, no solo advertencia

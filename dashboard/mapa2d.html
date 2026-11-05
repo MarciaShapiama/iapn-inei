@@ -104,6 +104,7 @@ tr[data-ub]:hover{background:color-mix(in srgb,var(--acento) 10%,transparent)}
       <label><input type="checkbox" id="k-col" checked> Colegios a ≤ 1 km</label>
       <label><input type="checkbox" id="k-sal" checked> Salud a ≤ 1 km</label>
       <label><input type="checkbox" id="k-edif"> Edificaciones dentro (muestra)</label>
+      <label><input type="checkbox" id="k-eve" checked> Inundaciones reportadas (noticias), se vean o no en el radar</label>
       <label>Mostrar locales: <select id="k-anillo"><option value="acum_1km">dentro y hasta 1 km</option><option value="acum_500m">dentro y hasta 500 m</option><option value="dentro">solo dentro</option></select></label>
       <div class="ley" id="leyenda" style="margin-top:8px"></div>
     </div>
@@ -140,14 +141,15 @@ const CUENCAS={
   "Bajo Tumbes":["Tumbes","Corrales","San Juan de la Virgen","Pampas de Hospital","San Jacinto","La Cruz"],
   "Zarumilla":["Zarumilla","Aguas Verdes","Matapalo","Papayal"]};
 const COL_PEL={1:"#c6dbef",2:"#6baed6",3:"#2171b5",4:"#08306b"};
+const COL_VD={"detectado":"#00c878","no detectado":"#ff2d55","fuera de alcance":"#ff9f0a","sin pasada":"#aab4be","sin radar":"#aab4be"};
 const S={esc:null,sel:{dep:"",prov:"",dis:"",cuenca:""},capas:{},comp:[]};
 let D={},mapa,base,grp={};
 
 function hayWebGL(){try{const c=document.createElement("canvas");return !!(c.getContext("webgl2")||c.getContext("webgl"))}catch(e){return false}}
 
 async function inicio(){
-  const [IN,DIST,PANEL,META,EST]=await Promise.all([jget("inundacion.json"),jget("distritos_tumbes_piura.geojson"),jget("panel_distritos.json"),jget("metadatos.json"),jget("estado_actualizacion.json")]);
-  D={IN,DIST,PANEL,META,EST};
+  const [IN,DIST,PANEL,META,EST,EVR]=await Promise.all([jget("inundacion.json"),jget("distritos_tumbes_piura.geojson"),jget("panel_distritos.json"),jget("metadatos.json"),jget("estado_actualizacion.json"),jget("eventos_reportados.json")]);
+  D={IN,DIST,PANEL,META,EST,EVR};
   if(!IN||!DIST){$("#estado-global").innerHTML="<span class='chip no-disponible'>Sin datos</span> No se pudieron cargar los archivos del mapa. Revise que <code>dashboard/data/</code> exista y sirva el sitio con un servidor HTTP.";return}
   $("#estado-global").innerHTML=`Datos calculados ${esc((IN.calculado||"").replace("T"," "))} · WebGL ${hayWebGL()?"disponible (este mapa no lo usa)":"no disponible: use este mapa"}`;
   const claves=["rp100","rp10","2017","2023","vivo"].filter(k=>IN.eventos[k]);
@@ -178,7 +180,7 @@ async function inicio(){
   $("#f-cuenca").onchange=e=>{S.sel={dep:"",prov:"",dis:"",cuenca:e.target.value};$("#f-dep").value="";llenarProv();actualizar(true)};
   $("#f-esc").onchange=e=>{S.esc=e.target.value;dibujarCapa();actualizar(false)};
   $("#f-base").onchange=e=>ponerBase(e.target.value);
-  ["k-mancha","k-dist","k-pob","k-col","k-sal","k-edif","k-anillo"].forEach(id=>$("#"+id).onchange=()=>{dibujarCapa();actualizar(false)});
+  ["k-mancha","k-dist","k-pob","k-col","k-sal","k-edif","k-eve","k-anillo"].forEach(id=>$("#"+id).onchange=()=>{dibujarCapa();actualizar(false)});
   $("#b-csv").onclick=descargarCSV; $("#b-geo").onclick=descargarGeo;
   $("#c-ver").onclick=superponer; $("#c-quitar").onclick=()=>{S.comp.forEach(l=>mapa.removeLayer(l));S.comp=[];comparador()};
   tablaPanel(); metadatos(); comparador();
@@ -216,7 +218,7 @@ const cacheGeo={};
 async function capaGeo(k){if(!cacheGeo[k]){const e=D.IN.eventos[k];cacheGeo[k]=e&&e.capa?await jget(e.capa):null}return cacheGeo[k]}
 
 async function dibujarCapa(){
-  ["mancha","pob","col","sal","edif"].forEach(n=>{if(grp[n]){mapa.removeLayer(grp[n]);grp[n]=null}});
+  ["mancha","pob","col","sal","edif","eve"].forEach(n=>{if(grp[n]){mapa.removeLayer(grp[n]);grp[n]=null}});
   const e=D.IN.eventos[S.esc];
   if($("#k-dist").checked){if(!mapa.hasLayer(grp.dist))grp.dist.addTo(mapa)}else mapa.removeLayer(grp.dist);
   if($("#k-mancha").checked){
@@ -240,12 +242,25 @@ async function dibujarCapa(){
     const r=L.canvas({padding:.3});
     grp.edif=L.layerGroup(e.edificaciones_puntos.slice(0,15000).map(p=>L.circleMarker([p[1],p[0]],{renderer:r,radius:1.6,stroke:false,fillColor:"#ff7a45",fillOpacity:.8,interactive:false}))).addTo(mapa);
   }
+  if($("#k-eve").checked&&D.EVR){
+    // Todas las inundaciones reportadas en Tumbes y Piura (src/noticias.py), aunque el radar no las vea.
+    const evs=e.tipo==="radar"&&e.periodo?D.EVR.eventos.filter(x=>x.fecha_fin>=e.periodo[0]&&x.fecha<=e.periodo[1]):D.EVR.eventos;
+    const f=x=>x?x.split("-").reverse().join("/"):"";
+    grp.eve=L.layerGroup(evs.map(x=>{const r=x.radar||{};
+      const arts=(x.articulos||[]).slice(0,6).map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titulo)}</a> <small>${esc(a.medio)} · ${f(a.fecha)}</small></li>`).join("");
+      return L.circleMarker([x.lat,x.lon],{radius:7+Math.min(5,(x.articulos||[]).length),weight:2.5,color:"#ffffff",fillColor:COL_VD[r.veredicto]||"#9aa5ad",fillOpacity:.95})
+        .bindTooltip(`${esc(x.lugar)} · ${f(x.fecha)} · radar: ${esc(r.veredicto)}`)
+        .bindPopup(`<b>${esc(x.lugar)}</b> <small>${esc(x.distrito)}, ${esc(x.provincia)} · ${x.altura_m} m</small><br>${f(x.fecha)} · ${esc(x.tipo)} · <i>${esc(x.origen)}</i><br>
+          <b>Radar: ${esc(r.veredicto)}.</b> ${esc(r.explicacion)}<br><small>Ubicación: ${esc(x.precision)}</small><ul style="margin:6px 0 0;padding-left:18px">${arts}</ul>`,{maxWidth:340})}));
+    grp.eve.addTo(mapa);
+  }
   leyenda(e);
 }
 function leyenda(e){
   let h=e.tipo==="peligro"?`<div><b>Profundidad (JRC)</b></div>`+[["< 0,5 m",1],["0,5–1,5 m",2],["1,5–3 m",3],["> 3 m",4]].map(([t,c])=>`<div><i style="background:${COL_PEL[c]}"></i>${t}</div>`).join("")
     :`<div><i style="background:#00a6d6"></i>Agua nueva detectada por radar (mínimo)</div>`;
   h+=`<div style="margin-top:4px"><b>Locales (distancia al borde de la mancha)</b></div><div><i style="background:#b3261e"></i>dentro</div><div><i style="background:#e8710a"></i>0–500 m</div><div><i style="background:#f2c200"></i>500 m–1 km</div><div>Borde oscuro: colegio · borde granate y más grande: salud</div>`;
+  if($("#k-eve").checked)h+=`<div style="margin-top:4px"><b>Inundaciones reportadas (noticias)</b></div>`+Object.entries({"detectado":"el radar la vio","no detectado":"el radar no la vio","fuera de alcance":"sierra o calles: el radar no puede verla"}).map(([k,t])=>`<div><i style="background:${COL_VD[k]};border-radius:50%"></i>${t}</div>`).join("");
   if($("#k-pob").checked)h+=`<div style="margin-top:4px"><b>Población expuesta (relativa al máximo distrital)</b></div><div><i style="background:#fbb4b9"></i>&gt; 0</div><div><i style="background:#f768a1"></i>&gt; 5 %</div><div><i style="background:#c51b8a"></i>&gt; 20 %</div><div><i style="background:#7a0177"></i>&gt; 50 %</div>`;
   $("#leyenda").innerHTML=h;
 }

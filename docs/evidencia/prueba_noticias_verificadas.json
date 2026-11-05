@@ -1,0 +1,577 @@
+{
+ "lado_cuadrado_km": 6.0,
+ "umbral_detectado_km2": 0.05,
+ "eventos": [
+  {
+   "id": "2017-piura-desborde",
+   "fecha": "2017-03-27",
+   "lugar": "PIURA",
+   "ubigeo": "200101",
+   "tipo": "desborde de río",
+   "descripcion": "El río Piura se desborda en la ciudad de Piura y Castilla (caudal sobre 2 000 m³/s la noche del 26 de marzo)",
+   "medio": "Mongabay",
+   "fuente": "https://es.mongabay.com/2017/04/emergencia-piura-balance-mes-funesto-norte-del-peru/",
+   "medio2": "UDEP",
+   "fuente2": "https://www.udep.edu.pe/hoy/2017/04/a-un-mes-de-la-inundacion-en-piura/",
+   "lat": -5.1812,
+   "lon": -80.6402,
+   "altura_lugar_m": 35,
+   "ventana_evento": [
+    "2017-03-25",
+    "2017-04-08"
+   ],
+   "referencia_seca": [
+    "2016-08-01",
+    "2016-11-30"
+   ],
+   "pasadas_evento": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "imagenes_referencia": 9,
+   "V0_reglas_actuales": 0.034,
+   "V1_sin_limite_altura": 0.034,
+   "V2_sin_altura_ni_pendiente": 0.034,
+   "capa_publicada": "2017.tif",
+   "km2_capa_publicada": 0.034,
+   "km2_zona_inundable_jrc_rp100": 9.46,
+   "altura_mediana_m": 35,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -0.8,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2017-catacaos",
+   "fecha": "2017-03-27",
+   "lugar": "CATACAOS",
+   "ubigeo": "200105",
+   "tipo": "desborde de río",
+   "descripcion": "Catacaos queda inundado tras el desborde del río Piura",
+   "medio": "Mongabay",
+   "fuente": "https://es.mongabay.com/2017/03/peru-rios-inundacion-nino-costero-piura/",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -5.2679,
+   "lon": -80.674,
+   "altura_lugar_m": 26,
+   "ventana_evento": [
+    "2017-03-25",
+    "2017-04-08"
+   ],
+   "referencia_seca": [
+    "2016-08-01",
+    "2016-11-30"
+   ],
+   "pasadas_evento": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "imagenes_referencia": 9,
+   "V0_reglas_actuales": 0.092,
+   "V1_sin_limite_altura": 0.092,
+   "V2_sin_altura_ni_pendiente": 0.092,
+   "capa_publicada": "2017.tif",
+   "km2_capa_publicada": 0.08,
+   "km2_zona_inundable_jrc_rp100": 34.65,
+   "altura_mediana_m": 23,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -0.9,
+   "detectado_V0": true,
+   "detectado_V1": true
+  },
+  {
+   "id": "2017-cura-mori",
+   "fecha": "2017-03-27",
+   "lugar": "CUCUNGARA",
+   "ubigeo": "200107",
+   "tipo": "desborde de río",
+   "descripcion": "Cura Mori (Bajo Piura) queda inundado tras el desborde del río Piura",
+   "medio": "Mongabay",
+   "fuente": "https://es.mongabay.com/2017/03/peru-rios-inundacion-nino-costero-piura/",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -5.3232,
+   "lon": -80.6622,
+   "altura_lugar_m": 25,
+   "ventana_evento": [
+    "2017-03-25",
+    "2017-04-08"
+   ],
+   "referencia_seca": [
+    "2016-08-01",
+    "2016-11-30"
+   ],
+   "pasadas_evento": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "imagenes_referencia": 9,
+   "V0_reglas_actuales": 1.453,
+   "V1_sin_limite_altura": 1.453,
+   "V2_sin_altura_ni_pendiente": 1.453,
+   "capa_publicada": "2017.tif",
+   "km2_capa_publicada": 1.459,
+   "km2_zona_inundable_jrc_rp100": 33.55,
+   "altura_mediana_m": 20,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -0.8,
+   "detectado_V0": true,
+   "detectado_V1": true
+  },
+  {
+   "id": "2017-chulucanas",
+   "fecha": "2017-03-26",
+   "lugar": "CHULUCANAS",
+   "ubigeo": "200401",
+   "tipo": "desborde de río",
+   "descripcion": "Chulucanas, uno de los primeros lugares bajo el agua en la crecida del río Piura",
+   "medio": "RPP",
+   "fuente": "https://rpp.pe/peru/piura/cronica-el-rio-piura-se-llevo-los-bienes-pero-no-las-esperanzas-noticia-1041296",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -5.0969,
+   "lon": -80.1642,
+   "altura_lugar_m": 92,
+   "ventana_evento": [
+    "2017-03-24",
+    "2017-04-07"
+   ],
+   "referencia_seca": [
+    "2016-08-01",
+    "2016-11-30"
+   ],
+   "pasadas_evento": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "imagenes_referencia": 9,
+   "V0_reglas_actuales": 0.178,
+   "V1_sin_limite_altura": 0.178,
+   "V2_sin_altura_ni_pendiente": 0.178,
+   "capa_publicada": "2017.tif",
+   "km2_capa_publicada": 0.236,
+   "km2_zona_inundable_jrc_rp100": 14.05,
+   "altura_mediana_m": 89,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -1.6,
+   "detectado_V0": true,
+   "detectado_V1": true
+  },
+  {
+   "id": "2017-tambogrande",
+   "fecha": "2017-03-26",
+   "lugar": "TAMBO GRANDE",
+   "ubigeo": "200114",
+   "tipo": "desborde de río",
+   "descripcion": "Tambogrande, uno de los primeros lugares bajo el agua en la crecida del río Piura",
+   "medio": "RPP",
+   "fuente": "https://rpp.pe/peru/piura/cronica-el-rio-piura-se-llevo-los-bienes-pero-no-las-esperanzas-noticia-1041296",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -4.9223,
+   "lon": -80.3421,
+   "altura_lugar_m": 73,
+   "ventana_evento": [
+    "2017-03-24",
+    "2017-04-07"
+   ],
+   "referencia_seca": [
+    "2016-08-01",
+    "2016-11-30"
+   ],
+   "pasadas_evento": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2017-03-26",
+    "2017-04-01",
+    "2017-04-04"
+   ],
+   "imagenes_referencia": 9,
+   "V0_reglas_actuales": 0.19,
+   "V1_sin_limite_altura": 0.19,
+   "V2_sin_altura_ni_pendiente": 0.19,
+   "capa_publicada": "2017.tif",
+   "km2_capa_publicada": 0.255,
+   "km2_zona_inundable_jrc_rp100": 16.17,
+   "altura_mediana_m": 67,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -2.2,
+   "detectado_V0": true,
+   "detectado_V1": true
+  },
+  {
+   "id": "2023-tambogrande",
+   "fecha": "2023-03-10",
+   "lugar": "TAMBO GRANDE",
+   "ubigeo": "200114",
+   "tipo": "desborde de río",
+   "descripcion": "Ciclón Yaku: el río Piura se desborda por el Barrio Sur de Tambogrande",
+   "medio": "Infomercado",
+   "fuente": "https://infomercado.pe/ciclon-yaku-en-vivo-11-de-marzo-ultimas-noticias-en-piura-lambayeque-y-chiclayo-ultimas-noticias-en-directo-regiones-desbordes-de-rio-y-mas-10032023-esm/",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -4.9223,
+   "lon": -80.3421,
+   "altura_lugar_m": 73,
+   "ventana_evento": [
+    "2023-03-08",
+    "2023-03-22"
+   ],
+   "referencia_seca": [
+    "2022-08-01",
+    "2022-11-30"
+   ],
+   "pasadas_evento": [
+    "2023-03-10",
+    "2023-03-19",
+    "2023-03-22"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2023-03-10",
+    "2023-03-19",
+    "2023-03-22"
+   ],
+   "imagenes_referencia": 9,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "2023.tif",
+   "km2_capa_publicada": 0.0,
+   "km2_zona_inundable_jrc_rp100": 16.17,
+   "altura_mediana_m": 67,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -1.7,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-piura-calles",
+   "fecha": "2026-10-20",
+   "lugar": "PIURA",
+   "ubigeo": "200101",
+   "tipo": "lluvia urbana",
+   "descripcion": "Calles de Piura amanecen inundadas por lluvias",
+   "medio": "Infobae",
+   "fuente": "https://www.infobae.com/peru/2026/10/20/el-norte-del-peru-empieza-a-sentir-los-estragos-de-el-nino-calles-de-piura-amanecen-inundadas-por-lluvias/",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -5.1812,
+   "lon": -80.6402,
+   "altura_lugar_m": 35,
+   "ventana_evento": [
+    "2026-10-18",
+    "2026-11-01"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-17"
+   ],
+   "pasadas_evento": [
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30"
+   ],
+   "imagenes_referencia": 19,
+   "V0_reglas_actuales": 0.049,
+   "V1_sin_limite_altura": 0.049,
+   "V2_sin_altura_ni_pendiente": 0.049,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.049,
+   "km2_zona_inundable_jrc_rp100": 9.46,
+   "altura_mediana_m": 35,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": 1.7,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-chulucanas",
+   "fecha": "2026-10-20",
+   "lugar": "CHULUCANAS",
+   "ubigeo": "200401",
+   "tipo": "lluvia urbana",
+   "descripcion": "Aguacero inunda calles y obliga a cerrar el mercado modelo de Chulucanas",
+   "medio": "RPP",
+   "fuente": "https://rpp.pe/peru/piura/piura-lluvias-torrenciales-inundan-calles-y-obligan-a-cerrar-el-mercado-modelo-en-chulucanas-noticia-1713517",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -5.0969,
+   "lon": -80.1642,
+   "altura_lugar_m": 92,
+   "ventana_evento": [
+    "2026-10-18",
+    "2026-11-01"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-17"
+   ],
+   "pasadas_evento": [
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30"
+   ],
+   "imagenes_referencia": 19,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.0,
+   "km2_zona_inundable_jrc_rp100": 14.05,
+   "altura_mediana_m": 89,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": 0.2,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-serran",
+   "fecha": "2026-10-29",
+   "lugar": "CANCHAQUE",
+   "ubigeo": "200302",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Serrán aísla Canchaque, San Miguel de El Faique, Sondorillo y Sóndor y corta la carretera a Huancabamba (km 53)",
+   "medio": "Infobae",
+   "fuente": "https://www.infobae.com/peru/2026/10/30/lluvias-extremas-en-piura-desborde-del-rio-serran-aislo-localidades-de-huancabamba-y-bloqueo-la-carretera-hacia-la-sierra/",
+   "medio2": "Radio Nacional",
+   "fuente2": "https://www.radionacional.gob.pe/noticias/nacionales/piura-desborde-del-rio-serran-deja-incomunicada-a-la-provincia-de-huancabamba",
+   "lat": -5.3755,
+   "lon": -79.6064,
+   "altura_lugar_m": 1188,
+   "ventana_evento": [
+    "2026-10-27",
+    "2026-11-10"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-26"
+   ],
+   "pasadas_evento": [
+    "2026-10-28",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "imagenes_referencia": 51,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.0,
+   "km2_zona_inundable_jrc_rp100": 0.0,
+   "altura_mediana_m": 1439,
+   "pct_area_sobre_250m": 100.0,
+   "caida_mediana_db_en_jrc": null,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-puerto-peru",
+   "fecha": "2026-11-02",
+   "lugar": "PUERTO PERU",
+   "ubigeo": "240302",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Zarumilla inunda el asentamiento humano Puerto Perú y Tomás Arizola (Aguas Verdes)",
+   "medio": "El Comercio",
+   "fuente": "https://elcomercio.pe/peru/tumbes/tumbes-desborde-del-rio-zarumilla-afecta-a-puerto-peru-y-tomas-arizola-fenomeno-el-nino-fen-apuesplan-ultimas-noticia/",
+   "medio2": "Infobae",
+   "fuente2": "https://www.infobae.com/peru/2026/11/02/emergencia-en-el-norte-del-peru-lluvias-dejan-bajo-el-agua-a-puerto-peru-en-tumbes-cerca-de-la-frontera-con-ecuador/",
+   "lat": -3.4745,
+   "lon": -80.247,
+   "altura_lugar_m": 4,
+   "ventana_evento": [
+    "2026-10-31",
+    "2026-11-14"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-30"
+   ],
+   "pasadas_evento": [
+    "2026-11-02"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-11-02"
+   ],
+   "imagenes_referencia": 23,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.0,
+   "km2_zona_inundable_jrc_rp100": 23.91,
+   "altura_mediana_m": 5,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -0.8,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-vaqueria",
+   "fecha": "2026-11-02",
+   "lugar": "VAQUERIA",
+   "ubigeo": "240105",
+   "tipo": "desborde de río",
+   "descripcion": "Desborde del río Tumbes en Vaquería (San Jacinto); agricultores aislados",
+   "medio": "Infobae",
+   "fuente": "https://www.infobae.com/peru/2026/11/03/lluvias-en-tumbes-activan-quebradas-elevan-el-caudal-de-los-rios-y-dejan-aislados-a-agricultores-en-zonas-rurales-y-fronterizas/",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -3.7056,
+   "lon": -80.4529,
+   "altura_lugar_m": 33,
+   "ventana_evento": [
+    "2026-10-31",
+    "2026-11-14"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-30"
+   ],
+   "pasadas_evento": [
+    "2026-11-02"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-11-02"
+   ],
+   "imagenes_referencia": 23,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.018,
+   "km2_zona_inundable_jrc_rp100": 8.09,
+   "altura_mediana_m": 40,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -0.7,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-tumbes-calles",
+   "fecha": "2026-11-02",
+   "lugar": "TUMBES",
+   "ubigeo": "240101",
+   "tipo": "lluvia urbana",
+   "descripcion": "Más de 100 mm de lluvia inundan calles y activan quebradas en Tumbes",
+   "medio": "Infobae",
+   "fuente": "https://www.infobae.com/peru/2026/11/02/lluvias-en-tumbes-y-el-norte-del-peru-precipitaciones-intensas-por-el-fenomeno-el-nino-inundan-calles-y-activan-quebradas-en-la-region/",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -3.5683,
+   "lon": -80.4377,
+   "altura_lugar_m": 37,
+   "ventana_evento": [
+    "2026-10-31",
+    "2026-11-14"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-30"
+   ],
+   "pasadas_evento": [
+    "2026-11-02"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-11-02"
+   ],
+   "imagenes_referencia": 23,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.0,
+   "km2_zona_inundable_jrc_rp100": 9.93,
+   "altura_mediana_m": 21,
+   "pct_area_sobre_250m": 0.0,
+   "caida_mediana_db_en_jrc": -0.6,
+   "detectado_V0": false,
+   "detectado_V1": false
+  },
+  {
+   "id": "2026-mancora",
+   "fecha": "2026-11-02",
+   "lugar": "MANCORA",
+   "ubigeo": "200706",
+   "tipo": "lluvia urbana",
+   "descripcion": "Lluvia de hora y media inunda calles de Máncora; se activan las quebradas Fernández y Cabo Blanco",
+   "medio": "Andina",
+   "fuente": "https://andina.pe/agencia/noticia-fenomeno-nino-piura-lluvia-hora-y-media-inunda-calles-distrito-mancora-1098350.aspx",
+   "medio2": null,
+   "fuente2": null,
+   "lat": -4.1072,
+   "lon": -81.0541,
+   "altura_lugar_m": 2,
+   "ventana_evento": [
+    "2026-10-31",
+    "2026-11-14"
+   ],
+   "referencia_seca": [
+    "2026-08-01",
+    "2026-10-30"
+   ],
+   "pasadas_evento": [
+    "2026-11-02"
+   ],
+   "pasadas_desde_la_noticia": [
+    "2026-11-02"
+   ],
+   "imagenes_referencia": 23,
+   "V0_reglas_actuales": 0.0,
+   "V1_sin_limite_altura": 0.0,
+   "V2_sin_altura_ni_pendiente": 0.0,
+   "capa_publicada": "vivo.tif",
+   "km2_capa_publicada": 0.0,
+   "km2_zona_inundable_jrc_rp100": 1.84,
+   "altura_mediana_m": 11,
+   "pct_area_sobre_250m": 0.1,
+   "caida_mediana_db_en_jrc": -2.5,
+   "detectado_V0": false,
+   "detectado_V1": false
+  }
+ ]
+}

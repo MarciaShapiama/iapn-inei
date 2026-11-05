@@ -8,6 +8,7 @@ data/validacion/ventana_bajo_piura_2017.npz
 
 # Datos confidenciales del INEI (nunca se suben)
 datos_inei/
+docs_recibidos/
 manz_*.csv
 manz_piura_tumbes.*
 preguntas_vivienda.xlsx

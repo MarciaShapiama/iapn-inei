@@ -131,6 +131,11 @@ table.tabla td.n{text-align:right;font-variant-numeric:tabular-nums}
 .i-lista div{display:flex;justify-content:space-between;gap:8px;padding:6px 9px;border-bottom:1px solid #1f3140;cursor:pointer}
 .i-lista div:hover{background:#13232f}
 .i-lista small{color:#8ea3b3}
+.i-rep{max-height:260px}
+.vd{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.vd-detectado{background:#0f5132;color:#b7f5d3}.vd-no-detectado{background:#5c1023;color:#ffc2cf}
+.vd-fuera-de-alcance{background:#5a3a06;color:#ffd99a}.vd-sin-pasada,.vd-sin-radar{background:#2a3d4c;color:#c5d2db}
+#i-reporte a{color:#7fd3ff}
 .i-dist{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:12.5px;align-items:center}
 .i-dist .b{grid-column:1/3;height:5px;border-radius:3px;background:#1e90ff;margin-bottom:5px}
 .i-valida{background:#13232f;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#c5d2db;margin-top:10px}
@@ -248,7 +253,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
         <label><input type="checkbox" data-c="col3d" checked> <span style="color:#f03b20">▮</span> Columnas: concentración de edificaciones</label>
         <label><input type="checkbox" data-c="col" checked> <span style="color:#ffd23f">●</span> Colegios a ≤ 1 km del agua</label>
         <label><input type="checkbox" data-c="sal" checked> <span style="color:#ff4d6d">●</span> Salud a ≤ 1 km del agua</label>
-        <div style="font-size:11.5px;color:#9fb3bf;margin-top:4px">Borde: <span style="color:#ff3b30">■</span> dentro · <span style="color:#ff9500">■</span> 0–500 m · <span style="color:#ffd60a">■</span> 500 m–1 km</div>
+        <label><input type="checkbox" data-c="eve" checked> <span style="color:#ff2d55">◆</span> Inundaciones reportadas (noticias)</label>
+        <div style="font-size:11.5px;color:#9fb3bf;margin-top:4px">Borde:<span style="color:#ff3b30">■</span> dentro · <span style="color:#ff9500">■</span> 0–500 m · <span style="color:#ffd60a">■</span> 500 m–1 km</div>
         <label><input type="checkbox" data-c="dis" checked> <span>▢</span> Distritos</label>
       </div>
     </div>
@@ -259,6 +265,10 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div class="z-kpis" id="i-kpis" style="margin-top:12px"></div>
       <div class="i-valida" id="i-aviso"><b>Cómo leer estas cifras</b><br>Son estimaciones, no un conteo: dicen cuántas personas y edificaciones hay dentro de la zona que podría inundarse, no cuántas resultarían afectadas. Los mapas de JRC (Comisión Europea) no consideran diques ni defensas ribereñas, por eso donde existen pueden marcar más área de la real. La población viene de un modelo (WorldPop), con su propio margen de error.</div>
       <div id="i-valida"></div>
+      <div class="eti">Inundaciones reportadas: ¿las ve el radar?</div>
+      <div class="z-sub" id="i-rep-resumen"></div>
+      <div class="i-lista i-rep" id="i-reportes"></div>
+      <div class="i-valida" id="i-reporte" hidden></div>
       <div class="eti">Distritos con más edificaciones en la mancha</div>
       <div class="i-dist" id="i-distritos"></div>
       <div class="eti">Colegios y salud cerca de la zona inundada</div>
@@ -440,15 +450,15 @@ function validacionVista(V){
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
 Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017"),get("viviendas_censo"),get("aviso_lluvia")])
-.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL,VC,AV])=>{
+  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017"),get("viviendas_censo"),get("aviso_lluvia"),get("eventos_reportados")])
+.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL,VC,AV,EVR])=>{
   if(VAL&&VAL.total&&VAL.total.radar)try{validacionVista(VAL)}catch(e){console.error("validacion",e)}
   // solo las provincias de Tumbes y Piura
   if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
   if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
   if(ZON){document.querySelectorAll(".z-n").forEach(e=>e.textContent=ZON.zonas.length);
     const s=document.getElementById("z-sierra");if(s&&!ZON.zonas.some(z=>z.provincia==="Huancabamba"))s.hidden=true;}
-  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VC,AV};
+  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VC,AV,EVR};
   pestanas(); estado();
   const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
   seguro(resumenVista,"resumen"); seguro(censoVista,"censo"); seguro(avisoVista,"aviso"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
@@ -619,7 +629,39 @@ const debounce=(f,t)=>{let h;return()=>{clearTimeout(h);h=setTimeout(f,t)}};
 
 
 /* ---------- INUNDACIONES (3D) ---------- */
-const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col3d:true,col:true,sal:true,dis:true},sel:null};
+const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col3d:true,col:true,sal:true,dis:true,eve:true},sel:null};
+/* Inundaciones reportadas (src/noticias.py): TODAS las noticias ubicadas en Tumbes y Piura, se vean o no en el radar */
+const escH=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const VD_COLOR={"detectado":[0,200,120],"no detectado":[255,45,85],"fuera de alcance":[255,159,10],"sin pasada":[170,180,190],"sin radar":[170,180,190]};
+const vdClase=v=>"vd vd-"+String(v).replace(/ /g,"-");
+const fechaCorta=f=>f?f.split("-").reverse().join("/"):"";
+function reportesVisibles(){
+  const evs=(D.EVR&&D.EVR.eventos)||[], e=D.IN.eventos[I3.ev];
+  // con una capa de radar elegida, solo los reportes de ese periodo; con un escenario de JRC, todos
+  return e&&e.tipo==="radar"&&e.periodo?evs.filter(x=>x.fecha_fin>=e.periodo[0]&&x.fecha<=e.periodo[1]):evs;
+}
+function mostrarReporte(x){
+  const el=document.getElementById("i-reporte"); if(!el||!x)return;
+  const r=x.radar||{};
+  const art=(x.articulos||[]).slice(0,8).map(a=>`<li><a href="${escH(a.url)}" target="_blank" rel="noopener">${escH(a.titulo)}</a> <small>${escH(a.medio)} · ${fechaCorta(a.fecha)}</small></li>`).join("");
+  el.hidden=false;
+  el.innerHTML=`<b>${escH(x.lugar)}</b> <small>${escH(x.distrito)}, ${escH(x.provincia)} (${escH(x.departamento)}) · ${x.altura_m} m</small><br>
+    ${fechaCorta(x.fecha)}${x.fecha_fin&&x.fecha_fin!==x.fecha?" a "+fechaCorta(x.fecha_fin):""} · ${escH(x.tipo)} · <i>${escH(x.origen)}</i><br>
+    <span class="${vdClase(r.veredicto)}">Radar: ${escH(r.veredicto)}</span> ${escH(r.explicacion)}
+    ${r.prueba_km2_sin_limite_altura!=null?`<br><small>Prueba dedicada: reglas actuales ${fmtN(r.prueba_km2_reglas_actuales,2)} km² · sin límite de altura ${fmtN(r.prueba_km2_sin_limite_altura,2)} km² · sin altura ni pendiente ${fmtN(r.prueba_km2_sin_altura_ni_pendiente,2)} km²</small>`:""}
+    <br><small>Ubicación: ${escH(x.precision)}</small>
+    <ul style="margin:6px 0 0;padding-left:18px">${art}</ul>${(x.articulos||[]).length>8?`<small>y ${x.articulos.length-8} notas más</small>`:""}`;
+}
+function panelReportes(){
+  const lista=reportesVisibles(), cont=document.getElementById("i-reportes"); if(!cont)return;
+  const n=v=>lista.filter(x=>(x.radar||{}).veredicto===v).length;
+  document.getElementById("i-rep-resumen").innerHTML=lista.length
+    ?`<b>${lista.length}</b> reportes en este periodo · el radar vio <b>${n("detectado")}</b>, no vio <b>${n("no detectado")}</b>, <b>${n("fuera de alcance")}</b> fuera de su alcance (sierra o calles). Fuente: noticias (Google Noticias) y catálogo verificado; ${escH(D.EVR.aviso)}`
+    :"No hay noticias de inundación en Tumbes o Piura para este periodo.";
+  cont.innerHTML=lista.map((x,i)=>`<div data-r="${i}"><span>${escH(x.lugar)} <small>· ${escH(x.distrito)}</small><br><small>${fechaCorta(x.fecha)} · ${escH(x.tipo)} · ${(x.articulos||[]).length} nota(s)</small></span><span class="${vdClase((x.radar||{}).veredicto)}">${escH((x.radar||{}).veredicto)}</span></div>`).join("");
+  cont.querySelectorAll("div[data-r]").forEach(d=>d.onclick=()=>{const x=lista[+d.dataset.r];mostrarReporte(x);I3.volarA(x.lon,x.lat)});
+  document.getElementById("i-reporte").hidden=true;
+}
 const VISTAS={piura:{longitude:-80.68,latitude:-5.30,zoom:10.4,pitch:58,bearing:25},sullana:{longitude:-80.70,latitude:-4.90,zoom:10.6,pitch:58,bearing:20},
   tumbes:{longitude:-80.45,latitude:-3.62,zoom:10.8,pitch:58,bearing:15},todo:{longitude:-80.40,latitude:-4.85,zoom:7.9,pitch:45,bearing:10}};
 const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE").replace(/,/g," ");
@@ -671,7 +713,9 @@ function inundacionesVista(){
   I3.volarA=(lon,lat)=>I3.deck.setProps({initialViewState:{longitude:lon,latitude:lat,zoom:14,pitch:60,bearing:20,transitionDuration:1500,transitionInterpolator:new deck.FlyToInterpolator()}});
   const tipEstilo={background:"#0c2230",color:"#eef3f5",fontSize:"12.5px",borderRadius:"8px",maxWidth:"260px"};
   I3.deck=new deck.Deck({parent:el,width:"100%",height:"100%",controller:{dragRotate:true,touchRotate:true},initialViewState:VISTAS.piura,
+    onClick:({object,layer})=>{if(object&&layer&&layer.id==="eve")mostrarReporte(object)},
     getTooltip:({object,layer})=>{if(!object||!layer)return null;
+      if(layer.id==="eve")return {html:`<b>${escH(object.lugar)}</b> · ${fechaCorta(object.fecha)}<br>${escH(object.titulo)}<br><i>${escH(object.tipo)}</i><br><b>Radar:</b> ${escH(object.radar.veredicto)}<br><small>Clic para ver las fuentes</small>`,style:tipEstilo};
       if(layer.id==="col"||layer.id==="sal")return {html:`<b>${object.nombre}</b><br>${object.tipo||object.nivel||""}${object.distrito?" · "+object.distrito:""}<br>${object.estado||""}${object.dist_m>0?" ("+nf(object.dist_m)+" m)":""}${object.alumnos?"<br>"+nf(object.alumnos)+" alumnos":""}`,style:tipEstilo};
       if(layer.id==="dis")return {html:`<b>${object.properties.distrito}</b><br>${object.properties.provincia}, ${object.properties.departamento}`,style:tipEstilo};
       if(layer.id==="viv")return {html:"Edificación (Open Buildings) en la mancha",style:tipEstilo};
@@ -703,6 +747,13 @@ function capasInund(){
   const cerca=(lista,t)=>(e[t+"_lista"]||[]);   // solo los que están a ≤ 1 km del agua
   if(I3.capas.col)capas.push(pinta("col",cerca(D.COL,"colegios"),[255,210,63,245]));
   if(I3.capas.sal)capas.push(pinta("sal",cerca(D.SAL,"salud"),[255,77,109,245]));
+  if(I3.capas.eve&&D.EVR)capas.push(new deck.ScatterplotLayer({id:"eve",data:reportesVisibles(),getPosition:d=>[d.lon,d.lat],pickable:true,
+      radiusUnits:"pixels",getRadius:d=>7+Math.min(6,(d.articulos||[]).length),stroked:true,lineWidthUnits:"pixels",getLineWidth:2.5,
+      getFillColor:d=>[...(VD_COLOR[d.radar.veredicto]||[200,200,200]),235],getLineColor:[255,255,255,255],
+      extensions:[T],terrainDrawMode:"offset",updateTriggers:{data:I3.ev}}),
+    new deck.TextLayer({id:"eve-txt",data:reportesVisibles(),getPosition:d=>[d.lon,d.lat],getText:d=>d.lugar,getSize:12,
+      getColor:[255,255,255],outlineWidth:3,outlineColor:[11,22,32,230],fontSettings:{sdf:true},getPixelOffset:[0,-18],
+      characterSet:"auto",extensions:[T],terrainDrawMode:"offset"}));
   I3.deck.setProps({layers:capas});
 }
 function panelInund(){
@@ -734,12 +785,13 @@ function panelInund(){
     if(X.puentes!=null)f.push(`Puentes dentro o a 100 m o menos: <b>${nf(X.puentes)}</b>`);
     if(f.length)extra=`<div class="i-valida"><b>Además, en esta zona</b><br>${f.join("<br>")}</div>`+extra;}
   document.getElementById("i-valida").innerHTML=extra;
+  try{panelReportes()}catch(err){console.error("reportes",err)}
   const dd=(e.distritos||[]).filter(x=>x.departamento!=="Sin distrito asignado").slice(0,8), mx=d3.max(dd,x=>x.edificaciones||0)||1;
   document.getElementById("i-distritos").innerHTML=dd.length?dd.map(x=>`<span>${x.distrito} <small style="color:#8ea3b3">${x.provincia}</small></span><b>${nf(x.edificaciones)}</b><span class="b" style="width:${100*(x.edificaciones||0)/mx}%"></span>`).join(""):"<span class='z-sub'>Sin edificaciones en la mancha.</span>";
   const lista=[...(e.salud_lista||[]).map(x=>({...x,_i:"✚",_c:"#ff4d6d"})),...(e.colegios_lista||[]).map(x=>({...x,_i:"●",_c:"#ffd23f"}))].sort((a,b)=>a.dist_m-b.dist_m).slice(0,60);
   document.getElementById("i-lista").innerHTML=lista.length?lista.map((x,i)=>`<div data-k="${i}"><span><span style="color:${x._c}">${x._i}</span> ${x.nombre}<br><small>${x.tipo||x.nivel||""}${x.distrito?" · "+x.distrito:""}</small></span><small style="text-align:right;white-space:nowrap">${x.dist_m<=0?"<b style='color:#ff3b30'>dentro</b>":nf(x.dist_m)+" m"}</small></div>`).join(""):"<div><span class='z-sub'>Ninguno a menos de 1 km.</span></div>";
   document.querySelectorAll("#i-lista div[data-k]").forEach(d=>d.onclick=()=>{const x=lista[+d.dataset.k];I3.volarA(x.lon,x.lat)});
-  document.getElementById("i-nota").innerHTML=`Método: radar Sentinel-1 (Copernicus, vía Microsoft Planetary Computer), detección de cambios frente a la temporada seca; se excluye el agua permanente, lo alto (&gt; 250 m) y las pendientes. El radar no ve bien el agua bajo árboles ni entre edificios muy juntos: <b>las cifras son un mínimo</b>. Población: WorldPop 2026 (100 m, modelada). Edificaciones: Google Open Buildings v3 (cualquier uso). Salud: RENIPRESS. Colegios: ${IN.fuentes_exposicion.colegios||"—"}. Se cruzan la población y las edificaciones de hoy con la mancha de cada evento.`;
+  document.getElementById("i-nota").innerHTML=`Método: radar Sentinel-1 (Copernicus, vía Microsoft Planetary Computer), detección de cambios frente a la temporada seca; se excluye el agua permanente, lo alto (&gt; 250 m) y las pendientes. El radar no ve bien el agua bajo árboles ni entre edificios muy juntos: <b>las cifras son un mínimo</b>. Por eso los <b>puntos ◆</b> muestran <b>todas</b> las inundaciones reportadas en Tumbes y Piura (noticias de cada día y un catálogo verificado por el equipo), con sus enlaces y con la respuesta a «¿la vio el radar?»: verde sí, rojo no, naranja fuera de su alcance (sierra o calles inundadas por lluvia). Población: WorldPop 2026 (100 m, modelada). Edificaciones: Google Open Buildings v3 (cualquier uso). Salud: RENIPRESS. Colegios: ${IN.fuentes_exposicion.colegios||"—"}. Se cruzan la población y las edificaciones de hoy con la mancha de cada evento.`;
 }
 
 /* ---------- ZONAS AFECTADAS (3D) ---------- */
