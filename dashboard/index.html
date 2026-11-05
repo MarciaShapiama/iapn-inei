@@ -223,6 +223,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 <section class="vista" id="v-alerta">
   <p class="titular" id="a-titular">Alerta por distrito</p>
   <p class="bajada">Un modelo de machine learning estima, para cada distrito y cada semana, qué tan probable es que haya una emergencia por inundación o lluvias en las <b>próximas 4 semanas</b>. Aprendió de las emergencias registradas por INDECI entre 2001 y 2015 y usa la lluvia acumulada, el caudal del río, la temperatura del mar y la época del año.</p>
+  <div class="panel" id="a-aviso" style="margin-bottom:16px" hidden></div>
   <div class="grid g32">
     <div class="panel"><h2 id="a-t-mapa">Riesgo esta semana</h2><p class="nota">0 = como una semana tranquila; 100 = más alto que cualquier semana de 2001 a 2015. Pasa el cursor sobre un distrito.</p><svg id="a-mapa" style="width:100%;display:block"></svg><div class="leyenda" id="a-ley"></div></div>
     <div class="panel"><h2>Distritos con más riesgo</h2><p class="nota" id="a-nota-lista"></p><div id="a-lista"></div></div>
@@ -351,6 +352,13 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   </ul>
   <div id="m-valida"></div>
 
+  <h3>Aviso de lluvia (anticipación)</h3>
+  <ul>
+    <li>El radar solo ve el agua cuando pasa el satélite (en cada lugar, más o menos una vez cada 4 días) y no la ve en calles ni en la sierra. Para anticiparse se usa el pronóstico de lluvia de Open-Meteo para el centro de cada distrito.</li>
+    <li>Cada pronóstico se compara con lo extremo en ese mismo lugar: los percentiles 95 («lluvia fuerte») y 99 («lluvia extrema») de los días con lluvia de 1991 a 2020 (reanálisis ERA5). Cuenta el día más lluvioso de los próximos 3 días.</li>
+    <li>Es un criterio propio, parecido al de SENAMHI, pero no es un aviso oficial. Las noticias sirven para comprobar si acierta.</li>
+  </ul>
+
   <h3>2. ¿A quién afecta?</h3>
   <ul>
     <li><b>Personas:</b> WorldPop 2026, población estimada cada 100 m. Se cuenta la población de las celdas que caen en la zona inundable.</li>
@@ -432,18 +440,18 @@ function validacionVista(V){
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
 Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017"),get("viviendas_censo")])
-.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL,VC])=>{
+  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017"),get("viviendas_censo"),get("aviso_lluvia")])
+.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL,VC,AV])=>{
   if(VAL&&VAL.total&&VAL.total.radar)try{validacionVista(VAL)}catch(e){console.error("validacion",e)}
   // solo las provincias de Tumbes y Piura
   if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
   if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
   if(ZON){document.querySelectorAll(".z-n").forEach(e=>e.textContent=ZON.zonas.length);
     const s=document.getElementById("z-sierra");if(s&&!ZON.zonas.some(z=>z.provincia==="Huancabamba"))s.hidden=true;}
-  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VC};
+  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VC,AV};
   pestanas(); estado();
   const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
-  seguro(resumenVista,"resumen"); seguro(censoVista,"censo"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
+  seguro(resumenVista,"resumen"); seguro(censoVista,"censo"); seguro(avisoVista,"aviso"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
   try{ const ini=()=>{if(visible("v-inundaciones")&&!I3.deck)setTimeout(inundacionesVista,30)}; ini(); window.addEventListener("hashchange",ini);
     document.querySelector('[data-v="inundaciones"]').addEventListener("click",ini); }catch(e){console.error(e)}
   try{ if(visible("v-zonas"))zonasVista(); else document.querySelector('[data-v="zonas"]').addEventListener("click",()=>{if(!Z3.deck)setTimeout(zonasVista,30)},{once:true}); window.addEventListener("hashchange",()=>{if(visible("v-zonas")&&!Z3.deck)setTimeout(zonasVista,30)}); }catch(e){console.error(e)}
@@ -489,6 +497,7 @@ function resumenVista(){
   if(R&&R.nino12_semana&&R.nino12_semana.valor!=null)filas.push(["Mar frente al Perú (Niño 1+2), semana del "+fechaTxt(R.nino12_semana.semana),fmt(R.nino12_semana.valor)+" °C sobre lo normal"]);
   if(R&&R.icen_ultimo&&R.icen_ultimo.valor!=null)filas.push(["Índice Costero El Niño (ICEN), "+fechaTxt(R.icen_ultimo.fecha),fmt(R.icen_ultimo.valor,2)+" °C · "+R.icen_ultimo.magnitud.toLowerCase()]);
   if(Z)["Tumbes","Piura"].forEach(p=>{const z=Z.zonas.find(x=>x.provincia===p&&x.departamento===p);if(z)filas.push([`Lluvia en la provincia de ${p}, últimos 20 días`,`${fmtN(z.lluvia_20d,0)} mm (lo normal: ${fmtN(z.normal_20d,0)} mm)`])});
+  if(D.AV&&D.AV.conteo)filas.push([`Aviso de lluvia, próximos ${D.AV.ventana_dias} días (pronóstico frente a lo extremo de cada distrito)`,`${D.AV.conteo.extremo} distritos con lluvia extrema · ${D.AV.conteo.fuerte} con lluvia fuerte`]);
   if(RIE){const n=RIE.distritos_hoy.filter(d=>d.alerta).length, top=RIE.distritos_hoy[0];filas.push([`Distritos en alerta según el modelo (semana del ${fechaTxt(RIE.semana_actual)})`,`${n} de ${RIE.distritos_hoy.length}`+(top?` · el más alto: ${top.distrito}`:"")]);}
   document.getElementById("r-fecha").textContent=R?`Datos al ${fechaTxt(R.ultimo_dia_mar||R.actualizado.slice(0,10))}. Se actualizan solos todos los días.`:"";
   document.getElementById("r-semana").innerHTML=filas.map(f=>`<div class="r-fila"><span>${f[0]}</span><b>${f[1]}</b></div>`).join("")+
@@ -501,7 +510,7 @@ function resumenVista(){
   document.getElementById("r-pasado").innerHTML=pas.map(f=>`<div class="r-fila" style="display:block"><b style="font-size:15px">${f[0]}</b><div style="color:var(--ink-2);margin-top:2px">${f[1]}</div></div>`).join("");
   const guia=[["inundaciones","Mapa de inundación","Qué quedaría bajo el agua, en 3D: zonas, edificaciones, colegios y salud."],
     ["satelite","Antes y después","Fotos reales del satélite de 2017, 2023 y de estos días."],
-    ["alerta","Alerta por distrito","Qué distritos tienen más riesgo en las próximas semanas."],
+    ["alerta","Alerta por distrito","Aviso de lluvia de los próximos días y riesgo en las próximas semanas."],
     ["zonas","Lluvia y ríos","Cuánto llovió y cómo van los ríos en cada provincia."],
     ["mar","El mar y El Niño","La temperatura del mar, que es donde empieza El Niño."],
     ["metodo","Método y fuentes","De dónde sale cada cifra y sus límites."]];
@@ -614,6 +623,21 @@ const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col3d:true,col:
 const VISTAS={piura:{longitude:-80.68,latitude:-5.30,zoom:10.4,pitch:58,bearing:25},sullana:{longitude:-80.70,latitude:-4.90,zoom:10.6,pitch:58,bearing:20},
   tumbes:{longitude:-80.45,latitude:-3.62,zoom:10.8,pitch:58,bearing:15},todo:{longitude:-80.40,latitude:-4.85,zoom:7.9,pitch:45,bearing:10}};
 const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE").replace(/,/g," ");
+// Aviso de lluvia por distrito: pronóstico de los próximos días frente a los percentiles 95 y 99 del lugar.
+function avisoVista(){
+  const A=D.AV, el=document.getElementById("a-aviso"); if(!A||!A.distritos||!A.distritos.length)return;
+  const ET={extremo:["Lluvia extrema","#b3261e","rgba(179,38,30,.12)"],fuerte:["Lluvia fuerte","#c2581e","rgba(194,88,30,.12)"],normal:["Normal","#4a6b5a","rgba(76,196,155,.10)"],"sin umbral":["Sin umbral","#777","#eee"]};
+  const chip=n=>`<span style="display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;color:${ET[n][1]};background:${ET[n][2]};border:1px solid ${ET[n][1]}">${ET[n][0]}</span>`;
+  const f=d=>{const [a,m,dd]=d.split("-");return `${+dd}/${+m}`};
+  const lista=A.distritos.filter(d=>d.nivel==="extremo"||d.nivel==="fuerte");
+  const mostrar=(lista.length?lista:A.distritos.slice(0,8)).slice(0,15);
+  const filas=mostrar.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td>${chip(d.nivel)}</td><td class="n">${fmtN(d.mm_dia_max,0)} mm · ${f(d.fecha_max)}</td><td class="n">${fmtN(d.p95,0)} / ${fmtN(d.p99,0)} mm</td><td class="n">${fmtN(d.mm_7d,0)} mm</td><td class="n">${d.personas_zona_inundable==null?"—":nf(d.personas_zona_inundable)}</td></tr>`).join("");
+  el.innerHTML=`<h2>Aviso de lluvia: próximos ${A.ventana_dias} días</h2>
+  <p class="nota">Para anticiparse: compara la lluvia pronosticada para cada distrito con lo que es extremo en ese mismo lugar (percentiles 95 y 99 de los días con lluvia, 1991-2020). Hoy: <b>${A.conteo.extremo}</b> distritos con lluvia extrema y <b>${A.conteo.fuerte}</b> con lluvia fuerte pronosticada. Calculado el ${A.calculado.slice(0,10)}.</p>
+  <table class="tabla"><tr><th>Distrito</th><th>Aviso</th><th style="text-align:right">Día más lluvioso</th><th style="text-align:right">Fuerte / extrema desde</th><th style="text-align:right">7 días</th><th style="text-align:right">Personas en zona inundable</th></tr>${filas}</table>
+  <p class="nota" style="margin-top:8px">${lista.length?"":"Ningún distrito supera los umbrales en los próximos días; se muestran los de más lluvia pronosticada. "}La lluvia intensa sobre ciudades (calles anegadas, quebradas) es el daño más frecuente y el radar no la ve: este aviso sirve para anticiparla. ${A.nota} Fuente: ${A.fuente}</p>`;
+  el.hidden=false;
+}
 // Viviendas ocupadas del Censo 2025 (INEI) en la zona inundable: solo totales por distrito.
 function censoVista(){
   const V=D.VC, el=document.getElementById("r-censo"); if(!V||!V.escenarios||!V.escenarios.rp100)return;
