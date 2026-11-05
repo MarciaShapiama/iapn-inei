@@ -207,7 +207,7 @@ def zonas(mar: pd.DataFrame) -> tuple[dict, dict] | None:
     """Provincias costeras: mar a menos de 100 km, lluvia vs. normal, caudal del río vs. normal, alerta."""
     if not (DATA / "zonas_lluvia.csv").exists():
         return None
-    from descargar_zonas import RIOS, ZONAS
+    from descargar_zonas import RIO_FIJO, RIOS, ZONAS
     g = json.load(open(DATA / "provincias.geojson", encoding="utf-8"))
     formas = {(f["properties"]["departamento"], f["properties"]["provincia"]): f for f in g["features"]}
     pts = pd.read_csv(DATA / "zonas_puntos.csv")
@@ -240,8 +240,12 @@ def zonas(mar: pd.DataFrame) -> tuple[dict, dict] | None:
         # río más cercano (a menos de 60 km)
         rio = None
         if celdas_rio is not None and q is not None:
-            dist = {r: forma.distance(Point(lo, la)) * KM_GRADO for r, (la, lo) in RIOS.items()}
-            nombre, km = min(dist.items(), key=lambda t: t[1])
+            if prov in RIO_FIJO:
+                nombre, km = RIO_FIJO[prov], 0.0
+            else:
+                dist = {r: forma.distance(Point(lo, la)) * KM_GRADO for r, (la, lo) in RIOS.items()
+                        if r not in RIO_FIJO.values()}
+                nombre, km = min(dist.items(), key=lambda t: t[1])
             if km <= 60 and nombre in set(q["rio"]):
                 y = q[q["rio"] == nombre].set_index("fecha").reindex(fechas)
                 nr = nq[nq["rio"] == nombre].set_index("md") if nq is not None else pd.DataFrame()

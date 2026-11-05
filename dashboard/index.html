@@ -303,7 +303,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 <!-- ZONAS AFECTADAS -->
 <section class="vista" id="v-zonas">
   <p class="titular">Lluvia y ríos en las provincias de Tumbes y Piura, día a día</p>
-  <p class="bajada">Para cada una de las 8 provincias: la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal, el pronóstico de 7 días y el mar que tiene enfrente. El indicador de 0 a 100 dice qué tan fuera de lo normal están el mar, la lluvia y el río; no es una alerta. La alerta por distrito está en su pestaña, y los avisos oficiales son de SENAMHI, INDECI y ENFEN. Mueve la vista con el mouse.</p>
+  <p class="bajada">Para cada provincia (<span class="z-n">11</span><span id="z-sierra">, incluidas Morropón, Huancabamba y Ayabaca en la sierra</span>): la lluvia de los últimos 20 días frente a lo normal, el caudal de su río principal, el pronóstico de 7 días y el mar que tiene enfrente. El indicador de 0 a 100 dice qué tan fuera de lo normal están el mar, la lluvia y el río; no es una alerta. La alerta por distrito está en su pestaña, y los avisos oficiales son de SENAMHI, INDECI y ENFEN. Mueve la vista con el mouse.</p>
   <div class="z-wrap">
     <div class="z-mapa" id="z-mapa">
       <div class="z-modos" id="z-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
@@ -323,10 +323,10 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
       <div class="eti" id="z-t-lluvia">Lluvia diaria (mm) · normal</div><svg id="z-g-lluvia" style="width:100%;display:block"></svg>
       <div class="eti" id="z-t-rio">Caudal del río (m³/s)</div><svg id="z-g-rio" style="width:100%;display:block"></svg>
       <div class="eti">Mar de enfrente (°C de anomalía)</div><svg id="z-g-mar" style="width:100%;display:block"></svg>
-      <p class="z-nota">Lluvia: modelos meteorológicos (Open-Meteo) y su normal con el reanálisis ERA5. Caudal: GloFAS v4 (Copernicus), es un modelo hidrológico, no una medición en estación. Lo sombreado es pronóstico. Relieve: teselas públicas de elevación (AWS Terrain Tiles); imagen: Esri World Imagery.</p>
+      <p class="z-nota">Lluvia: modelos meteorológicos (Open-Meteo) y su normal con el reanálisis ERA5. Caudal: GloFAS v4 (Copernicus), es un modelo hidrológico, no una medición en estación. Lo sombreado es pronóstico. En la sierra el punto es la capital de la provincia y el río es el más cercano a ella (Piura en Chulucanas, Huancabamba, Quiroz). Alcance del tablero: desborde de ríos en la costa; no muestra huaicos ni deslizamientos en la sierra. Relieve: teselas públicas de elevación (AWS Terrain Tiles); imagen: Esri World Imagery.</p>
     </div>
   </div>
-  <div class="panel z-rank"><h2>Las 8 provincias</h2><p class="nota">Clic en una fila para verla en 3D.</p><div id="z-tabla"></div></div>
+  <div class="panel z-rank"><h2>Las <span class="z-n">11</span> provincias</h2><p class="nota">Clic en una fila para verla en 3D.</p><div id="z-tabla"></div></div>
 </section>
 
 
@@ -436,6 +436,8 @@ Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("depar
   // solo las provincias de Tumbes y Piura
   if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
   if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
+  if(ZON){document.querySelectorAll(".z-n").forEach(e=>e.textContent=ZON.zonas.length);
+    const s=document.getElementById("z-sierra");if(s&&!ZON.zonas.some(z=>z.provincia==="Huancabamba"))s.hidden=true;}
   window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF};
   pestanas(); estado();
   const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
