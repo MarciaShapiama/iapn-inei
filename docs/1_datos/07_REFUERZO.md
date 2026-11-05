@@ -41,7 +41,7 @@ El IDH coincide **exacto hasta la sexta cifra decimal** en los cinco distritos, 
 
 **Conclusión:** la pobreza y el IDH del proyecto están bien citados y verificados contra el documento oficial original, no solo contra una compilación. No hay nada que corregir en las cifras.
 
-**Corrección que sí propongo (de redacción, no de datos):** en `src/metadatos.py` y `src/panel.py`, cambiar "fuente declarada INEI, compilación de terceros" por: *"Pobreza: INEI, Mapa de Pobreza Monetaria Provincial y Distrital 2018, Anexo N° 03.21 (punto medio del intervalo de confianza al 95 %). IDH: PNUD, Índice de Desarrollo Humano Perú 2019, hoja Distrital. Verificado el 2026-11-05 contra ambos documentos oficiales originales — ver docs/07_REFUERZO.md."* Ya no hace falta decir "sin verificar": ya se verificó, tres veces, contra la fuente primaria.
+**Corrección que sí propongo (de redacción, no de datos):** en `src/metadatos.py` y `src/panel.py`, cambiar "fuente declarada INEI, compilación de terceros" por: *"Pobreza: INEI, Mapa de Pobreza Monetaria Provincial y Distrital 2018, Anexo N° 03.21 (punto medio del intervalo de confianza al 95 %). IDH: PNUD, Índice de Desarrollo Humano Perú 2019, hoja Distrital. Verificado el 2026-11-05 contra ambos documentos oficiales originales — ver docs/1_datos/07_REFUERZO.md."* Ya no hace falta decir "sin verificar": ya se verificó, tres veces, contra la fuente primaria.
 
 ## Fuentes usadas en esta sesión (todas oficiales, descarga directa del organismo que las produce)
 

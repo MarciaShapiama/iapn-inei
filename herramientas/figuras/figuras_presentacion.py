@@ -1,4 +1,4 @@
-"""Figuras adicionales para la presentación (docs/presentacion/figuras/). Uso: python herramientas/figuras_presentacion.py"""
+"""Figuras adicionales para la presentación (docs/6_presentacion/presentacion/figuras/). Uso: python herramientas/figuras/figuras_presentacion.py"""
 import json
 from pathlib import Path
 
@@ -9,8 +9,8 @@ import numpy as np
 from matplotlib.patches import Patch
 from shapely.geometry import shape
 
-R = Path(__file__).resolve().parents[1]
-F = R / "docs" / "presentacion" / "figuras"
+R = Path(__file__).resolve().parents[2]
+F = R / "docs" / "6_presentacion" / "presentacion" / "figuras"
 F.mkdir(parents=True, exist_ok=True)
 plt.rcParams.update({"font.size": 10, "font.family": "DejaVu Sans", "axes.spines.top": False, "axes.spines.right": False})
 AZ, NAR, GR = "#0b5d8f", "#e8710a", "#8a99a6"

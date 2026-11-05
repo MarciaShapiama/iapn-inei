@@ -207,7 +207,7 @@ Agregué `hayWebGL()` (canvas `webgl2`/`webgl`) y el parámetro `?sin3d=1` para 
 |---|---|
 | `python src/etl.py local` | `[OK] impacto.py (22,4 s)`, `[OK] panel.py`, `[OK] metadatos.py`, `[OK] auditoria.py` |
 | `python src/reparar_poblacion.py` (dos veces) | 1.ª: «desplazamiento óptimo: 86 columnas (r = 0.798) · origen −81,40000 → −81,32833»; 2.ª: «ya alineado: sin cambios» |
-| `python src/modelo_inundacion.py` (base original) | PR-AUC: climatología 0,095 · logística simple 0,114 · completa 0,122 · LightGBM 0,082. **Idénticas a `docs/modelo_inundacion.md`** |
+| `python src/modelo_inundacion.py` (base original) | PR-AUC: climatología 0,095 · logística simple 0,114 · completa 0,122 · LightGBM 0,082. **Idénticas a `docs/2_modelo/modelo_inundacion.md`** |
 | `python -m pytest -q` | **38 passed** (`docs/evidencia/pytest_salida.txt`) |
 | `python src/metadatos.py` | vigente 9 · rezagado 1 (ICEN) · estimado 6 (tras recalcular el radar «vivo») |
 | `python src/huellas.py vivo` | «42 imágenes de referencia, 13 del evento: 334.8 km² inundados» (bruto en la caja; 27,2 km² en tierra tras máscaras) |

@@ -10,7 +10,7 @@ años en el cuadrado y lo que quedó en la capa publicada (data/huellas/vivo.tif
 Las coordenadas son el centro aproximado de cada localidad (no el punto exacto de la noticia).
 Salida: docs/evidencia/prueba_noticias.json
 
-Uso: python herramientas/prueba_noticias.py
+Uso: python herramientas/pruebas/prueba_noticias.py
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from pathlib import Path
 
 import numpy as np
 
-R = Path(__file__).resolve().parents[1]
+R = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(R / "src"))
 SALIDA = R / "docs" / "evidencia" / "prueba_noticias.json"
 MEDIO = 0.027                     # medio lado del cuadrado en grados (~3 km)

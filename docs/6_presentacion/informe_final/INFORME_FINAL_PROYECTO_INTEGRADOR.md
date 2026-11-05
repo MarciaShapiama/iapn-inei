@@ -206,8 +206,8 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 | Bibliografía (`docs/04`) | Hecho | `crossref_verificacion.txt` | Detalles de 4 trabajos recientes solo desde el resumen |
 | Políticas públicas (`docs/05`) | Hecho | archivo | — |
 | Informe final (Markdown) | Hecho | este archivo | — |
-| Informe en Word | Hecho | `INFORME_FINAL_PROYECTO_INTEGRADOR.docx` | Generado con `herramientas/md_a_docx.py`; índice actualizado en Word |
-| Informe de avance para el docente (LaTeX) | Hecho | `docs/avance_latex/avance_proyecto.tex` y `.pdf` | 10 páginas; figuras en `docs/avance_latex/figuras/` |
+| Informe en Word | Hecho | `INFORME_FINAL_PROYECTO_INTEGRADOR.docx` | Generado con `herramientas/documentos/md_a_docx.py`; índice actualizado en Word |
+| Informe de avance para el docente (LaTeX) | Hecho | `docs/6_presentacion/avance_latex/avance_proyecto.tex` y `.pdf` | 10 páginas; figuras en `docs/6_presentacion/avance_latex/figuras/` |
 | README actualizado | Hecho | `README.md` | — |
 | Recálculo del radar «vivo» | Hecho | `data/huellas/vivo.json`, `metadatos.json` | 27,2 km²; estado vigente |
 | Commit y push de la rama | Hecho | rama `auditoria-mvp-piloto` en GitHub; workflow «Pruebas» en verde | — |

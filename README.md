@@ -1,54 +1,81 @@
 # Inundaciones por El Niño en Tumbes y Piura
 
-Tablero público sobre la **exposición potencial** a inundaciones en **Tumbes y Piura**. Incluye:
+Tablero público que estima **cuántas viviendas y personas de Tumbes y Piura pueden verse afectadas por inundaciones durante El Niño costero, y dónde están**. Trabaja en tres tiempos:
 
-- la zona inundable (escenarios JRC de 1 en 10 y 1 en 100 años) y lo que detectó el radar Sentinel-1 en 2017, 2023 y en los últimos días;
-- población, edificaciones, colegios y establecimientos de salud potencialmente expuestos, por distrito (UBIGEO);
-- un panel de decisiones con peligro, exposición, vulnerabilidad y riesgo estimado;
-- un modelo experimental de emergencias por distrito y semana;
-- el monitoreo diario del mar frente al Perú.
+1. **Anticipar:** cada mañana compara el pronóstico de lluvia de cada distrito con lo que es extremo en ese lugar, y sigue el caudal de los ríos.
+2. **Confirmar:** el radar Sentinel-1 muestra dónde hubo agua abierta cuando pasa el satélite (más o menos cada 4 días; no ve calles ni cultivos inundados).
+3. **Comprobar:** contra noticias, registros del INDECI y el mapa oficial de Copernicus de 2017.
 
-Proyecto integrador del Programa de Extensión Universitaria en Ciencia de Datos (PEU-CD) del INEI.
+Proyecto integrador del Programa de Extensión Universitaria: Ciencia del Dato (PEU-CD), INEI, 2026.
+**Autores:** Marcia, Christopher, Maykol y Luz Ángela.
 
-- **Tablero 3D:** `dashboard/index.html` · **Mapa 2D sin GPU, panel y metadatos:** `dashboard/mapa2d.html`
-- **Sitio publicado:** https://marciashapiama.github.io/iapn-inei/ · mapa 2D: https://marciashapiama.github.io/iapn-inei/mapa2d.html
-- **Repositorio:** https://github.com/MarciaShapiama/iapn-inei
+- **Tablero 3D:** https://marciashapiama.github.io/iapn-inei/
+- **Mapa 2D (sin aceleración gráfica), panel por distrito y metadatos:** https://marciashapiama.github.io/iapn-inei/mapa2d.html
 
-### Qué tiene el tablero
+> «Expuesto» significa que está dentro o cerca de una zona inundable o de agua detectada por satélite. **No equivale a afectados ni damnificados**: esas cifras las registra INDECI/COEN. Un escenario de 1 en 100 años **no anuncia una inundación este año**. Los avisos del tablero **no son oficiales**: los oficiales son de SENAMHI, ENFEN e INDECI.
+
+## Qué tiene el tablero
 
 | Pestaña | Qué muestra |
 |---|---|
-| Resumen | Las cifras principales en una frase (personas, edificaciones, colegios, salud, niños de 0 a 4 años, adultos de 65 o más, cultivos y carreteras), el estado oficial del ENFEN, lo que pasa esta semana y lo que pasó en 2017 y 2023 |
-| Mapa de inundación | Vista 3D sobre el relieve: zona inundable por profundidad, edificaciones, colegios y salud |
-| Antes y después | Fotos Sentinel-2 de 2017, 2023 y de estos días en Piura, Tumbes y Sechura, con comparador deslizable |
-| Alerta por distrito | Riesgo de emergencia en las próximas 4 semanas (modelo de machine learning), su validación y los modelos comparados |
-| Lluvia y ríos | Las 8 provincias de Tumbes y Piura: lluvia de 20 días frente a lo normal, caudal y pronóstico de 7 días |
-| El mar y El Niño | Anomalía diaria del mar (últimos 20 días), Niño 1+2 semanal e ICEN |
-| Método y fuentes | De dónde sale cada cifra, sus límites y los autores |
+| Resumen | Cifras principales (personas, viviendas del Censo 2025, edificaciones, colegios con alumnos, salud, niños, adultos mayores, cultivos y carreteras en zona inundable), estado oficial del ENFEN y lo que pasa esta semana |
+| Mapa de inundación | Vista 3D sobre el relieve: zona inundable por profundidad, agua vista por radar, edificaciones, colegios y salud |
+| Antes y después | Fotos Sentinel-2 de 2017, 2023 y de estos días, con comparador deslizable |
+| Alerta por distrito | Aviso de lluvia de los próximos 3 días y riesgo de emergencia por distrito (machine learning), con su validación |
+| Lluvia y ríos | Las 11 provincias de Tumbes y Piura: lluvia de 20 días frente a lo normal, caudal y pronóstico de 7 días |
+| El mar y El Niño | Anomalía diaria del mar, Niño 1+2 semanal e ICEN |
+| Método y fuentes | De dónde sale cada cifra, sus límites y la comparación con el mapa oficial de 2017 |
 
-### Autores
+## Cómo está organizado el repositorio
 
-Marcia, Christopher, Maykol y Luz Ángela.
+```
+iapn-inei/
+├── dashboard/            El tablero publicado (index.html = 3D, mapa2d.html = 2D) y sus datos en dashboard/data/
+├── src/                  Código que descarga, calcula y arma el tablero (lo corre GitHub Actions cada día)
+├── data/                 Datos descargados y calculados (exposición, huellas de radar, normales, modelo, validación)
+├── docs/                 Documentos del proyecto, ordenados por tema (ver tabla abajo)
+│   ├── 1_datos/              Auditoría de datos, fuentes y cruces
+│   ├── 2_modelo/             Modelos de machine learning
+│   ├── 3_validacion/         Pruebas contra noticias, INDECI y Copernicus
+│   ├── 4_tablero/            Mejoras del tablero (río normal frente a El Niño, calidad visual)
+│   ├── 5_aporte_y_politicas/ Aporte al INEI, estado del arte y políticas públicas
+│   ├── 6_presentacion/       Informe final, presentaciones LaTeX y guía de preguntas del jurado
+│   ├── evidencia/            Salidas de las pruebas (JSON) que respaldan las cifras de los documentos
+│   └── figuras/              Figuras sueltas
+├── herramientas/         Scripts que no son parte de la actualización diaria
+│   ├── pruebas/              Pruebas con noticias, eventos pasados, Copernicus GFM e INDECI
+│   ├── figuras/              Figuras de las presentaciones
+│   ├── documentos/           Conversión del informe a Word
+│   └── mapa/                 Propuesta de polígonos de agua más suaves
+├── tests/                Pruebas automáticas (python -m pytest -q)
+└── .github/workflows/    Actualización automática y publicación
+```
 
-> «Expuesto» significa que está dentro o cerca de una zona inundable o de agua detectada por satélite. **No equivale a afectados ni damnificados**: esas cifras las registra INDECI/COEN. Un escenario de 1 en 100 años **no anuncia una inundación este año**. Este tablero **no emite alertas**: las alertas oficiales son de SENAMHI, ENFEN e INDECI.
+Los datos confidenciales del INEI (viviendas por manzana) **no están en este repositorio**: `.gitignore` los bloquea. Solo se publican totales por distrito (`dashboard/data/viviendas_censo.json`).
 
 ## Documentos
 
-| Documento | Contenido |
-|---|---|
-| [docs/01_AUDITORIA_TECNICA_Y_DATOS.md](docs/01_AUDITORIA_TECNICA_Y_DATOS.md) | Arquitectura, fuentes y licencias, errores encontrados y corregidos, evidencia |
-| [docs/02_PLAN_MACHINE_LEARNING.md](docs/02_PLAN_MACHINE_LEARNING.md) | Casos A/B/C, experimento reproducido, incertidumbre, calibración y falsos negativos |
-| [docs/03_APORTE_AL_INEI.md](docs/03_APORTE_AL_INEI.md) | Opciones de aporte estadístico, indicador principal y gobernanza |
-| [docs/04_ESTADO_DEL_ARTE_Y_BIBLIOGRAFIA.md](docs/04_ESTADO_DEL_ARTE_Y_BIBLIOGRAFIA.md) | 21 referencias con DOI verificados (APA 7) |
-| [docs/05_POLITICAS_PUBLICAS.md](docs/05_POLITICAS_PUBLICAS.md) | 7 opciones de política vinculadas a los resultados |
-| [INFORME_FINAL_PROYECTO_INTEGRADOR.md](INFORME_FINAL_PROYECTO_INTEGRADOR.md) · `.docx` | Informe para la evaluación del curso (Markdown y Word), con resumen ejecutivo y preguntas del jurado |
-| `docs/avance_latex/avance_proyecto.tex` · `.pdf` | Informe de avance para el docente (LaTeX); se compila con `pdflatex` (dos pasadas) |
-| [docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md](docs/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación del piloto contra INDECI y viabilidad de expandir al norte y a todo el Perú |
-| `docs/presentacion/presentacion_avance.tex` · `.pdf` | Presentación del avance (Beamer 16:9, 17 diapositivas) |
-| `docs/presentacion/presentacion_validacion_expansion.tex` · `.pdf` | Presentación de la validación con INDECI y la viabilidad de expansión (Beamer 16:9, 13 diapositivas) |
-| [docs/07_REFUERZO.md](docs/07_REFUERZO.md) | Padrón oficial de colegios (ESCALE) y verificación de pobreza e IDH contra el INEI y el PNUD |
-| [docs/modelo_inundacion.md](docs/modelo_inundacion.md) | Modelo de alerta (documento original del equipo) |
-| `docs/evidencia/` | Salidas de pruebas, auditoría de cifras, ML y verificación de DOI |
+| Tema | Documento | Contenido |
+|---|---|---|
+| Datos | [01 Auditoría técnica y de datos](docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md) | Arquitectura, fuentes y licencias, errores corregidos y actualización del 4/11 |
+| Datos | [07 Refuerzo](docs/1_datos/07_REFUERZO.md) | Padrón ESCALE de colegios y verificación de pobreza e IDH |
+| Datos | [11 Cruce de habitantes](docs/1_datos/11_CRUCE_HABITANTES.md) | Cómo cruzar la data de habitantes del INEI (personas, sexo y edad) |
+| Modelo | [02 Plan de machine learning](docs/2_modelo/02_PLAN_MACHINE_LEARNING.md) | Modelo de alerta por distrito y su evaluación |
+| Modelo | [08 Diseño del modelo de viviendas](docs/2_modelo/08_DISENO_MODELO_VIVIENDAS.md) | Primer diseño de la pregunta del profesor |
+| Modelo | [10 Modelo de viviendas afectadas](docs/2_modelo/10_MODELO_VIVIENDAS_AFECTADAS.md) | Etiqueta real del SINPAD (INDECI), variables, 6 modelos y validación 2012-2025 |
+| Modelo | [Modelo de inundación](docs/2_modelo/modelo_inundacion.md) | Documento original del modelo de alerta |
+| Validación | [06 Validación y viabilidad](docs/3_validacion/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación contra INDECI y costo de expandir |
+| Validación | [09 Prueba del detector con noticias](docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md) | Por qué el radar no ve calles, sierra ni cultivos; prueba con desbordes de 2023 y 2025 |
+| Validación | [14 Prueba del aviso de lluvia](docs/3_validacion/14_PRUEBA_AVISO_LLUVIA.md) | Aviso del 5/11 frente a lo que pasó |
+| Tablero | [12 Río normal frente a El Niño](docs/4_tablero/12_RIO_NORMAL_VS_NINO.md) | Capas, orden y vista propuesta |
+| Tablero | [13 Mejora visual](docs/4_tablero/13_MEJORA_VISUAL.md) | Por qué el mapa se veía tosco y cómo arreglarlo |
+| Aporte | [03 Aporte al INEI](docs/5_aporte_y_politicas/03_APORTE_AL_INEI.md) | Indicador principal y gobernanza |
+| Aporte | [04 Estado del arte](docs/5_aporte_y_politicas/04_ESTADO_DEL_ARTE_Y_BIBLIOGRAFIA.md) | Referencias con DOI verificados |
+| Aporte | [05 Políticas públicas](docs/5_aporte_y_politicas/05_POLITICAS_PUBLICAS.md) | Opciones de política vinculadas a los resultados |
+| Presentación | [15 Preguntas del jurado](docs/6_presentacion/15_PREGUNTAS_JURADO.md) | 20 preguntas con respuesta, cifra y fuente |
+| Presentación | [Informe final](docs/6_presentacion/informe_final/INFORME_FINAL_PROYECTO_INTEGRADOR.md) · `.docx` | Informe para la evaluación del curso |
+| Presentación | `docs/6_presentacion/presentacion/` | Presentaciones en LaTeX (avance, validación, de dónde sale el agua) |
+| Presentación | `docs/6_presentacion/avance_latex/` | Informe de avance en LaTeX |
 
 ## Instalación desde cero
 
@@ -91,7 +118,7 @@ El orquestador `src/etl.py` corre los pasos en orden. Si un paso falla, lo regis
 | Perfil | Qué hace | Red | Tiempo aproximado |
 |---|---|---|---|
 | `python src/etl.py local` | Recalcula impacto, panel, metadatos y auditoría con los datos ya descargados | No | ~30 s |
-| `python src/etl.py diario` | Mar (NOAA), índices (CPC, IGP), BCRP, COES, lluvia y caudal (Open-Meteo) + tablero + metadatos | Sí | 5–45 min |
+| `python src/etl.py diario` | Mar (NOAA), índices (CPC, IGP), lluvia y caudal (Open-Meteo), aviso de lluvia + tablero + metadatos | Sí | 5–15 min |
 | `python src/etl.py inundacion` | Exposición (WorldPop, Open Buildings, RENIPRESS, OSM, GADM, JRC) + Sentinel-1 + impacto + panel | Sí, varios GB | 30–120 min |
 
 Pasos sueltos útiles:
@@ -103,11 +130,14 @@ Pasos sueltos útiles:
 | `python src/modelo_inundacion.py` | Reentrena y evalúa el modelo de emergencias |
 | `python src/ml_evaluacion.py` | Bootstrap por años, calibración y falsos negativos |
 | `python src/auditoria.py` | Regenera `docs/evidencia/auditoria_cifras.json` |
-| `python herramientas/md_a_docx.py` | Genera el informe en Word desde el Markdown |
-| `python herramientas/figuras_avance.py` | Regenera las figuras del informe LaTeX |
-| `python herramientas/validacion_indeci.py` | Validación externa con registros INDECI 2003-2024 |
-| `python herramientas/viabilidad_expansion.py` | Estima el costo de expandir a otros departamentos |
-| `python herramientas/figuras_presentacion.py` | Figuras de la presentación |
+| `python src/aviso_lluvia.py` | Recalcula el aviso de lluvia por distrito |
+| `python src/validar_radar.py` | Compara el radar y la zona inundable con el mapa oficial de Copernicus 2017 |
+| `python src/modelo_afectados.py` | Modelo de viviendas afectadas con el SINPAD (INDECI) |
+| `python herramientas/documentos/md_a_docx.py` | Genera el informe en Word desde el Markdown |
+| `python herramientas/figuras/figuras_avance.py` | Regenera las figuras del informe LaTeX |
+| `python herramientas/pruebas/validacion_indeci.py` | Validación externa con registros INDECI 2003-2024 |
+| `python herramientas/pruebas/viabilidad_expansion.py` | Estima el costo de expandir a otros departamentos |
+| `python herramientas/figuras/figuras_presentacion.py` | Figuras de la presentación |
 
 ### Variables de entorno (opcionales)
 
@@ -164,6 +194,6 @@ Son 38 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, esta
 
 ## Fuentes y licencias
 
-NOAA OISST v2.1 y CPC (dominio público) · IGP ICEN · BCRP · COES · Open-Meteo y GloFAS v4 (CC BY 4.0) · JRC CEMS-GloFAS flood hazard v2 (CC BY 4.0) · Copernicus Sentinel-1 vía Microsoft Planetary Computer · WorldPop 2026 (CC BY 4.0) · Google Open Buildings v3 (CC BY 4.0 / ODbL) · RENIPRESS, SUSALUD (datos abiertos) · OpenStreetMap (ODbL, © colaboradores de OSM) · DesInventar/INDECI · tabla UBIGEO de `jmcastagnetto/ubigeo-peru-aumentado` (MIT; pobreza 2018 INEI e IDH 2019 PNUD según el compilador) · límites GADM 4.1 (**uso académico y no comercial; no se ofrecen para descargar**). El detalle por capa está en `dashboard/data/metadatos.json`.
+NOAA OISST v2.1 y CPC (dominio público) · IGP ICEN · Open-Meteo y GloFAS v4 (CC BY 4.0) · JRC CEMS-GloFAS flood hazard v2 (CC BY 4.0) · Copernicus Sentinel-1 vía Microsoft Planetary Computer · WorldPop 2026 (CC BY 4.0) · Google Open Buildings v3 (CC BY 4.0 / ODbL) · RENIPRESS, SUSALUD (datos abiertos) · OpenStreetMap (ODbL, © colaboradores de OSM) · DesInventar/INDECI · tabla UBIGEO de `jmcastagnetto/ubigeo-peru-aumentado` (MIT; pobreza 2018 INEI e IDH 2019 PNUD según el compilador) · límites GADM 4.1 (**uso académico y no comercial; no se ofrecen para descargar**). El detalle por capa está en `dashboard/data/metadatos.json`.
 
 Equipo: Christopher, Maykol, Marcia y Luz Ángela.

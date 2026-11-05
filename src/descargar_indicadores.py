@@ -134,8 +134,8 @@ def guardar(tabla: pd.DataFrame, nombre: str) -> None:
 
 if __name__ == "__main__":
     DATA.mkdir(exist_ok=True)
-    for nombre, funcion in [("noaa_semanal", noaa_semanal), ("icen", icen), ("bcrp_sectores", bcrp),
-                            ("coes_diario", coes_diario), ("coes_mensual", coes_mensual)]:
+    # BCRP y COES eran del proyecto anterior (radar macroeconómico) y el tablero de inundaciones no los usa.
+    for nombre, funcion in [("noaa_semanal", noaa_semanal), ("icen", icen)]:
         try:
             guardar(funcion(), nombre)
         except Exception as error:  # una fuente caída no detiene las demás

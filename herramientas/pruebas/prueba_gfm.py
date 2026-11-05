@@ -13,7 +13,7 @@ from pathlib import Path
 
 import numpy as np
 
-R = Path(__file__).resolve().parents[1]
+R = Path(__file__).resolve().parents[2]
 SALIDA = R / "docs" / "evidencia" / "prueba_gfm.json"
 VALLE = (-80.51, -3.70, -80.39, -3.58)
 TP = (-81.4, -6.4, -79.15, -3.35)

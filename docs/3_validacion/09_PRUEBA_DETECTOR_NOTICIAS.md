@@ -2,7 +2,7 @@
 
 Pedido del profesor Alexander: si una noticia dice que hubo inundación y el tablero no muestra nada, el detector está fallando. Probamos seis lugares con noticias de fines de octubre y comienzos de noviembre de 2026.
 
-**Cómo se probó** (`herramientas/prueba_noticias.py`, resultado en `docs/evidencia/prueba_noticias.json`): en un cuadrado de unos 6 km alrededor de cada localidad se repitió el cálculo de la capa "últimos 24 días" (11/10 al 4/11/2026, referencia seca del 1/8 al 10/10) y se midió cuánto quita cada regla. Las coordenadas son el centro aproximado de la localidad, no el punto exacto de la noticia.
+**Cómo se probó** (`herramientas/pruebas/prueba_noticias.py`, resultado en `docs/evidencia/prueba_noticias.json`): en un cuadrado de unos 6 km alrededor de cada localidad se repitió el cálculo de la capa "últimos 24 días" (11/10 al 4/11/2026, referencia seca del 1/8 al 10/10) y se midió cuánto quita cada regla. Las coordenadas son el centro aproximado de la localidad, no el punto exacto de la noticia.
 
 ## ¿Los datos están al día?
 
@@ -32,7 +32,7 @@ Sí. La capa se calculó el 4/11/2026 a las 15:05 con pasadas hasta el 3/11. Cad
 |---|---|
 | Agregar Morropón (Chulucanas), Huancabamba y Ayabaca a "Lluvia y ríos", con su río | Hecho (`src/descargar_zonas.py`, `src/construir.py`) |
 | Decir el alcance en el tablero: desborde de ríos en la costa; no huaicos ni deslizamientos | Hecho (`dashboard/index.html`) |
-| Explicar en las slides por qué el radar no ve la ciudad | Hecho (`docs/presentacion/presentacion_agua_paso_a_paso.tex`) |
+| Explicar en las slides por qué el radar no ve la ciudad | Hecho (`docs/6_presentacion/presentacion/presentacion_agua_paso_a_paso.tex`) |
 | Agua en zonas urbanas con coherencia interferométrica de Sentinel-1 (Chini et al., 2019, doi:10.3390/rs11020107) | Pendiente: necesita datos SLC, que no están en Planetary Computer |
 | Revisar con Sentinel-2 (óptico) las fechas sin nubes | Pendiente |
 | Comparar con el registro de emergencias de INDECI de estos días | Pendiente: pedir a INDECI |
@@ -41,7 +41,7 @@ Fuentes de las noticias: [El Comercio](https://elcomercio.pe/peru/tumbes/tumbes-
 
 ## Segunda prueba (5/11/2026): inundaciones que duraron varios días
 
-Para descartar que el problema fuera solo el paso del satélite cada ~4 días, se probaron dos desbordes del río Tumbes que dejaron cultivos bajo el agua varios días (`herramientas/prueba_eventos_pasados.py`, resultado en `docs/evidencia/prueba_eventos_pasados.json`). Mismas reglas del radar, en un cuadrado de unos 13 km sobre el valle bajo del río Tumbes, desde un día antes hasta 7 días después de la noticia.
+Para descartar que el problema fuera solo el paso del satélite cada ~4 días, se probaron dos desbordes del río Tumbes que dejaron cultivos bajo el agua varios días (`herramientas/pruebas/prueba_eventos_pasados.py`, resultado en `docs/evidencia/prueba_eventos_pasados.json`). Mismas reglas del radar, en un cuadrado de unos 13 km sobre el valle bajo del río Tumbes, desde un día antes hasta 7 días después de la noticia.
 
 | Evento | Noticia | Pasadas de Sentinel-1 | Agua nueva detectada | Caudal GloFAS en el tablero |
 |---|---|---|---|---|

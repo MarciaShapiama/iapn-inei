@@ -11,7 +11,7 @@ Las cifras con ruta (por ejemplo, `dashboard/data/inundacion.json`) están en el
 **1. ¿Por qué usan WorldPop y no el censo para contar personas?**
 Porque cuando armamos el tablero no teníamos la población del censo por manzana; ya la pedimos al INEI. Comprobamos que WorldPop no se aleja del censo en el total de Piura.
 - Cifra: WorldPop da 2 120 104 habitantes en Piura; los Censos Nacionales 2025, unos 2 115 000. La diferencia es 0,2 %.
-- Fuente: `docs/01_AUDITORIA_TECNICA_Y_DATOS.md`, sección 10.5; [Panamericana, cifras del INEI](https://panamericana.pe/nacionales/471688-inei-entrega-informacion-actualizada-situacion-poblacion-viviendas-piura-llegada-fenomeno-nino).
+- Fuente: `docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md`, sección 10.5; [Panamericana, cifras del INEI](https://panamericana.pe/nacionales/471688-inei-entrega-informacion-actualizada-situacion-poblacion-viviendas-piura-llegada-fenomeno-nino).
 
 **2. ¿«Expuesto» es lo mismo que «afectado» o «damnificado»?**
 No. Expuesto es quien vive donde una crecida grande podría llegar. Afectado es quien registró daño en una emergencia. Esa cifra la da el INDECI.
@@ -37,7 +37,7 @@ Por cuatro razones:
 
 Por eso, para anticipar usamos el pronóstico de lluvia, y el radar solo para confirmar.
 - Cifra: el radar detecta el 42 % de lo inundado en 2017, y el 63 % de lo que marca coincide.
-- Fuente: `docs/09_PRUEBA_DETECTOR_NOTICIAS.md`; `dashboard/data/validacion_2017.json`.
+- Fuente: `docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md`; `dashboard/data/validacion_2017.json`.
 
 **6. ¿De dónde sacan la cifra real de viviendas afectadas para entrenar el modelo?**
 Del SINPAD del INDECI, publicado en datos abiertos con distrito y fecha de cada emergencia, de 2003 a junio de 2026. Lo contrastamos con la cifra oficial de 2017.
@@ -87,7 +87,7 @@ Ordena bien, pero subestima la cantidad en años extremos.
 **14. ¿Por qué no usaron un modelo más complejo?**
 Lo probamos. Con pocos eventos, los modelos complejos se aprenden los casos de memoria y no generalizan.
 - Cifra: el gradient boosting saca un PR-AUC de 0,162, frente a 0,175 del modelo de dos etapas, y su error en el total varía más (77 % frente a 53 %). En el modelo de alerta anterior, LightGBM sacó 0,082, por debajo de la referencia (0,095).
-- Fuente: `resultados_modelo/`; `docs/modelo_inundacion.md`.
+- Fuente: `resultados_modelo/`; `docs/2_modelo/modelo_inundacion.md`.
 
 **15. ¿Cuánto ganarían con un mejor pronóstico de lluvia?**
 Probamos el caso ideal: usar la lluvia que de verdad cayó esa semana, como si el pronóstico fuera perfecto. Eso marca el techo.
@@ -109,7 +109,7 @@ Solo publicamos totales por distrito, nunca por manzana. Ocultamos los distritos
 **18. ¿Por qué el mapa tiene 76 distritos si Tumbes y Piura tienen 78?**
 Porque el mapa de límites que usamos (GADM 4.1) no tiene Veintiséis de Octubre ni Canoas de Punta Sal. Sus cifras se suman a Piura y a Zorritos. Lo correcto es usar los límites oficiales del INEI, y está pendiente.
 - Cifra: faltan los ubigeos 200115 y 240203. Veintiséis de Octubre tiene 7 718 viviendas en la zona inundable según el censo.
-- Fuente: `docs/01_AUDITORIA_TECNICA_Y_DATOS.md`, sección 10.6; `dashboard/data/viviendas_censo.json`.
+- Fuente: `docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md`, sección 10.6; `dashboard/data/viviendas_censo.json`.
 
 **19. ¿Qué tan grave es este El Niño frente al de 1997-98?**
 Según los datos oficiales, el mar frente a Tumbes y Piura está más caliente que en el pico de 1997-98.

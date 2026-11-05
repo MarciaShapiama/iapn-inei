@@ -3,7 +3,7 @@
 Soporta: títulos #..####, párrafos, **negrita**, *cursiva*, `código`, [enlaces](url), listas con - y 1.,
 tablas con |, bloques ``` y citas >. Agrega portada, índice (campo TOC: Word lo actualiza al abrir) y numeración
 de páginas.
-Uso: python herramientas/md_a_docx.py [entrada.md] [salida.docx]
+Uso: python herramientas/documentos/md_a_docx.py [entrada.md] [salida.docx]
 """
 from __future__ import annotations
 
@@ -224,8 +224,8 @@ def convertir(md: str, salida: Path) -> None:
 
 
 if __name__ == "__main__":
-    raiz = Path(__file__).resolve().parents[1]
-    entrada = Path(sys.argv[1]) if len(sys.argv) > 1 else raiz / "INFORME_FINAL_PROYECTO_INTEGRADOR.md"
-    salida = Path(sys.argv[2]) if len(sys.argv) > 2 else raiz / "INFORME_FINAL_PROYECTO_INTEGRADOR.docx"
+    raiz = Path(__file__).resolve().parents[2]
+    entrada = Path(sys.argv[1]) if len(sys.argv) > 1 else raiz / "docs" / "6_presentacion" / "informe_final" / "INFORME_FINAL_PROYECTO_INTEGRADOR.md"
+    salida = Path(sys.argv[2]) if len(sys.argv) > 2 else raiz / "docs" / "6_presentacion" / "informe_final" / "INFORME_FINAL_PROYECTO_INTEGRADOR.docx"
     convertir(entrada.read_text(encoding="utf-8"), salida)
     print(f"Escrito {salida} ({salida.stat().st_size // 1024} KB)")

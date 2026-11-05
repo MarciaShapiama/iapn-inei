@@ -47,7 +47,7 @@
 | Logística completa | 0,122 | 0,846 | 0,147 | 36 % |
 | LightGBM | 0,082 | 0,811 | 0,013 | 33 % |
 
-Coinciden exactamente con `docs/modelo_inundacion.md`. Después de corregir la población (error E1 de la auditoría) actualicé las columnas de exposición de la base con `src/actualizar_exposicion_base.py` y volví a entrenar. La logística completa pasa a 0,124 y LightGBM a 0,078. La logística simple **no cambia (0,114)** porque no usa esas columnas.
+Coinciden exactamente con `docs/2_modelo/modelo_inundacion.md`. Después de corregir la población (error E1 de la auditoría) actualicé las columnas de exposición de la base con `src/actualizar_exposicion_base.py` y volví a entrenar. La logística completa pasa a 0,124 y LightGBM a 0,078. La logística simple **no cambia (0,114)** porque no usa esas columnas.
 
 ### 3.3 Ampliación: incertidumbre, calibración y falsos negativos (`src/ml_evaluacion.py`)
 

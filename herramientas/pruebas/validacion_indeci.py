@@ -7,7 +7,7 @@ radar 2017 y el índice de riesgo estimado del panel.
 
 Límites: los registros INDECI acumulan 22 años, incluyen lluvia pluvial (no solo desborde) y dependen del reporte
 de cada municipalidad; la exposición es de 2026. Es una validación de ORDEN (ranking), no de magnitudes.
-Salida: docs/evidencia/validacion_indeci.json · Uso: python herramientas/validacion_indeci.py
+Salida: docs/evidencia/validacion_indeci.json · Uso: python herramientas/pruebas/validacion_indeci.py
 """
 import json
 import unicodedata
@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-R = Path(__file__).resolve().parents[1]
+R = Path(__file__).resolve().parents[2]
 IND = R / "data" / "modelo" / "indeci"
 PROV = {"PIURA": ["AYABACA", "HUANCABAMBA", "MORROPON", "PAITA", "PIURA", "SECHURA", "SULLANA", "TALARA"],
         "TUMBES": ["CONTRALMIRANTE VILLAR", "TUMBES", "ZARUMILLA"]}

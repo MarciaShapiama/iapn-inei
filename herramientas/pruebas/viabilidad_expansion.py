@@ -4,7 +4,7 @@ Usa: data/departamentos.geojson (límites departamentales), data/exposicion/ubig
 distritos, superficie y densidad 2020; compilación MIT de jmcastagnetto/ubigeo-peru-aumentado) y los tamaños y
 tiempos MEDIDOS en el piloto. El costo se escala con el área de la caja envolvente (lo que descargan WorldPop,
 Open Buildings, JRC y Sentinel-1) y, para el radar, con el área de costa baja (< 250 m), que es donde aplica.
-Salida: docs/evidencia/viabilidad_expansion.json · Uso: python herramientas/viabilidad_expansion.py
+Salida: docs/evidencia/viabilidad_expansion.json · Uso: python herramientas/pruebas/viabilidad_expansion.py
 """
 import json
 from pathlib import Path
@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 from shapely.geometry import box, shape
 
-R = Path(__file__).resolve().parents[1]
+R = Path(__file__).resolve().parents[2]
 CAJA_PILOTO = (-81.40, -6.40, -79.15, -3.35)
 NORTE = ["TUMBES", "PIURA", "LAMBAYEQUE", "LA LIBERTAD", "CAJAMARCA", "ANCASH"]
 NORTE_COSTA = ["TUMBES", "PIURA", "LAMBAYEQUE", "LA LIBERTAD"]

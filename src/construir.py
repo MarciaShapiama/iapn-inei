@@ -303,9 +303,8 @@ def escribir(nombre: str, obj) -> None:
 def main() -> None:
     mar = cargar_mar()
     print(f"Histórico del mar: {mar['fecha'].nunique()} días")
-    idx, eco = indices(), economia()
+    idx, eco = indices(), {}          # la parte económica (BCRP, COES) era del proyecto anterior y ya no se usa
     escribir("indices", idx)
-    escribir("economia", eco)
     if mar.empty:
         escribir("resumen", resumen({"regiones": {}}, idx, eco, 0))
         return
@@ -313,7 +312,6 @@ def main() -> None:
     rj = rejilla(mar, celdas)
     escribir("regiones", reg)
     escribir("mar", rj)
-    escribir("picos", picos(rj["lats"], rj["lons"], celdas))
     escribir("resumen", resumen(reg, idx, eco, int(mar["fecha"].nunique())))
     z = zonas(mar)
     if z:

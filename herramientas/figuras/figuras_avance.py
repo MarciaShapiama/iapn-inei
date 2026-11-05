@@ -1,4 +1,4 @@
-"""Figuras para el informe de avance en LaTeX (docs/avance_latex/figuras/). Uso: python herramientas/figuras_avance.py"""
+"""Figuras para el informe de avance en LaTeX (docs/6_presentacion/avance_latex/figuras/). Uso: python herramientas/figuras/figuras_avance.py"""
 import json
 from pathlib import Path
 
@@ -9,8 +9,8 @@ import numpy as np
 import pandas as pd
 from matplotlib.patches import Patch
 
-R = Path(__file__).resolve().parents[1]
-F = R / "docs" / "avance_latex" / "figuras"
+R = Path(__file__).resolve().parents[2]
+F = R / "docs" / "6_presentacion" / "avance_latex" / "figuras"
 F.mkdir(parents=True, exist_ok=True)
 plt.rcParams.update({"font.size": 9, "font.family": "DejaVu Sans", "axes.spines.top": False, "axes.spines.right": False})
 AZ, NAR, GR = "#0b5d8f", "#e8710a", "#8a99a6"

@@ -1,6 +1,6 @@
 # 06 · ¿Funcionó en Tumbes y Piura? Validación del piloto y viabilidad de expansión
 
-*Corte: 4/11/2026. Scripts: `herramientas/validacion_indeci.py` y `herramientas/viabilidad_expansion.py`. Evidencia: `docs/evidencia/validacion_indeci*.{json,csv}` y `docs/evidencia/viabilidad_expansion.json`.*
+*Corte: 4/11/2026. Scripts: `herramientas/pruebas/validacion_indeci.py` y `herramientas/pruebas/viabilidad_expansion.py`. Evidencia: `docs/evidencia/validacion_indeci*.{json,csv}` y `docs/evidencia/viabilidad_expansion.json`.*
 
 ## 1. Validación del piloto
 

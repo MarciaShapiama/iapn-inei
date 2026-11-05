@@ -31,7 +31,7 @@ Conclusión: con lo que hay, no se puede entrenar un modelo diario de viviendas 
 
 `viviendas_en_agua[d, p]`: viviendas del censo (o edificaciones de Google, si no se aprueba el uso del censo) cuyo centro cae dentro del agua detectada por Sentinel-1 en el distrito *d* y la pasada *p*. Se calcula para cada pasada desde 2016 con el mismo código de `huellas.py`.
 
-Límite importante: los satélites casi no ven el agua entre casas. En el Bajo Piura en 2017, el radar del proyecto marcó agua en 9 de 195 065 edificaciones, y el mapa oficial de Copernicus EMS, en 27 (`docs/presentacion/figuras/agua_resumen.json`). La Y satelital mide sobre todo agua en el campo y en los bordes de los pueblos. Se usa como **mínimo** y se calibra contra INDECI cuando haya datos con fecha.
+Límite importante: los satélites casi no ven el agua entre casas. En el Bajo Piura en 2017, el radar del proyecto marcó agua en 9 de 195 065 edificaciones, y el mapa oficial de Copernicus EMS, en 27 (`docs/6_presentacion/presentacion/figuras/agua_resumen.json`). La Y satelital mide sobre todo agua en el campo y en los bordes de los pueblos. Se usa como **mínimo** y se calibra contra INDECI cuando haya datos con fecha.
 
 Esto también aclara qué cuenta INDECI. En sus tablas 2003–2024 de Piura, los afectados por **lluvia intensa** suman 997 173 y los afectados por **inundación**, 130 482 (`data/modelo/indeci/7162837-piura_afect_prov_dist_peligro.xlsx`). La mayor parte del daño a viviendas viene de la lluvia sobre la ciudad (techos, calles anegadas, desagües), que no es desborde de ríos. Por eso la Y debe separar el tipo de peligro: el modelo de desborde se entrena solo con "inundación".
 

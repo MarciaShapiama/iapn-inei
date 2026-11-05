@@ -11,9 +11,9 @@ import json
 import sys
 from pathlib import Path
 
-R = Path(__file__).resolve().parents[1]
+R = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(R / "src"))
-sys.path.insert(0, str(R / "herramientas"))
+sys.path.insert(0, str(R / "herramientas" / "pruebas"))
 import prueba_noticias as pn  # noqa: E402
 
 pn.MEDIO = 0.06
