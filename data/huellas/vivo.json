@@ -2,12 +2,12 @@
  "evento": "vivo",
  "nombre": "Últimos 24 días",
  "periodo": [
-  "2026-10-11",
-  "2026-11-04"
+  "2026-10-12",
+  "2026-11-05"
  ],
  "referencia": [
   "2026-08-01",
-  "2026-10-10"
+  "2026-10-11"
  ],
  "imagenes_evento": [
   "2026-10-12",
@@ -79,5 +79,5 @@
  "compuesto_evento": "minimo",
  "polarizacion": "VV",
  "agua_permanente": "JRC Global Surface Water, ocurrencia >= 75 %",
- "calculado": "2026-11-04T15:05-05:00"
+ "calculado": "2026-11-05T07:09-05:00"
 }

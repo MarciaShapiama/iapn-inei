@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-05T06:52-05:00",
+ "generado": "2026-11-05T07:09-05:00",
  "hoy": "2026-11-05",
  "resumen_estado": {
   "vigente": 10,
@@ -179,8 +179,8 @@
    "version": "RTC (Planetary Computer)",
    "naturaleza": "observado (derivado)",
    "periodo": [
-    "2026-10-11",
-    "2026-11-04"
+    "2026-10-12",
+    "2026-11-05"
    ],
    "dato_mas_reciente": "2026-11-03",
    "tolerancia_dias": 12,
@@ -212,7 +212,7 @@
     "2026-11-03"
    ],
    "imagenes_referencia": 42,
-   "calculado": "2026-11-04T15:05-05:00"
+   "calculado": "2026-11-05T07:09-05:00"
   },
   {
    "id": "poblacion",

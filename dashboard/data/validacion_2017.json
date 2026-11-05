@@ -19,10 +19,10 @@
    },
    "jrc_rp100": {
     "km2_copernicus": 1.3,
-    "km2_detectado": 13.4,
-    "km2_coinciden": 1.3,
-    "acierto": 0.987,
-    "precision": 0.096
+    "km2_detectado": 13.3,
+    "km2_coinciden": 1.2,
+    "acierto": 0.935,
+    "precision": 0.092
    }
   },
   "10PIURA": {
@@ -44,9 +44,9 @@
    },
    "jrc_rp100": {
     "km2_copernicus": 97.4,
-    "km2_detectado": 721.1,
-    "km2_coinciden": 88.9,
-    "acierto": 0.913,
+    "km2_detectado": 719.6,
+    "km2_coinciden": 88.7,
+    "acierto": 0.911,
     "precision": 0.123
    }
   },
@@ -96,7 +96,7 @@
     "km2_copernicus": 28.5,
     "km2_detectado": 108.7,
     "km2_coinciden": 9.5,
-    "acierto": 0.333,
+    "acierto": 0.332,
     "precision": 0.087
    }
   }
@@ -111,8 +111,8 @@
   },
   "jrc_rp100": {
    "km2_copernicus": 597.4,
-   "km2_detectado": 1560.1,
-   "km2_coinciden": 505.1,
+   "km2_detectado": 1558.5,
+   "km2_coinciden": 504.8,
    "acierto": 0.845,
    "precision": 0.324
   }
