@@ -1,0 +1,8 @@
+modelo,mae,mae_log,error_total_pct_abs,spearman,top10,pr_auc
+M1 Poisson,11.0853,0.8577,42.8348,0.3165,0.2571,0.1521
+M2 dos etapas,9.7513,0.6764,53.3209,0.3829,0.3000,0.1747
+M3 binomial negativa,17.7502,0.5829,179.8884,0.4141,0.3071,0.1821
+M4 boosting Poisson,9.1783,0.5331,67.6436,0.3715,0.3000,0.1661
+M5 binomial negativa con ceros inflados,9.5347,0.5862,67.4027,0.3673,0.2857,0.1586
+R0 climatologia (sin modelo),9.7862,0.5259,89.0896,0.2722,0.2500,0.1220
+R00 siempre cero,6.9599,0.1269,100.0000,,0.1143,

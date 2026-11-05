@@ -683,11 +683,11 @@ function capasInund(){
   const estadoDe=x=>{const c=(e[x._t+"_lista"]||[]).find(y=>y.nombre===x.nombre&&Math.abs(y.lat-x.lat)<1e-5);return c};
   const fac=(lista,t)=>(lista||[]).map(x=>{const c=estadoDe({...x,_t:t});return {...x,estado:c?c.estado:"Fuera",dist_m:c?c.dist_m:null}});
   const COLOR={"Dentro de la mancha":[255,59,48],"0–500 m del borde":[255,149,0],"500 m–1 km del borde":[255,214,10],"Fuera":[200,210,220]};
-  const capas=[new deck.TerrainLayer({id:"terreno-"+I3.modo,minZoom:0,maxZoom:13,strategy:"no-overlap",operation:"terrain+draw",
+  const capas=[new deck.TerrainLayer({id:"terreno-"+I3.modo,minZoom:0,maxZoom:15,strategy:"no-overlap",operation:"terrain+draw",
       elevationDecoder:{rScaler:256*2.5,gScaler:2.5,bScaler:2.5/256,offset:-32768*2.5},
       elevationData:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",texture:TEX[I3.modo],color:[255,255,255]})];
   const AZUL={radar:{1:[0,200,255,215]},peligro:{1:[158,202,225,175],2:[66,146,198,205],3:[33,113,181,225],4:[8,48,107,240]}};
-  if(I3.capas.agua&&e.capa)capas.push(new deck.GeoJsonLayer({id:"agua-"+I3.ev,data:"data/"+e.capa,filled:true,stroked:true,
+  if(I3.capas.agua&&e.capa)capas.push(new deck.GeoJsonLayer({id:"agua-"+I3.ev,data:"data/"+e.capa,filled:true,stroked:false,
       getFillColor:f=>AZUL[e.tipo][f.properties.c]||[0,200,255,200],getLineColor:[255,255,255,90],lineWidthMinPixels:.6,extensions:[T]}));
   if(I3.capas.dis&&D.DIST)capas.push(new deck.GeoJsonLayer({id:"dis",data:D.DIST,filled:false,stroked:true,pickable:true,getLineColor:[255,255,255,150],lineWidthMinPixels:1.2,extensions:[T]}));
   if(I3.capas.col3d&&e.edificaciones_puntos&&e.edificaciones_puntos.length)capas.push(new deck.HexagonLayer({id:"hex-"+I3.ev,data:e.edificaciones_puntos,getPosition:d=>d,
@@ -821,7 +821,7 @@ function capas3D(){
   const T=new deck._TerrainExtension();
   const ll=z.lluvia[Z3.dia]||0, r=z.rio, q=r?r.caudal[Z3.dia]:null, qn=r?r.normal[Z3.dia]:null;
   const capas=[
-    new deck.TerrainLayer({id:"terreno-"+Z3.modo,minZoom:0,maxZoom:12,strategy:"no-overlap",operation:"terrain+draw",
+    new deck.TerrainLayer({id:"terreno-"+Z3.modo,minZoom:0,maxZoom:15,strategy:"no-overlap",operation:"terrain+draw",
       elevationDecoder:{rScaler:256*1.6,gScaler:1.6,bScaler:1.6/256,offset:-32768*1.6},
       elevationData:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",texture:TEX[Z3.modo],color:[255,255,255]}),
     new deck.SolidPolygonLayer({id:"mar",data:celdas,getPolygon:d=>d.p,getFillColor:d=>[...rgb(color(d.v)),215],pickable:true,

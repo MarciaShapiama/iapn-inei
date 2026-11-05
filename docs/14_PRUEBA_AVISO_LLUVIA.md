@@ -1,0 +1,79 @@
+# 05 · Prueba del aviso de lluvia con noticias (5 al 8 de noviembre de 2026)
+
+**Estado: versión 1, cerrada el 5/11/2026 a las 8:40 a. m.** El aviso que se prueba anticipa lluvias del 5 al 7 de noviembre; a esta hora, casi nada de eso ha ocurrido. Esta versión deja:
+
+- el aviso congelado;
+- su comparación con el aviso oficial del SENAMHI, emitido por separado;
+- lo poco que ya se reportó el 5 en la mañana;
+- las reglas para calificar cada distrito.
+
+La columna «¿Qué pasó?» se completa el 9 de noviembre con los reportes del SENAMHI, el COEN y el INDECI.
+
+## 1. Qué aviso se prueba
+
+El de `dashboard/data/aviso_lluvia.json`, calculado el **5/11/2026 a las 7:58 a. m.** (commit `e60c4a7` del repositorio, «Actualiza datos 2026-11-05»). El aviso se recalcula cada mañana, así que hay que probar **este** y no el de los días siguientes.
+
+- **Cómo decide:** compara la lluvia pronosticada por Open-Meteo para cada distrito con lo que es extremo en su provincia. «Fuerte» es más que el percentil 95 de los días con lluvia de 1991-2020 (ERA5), y «extremo», más que el percentil 99. Mira el día más lluvioso de los próximos 3.
+- **Resultado:** 2 distritos en extremo, 14 en fuerte y 60 en normal.
+
+## 2. Tabla de la prueba
+
+Las columnas «¿Qué pasó?», «Fuente» y «¿Acertó?» se llenan con lo que pase entre el día del aviso y un día después (por ejemplo, para el 6: del 6 al 7).
+
+| Distrito (provincia) | ¿Qué avisó el tablero? | ¿Qué decía el SENAMHI para esa provincia? | ¿Qué pasó? | Fuente | ¿Acertó? |
+|---|---|---|---|---|---|
+| Sapillica (Ayabaca) | **Extremo** el 5/11: 66 mm (extremo desde 55 mm) | Extrema (aviso del 4/11) | Pendiente | | |
+| Frías (Ayabaca) | **Extremo** el 5/11: 66 mm | Extrema | Pendiente | | |
+| Morropón (Morropón) | Fuerte el 5/11: 38 mm (fuerte desde 33 mm) | Extrema | Pendiente | | |
+| Tumbes (Tumbes) | Fuerte el 6/11: 51 mm (fuerte desde 27 mm) | Extrema | El 5 en la mañana ya llovía con descargas eléctricas en Tumbes; el COEN reporta que San Jacinto, Zarumilla y Tumbes siguen evaluando daños de los días anteriores | [En Línea, 5/11](https://enlinea.pe/2026/11/05/reporte-de-lluvias-en-lima-en-vivo-e-inundaciones-en-villa-el-salvador-y-precipitaciones-en-tumbes-y-piura-por-el-fenomeno-el-nino/) | Pendiente |
+| Aguas Verdes (Zarumilla) | Fuerte el 6/11: 51 mm | Extrema | El 5, la municipalidad cortó la luz en Puerto Perú como prevención | [En Línea, 5/11](https://enlinea.pe/2026/11/05/reporte-de-lluvias-en-lima-en-vivo-e-inundaciones-en-villa-el-salvador-y-precipitaciones-en-tumbes-y-piura-por-el-fenomeno-el-nino/) | Pendiente |
+| Zarumilla (Zarumilla) | Fuerte el 6/11: 50 mm | Extrema | Pendiente | | |
+| San Juan de la Virgen (Tumbes) | Fuerte el 6/11: 50 mm | Extrema | Pendiente | | |
+| Papayal (Zarumilla) | Fuerte el 6/11: 48 mm | Extrema | Pendiente | | |
+| Matapalo (Zarumilla) | Fuerte el 6/11: 45 mm | Extrema | Pendiente | | |
+| Corrales (Tumbes) | Fuerte el 6/11: 41 mm | Extrema | Pendiente | | |
+| Pampas de Hospital (Tumbes) | Fuerte el 6/11: 38 mm | Extrema | Pendiente | | |
+| La Cruz (Tumbes) | Fuerte el 6/11: 37 mm | Extrema | Pendiente | | |
+| Sicchez (Ayabaca) | Fuerte el 6/11: 37 mm | Extrema | Pendiente | | |
+| Máncora (Talara) | Fuerte el 7/11: 29 mm (fuerte desde 20 mm) | Fuerte | Pendiente | | |
+| Los Órganos (Talara) | Fuerte el 7/11: 29 mm | Fuerte | Pendiente | | |
+| Canchaque (Huancabamba) | Fuerte el 7/11: 31 mm (fuerte desde 27 mm) | Extrema | Pendiente | | |
+| **Distritos en «normal» con emergencia** | Normal | — | Anotar aquí cualquier emergencia por lluvia en un distrito que el tablero dejó en normal | | **Falla** |
+
+**Columna del SENAMHI.** Es el aviso oficial publicado el 4/11 a las 3:34 p. m., para las 24 horas siguientes. Según la nota de Andina:
+
+- Intensidad extrema en las provincias de Ayabaca, Huancabamba, Morropón, Piura y Sullana (Piura), y Contralmirante Villar, Tumbes y Zarumilla (Tumbes).
+- Intensidad fuerte en Talara.
+
+No nombra distritos ([Andina, 4/11](https://andina.pe/agencia/noticia-senamhi-piura-y-tumbes-soportaran-lluvias-extrema-intensidad-hoy-y-manana-jueves-5-1098628.aspx)). El SENAMHI también había anunciado un nuevo aumento de las lluvias en Tumbes y Piura del jueves 5 al sábado 7 ([Exitosa, 2/11](https://www.exitosanoticias.pe/exitosa-peru/precipitaciones-tumbes-piura-seguiran-7-noviembre-indica-senamhi-n187349)). La alerta roja se mantenía el 4 y el 5, y bajaba a naranja el 6 ([Infobae, 3/11](https://www.infobae.com/peru/2026/11/03/alerta-roja-del-senamhi-por-precipitaciones-en-la-costa-norte-desde-este-miercoles-4-hasta-el-viernes-6-de-noviembre/)).
+
+**Lo que ya se puede decir.** Las 16 alertas del tablero caen en provincias donde el SENAMHI, por su cuenta, también avisó lluvia fuerte o extrema. El tablero no contradice al aviso oficial, y agrega el detalle por distrito y por día. Que haya coincidencia entre dos pronósticos **no prueba que acierten**: eso lo dirá la tabla completa.
+
+## 3. Cómo calificar cada distrito (reglas fijadas antes de ver el resultado)
+
+| Resultado | Cuándo |
+|---|---|
+| **Acierto** | El tablero avisó y hubo, ese día o el siguiente, al menos una de estas cosas: (a) una estación del SENAMHI en el distrito o a menos de 10 km con lluvia de 24 horas por encima del umbral del aviso; (b) una emergencia por lluvia o inundación registrada por el COEN o el INDECI en el distrito; (c) una noticia de daños (calles inundadas, viviendas afectadas, desborde, quebrada activada) en el distrito |
+| **Acierto parcial** | Pasó, pero un día después de la ventana, o en un distrito vecino de la misma provincia |
+| **Falsa alarma** | El tablero avisó y no hubo lluvia por encima del umbral ni daños |
+| **Falla** | El tablero dejó el distrito en normal y hubo una emergencia por lluvia o inundación |
+| **Sin dato** | No hay estación cerca ni reporte. No se cuenta como acierto ni como falla |
+
+Al final se resumen dos números:
+
+- **Detección:** de las emergencias reales, cuántas tenían aviso.
+- **Falsas alarmas:** de los avisos, cuántos no tuvieron nada.
+
+Con 16 avisos y unos pocos días, estos números describen esta semana y no la calidad general del aviso. Hay que decirlo así.
+
+## 4. Dónde buscar lo que pasó (en este orden)
+
+1. **COEN-INDECI:** reportes complementarios y boletines de emergencias por distrito ([portal.indeci.gob.pe/emergencias](https://portal.indeci.gob.pe/emergencias/)). Es la fuente más fuerte, porque nombra el distrito.
+2. **SENAMHI:** lluvia de 24 horas en sus estaciones (en esta temporada informó, por ejemplo, Matapalo en Zarumilla y Sapillica en Ayabaca) y los comunicados de su dirección zonal de Piura y Tumbes.
+3. **Noticias:** Andina, El Comercio, Infobae, RPP, Correo Piura y Tumbes, El Tiempo de Piura. Solo cuentan si nombran el distrito y el día.
+
+## 5. Una advertencia sobre lo que el aviso puede y no puede mostrar
+
+- El aviso usa el umbral de la **provincia** para todos sus distritos. Por eso, Máncora y Los Órganos (Talara) salen «fuertes» con solo 29 mm, mientras que en la sierra de Ayabaca hacen falta 35 mm.
+- El pronóstico de Open-Meteo es para el punto central del distrito. Un aguacero sobre la ciudad puede no aparecer.
+- El tablero anticipa **lluvia**, no daños. Que llueva 50 mm en Zarumilla no garantiza que se inunde. Por eso un «acierto» por estación de lluvia pesa menos que uno por emergencia registrada; en la versión final se reportan por separado.
