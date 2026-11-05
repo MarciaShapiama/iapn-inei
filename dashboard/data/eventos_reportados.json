@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-05T10:28-05:00",
+ "generado": "2026-11-05T12:56-05:00",
  "hoy": "2026-11-05",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
@@ -291,6 +291,30 @@
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNYU16Z2tiaTVLWkF1Z19FSTNUQ0ZYX1BEUW9lQ2t3RW1ucXpjb2RjUktQODFSWDF2bUIzdVVrNTVycWlUWDQ3czJUR2R5cDVwNDkyZkNrZkp4em04eHpxSUVyU1NRcC1UTVlVNjR6VlQ2dlE0Q3dIWnZQa1FnU0RBZV9ERUJaakNPTldxSk9WcWFqam1aV1d0OHZXQUlKazB4UGlCYjM0MG9RbDBmZWQ3NVNoS0lMTnE0cnVuS09KcUlHNVlD?oc=5"
     },
     {
+     "titulo": "Tormenta impresionante e inundaciones aterrorizan a todo Tumbes (VIDEO)",
+     "medio": "El Búho.pe",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPUnh5aTJPbzhXZ2FncE51NW1uZThlaV9XQlZFcnJUU25DME5UUUpGZGp1MzJaT21UbFJwWkkzWWxQTFRFNW0xbHRWVmhKWWlfWjdLSk9yNENaalZfWUw2aUdpRExsWHo3VEIwREpyX2Z2aGk0a2tDcWdobDZnSTRxc0VBYWxJbmxxYkpCWTQ2cmFLQzRHdmRnNG81c2c?oc=5"
+    },
+    {
+     "titulo": "Lluvias afectan a Tumbes y Lambayeque: reportan aniegos y vías de acceso bloqueadas",
+     "medio": "TVPerú",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOUkpNYVJ2cUgzNUV2cnE5bkc0bGN5MER2cWJ5LVVhM2pvV2NqT1h0LWFUeGR0NjRqSmpGUXYxXy0wYjBVRlF6X2kwYkZVVGNET24xOWdqNkpaQ3BLRXJpOW93VTFCVlgxTU13MHdvdDd0b3ZTUjdFdWU2N0w2Zm1fYmM4QmNFWTlVejE3SkYzb091WWw0bWJOVUlfdDR3bk9ZakZYaUJGZThEakNYT01lWUR2SjlFek10MG81T28wamZmVlEtU3o4?oc=5"
+    },
+    {
+     "titulo": "Las lluvias intensas inundan Tumbes, activan quebradas y afectan la circulación en tres provincias",
+     "medio": "Infobae",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPaWJmMi1lRUVxSEpWX0RKanh1U0hMMkZXcjZEMWxRUW9UOUc1RHpMa185Z0E5Yk92eExUUkhqdV9mUDVtZThSWkhUU0VxOHU5ZlBmQ200SGNKMF9aM1lXLTkzTTdWSk1tRjJCbWJsR1lqTVZXSThYOXY2UW02V1E0NmRwWDEyQjQwcWdFYnNVZml1QXhTLTdLM3BsX1Fpa09FTjhfTF9zYW9NREdjeGhEclNHOEc3amJleE5wdFR4QnNidTdydDE0a05CWE9oR1VfbWRSbNIB7wFBVV95cUxNNjMxYXR0RWNrVXVialNlZ1NDWTZDektjbDk4UVVEX3BJWm5GMThLVy1pR3ZjakhSNnktQnJZMUxzS2dtSVJjZ2FWbElBVHNWbVdRXzhRNEt3dUZnOVZsQjRNVG9ZSzVvTFd6bzgwX0xLOHdnSk5fY1pFckJLRGhnV1NQVElXVURRR1M1dEN3YlBJdWgxSTRTcFpXUnVnTFlvLVVBd3VPY1p6Z1d2aVdhUDFDS2RYNmtDQUgyTTBOa3N5SkNtUVNBUC15OTFnNEpJTlJ2SnFjYzRCcUNsYXdHQjJfdlN2RzAxdGZ6QTN2cw?oc=5"
+    },
+    {
+     "titulo": "Tumbes: instituto Abelardo Quiñones queda inundado tras 15 horas de lluvias intensas",
+     "medio": "Agencia Andina",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOTW5RbHlwakRGcXA1ZWZTSFp3bEtOdHVINVh6V3ZHQUtmSkFnTktPOUpIRnJ0WGFIQmY3LVRuT0VLb3lJLUk3aHJJTkN2NU9OdDdmYWlsbDFnT0tHNWM0YnhiZkNwdU05UjF0VUFhNW1JMU1mZ2t5bmoyWldfVEtsclRlNFlOU0RWLWZFUTg5R09adDdMZ2Z5V0xDanJOWFBEdVJPRVJCVkdrNXpqTWctSVlnelBoQ053N3FJdFBMOWtyNzJwOWc?oc=5"
+    },
+    {
      "titulo": "Fenómeno El Niño: lluvias extremas en Tumbes inundan calles y viviendas de Puerto Pizarro",
      "medio": "Agencia Andina",
      "fecha": "2026-11-02",
@@ -344,22 +368,10 @@
      "url": "https://www.infobae.com/peru/2026/11/02/emergencia-en-el-norte-del-peru-lluvias-dejan-bajo-el-agua-a-puerto-peru-en-tumbes-cerca-de-la-frontera-con-ecuador/"
     },
     {
-     "titulo": "Tumbes: asentamiento humano Puerto Perú amanece inundado",
-     "medio": "Expreso",
-     "fecha": "2026-11-02",
-     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxONGFCRmVqZ0F0VEhBWm11V1JGdU90UVFmakhGeXhNX1RNMGhacmw5WUlNaU1hYlQ0WV9seV80S0FRS0ZtN0s2emt0VUVRNGJGNkk2NllCNVk0ZXJFQkhqR0p0MTVpOUtLTTVTTFdfNVVaTE9ZeGVtbFFKVjZ2SzlFaHY3YS1HQ2VUTkNLNkJvOWRaZTRPNTdFdGIwTk5JZWxhWXFJWDFncEUybDRxZWZ2amJZcURZQQ?oc=5"
-    },
-    {
      "titulo": "Río Zarumilla se desborda en Tumbes: Puerto Perú y Tomás Arizola entre las zonas más afectadas (VIDEO)",
      "medio": "Diario Correo",
      "fecha": "2026-11-02",
      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPX2ZPVlJyVktGS1RLdjVmQXhjanpOY3dVcWRONmF2ZWp0dlItdFRzWGlTTjc2SnM1WVYzeUVNSW9YclpwNXVMMktjVzBHc2ZvM2I1dnROcnhfQ1JZSS1ISXljUmZoVndKdEdaUkszMGRqc0QxbGVzdHNHZmJtV1F4Vm5QUXBVQ29BYy11UnhIVHZIZXJTY3c2QnBteGhzMFA4VU5KTndaMExtZjRPVEZhYmkxTjZNVU1EcmZRckFtblVwSUUweHNrVFN2YUhGN3hxMHZGaGNmVXfSAewBQVVfeXFMUGVYUkl2NU5aM2d2X09iSE9lTEo3ZVpTczZCVC1jdUFleTBlZVMzSVVBdzZxQUxhOTY3WjJNOUpyeGx6Y1dRNHctanJyMmFMRXZTczVtc1RfV3F0eVhPQ05ZU1ZfNElCMGhuZE1nVHRKaGZNSGpjb1k2RTdZcEp6TDVlYkY0QkRScUZJMi12WjZZSkN3S3FTbGkwOXVPLWo0bG5WNU1wZm5QaEt1MFV2UDhTREo1Q0hYcHZ5OFBMeGIydkVmWFFfcUJkY0p0VC1SSmFTU3hTMEh0M0dLVWNGSktCVjM5SjBrYk5mVDI?oc=5"
-    },
-    {
-     "titulo": "Emergencia en Tumbes: desborde del río Zarumilla inunda Puerto Perú y obliga a evacuar a familias",
-     "medio": "La República",
-     "fecha": "2026-11-02",
-     "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPaDRZQVhpY215bEhJM0tXVGtYTkNjcmtrcjNsd1RmTy1Yd0NSQXAxd3FST0p4X3R1NVVFazFQZ00tdE1JRmxJekZLbGFrU25ONUJlckd2dXp3LVhIVVdmSHRqLUJuWXdmR1FzWHpnQ180RWlGdEp1VXVfTTZIYkdndHk4ZTgtYXFPR0dDODhDZ3JFRjhtaGxzdVdUWW9FM2hIZzBNOUlFR3FDVHJvTE1aZnNhS0MtaER3QmZnMFF3VDZkaXlnUUhmTHlwOS10d2dNNDV0d1FOVFJOSF92Ui1R0gHkAUFVX3lxTE9HSE4zZk1iY19SdFRJcExxZG1sOFZzMWRLMV9lMzVKd09QVEdOdldfQVk2aEcxTnA0a2NDcVZUZHBBTU42YzVQbURrd3I4UGhnNDhjZHdmamJxX3Y3WmtwSFVFaldyY19maFY1VmFjLWkzR0FfUWFYYjdZRmRTYkhCbkIzM3Z6MHUwQURqbkhkQnZsdVp2andIdnE2Zno3SVhSUzhIenRWOWFncXpKT1VYd0wzYXc5MjB4TDFST0VfVzBBSEZQZjh1OXVmTjBkZHlBRDFnbUM5WHUyWFczc0pUSXlrSA?oc=5"
     },
     {
      "titulo": "Emergencia en Tumbes: desborde del río Zarumilla afecta a Puerto Perú y Tomás Arizola",
@@ -368,10 +380,22 @@
      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQa1NLWXJaVU1xUmNYc0FkWmNrT2tReElyQ1dGQldUSmEwTEI1dDB4aF9vTGFyM2NCRlR3aUgzRXdWR2ZwYVpEM3YwYlpyX3QtbUJ5anAtYlpXOFcwR0VPY2ZyVjlOOHg0dmlKZjNDRXVqVXFXS0VhLV9NU2NsLUw4T0tyMkhCdjhMWTN5RjNybEZIcy1tcUUzTEVPUTBmajRXWllRenp2QkdRVk1laDBsWXQyUmtqdmJNeG81WkNfem5PYnJfc09vSkJ5Ql9tMDUtbXVUSjgxU0pzZzdVVUoxbXlNTGYxZVnSAfsBQVVfeXFMTjZ5dkNMYnhhaFd1b2xrclJKTjZ3X3J3NklPZFd5aThSbkpoOGg4OV82SmxlVENTV1lMSDFNS1otRERJTFp6VkdObEQ1SVVLZGR5ZE5XRkw2MTQ1UWtCVzh0ZE1TNkRtYnZ1ckdVUi1feEF6R2RiREJySERSOUdESGJjWlpIdmlSQXVTVHhRZ3dteWN5WUFVSnM4OElJRHVrMENRMWxEdVdIV2U5djZWemJxSWhkSXhtRDFUVE45a2lPUkhrRUlOUzdmT1ZWdHdoeXA3NUZvczEtUU5TM1lFdnRJc2xJendLZDRPQnRPaDVTMUg2YWdMa3FWZ3M?oc=5"
     },
     {
+     "titulo": "Tumbes: asentamiento humano Puerto Perú amanece inundado",
+     "medio": "Expreso",
+     "fecha": "2026-11-02",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxONGFCRmVqZ0F0VEhBWm11V1JGdU90UVFmakhGeXhNX1RNMGhacmw5WUlNaU1hYlQ0WV9seV80S0FRS0ZtN0s2emt0VUVRNGJGNkk2NllCNVk0ZXJFQkhqR0p0MTVpOUtLTTVTTFdfNVVaTE9ZeGVtbFFKVjZ2SzlFaHY3YS1HQ2VUTkNLNkJvOWRaZTRPNTdFdGIwTk5JZWxhWXFJWDFncEUybDRxZWZ2amJZcURZQQ?oc=5"
+    },
+    {
      "titulo": "Emergencia en el norte del Perú: lluvias dejan bajo el agua a Puerto Perú, en Tumbes, cerca de la frontera con Ecuador",
      "medio": "Infobae",
      "fecha": "2026-11-02",
      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOeWF5VUpUOFF3ZnFnMDNWSTVxUXpkYmpwQlFKMzBfYWV0dU9aY2d1amR1bC1mVG8tc3N6MnpqT1lBQkpBQWxJeC0wOFUzeThlUHFrcThwckc0aFN3cm1HUzBlbEVSZG15RWZ3M2poU05DTklzU0ZhakxOYS0xUUpBZUhUTFpYOVVHUDVwZnktRFFpSVFzMmxkQWsyaWRSMTMxSWhEeUV0T2VwN0RuY3NYdTN4S1dnNGhDUDZCVUMwMktzQWwtcFRmOXpsZUtveldXaWhHOEdjU2p6QURrZHJrS2pHYk52X3IydXdtYtIBhwJBVV95cUxPRVdGLVh5cGpmNWI3VWppRjVRRFlaVEdvZWRoOHAwU1MzZGN2d1d4M2kyUGh0cExJZkkzZlhXWHJFWG5OQmhaQXVhZDA5UjV3MWF5N1JucmxDQXhzdzdiLWNZYlZEQnVjUzlGZWRMR2tLOGVBbUZQVHNlVEthMEJFR3duTWNSMi1vREJOT3RLVjZpSmlIdGRIRTJraFg5NjJYcDE4Y3lkSzFEQVRlSUd0RXhOTG1HNTF3eGZYLWlYdXd3R2hIYWxIY2t2c053bllBNkZ0eHI2bk5YX1YtM0lLQVdwdWhPTVk4MW5kRF8zazFaaWp4d3pTQlh2QXUzNVZhb3RlQWJNWQ?oc=5"
+    },
+    {
+     "titulo": "Emergencia en Tumbes: desborde del río Zarumilla inunda Puerto Perú y obliga a evacuar a familias",
+     "medio": "La República",
+     "fecha": "2026-11-02",
+     "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPaDRZQVhpY215bEhJM0tXVGtYTkNjcmtrcjNsd1RmTy1Yd0NSQXAxd3FST0p4X3R1NVVFazFQZ00tdE1JRmxJekZLbGFrU25ONUJlckd2dXp3LVhIVVdmSHRqLUJuWXdmR1FzWHpnQ180RWlGdEp1VXVfTTZIYkdndHk4ZTgtYXFPR0dDODhDZ3JFRjhtaGxzdVdUWW9FM2hIZzBNOUlFR3FDVHJvTE1aZnNhS0MtaER3QmZnMFF3VDZkaXlnUUhmTHlwOS10d2dNNDV0d1FOVFJOSF92Ui1R0gHkAUFVX3lxTE9HSE4zZk1iY19SdFRJcExxZG1sOFZzMWRLMV9lMzVKd09QVEdOdldfQVk2aEcxTnA0a2NDcVZUZHBBTU42YzVQbURrd3I4UGhnNDhjZHdmamJxX3Y3WmtwSFVFaldyY19maFY1VmFjLWkzR0FfUWFYYjdZRmRTYkhCbkIzM3Z6MHUwQURqbkhkQnZsdVp2andIdnE2Zno3SVhSUzhIenRWOWFncXpKT1VYd0wzYXc5MjB4TDFST0VfVzBBSEZQZjh1OXVmTjBkZHlBRDFnbUM5WHUyWFczc0pUSXlrSA?oc=5"
     }
    ],
    "radar": {
@@ -395,7 +419,7 @@
    "id": "n-2026-11-02-piura",
    "origen": "noticias (automático)",
    "fecha": "2026-11-02",
-   "fecha_fin": "2026-11-03",
+   "fecha_fin": "2026-11-05",
    "lugar": "Piura",
    "ubigeo": "200101",
    "distrito": "Piura",
@@ -431,6 +455,12 @@
      "medio": "ATV.pe",
      "fecha": "2026-11-03",
      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE85dXpiOVNNTFNlNXg1OE1DcmFFTzkxZ05idHhYbnpYVnpERDJDcW1oZVZtbkozZGFrM1MwTWxqUTlBNTlwdExjWmpZcGN4Yk5MUlZJaXNOR1k4Vkk5UktnOEF2bm5UbXA5TGlj?oc=5"
+    },
+    {
+     "titulo": "Lluvias en Piura: Indeci identifica 220 albergues y activa medidas de prevención ante posibles emergencias",
+     "medio": "Expreso",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQVFFWbXNSSUpaSFJQOEluU29hYU9UOWtrLUFUVFpCeDZvd3RzaXhKUmtRd29qMkcwLUw3MGRrbU1SUmJxaGhrYVN6UzU2SWs1X3RQMDVOZEtRTmdIWE1tVjk3NGxqSUg5amtOQmxEQjRUaVV4dnphbzF0NWJaTmdjVEFZQlZ1ZHYydDEyR0tYT3hFU0R2UnRIaThrWHJScEp6ZTBHMS1lTldoNmE0N09YX0F4emY3NUVic0pOMU94TUsxSmlMaFRjQVJvZTRLY1hZQURuaWhJVXY5aUlDVFFRMzJjWl9aWHFaNTlDRkxDZ3pVb2lsc1F0Uw?oc=5"
     }
    ],
    "radar": {
