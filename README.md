@@ -67,6 +67,7 @@ Los datos confidenciales del INEI (viviendas por manzana) **no están en este re
 | Modelo | [Modelo de inundación](docs/2_modelo/modelo_inundacion.md) | Documento original del modelo de alerta |
 | Validación | [06 Validación y viabilidad](docs/3_validacion/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación contra INDECI y costo de expandir |
 | Validación | [09 El radar frente a las noticias](docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md) | Tres pruebas (6 lugares recientes, 13 eventos verificados, cultivos inundados) y la capa de inundaciones reportadas del tablero |
+| Validación | [18 ¿El aviso habría anticipado el pasado?](docs/3_validacion/18_PRUEBA_AVISO_CON_EL_PASADO.md) | Pronósticos reales antes de 10 eventos (9 avisados) y 24 años de emergencias de INDECI con lluvia y caudal |
 | Validación | [14 Prueba del aviso de lluvia](docs/3_validacion/14_PRUEBA_AVISO_LLUVIA.md) | Aviso del 5/11 frente a lo que pasó |
 | Tablero | [12 Río normal frente a El Niño](docs/4_tablero/12_RIO_NORMAL_VS_NINO.md) | Capas, orden y vista propuesta |
 | Tablero | [13 Mejora visual](docs/4_tablero/13_MEJORA_VISUAL.md) | Por qué el mapa se veía tosco y cómo arreglarlo |
@@ -139,6 +140,8 @@ Pasos sueltos útiles:
 | `python herramientas/documentos/md_a_docx.py` | Genera el informe en Word desde el Markdown |
 | `python herramientas/figuras/figuras_avance.py` | Regenera las figuras del informe LaTeX |
 | `python herramientas/pruebas/prueba_noticias_verificadas.py` | Prueba del radar con cada evento de `data/eventos/catalogo_verificado.csv` |
+| `python herramientas/pruebas/prueba_aviso_pasado.py` | Aviso de lluvia y caudal frente a eventos con noticias y emergencias de SINPAD 2003-2026 |
+| `python herramientas/pruebas/prueba_aviso_pronostico_real.py` | Aviso con los pronósticos reales hechos 1-3 días antes de cada evento (necesita red) |
 | `python herramientas/pruebas/validacion_indeci.py` | Validación externa con registros INDECI 2003-2024 |
 | `python herramientas/pruebas/viabilidad_expansion.py` | Estima el costo de expandir a otros departamentos |
 | `python herramientas/figuras/figuras_presentacion.py` | Figuras de la presentación |
