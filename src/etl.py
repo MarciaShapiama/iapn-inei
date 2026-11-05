@@ -27,7 +27,7 @@ from config import DASH_DATA, DATA, RAIZ
 
 PERFILES = {
     "local": ["impacto.py", "panel.py", "metadatos.py", "auditoria.py"],
-    "diario": ["descargar_mar.py", "descargar_indicadores.py", "descargar_zonas.py", "construir.py", "metadatos.py"],
+    "diario": ["descargar_mar.py", "descargar_indicadores.py", "descargar_zonas.py", "construir.py", "aviso_lluvia.py", "metadatos.py"],
     "inundacion": ["exposicion.py", "reparar_poblacion.py", "ubigeo.py", "huellas.py", "impacto.py", "validar_radar.py", "panel.py", "metadatos.py", "auditoria.py"],
 }
 CRITICOS = {"construir.py", "impacto.py", "metadatos.py"}     # su fallo se marca como error, no solo advertencia
