@@ -1,0 +1,42 @@
+# Temporal: corre tres veces la prueba del radar con los eventos verificados y compara los resultados.
+name: Prueba radar con noticias (3 corridas)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r requirements.txt -r requirements-inundaciones.txt
+      - name: Tres corridas
+        run: |
+          for i in 1 2 3; do
+            python -u herramientas/pruebas/prueba_noticias_verificadas.py
+            cp docs/evidencia/prueba_noticias_verificadas.json /tmp/corrida_$i.json
+          done
+          python - <<'P'
+          import json
+          r=[json.load(open(f"/tmp/corrida_{i}.json")) for i in (1,2,3)]
+          C=("V0_reglas_actuales","V1_sin_limite_altura","V2_sin_altura_ni_pendiente","km2_capa_publicada","pasadas_desde_la_noticia","error")
+          for k in range(len(r[0]["eventos"])):
+              vals=[tuple(str(x["eventos"][k].get(c)) for c in C) for x in r]
+              print("IGUAL " if len(set(vals))==1 else "DISTINTO", r[0]["eventos"][k]["id"], vals[0], "" if len(set(vals))==1 else vals)
+          P
+      - name: Guardar
+        run: |
+          python src/noticias.py || true
+          git config user.name "Actualización automática"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/evidencia/prueba_noticias_verificadas.json dashboard/data/eventos_reportados.json data/eventos
+          git diff --cached --quiet && echo "Sin cambios" && exit 0
+          git commit -m "Prueba del radar con noticias verificadas: tres corridas"
+          git pull --rebase --autostash origin main && git push

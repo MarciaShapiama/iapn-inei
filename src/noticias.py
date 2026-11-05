@@ -56,6 +56,10 @@ FUERTE = re.compile(r"\b(INUNDAN|INUNDARON|INUNDO|INUNDA|INUNDADAS?|INUNDADOS?|D
                     r"ACTIVAN|ACTIVARON|ACTIVA|HUAICO|COLAPSA|COLAPSO)\b")
 AVISO = re.compile(r"\b(ALERTA|ADVIERTE|ADVIERTEN|RIESGO|RIESGOS|PODRIA|PODRIAN|PRONOSTICO|PREVIENE|PREVENIR|PREVENCION|"
                    r"SIMULACRO|PREVE|POSIBLE|TEMEN|EXIGE|PIDE|PLAN|REDUCIR|OBRAS)\b")
+# Titulares que hablan de la inundación pero no informan un hecho: prevención, pronóstico, gestión, opinión.
+NO_HECHO = re.compile(r"\b(EVITAN|EVITARON|EVITA|PREVE|PREPARA|PREPARAN|PRESUPUESTO|FISCALIZA|CONOCE|VULNERABLES|SERAN|"
+                      r"VERAN|COMENZARAN|CONTINUARIAN|EXPLICA|ANTE LLUVIAS|ANTE INUNDACIONES|RIESGO DE DESBORDES?|"
+                      r"RIESGO DE ACTIVACION|SE PREVE|QUE RIESGO|BAJO ALERTA|SE ACTIVA EL RIESGO)\b")
 VERIFICACION = re.compile(r"\b(FALSO|ENGANOSO|NO SON DE|VERIFICACION|FACTUAL)\b")
 # nombres de centros poblados que también son palabras comunes, apellidos o lugares de otras regiones
 NO_LUGAR = {"EL ALTO", "LA ARENA", "SALITRAL", "SANTA ROSA", "LAS LOMAS", "SAN MARTIN", "GRAU", "LA QUEBRADA",
@@ -67,6 +71,7 @@ NO_LUGAR = {"EL ALTO", "LA ARENA", "SALITRAL", "SANTA ROSA", "LAS LOMAS", "SAN M
             "SAN FRANCISCO", "SAN RAFAEL", "SAN JORGE", "SANTA ELENA", "SANTA SOFIA", "SANTA PAULA", "SANTA VICTORIA",
             "LA CAPILLA", "LA QUINTA", "LA NORIA", "LA VINA", "LA TINA", "LA RITA", "LA CAMPINA", "MIRAMAR",
             "LAS MALVINAS", "LOS RANCHOS", "EL TAMBO", "EL CUCHO", "LA ENCANTADA", "LA MARGARITA", "VERANDA"}
+RIOS = re.compile(r"\bRIOS? (TUMBES|ZARUMILLA|PIURA|CHIRA)( Y (TUMBES|ZARUMILLA|PIURA|CHIRA))?\b")
 ANIO = re.compile(r"\b(19[5-9]\d|20[0-4]\d)\b")
 ALIAS = {"TAMBOGRANDE": "TAMBO GRANDE", "PUERTO PIZARRO": "PUERTO PIZARRO", "CURA MORI": "CUCUNGARA"}
 RADIO_KM = 3.0
@@ -98,7 +103,7 @@ def leer_rss() -> list[dict]:
 
 def es_hecho(titulo: str, medio: str, fecha: str) -> bool:
     t = norm(titulo)
-    if norm(medio).lower() in REDES or VERIFICACION.search(t):
+    if norm(medio).lower() in REDES or VERIFICACION.search(t) or NO_HECHO.search(t):
         return False
     if any(a != fecha[:4] for a in ANIO.findall(t)):      # recuerda otro año («las inundaciones de 2017»)
         return False
@@ -131,6 +136,8 @@ class Nomenclator:
         t = norm(titulo)
         for a, b in ALIAS.items():
             t = re.sub(rf"\b{a}\b", b, t)
+        # «río Zarumilla», «río Tumbes», «ríos Tumbes y Zarumilla» nombran el río, no la ciudad del mismo nombre
+        t = RIOS.sub(" ", t)
         deps = [d for d in ("PIURA", "TUMBES") if re.search(rf"\b{d}\b", t)]
         hallados = []
         for n, p in self.patrones:
@@ -151,12 +158,16 @@ class Nomenclator:
 
 
 def clasificar(titulo: str) -> str:
+    """Tipo según lo que DICE el titular. «Desborde» solo si lo dice explícitamente: mencionar un río, su caudal o
+    una alerta no es un desborde."""
     t = norm(titulo)
     if re.search(r"HUAICO|DESLIZAMIENTO|DERRUMBE", t):
         return "huaico o deslizamiento"
-    if re.search(r"DESBORD|RIO |CRECIDA|CAUDAL|QUEBRADA", t + " "):
+    if re.search(r"DESBORD|CRECIDA|SE SALE|SE SALIO", t):
         return "desborde de río o quebrada"
-    if re.search(r"CALLES|ANIEG|ANEGAD|LLUVIA|AVENIDA|COLEGIO|MERCADO", t):
+    if re.search(r"QUEBRADA", t):
+        return "activación de quebrada"
+    if re.search(r"CALLES|ANIEG|ANEGAD|LLUVIA|AVENIDA|COLEGIO|MERCADO|LAGUNA", t):
         return "lluvia urbana"
     return "inundación"
 
@@ -222,6 +233,10 @@ def verificar_radar(ev: dict, capas: list[dict], prueba: dict) -> dict:
     elif ev["tipo"] == "lluvia urbana":
         r["veredicto"] = "fuera de alcance"
         r["explicacion"] = "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
+    elif ev["tipo"] == "activación de quebrada":
+        r["veredicto"] = "fuera de alcance"
+        r["explicacion"] = ("Quebrada activada: el agua corre por un cauce de pocos metros y dura horas; el radar (píxel de "
+                            "~55 m, una pasada cada pocos días) no alcanza a verla.")
     elif capa and not r.get("pasadas_desde_la_noticia") and not (p and p.get("pasadas_desde_la_noticia")):
         r["veredicto"] = "sin pasada"
         r["explicacion"] = "El satélite Sentinel-1 todavía no pasó por aquí después de la fecha de la noticia."
@@ -241,11 +256,17 @@ def eventos_de_noticias(reg: pd.DataFrame, nom: Nomenclator) -> list[dict]:
         for l, precision in nom.ubicar(n["titulo"]):
             agregar(grupos, n, l, precision)
     for g in grupos.values():                      # el tipo más específico entre todos los titulares del grupo
+        # Un desborde o un huaico dicho explícitamente manda; si no, el tipo que más titulares describen.
         tipos = [clasificar(a["titulo"]) for a in g["articulos"]]
-        for t in ("desborde de río o quebrada", "huaico o deslizamiento", "lluvia urbana"):
-            if t in tipos:
-                g["tipo"] = t
-                break
+        fuertes = [t for t in ("desborde de río o quebrada", "huaico o deslizamiento") if t in tipos]
+        resto = [t for t in tipos if t in ("activación de quebrada", "lluvia urbana")]
+        if fuertes:
+            g["tipo"] = fuertes[0]
+        elif resto:
+            g["tipo"] = max(("lluvia urbana", "activación de quebrada"), key=resto.count)
+        # el título del evento: el primer titular que informa un hecho sin palabras de aviso
+        g["titulo"] = next((a["titulo"] for a in g["articulos"]
+                            if FUERTE.search(norm(a["titulo"])) and not AVISO.search(norm(a["titulo"]))), g["titulo"])
     return list(grupos.values())
 
 

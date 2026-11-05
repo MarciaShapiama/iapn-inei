@@ -681,6 +681,17 @@ function avisoVista(){
   el.hidden=false;
 }
 // Viviendas ocupadas del Censo 2025 (INEI) en la zona inundable: solo totales por distrito.
+/* ¿Cuántas viviendas del censo quedaron dentro del agua que vio el radar? (src/vivienda_inei.py) */
+function radarCenso(V){
+  const R=V.radar; if(!R||!R["2017"])return "";
+  const r=R["2017"], fila=k=>R[k]?`<tr><td>${R[k].nombre}</td><td class="n">${nf(R[k].viviendas)}</td><td class="n">${nf(R[k].precarias)}</td></tr>`:"";
+  const dd=(r.distritos||[]).map(d=>`${d.distrito} (${nf(d.viviendas)})`).join(", ");
+  return `<div class="i-valida" style="margin-top:12px;background:var(--panel2,#f4f1ea);color:inherit"><b>¿Y el radar? Casi no ve viviendas.</b><br>
+   En 2017 solo <b>${nf(r.viviendas)}</b> viviendas del censo (${nf(r.manzanas)} manzanas) quedaron dentro del agua que vio el radar${dd?": "+dd:""}.
+   Ese año el SINPAD (INDECI) registró en Piura 65 467 viviendas afectadas y 13 165 destruidas por todas las emergencias (lluvias, inundaciones y huaicos).
+   El radar ve agua abierta en el campo, no entre casas ni en calles: por eso el tablero cuenta viviendas con la zona inundable de JRC y no con el radar.
+   <table class="tabla" style="margin-top:6px"><tr><th>Capa del radar</th><th style="text-align:right">Viviendas dentro</th><th style="text-align:right">De ellas precarias</th></tr>${fila("2017")}${fila("2023")}${fila("vivo")}</table></div>`;
+}
 function censoVista(){
   const V=D.VC, el=document.getElementById("r-censo"); if(!V||!V.escenarios||!V.escenarios.rp100)return;
   const e=V.escenarios.rp100, e10=V.escenarios.rp10||{}, frag=e.paredes_tierra+e.paredes_precarias, pc=x=>Math.round(x*100)+" %";
@@ -694,7 +705,8 @@ function censoVista(){
    <div><div class="eti">Con más de 1,5 m de agua</div><div class="r-cifra" style="font-size:32px">${nf(e.viviendas_mas_1_5m)}</div><div class="det">según la profundidad del mapa de JRC</div></div>
   </div>
   <table class="tabla"><tr><th>Distrito</th><th style="text-align:right">Viviendas en la zona</th><th style="text-align:right">Paredes frágiles</th><th style="text-align:right">Piso de tierra</th></tr>${filas}</table>
-  <p class="nota" style="margin-top:8px">${V.limite} Paredes frágiles: ${V.definiciones.paredes_tierra}, o ${V.definiciones.paredes_precarias}. Son viviendas en la zona inundable (exposición), no viviendas afectadas.</p>`;
+  <p class="nota" style="margin-top:8px">${V.limite} Paredes frágiles: ${V.definiciones.paredes_tierra}, o ${V.definiciones.paredes_precarias}. Techo precario (${V.definiciones.techo_precario}): ${nf(e.techo_precario)} viviendas en la zona. Son viviendas en la zona inundable (exposición), no viviendas afectadas.</p>
+  ${radarCenso(V)}`;
   el.hidden=false;
 }
 function inundacionesVista(){

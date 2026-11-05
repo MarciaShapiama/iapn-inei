@@ -1,19 +1,25 @@
 {
  "fuente": "INEI, Censos Nacionales 2025: viviendas ocupadas por manzana y material predominante de paredes, techo y piso (datos entregados al proyecto por el INEI; publicación de totales autorizada).",
- "metodo": "Cada manzana se ubica por un punto interior y se toma la profundidad de la zona inundable de JRC en ese punto. Viviendas por material = viviendas ocupadas de la manzana × proporción con ese material. Solo se publican totales por distrito; los distritos con menos de 10 viviendas en la zona no se detallan.",
+ "metodo": "Cada manzana se ubica por un punto interior y se toma la profundidad de la zona inundable de JRC en ese punto, o si cae en el agua nueva que vio el radar. Viviendas por material = viviendas ocupadas de la manzana × proporción con ese material. Solo se publican totales por distrito; los distritos con menos de 10 viviendas en una capa no se detallan.",
  "limite": "Solo incluye viviendas en manzanas (zonas urbanas y centros poblados); la vivienda rural dispersa no está, así que las cifras son un mínimo.",
  "definiciones": {
   "paredes_tierra": "adobe, tapia, quincha o piedra con barro",
   "paredes_precarias": "madera, triplay, calamina o estera",
   "techo_precario": "caña o estera con barro, triplay, estera, carrizo o paja",
-  "piso_tierra": "piso de tierra"
+  "piso_tierra": "piso de tierra",
+  "precarias": "paredes de tierra o precarias, o piso de tierra (se toma el mayor de los dos: cota inferior)"
  },
  "total_tumbes_piura": {
   "viviendas_ocupadas": 548979,
   "por_departamento": {
    "Piura": 481159,
    "Tumbes": 67820
-  }
+  },
+  "paredes_tierra": 114749,
+  "paredes_precarias": 87320,
+  "techo_precario": 3384,
+  "piso_tierra": 178481,
+  "precarias": 232775
  },
  "escenarios": {
   "rp10": {
@@ -27,6 +33,7 @@
    "paredes_precarias": 15455,
    "techo_precario": 795,
    "piso_tierra": 31058,
+   "precarias": 34747,
    "distritos": [
     {
      "ubigeo": "200105",
@@ -37,6 +44,7 @@
      "paredes_tierra": 2865,
      "paredes_precarias": 3211,
      "piso_tierra": 8293,
+     "precarias": 8580,
      "pct_fragiles": 35.3
     },
     {
@@ -48,6 +56,7 @@
      "paredes_tierra": 198,
      "paredes_precarias": 2074,
      "piso_tierra": 2636,
+     "precarias": 2961,
      "pct_fragiles": 14.4
     },
     {
@@ -59,6 +68,7 @@
      "paredes_tierra": 17,
      "paredes_precarias": 3726,
      "piso_tierra": 2945,
+     "precarias": 3957,
      "pct_fragiles": 59.8
     },
     {
@@ -70,6 +80,7 @@
      "paredes_tierra": 40,
      "paredes_precarias": 1219,
      "piso_tierra": 1045,
+     "precarias": 1424,
      "pct_fragiles": 21.9
     },
     {
@@ -81,6 +92,7 @@
      "paredes_tierra": 2069,
      "paredes_precarias": 817,
      "piso_tierra": 4011,
+     "precarias": 4048,
      "pct_fragiles": 51.7
     },
     {
@@ -92,6 +104,7 @@
      "paredes_tierra": 1822,
      "paredes_precarias": 927,
      "piso_tierra": 3492,
+     "precarias": 3518,
      "pct_fragiles": 63.6
     },
     {
@@ -103,6 +116,7 @@
      "paredes_tierra": 1196,
      "paredes_precarias": 656,
      "piso_tierra": 2295,
+     "precarias": 2317,
      "pct_fragiles": 61.9
     },
     {
@@ -114,6 +128,7 @@
      "paredes_tierra": 563,
      "paredes_precarias": 301,
      "piso_tierra": 989,
+     "precarias": 1048,
      "pct_fragiles": 42.0
     },
     {
@@ -125,6 +140,7 @@
      "paredes_tierra": 714,
      "paredes_precarias": 121,
      "piso_tierra": 437,
+     "precarias": 842,
      "pct_fragiles": 43.8
     },
     {
@@ -136,6 +152,7 @@
      "paredes_tierra": 286,
      "paredes_precarias": 388,
      "piso_tierra": 783,
+     "precarias": 848,
      "pct_fragiles": 40.7
     },
     {
@@ -147,6 +164,7 @@
      "paredes_tierra": 30,
      "paredes_precarias": 403,
      "piso_tierra": 512,
+     "precarias": 587,
      "pct_fragiles": 26.4
     },
     {
@@ -158,6 +176,7 @@
      "paredes_tierra": 196,
      "paredes_precarias": 398,
      "piso_tierra": 483,
+     "precarias": 636,
      "pct_fragiles": 48.4
     },
     {
@@ -169,6 +188,7 @@
      "paredes_tierra": 102,
      "paredes_precarias": 193,
      "piso_tierra": 534,
+     "precarias": 554,
      "pct_fragiles": 24.5
     },
     {
@@ -180,6 +200,7 @@
      "paredes_tierra": 179,
      "paredes_precarias": 153,
      "piso_tierra": 340,
+     "precarias": 389,
      "pct_fragiles": 33.3
     },
     {
@@ -191,6 +212,7 @@
      "paredes_tierra": 1,
      "paredes_precarias": 50,
      "piso_tierra": 16,
+     "precarias": 55,
      "pct_fragiles": 5.6
     },
     {
@@ -202,6 +224,7 @@
      "paredes_tierra": 219,
      "paredes_precarias": 100,
      "piso_tierra": 440,
+     "precarias": 450,
      "pct_fragiles": 44.6
     },
     {
@@ -213,6 +236,7 @@
      "paredes_tierra": 0,
      "paredes_precarias": 133,
      "piso_tierra": 39,
+     "precarias": 140,
      "pct_fragiles": 18.8
     },
     {
@@ -224,17 +248,19 @@
      "paredes_tierra": 338,
      "paredes_precarias": 83,
      "piso_tierra": 514,
+     "precarias": 520,
      "pct_fragiles": 69.0
     },
     {
      "ubigeo": "200802",
      "departamento": "Piura",
      "provincia": "Sechura",
-     "distrito": "Bellavista de la Union",
+     "distrito": "Bellavista de la Unión",
      "viviendas": 507,
      "paredes_tierra": 42,
      "paredes_precarias": 111,
      "piso_tierra": 256,
+     "precarias": 260,
      "pct_fragiles": 30.2
     },
     {
@@ -246,6 +272,7 @@
      "paredes_tierra": 23,
      "paredes_precarias": 87,
      "piso_tierra": 219,
+     "precarias": 225,
      "pct_fragiles": 23.7
     },
     {
@@ -257,6 +284,7 @@
      "paredes_tierra": 95,
      "paredes_precarias": 44,
      "piso_tierra": 54,
+     "precarias": 140,
      "pct_fragiles": 38.5
     },
     {
@@ -268,17 +296,19 @@
      "paredes_tierra": 113,
      "paredes_precarias": 12,
      "piso_tierra": 68,
+     "precarias": 129,
      "pct_fragiles": 38.9
     },
     {
      "ubigeo": "200705",
      "departamento": "Piura",
      "provincia": "Talara",
-     "distrito": "Los Organos",
+     "distrito": "Los Órganos",
      "viviendas": 311,
      "paredes_tierra": 20,
      "paredes_precarias": 24,
      "piso_tierra": 102,
+     "precarias": 110,
      "pct_fragiles": 14.1
     },
     {
@@ -290,6 +320,7 @@
      "paredes_tierra": 23,
      "paredes_precarias": 41,
      "piso_tierra": 36,
+     "precarias": 71,
      "pct_fragiles": 21.0
     },
     {
@@ -301,6 +332,7 @@
      "paredes_tierra": 90,
      "paredes_precarias": 50,
      "piso_tierra": 54,
+     "precarias": 141,
      "pct_fragiles": 49.6
     },
     {
@@ -312,6 +344,7 @@
      "paredes_tierra": 59,
      "paredes_precarias": 13,
      "piso_tierra": 4,
+     "precarias": 72,
      "pct_fragiles": 29.4
     },
     {
@@ -323,6 +356,7 @@
      "paredes_tierra": 48,
      "paredes_precarias": 20,
      "piso_tierra": 44,
+     "precarias": 72,
      "pct_fragiles": 35.1
     },
     {
@@ -334,6 +368,7 @@
      "paredes_tierra": 78,
      "paredes_precarias": 4,
      "piso_tierra": 33,
+     "precarias": 82,
      "pct_fragiles": 44.1
     },
     {
@@ -345,6 +380,7 @@
      "paredes_tierra": 74,
      "paredes_precarias": 8,
      "piso_tierra": 58,
+     "precarias": 88,
      "pct_fragiles": 45.1
     },
     {
@@ -356,6 +392,7 @@
      "paredes_tierra": 72,
      "paredes_precarias": 8,
      "piso_tierra": 40,
+     "precarias": 84,
      "pct_fragiles": 49.4
     },
     {
@@ -367,6 +404,7 @@
      "paredes_tierra": 54,
      "paredes_precarias": 17,
      "piso_tierra": 43,
+     "precarias": 72,
      "pct_fragiles": 43.8
     },
     {
@@ -378,6 +416,7 @@
      "paredes_tierra": 79,
      "paredes_precarias": 1,
      "piso_tierra": 76,
+     "precarias": 84,
      "pct_fragiles": 78.4
     },
     {
@@ -389,6 +428,7 @@
      "paredes_tierra": 6,
      "paredes_precarias": 17,
      "piso_tierra": 41,
+     "precarias": 44,
      "pct_fragiles": 22.8
     },
     {
@@ -400,6 +440,7 @@
      "paredes_tierra": 30,
      "paredes_precarias": 8,
      "piso_tierra": 14,
+     "precarias": 38,
      "pct_fragiles": 50.7
     },
     {
@@ -411,6 +452,7 @@
      "paredes_tierra": 36,
      "paredes_precarias": 2,
      "piso_tierra": 37,
+     "precarias": 43,
      "pct_fragiles": 55.1
     },
     {
@@ -422,6 +464,7 @@
      "paredes_tierra": 15,
      "paredes_precarias": 3,
      "piso_tierra": 16,
+     "precarias": 21,
      "pct_fragiles": 36.7
     },
     {
@@ -433,6 +476,7 @@
      "paredes_tierra": 22,
      "paredes_precarias": 2,
      "piso_tierra": 2,
+     "precarias": 24,
      "pct_fragiles": 64.9
     },
     {
@@ -444,6 +488,7 @@
      "paredes_tierra": 2,
      "paredes_precarias": 20,
      "piso_tierra": 18,
+     "precarias": 22,
      "pct_fragiles": 88.0
     },
     {
@@ -455,6 +500,7 @@
      "paredes_tierra": 10,
      "paredes_precarias": 2,
      "piso_tierra": 12,
+     "precarias": 14,
      "pct_fragiles": 66.7
     },
     {
@@ -466,6 +512,7 @@
      "paredes_tierra": 1,
      "paredes_precarias": 1,
      "piso_tierra": 0,
+     "precarias": 2,
      "pct_fragiles": 12.5
     },
     {
@@ -477,6 +524,7 @@
      "paredes_tierra": 7,
      "paredes_precarias": 5,
      "piso_tierra": 11,
+     "precarias": 12,
      "pct_fragiles": 80.0
     },
     {
@@ -488,6 +536,7 @@
      "paredes_tierra": 7,
      "paredes_precarias": 0,
      "piso_tierra": 1,
+     "precarias": 7,
      "pct_fragiles": 63.6
     },
     {
@@ -499,6 +548,7 @@
      "paredes_tierra": 0,
      "paredes_precarias": 1,
      "piso_tierra": 1,
+     "precarias": 1,
      "pct_fragiles": 9.1
     },
     {
@@ -510,6 +560,7 @@
      "paredes_tierra": 0,
      "paredes_precarias": 1,
      "piso_tierra": 7,
+     "precarias": 7,
      "pct_fragiles": 10.0
     }
    ]
@@ -525,6 +576,7 @@
    "paredes_precarias": 19878,
    "techo_precario": 1081,
    "piso_tierra": 40061,
+   "precarias": 45634,
    "distritos": [
     {
      "ubigeo": "200104",
@@ -535,6 +587,7 @@
      "paredes_tierra": 324,
      "paredes_precarias": 2551,
      "piso_tierra": 3346,
+     "precarias": 3750,
      "pct_fragiles": 13.8
     },
     {
@@ -546,6 +599,7 @@
      "paredes_tierra": 3185,
      "paredes_precarias": 3528,
      "piso_tierra": 9143,
+     "precarias": 9466,
      "pct_fragiles": 33.9
     },
     {
@@ -557,6 +611,7 @@
      "paredes_tierra": 99,
      "paredes_precarias": 1490,
      "piso_tierra": 1305,
+     "precarias": 1816,
      "pct_fragiles": 17.4
     },
     {
@@ -568,6 +623,7 @@
      "paredes_tierra": 19,
      "paredes_precarias": 4410,
      "piso_tierra": 3521,
+     "precarias": 4694,
      "pct_fragiles": 57.4
     },
     {
@@ -579,6 +635,7 @@
      "paredes_tierra": 2650,
      "paredes_precarias": 1149,
      "piso_tierra": 5195,
+     "precarias": 5258,
      "pct_fragiles": 50.0
     },
     {
@@ -590,6 +647,7 @@
      "paredes_tierra": 2787,
      "paredes_precarias": 1449,
      "piso_tierra": 5290,
+     "precarias": 5335,
      "pct_fragiles": 63.6
     },
     {
@@ -601,6 +659,7 @@
      "paredes_tierra": 867,
      "paredes_precarias": 429,
      "piso_tierra": 1537,
+     "precarias": 1623,
      "pct_fragiles": 34.7
     },
     {
@@ -612,6 +671,7 @@
      "paredes_tierra": 1421,
      "paredes_precarias": 793,
      "piso_tierra": 2718,
+     "precarias": 2742,
      "pct_fragiles": 62.9
     },
     {
@@ -623,6 +683,7 @@
      "paredes_tierra": 988,
      "paredes_precarias": 154,
      "piso_tierra": 607,
+     "precarias": 1151,
      "pct_fragiles": 36.7
     },
     {
@@ -634,6 +695,7 @@
      "paredes_tierra": 2,
      "paredes_precarias": 254,
      "piso_tierra": 92,
+     "precarias": 264,
      "pct_fragiles": 8.3
     },
     {
@@ -645,6 +707,7 @@
      "paredes_tierra": 294,
      "paredes_precarias": 351,
      "piso_tierra": 1214,
+     "precarias": 1257,
      "pct_fragiles": 21.8
     },
     {
@@ -656,6 +719,7 @@
      "paredes_tierra": 499,
      "paredes_precarias": 337,
      "piso_tierra": 810,
+     "precarias": 947,
      "pct_fragiles": 35.8
     },
     {
@@ -667,6 +731,7 @@
      "paredes_tierra": 32,
      "paredes_precarias": 509,
      "piso_tierra": 646,
+     "precarias": 730,
      "pct_fragiles": 25.3
     },
     {
@@ -678,6 +743,7 @@
      "paredes_tierra": 330,
      "paredes_precarias": 456,
      "piso_tierra": 900,
+     "precarias": 978,
      "pct_fragiles": 39.2
     },
     {
@@ -689,6 +755,7 @@
      "paredes_tierra": 244,
      "paredes_precarias": 447,
      "piso_tierra": 550,
+     "precarias": 735,
      "pct_fragiles": 47.3
     },
     {
@@ -700,17 +767,19 @@
      "paredes_tierra": 0,
      "paredes_precarias": 283,
      "piso_tierra": 63,
+     "precarias": 291,
      "pct_fragiles": 21.9
     },
     {
      "ubigeo": "200705",
      "departamento": "Piura",
      "provincia": "Talara",
-     "distrito": "Los Organos",
+     "distrito": "Los Órganos",
      "viviendas": 1025,
      "paredes_tierra": 55,
      "paredes_precarias": 177,
      "piso_tierra": 155,
+     "precarias": 324,
      "pct_fragiles": 22.6
     },
     {
@@ -722,6 +791,7 @@
      "paredes_tierra": 277,
      "paredes_precarias": 141,
      "piso_tierra": 556,
+     "precarias": 572,
      "pct_fragiles": 45.2
     },
     {
@@ -733,6 +803,7 @@
      "paredes_tierra": 289,
      "paredes_precarias": 33,
      "piso_tierra": 185,
+     "precarias": 330,
      "pct_fragiles": 40.9
     },
     {
@@ -744,17 +815,19 @@
      "paredes_tierra": 179,
      "paredes_precarias": 40,
      "piso_tierra": 23,
+     "precarias": 222,
      "pct_fragiles": 28.5
     },
     {
      "ubigeo": "200802",
      "departamento": "Piura",
      "provincia": "Sechura",
-     "distrito": "Bellavista de la Union",
+     "distrito": "Bellavista de la Unión",
      "viviendas": 728,
      "paredes_tierra": 55,
      "paredes_precarias": 154,
      "piso_tierra": 312,
+     "precarias": 326,
      "pct_fragiles": 28.7
     },
     {
@@ -766,6 +839,7 @@
      "paredes_tierra": 47,
      "paredes_precarias": 130,
      "piso_tierra": 320,
+     "precarias": 330,
      "pct_fragiles": 24.8
     },
     {
@@ -777,6 +851,7 @@
      "paredes_tierra": 110,
      "paredes_precarias": 132,
      "piso_tierra": 107,
+     "precarias": 251,
      "pct_fragiles": 37.3
     },
     {
@@ -788,6 +863,7 @@
      "paredes_tierra": 338,
      "paredes_precarias": 83,
      "piso_tierra": 514,
+     "precarias": 520,
      "pct_fragiles": 69.0
     },
     {
@@ -799,6 +875,7 @@
      "paredes_tierra": 128,
      "paredes_precarias": 58,
      "piso_tierra": 73,
+     "precarias": 187,
      "pct_fragiles": 39.3
     },
     {
@@ -810,6 +887,7 @@
      "paredes_tierra": 131,
      "paredes_precarias": 89,
      "piso_tierra": 87,
+     "precarias": 222,
      "pct_fragiles": 46.8
     },
     {
@@ -821,6 +899,7 @@
      "paredes_tierra": 102,
      "paredes_precarias": 59,
      "piso_tierra": 114,
+     "precarias": 166,
      "pct_fragiles": 47.2
     },
     {
@@ -832,6 +911,7 @@
      "paredes_tierra": 93,
      "paredes_precarias": 16,
      "piso_tierra": 66,
+     "precarias": 114,
      "pct_fragiles": 39.2
     },
     {
@@ -843,6 +923,7 @@
      "paredes_tierra": 96,
      "paredes_precarias": 13,
      "piso_tierra": 80,
+     "precarias": 120,
      "pct_fragiles": 41.3
     },
     {
@@ -854,6 +935,7 @@
      "paredes_tierra": 108,
      "paredes_precarias": 20,
      "piso_tierra": 49,
+     "precarias": 128,
      "pct_fragiles": 49.2
     },
     {
@@ -865,6 +947,7 @@
      "paredes_tierra": 103,
      "paredes_precarias": 4,
      "piso_tierra": 52,
+     "precarias": 115,
      "pct_fragiles": 41.5
     },
     {
@@ -876,6 +959,7 @@
      "paredes_tierra": 79,
      "paredes_precarias": 45,
      "piso_tierra": 69,
+     "precarias": 126,
      "pct_fragiles": 49.6
     },
     {
@@ -887,6 +971,7 @@
      "paredes_tierra": 109,
      "paredes_precarias": 8,
      "piso_tierra": 51,
+     "precarias": 121,
      "pct_fragiles": 52.7
     },
     {
@@ -898,6 +983,7 @@
      "paredes_tierra": 54,
      "paredes_precarias": 5,
      "piso_tierra": 66,
+     "precarias": 75,
      "pct_fragiles": 37.1
     },
     {
@@ -909,6 +995,7 @@
      "paredes_tierra": 99,
      "paredes_precarias": 1,
      "piso_tierra": 97,
+     "precarias": 105,
      "pct_fragiles": 75.8
     },
     {
@@ -920,6 +1007,7 @@
      "paredes_tierra": 7,
      "paredes_precarias": 17,
      "piso_tierra": 45,
+     "precarias": 48,
      "pct_fragiles": 21.2
     },
     {
@@ -931,6 +1019,7 @@
      "paredes_tierra": 42,
      "paredes_precarias": 2,
      "piso_tierra": 4,
+     "precarias": 44,
      "pct_fragiles": 56.4
     },
     {
@@ -942,6 +1031,7 @@
      "paredes_tierra": 2,
      "paredes_precarias": 27,
      "piso_tierra": 5,
+     "precarias": 29,
      "pct_fragiles": 39.7
     },
     {
@@ -953,6 +1043,7 @@
      "paredes_tierra": 4,
      "paredes_precarias": 2,
      "piso_tierra": 29,
+     "precarias": 29,
      "pct_fragiles": 10.2
     },
     {
@@ -964,6 +1055,7 @@
      "paredes_tierra": 0,
      "paredes_precarias": 4,
      "piso_tierra": 3,
+     "precarias": 4,
      "pct_fragiles": 9.3
     },
     {
@@ -975,6 +1067,7 @@
      "paredes_tierra": 2,
      "paredes_precarias": 20,
      "piso_tierra": 18,
+     "precarias": 22,
      "pct_fragiles": 88.0
     },
     {
@@ -986,18 +1079,8 @@
      "paredes_tierra": 15,
      "paredes_precarias": 0,
      "piso_tierra": 10,
+     "precarias": 16,
      "pct_fragiles": 75.0
-    },
-    {
-     "ubigeo": "200210",
-     "departamento": "Piura",
-     "provincia": "Ayabaca",
-     "distrito": "Suyo",
-     "viviendas": 18,
-     "paredes_tierra": 10,
-     "paredes_precarias": 2,
-     "piso_tierra": 12,
-     "pct_fragiles": 66.7
     },
     {
      "ubigeo": "200506",
@@ -1008,7 +1091,20 @@
      "paredes_tierra": 13,
      "paredes_precarias": 0,
      "piso_tierra": 6,
+     "precarias": 13,
      "pct_fragiles": 72.2
+    },
+    {
+     "ubigeo": "200210",
+     "departamento": "Piura",
+     "provincia": "Ayabaca",
+     "distrito": "Suyo",
+     "viviendas": 18,
+     "paredes_tierra": 10,
+     "paredes_precarias": 2,
+     "piso_tierra": 12,
+     "precarias": 14,
+     "pct_fragiles": 66.7
     },
     {
      "ubigeo": "200207",
@@ -1019,6 +1115,7 @@
      "paredes_tierra": 7,
      "paredes_precarias": 5,
      "piso_tierra": 11,
+     "precarias": 12,
      "pct_fragiles": 80.0
     },
     {
@@ -1030,9 +1127,63 @@
      "paredes_tierra": 7,
      "paredes_precarias": 0,
      "piso_tierra": 1,
+     "precarias": 7,
      "pct_fragiles": 63.6
     }
    ]
   }
- }
+ },
+ "radar": {
+  "2017": {
+   "nombre": "Radar 2017 (Niño costero)",
+   "periodo": [
+    "2017-02-01",
+    "2017-04-30"
+   ],
+   "viviendas": 155,
+   "precarias": 138,
+   "manzanas": 51,
+   "distritos": [
+    {
+     "ubigeo": "200407",
+     "departamento": "Piura",
+     "provincia": "Morropón",
+     "distrito": "San Juan de Bigote",
+     "viviendas": 87,
+     "precarias": 82
+    },
+    {
+     "ubigeo": "200306",
+     "departamento": "Piura",
+     "provincia": "Huancabamba",
+     "distrito": "San Miguel de El Faique",
+     "viviendas": 55,
+     "precarias": 50
+    }
+   ]
+  },
+  "2023": {
+   "nombre": "Radar 2023 (ciclón Yaku)",
+   "periodo": [
+    "2023-03-01",
+    "2023-04-15"
+   ],
+   "viviendas": 0,
+   "precarias": 0,
+   "manzanas": 0,
+   "distritos": []
+  },
+  "vivo": {
+   "nombre": "Radar, últimos 24 días",
+   "periodo": [
+    "2026-10-12",
+    "2026-11-05"
+   ],
+   "viviendas": 0,
+   "precarias": 0,
+   "manzanas": 0,
+   "distritos": []
+  }
+ },
+ "generado_con": "src/vivienda_inei.py"
 }
