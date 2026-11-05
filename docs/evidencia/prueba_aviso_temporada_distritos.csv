@@ -1,0 +1,609 @@
+temporada,k,variante,unidad,con_aviso,con_dano,aviso_y_dano
+2025_ene_abr,AYABACA|AYABACA,"lluvia (1, 2 o 3 días antes)",semanas,3,7,2
+2025_ene_abr,AYABACA|FRIAS,"lluvia (1, 2 o 3 días antes)",semanas,7,6,4
+2025_ene_abr,AYABACA|JILILI,"lluvia (1, 2 o 3 días antes)",semanas,4,2,0
+2025_ene_abr,AYABACA|LAGUNAS,"lluvia (1, 2 o 3 días antes)",semanas,13,5,4
+2025_ene_abr,AYABACA|MONTERO,"lluvia (1, 2 o 3 días antes)",semanas,4,7,2
+2025_ene_abr,AYABACA|PACAIPAMPA,"lluvia (1, 2 o 3 días antes)",semanas,4,12,2
+2025_ene_abr,AYABACA|PAIMAS,"lluvia (1, 2 o 3 días antes)",semanas,2,6,2
+2025_ene_abr,AYABACA|SAPILLICA,"lluvia (1, 2 o 3 días antes)",semanas,7,4,4
+2025_ene_abr,AYABACA|SICCHEZ,"lluvia (1, 2 o 3 días antes)",semanas,5,4,2
+2025_ene_abr,AYABACA|SUYO,"lluvia (1, 2 o 3 días antes)",semanas,4,4,1
+2025_ene_abr,CONTRALMIRANTEVILLAR|CASITAS,"lluvia (1, 2 o 3 días antes)",semanas,3,5,3
+2025_ene_abr,CONTRALMIRANTEVILLAR|ZORRITOS,"lluvia (1, 2 o 3 días antes)",semanas,2,4,1
+2025_ene_abr,HUANCABAMBA|CANCHAQUE,"lluvia (1, 2 o 3 días antes)",semanas,7,3,1
+2025_ene_abr,HUANCABAMBA|ELCARMENDELAFRONTERA,"lluvia (1, 2 o 3 días antes)",semanas,13,2,1
+2025_ene_abr,HUANCABAMBA|HUANCABAMBA,"lluvia (1, 2 o 3 días antes)",semanas,13,13,9
+2025_ene_abr,HUANCABAMBA|HUARMACA,"lluvia (1, 2 o 3 días antes)",semanas,11,10,7
+2025_ene_abr,HUANCABAMBA|LALAQUIZ,"lluvia (1, 2 o 3 días antes)",semanas,12,4,4
+2025_ene_abr,HUANCABAMBA|SANMIGUELDEELFAIQUE,"lluvia (1, 2 o 3 días antes)",semanas,7,6,5
+2025_ene_abr,HUANCABAMBA|SONDOR,"lluvia (1, 2 o 3 días antes)",semanas,10,5,3
+2025_ene_abr,HUANCABAMBA|SONDORILLO,"lluvia (1, 2 o 3 días antes)",semanas,9,8,4
+2025_ene_abr,MORROPON|BUENOSAIRES,"lluvia (1, 2 o 3 días antes)",semanas,3,4,0
+2025_ene_abr,MORROPON|CHALACO,"lluvia (1, 2 o 3 días antes)",semanas,9,1,0
+2025_ene_abr,MORROPON|CHULUCANAS,"lluvia (1, 2 o 3 días antes)",semanas,0,8,0
+2025_ene_abr,MORROPON|LAMATANZA,"lluvia (1, 2 o 3 días antes)",semanas,2,2,1
+2025_ene_abr,MORROPON|MORROPON,"lluvia (1, 2 o 3 días antes)",semanas,0,4,0
+2025_ene_abr,MORROPON|SALITRAL,"lluvia (1, 2 o 3 días antes)",semanas,6,6,3
+2025_ene_abr,MORROPON|SANJUANDEBIGOTE,"lluvia (1, 2 o 3 días antes)",semanas,5,5,3
+2025_ene_abr,MORROPON|SANTACATALINADEMOSSA,"lluvia (1, 2 o 3 días antes)",semanas,8,7,6
+2025_ene_abr,MORROPON|SANTODOMINGO,"lluvia (1, 2 o 3 días antes)",semanas,8,2,2
+2025_ene_abr,MORROPON|YAMANGO,"lluvia (1, 2 o 3 días antes)",semanas,9,2,1
+2025_ene_abr,PAITA|AMOTAPE,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PAITA|ARENAL,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PAITA|COLAN,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PAITA|LAHUACA,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PAITA|PAITA,"lluvia (1, 2 o 3 días antes)",semanas,0,2,0
+2025_ene_abr,PAITA|TAMARINDO,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PAITA|VICHAYAL,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PIURA|CASTILLA,"lluvia (1, 2 o 3 días antes)",semanas,1,3,1
+2025_ene_abr,PIURA|CATACAOS,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PIURA|CURAMORI,"lluvia (1, 2 o 3 días antes)",semanas,0,2,0
+2025_ene_abr,PIURA|ELTALLAN,"lluvia (1, 2 o 3 días antes)",semanas,0,1,0
+2025_ene_abr,PIURA|LAARENA,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,PIURA|LASLOMAS,"lluvia (1, 2 o 3 días antes)",semanas,4,7,4
+2025_ene_abr,PIURA|LAUNION,"lluvia (1, 2 o 3 días antes)",semanas,0,1,0
+2025_ene_abr,PIURA|PIURA,"lluvia (1, 2 o 3 días antes)",semanas,0,1,0
+2025_ene_abr,PIURA|TAMBOGRANDE,"lluvia (1, 2 o 3 días antes)",semanas,1,5,0
+2025_ene_abr,SECHURA|BELLAVISTADELAUNION,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,SECHURA|BERNAL,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,SECHURA|CRISTONOSVALGA,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,SECHURA|RINCONADALLICUAR,"lluvia (1, 2 o 3 días antes)",semanas,0,1,0
+2025_ene_abr,SECHURA|SECHURA,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,SECHURA|VICE,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,SULLANA|BELLAVISTA,"lluvia (1, 2 o 3 días antes)",semanas,0,4,0
+2025_ene_abr,SULLANA|IGNACIOESCUDERO,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,SULLANA|LANCONES,"lluvia (1, 2 o 3 días antes)",semanas,4,3,2
+2025_ene_abr,SULLANA|MARCAVELICA,"lluvia (1, 2 o 3 días antes)",semanas,0,2,0
+2025_ene_abr,SULLANA|MIGUELCHECA,"lluvia (1, 2 o 3 días antes)",semanas,0,2,0
+2025_ene_abr,SULLANA|QUERECOTILLO,"lluvia (1, 2 o 3 días antes)",semanas,0,1,0
+2025_ene_abr,SULLANA|SALITRAL,"lluvia (1, 2 o 3 días antes)",semanas,0,1,0
+2025_ene_abr,SULLANA|SULLANA,"lluvia (1, 2 o 3 días antes)",semanas,0,2,0
+2025_ene_abr,TALARA|ELALTO,"lluvia (1, 2 o 3 días antes)",semanas,0,5,0
+2025_ene_abr,TALARA|LABREA,"lluvia (1, 2 o 3 días antes)",semanas,0,0,0
+2025_ene_abr,TALARA|LOBITOS,"lluvia (1, 2 o 3 días antes)",semanas,1,1,0
+2025_ene_abr,TALARA|LOSORGANOS,"lluvia (1, 2 o 3 días antes)",semanas,2,0,0
+2025_ene_abr,TALARA|MANCORA,"lluvia (1, 2 o 3 días antes)",semanas,2,2,0
+2025_ene_abr,TALARA|PARINAS,"lluvia (1, 2 o 3 días antes)",semanas,1,0,0
+2025_ene_abr,TUMBES|CORRALES,"lluvia (1, 2 o 3 días antes)",semanas,3,3,1
+2025_ene_abr,TUMBES|LACRUZ,"lluvia (1, 2 o 3 días antes)",semanas,3,6,2
+2025_ene_abr,TUMBES|PAMPASDEHOSPITAL,"lluvia (1, 2 o 3 días antes)",semanas,7,3,3
+2025_ene_abr,TUMBES|SANJACINTO,"lluvia (1, 2 o 3 días antes)",semanas,3,3,1
+2025_ene_abr,TUMBES|SANJUANDELAVIRGEN,"lluvia (1, 2 o 3 días antes)",semanas,6,4,2
+2025_ene_abr,TUMBES|TUMBES,"lluvia (1, 2 o 3 días antes)",semanas,3,5,2
+2025_ene_abr,ZARUMILLA|AGUASVERDES,"lluvia (1, 2 o 3 días antes)",semanas,2,7,2
+2025_ene_abr,ZARUMILLA|MATAPALO,"lluvia (1, 2 o 3 días antes)",semanas,10,8,5
+2025_ene_abr,ZARUMILLA|PAPAYAL,"lluvia (1, 2 o 3 días antes)",semanas,2,6,2
+2025_ene_abr,ZARUMILLA|ZARUMILLA,"lluvia (1, 2 o 3 días antes)",semanas,2,3,2
+2025_ene_abr,AYABACA|AYABACA,lluvia o caudal conocido,semanas,3,7,2
+2025_ene_abr,AYABACA|FRIAS,lluvia o caudal conocido,semanas,7,6,4
+2025_ene_abr,AYABACA|JILILI,lluvia o caudal conocido,semanas,4,2,0
+2025_ene_abr,AYABACA|LAGUNAS,lluvia o caudal conocido,semanas,13,5,4
+2025_ene_abr,AYABACA|MONTERO,lluvia o caudal conocido,semanas,4,7,2
+2025_ene_abr,AYABACA|PACAIPAMPA,lluvia o caudal conocido,semanas,4,12,2
+2025_ene_abr,AYABACA|PAIMAS,lluvia o caudal conocido,semanas,2,6,2
+2025_ene_abr,AYABACA|SAPILLICA,lluvia o caudal conocido,semanas,7,4,4
+2025_ene_abr,AYABACA|SICCHEZ,lluvia o caudal conocido,semanas,5,4,2
+2025_ene_abr,AYABACA|SUYO,lluvia o caudal conocido,semanas,4,4,1
+2025_ene_abr,CONTRALMIRANTEVILLAR|CASITAS,lluvia o caudal conocido,semanas,3,5,3
+2025_ene_abr,CONTRALMIRANTEVILLAR|ZORRITOS,lluvia o caudal conocido,semanas,2,4,1
+2025_ene_abr,HUANCABAMBA|CANCHAQUE,lluvia o caudal conocido,semanas,7,3,1
+2025_ene_abr,HUANCABAMBA|ELCARMENDELAFRONTERA,lluvia o caudal conocido,semanas,13,2,1
+2025_ene_abr,HUANCABAMBA|HUANCABAMBA,lluvia o caudal conocido,semanas,13,13,9
+2025_ene_abr,HUANCABAMBA|HUARMACA,lluvia o caudal conocido,semanas,11,10,7
+2025_ene_abr,HUANCABAMBA|LALAQUIZ,lluvia o caudal conocido,semanas,12,4,4
+2025_ene_abr,HUANCABAMBA|SANMIGUELDEELFAIQUE,lluvia o caudal conocido,semanas,7,6,5
+2025_ene_abr,HUANCABAMBA|SONDOR,lluvia o caudal conocido,semanas,10,5,3
+2025_ene_abr,HUANCABAMBA|SONDORILLO,lluvia o caudal conocido,semanas,9,8,4
+2025_ene_abr,MORROPON|BUENOSAIRES,lluvia o caudal conocido,semanas,11,4,4
+2025_ene_abr,MORROPON|CHALACO,lluvia o caudal conocido,semanas,9,1,0
+2025_ene_abr,MORROPON|CHULUCANAS,lluvia o caudal conocido,semanas,11,8,8
+2025_ene_abr,MORROPON|LAMATANZA,lluvia o caudal conocido,semanas,11,2,2
+2025_ene_abr,MORROPON|MORROPON,lluvia o caudal conocido,semanas,11,4,4
+2025_ene_abr,MORROPON|SALITRAL,lluvia o caudal conocido,semanas,6,6,3
+2025_ene_abr,MORROPON|SANJUANDEBIGOTE,lluvia o caudal conocido,semanas,5,5,3
+2025_ene_abr,MORROPON|SANTACATALINADEMOSSA,lluvia o caudal conocido,semanas,8,7,6
+2025_ene_abr,MORROPON|SANTODOMINGO,lluvia o caudal conocido,semanas,8,2,2
+2025_ene_abr,MORROPON|YAMANGO,lluvia o caudal conocido,semanas,9,2,1
+2025_ene_abr,PAITA|AMOTAPE,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,PAITA|ARENAL,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,PAITA|COLAN,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,PAITA|LAHUACA,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,PAITA|PAITA,lluvia o caudal conocido,semanas,9,2,2
+2025_ene_abr,PAITA|TAMARINDO,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,PAITA|VICHAYAL,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,PIURA|CASTILLA,lluvia o caudal conocido,semanas,11,3,3
+2025_ene_abr,PIURA|CATACAOS,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,PIURA|CURAMORI,lluvia o caudal conocido,semanas,11,2,2
+2025_ene_abr,PIURA|ELTALLAN,lluvia o caudal conocido,semanas,11,1,1
+2025_ene_abr,PIURA|LAARENA,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,PIURA|LASLOMAS,lluvia o caudal conocido,semanas,4,7,4
+2025_ene_abr,PIURA|LAUNION,lluvia o caudal conocido,semanas,11,1,1
+2025_ene_abr,PIURA|PIURA,lluvia o caudal conocido,semanas,11,1,1
+2025_ene_abr,PIURA|TAMBOGRANDE,lluvia o caudal conocido,semanas,11,5,5
+2025_ene_abr,SECHURA|BELLAVISTADELAUNION,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,SECHURA|BERNAL,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,SECHURA|CRISTONOSVALGA,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,SECHURA|RINCONADALLICUAR,lluvia o caudal conocido,semanas,11,1,1
+2025_ene_abr,SECHURA|SECHURA,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,SECHURA|VICE,lluvia o caudal conocido,semanas,11,0,0
+2025_ene_abr,SULLANA|BELLAVISTA,lluvia o caudal conocido,semanas,9,4,3
+2025_ene_abr,SULLANA|IGNACIOESCUDERO,lluvia o caudal conocido,semanas,9,0,0
+2025_ene_abr,SULLANA|LANCONES,lluvia o caudal conocido,semanas,9,3,2
+2025_ene_abr,SULLANA|MARCAVELICA,lluvia o caudal conocido,semanas,9,2,2
+2025_ene_abr,SULLANA|MIGUELCHECA,lluvia o caudal conocido,semanas,9,2,2
+2025_ene_abr,SULLANA|QUERECOTILLO,lluvia o caudal conocido,semanas,9,1,1
+2025_ene_abr,SULLANA|SALITRAL,lluvia o caudal conocido,semanas,0,1,0
+2025_ene_abr,SULLANA|SULLANA,lluvia o caudal conocido,semanas,9,2,2
+2025_ene_abr,TALARA|ELALTO,lluvia o caudal conocido,semanas,0,5,0
+2025_ene_abr,TALARA|LABREA,lluvia o caudal conocido,semanas,0,0,0
+2025_ene_abr,TALARA|LOBITOS,lluvia o caudal conocido,semanas,1,1,0
+2025_ene_abr,TALARA|LOSORGANOS,lluvia o caudal conocido,semanas,2,0,0
+2025_ene_abr,TALARA|MANCORA,lluvia o caudal conocido,semanas,2,2,0
+2025_ene_abr,TALARA|PARINAS,lluvia o caudal conocido,semanas,1,0,0
+2025_ene_abr,TUMBES|CORRALES,lluvia o caudal conocido,semanas,10,3,3
+2025_ene_abr,TUMBES|LACRUZ,lluvia o caudal conocido,semanas,10,6,4
+2025_ene_abr,TUMBES|PAMPASDEHOSPITAL,lluvia o caudal conocido,semanas,12,3,3
+2025_ene_abr,TUMBES|SANJACINTO,lluvia o caudal conocido,semanas,10,3,3
+2025_ene_abr,TUMBES|SANJUANDELAVIRGEN,lluvia o caudal conocido,semanas,10,4,3
+2025_ene_abr,TUMBES|TUMBES,lluvia o caudal conocido,semanas,10,5,4
+2025_ene_abr,ZARUMILLA|AGUASVERDES,lluvia o caudal conocido,semanas,2,7,2
+2025_ene_abr,ZARUMILLA|MATAPALO,lluvia o caudal conocido,semanas,10,8,5
+2025_ene_abr,ZARUMILLA|PAPAYAL,lluvia o caudal conocido,semanas,2,6,2
+2025_ene_abr,ZARUMILLA|ZARUMILLA,lluvia o caudal conocido,semanas,2,3,2
+2025_ene_abr,AYABACA|AYABACA,lluvia o caudal real (cota alta),semanas,3,7,2
+2025_ene_abr,AYABACA|FRIAS,lluvia o caudal real (cota alta),semanas,7,6,4
+2025_ene_abr,AYABACA|JILILI,lluvia o caudal real (cota alta),semanas,4,2,0
+2025_ene_abr,AYABACA|LAGUNAS,lluvia o caudal real (cota alta),semanas,13,5,4
+2025_ene_abr,AYABACA|MONTERO,lluvia o caudal real (cota alta),semanas,4,7,2
+2025_ene_abr,AYABACA|PACAIPAMPA,lluvia o caudal real (cota alta),semanas,4,12,2
+2025_ene_abr,AYABACA|PAIMAS,lluvia o caudal real (cota alta),semanas,2,6,2
+2025_ene_abr,AYABACA|SAPILLICA,lluvia o caudal real (cota alta),semanas,7,4,4
+2025_ene_abr,AYABACA|SICCHEZ,lluvia o caudal real (cota alta),semanas,5,4,2
+2025_ene_abr,AYABACA|SUYO,lluvia o caudal real (cota alta),semanas,4,4,1
+2025_ene_abr,CONTRALMIRANTEVILLAR|CASITAS,lluvia o caudal real (cota alta),semanas,3,5,3
+2025_ene_abr,CONTRALMIRANTEVILLAR|ZORRITOS,lluvia o caudal real (cota alta),semanas,2,4,1
+2025_ene_abr,HUANCABAMBA|CANCHAQUE,lluvia o caudal real (cota alta),semanas,7,3,1
+2025_ene_abr,HUANCABAMBA|ELCARMENDELAFRONTERA,lluvia o caudal real (cota alta),semanas,13,2,1
+2025_ene_abr,HUANCABAMBA|HUANCABAMBA,lluvia o caudal real (cota alta),semanas,13,13,9
+2025_ene_abr,HUANCABAMBA|HUARMACA,lluvia o caudal real (cota alta),semanas,11,10,7
+2025_ene_abr,HUANCABAMBA|LALAQUIZ,lluvia o caudal real (cota alta),semanas,12,4,4
+2025_ene_abr,HUANCABAMBA|SANMIGUELDEELFAIQUE,lluvia o caudal real (cota alta),semanas,7,6,5
+2025_ene_abr,HUANCABAMBA|SONDOR,lluvia o caudal real (cota alta),semanas,10,5,3
+2025_ene_abr,HUANCABAMBA|SONDORILLO,lluvia o caudal real (cota alta),semanas,9,8,4
+2025_ene_abr,MORROPON|BUENOSAIRES,lluvia o caudal real (cota alta),semanas,10,4,4
+2025_ene_abr,MORROPON|CHALACO,lluvia o caudal real (cota alta),semanas,9,1,0
+2025_ene_abr,MORROPON|CHULUCANAS,lluvia o caudal real (cota alta),semanas,10,8,7
+2025_ene_abr,MORROPON|LAMATANZA,lluvia o caudal real (cota alta),semanas,10,2,2
+2025_ene_abr,MORROPON|MORROPON,lluvia o caudal real (cota alta),semanas,10,4,4
+2025_ene_abr,MORROPON|SALITRAL,lluvia o caudal real (cota alta),semanas,6,6,3
+2025_ene_abr,MORROPON|SANJUANDEBIGOTE,lluvia o caudal real (cota alta),semanas,5,5,3
+2025_ene_abr,MORROPON|SANTACATALINADEMOSSA,lluvia o caudal real (cota alta),semanas,8,7,6
+2025_ene_abr,MORROPON|SANTODOMINGO,lluvia o caudal real (cota alta),semanas,8,2,2
+2025_ene_abr,MORROPON|YAMANGO,lluvia o caudal real (cota alta),semanas,9,2,1
+2025_ene_abr,PAITA|AMOTAPE,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,PAITA|ARENAL,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,PAITA|COLAN,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,PAITA|LAHUACA,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,PAITA|PAITA,lluvia o caudal real (cota alta),semanas,8,2,2
+2025_ene_abr,PAITA|TAMARINDO,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,PAITA|VICHAYAL,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,PIURA|CASTILLA,lluvia o caudal real (cota alta),semanas,10,3,3
+2025_ene_abr,PIURA|CATACAOS,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,PIURA|CURAMORI,lluvia o caudal real (cota alta),semanas,10,2,2
+2025_ene_abr,PIURA|ELTALLAN,lluvia o caudal real (cota alta),semanas,10,1,1
+2025_ene_abr,PIURA|LAARENA,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,PIURA|LASLOMAS,lluvia o caudal real (cota alta),semanas,4,7,4
+2025_ene_abr,PIURA|LAUNION,lluvia o caudal real (cota alta),semanas,10,1,1
+2025_ene_abr,PIURA|PIURA,lluvia o caudal real (cota alta),semanas,10,1,1
+2025_ene_abr,PIURA|TAMBOGRANDE,lluvia o caudal real (cota alta),semanas,10,5,5
+2025_ene_abr,SECHURA|BELLAVISTADELAUNION,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,SECHURA|BERNAL,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,SECHURA|CRISTONOSVALGA,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,SECHURA|RINCONADALLICUAR,lluvia o caudal real (cota alta),semanas,10,1,1
+2025_ene_abr,SECHURA|SECHURA,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,SECHURA|VICE,lluvia o caudal real (cota alta),semanas,10,0,0
+2025_ene_abr,SULLANA|BELLAVISTA,lluvia o caudal real (cota alta),semanas,8,4,3
+2025_ene_abr,SULLANA|IGNACIOESCUDERO,lluvia o caudal real (cota alta),semanas,8,0,0
+2025_ene_abr,SULLANA|LANCONES,lluvia o caudal real (cota alta),semanas,8,3,2
+2025_ene_abr,SULLANA|MARCAVELICA,lluvia o caudal real (cota alta),semanas,8,2,2
+2025_ene_abr,SULLANA|MIGUELCHECA,lluvia o caudal real (cota alta),semanas,8,2,2
+2025_ene_abr,SULLANA|QUERECOTILLO,lluvia o caudal real (cota alta),semanas,8,1,1
+2025_ene_abr,SULLANA|SALITRAL,lluvia o caudal real (cota alta),semanas,0,1,0
+2025_ene_abr,SULLANA|SULLANA,lluvia o caudal real (cota alta),semanas,8,2,2
+2025_ene_abr,TALARA|ELALTO,lluvia o caudal real (cota alta),semanas,0,5,0
+2025_ene_abr,TALARA|LABREA,lluvia o caudal real (cota alta),semanas,0,0,0
+2025_ene_abr,TALARA|LOBITOS,lluvia o caudal real (cota alta),semanas,1,1,0
+2025_ene_abr,TALARA|LOSORGANOS,lluvia o caudal real (cota alta),semanas,2,0,0
+2025_ene_abr,TALARA|MANCORA,lluvia o caudal real (cota alta),semanas,2,2,0
+2025_ene_abr,TALARA|PARINAS,lluvia o caudal real (cota alta),semanas,1,0,0
+2025_ene_abr,TUMBES|CORRALES,lluvia o caudal real (cota alta),semanas,10,3,3
+2025_ene_abr,TUMBES|LACRUZ,lluvia o caudal real (cota alta),semanas,10,6,4
+2025_ene_abr,TUMBES|PAMPASDEHOSPITAL,lluvia o caudal real (cota alta),semanas,11,3,3
+2025_ene_abr,TUMBES|SANJACINTO,lluvia o caudal real (cota alta),semanas,10,3,3
+2025_ene_abr,TUMBES|SANJUANDELAVIRGEN,lluvia o caudal real (cota alta),semanas,10,4,4
+2025_ene_abr,TUMBES|TUMBES,lluvia o caudal real (cota alta),semanas,10,5,4
+2025_ene_abr,ZARUMILLA|AGUASVERDES,lluvia o caudal real (cota alta),semanas,2,7,2
+2025_ene_abr,ZARUMILLA|MATAPALO,lluvia o caudal real (cota alta),semanas,10,8,5
+2025_ene_abr,ZARUMILLA|PAPAYAL,lluvia o caudal real (cota alta),semanas,2,6,2
+2025_ene_abr,ZARUMILLA|ZARUMILLA,lluvia o caudal real (cota alta),semanas,2,3,2
+2025_ene_abr,AYABACA|AYABACA,lluvia o caudal conocido sobre p99,semanas,3,7,2
+2025_ene_abr,AYABACA|FRIAS,lluvia o caudal conocido sobre p99,semanas,7,6,4
+2025_ene_abr,AYABACA|JILILI,lluvia o caudal conocido sobre p99,semanas,4,2,0
+2025_ene_abr,AYABACA|LAGUNAS,lluvia o caudal conocido sobre p99,semanas,13,5,4
+2025_ene_abr,AYABACA|MONTERO,lluvia o caudal conocido sobre p99,semanas,4,7,2
+2025_ene_abr,AYABACA|PACAIPAMPA,lluvia o caudal conocido sobre p99,semanas,4,12,2
+2025_ene_abr,AYABACA|PAIMAS,lluvia o caudal conocido sobre p99,semanas,2,6,2
+2025_ene_abr,AYABACA|SAPILLICA,lluvia o caudal conocido sobre p99,semanas,7,4,4
+2025_ene_abr,AYABACA|SICCHEZ,lluvia o caudal conocido sobre p99,semanas,5,4,2
+2025_ene_abr,AYABACA|SUYO,lluvia o caudal conocido sobre p99,semanas,4,4,1
+2025_ene_abr,CONTRALMIRANTEVILLAR|CASITAS,lluvia o caudal conocido sobre p99,semanas,3,5,3
+2025_ene_abr,CONTRALMIRANTEVILLAR|ZORRITOS,lluvia o caudal conocido sobre p99,semanas,2,4,1
+2025_ene_abr,HUANCABAMBA|CANCHAQUE,lluvia o caudal conocido sobre p99,semanas,7,3,1
+2025_ene_abr,HUANCABAMBA|ELCARMENDELAFRONTERA,lluvia o caudal conocido sobre p99,semanas,13,2,1
+2025_ene_abr,HUANCABAMBA|HUANCABAMBA,lluvia o caudal conocido sobre p99,semanas,13,13,9
+2025_ene_abr,HUANCABAMBA|HUARMACA,lluvia o caudal conocido sobre p99,semanas,11,10,7
+2025_ene_abr,HUANCABAMBA|LALAQUIZ,lluvia o caudal conocido sobre p99,semanas,12,4,4
+2025_ene_abr,HUANCABAMBA|SANMIGUELDEELFAIQUE,lluvia o caudal conocido sobre p99,semanas,7,6,5
+2025_ene_abr,HUANCABAMBA|SONDOR,lluvia o caudal conocido sobre p99,semanas,10,5,3
+2025_ene_abr,HUANCABAMBA|SONDORILLO,lluvia o caudal conocido sobre p99,semanas,9,8,4
+2025_ene_abr,MORROPON|BUENOSAIRES,lluvia o caudal conocido sobre p99,semanas,4,4,0
+2025_ene_abr,MORROPON|CHALACO,lluvia o caudal conocido sobre p99,semanas,9,1,0
+2025_ene_abr,MORROPON|CHULUCANAS,lluvia o caudal conocido sobre p99,semanas,2,8,1
+2025_ene_abr,MORROPON|LAMATANZA,lluvia o caudal conocido sobre p99,semanas,4,2,1
+2025_ene_abr,MORROPON|MORROPON,lluvia o caudal conocido sobre p99,semanas,2,4,1
+2025_ene_abr,MORROPON|SALITRAL,lluvia o caudal conocido sobre p99,semanas,6,6,3
+2025_ene_abr,MORROPON|SANJUANDEBIGOTE,lluvia o caudal conocido sobre p99,semanas,5,5,3
+2025_ene_abr,MORROPON|SANTACATALINADEMOSSA,lluvia o caudal conocido sobre p99,semanas,8,7,6
+2025_ene_abr,MORROPON|SANTODOMINGO,lluvia o caudal conocido sobre p99,semanas,8,2,2
+2025_ene_abr,MORROPON|YAMANGO,lluvia o caudal conocido sobre p99,semanas,9,2,1
+2025_ene_abr,PAITA|AMOTAPE,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,PAITA|ARENAL,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,PAITA|COLAN,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,PAITA|LAHUACA,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,PAITA|PAITA,lluvia o caudal conocido sobre p99,semanas,3,2,0
+2025_ene_abr,PAITA|TAMARINDO,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,PAITA|VICHAYAL,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,PIURA|CASTILLA,lluvia o caudal conocido sobre p99,semanas,3,3,1
+2025_ene_abr,PIURA|CATACAOS,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,PIURA|CURAMORI,lluvia o caudal conocido sobre p99,semanas,2,2,0
+2025_ene_abr,PIURA|ELTALLAN,lluvia o caudal conocido sobre p99,semanas,2,1,0
+2025_ene_abr,PIURA|LAARENA,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,PIURA|LASLOMAS,lluvia o caudal conocido sobre p99,semanas,4,7,4
+2025_ene_abr,PIURA|LAUNION,lluvia o caudal conocido sobre p99,semanas,2,1,0
+2025_ene_abr,PIURA|PIURA,lluvia o caudal conocido sobre p99,semanas,2,1,0
+2025_ene_abr,PIURA|TAMBOGRANDE,lluvia o caudal conocido sobre p99,semanas,3,5,0
+2025_ene_abr,SECHURA|BELLAVISTADELAUNION,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,SECHURA|BERNAL,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,SECHURA|CRISTONOSVALGA,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,SECHURA|RINCONADALLICUAR,lluvia o caudal conocido sobre p99,semanas,2,1,0
+2025_ene_abr,SECHURA|SECHURA,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,SECHURA|VICE,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,SULLANA|BELLAVISTA,lluvia o caudal conocido sobre p99,semanas,3,4,1
+2025_ene_abr,SULLANA|IGNACIOESCUDERO,lluvia o caudal conocido sobre p99,semanas,3,0,0
+2025_ene_abr,SULLANA|LANCONES,lluvia o caudal conocido sobre p99,semanas,6,3,2
+2025_ene_abr,SULLANA|MARCAVELICA,lluvia o caudal conocido sobre p99,semanas,3,2,0
+2025_ene_abr,SULLANA|MIGUELCHECA,lluvia o caudal conocido sobre p99,semanas,3,2,0
+2025_ene_abr,SULLANA|QUERECOTILLO,lluvia o caudal conocido sobre p99,semanas,3,1,0
+2025_ene_abr,SULLANA|SALITRAL,lluvia o caudal conocido sobre p99,semanas,0,1,0
+2025_ene_abr,SULLANA|SULLANA,lluvia o caudal conocido sobre p99,semanas,3,2,0
+2025_ene_abr,TALARA|ELALTO,lluvia o caudal conocido sobre p99,semanas,0,5,0
+2025_ene_abr,TALARA|LABREA,lluvia o caudal conocido sobre p99,semanas,0,0,0
+2025_ene_abr,TALARA|LOBITOS,lluvia o caudal conocido sobre p99,semanas,1,1,0
+2025_ene_abr,TALARA|LOSORGANOS,lluvia o caudal conocido sobre p99,semanas,2,0,0
+2025_ene_abr,TALARA|MANCORA,lluvia o caudal conocido sobre p99,semanas,2,2,0
+2025_ene_abr,TALARA|PARINAS,lluvia o caudal conocido sobre p99,semanas,1,0,0
+2025_ene_abr,TUMBES|CORRALES,lluvia o caudal conocido sobre p99,semanas,4,3,1
+2025_ene_abr,TUMBES|LACRUZ,lluvia o caudal conocido sobre p99,semanas,4,6,2
+2025_ene_abr,TUMBES|PAMPASDEHOSPITAL,lluvia o caudal conocido sobre p99,semanas,8,3,3
+2025_ene_abr,TUMBES|SANJACINTO,lluvia o caudal conocido sobre p99,semanas,4,3,1
+2025_ene_abr,TUMBES|SANJUANDELAVIRGEN,lluvia o caudal conocido sobre p99,semanas,6,4,2
+2025_ene_abr,TUMBES|TUMBES,lluvia o caudal conocido sobre p99,semanas,4,5,3
+2025_ene_abr,ZARUMILLA|AGUASVERDES,lluvia o caudal conocido sobre p99,semanas,2,7,2
+2025_ene_abr,ZARUMILLA|MATAPALO,lluvia o caudal conocido sobre p99,semanas,10,8,5
+2025_ene_abr,ZARUMILLA|PAPAYAL,lluvia o caudal conocido sobre p99,semanas,2,6,2
+2025_ene_abr,ZARUMILLA|ZARUMILLA,lluvia o caudal conocido sobre p99,semanas,2,3,2
+2026_oct_nov,AYABACA|AYABACA,"lluvia (1, 2 o 3 días antes)",días,10,0,0
+2026_oct_nov,AYABACA|FRIAS,"lluvia (1, 2 o 3 días antes)",días,14,0,0
+2026_oct_nov,AYABACA|JILILI,"lluvia (1, 2 o 3 días antes)",días,3,0,0
+2026_oct_nov,AYABACA|LAGUNAS,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,AYABACA|MONTERO,"lluvia (1, 2 o 3 días antes)",días,4,0,0
+2026_oct_nov,AYABACA|PACAIPAMPA,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,AYABACA|PAIMAS,"lluvia (1, 2 o 3 días antes)",días,4,0,0
+2026_oct_nov,AYABACA|SAPILLICA,"lluvia (1, 2 o 3 días antes)",días,15,0,0
+2026_oct_nov,AYABACA|SICCHEZ,"lluvia (1, 2 o 3 días antes)",días,6,0,0
+2026_oct_nov,AYABACA|SUYO,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|CASITAS,"lluvia (1, 2 o 3 días antes)",días,12,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|ZORRITOS,"lluvia (1, 2 o 3 días antes)",días,6,0,0
+2026_oct_nov,HUANCABAMBA|CANCHAQUE,"lluvia (1, 2 o 3 días antes)",días,10,1,1
+2026_oct_nov,HUANCABAMBA|ELCARMENDELAFRONTERA,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,HUANCABAMBA|HUANCABAMBA,"lluvia (1, 2 o 3 días antes)",días,8,0,0
+2026_oct_nov,HUANCABAMBA|HUARMACA,"lluvia (1, 2 o 3 días antes)",días,9,0,0
+2026_oct_nov,HUANCABAMBA|LALAQUIZ,"lluvia (1, 2 o 3 días antes)",días,10,0,0
+2026_oct_nov,HUANCABAMBA|SANMIGUELDEELFAIQUE,"lluvia (1, 2 o 3 días antes)",días,9,0,0
+2026_oct_nov,HUANCABAMBA|SONDOR,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,HUANCABAMBA|SONDORILLO,"lluvia (1, 2 o 3 días antes)",días,6,0,0
+2026_oct_nov,MORROPON|BUENOSAIRES,"lluvia (1, 2 o 3 días antes)",días,5,0,0
+2026_oct_nov,MORROPON|CHALACO,"lluvia (1, 2 o 3 días antes)",días,8,0,0
+2026_oct_nov,MORROPON|CHULUCANAS,"lluvia (1, 2 o 3 días antes)",días,5,1,2
+2026_oct_nov,MORROPON|LAMATANZA,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,MORROPON|MORROPON,"lluvia (1, 2 o 3 días antes)",días,5,0,0
+2026_oct_nov,MORROPON|SALITRAL,"lluvia (1, 2 o 3 días antes)",días,6,0,0
+2026_oct_nov,MORROPON|SANJUANDEBIGOTE,"lluvia (1, 2 o 3 días antes)",días,3,0,0
+2026_oct_nov,MORROPON|SANTACATALINADEMOSSA,"lluvia (1, 2 o 3 días antes)",días,9,0,0
+2026_oct_nov,MORROPON|SANTODOMINGO,"lluvia (1, 2 o 3 días antes)",días,12,0,0
+2026_oct_nov,MORROPON|YAMANGO,"lluvia (1, 2 o 3 días antes)",días,9,0,0
+2026_oct_nov,PAITA|AMOTAPE,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,PAITA|ARENAL,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,PAITA|COLAN,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,PAITA|LAHUACA,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,PAITA|PAITA,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,PAITA|TAMARINDO,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,PAITA|VICHAYAL,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,PIURA|CASTILLA,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,PIURA|CATACAOS,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,PIURA|CURAMORI,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,PIURA|ELTALLAN,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,PIURA|LAARENA,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,PIURA|LASLOMAS,"lluvia (1, 2 o 3 días antes)",días,5,0,0
+2026_oct_nov,PIURA|LAUNION,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,PIURA|PIURA,"lluvia (1, 2 o 3 días antes)",días,2,1,1
+2026_oct_nov,PIURA|TAMBOGRANDE,"lluvia (1, 2 o 3 días antes)",días,4,0,0
+2026_oct_nov,SECHURA|BELLAVISTADELAUNION,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SECHURA|BERNAL,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SECHURA|CRISTONOSVALGA,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SECHURA|RINCONADALLICUAR,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SECHURA|SECHURA,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SECHURA|VICE,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SULLANA|BELLAVISTA,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,SULLANA|IGNACIOESCUDERO,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SULLANA|LANCONES,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,SULLANA|MARCAVELICA,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,SULLANA|MIGUELCHECA,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,SULLANA|QUERECOTILLO,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,SULLANA|SALITRAL,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,SULLANA|SULLANA,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,TALARA|ELALTO,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,TALARA|LABREA,"lluvia (1, 2 o 3 días antes)",días,1,0,0
+2026_oct_nov,TALARA|LOBITOS,"lluvia (1, 2 o 3 días antes)",días,0,0,0
+2026_oct_nov,TALARA|LOSORGANOS,"lluvia (1, 2 o 3 días antes)",días,4,0,0
+2026_oct_nov,TALARA|MANCORA,"lluvia (1, 2 o 3 días antes)",días,4,1,2
+2026_oct_nov,TALARA|PARINAS,"lluvia (1, 2 o 3 días antes)",días,2,0,0
+2026_oct_nov,TUMBES|CORRALES,"lluvia (1, 2 o 3 días antes)",días,6,0,0
+2026_oct_nov,TUMBES|LACRUZ,"lluvia (1, 2 o 3 días antes)",días,4,0,0
+2026_oct_nov,TUMBES|PAMPASDEHOSPITAL,"lluvia (1, 2 o 3 días antes)",días,14,0,0
+2026_oct_nov,TUMBES|SANJACINTO,"lluvia (1, 2 o 3 días antes)",días,9,1,2
+2026_oct_nov,TUMBES|SANJUANDELAVIRGEN,"lluvia (1, 2 o 3 días antes)",días,11,0,0
+2026_oct_nov,TUMBES|TUMBES,"lluvia (1, 2 o 3 días antes)",días,6,1,2
+2026_oct_nov,ZARUMILLA|AGUASVERDES,"lluvia (1, 2 o 3 días antes)",días,6,1,2
+2026_oct_nov,ZARUMILLA|MATAPALO,"lluvia (1, 2 o 3 días antes)",días,14,0,0
+2026_oct_nov,ZARUMILLA|PAPAYAL,"lluvia (1, 2 o 3 días antes)",días,7,0,0
+2026_oct_nov,ZARUMILLA|ZARUMILLA,"lluvia (1, 2 o 3 días antes)",días,5,0,0
+2026_oct_nov,AYABACA|AYABACA,lluvia o caudal conocido,días,10,0,0
+2026_oct_nov,AYABACA|FRIAS,lluvia o caudal conocido,días,14,0,0
+2026_oct_nov,AYABACA|JILILI,lluvia o caudal conocido,días,3,0,0
+2026_oct_nov,AYABACA|LAGUNAS,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,AYABACA|MONTERO,lluvia o caudal conocido,días,4,0,0
+2026_oct_nov,AYABACA|PACAIPAMPA,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,AYABACA|PAIMAS,lluvia o caudal conocido,días,4,0,0
+2026_oct_nov,AYABACA|SAPILLICA,lluvia o caudal conocido,días,15,0,0
+2026_oct_nov,AYABACA|SICCHEZ,lluvia o caudal conocido,días,6,0,0
+2026_oct_nov,AYABACA|SUYO,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|CASITAS,lluvia o caudal conocido,días,12,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|ZORRITOS,lluvia o caudal conocido,días,6,0,0
+2026_oct_nov,HUANCABAMBA|CANCHAQUE,lluvia o caudal conocido,días,10,1,1
+2026_oct_nov,HUANCABAMBA|ELCARMENDELAFRONTERA,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,HUANCABAMBA|HUANCABAMBA,lluvia o caudal conocido,días,8,0,0
+2026_oct_nov,HUANCABAMBA|HUARMACA,lluvia o caudal conocido,días,9,0,0
+2026_oct_nov,HUANCABAMBA|LALAQUIZ,lluvia o caudal conocido,días,10,0,0
+2026_oct_nov,HUANCABAMBA|SANMIGUELDEELFAIQUE,lluvia o caudal conocido,días,9,0,0
+2026_oct_nov,HUANCABAMBA|SONDOR,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,HUANCABAMBA|SONDORILLO,lluvia o caudal conocido,días,6,0,0
+2026_oct_nov,MORROPON|BUENOSAIRES,lluvia o caudal conocido,días,5,0,0
+2026_oct_nov,MORROPON|CHALACO,lluvia o caudal conocido,días,8,0,0
+2026_oct_nov,MORROPON|CHULUCANAS,lluvia o caudal conocido,días,5,1,2
+2026_oct_nov,MORROPON|LAMATANZA,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,MORROPON|MORROPON,lluvia o caudal conocido,días,5,0,0
+2026_oct_nov,MORROPON|SALITRAL,lluvia o caudal conocido,días,6,0,0
+2026_oct_nov,MORROPON|SANJUANDEBIGOTE,lluvia o caudal conocido,días,3,0,0
+2026_oct_nov,MORROPON|SANTACATALINADEMOSSA,lluvia o caudal conocido,días,9,0,0
+2026_oct_nov,MORROPON|SANTODOMINGO,lluvia o caudal conocido,días,12,0,0
+2026_oct_nov,MORROPON|YAMANGO,lluvia o caudal conocido,días,9,0,0
+2026_oct_nov,PAITA|AMOTAPE,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,PAITA|ARENAL,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,PAITA|COLAN,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,PAITA|LAHUACA,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,PAITA|PAITA,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,PAITA|TAMARINDO,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,PAITA|VICHAYAL,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,PIURA|CASTILLA,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,PIURA|CATACAOS,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,PIURA|CURAMORI,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,PIURA|ELTALLAN,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,PIURA|LAARENA,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,PIURA|LASLOMAS,lluvia o caudal conocido,días,5,0,0
+2026_oct_nov,PIURA|LAUNION,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,PIURA|PIURA,lluvia o caudal conocido,días,2,1,1
+2026_oct_nov,PIURA|TAMBOGRANDE,lluvia o caudal conocido,días,4,0,0
+2026_oct_nov,SECHURA|BELLAVISTADELAUNION,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SECHURA|BERNAL,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SECHURA|CRISTONOSVALGA,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SECHURA|RINCONADALLICUAR,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SECHURA|SECHURA,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SECHURA|VICE,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SULLANA|BELLAVISTA,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,SULLANA|IGNACIOESCUDERO,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SULLANA|LANCONES,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,SULLANA|MARCAVELICA,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,SULLANA|MIGUELCHECA,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,SULLANA|QUERECOTILLO,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,SULLANA|SALITRAL,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,SULLANA|SULLANA,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,TALARA|ELALTO,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,TALARA|LABREA,lluvia o caudal conocido,días,1,0,0
+2026_oct_nov,TALARA|LOBITOS,lluvia o caudal conocido,días,0,0,0
+2026_oct_nov,TALARA|LOSORGANOS,lluvia o caudal conocido,días,4,0,0
+2026_oct_nov,TALARA|MANCORA,lluvia o caudal conocido,días,4,1,2
+2026_oct_nov,TALARA|PARINAS,lluvia o caudal conocido,días,2,0,0
+2026_oct_nov,TUMBES|CORRALES,lluvia o caudal conocido,días,10,0,0
+2026_oct_nov,TUMBES|LACRUZ,lluvia o caudal conocido,días,9,0,0
+2026_oct_nov,TUMBES|PAMPASDEHOSPITAL,lluvia o caudal conocido,días,15,0,0
+2026_oct_nov,TUMBES|SANJACINTO,lluvia o caudal conocido,días,12,1,2
+2026_oct_nov,TUMBES|SANJUANDELAVIRGEN,lluvia o caudal conocido,días,11,0,0
+2026_oct_nov,TUMBES|TUMBES,lluvia o caudal conocido,días,10,1,2
+2026_oct_nov,ZARUMILLA|AGUASVERDES,lluvia o caudal conocido,días,6,1,2
+2026_oct_nov,ZARUMILLA|MATAPALO,lluvia o caudal conocido,días,14,0,0
+2026_oct_nov,ZARUMILLA|PAPAYAL,lluvia o caudal conocido,días,7,0,0
+2026_oct_nov,ZARUMILLA|ZARUMILLA,lluvia o caudal conocido,días,5,0,0
+2026_oct_nov,AYABACA|AYABACA,lluvia o caudal real (cota alta),días,10,0,0
+2026_oct_nov,AYABACA|FRIAS,lluvia o caudal real (cota alta),días,14,0,0
+2026_oct_nov,AYABACA|JILILI,lluvia o caudal real (cota alta),días,3,0,0
+2026_oct_nov,AYABACA|LAGUNAS,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,AYABACA|MONTERO,lluvia o caudal real (cota alta),días,4,0,0
+2026_oct_nov,AYABACA|PACAIPAMPA,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,AYABACA|PAIMAS,lluvia o caudal real (cota alta),días,4,0,0
+2026_oct_nov,AYABACA|SAPILLICA,lluvia o caudal real (cota alta),días,15,0,0
+2026_oct_nov,AYABACA|SICCHEZ,lluvia o caudal real (cota alta),días,6,0,0
+2026_oct_nov,AYABACA|SUYO,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|CASITAS,lluvia o caudal real (cota alta),días,12,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|ZORRITOS,lluvia o caudal real (cota alta),días,6,0,0
+2026_oct_nov,HUANCABAMBA|CANCHAQUE,lluvia o caudal real (cota alta),días,10,1,1
+2026_oct_nov,HUANCABAMBA|ELCARMENDELAFRONTERA,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,HUANCABAMBA|HUANCABAMBA,lluvia o caudal real (cota alta),días,8,0,0
+2026_oct_nov,HUANCABAMBA|HUARMACA,lluvia o caudal real (cota alta),días,9,0,0
+2026_oct_nov,HUANCABAMBA|LALAQUIZ,lluvia o caudal real (cota alta),días,10,0,0
+2026_oct_nov,HUANCABAMBA|SANMIGUELDEELFAIQUE,lluvia o caudal real (cota alta),días,9,0,0
+2026_oct_nov,HUANCABAMBA|SONDOR,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,HUANCABAMBA|SONDORILLO,lluvia o caudal real (cota alta),días,6,0,0
+2026_oct_nov,MORROPON|BUENOSAIRES,lluvia o caudal real (cota alta),días,5,0,0
+2026_oct_nov,MORROPON|CHALACO,lluvia o caudal real (cota alta),días,8,0,0
+2026_oct_nov,MORROPON|CHULUCANAS,lluvia o caudal real (cota alta),días,5,1,2
+2026_oct_nov,MORROPON|LAMATANZA,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,MORROPON|MORROPON,lluvia o caudal real (cota alta),días,5,0,0
+2026_oct_nov,MORROPON|SALITRAL,lluvia o caudal real (cota alta),días,6,0,0
+2026_oct_nov,MORROPON|SANJUANDEBIGOTE,lluvia o caudal real (cota alta),días,3,0,0
+2026_oct_nov,MORROPON|SANTACATALINADEMOSSA,lluvia o caudal real (cota alta),días,9,0,0
+2026_oct_nov,MORROPON|SANTODOMINGO,lluvia o caudal real (cota alta),días,12,0,0
+2026_oct_nov,MORROPON|YAMANGO,lluvia o caudal real (cota alta),días,9,0,0
+2026_oct_nov,PAITA|AMOTAPE,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,PAITA|ARENAL,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,PAITA|COLAN,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,PAITA|LAHUACA,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,PAITA|PAITA,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,PAITA|TAMARINDO,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,PAITA|VICHAYAL,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,PIURA|CASTILLA,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,PIURA|CATACAOS,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,PIURA|CURAMORI,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,PIURA|ELTALLAN,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,PIURA|LAARENA,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,PIURA|LASLOMAS,lluvia o caudal real (cota alta),días,5,0,0
+2026_oct_nov,PIURA|LAUNION,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,PIURA|PIURA,lluvia o caudal real (cota alta),días,2,1,1
+2026_oct_nov,PIURA|TAMBOGRANDE,lluvia o caudal real (cota alta),días,4,0,0
+2026_oct_nov,SECHURA|BELLAVISTADELAUNION,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SECHURA|BERNAL,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SECHURA|CRISTONOSVALGA,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SECHURA|RINCONADALLICUAR,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SECHURA|SECHURA,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SECHURA|VICE,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SULLANA|BELLAVISTA,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,SULLANA|IGNACIOESCUDERO,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SULLANA|LANCONES,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,SULLANA|MARCAVELICA,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,SULLANA|MIGUELCHECA,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,SULLANA|QUERECOTILLO,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,SULLANA|SALITRAL,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,SULLANA|SULLANA,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,TALARA|ELALTO,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,TALARA|LABREA,lluvia o caudal real (cota alta),días,1,0,0
+2026_oct_nov,TALARA|LOBITOS,lluvia o caudal real (cota alta),días,0,0,0
+2026_oct_nov,TALARA|LOSORGANOS,lluvia o caudal real (cota alta),días,4,0,0
+2026_oct_nov,TALARA|MANCORA,lluvia o caudal real (cota alta),días,4,1,2
+2026_oct_nov,TALARA|PARINAS,lluvia o caudal real (cota alta),días,2,0,0
+2026_oct_nov,TUMBES|CORRALES,lluvia o caudal real (cota alta),días,10,0,0
+2026_oct_nov,TUMBES|LACRUZ,lluvia o caudal real (cota alta),días,9,0,0
+2026_oct_nov,TUMBES|PAMPASDEHOSPITAL,lluvia o caudal real (cota alta),días,15,0,0
+2026_oct_nov,TUMBES|SANJACINTO,lluvia o caudal real (cota alta),días,12,1,2
+2026_oct_nov,TUMBES|SANJUANDELAVIRGEN,lluvia o caudal real (cota alta),días,11,0,0
+2026_oct_nov,TUMBES|TUMBES,lluvia o caudal real (cota alta),días,10,1,2
+2026_oct_nov,ZARUMILLA|AGUASVERDES,lluvia o caudal real (cota alta),días,6,1,2
+2026_oct_nov,ZARUMILLA|MATAPALO,lluvia o caudal real (cota alta),días,14,0,0
+2026_oct_nov,ZARUMILLA|PAPAYAL,lluvia o caudal real (cota alta),días,7,0,0
+2026_oct_nov,ZARUMILLA|ZARUMILLA,lluvia o caudal real (cota alta),días,5,0,0
+2026_oct_nov,AYABACA|AYABACA,lluvia o caudal conocido sobre p99,días,10,0,0
+2026_oct_nov,AYABACA|FRIAS,lluvia o caudal conocido sobre p99,días,14,0,0
+2026_oct_nov,AYABACA|JILILI,lluvia o caudal conocido sobre p99,días,3,0,0
+2026_oct_nov,AYABACA|LAGUNAS,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,AYABACA|MONTERO,lluvia o caudal conocido sobre p99,días,4,0,0
+2026_oct_nov,AYABACA|PACAIPAMPA,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,AYABACA|PAIMAS,lluvia o caudal conocido sobre p99,días,4,0,0
+2026_oct_nov,AYABACA|SAPILLICA,lluvia o caudal conocido sobre p99,días,15,0,0
+2026_oct_nov,AYABACA|SICCHEZ,lluvia o caudal conocido sobre p99,días,6,0,0
+2026_oct_nov,AYABACA|SUYO,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|CASITAS,lluvia o caudal conocido sobre p99,días,12,0,0
+2026_oct_nov,CONTRALMIRANTEVILLAR|ZORRITOS,lluvia o caudal conocido sobre p99,días,6,0,0
+2026_oct_nov,HUANCABAMBA|CANCHAQUE,lluvia o caudal conocido sobre p99,días,10,1,1
+2026_oct_nov,HUANCABAMBA|ELCARMENDELAFRONTERA,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,HUANCABAMBA|HUANCABAMBA,lluvia o caudal conocido sobre p99,días,8,0,0
+2026_oct_nov,HUANCABAMBA|HUARMACA,lluvia o caudal conocido sobre p99,días,9,0,0
+2026_oct_nov,HUANCABAMBA|LALAQUIZ,lluvia o caudal conocido sobre p99,días,10,0,0
+2026_oct_nov,HUANCABAMBA|SANMIGUELDEELFAIQUE,lluvia o caudal conocido sobre p99,días,9,0,0
+2026_oct_nov,HUANCABAMBA|SONDOR,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,HUANCABAMBA|SONDORILLO,lluvia o caudal conocido sobre p99,días,6,0,0
+2026_oct_nov,MORROPON|BUENOSAIRES,lluvia o caudal conocido sobre p99,días,5,0,0
+2026_oct_nov,MORROPON|CHALACO,lluvia o caudal conocido sobre p99,días,8,0,0
+2026_oct_nov,MORROPON|CHULUCANAS,lluvia o caudal conocido sobre p99,días,5,1,2
+2026_oct_nov,MORROPON|LAMATANZA,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,MORROPON|MORROPON,lluvia o caudal conocido sobre p99,días,5,0,0
+2026_oct_nov,MORROPON|SALITRAL,lluvia o caudal conocido sobre p99,días,6,0,0
+2026_oct_nov,MORROPON|SANJUANDEBIGOTE,lluvia o caudal conocido sobre p99,días,3,0,0
+2026_oct_nov,MORROPON|SANTACATALINADEMOSSA,lluvia o caudal conocido sobre p99,días,9,0,0
+2026_oct_nov,MORROPON|SANTODOMINGO,lluvia o caudal conocido sobre p99,días,12,0,0
+2026_oct_nov,MORROPON|YAMANGO,lluvia o caudal conocido sobre p99,días,9,0,0
+2026_oct_nov,PAITA|AMOTAPE,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,PAITA|ARENAL,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,PAITA|COLAN,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,PAITA|LAHUACA,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,PAITA|PAITA,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,PAITA|TAMARINDO,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,PAITA|VICHAYAL,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,PIURA|CASTILLA,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,PIURA|CATACAOS,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,PIURA|CURAMORI,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,PIURA|ELTALLAN,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,PIURA|LAARENA,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,PIURA|LASLOMAS,lluvia o caudal conocido sobre p99,días,5,0,0
+2026_oct_nov,PIURA|LAUNION,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,PIURA|PIURA,lluvia o caudal conocido sobre p99,días,2,1,1
+2026_oct_nov,PIURA|TAMBOGRANDE,lluvia o caudal conocido sobre p99,días,4,0,0
+2026_oct_nov,SECHURA|BELLAVISTADELAUNION,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SECHURA|BERNAL,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SECHURA|CRISTONOSVALGA,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SECHURA|RINCONADALLICUAR,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SECHURA|SECHURA,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SECHURA|VICE,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SULLANA|BELLAVISTA,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,SULLANA|IGNACIOESCUDERO,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SULLANA|LANCONES,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,SULLANA|MARCAVELICA,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,SULLANA|MIGUELCHECA,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,SULLANA|QUERECOTILLO,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,SULLANA|SALITRAL,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,SULLANA|SULLANA,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,TALARA|ELALTO,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,TALARA|LABREA,lluvia o caudal conocido sobre p99,días,1,0,0
+2026_oct_nov,TALARA|LOBITOS,lluvia o caudal conocido sobre p99,días,0,0,0
+2026_oct_nov,TALARA|LOSORGANOS,lluvia o caudal conocido sobre p99,días,4,0,0
+2026_oct_nov,TALARA|MANCORA,lluvia o caudal conocido sobre p99,días,4,1,2
+2026_oct_nov,TALARA|PARINAS,lluvia o caudal conocido sobre p99,días,2,0,0
+2026_oct_nov,TUMBES|CORRALES,lluvia o caudal conocido sobre p99,días,7,0,0
+2026_oct_nov,TUMBES|LACRUZ,lluvia o caudal conocido sobre p99,días,5,0,0
+2026_oct_nov,TUMBES|PAMPASDEHOSPITAL,lluvia o caudal conocido sobre p99,días,14,0,0
+2026_oct_nov,TUMBES|SANJACINTO,lluvia o caudal conocido sobre p99,días,9,1,2
+2026_oct_nov,TUMBES|SANJUANDELAVIRGEN,lluvia o caudal conocido sobre p99,días,11,0,0
+2026_oct_nov,TUMBES|TUMBES,lluvia o caudal conocido sobre p99,días,7,1,2
+2026_oct_nov,ZARUMILLA|AGUASVERDES,lluvia o caudal conocido sobre p99,días,6,1,2
+2026_oct_nov,ZARUMILLA|MATAPALO,lluvia o caudal conocido sobre p99,días,14,0,0
+2026_oct_nov,ZARUMILLA|PAPAYAL,lluvia o caudal conocido sobre p99,días,7,0,0
+2026_oct_nov,ZARUMILLA|ZARUMILLA,lluvia o caudal conocido sobre p99,días,5,0,0

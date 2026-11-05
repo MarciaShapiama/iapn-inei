@@ -507,7 +507,8 @@ function resumenVista(){
   if(R&&R.nino12_semana&&R.nino12_semana.valor!=null)filas.push(["Mar frente al Perú (Niño 1+2), semana del "+fechaTxt(R.nino12_semana.semana),fmt(R.nino12_semana.valor)+" °C sobre lo normal"]);
   if(R&&R.icen_ultimo&&R.icen_ultimo.valor!=null)filas.push(["Índice Costero El Niño (ICEN), "+fechaTxt(R.icen_ultimo.fecha),fmt(R.icen_ultimo.valor,2)+" °C · "+R.icen_ultimo.magnitud.toLowerCase()]);
   if(Z)["Tumbes","Piura"].forEach(p=>{const z=Z.zonas.find(x=>x.provincia===p&&x.departamento===p);if(z)filas.push([`Lluvia en la provincia de ${p}, últimos 20 días`,`${fmtN(z.lluvia_20d,0)} mm (lo normal: ${fmtN(z.normal_20d,0)} mm)`])});
-  if(D.AV&&D.AV.conteo)filas.push([`Aviso de lluvia, próximos ${D.AV.ventana_dias} días (pronóstico frente a lo extremo de cada distrito)`,`${D.AV.conteo.extremo} distritos con lluvia extrema · ${D.AV.conteo.fuerte} con lluvia fuerte`]);
+  if(D.AV&&D.AV.conteo){const cm=D.AV.conteo_motivo, rio=cm?(cm.caudal||0)+(cm["lluvia y caudal"]||0):null, sinC=D.AV.caudal&&D.AV.caudal.estado!=="ok";
+    filas.push([`Aviso de lluvia${cm?" y caudal":""}, próximos ${D.AV.ventana_dias} días (pronóstico frente a lo extremo de cada distrito${cm?" y de cada río":""})`,`${D.AV.conteo.extremo} distritos en nivel extremo · ${D.AV.conteo.fuerte} en fuerte`+(cm?(sinC?" · hoy sin pronóstico de caudal":` · ${rio} por el río`):"")]);}
   if(RIE){const n=RIE.distritos_hoy.filter(d=>d.alerta).length, top=RIE.distritos_hoy[0];filas.push([`Distritos en alerta según el modelo (semana del ${fechaTxt(RIE.semana_actual)})`,`${n} de ${RIE.distritos_hoy.length}`+(top?` · el más alto: ${top.distrito}`:"")]);}
   document.getElementById("r-fecha").textContent=R?`Datos al ${fechaTxt(R.ultimo_dia_mar||R.actualizado.slice(0,10))}. Se actualizan solos todos los días.`:"";
   document.getElementById("r-semana").innerHTML=filas.map(f=>`<div class="r-fila"><span>${f[0]}</span><b>${f[1]}</b></div>`).join("")+
@@ -668,16 +669,27 @@ const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE").replace(/,/g," "
 // Aviso de lluvia por distrito: pronóstico de los próximos días frente a los percentiles 95 y 99 del lugar.
 function avisoVista(){
   const A=D.AV, el=document.getElementById("a-aviso"); if(!A||!A.distritos||!A.distritos.length)return;
-  const ET={extremo:["Lluvia extrema","#b3261e","rgba(179,38,30,.12)"],fuerte:["Lluvia fuerte","#c2581e","rgba(194,88,30,.12)"],normal:["Normal","#4a6b5a","rgba(76,196,155,.10)"],"sin umbral":["Sin umbral","#777","#eee"]};
+  const ET={extremo:["Extremo","#b3261e","rgba(179,38,30,.12)"],fuerte:["Fuerte","#c2581e","rgba(194,88,30,.12)"],normal:["Normal","#4a6b5a","rgba(76,196,155,.10)"],"sin umbral":["Sin umbral","#777","#eee"]};
   const chip=n=>`<span style="display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;color:${ET[n][1]};background:${ET[n][2]};border:1px solid ${ET[n][1]}">${ET[n][0]}</span>`;
   const f=d=>{const [a,m,dd]=d.split("-");return `${+dd}/${+m}`};
+  const C=A.caudal||null, okC=C&&C.estado==="ok";
+  // Motivo: lluvia, río o los dos (los JSON anteriores al caudal no traen motivo: se toma la lluvia)
+  const motivo=d=>{const r=d.caudal&&d.caudal.rio, m=d.motivo||(d.nivel!=="normal"?"lluvia":null);
+    return m==="lluvia y caudal"?`Lluvia y río ${r}`:m==="caudal"?`Río ${r}`:m==="lluvia"?"Lluvia":"—"};
+  const rio=d=>{const c=d.caudal; if(!c||!c.rio)return `<span style="color:var(--muted)">solo lluvia</span>`;
+    if(c.estado!=="ok")return `<span style="color:var(--muted)">${c.rio}: sin pronóstico</span>`;
+    return `${nf(c.m3s_max)} m³/s · ${f(c.fecha_max)}<br><span style="color:var(--muted)">fuerte desde ${nf(c.p95)}</span>`};
   const lista=A.distritos.filter(d=>d.nivel==="extremo"||d.nivel==="fuerte");
-  const mostrar=(lista.length?lista:A.distritos.slice(0,8)).slice(0,15);
-  const filas=mostrar.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td>${chip(d.nivel)}</td><td class="n">${fmtN(d.mm_dia_max,0)} mm · ${f(d.fecha_max)}</td><td class="n">${fmtN(d.p95,0)} / ${fmtN(d.p99,0)} mm</td><td class="n">${fmtN(d.mm_7d,0)} mm</td><td class="n">${d.personas_zona_inundable==null?"—":nf(d.personas_zona_inundable)}</td></tr>`).join("");
-  el.innerHTML=`<h2>Aviso de lluvia: próximos ${A.ventana_dias} días</h2>
-  <p class="nota">Para anticiparse: compara la lluvia pronosticada para cada distrito con lo que es extremo en ese mismo lugar (percentiles 95 y 99 de los días con lluvia de 1991 a 2020 en su provincia). Hoy: <b>${A.conteo.extremo}</b> distritos con lluvia extrema y <b>${A.conteo.fuerte}</b> con lluvia fuerte pronosticada. Calculado el ${A.calculado.slice(0,10)}.</p>
-  <table class="tabla"><tr><th>Distrito</th><th>Aviso</th><th style="text-align:right">Día más lluvioso</th><th style="text-align:right">Fuerte / extrema desde</th><th style="text-align:right">7 días</th><th style="text-align:right">Personas en zona inundable</th></tr>${filas}</table>
-  <p class="nota" style="margin-top:8px">${lista.length?"":"Ningún distrito supera los umbrales en los próximos días; se muestran los de más lluvia pronosticada. "}La lluvia intensa sobre ciudades (calles anegadas, quebradas) es el daño más frecuente y el radar no la ve: este aviso sirve para anticiparla. ${A.nota} Fuente: ${A.fuente}</p>`;
+  const mostrar=(lista.length?lista:A.distritos.slice(0,8)).slice(0,18);
+  const filas=mostrar.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td>${chip(d.nivel)}</td><td>${motivo(d)}</td><td class="n">${fmtN(d.mm_dia_max,0)} mm · ${f(d.fecha_max)}<br><span style="color:var(--muted)">fuerte desde ${fmtN(d.p95,0)}</span></td><td class="n">${rio(d)}</td><td class="n">${d.personas_zona_inundable==null?"—":nf(d.personas_zona_inundable)}</td></tr>`).join("");
+  const porRio=A.conteo_motivo?(A.conteo_motivo.caudal||0)+(A.conteo_motivo["lluvia y caudal"]||0):0;
+  const rios=okC?Object.entries(C.rios||{}).filter(([r,x])=>x.estado==="ok").map(([r,x])=>`río ${r}: ${nf(x.m3s_max)} m³/s el ${f(x.fecha_max)} (fuerte desde ${nf(x.p95)}, extremo desde ${nf(x.p99)})`).join(" · "):"";
+  el.innerHTML=`<h2>Aviso de lluvia y caudal: próximos ${A.ventana_dias} días</h2>
+  <p class="nota">Para anticiparse: compara la lluvia pronosticada para cada distrito con lo que es extremo en ese mismo lugar (percentiles 95 y 99 de los días con lluvia de 1991 a 2020 en su provincia). En los distritos de los valles de los ríos Piura, Chira y Tumbes también compara el caudal pronosticado del río con su percentil 95 y 99 de 2001 a 2020: muchas crecidas vienen de la lluvia aguas arriba. Hoy: <b>${A.conteo.extremo}</b> distritos en nivel extremo y <b>${A.conteo.fuerte}</b> en fuerte${A.conteo_motivo?`; en <b>${porRio}</b> de ellos cuenta el río`:""}. Calculado el ${A.calculado.slice(0,10)}.</p>
+  ${C&&!okC?`<p class="nota" style="color:#b3261e">Hoy no llegó el pronóstico de caudal (${C.estado.replace(/^sin dato: /,"")}). Los distritos de valle muestran solo el aviso por lluvia.</p>`:""}
+  ${rios?`<p class="nota">Caudal pronosticado, día más alto de los próximos ${A.ventana_dias}: ${rios}.</p>`:""}
+  <table class="tabla"><tr><th>Distrito</th><th>Aviso</th><th>Motivo</th><th style="text-align:right">Lluvia: día más alto</th><th style="text-align:right">Río: caudal más alto</th><th style="text-align:right">Personas en zona inundable</th></tr>${filas}</table>
+  <p class="nota" style="margin-top:8px">${lista.length?"":"Ningún distrito supera los umbrales en los próximos días; se muestran los de más lluvia pronosticada. "}La lluvia intensa sobre ciudades (calles anegadas, quebradas) es el daño más frecuente y el radar no la ve: este aviso sirve para anticiparla. ${A.nota} Fuente: ${A.fuente}${C?" "+C.fuente:""}</p>`;
   el.hidden=false;
 }
 // Viviendas ocupadas del Censo 2025 (INEI) en la zona inundable: solo totales por distrito.

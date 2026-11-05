@@ -1,0 +1,56 @@
+# Temporal: prueba de falsas alarmas con descarga real (3 corridas desde cero) y comparación con la corrida del navegador.
+name: Prueba temporada (3 corridas)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r requirements.txt
+      - name: Corrida con los niveles del navegador (referencia)
+        run: |
+          python herramientas/pruebas/prueba_aviso_temporada.py --niveles docs/evidencia/aviso_temporada_niveles.txt > /tmp/ref.txt
+          cp docs/evidencia/prueba_aviso_temporada.json /tmp/ref.json
+      - name: Tres descargas desde cero
+        run: |
+          for i in 1 2 3; do
+            rm -rf data/cache/aviso_temporada
+            python -u herramientas/pruebas/prueba_aviso_temporada.py > /tmp/c$i.txt
+            cp docs/evidencia/prueba_aviso_temporada.json /tmp/c$i.json
+            cp docs/evidencia/aviso_temporada_pronosticos.csv /tmp/p$i.csv
+            sleep 30
+          done
+          python - <<'P'
+          import json
+          def t(p):
+              d=json.load(open(p)); d.pop("generado",None); d.pop("origen",None); d.pop("calculado",None)
+              return json.dumps(d.get("2025_ene_abr",d),sort_keys=True), d
+          r=[open(f"/tmp/p{i}.csv").read() for i in (1,2,3)]
+          print("PRONOSTICOS IGUALES EN 3 DESCARGAS" if len(set(r))==1 else "PRONOSTICOS DISTINTOS")
+          j=[json.load(open(f"/tmp/c{i}.json")) for i in (1,2,3)]+[json.load(open("/tmp/ref.json"))]
+          for x in j:
+              for k in list(x):
+                  if k in ("generado","origen","calculado","metodo","fuente_niveles"): x.pop(k)
+          s=[json.dumps(x,sort_keys=True) for x in j]
+          print("TABLAS IGUALES EN 3 DESCARGAS" if len(set(s[:3]))==1 else "TABLAS DISTINTAS ENTRE DESCARGAS")
+          print("DESCARGA = NAVEGADOR" if s[0]==s[3] else "DESCARGA DISTINTA AL NAVEGADOR")
+          P
+          echo "--- referencia (navegador)"; cat /tmp/ref.txt; echo "--- descarga 1"; cat /tmp/c1.txt
+      - name: Guardar
+        run: |
+          git config user.name "Actualización automática"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/evidencia/prueba_aviso_temporada.json docs/evidencia/prueba_aviso_temporada_distritos.csv docs/evidencia/aviso_temporada_pronosticos.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "Prueba de falsas alarmas del aviso con descarga real de pronósticos"
+          git pull --rebase --autostash origin main && git push

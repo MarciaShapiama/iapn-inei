@@ -521,7 +521,7 @@
   ],
   "definiciones": {
    "inundacion": "semana con al menos una emergencia por inundación en SINPAD",
-   "viviendas": "semana con al menos una vivienda afectada en SINPAD (cualquier peligro)"
+   "viviendas": "semana con al menos una vivienda afectada en SINPAD (inundación o lluvia intensa)"
   },
   "inundacion_p95": {
    "ambito": "todos los distritos",

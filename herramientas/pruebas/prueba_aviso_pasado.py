@@ -166,7 +166,7 @@ def prueba_sinpad(ll, u, c, uc) -> dict:
            "periodo": [sem.semana.min().date().isoformat(), sem.semana.max().date().isoformat()],
            "distritos_sinpad_sin_lluvia": sin_par, "definiciones": {}}
     etiquetas = {"inundacion": ("eventos_inundacion", "semana con al menos una emergencia por inundación en SINPAD"),
-                 "viviendas": ("viv_afectadas", "semana con al menos una vivienda afectada en SINPAD (cualquier peligro)")}
+                 "viviendas": ("viv_afectadas", "semana con al menos una vivienda afectada en SINPAD (inundación o lluvia intensa)")}
     def senal(umbral, sub):
         if umbral == "caudal_p95":
             return sub.q_alto

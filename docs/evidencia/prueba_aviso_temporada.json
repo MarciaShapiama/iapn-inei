@@ -1,0 +1,682 @@
+{
+ "metodo": "Falsas alarmas del aviso con PRONÓSTICOS REALES, todos los días de una temporada (documento 18, sección C).\n\nLa prueba A del documento 18 solo miró días con daño: no mide falsas alarmas. Esta mira TODOS los días y TODOS los\ndistritos de dos temporadas:\n    enero a abril de 2025 (temporada de lluvias completa; daños = SINPAD del INDECI)\n    15 de octubre al 4 de noviembre de 2026 (inicio de El Niño costero; daños = catálogo verificado + noticias)\ny responde: ¿cuántos avisos habría dado el tablero?, ¿cuántos fueron seguidos de daño?, ¿cuántos daños tuvieron aviso\nantes?, con y sin el caudal de los ríos.\n\nLLUVIA. Lo que Open-Meteo pronosticaba 1, 2 y 3 días antes (Previous Runs API: precipitation_previous_day1..3), suma\n    horaria por día en hora de Lima, en el punto central de cada distrito (data/normales/umbrales_lluvia_distritos.csv),\n    con los MISMOS umbrales del tablero (p95 y p99 de ERA5 1991-2020 por provincia). Nivel: fuerte > p95, extremo > p99.\nCAUDAL (distritos de los ríos Piura, Chira y Tumbes, lista CUENCA de src/aviso_lluvia.py). Open-Meteo NO guarda los\n    pronósticos de caudal tal como se emitieron (solo el reanálisis/serie continua de GloFAS). Por eso se dan dos\n    versiones que encierran al pronóstico real:\n      \"caudal conocido\": el caudal GloFAS del día en que se habría emitido el aviso (T-n): lo que ya se sabía,\n                         sin pronóstico del río.\n      \"caudal real\":     el caudal GloFAS del mismo día T: un pronóstico perfecto del río (cota alta).\n    Umbrales: p95 y p99 del caudal diario 2001-2020 (data/modelo/caudal_rios.csv). El aviso usa p95 para «fuerte»;\n    las variantes «sobre p99» muestran qué pasaría si el río solo avisara cuando pasa su p99.\n\nDAÑOS\n    2025: SINPAD (INDECI, datos abiertos) por distrito y semana, data/modelo/sinpad_tumbes_piura_semanal.csv:\n          semanas con registro de lluvia intensa o inundación (y, aparte, con viviendas afectadas o destruidas).\n          Unidad distrito-semana, como la prueba B: una semana tiene aviso si algún día de ella o de los 3 últimos\n          días de la semana anterior tuvo aviso.\n    2026: SINPAD aún no publica el segundo semestre. Se usan data/eventos/catalogo_verificado.csv (revisado por el\n          equipo) y los titulares de data/eventos/noticias_registro.csv que src/noticias.py ubicó por distrito\n          (dashboard/data/eventos_reportados.json, origen «noticias (automático)»). Unidad distrito-día: un aviso para\n          el día T es «seguido de daño» si hubo evento el día T o T+1; un daño del día E «tuvo aviso previo» si hubo\n          aviso para E o E-1.",
+ "origen_de_los_pronosticos": "niveles leídos de docs/evidencia/aviso_temporada_niveles.txt",
+ "umbrales_caudal_m3s": {
+  "p95": {
+   "Chira": 1387.7,
+   "Piura": 305.9,
+   "Tumbes": 764.2
+  },
+  "p99": {
+   "Chira": 2419.8,
+   "Piura": 854.0,
+   "Tumbes": 1277.9
+  }
+ },
+ "temporada_2025": {
+  "unidad": "distrito-semana",
+  "semanas": 18,
+  "distritos": 76,
+  "variantes": {
+   "lluvia, 1 día antes": {
+    "todos los distritos": {
+     "avisos": 194,
+     "danos": 252,
+     "avisos_con_dano": 85,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 43.8,
+     "pct_danos_con_aviso_previo": 33.7,
+     "falsas_alarmas": 109,
+     "dias_con_aviso": 206,
+     "dias_con_aviso_por_distrito": 2.7,
+     "semanas_con_aviso_por_distrito": 2.6,
+     "con_viviendas": {
+      "avisos": 194,
+      "danos": 240,
+      "avisos_con_dano": 80,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 41.2,
+      "pct_danos_con_aviso_previo": 33.3,
+      "falsas_alarmas": 114
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 20,
+     "danos": 72,
+     "avisos_con_dano": 8,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 40.0,
+     "pct_danos_con_aviso_previo": 11.1,
+     "falsas_alarmas": 12,
+     "con_viviendas": {
+      "avisos": 20,
+      "danos": 68,
+      "avisos_con_dano": 8,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 40.0,
+      "pct_danos_con_aviso_previo": 11.8,
+      "falsas_alarmas": 12
+     }
+    }
+   },
+   "lluvia, 2 días antes": {
+    "todos los distritos": {
+     "avisos": 133,
+     "danos": 252,
+     "avisos_con_dano": 69,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 51.9,
+     "pct_danos_con_aviso_previo": 27.4,
+     "falsas_alarmas": 64,
+     "dias_con_aviso": 126,
+     "dias_con_aviso_por_distrito": 1.7,
+     "semanas_con_aviso_por_distrito": 1.8,
+     "con_viviendas": {
+      "avisos": 133,
+      "danos": 240,
+      "avisos_con_dano": 68,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 51.1,
+      "pct_danos_con_aviso_previo": 28.3,
+      "falsas_alarmas": 65
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 20,
+     "danos": 72,
+     "avisos_con_dano": 12,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 60.0,
+     "pct_danos_con_aviso_previo": 16.7,
+     "falsas_alarmas": 8,
+     "con_viviendas": {
+      "avisos": 20,
+      "danos": 68,
+      "avisos_con_dano": 12,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 60.0,
+      "pct_danos_con_aviso_previo": 17.6,
+      "falsas_alarmas": 8
+     }
+    }
+   },
+   "lluvia, 3 días antes": {
+    "todos los distritos": {
+     "avisos": 129,
+     "danos": 252,
+     "avisos_con_dano": 64,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 49.6,
+     "pct_danos_con_aviso_previo": 25.4,
+     "falsas_alarmas": 65,
+     "dias_con_aviso": 134,
+     "dias_con_aviso_por_distrito": 1.8,
+     "semanas_con_aviso_por_distrito": 1.7,
+     "con_viviendas": {
+      "avisos": 129,
+      "danos": 240,
+      "avisos_con_dano": 64,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 49.6,
+      "pct_danos_con_aviso_previo": 26.7,
+      "falsas_alarmas": 65
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 20,
+     "danos": 72,
+     "avisos_con_dano": 12,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 60.0,
+     "pct_danos_con_aviso_previo": 16.7,
+     "falsas_alarmas": 8,
+     "con_viviendas": {
+      "avisos": 20,
+      "danos": 68,
+      "avisos_con_dano": 12,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 60.0,
+      "pct_danos_con_aviso_previo": 17.6,
+      "falsas_alarmas": 8
+     }
+    }
+   },
+   "lluvia (1, 2 o 3 días antes)": {
+    "todos los distritos": {
+     "avisos": 247,
+     "danos": 252,
+     "avisos_con_dano": 106,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 42.9,
+     "pct_danos_con_aviso_previo": 42.1,
+     "falsas_alarmas": 141,
+     "dias_con_aviso": 311,
+     "dias_con_aviso_por_distrito": 4.1,
+     "semanas_con_aviso_por_distrito": 3.2,
+     "con_viviendas": {
+      "avisos": 247,
+      "danos": 240,
+      "avisos_con_dano": 101,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 40.9,
+      "pct_danos_con_aviso_previo": 42.1,
+      "falsas_alarmas": 146
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 36,
+     "danos": 72,
+     "avisos_con_dano": 15,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 41.7,
+     "pct_danos_con_aviso_previo": 20.8,
+     "falsas_alarmas": 21,
+     "con_viviendas": {
+      "avisos": 36,
+      "danos": 68,
+      "avisos_con_dano": 15,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 41.7,
+      "pct_danos_con_aviso_previo": 22.1,
+      "falsas_alarmas": 21
+     }
+    }
+   },
+   "lluvia o caudal conocido": {
+    "todos los distritos": {
+     "avisos": 597,
+     "danos": 252,
+     "avisos_con_dano": 157,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 26.3,
+     "pct_danos_con_aviso_previo": 62.3,
+     "falsas_alarmas": 440,
+     "dias_con_aviso": 1847,
+     "dias_con_aviso_por_distrito": 24.3,
+     "semanas_con_aviso_por_distrito": 7.9,
+     "con_viviendas": {
+      "avisos": 597,
+      "danos": 240,
+      "avisos_con_dano": 149,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 25.0,
+      "pct_danos_con_aviso_previo": 62.1,
+      "falsas_alarmas": 448
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 386,
+     "danos": 72,
+     "avisos_con_dano": 66,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 17.1,
+     "pct_danos_con_aviso_previo": 91.7,
+     "falsas_alarmas": 320,
+     "con_viviendas": {
+      "avisos": 386,
+      "danos": 68,
+      "avisos_con_dano": 63,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 16.3,
+      "pct_danos_con_aviso_previo": 92.6,
+      "falsas_alarmas": 323
+     }
+    }
+   },
+   "lluvia o caudal real (cota alta)": {
+    "todos los distritos": {
+     "avisos": 564,
+     "danos": 252,
+     "avisos_con_dano": 157,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 27.8,
+     "pct_danos_con_aviso_previo": 62.3,
+     "falsas_alarmas": 407,
+     "dias_con_aviso": 1494,
+     "dias_con_aviso_por_distrito": 19.7,
+     "semanas_con_aviso_por_distrito": 7.4,
+     "con_viviendas": {
+      "avisos": 564,
+      "danos": 240,
+      "avisos_con_dano": 149,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 26.4,
+      "pct_danos_con_aviso_previo": 62.1,
+      "falsas_alarmas": 415
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 353,
+     "danos": 72,
+     "avisos_con_dano": 66,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 18.7,
+     "pct_danos_con_aviso_previo": 91.7,
+     "falsas_alarmas": 287,
+     "con_viviendas": {
+      "avisos": 353,
+      "danos": 68,
+      "avisos_con_dano": 63,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 17.8,
+      "pct_danos_con_aviso_previo": 92.6,
+      "falsas_alarmas": 290
+     }
+    }
+   },
+   "lluvia o caudal conocido sobre p99": {
+    "todos los distritos": {
+     "avisos": 328,
+     "danos": 252,
+     "avisos_con_dano": 110,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 33.5,
+     "pct_danos_con_aviso_previo": 43.7,
+     "falsas_alarmas": 218,
+     "dias_con_aviso": 521,
+     "dias_con_aviso_por_distrito": 6.9,
+     "semanas_con_aviso_por_distrito": 4.3,
+     "con_viviendas": {
+      "avisos": 328,
+      "danos": 240,
+      "avisos_con_dano": 104,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 31.7,
+      "pct_danos_con_aviso_previo": 43.3,
+      "falsas_alarmas": 224
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 117,
+     "danos": 72,
+     "avisos_con_dano": 19,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 16.2,
+     "pct_danos_con_aviso_previo": 26.4,
+     "falsas_alarmas": 98,
+     "con_viviendas": {
+      "avisos": 117,
+      "danos": 68,
+      "avisos_con_dano": 18,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 15.4,
+      "pct_danos_con_aviso_previo": 26.5,
+      "falsas_alarmas": 99
+     }
+    }
+   },
+   "lluvia o caudal real sobre p99 (cota alta)": {
+    "todos los distritos": {
+     "avisos": 315,
+     "danos": 252,
+     "avisos_con_dano": 113,
+     "unidades": 1368,
+     "pct_unidades_con_dano": 18.4,
+     "pct_avisos_seguidos_de_dano": 35.9,
+     "pct_danos_con_aviso_previo": 44.8,
+     "falsas_alarmas": 202,
+     "dias_con_aviso": 406,
+     "dias_con_aviso_por_distrito": 5.3,
+     "semanas_con_aviso_por_distrito": 4.1,
+     "con_viviendas": {
+      "avisos": 315,
+      "danos": 240,
+      "avisos_con_dano": 107,
+      "unidades": 1368,
+      "pct_unidades_con_dano": 17.5,
+      "pct_avisos_seguidos_de_dano": 34.0,
+      "pct_danos_con_aviso_previo": 44.6,
+      "falsas_alarmas": 208
+     }
+    },
+    "distritos de los ríos Piura, Chira y Tumbes": {
+     "avisos": 104,
+     "danos": 72,
+     "avisos_con_dano": 22,
+     "unidades": 684,
+     "pct_unidades_con_dano": 10.5,
+     "pct_avisos_seguidos_de_dano": 21.2,
+     "pct_danos_con_aviso_previo": 30.6,
+     "falsas_alarmas": 82,
+     "con_viviendas": {
+      "avisos": 104,
+      "danos": 68,
+      "avisos_con_dano": 21,
+      "unidades": 684,
+      "pct_unidades_con_dano": 9.9,
+      "pct_avisos_seguidos_de_dano": 20.2,
+      "pct_danos_con_aviso_previo": 30.9,
+      "falsas_alarmas": 83
+     }
+    }
+   }
+  }
+ },
+ "temporada_2026": {
+  "unidad": "distrito-día",
+  "dias": 21,
+  "distritos": 76,
+  "variantes": {
+   "lluvia, 1 día antes": {
+    "eventos verificados": {
+     "avisos": 185,
+     "avisos_seguidos_de_dano": 10,
+     "pct_avisos_seguidos_de_dano": 5.4,
+     "danos": 7,
+     "danos_con_aviso_previo": 6,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 2.4
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 185,
+     "avisos_seguidos_de_dano": 14,
+     "pct_avisos_seguidos_de_dano": 7.6,
+     "danos": 14,
+     "danos_con_aviso_previo": 9,
+     "pct_danos_con_aviso_previo": 64.3,
+     "dias_con_aviso_por_distrito": 2.4
+    }
+   },
+   "lluvia, 2 días antes": {
+    "eventos verificados": {
+     "avisos": 186,
+     "avisos_seguidos_de_dano": 7,
+     "pct_avisos_seguidos_de_dano": 3.8,
+     "danos": 7,
+     "danos_con_aviso_previo": 6,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 2.4
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 186,
+     "avisos_seguidos_de_dano": 11,
+     "pct_avisos_seguidos_de_dano": 5.9,
+     "danos": 14,
+     "danos_con_aviso_previo": 8,
+     "pct_danos_con_aviso_previo": 57.1,
+     "dias_con_aviso_por_distrito": 2.4
+    }
+   },
+   "lluvia, 3 días antes": {
+    "eventos verificados": {
+     "avisos": 165,
+     "avisos_seguidos_de_dano": 6,
+     "pct_avisos_seguidos_de_dano": 3.6,
+     "danos": 7,
+     "danos_con_aviso_previo": 3,
+     "pct_danos_con_aviso_previo": 42.9,
+     "dias_con_aviso_por_distrito": 2.2
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 165,
+     "avisos_seguidos_de_dano": 11,
+     "pct_avisos_seguidos_de_dano": 6.7,
+     "danos": 14,
+     "danos_con_aviso_previo": 7,
+     "pct_danos_con_aviso_previo": 50.0,
+     "dias_con_aviso_por_distrito": 2.2
+    }
+   },
+   "lluvia (1, 2 o 3 días antes)": {
+    "eventos verificados": {
+     "avisos": 317,
+     "avisos_seguidos_de_dano": 12,
+     "pct_avisos_seguidos_de_dano": 3.8,
+     "danos": 7,
+     "danos_con_aviso_previo": 7,
+     "pct_danos_con_aviso_previo": 100.0,
+     "dias_con_aviso_por_distrito": 4.2
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 317,
+     "avisos_seguidos_de_dano": 19,
+     "pct_avisos_seguidos_de_dano": 6.0,
+     "danos": 14,
+     "danos_con_aviso_previo": 12,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 4.2
+    }
+   },
+   "lluvia o caudal conocido": {
+    "eventos verificados": {
+     "avisos": 334,
+     "avisos_seguidos_de_dano": 12,
+     "pct_avisos_seguidos_de_dano": 3.6,
+     "danos": 7,
+     "danos_con_aviso_previo": 7,
+     "pct_danos_con_aviso_previo": 100.0,
+     "dias_con_aviso_por_distrito": 4.4
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 334,
+     "avisos_seguidos_de_dano": 19,
+     "pct_avisos_seguidos_de_dano": 5.7,
+     "danos": 14,
+     "danos_con_aviso_previo": 12,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 4.4
+    }
+   },
+   "lluvia o caudal real (cota alta)": {
+    "eventos verificados": {
+     "avisos": 334,
+     "avisos_seguidos_de_dano": 12,
+     "pct_avisos_seguidos_de_dano": 3.6,
+     "danos": 7,
+     "danos_con_aviso_previo": 7,
+     "pct_danos_con_aviso_previo": 100.0,
+     "dias_con_aviso_por_distrito": 4.4
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 334,
+     "avisos_seguidos_de_dano": 19,
+     "pct_avisos_seguidos_de_dano": 5.7,
+     "danos": 14,
+     "danos_con_aviso_previo": 12,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 4.4
+    }
+   },
+   "lluvia o caudal conocido sobre p99": {
+    "eventos verificados": {
+     "avisos": 320,
+     "avisos_seguidos_de_dano": 12,
+     "pct_avisos_seguidos_de_dano": 3.8,
+     "danos": 7,
+     "danos_con_aviso_previo": 7,
+     "pct_danos_con_aviso_previo": 100.0,
+     "dias_con_aviso_por_distrito": 4.2
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 320,
+     "avisos_seguidos_de_dano": 19,
+     "pct_avisos_seguidos_de_dano": 5.9,
+     "danos": 14,
+     "danos_con_aviso_previo": 12,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 4.2
+    }
+   },
+   "lluvia o caudal real sobre p99 (cota alta)": {
+    "eventos verificados": {
+     "avisos": 319,
+     "avisos_seguidos_de_dano": 12,
+     "pct_avisos_seguidos_de_dano": 3.8,
+     "danos": 7,
+     "danos_con_aviso_previo": 7,
+     "pct_danos_con_aviso_previo": 100.0,
+     "dias_con_aviso_por_distrito": 4.2
+    },
+    "verificados y noticias ubicadas": {
+     "avisos": 319,
+     "avisos_seguidos_de_dano": 19,
+     "pct_avisos_seguidos_de_dano": 6.0,
+     "danos": 14,
+     "danos_con_aviso_previo": 12,
+     "pct_danos_con_aviso_previo": 85.7,
+     "dias_con_aviso_por_distrito": 4.2
+    }
+   }
+  },
+  "eventos": {
+   "verificados": [
+    {
+     "k": "PIURA|PIURA",
+     "fecha": "2026-10-20",
+     "origen": "verificado",
+     "id": "2026-piura-calles"
+    },
+    {
+     "k": "MORROPON|CHULUCANAS",
+     "fecha": "2026-10-20",
+     "origen": "verificado",
+     "id": "2026-chulucanas"
+    },
+    {
+     "k": "HUANCABAMBA|CANCHAQUE",
+     "fecha": "2026-10-29",
+     "origen": "verificado",
+     "id": "2026-serran"
+    },
+    {
+     "k": "ZARUMILLA|AGUASVERDES",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-puerto-peru"
+    },
+    {
+     "k": "TUMBES|SANJACINTO",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-vaqueria"
+    },
+    {
+     "k": "TUMBES|TUMBES",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-tumbes-calles"
+    },
+    {
+     "k": "TALARA|MANCORA",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-mancora"
+    }
+   ],
+   "con_noticias": [
+    {
+     "k": "PIURA|PIURA",
+     "fecha": "2026-10-20",
+     "origen": "verificado",
+     "id": "2026-piura-calles"
+    },
+    {
+     "k": "MORROPON|CHULUCANAS",
+     "fecha": "2026-10-20",
+     "origen": "verificado",
+     "id": "2026-chulucanas"
+    },
+    {
+     "k": "HUANCABAMBA|CANCHAQUE",
+     "fecha": "2026-10-29",
+     "origen": "verificado",
+     "id": "2026-serran"
+    },
+    {
+     "k": "ZARUMILLA|AGUASVERDES",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-puerto-peru"
+    },
+    {
+     "k": "TUMBES|SANJACINTO",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-vaqueria"
+    },
+    {
+     "k": "TUMBES|TUMBES",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-tumbes-calles"
+    },
+    {
+     "k": "TALARA|MANCORA",
+     "fecha": "2026-11-02",
+     "origen": "verificado",
+     "id": "2026-mancora"
+    },
+    {
+     "k": "PIURA|PIURA",
+     "fecha": "2026-11-02",
+     "origen": "noticias",
+     "id": "n-2026-11-02-piura"
+    },
+    {
+     "k": "MORROPON|CHULUCANAS",
+     "fecha": "2026-11-02",
+     "origen": "noticias",
+     "id": "n-2026-11-02-chulucanas"
+    },
+    {
+     "k": "TUMBES|PAMPASDEHOSPITAL",
+     "fecha": "2026-11-02",
+     "origen": "noticias",
+     "id": "n-2026-11-02-cabuyal"
+    },
+    {
+     "k": "HUANCABAMBA|HUANCABAMBA",
+     "fecha": "2026-10-30",
+     "origen": "noticias",
+     "id": "n-2026-10-30-huancabamba"
+    },
+    {
+     "k": "PIURA|PIURA",
+     "fecha": "2026-10-28",
+     "origen": "noticias",
+     "id": "n-2026-10-28-piura"
+    },
+    {
+     "k": "AYABACA|AYABACA",
+     "fecha": "2026-10-25",
+     "origen": "noticias",
+     "id": "n-2026-10-25-ayabaca"
+    },
+    {
+     "k": "TUMBES|TUMBES",
+     "fecha": "2026-10-22",
+     "origen": "noticias",
+     "id": "n-2026-10-22-tumbes"
+    }
+   ]
+  }
+ }
+}
