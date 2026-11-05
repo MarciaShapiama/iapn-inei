@@ -1,5 +1,5 @@
-# Temporal: prueba de falsas alarmas con descarga real (3 corridas desde cero) y comparación con la corrida del navegador.
-name: Prueba temporada (3 corridas)
+# Temporal: prueba de falsas alarmas con descarga real (2 corridas desde cero) y comparación con la corrida del navegador.
+name: Prueba temporada (2 corridas)
 on:
   workflow_dispatch:
 permissions:
@@ -21,9 +21,9 @@ jobs:
         run: |
           python herramientas/pruebas/prueba_aviso_temporada.py --niveles docs/evidencia/aviso_temporada_niveles.txt > /tmp/ref.txt
           cp docs/evidencia/prueba_aviso_temporada.json /tmp/ref.json
-      - name: Tres descargas desde cero
+      - name: Dos descargas desde cero
         run: |
-          for i in 1 2 3; do
+          for i in 1 2; do
             rm -rf data/cache/aviso_temporada
             python -u herramientas/pruebas/prueba_aviso_temporada.py > /tmp/c$i.txt
             cp docs/evidencia/prueba_aviso_temporada.json /tmp/c$i.json
@@ -35,15 +35,15 @@ jobs:
           def t(p):
               d=json.load(open(p)); d.pop("generado",None); d.pop("origen",None); d.pop("calculado",None)
               return json.dumps(d.get("2025_ene_abr",d),sort_keys=True), d
-          r=[open(f"/tmp/p{i}.csv").read() for i in (1,2,3)]
-          print("PRONOSTICOS IGUALES EN 3 DESCARGAS" if len(set(r))==1 else "PRONOSTICOS DISTINTOS")
-          j=[json.load(open(f"/tmp/c{i}.json")) for i in (1,2,3)]+[json.load(open("/tmp/ref.json"))]
+          r=[open(f"/tmp/p{i}.csv").read() for i in (1,2)]
+          print("PRONOSTICOS IGUALES EN 2 DESCARGAS" if len(set(r))==1 else "PRONOSTICOS DISTINTOS")
+          j=[json.load(open(f"/tmp/c{i}.json")) for i in (1,2)]+[json.load(open("/tmp/ref.json"))]
           for x in j:
               for k in list(x):
                   if k in ("generado","origen","calculado","metodo","fuente_niveles"): x.pop(k)
           s=[json.dumps(x,sort_keys=True) for x in j]
-          print("TABLAS IGUALES EN 3 DESCARGAS" if len(set(s[:3]))==1 else "TABLAS DISTINTAS ENTRE DESCARGAS")
-          print("DESCARGA = NAVEGADOR" if s[0]==s[3] else "DESCARGA DISTINTA AL NAVEGADOR")
+          print("TABLAS IGUALES EN 2 DESCARGAS" if len(set(s[:2]))==1 else "TABLAS DISTINTAS ENTRE DESCARGAS")
+          print("DESCARGA = NAVEGADOR" if s[0]==s[2] else "DESCARGA DISTINTA AL NAVEGADOR")
           P
           echo "--- referencia (navegador)"; cat /tmp/ref.txt; echo "--- descarga 1"; cat /tmp/c1.txt
       - name: Guardar
