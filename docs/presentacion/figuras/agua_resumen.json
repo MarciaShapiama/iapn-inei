@@ -1,0 +1,26 @@
+{
+ "ventana": [
+  -80.889,
+  -5.597,
+  -80.511,
+  -5.189
+ ],
+ "imagenes_referencia": 9,
+ "imagenes_evento": 13,
+ "km2_regla_a": 295.9,
+ "km2_regla_b": 84.0,
+ "km2_sin_permanente": 68.9,
+ "km2_final": 68.9,
+ "km2_publicada": 65.4,
+ "km2_copernicus": 96.7,
+ "km2_publicada_y_copernicus": 50.0,
+ "pixel_ejemplo": {
+  "lat": -5.5392,
+  "lon": -80.6382,
+  "ref_db": -8.3,
+  "evento_db": -24.8
+ },
+ "edificaciones_ventana": 195065,
+ "edificaciones_dentro_radar": 9,
+ "edificaciones_dentro_jrc_rp100": 98702
+}
