@@ -1,9 +1,9 @@
 {
- "generado": "2026-11-04T17:25-05:00",
- "hoy": "2026-11-04",
+ "generado": "2026-11-05T06:52-05:00",
+ "hoy": "2026-11-05",
  "resumen_estado": {
-  "vigente": 9,
-  "rezagado": 1,
+  "vigente": 10,
+  "rezagado": 0,
   "no disponible": 0,
   "estimado": 6
  },
@@ -371,14 +371,14 @@
    "version": "ERSST (según IGP)",
    "naturaleza": "observado (índice oficial)",
    "periodo": null,
-   "dato_mas_reciente": "2026-08",
+   "dato_mas_reciente": "2026-09",
    "tolerancia_dias": 75,
    "frecuencia": "mensual (rezago de ~2 meses por la media corrida)",
    "metodo": "Definición operacional del ENFEN para la costa peruana (nota técnica ENFEN, 2012); verificar la versión vigente en 2026.",
    "advertencias": [
     "El estado oficial (vigilancia/alerta) lo emite la Comisión Multisectorial ENFEN en sus comunicados, no este tablero."
    ],
-   "estado": "rezagado",
+   "estado": "vigente",
    "archivo": "indices.json"
   },
   {
@@ -394,13 +394,13 @@
    "version": "API v1",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-03",
+   "dato_mas_reciente": "2026-11-04",
    "tolerancia_dias": 2,
    "frecuencia": "diaria",
    "metodo": "Mejor combinación de modelos numéricos para días pasados; pronóstico de 7 días.",
    "advertencias": [
     "No son lecturas de pluviómetros del SENAMHI.",
-    "Incluye pronóstico hasta 2026-11-11: el pronóstico no es observación.",
+    "Incluye pronóstico hasta 2026-11-12: el pronóstico no es observación.",
     "Los avisos oficiales los emite SENAMHI."
    ],
    "estado": "estimado",
@@ -419,7 +419,7 @@
    "version": "GloFAS v4",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-03",
+   "dato_mas_reciente": "2026-11-04",
    "tolerancia_dias": 3,
    "frecuencia": "diaria",
    "metodo": "Modelo hidrológico LISFLOOD forzado con meteorología.",
@@ -442,7 +442,7 @@
    "version": "2026-11",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-03",
+   "dato_mas_reciente": "2026-11-04",
    "tolerancia_dias": 2,
    "frecuencia": "diaria",
    "metodo": "Suma ponderada con topes; pesos fijados por el equipo, sin calibrar.",
