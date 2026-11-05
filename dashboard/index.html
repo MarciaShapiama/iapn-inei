@@ -193,6 +193,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <p class="bajada" id="r-bajada"></p>
   <div class="grid g4" id="r-kpis"></div>
   <div class="grid g4" id="r-kpis2" style="margin-top:16px"></div>
+  <div class="panel" id="r-censo" style="margin-top:16px" hidden></div>
   <div class="grid g2" style="margin-top:16px">
     <div class="panel"><h2>Esta semana</h2><p class="nota" id="r-fecha"></p><div id="r-semana"></div></div>
     <div class="panel"><h2>Lo que ya pasó</h2><p class="nota">Dos eventos recientes que sirven de referencia.</p><div id="r-pasado"></div></div>
@@ -353,6 +354,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <h3>2. ¿A quién afecta?</h3>
   <ul>
     <li><b>Personas:</b> WorldPop 2026, población estimada cada 100 m. Se cuenta la población de las celdas que caen en la zona inundable.</li>
+    <li><b>Viviendas del censo:</b> viviendas ocupadas por manzana de los Censos Nacionales 2025 y el material predominante de paredes, techo y piso, entregados al proyecto por el INEI. Cada manzana se ubica por un punto interior y se ve si cae en la zona inundable. Solo se publican totales por distrito; los distritos con menos de 10 viviendas en la zona no se detallan. No incluye la vivienda rural dispersa, que no se organiza en manzanas.</li>
     <li><b>Edificaciones:</b> Google Open Buildings v3 (confianza ≥ 0,75). Incluye viviendas y cualquier otro tipo de construcción, por eso se habla de edificaciones y no de viviendas.</li>
     <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales escolares del padrón de servicios educativos ESCALE (MINEDU, corte del 30 de octubre de 2026). Un local con inicial, primaria y secundaria cuenta una vez. <b>Alumnos:</b> matrícula del Censo Educativo 2025 (ESCALE, MINEDU), sumada por local; el 96 % de los locales tiene el dato y en el 8 % de los servicios la cifra fue estimada por MINEDU porque el colegio no respondió. Por eso el total de alumnos es un mínimo.</li>
     <li><b>Niños y adultos mayores:</b> WorldPop 2026 por edad y sexo (100 m): de 0 a 4 años y de 65 años a más. <b>Cultivos:</b> ESA WorldCover 2021 (10 m), clase «tierras de cultivo». <b>Carreteras y puentes:</b> OpenStreetMap, vías troncales, primarias, secundarias y terciarias.</li>
@@ -430,18 +432,18 @@ function validacionVista(V){
 const get=n=>fetch(`data/${n}.json?v=${Date.now()}`).then(r=>r.ok?r.json():null).catch(()=>null);
 const geo=n=>fetch(`data/${n}.geojson`).then(r=>r.ok?r.json():null).catch(()=>null);
 Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("departamentos"),get("zonas"),geo("zonas"),
-  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017")])
-.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL])=>{
+  get("inundacion"),geo("distritos_tumbes_piura"),get("riesgo"),fetch("data/sat/satelite.json").then(r=>r.ok?r.json():null).catch(()=>null),get("inundacion_extra"),get("enfen"),get("validacion_2017"),get("viviendas_censo")])
+.then(([R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VAL,VC])=>{
   if(VAL&&VAL.total&&VAL.total.radar)try{validacionVista(VAL)}catch(e){console.error("validacion",e)}
   // solo las provincias de Tumbes y Piura
   if(ZON)ZON.zonas=ZON.zonas.filter(z=>z.departamento==="Tumbes"||z.departamento==="Piura");
   if(ZGEO)ZGEO.features=ZGEO.features.filter(f=>f.properties.departamento==="Tumbes"||f.properties.departamento==="Piura");
   if(ZON){document.querySelectorAll(".z-n").forEach(e=>e.textContent=ZON.zonas.length);
     const s=document.getElementById("z-sierra");if(s&&!ZON.zonas.some(z=>z.provincia==="Huancabamba"))s.hidden=true;}
-  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF};
+  window.D={R,REG,MAR,IDX,GEO,ZON,ZGEO,IN,DIST,RIE,SAT,EX,ENF,VC};
   pestanas(); estado();
   const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
-  seguro(resumenVista,"resumen"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
+  seguro(resumenVista,"resumen"); seguro(censoVista,"censo"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
   try{ const ini=()=>{if(visible("v-inundaciones")&&!I3.deck)setTimeout(inundacionesVista,30)}; ini(); window.addEventListener("hashchange",ini);
     document.querySelector('[data-v="inundaciones"]').addEventListener("click",ini); }catch(e){console.error(e)}
   try{ if(visible("v-zonas"))zonasVista(); else document.querySelector('[data-v="zonas"]').addEventListener("click",()=>{if(!Z3.deck)setTimeout(zonasVista,30)},{once:true}); window.addEventListener("hashchange",()=>{if(visible("v-zonas")&&!Z3.deck)setTimeout(zonasVista,30)}); }catch(e){console.error(e)}
@@ -612,6 +614,23 @@ const I3={deck:null,ev:null,modo:"sat",capas:{agua:true,viv:true,col3d:true,col:
 const VISTAS={piura:{longitude:-80.68,latitude:-5.30,zoom:10.4,pitch:58,bearing:25},sullana:{longitude:-80.70,latitude:-4.90,zoom:10.6,pitch:58,bearing:20},
   tumbes:{longitude:-80.45,latitude:-3.62,zoom:10.8,pitch:58,bearing:15},todo:{longitude:-80.40,latitude:-4.85,zoom:7.9,pitch:45,bearing:10}};
 const nf=v=>v==null?"—":Math.round(v).toLocaleString("es-PE").replace(/,/g," ");
+// Viviendas ocupadas del Censo 2025 (INEI) en la zona inundable: solo totales por distrito.
+function censoVista(){
+  const V=D.VC, el=document.getElementById("r-censo"); if(!V||!V.escenarios||!V.escenarios.rp100)return;
+  const e=V.escenarios.rp100, e10=V.escenarios.rp10||{}, frag=e.paredes_tierra+e.paredes_precarias, pc=x=>Math.round(x*100)+" %";
+  const filas=e.distritos.slice(0,10).map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td class="n">${nf(d.viviendas)}</td><td class="n">${fmtN(d.pct_fragiles,0)} %</td><td class="n">${nf(d.piso_tierra)}</td></tr>`).join("");
+  el.innerHTML=`<h2>Viviendas del Censo 2025 en la zona inundable</h2>
+  <p class="nota">Crecida de 1 en 100 años. Viviendas ocupadas por manzana de los Censos Nacionales 2025 (INEI), cruzadas con el mapa de JRC.</p>
+  <div class="grid g4" style="margin:10px 0 14px">
+   <div><div class="eti">Viviendas ocupadas</div><div class="r-cifra" style="font-size:32px">${nf(e.viviendas)}</div><div class="det">Piura ${nf(e.por_departamento.Piura)} · Tumbes ${nf(e.por_departamento.Tumbes)}; con una crecida de 1 en 10 años, ${nf(e10.viviendas)}</div></div>
+   <div><div class="eti">Con paredes frágiles</div><div class="r-cifra" style="font-size:32px">${nf(frag)}</div><div class="det">${pc(frag/e.viviendas)} del total: ${nf(e.paredes_tierra)} de adobe, tapia o quincha y ${nf(e.paredes_precarias)} de madera, triplay o estera</div></div>
+   <div><div class="eti">Con piso de tierra</div><div class="r-cifra" style="font-size:32px">${nf(e.piso_tierra)}</div><div class="det">${pc(e.piso_tierra/e.viviendas)} de las viviendas en la zona</div></div>
+   <div><div class="eti">Con más de 1,5 m de agua</div><div class="r-cifra" style="font-size:32px">${nf(e.viviendas_mas_1_5m)}</div><div class="det">según la profundidad del mapa de JRC</div></div>
+  </div>
+  <table class="tabla"><tr><th>Distrito</th><th style="text-align:right">Viviendas en la zona</th><th style="text-align:right">Paredes frágiles</th><th style="text-align:right">Piso de tierra</th></tr>${filas}</table>
+  <p class="nota" style="margin-top:8px">${V.limite} Paredes frágiles: ${V.definiciones.paredes_tierra}, o ${V.definiciones.paredes_precarias}. Son viviendas en la zona inundable (exposición), no viviendas afectadas.</p>`;
+  el.hidden=false;
+}
 function inundacionesVista(){
   const IN=D.IN; const el=document.getElementById("i-mapa");
   if(!hayWebGL()){el.innerHTML=SIN_GPU;return}
@@ -680,6 +699,8 @@ function panelInund(){
     `<br>Piura <b>${nf(g("Piura","edificaciones"))}</b> · Tumbes <b>${nf(g("Tumbes","edificaciones"))}</b> · fuera de los distritos <b>${nf(g("Sin distrito asignado","edificaciones"))}</b> (la suma da el total)</div>`;
   if(v)extra+=`<div class="i-valida"><b>¿Cuadra con lo oficial?</b> Edificaciones en la mancha del radar o hasta 500 m: Piura <b>${nf(g("Piura","edificaciones_500m"))}</b>, Tumbes <b>${nf(g("Tumbes","edificaciones_500m"))}</b>. INDECI reportó viviendas afectadas: Piura <b>${nf(v.Piura)}</b>, Tumbes <b>${nf(v.Tumbes)}</b>. ${v.nota} El radar no ve el agua entre casas: su cifra es un mínimo y solo sirve como orden de magnitud. <a href="${v.url}" target="_blank" rel="noopener" style="color:#7fb4e0">Fuente</a></div>`;
   if(I3.ev==="vivo")extra+=`<div class="i-aviso">Es temporada seca: el agua nueva de estos días es sobre todo riego por inundación de arrozales (Bajo Piura, San Lorenzo), no desbordes. Las lluvias fuertes suelen llegar entre enero y abril; esta capa se actualiza los lunes y jueves.</div>`;
+  const VCe=D.VC&&D.VC.escenarios&&D.VC.escenarios[I3.ev];
+  if(VCe)extra+=`<div class="i-valida"><b>Viviendas del Censo 2025 (INEI) en esta zona</b><br><b>${nf(VCe.viviendas)}</b> viviendas ocupadas (Piura ${nf(VCe.por_departamento.Piura)} · Tumbes ${nf(VCe.por_departamento.Tumbes)}); <b>${nf(VCe.paredes_tierra+VCe.paredes_precarias)}</b> con paredes de tierra o precarias y <b>${nf(VCe.piso_tierra)}</b> con piso de tierra. Solo viviendas en manzanas: la vivienda rural dispersa no está.</div>`;
   const X=D.EX&&D.EX.capas&&D.EX.capas[I3.ev];
   if(X){const f=[];
     if(X.ninos_0a4!=null)f.push(`Niños de 0 a 4 años: <b>${nf(X.ninos_0a4)}</b>`);
