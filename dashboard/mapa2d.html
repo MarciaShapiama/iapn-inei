@@ -260,7 +260,7 @@ function leyenda(e){
   let h=e.tipo==="peligro"?`<div><b>Profundidad (JRC)</b></div>`+[["< 0,5 m",1],["0,5–1,5 m",2],["1,5–3 m",3],["> 3 m",4]].map(([t,c])=>`<div><i style="background:${COL_PEL[c]}"></i>${t}</div>`).join("")
     :`<div><i style="background:#00a6d6"></i>Agua nueva detectada por radar (mínimo)</div>`;
   h+=`<div style="margin-top:4px"><b>Locales (distancia al borde de la mancha)</b></div><div><i style="background:#b3261e"></i>dentro</div><div><i style="background:#e8710a"></i>0–500 m</div><div><i style="background:#f2c200"></i>500 m–1 km</div><div>Borde oscuro: colegio · borde granate y más grande: salud</div>`;
-  if($("#k-eve").checked)h+=`<div style="margin-top:4px"><b>Inundaciones reportadas (noticias)</b></div>`+Object.entries({"detectado":"el radar la vio","no detectado":"el radar no la vio","fuera de alcance":"sierra o calles: el radar no puede verla"}).map(([k,t])=>`<div><i style="background:${COL_VD[k]};border-radius:50%"></i>${t}</div>`).join("");
+  if($("#k-eve").checked)h+=`<div style="margin-top:4px"><b>Inundaciones reportadas (noticias)</b></div>`+Object.entries({"detectado":"el radar la vio","no detectado":"el radar no la vio","fuera de alcance":"sierra, calles o quebradas: el radar no puede verla"}).map(([k,t])=>`<div><i style="background:${COL_VD[k]};border-radius:50%"></i>${t}</div>`).join("");
   if($("#k-pob").checked)h+=`<div style="margin-top:4px"><b>Población expuesta (relativa al máximo distrital)</b></div><div><i style="background:#fbb4b9"></i>&gt; 0</div><div><i style="background:#f768a1"></i>&gt; 5 %</div><div><i style="background:#c51b8a"></i>&gt; 20 %</div><div><i style="background:#7a0177"></i>&gt; 50 %</div>`;
   $("#leyenda").innerHTML=h;
 }

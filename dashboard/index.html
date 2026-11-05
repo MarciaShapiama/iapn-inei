@@ -656,7 +656,7 @@ function panelReportes(){
   const lista=reportesVisibles(), cont=document.getElementById("i-reportes"); if(!cont)return;
   const n=v=>lista.filter(x=>(x.radar||{}).veredicto===v).length;
   document.getElementById("i-rep-resumen").innerHTML=lista.length
-    ?`<b>${lista.length}</b> reportes en este periodo · el radar vio <b>${n("detectado")}</b>, no vio <b>${n("no detectado")}</b>, <b>${n("fuera de alcance")}</b> fuera de su alcance (sierra o calles). Fuente: noticias (Google Noticias) y catálogo verificado; ${escH(D.EVR.aviso)}`
+    ?`<b>${lista.length}</b> reportes en este periodo · el radar vio <b>${n("detectado")}</b>, no vio <b>${n("no detectado")}</b>, <b>${n("fuera de alcance")}</b> fuera de su alcance (sierra, calles o quebradas). Fuente: noticias (Google Noticias) y catálogo verificado; ${escH(D.EVR.aviso)}`
     :"No hay noticias de inundación en Tumbes o Piura para este periodo.";
   cont.innerHTML=lista.map((x,i)=>`<div data-r="${i}"><span>${escH(x.lugar)} <small>· ${escH(x.distrito)}</small><br><small>${fechaCorta(x.fecha)} · ${escH(x.tipo)} · ${(x.articulos||[]).length} nota(s)</small></span><span class="${vdClase((x.radar||{}).veredicto)}">${escH((x.radar||{}).veredicto)}</span></div>`).join("");
   cont.querySelectorAll("div[data-r]").forEach(d=>d.onclick=()=>{const x=lista[+d.dataset.r];mostrarReporte(x);I3.volarA(x.lon,x.lat)});
@@ -686,7 +686,7 @@ function radarCenso(V){
   const R=V.radar; if(!R||!R["2017"])return "";
   const r=R["2017"], fila=k=>R[k]?`<tr><td>${R[k].nombre}</td><td class="n">${nf(R[k].viviendas)}</td><td class="n">${nf(R[k].precarias)}</td></tr>`:"";
   const dd=(r.distritos||[]).map(d=>`${d.distrito} (${nf(d.viviendas)})`).join(", ");
-  return `<div class="i-valida" style="margin-top:12px;background:var(--panel2,#f4f1ea);color:inherit"><b>¿Y el radar? Casi no ve viviendas.</b><br>
+  return `<div style="margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,currentColor 5%,transparent);font-size:13.5px"><b>¿Y el radar? Casi no ve viviendas.</b><br>
    En 2017 solo <b>${nf(r.viviendas)}</b> viviendas del censo (${nf(r.manzanas)} manzanas) quedaron dentro del agua que vio el radar${dd?": "+dd:""}.
    Ese año el SINPAD (INDECI) registró en Piura 65 467 viviendas afectadas y 13 165 destruidas por todas las emergencias (lluvias, inundaciones y huaicos).
    El radar ve agua abierta en el campo, no entre casas ni en calles: por eso el tablero cuenta viviendas con la zona inundable de JRC y no con el radar.

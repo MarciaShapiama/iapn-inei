@@ -60,14 +60,13 @@ Los datos confidenciales del INEI (viviendas por manzana) **no están en este re
 | Datos | [01 Auditoría técnica y de datos](docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md) | Arquitectura, fuentes y licencias, errores corregidos y actualización del 4/11 |
 | Datos | [07 Refuerzo](docs/1_datos/07_REFUERZO.md) | Padrón ESCALE de colegios y verificación de pobreza e IDH |
 | Datos | [11 Cruce de habitantes](docs/1_datos/11_CRUCE_HABITANTES.md) | Cómo cruzar la data de habitantes del INEI (personas, sexo y edad) |
-| Datos | [17 Viviendas del INEI: materiales](docs/1_datos/17_VIVIENDAS_INEI_MATERIALES.md) | Paredes, techos y pisos precarios por distrito, y viviendas dentro del agua del radar |
+| Datos | [17 Viviendas del Censo 2025](docs/1_datos/17_VIVIENDAS_INEI_MATERIALES.md) | Un solo cálculo: viviendas en la zona inundable, materiales precarios y viviendas dentro del agua del radar |
 | Modelo | [02 Plan de machine learning](docs/2_modelo/02_PLAN_MACHINE_LEARNING.md) | Modelo de alerta por distrito y su evaluación |
 | Modelo | [08 Diseño del modelo de viviendas](docs/2_modelo/08_DISENO_MODELO_VIVIENDAS.md) | Primer diseño de la pregunta del profesor |
 | Modelo | [10 Modelo de viviendas afectadas](docs/2_modelo/10_MODELO_VIVIENDAS_AFECTADAS.md) | Etiqueta real del SINPAD (INDECI), variables, 6 modelos y validación 2012-2025 |
 | Modelo | [Modelo de inundación](docs/2_modelo/modelo_inundacion.md) | Documento original del modelo de alerta |
 | Validación | [06 Validación y viabilidad](docs/3_validacion/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación contra INDECI y costo de expandir |
-| Validación | [09 Prueba del detector con noticias](docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md) | Por qué el radar no ve calles, sierra ni cultivos; prueba con desbordes de 2023 y 2025 |
-| Validación | [16 Inundaciones reportadas](docs/3_validacion/16_INUNDACIONES_REPORTADAS.md) | Noticias en el mapa (se vean o no en el radar) y prueba con 13 eventos verificados |
+| Validación | [09 El radar frente a las noticias](docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md) | Tres pruebas (6 lugares recientes, 13 eventos verificados, cultivos inundados) y la capa de inundaciones reportadas del tablero |
 | Validación | [14 Prueba del aviso de lluvia](docs/3_validacion/14_PRUEBA_AVISO_LLUVIA.md) | Aviso del 5/11 frente a lo que pasó |
 | Tablero | [12 Río normal frente a El Niño](docs/4_tablero/12_RIO_NORMAL_VS_NINO.md) | Capas, orden y vista propuesta |
 | Tablero | [13 Mejora visual](docs/4_tablero/13_MEJORA_VISUAL.md) | Por qué el mapa se veía tosco y cómo arreglarlo |
@@ -134,7 +133,7 @@ Pasos sueltos útiles:
 | `python src/auditoria.py` | Regenera `docs/evidencia/auditoria_cifras.json` |
 | `python src/aviso_lluvia.py` | Recalcula el aviso de lluvia por distrito |
 | `python src/noticias.py` | Inundaciones reportadas en noticias (Google Noticias + catálogo verificado), con su verificación por radar; corre cada día |
-| `python src/vivienda_inei.py` | Materiales de las viviendas del INEI por distrito (necesita los archivos del INEI en la laptop; no se suben) |
+| `python src/vivienda_inei.py` | Viviendas del Censo 2025 por distrito: zona inundable, materiales y radar → `viviendas_censo.json` (necesita los archivos del INEI en `datos_inei/manzana/`; no se suben) |
 | `python src/validar_radar.py` | Compara el radar y la zona inundable con el mapa oficial de Copernicus 2017 |
 | `python src/modelo_afectados.py` | Modelo de viviendas afectadas con el SINPAD (INDECI) |
 | `python herramientas/documentos/md_a_docx.py` | Genera el informe en Word desde el Markdown |
