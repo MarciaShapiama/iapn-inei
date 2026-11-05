@@ -355,7 +355,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
   <h3>Aviso de lluvia (anticipación)</h3>
   <ul>
     <li>El radar solo ve el agua cuando pasa el satélite (en cada lugar, más o menos una vez cada 4 días) y no la ve en calles ni en la sierra. Para anticiparse se usa el pronóstico de lluvia de Open-Meteo para el centro de cada distrito.</li>
-    <li>Cada pronóstico se compara con lo extremo en ese mismo lugar: los percentiles 95 («lluvia fuerte») y 99 («lluvia extrema») de los días con lluvia de 1991 a 2020 (reanálisis ERA5). Cuenta el día más lluvioso de los próximos 3 días.</li>
+    <li>Cada pronóstico se compara con lo extremo en ese mismo lugar: los percentiles 95 («lluvia fuerte») y 99 («lluvia extrema») de los días con lluvia de 1991 a 2020 en su provincia (reanálisis ERA5, la misma familia de datos del pronóstico). Cuenta el día más lluvioso de los próximos 3 días.</li>
     <li>Es un criterio propio, parecido al de SENAMHI, pero no es un aviso oficial. Las noticias sirven para comprobar si acierta.</li>
   </ul>
 
@@ -633,7 +633,7 @@ function avisoVista(){
   const mostrar=(lista.length?lista:A.distritos.slice(0,8)).slice(0,15);
   const filas=mostrar.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td>${chip(d.nivel)}</td><td class="n">${fmtN(d.mm_dia_max,0)} mm · ${f(d.fecha_max)}</td><td class="n">${fmtN(d.p95,0)} / ${fmtN(d.p99,0)} mm</td><td class="n">${fmtN(d.mm_7d,0)} mm</td><td class="n">${d.personas_zona_inundable==null?"—":nf(d.personas_zona_inundable)}</td></tr>`).join("");
   el.innerHTML=`<h2>Aviso de lluvia: próximos ${A.ventana_dias} días</h2>
-  <p class="nota">Para anticiparse: compara la lluvia pronosticada para cada distrito con lo que es extremo en ese mismo lugar (percentiles 95 y 99 de los días con lluvia, 1991-2020). Hoy: <b>${A.conteo.extremo}</b> distritos con lluvia extrema y <b>${A.conteo.fuerte}</b> con lluvia fuerte pronosticada. Calculado el ${A.calculado.slice(0,10)}.</p>
+  <p class="nota">Para anticiparse: compara la lluvia pronosticada para cada distrito con lo que es extremo en ese mismo lugar (percentiles 95 y 99 de los días con lluvia de 1991 a 2020 en su provincia). Hoy: <b>${A.conteo.extremo}</b> distritos con lluvia extrema y <b>${A.conteo.fuerte}</b> con lluvia fuerte pronosticada. Calculado el ${A.calculado.slice(0,10)}.</p>
   <table class="tabla"><tr><th>Distrito</th><th>Aviso</th><th style="text-align:right">Día más lluvioso</th><th style="text-align:right">Fuerte / extrema desde</th><th style="text-align:right">7 días</th><th style="text-align:right">Personas en zona inundable</th></tr>${filas}</table>
   <p class="nota" style="margin-top:8px">${lista.length?"":"Ningún distrito supera los umbrales en los próximos días; se muestran los de más lluvia pronosticada. "}La lluvia intensa sobre ciudades (calles anegadas, quebradas) es el daño más frecuente y el radar no la ve: este aviso sirve para anticiparla. ${A.nota} Fuente: ${A.fuente}</p>`;
   el.hidden=false;

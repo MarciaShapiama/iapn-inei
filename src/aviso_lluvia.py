@@ -3,9 +3,10 @@
 El radar solo ve el agua cuando el satélite pasa y después de que ocurre. Para anticiparse se usa el pronóstico
 de lluvia: para cada distrito se compara la lluvia pronosticada con lo que es extremo EN ESE MISMO LUGAR.
 
-Umbrales (una sola vez, se guardan en data/normales/umbrales_lluvia_distritos.csv):
-    reanálisis ERA5 (Open-Meteo, archivo histórico) en el centro de cada distrito, días con lluvia (>= 1 mm)
-    de 1991 a 2020; se calculan los percentiles 95 y 99 de la lluvia diaria.
+Umbrales (se guardan en data/normales/umbrales_lluvia_distritos.csv):
+    reanálisis ERA5 1991-2020 (Open-Meteo) que el tablero ya guarda por provincia; días con lluvia (>= 1 mm);
+    percentiles 95 y 99. Cada distrito usa el umbral de su provincia (bajar ERA5 para 76 puntos y 30 años supera
+    el límite gratuito diario de Open-Meteo).
 Pronóstico (cada día): Open-Meteo, lluvia diaria de los próximos 7 días en el mismo punto.
 Niveles (por el día más lluvioso de los próximos 3 días):
     "extremo"  lluvia de un día por encima del percentil 99 del lugar
@@ -19,7 +20,6 @@ from __future__ import annotations
 
 import json
 import sys
-import time
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -55,27 +55,23 @@ def en_bloques(df, n=10):
 
 
 def umbrales(d: pd.DataFrame) -> pd.DataFrame:
-    if UMBRALES.exists():
-        u = pd.read_csv(UMBRALES)
-        if len(u) == len(d):
-            return u
+    """Percentiles 95 y 99 de los días con lluvia (>= 1 mm) de 1991 a 2020, con el reanálisis ERA5 (Open-Meteo) que el
+    tablero ya guarda por provincia en data/normales/lluvia_anios/. Cada distrito usa el umbral de su provincia.
+    No necesita red."""
+    import glob
+    l = pd.concat(pd.read_csv(f) for f in sorted(glob.glob(str(DATA / "normales" / "lluvia_anios" / "*.csv.gz"))))
+    l = l[l["fecha"].between("1991-01-01", "2020-12-31")]
+    por_prov = {}
+    for prov, g in l.groupby("provincia"):
+        h = g["ll"].to_numpy(dtype=float)
+        h = h[h >= 1.0]
+        por_prov[prov] = (len(h), np.percentile(h, 95) if len(h) >= 30 else np.nan,
+                          np.percentile(h, 99) if len(h) >= 30 else np.nan, g["ll"].max(), g["fecha"].min()[:4], g["fecha"].max()[:4])
     filas = []
-    for b in en_bloques(d, 5):
-        j = pedir("https://archive-api.open-meteo.com/v1/archive", {
-            "latitude": ",".join(map(str, b.lat)), "longitude": ",".join(map(str, b.lon)),
-            "start_date": "1991-01-01", "end_date": "2020-12-31", "daily": "precipitation_sum",
-            "timezone": "America/Lima"})
-        if j is None:
-            raise RuntimeError("Open-Meteo (archivo) no respondió")
-        j = j if isinstance(j, list) else [j]
-        for (_, r), x in zip(b.iterrows(), j):
-            v = np.array([np.nan if y is None else y for y in x["daily"]["precipitation_sum"]], dtype=float)
-            h = v[v >= 1.0]
-            filas.append({**r.to_dict(), "dias_con_lluvia": int(len(h)),
-                          "p95": round(float(np.percentile(h, 95)), 1) if len(h) >= 30 else np.nan,
-                          "p99": round(float(np.percentile(h, 99)), 1) if len(h) >= 30 else np.nan,
-                          "max_1991_2020": round(float(np.nanmax(v)), 1)})
-        time.sleep(8)
+    for _, r in d.iterrows():
+        n, p95, p99, mx, a0, a1 = por_prov.get(r.provincia, (0, np.nan, np.nan, np.nan, "", ""))
+        filas.append({**r.to_dict(), "dias_con_lluvia": int(n), "p95": round(float(p95), 1), "p99": round(float(p99), 1),
+                      "max_diaria": round(float(mx), 1), "periodo": f"{a0}-{a1}"})
     u = pd.DataFrame(filas)
     UMBRALES.parent.mkdir(parents=True, exist_ok=True)
     u.to_csv(UMBRALES, index=False)
