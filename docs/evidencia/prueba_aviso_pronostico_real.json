@@ -1,0 +1,395 @@
+{
+ "metodo": "Prueba del aviso de lluvia con PRONÓSTICOS REALES del pasado (lo que los modelos decían 1, 2 y 3 días antes).\n\nLa otra prueba (prueba_aviso_pasado.py) usa la lluvia que cayó: supone un pronóstico perfecto. Esta usa lo que\nOpen-Meteo pronosticaba ANTES de cada evento, con su archivo de corridas anteriores (Previous Runs API: guarda, para\ncada hora, el pronóstico hecho 1, 2, ... días antes; disponible desde 2024). Así se ve qué habría dicho el tablero.\n\nPara cada evento con noticia (2025-2026) y cada anticipación N = 1, 2, 3 días:\n    lluvia pronosticada N días antes para el día del evento y el día previo (suma horaria por día, hora de Lima)\n    nivel con los MISMOS umbrales del tablero (data/normales/umbrales_lluvia_distritos.csv: p95 y p99 de ERA5\n    1991-2020 por provincia), en el punto central del distrito.\nTambién se guarda la lluvia del modelo para esas horas (dato de la corrida más reciente, cercano a lo observado).",
+ "resumen": {
+  "1_dias_antes": {
+   "extremo": 4,
+   "fuerte": 2,
+   "normal": 4,
+   "sin dato": 0
+  },
+  "2_dias_antes": {
+   "extremo": 2,
+   "fuerte": 4,
+   "normal": 4,
+   "sin dato": 0
+  },
+  "3_dias_antes": {
+   "extremo": 1,
+   "fuerte": 4,
+   "normal": 5,
+   "sin dato": 0
+  }
+ },
+ "eventos": [
+  {
+   "fecha": "2025-02-12",
+   "departamento": "Tumbes",
+   "provincia": "Tumbes",
+   "distrito": "San Jacinto",
+   "que_paso": "Desborde del río Tumbes, 1 284 ha de cultivo inundadas",
+   "p95_mm": 26.9,
+   "p99_mm": 56.6,
+   "lluvia_modelo_corrida_reciente": {
+    "2025-02-11": 6.2,
+    "2025-02-12": 8.7
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2025-02-11": 4.8,
+     "2025-02-12": 5.3
+    },
+    "max_mm": 5.3,
+    "nivel": "normal"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2025-02-11": 5.2,
+     "2025-02-12": 11.0
+    },
+    "max_mm": 11.0,
+    "nivel": "normal"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2025-02-11": 11.6,
+     "2025-02-12": 13.2
+    },
+    "max_mm": 13.2,
+    "nivel": "normal"
+   }
+  },
+  {
+   "fecha": "2026-10-20",
+   "departamento": "Piura",
+   "provincia": "Piura",
+   "distrito": "Piura",
+   "que_paso": "Calles de Piura amanecen inundadas por lluvias",
+   "p95_mm": 24.2,
+   "p99_mm": 52.0,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-10-19": 1.1,
+    "2026-10-20": 16.0
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-19": 3.4,
+     "2026-10-20": 6.6
+    },
+    "max_mm": 6.6,
+    "nivel": "normal"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-19": 31.1,
+     "2026-10-20": 1.8
+    },
+    "max_mm": 31.1,
+    "nivel": "fuerte"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-19": 7.6,
+     "2026-10-20": 0.3
+    },
+    "max_mm": 7.6,
+    "nivel": "normal"
+   }
+  },
+  {
+   "fecha": "2026-10-20",
+   "departamento": "Piura",
+   "provincia": "Morropon",
+   "distrito": "Chulucanas",
+   "que_paso": "Aguacero inunda calles y cierra el mercado modelo",
+   "p95_mm": 32.5,
+   "p99_mm": 73.4,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-10-19": 2.7,
+    "2026-10-20": 19.9
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-19": 34.4,
+     "2026-10-20": 34.1
+    },
+    "max_mm": 34.4,
+    "nivel": "fuerte"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-19": 13.8,
+     "2026-10-20": 26.8
+    },
+    "max_mm": 26.8,
+    "nivel": "normal"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-19": 15.5,
+     "2026-10-20": 24.0
+    },
+    "max_mm": 24.0,
+    "nivel": "normal"
+   }
+  },
+  {
+   "fecha": "2026-10-25",
+   "departamento": "Piura",
+   "provincia": "Ayabaca",
+   "distrito": "Ayabaca",
+   "que_paso": "Lluvias inundan calles y viviendas de Ayabaca",
+   "p95_mm": 34.8,
+   "p99_mm": 54.8,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-10-24": 22.9,
+    "2026-10-25": 19.8
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-24": 21.1,
+     "2026-10-25": 20.6
+    },
+    "max_mm": 21.1,
+    "nivel": "normal"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-24": 19.7,
+     "2026-10-25": 21.8
+    },
+    "max_mm": 21.8,
+    "nivel": "normal"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-24": 26.8,
+     "2026-10-25": 40.1
+    },
+    "max_mm": 40.1,
+    "nivel": "fuerte"
+   }
+  },
+  {
+   "fecha": "2026-10-28",
+   "departamento": "Piura",
+   "provincia": "Piura",
+   "distrito": "Piura",
+   "que_paso": "Calles de Piura amanecen bajo el agua",
+   "p95_mm": 24.2,
+   "p99_mm": 52.0,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-10-27": 5.5,
+    "2026-10-28": 0.8
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-27": 15.9,
+     "2026-10-28": 5.4
+    },
+    "max_mm": 15.9,
+    "nivel": "normal"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-27": 16.2,
+     "2026-10-28": 10.2
+    },
+    "max_mm": 16.2,
+    "nivel": "normal"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-27": 8.4,
+     "2026-10-28": 48.1
+    },
+    "max_mm": 48.1,
+    "nivel": "fuerte"
+   }
+  },
+  {
+   "fecha": "2026-10-29",
+   "departamento": "Piura",
+   "provincia": "Huancabamba",
+   "distrito": "Canchaque",
+   "que_paso": "Desborde del río Serrán aísla Canchaque",
+   "p95_mm": 26.5,
+   "p99_mm": 42.3,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-10-28": 13.0,
+    "2026-10-29": 37.8
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-28": 20.6,
+     "2026-10-29": 43.1
+    },
+    "max_mm": 43.1,
+    "nivel": "extremo"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-28": 19.2,
+     "2026-10-29": 93.3
+    },
+    "max_mm": 93.3,
+    "nivel": "extremo"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-10-28": 15.7,
+     "2026-10-29": 8.3
+    },
+    "max_mm": 15.7,
+    "nivel": "normal"
+   }
+  },
+  {
+   "fecha": "2026-11-02",
+   "departamento": "Tumbes",
+   "provincia": "Zarumilla",
+   "distrito": "Aguas Verdes",
+   "que_paso": "Desborde del río Zarumilla inunda Puerto Perú",
+   "p95_mm": 28.1,
+   "p99_mm": 56.4,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-11-01": 72.1,
+    "2026-11-02": 48.3
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 71.4,
+     "2026-11-02": 51.2
+    },
+    "max_mm": 71.4,
+    "nivel": "extremo"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 22.1,
+     "2026-11-02": 39.8
+    },
+    "max_mm": 39.8,
+    "nivel": "fuerte"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 40.8,
+     "2026-11-02": 58.8
+    },
+    "max_mm": 58.8,
+    "nivel": "extremo"
+   }
+  },
+  {
+   "fecha": "2026-11-02",
+   "departamento": "Tumbes",
+   "provincia": "Tumbes",
+   "distrito": "Tumbes",
+   "que_paso": "Lluvias inundan calles y activan quebradas en Tumbes",
+   "p95_mm": 26.9,
+   "p99_mm": 56.6,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-11-01": 50.4,
+    "2026-11-02": 49.2
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 97.6,
+     "2026-11-02": 38.2
+    },
+    "max_mm": 97.6,
+    "nivel": "extremo"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 25.1,
+     "2026-11-02": 45.4
+    },
+    "max_mm": 45.4,
+    "nivel": "fuerte"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 27.3,
+     "2026-11-02": 38.1
+    },
+    "max_mm": 38.1,
+    "nivel": "fuerte"
+   }
+  },
+  {
+   "fecha": "2026-11-02",
+   "departamento": "Tumbes",
+   "provincia": "Tumbes",
+   "distrito": "San Jacinto",
+   "que_paso": "Se activa la quebrada Vaquería",
+   "p95_mm": 26.9,
+   "p99_mm": 56.6,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-11-01": 13.5,
+    "2026-11-02": 10.2
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 105.1,
+     "2026-11-02": 43.0
+    },
+    "max_mm": 105.1,
+    "nivel": "extremo"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 84.9,
+     "2026-11-02": 30.4
+    },
+    "max_mm": 84.9,
+    "nivel": "extremo"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 32.4,
+     "2026-11-02": 29.8
+    },
+    "max_mm": 32.4,
+    "nivel": "fuerte"
+   }
+  },
+  {
+   "fecha": "2026-11-02",
+   "departamento": "Piura",
+   "provincia": "Talara",
+   "distrito": "Mancora",
+   "que_paso": "Lluvia de hora y media inunda calles de Máncora",
+   "p95_mm": 19.9,
+   "p99_mm": 36.0,
+   "lluvia_modelo_corrida_reciente": {
+    "2026-11-01": 2.5,
+    "2026-11-02": 6.8
+   },
+   "pronostico_1_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 21.9,
+     "2026-11-02": 19.0
+    },
+    "max_mm": 21.9,
+    "nivel": "fuerte"
+   },
+   "pronostico_2_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 1.6,
+     "2026-11-02": 22.3
+    },
+    "max_mm": 22.3,
+    "nivel": "fuerte"
+   },
+   "pronostico_3_dias_antes": {
+    "mm_por_dia": {
+     "2026-11-01": 1.4,
+     "2026-11-02": 2.5
+    },
+    "max_mm": 2.5,
+    "nivel": "normal"
+   }
+  }
+ ]
+}
