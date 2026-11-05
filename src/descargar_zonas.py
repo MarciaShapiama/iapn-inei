@@ -52,14 +52,7 @@ ZONAS = [("Tumbes", "Zarumilla"), ("Tumbes", "Tumbes"), ("Tumbes", "Contralmiran
          ("Lima", "Barranca"), ("Lima", "Huaura"), ("Lima", "Huaral"), ("Lima", "Lima"), ("Callao", "Callao"),
          ("Lima", "Cañete"), ("Ica", "Chincha"), ("Ica", "Pisco"), ("Ica", "Ica"), ("Ica", "Nazca"),
          ("Arequipa", "Caravelí"), ("Arequipa", "Camaná"), ("Arequipa", "Islay"),
-         ("Moquegua", "Ilo"), ("Tacna", "Jorge Basadre"), ("Tacna", "Tacna"),
-         # Sierra de Piura (reunión del 4/11/2026): lluvias e inundaciones en Chulucanas, Huancabamba y Ayabaca.
-         ("Piura", "Morropón"), ("Piura", "Huancabamba"), ("Piura", "Ayabaca")]
-
-# En la sierra el punto de la provincia es la capital (donde ocurren las noticias), no un punto cualquiera del polígono.
-PUNTO_FIJO = {("Piura", "Morropón"): (-5.093, -80.163),       # Chulucanas
-              ("Piura", "Huancabamba"): (-5.239, -79.451),    # Huancabamba
-              ("Piura", "Ayabaca"): (-4.640, -79.715)}        # Ayabaca
+         ("Moquegua", "Ilo"), ("Tacna", "Jorge Basadre"), ("Tacna", "Tacna")]
 
 # Ríos principales: punto aproximado en el curso bajo; se busca la celda de GloFAS con más caudal alrededor.
 RIOS = {"Tumbes": (-3.62, -80.40), "Chira": (-4.88, -80.68), "Piura": (-5.18, -80.62),
@@ -69,12 +62,7 @@ RIOS = {"Tumbes": (-3.62, -80.40), "Chira": (-4.88, -80.68), "Piura": (-5.18, -8
         "Rímac": (-12.00, -76.95), "Cañete": (-13.05, -76.32), "San Juan (Chincha)": (-13.40, -76.05),
         "Pisco": (-13.70, -76.05), "Ica": (-14.05, -75.73), "Grande (Nazca)": (-14.80, -75.10),
         "Ocoña": (-16.35, -73.10), "Camaná-Majes": (-16.55, -72.65), "Tambo": (-17.05, -71.70),
-        "Locumba": (-17.60, -70.80), "Caplina": (-17.95, -70.25),
-        # Sierra de Piura
-        "Piura (Chulucanas)": (-5.10, -80.20), "Huancabamba": (-5.24, -79.45), "Quiroz": (-4.65, -79.90)}
-# Río asignado a mano (en las demás provincias se usa el río más cercano). Los ríos de esta tabla no se ofrecen a otras
-# provincias, para que la sierra no cambie el río que ya tenían Sullana, Piura o Paita.
-RIO_FIJO = {"Morropón": "Piura (Chulucanas)", "Huancabamba": "Huancabamba", "Ayabaca": "Quiroz"}
+        "Locumba": (-17.60, -70.80), "Caplina": (-17.95, -70.25)}
 
 
 def pedir(url: str, params: dict, intentos: int = 4):
@@ -104,12 +92,8 @@ def puntos_zonas() -> pd.DataFrame:
     formas = {(f["properties"]["departamento"], f["properties"]["provincia"]): shape(f["geometry"]) for f in g["features"]}
     filas = []
     for dep, prov in ZONAS:
-        if (dep, prov) in PUNTO_FIJO:
-            la, lo = PUNTO_FIJO[(dep, prov)]
-        else:
-            p = formas[(dep, prov)].representative_point()
-            la, lo = p.y, p.x
-        filas.append({"departamento": dep, "provincia": prov, "lat": round(la, 3), "lon": round(lo, 3)})
+        p = formas[(dep, prov)].representative_point()
+        filas.append({"departamento": dep, "provincia": prov, "lat": round(p.y, 3), "lon": round(p.x, 3)})
     return pd.DataFrame(filas)
 
 
@@ -140,21 +124,17 @@ def lluvia_normal(z: pd.DataFrame) -> pd.DataFrame | None:
     carpeta = DATA / "normales" / "lluvia_anios"; carpeta.mkdir(parents=True, exist_ok=True)
     for anio in ANIOS_NORMAL:
         ruta = carpeta / f"{anio}.csv.gz"
-        previo = pd.read_csv(ruta) if ruta.exists() else None
-        # Si se agregaron provincias, se descargan solo las que faltan en el archivo del año.
-        faltan = z if previo is None else z[~z["provincia"].isin(set(previo["provincia"]))].reset_index(drop=True)
-        if faltan.empty or not queda_tiempo():
+        if ruta.exists() or not queda_tiempo():
             continue
         j = pedir("https://archive-api.open-meteo.com/v1/archive", {
-            "latitude": ",".join(map(str, faltan["lat"])), "longitude": ",".join(map(str, faltan["lon"])),
+            "latitude": ",".join(map(str, z["lat"])), "longitude": ",".join(map(str, z["lon"])),
             "start_date": f"{anio}-01-01", "end_date": f"{anio}-12-31", "daily": "precipitation_sum",
             "timezone": "America/Lima"}, intentos=2)
-        filas = [{"provincia": faltan["provincia"][k], "fecha": f, "ll": v}
+        filas = [{"provincia": z["provincia"][k], "fecha": f, "ll": v}
                  for k, loc in enumerate(como_lista(j or [])) for f, v in zip(loc["daily"]["time"], loc["daily"]["precipitation_sum"])]
         if filas:
-            nuevo = pd.DataFrame(filas)
-            (nuevo if previo is None else pd.concat([previo, nuevo])).to_csv(ruta, index=False)
-            print(f"  lluvia {anio}: {len(faltan)} provincias agregadas")
+            pd.DataFrame(filas).to_csv(ruta, index=False)
+            print(f"  lluvia {anio}: listo")
         time.sleep(3)
     anios = sorted(carpeta.glob("*.csv.gz"))
     print(f"  normal de lluvia con {len(anios)} de {len(ANIOS_NORMAL)} años")
@@ -173,12 +153,10 @@ def lluvia_normal(z: pd.DataFrame) -> pd.DataFrame | None:
 def elegir_celdas_rio() -> pd.DataFrame:
     """Para cada río, la celda de GloFAS (0,05°) con más caudal en un vecindario de ±0,1°."""
     ruta = DATA / "normales" / "rios_celdas.csv"
-    previo = pd.read_csv(ruta) if ruta.exists() else None
-    pendientes = {r: v for r, v in RIOS.items() if previo is None or r not in set(previo["rio"])}
-    if not pendientes:
-        return previo
+    if ruta.exists():
+        return pd.read_csv(ruta)
     cand = [(rio, round(la + i * 0.05, 3), round(lo + j * 0.05, 3))
-            for rio, (la, lo) in pendientes.items() for i in (-2, -1, 0, 1, 2) for j in (-2, -1, 0, 1, 2)]
+            for rio, (la, lo) in RIOS.items() for i in (-2, -1, 0, 1, 2) for j in (-2, -1, 0, 1, 2)]
     c = pd.DataFrame(cand, columns=["rio", "lat", "lon"])
     medias = []
     for k in range(0, len(c), 100):
@@ -192,12 +170,10 @@ def elegir_celdas_rio() -> pd.DataFrame:
         time.sleep(1)
     c["media_2017"] = medias + [0] * (len(c) - len(medias))
     mejor = c.loc[c.groupby("rio")["media_2017"].idxmax()].reset_index(drop=True)
-    mejor = mejor[mejor["media_2017"] > 0]
-    todos = mejor if previo is None else pd.concat([previo, mejor], ignore_index=True)
-    if len(mejor):
+    if mejor["media_2017"].gt(0).any():
         ruta.parent.mkdir(parents=True, exist_ok=True)
-        todos.to_csv(ruta, index=False)
-    return todos
+        mejor.to_csv(ruta, index=False)
+    return mejor
 
 
 def caudal(rios: pd.DataFrame) -> pd.DataFrame:
