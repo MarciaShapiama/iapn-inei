@@ -1,0 +1,79 @@
+{
+ "lado_cuadrado_km": 13.3,
+ "eventos": [
+  {
+   "lugar": "Valle bajo del río Tumbes (San Jacinto, Corrales, Pampas de Hospital, San Juan de la Virgen)",
+   "lat": -3.64,
+   "lon": -80.45,
+   "fecha": "2025-02-12",
+   "noticia": "Desborde del río Tumbes (1 100 m³/s): 1 284 ha de cultivo inundadas según la Agencia Agraria de Tumbes",
+   "fuente": "https://andina.pe/agencia/noticia-tumbes-alerta-desborde-del-rio-tumbes-deja-mas-1200-hectareas-cultivo-inundadas-1018652.aspx",
+   "pasadas_evento": [
+    "2025-02-12",
+    "2025-02-15"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2025-02-12",
+    "2025-02-15"
+   ],
+   "altura_mediana_m": 43.0,
+   "pct_area_sobre_250m": 0.0,
+   "pct_area_pendiente_mayor_5": 32.5,
+   "km2_a_vv_menor_17": 0.09,
+   "km2_b_mas_caida_3db": 0.09,
+   "km2_c_sin_agua_permanente": 0.09,
+   "km2_d_sin_sierra_ni_ladera": 0.09,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.11,
+   "km2_jrc_rp100": 43.24,
+   "caida_mediana_db_en_jrc": 0.4,
+   "vv_evento_mediana_db_en_jrc": -8.8,
+   "ventana": {
+    "evento": [
+     "2025-02-11",
+     "2025-02-19"
+    ],
+    "ref": [
+     "2024-08-01",
+     "2024-11-30"
+    ]
+   }
+  },
+  {
+   "lugar": "Valle bajo del río Tumbes (San Jacinto, Malval, Plateros, Cerro Blanco)",
+   "lat": -3.64,
+   "lon": -80.45,
+   "fecha": "2023-04-29",
+   "noticia": "Desborde del río Tumbes (1 833 m³/s): unas 1 600 ha de banano, limón y arroz afectadas o perdidas",
+   "fuente": "https://andina.pe/agencia/noticia-desborde-del-rio-tumbes-inunda-mas-500-hectareas-cultivo-y-cientos-viviendas-938318.aspx",
+   "pasadas_evento": [
+    "2023-05-06"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2023-05-06"
+   ],
+   "altura_mediana_m": 43.0,
+   "pct_area_sobre_250m": 0.0,
+   "pct_area_pendiente_mayor_5": 32.5,
+   "km2_a_vv_menor_17": 0.02,
+   "km2_b_mas_caida_3db": 0.02,
+   "km2_c_sin_agua_permanente": 0.02,
+   "km2_d_sin_sierra_ni_ladera": 0.02,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.11,
+   "km2_jrc_rp100": 43.24,
+   "caida_mediana_db_en_jrc": 0.0,
+   "vv_evento_mediana_db_en_jrc": -8.0,
+   "ventana": {
+    "evento": [
+     "2023-04-28",
+     "2023-05-06"
+    ],
+    "ref": [
+     "2022-08-01",
+     "2022-11-30"
+    ]
+   }
+  }
+ ]
+}
