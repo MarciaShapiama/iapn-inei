@@ -1,0 +1,213 @@
+{
+ "ventana_vivo": [
+  "2026-10-11",
+  "2026-11-04"
+ ],
+ "referencia_seca": [
+  "2026-08-01",
+  "2026-10-10"
+ ],
+ "lado_cuadrado_km": 6.0,
+ "lugares": [
+  {
+   "lugar": "Aguas Verdes (Puerto Perú), Zarumilla",
+   "lat": -3.48,
+   "lon": -80.246,
+   "fecha": "2026-11-02",
+   "noticia": "Desborde del río Zarumilla en Puerto Perú y Tomás Arizola",
+   "fuente": "https://elcomercio.pe/peru/tumbes/tumbes-desborde-del-rio-zarumilla-afecta-a-puerto-peru-y-tomas-arizola-fenomeno-el-nino-fen-apuesplan-ultimas-noticia/",
+   "pasadas_evento": [
+    "2026-10-12",
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30",
+    "2026-11-02"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2026-11-02"
+   ],
+   "altura_mediana_m": 6.0,
+   "pct_area_sobre_250m": 0.0,
+   "pct_area_pendiente_mayor_5": 0.1,
+   "km2_a_vv_menor_17": 1.93,
+   "km2_b_mas_caida_3db": 0.32,
+   "km2_c_sin_agua_permanente": 0.09,
+   "km2_d_sin_sierra_ni_ladera": 0.09,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.0,
+   "km2_jrc_rp100": 22.91,
+   "caida_mediana_db_en_jrc": 0.2,
+   "vv_evento_mediana_db_en_jrc": -9.4
+  },
+  {
+   "lugar": "San Jacinto (río Tumbes)",
+   "lat": -3.643,
+   "lon": -80.448,
+   "fecha": "2026-11-02",
+   "noticia": "Desborde del río Tumbes en Vaquería; caudal sobre el umbral rojo",
+   "fuente": "https://www.infobae.com/peru/2026/11/03/lluvias-en-tumbes-activan-quebradas-elevan-el-caudal-de-los-rios-y-dejan-aislados-a-agricultores-en-zonas-rurales-y-fronterizas/",
+   "pasadas_evento": [
+    "2026-10-12",
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30",
+    "2026-11-02"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2026-11-02"
+   ],
+   "altura_mediana_m": 18.0,
+   "pct_area_sobre_250m": 0.0,
+   "pct_area_pendiente_mayor_5": 26.4,
+   "km2_a_vv_menor_17": 0.2,
+   "km2_b_mas_caida_3db": 0.19,
+   "km2_c_sin_agua_permanente": 0.19,
+   "km2_d_sin_sierra_ni_ladera": 0.19,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.09,
+   "km2_jrc_rp100": 15.07,
+   "caida_mediana_db_en_jrc": 0.5,
+   "vv_evento_mediana_db_en_jrc": -8.4
+  },
+  {
+   "lugar": "Tumbes (ciudad)",
+   "lat": -3.567,
+   "lon": -80.452,
+   "fecha": "2026-11-02",
+   "noticia": "Alerta roja por el caudal del río Tumbes",
+   "fuente": "https://elbuho.pe/2026/11/fenomeno-el-nino-alerta-roja-por-incremento-del-caudal-del-rio-tumbes-tras-intensas-precipitaciones/",
+   "pasadas_evento": [
+    "2026-10-12",
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30",
+    "2026-11-02"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2026-11-02"
+   ],
+   "altura_mediana_m": 7.0,
+   "pct_area_sobre_250m": 0.0,
+   "pct_area_pendiente_mayor_5": 3.8,
+   "km2_a_vv_menor_17": 0.02,
+   "km2_b_mas_caida_3db": 0.02,
+   "km2_c_sin_agua_permanente": 0.02,
+   "km2_d_sin_sierra_ni_ladera": 0.02,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.0,
+   "km2_jrc_rp100": 19.1,
+   "caida_mediana_db_en_jrc": 0.7,
+   "vv_evento_mediana_db_en_jrc": -9.8
+  },
+  {
+   "lugar": "Máncora",
+   "lat": -4.106,
+   "lon": -81.047,
+   "fecha": "2026-11-02",
+   "noticia": "Lluvia de hora y media inunda calles; se activan las quebradas Fernández y Cabo Blanco",
+   "fuente": "https://andina.pe/agencia/noticia-fenomeno-nino-piura-lluvia-hora-y-media-inunda-calles-distrito-mancora-1098350.aspx",
+   "pasadas_evento": [
+    "2026-10-12",
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30",
+    "2026-11-02"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2026-11-02"
+   ],
+   "altura_mediana_m": 12.0,
+   "pct_area_sobre_250m": 0.1,
+   "pct_area_pendiente_mayor_5": 40.5,
+   "km2_a_vv_menor_17": 9.34,
+   "km2_b_mas_caida_3db": 1.99,
+   "km2_c_sin_agua_permanente": 0.0,
+   "km2_d_sin_sierra_ni_ladera": 0.0,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.0,
+   "km2_jrc_rp100": 2.2,
+   "caida_mediana_db_en_jrc": 0.4,
+   "vv_evento_mediana_db_en_jrc": -10.4
+  },
+  {
+   "lugar": "Chulucanas",
+   "lat": -5.093,
+   "lon": -80.163,
+   "fecha": "2026-10-20",
+   "noticia": "Aguacero deja calles inundadas y el mercado con unos 30 cm de agua (también 27/10 y 2/11)",
+   "fuente": "https://rpp.pe/peru/piura/piura-lluvias-torrenciales-inundan-calles-y-obligan-a-cerrar-el-mercado-modelo-en-chulucanas-noticia-1713517",
+   "pasadas_evento": [
+    "2026-10-12",
+    "2026-10-18",
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30",
+    "2026-11-02"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-30",
+    "2026-11-02"
+   ],
+   "altura_mediana_m": 90.0,
+   "pct_area_sobre_250m": 0.0,
+   "pct_area_pendiente_mayor_5": 1.5,
+   "km2_a_vv_menor_17": 0.0,
+   "km2_b_mas_caida_3db": 0.0,
+   "km2_c_sin_agua_permanente": 0.0,
+   "km2_d_sin_sierra_ni_ladera": 0.0,
+   "km2_quitado_por_altura_o_pendiente": 0.0,
+   "km2_capa_publicada_bruta": 0.0,
+   "km2_jrc_rp100": 12.03,
+   "caida_mediana_db_en_jrc": 0.4,
+   "vv_evento_mediana_db_en_jrc": -8.5
+  },
+  {
+   "lugar": "Huancabamba (río Serrán)",
+   "lat": -5.239,
+   "lon": -79.451,
+   "fecha": "2026-10-30",
+   "noticia": "Crecida del río Serrán (prueba anterior del equipo)",
+   "fuente": null,
+   "pasadas_evento": [
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-16",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-24",
+    "2026-10-25",
+    "2026-10-28",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "pasadas_despues_de_la_noticia": [
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "altura_mediana_m": 2110.0,
+   "pct_area_sobre_250m": 100.0,
+   "pct_area_pendiente_mayor_5": 90.9,
+   "km2_a_vv_menor_17": 0.08,
+   "km2_b_mas_caida_3db": 0.08,
+   "km2_c_sin_agua_permanente": 0.08,
+   "km2_d_sin_sierra_ni_ladera": 0.0,
+   "km2_quitado_por_altura_o_pendiente": 0.08,
+   "km2_capa_publicada_bruta": 0.0,
+   "km2_jrc_rp100": 0.0,
+   "caida_mediana_db_en_jrc": null,
+   "vv_evento_mediana_db_en_jrc": null
+  }
+ ]
+}
