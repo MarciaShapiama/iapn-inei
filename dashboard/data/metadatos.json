@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-06T06:41-05:00",
+ "generado": "2026-11-06T15:02-05:00",
  "hoy": "2026-11-06",
  "resumen_estado": {
   "vigente": 10,
@@ -326,7 +326,7 @@
    "version": "v2.1 NRT",
    "naturaleza": "observado (satélite + boyas, interpolado)",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-04",
+   "dato_mas_reciente": "2026-11-05",
    "tolerancia_dias": 3,
    "frecuencia": "diaria (rezago ~1-2 días)",
    "metodo": "Interpolación óptima (OI) de satélite AVHRR, boyas y barcos.",
