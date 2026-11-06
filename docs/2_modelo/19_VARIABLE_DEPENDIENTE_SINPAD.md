@@ -42,6 +42,7 @@ Se corrigió además un error de la base: los dos distritos llamados **Salitral*
 - **Eventos verificados con noticias:** los 6 eventos de 2017 y 2023 del catálogo tienen registro SINPAD de agua en el mismo distrito a menos de 14 días (5 de 6 a menos de 7 días). Ejemplos: Cura Mori, código 86087, 27/03/2017, INUNDACION; Catacaos, código 84821, 27/03/2017, INUNDACION. Los 7 eventos de octubre y noviembre de 2026 no se pueden comprobar: el archivo 2026 solo llega a junio.
 - **Muestra para revisión manual:** 20 registros al azar con su código SINPAD en `docs/evidencia/auditoria_sinpad.json`.
 - **Distribución:** 90 896 distrito-semanas con Y; **7 173 con Y = 1 (7,9 %)**; 2 431 distrito-semanas con registro (de 3 062 registros). Años más altos: 2023 (398 semanas con registro), 2017 (322), 2025 (266). El 89 % de las semanas con registro cae entre enero y abril. Los 76 distritos tienen al menos un registro; los que más: Tumbes (109), Huancabamba (87), Pacaipampa (71), Zarumilla (69) y Ayabaca (65).
+- **Actualización 6/11/2026, mapa de 78 distritos del INEI** (`docs/1_datos/20_MAPA_78_DISTRITOS_INEI.md`): sin unir distritos, la base tiene 93 288 distrito-semanas con Y y **7 243 con Y = 1 (7,8 %)**. Los 78 distritos tienen al menos un registro.
 
 **Límites que siguen:** el SINPAD depende de lo que reporta cada municipalidad (puede haber subregistro o registros de daños menores); la fecha es la de la emergencia según el registro; «lluvia intensa» incluye daños por lluvia que no son inundaciones (techos, viviendas precarias).
 
@@ -56,6 +57,8 @@ Se corrigió además un error de la base: los dos distritos llamados **Salitral*
 | LightGBM | 0,396 | 0,869 | 27 % |
 
 Antes, con DesInventar (2008-2015): climatología 0,095 y logística simple 0,114. Los valores no se comparan directamente, porque la tasa base cambió de 1 % a 9 %.
+
+Con el mapa de 78 distritos del INEI (6/11/2026) las cifras casi no cambian: climatología 0,395, logística simple 0,369, logística completa 0,382 y LightGBM 0,393 (PR-AUC); la logística supera a la climatología con 14 % de probabilidad y LightGBM con 46 %. 2017 y 2023 siguen en los puestos 1 y 2.
 
 **Lectura honesta:**
 

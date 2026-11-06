@@ -3,7 +3,7 @@
 **Pregunta:** ¿habrá una emergencia por inundación o lluvias en el distrito en las próximas 4 semanas?
 
 ## Datos
-- `data/modelo/base_distrito_semana.csv`: 75 distritos × semanas desde 2001 (se actualiza los lunes).
+- `data/modelo/base_distrito_semana.csv`: 78 distritos × semanas desde 2001 (75 antes del 6/11/2026, con el mapa GADM) (se actualiza los lunes).
 - Etiqueta: `emergencia_1a4` (DesInventar, fuente INDECI). Solo tiene fechas hasta **2015**.
 - Variables: lluvia de 7, 30 y 90 días y sus anomalías (NASA POWER); caudal del río más cercano (GloFAS); Niño 1+2 y 3.4; exposición (zona inundable 1 en 10 y 1 en 100 años, viviendas, personas); época del año.
 - Totales del INDECI 2003-2024 por provincia, sin fechas: `data/modelo/indeci/`.

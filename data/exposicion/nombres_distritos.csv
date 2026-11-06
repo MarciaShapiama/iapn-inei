@@ -1,0 +1,79 @@
+ubigeo,departamento,provincia,distrito,nombre_inei,tilde_agregada
+200101,Piura,Piura,Piura,PIURA,no
+200104,Piura,Piura,Castilla,CASTILLA,no
+200105,Piura,Piura,Catacaos,CATACAOS,no
+200107,Piura,Piura,Cura Mori,CURA MORI,no
+200108,Piura,Piura,El Tallán,EL TALLAN,sí
+200109,Piura,Piura,La Arena,LA ARENA,no
+200110,Piura,Piura,La Unión,LA UNION,sí
+200111,Piura,Piura,Las Lomas,LAS LOMAS,no
+200114,Piura,Piura,Tambo Grande,TAMBO GRANDE,no
+200115,Piura,Piura,Veintiséis de Octubre,VEINTISEIS DE OCTUBRE,sí
+200201,Piura,Ayabaca,Ayabaca,AYABACA,no
+200202,Piura,Ayabaca,Frías,FRIAS,sí
+200203,Piura,Ayabaca,Jilili,JILILI,no
+200204,Piura,Ayabaca,Lagunas,LAGUNAS,no
+200205,Piura,Ayabaca,Montero,MONTERO,no
+200206,Piura,Ayabaca,Pacaipampa,PACAIPAMPA,no
+200207,Piura,Ayabaca,Paimas,PAIMAS,no
+200208,Piura,Ayabaca,Sapillica,SAPILLICA,no
+200209,Piura,Ayabaca,Sicchez,SICCHEZ,no
+200210,Piura,Ayabaca,Suyo,SUYO,no
+200301,Piura,Huancabamba,Huancabamba,HUANCABAMBA,no
+200302,Piura,Huancabamba,Canchaque,CANCHAQUE,no
+200303,Piura,Huancabamba,El Carmen de la Frontera,EL CARMEN DE LA FRONTERA,no
+200304,Piura,Huancabamba,Huarmaca,HUARMACA,no
+200305,Piura,Huancabamba,Lalaquiz,LALAQUIZ,no
+200306,Piura,Huancabamba,San Miguel de El Faique,SAN MIGUEL DE EL FAIQUE,no
+200307,Piura,Huancabamba,Sondor,SONDOR,no
+200308,Piura,Huancabamba,Sondorillo,SONDORILLO,no
+200401,Piura,Morropón,Chulucanas,CHULUCANAS,no
+200402,Piura,Morropón,Buenos Aires,BUENOS AIRES,no
+200403,Piura,Morropón,Chalaco,CHALACO,no
+200404,Piura,Morropón,La Matanza,LA MATANZA,no
+200405,Piura,Morropón,Morropón,MORROPON,sí
+200406,Piura,Morropón,Salitral,SALITRAL,no
+200407,Piura,Morropón,San Juan de Bigote,SAN JUAN DE BIGOTE,no
+200408,Piura,Morropón,Santa Catalina de Mossa,SANTA CATALINA DE MOSSA,no
+200409,Piura,Morropón,Santo Domingo,SANTO DOMINGO,no
+200410,Piura,Morropón,Yamango,YAMANGO,no
+200501,Piura,Paita,Paita,PAITA,no
+200502,Piura,Paita,Amotape,AMOTAPE,no
+200503,Piura,Paita,Arenal,ARENAL,no
+200504,Piura,Paita,Colán,COLAN,sí
+200505,Piura,Paita,La Huaca,LA HUACA,no
+200506,Piura,Paita,Tamarindo,TAMARINDO,no
+200507,Piura,Paita,Vichayal,VICHAYAL,no
+200601,Piura,Sullana,Sullana,SULLANA,no
+200602,Piura,Sullana,Bellavista,BELLAVISTA,no
+200603,Piura,Sullana,Ignacio Escudero,IGNACIO ESCUDERO,no
+200604,Piura,Sullana,Lancones,LANCONES,no
+200605,Piura,Sullana,Marcavelica,MARCAVELICA,no
+200606,Piura,Sullana,Miguel Checa,MIGUEL CHECA,no
+200607,Piura,Sullana,Querecotillo,QUERECOTILLO,no
+200608,Piura,Sullana,Salitral,SALITRAL,no
+200701,Piura,Talara,Pariñas,PARIÑAS,no
+200702,Piura,Talara,El Alto,EL ALTO,no
+200703,Piura,Talara,La Brea,LA BREA,no
+200704,Piura,Talara,Lobitos,LOBITOS,no
+200705,Piura,Talara,Los Órganos,LOS ORGANOS,sí
+200706,Piura,Talara,Máncora,MANCORA,sí
+200801,Piura,Sechura,Sechura,SECHURA,no
+200802,Piura,Sechura,Bellavista de la Unión,BELLAVISTA DE LA UNION,sí
+200803,Piura,Sechura,Bernal,BERNAL,no
+200804,Piura,Sechura,Cristo Nos Valga,CRISTO NOS VALGA,no
+200805,Piura,Sechura,Vice,VICE,no
+200806,Piura,Sechura,Rinconada Llicuar,RINCONADA LLICUAR,no
+240101,Tumbes,Tumbes,Tumbes,TUMBES,no
+240102,Tumbes,Tumbes,Corrales,CORRALES,no
+240103,Tumbes,Tumbes,La Cruz,LA CRUZ,no
+240104,Tumbes,Tumbes,Pampas de Hospital,PAMPAS DE HOSPITAL,no
+240105,Tumbes,Tumbes,San Jacinto,SAN JACINTO,no
+240106,Tumbes,Tumbes,San Juan de la Virgen,SAN JUAN DE LA VIRGEN,no
+240201,Tumbes,Contralmirante Villar,Zorritos,ZORRITOS,no
+240202,Tumbes,Contralmirante Villar,Casitas,CASITAS,no
+240203,Tumbes,Contralmirante Villar,Canoas de Punta Sal,CANOAS DE PUNTA SAL,no
+240301,Tumbes,Zarumilla,Zarumilla,ZARUMILLA,no
+240302,Tumbes,Zarumilla,Aguas Verdes,AGUAS VERDES,no
+240303,Tumbes,Zarumilla,Matapalo,MATAPALO,no
+240304,Tumbes,Zarumilla,Papayal,PAPAYAL,no

@@ -50,3 +50,15 @@ fecha,etiqueta,archivo,bytes,sha256,cambio
 2026-11-05T16:18-05:00,impacto,iapn-inei/dashboard/data/descargas/exposicion_distritos.csv,31400,2ba4eb64ec08a27f08ffd913a3c145f16314860fd22ee82bfed3fcf103153b30,igual
 2026-11-05T16:18-05:00,panel,iapn-inei/dashboard/data/descargas/panel_distritos.csv,65015,4f09c6ce0c0d387aa244fce8ffb7c3572aeb10be3975c18e3726f64db5de2889,igual
 2026-11-05T16:18-05:00,panel,iapn-inei/dashboard/data/panel_distritos.json,107912,da2a730485e4bc19833baabdb71ed3e8cdf16b51d894dec6ff6212f7a831bda4,modificado
+2026-11-06T16:56-05:00,impacto,inundacion.json,3550342,bf3e4475a6e144a51aa9a19e63db40f8d5f0963d42cf0ff041cff1bf8e1f48f9,modificado
+2026-11-06T16:56-05:00,impacto,exposicion_distritos.csv,32836,d0d8ba6a89da2d6f76d76584b2d6a31d2fdf8b97afe3a38303039b82b2aec4dc,modificado
+2026-11-06T16:57-05:00,panel,panel_distritos.csv,66894,17adbf3b3386b92b05704ec84f755c7f68a01d1cb59b8b2c6b9feae27b3a9a5c,modificado
+2026-11-06T16:57-05:00,panel,panel_distritos.json,110834,1dc00eb653b5b545bcb1df93c4ef4aded1ec342b96cc483149f6e1581005a12e,modificado
+2026-11-06T17:16-05:00,impacto,inundacion.json,3550342,0c65a0915c97c098579058352d433c2e33fd9e60360901ac3a890c08c8d60242,modificado
+2026-11-06T17:16-05:00,impacto,exposicion_distritos.csv,32836,d0d8ba6a89da2d6f76d76584b2d6a31d2fdf8b97afe3a38303039b82b2aec4dc,igual
+2026-11-06T17:16-05:00,panel,panel_distritos.csv,66894,17adbf3b3386b92b05704ec84f755c7f68a01d1cb59b8b2c6b9feae27b3a9a5c,igual
+2026-11-06T17:16-05:00,panel,panel_distritos.json,110834,24c414b9143a0e8aa6497280a71e002f26976a0cbf8541b4767b65632db643f9,modificado
+2026-11-06T17:40-05:00,impacto,inundacion.json,3550342,35b5f1fe033efaf3b66f86ede49012877b71fcae1bcb3d6a524eaf8af396f3b1,modificado
+2026-11-06T17:40-05:00,impacto,exposicion_distritos.csv,32836,d0d8ba6a89da2d6f76d76584b2d6a31d2fdf8b97afe3a38303039b82b2aec4dc,igual
+2026-11-06T17:40-05:00,panel,panel_distritos.csv,66891,8ced6c775dc08dbb9b58a5fe3be173dcd56b9610503908dcfc19004b7d884c19,modificado
+2026-11-06T17:40-05:00,panel,panel_distritos.json,110834,d9e4d468b870240a59ac0b1f89bd4c6f6686147a1604bc2950dc57d3294b8dee,modificado

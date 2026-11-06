@@ -60,10 +60,12 @@ Los datos confidenciales del INEI (viviendas por manzana) **no están en este re
 | Datos | [01 Auditoría técnica y de datos](docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md) | Arquitectura, fuentes y licencias, errores corregidos y actualización del 4/11 |
 | Datos | [07 Refuerzo](docs/1_datos/07_REFUERZO.md) | Padrón ESCALE de colegios y verificación de pobreza e IDH |
 | Datos | [11 Cruce de habitantes](docs/1_datos/11_CRUCE_HABITANTES.md) | Cómo cruzar la data de habitantes del INEI (personas, sexo y edad) |
+| Datos | [20 Mapa con los 78 distritos del INEI](docs/1_datos/20_MAPA_78_DISTRITOS_INEI.md) | Límites oficiales del INEI en lugar de GADM (76): fuente, cambios en el código y tabla antes y después |
 | Datos | [17 Viviendas y personas del Censo 2025](docs/1_datos/17_VIVIENDAS_INEI_MATERIALES.md) | Viviendas y personas (sexo y edad) en la zona inundable, materiales precarios, centros poblados rurales y radar |
 | Modelo | [02 Plan de machine learning](docs/2_modelo/02_PLAN_MACHINE_LEARNING.md) | Modelo de alerta por distrito y su evaluación |
 | Modelo | [08 Diseño del modelo de viviendas](docs/2_modelo/08_DISENO_MODELO_VIVIENDAS.md) | Primer diseño de la pregunta del profesor |
 | Modelo | [10 Modelo de viviendas afectadas](docs/2_modelo/10_MODELO_VIVIENDAS_AFECTADAS.md) | Etiqueta real del SINPAD (INDECI), variables, 6 modelos y validación 2012-2025 |
+| Modelo | [21 Modelo por plazo (1 a 4 semanas)](docs/2_modelo/21_MODELO_POR_PLAZO.md) | Probabilidad de emergencia en cada semana t+h, comparada con la climatología y reglas simples; panel del tablero |
 | Modelo | [19 Variable dependiente desde el SINPAD](docs/2_modelo/19_VARIABLE_DEPENDIENTE_SINPAD.md) | El modelo de alerta usa el SINPAD 2003-2025 en lugar de DesInventar: trazabilidad, auditoría y resultados |
 | Modelo | [Modelo de inundación](docs/2_modelo/modelo_inundacion.md) | Documento original del modelo de alerta |
 | Validación | [06 Validación y viabilidad](docs/3_validacion/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación contra INDECI y costo de expandir |
@@ -123,7 +125,7 @@ El orquestador `src/etl.py` corre los pasos en orden. Si un paso falla, lo regis
 |---|---|---|---|
 | `python src/etl.py local` | Recalcula impacto, panel, metadatos y auditoría con los datos ya descargados | No | ~30 s |
 | `python src/etl.py diario` | Mar (NOAA), índices (CPC, IGP), lluvia y caudal (Open-Meteo), aviso de lluvia + tablero + metadatos | Sí | 5–15 min |
-| `python src/etl.py inundacion` | Exposición (WorldPop, Open Buildings, RENIPRESS, OSM, GADM, JRC) + Sentinel-1 + impacto + panel | Sí, varios GB | 30–120 min |
+| `python src/etl.py inundacion` | Exposición (WorldPop, Open Buildings, RENIPRESS, OSM, límites del INEI, JRC) + Sentinel-1 + impacto + panel | Sí, varios GB | 30–120 min |
 
 Pasos sueltos útiles:
 
@@ -132,6 +134,7 @@ Pasos sueltos útiles:
 | `python src/reparar_poblacion.py` | Verifica y corrige la alineación del ráster de población (idempotente) |
 | `python src/ubigeo.py` | Descarga la tabla UBIGEO y la empata con los distritos |
 | `python src/etiqueta_sinpad.py` | Arma la variable dependiente del modelo de alerta desde el SINPAD (INDECI), con huella SHA-256 y conteos por filtro (`--descargar` vuelve a bajar los CSV oficiales) |
+| `python src/prediccion_semanal.py` | Modelo por plazo (1 a 4 semanas): validación año por año y `dashboard/data/prediccion_semanal.json` (`--sin-anio 2017` para la sensibilidad) |
 | `python src/modelo_inundacion.py` | Reentrena y evalúa el modelo de emergencias (Y del SINPAD; `--fuente desinventar` para la versión anterior) |
 | `python src/ml_evaluacion.py` | Bootstrap por años, calibración y falsos negativos |
 | `python src/auditoria.py` | Regenera `docs/evidencia/auditoria_cifras.json` |
@@ -205,6 +208,6 @@ Son 38 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, esta
 
 ## Fuentes y licencias
 
-NOAA OISST v2.1 y CPC (dominio público) · IGP ICEN · Open-Meteo y GloFAS v4 (CC BY 4.0) · JRC CEMS-GloFAS flood hazard v2 (CC BY 4.0) · Copernicus Sentinel-1 vía Microsoft Planetary Computer · WorldPop 2026 (CC BY 4.0) · Google Open Buildings v3 (CC BY 4.0 / ODbL) · RENIPRESS, SUSALUD (datos abiertos) · OpenStreetMap (ODbL, © colaboradores de OSM) · DesInventar/INDECI · tabla UBIGEO de `jmcastagnetto/ubigeo-peru-aumentado` (MIT; pobreza 2018 INEI e IDH 2019 PNUD según el compilador) · límites GADM 4.1 (**uso académico y no comercial; no se ofrecen para descargar**). El detalle por capa está en `dashboard/data/metadatos.json`.
+NOAA OISST v2.1 y CPC (dominio público) · IGP ICEN · Open-Meteo y GloFAS v4 (CC BY 4.0) · JRC CEMS-GloFAS flood hazard v2 (CC BY 4.0) · Copernicus Sentinel-1 vía Microsoft Planetary Computer · WorldPop 2026 (CC BY 4.0) · Google Open Buildings v3 (CC BY 4.0 / ODbL) · RENIPRESS, SUSALUD (datos abiertos) · OpenStreetMap (ODbL, © colaboradores de OSM) · DesInventar/INDECI · tabla UBIGEO de `jmcastagnetto/ubigeo-peru-aumentado` (MIT; pobreza 2018 INEI e IDH 2019 PNUD según el compilador) · SINPAD del INDECI (datos abiertos, ODC-By) · límites distritales del INEI (Infraestructura de Datos Espaciales, capa Distrito: 78 distritos con UBIGEO; el portal no declara licencia, se cita la fuente). El detalle por capa está en `dashboard/data/metadatos.json`.
 
 Equipo: Christopher, Maykol, Marcia y Luz Ángela.

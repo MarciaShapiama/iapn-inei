@@ -90,7 +90,7 @@ def main() -> dict:
         est = u.groupby("departamento")["poblacion_2020_est"].sum()
         out["5_poblacion"] = {"worldpop_2026_en_distritos": wp.round().to_dict(),
                               "estimacion_2020_tabla_ubigeo": est.round().to_dict(),
-                              "nota": ("La estimación 2020 incluye 2 distritos ausentes en GADM (200115, 240203). Para validar con "
+                              "nota": ("El mapa es el del INEI (78 distritos, incluidos 200115 y 240203). Para validar con "
                                        "cifras oficiales use el Censo 2017 (INEI) o las proyecciones distritales oficiales vigentes.")}
     except Exception as error:  # noqa: BLE001
         out["5_poblacion"] = {"error": str(error)}

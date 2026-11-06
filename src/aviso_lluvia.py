@@ -6,7 +6,7 @@ El radar solo ve el agua cuando el satélite pasa y después de que ocurre. Para
    MISMO LUGAR.
    Umbrales (se guardan en data/normales/umbrales_lluvia_distritos.csv): reanálisis ERA5 1991-2020 (Open-Meteo) que
    el tablero ya guarda por provincia; días con lluvia (>= 1 mm); percentiles 95 y 99. Cada distrito usa el umbral de
-   su provincia (bajar ERA5 para 76 puntos y 30 años supera el límite gratuito diario de Open-Meteo).
+   su provincia (bajar ERA5 para 78 puntos y 30 años supera el límite gratuito diario de Open-Meteo).
    Pronóstico (cada día): Open-Meteo, lluvia diaria de los próximos 7 días en el punto central del distrito.
 
 2. CAUDAL (solo los distritos de los valles de los ríos Piura, Chira y Tumbes, lista CUENCA). Muchas crecidas vienen
@@ -89,7 +89,7 @@ def distritos() -> pd.DataFrame:
         p = shape(f["geometry"]).representative_point()
         pr = f["properties"]
         filas.append({"departamento": pr["departamento"], "provincia": pr["provincia"], "distrito": pr["distrito"],
-                      "lat": round(p.y, 4), "lon": round(p.x, 4)})
+                      "ubigeo": pr.get("ubigeo"), "lat": round(p.y, 4), "lon": round(p.x, 4)})
     return pd.DataFrame(filas)
 
 

@@ -117,7 +117,7 @@ def main() -> None:
             "peligro": "% del área del distrito en la zona inundable JRC 1 en 100 años (escenario).",
             "exposicion": "Población WorldPop 2026 dentro de la zona 1 en 100 años (potencialmente expuesta).",
             "vulnerabilidad": "% de pobreza monetaria total 2018 (INEI, Mapa de Pobreza Monetaria Provincial y Distrital 2018; punto medio del intervalo al 95 %).",
-            "riesgo_estimado": "Promedio de percentiles de las tres dimensiones, 0-100, relativo a los 76 distritos. "
+            "riesgo_estimado": "Promedio de percentiles de las tres dimensiones, 0-100, relativo a los 78 distritos. "
                                "Ordena para revisión; no es una evaluación de riesgo oficial.",
             "prioridad_revision": "Alta ≥ 65, Media 40-65, Baja < 40 del índice relativo."},
         "distritos": json.loads(p.to_json(orient="records", force_ascii=False))}, indent=None)

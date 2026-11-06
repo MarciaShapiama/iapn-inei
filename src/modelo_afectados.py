@@ -56,9 +56,9 @@ URL_SINPAD = ["https://www.datosabiertos.gob.pe/sites/default/files/BD_2003-2025
               "https://www.datosabiertos.gob.pe/sites/default/files/BD_2026_Semestre_I.csv"]
 MESES = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
          "SETIEMBRE": 9, "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
-# Los distritos creados después del mapa GADM se suman al distrito que los contenía en ese mapa.
-FUSION = {"200115": "200101",   # Veintiséis de Octubre -> Piura (comprobado: su centro cae en el polígono Piura)
-          "240203": "240201"}   # Canoas de Punta Sal -> Zorritos (comprobado con 4 puntos de su territorio)
+# Con el mapa del INEI (78 distritos, 6/11/2026) ya no se unen distritos. Antes, con GADM (76):
+# {"200115": "200101", "240203": "240201"} (Veintiséis de Octubre -> Piura; Canoas de Punta Sal -> Zorritos).
+FUSION: dict[str, str] = {}
 ANIOS_PRUEBA = list(range(2012, 2026))
 FIN_ETIQUETA = "2025-12-29"     # última semana completa con etiqueta confiable (el archivo 2026-I tiene un problema)
 
@@ -66,6 +66,15 @@ FIN_ETIQUETA = "2025-12-29"     # última semana completa con etiqueta confiable
 def normal(x: str) -> str:
     x = unicodedata.normalize("NFKD", str(x)).encode("ascii", "ignore").decode().upper()
     return "".join(c for c in x if c.isalnum())
+
+
+def claves_ubigeo() -> pd.DataFrame:
+    """Tabla UBIGEO con la misma clave de la base del modelo (los dos Salitral llevan la provincia)."""
+    sys.path.insert(0, str(RAIZ / "src"))
+    from ubigeo import clave_distrito
+    ub = pd.read_csv(UBIGEO, dtype={"inei": str})
+    ub["clave"] = [clave_distrito(a, b, c) for a, b, c in zip(ub["departamento"], ub["provincia"], ub["distrito"])]
+    return ub
 
 
 # ----------------------------------------------------------------------------------------------- etiqueta Y
@@ -117,8 +126,7 @@ def fecha_sinpad(texto: str, mes: str) -> str | None:
 def etiquetas(descargar: bool) -> pd.DataFrame:
     s = descargar_sinpad() if (descargar or not SINPAD.exists()) else pd.read_csv(SINPAD, dtype={"ubigeo": str})
     s["ubigeo"] = s["ubigeo"].replace(FUSION)
-    ub = pd.read_csv(UBIGEO, dtype={"inei": str})
-    ub["clave"] = ub["departamento"].map(normal) + ub["distrito"].map(normal)
+    ub = claves_ubigeo()
     s = s.merge(ub[["inei", "clave"]].rename(columns={"inei": "ubigeo"}), on="ubigeo", how="left")
     y = s.groupby(["clave", "semana"])[["eventos", "viv_afectadas", "viv_destruidas"]].sum().reset_index()
     y["viviendas"] = y["viv_afectadas"] + y["viv_destruidas"]
@@ -150,8 +158,7 @@ def tabla(lluvia_semana: bool) -> pd.DataFrame:
 
 def censo() -> pd.DataFrame:
     """Viviendas ocupadas del Censo 2025 en la zona 1 en 100 años y % con paredes frágiles, por distrito."""
-    ub = pd.read_csv(UBIGEO, dtype={"inei": str})
-    ub["clave"] = ub["departamento"].map(normal) + ub["distrito"].map(normal)
+    ub = claves_ubigeo()
     if CENSO_LOCAL.exists():
         c = pd.read_csv(CENSO_LOCAL, dtype={"ubigeo": str})
         c = c.rename(columns={"viviendas_rp100": "censo_viv_rp100", "pct_fragiles": "censo_pct_fragiles"})

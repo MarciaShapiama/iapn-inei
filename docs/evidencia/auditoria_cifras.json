@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-05T16:18-05:00",
+ "calculado": "2026-11-06T17:48-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
@@ -33,11 +33,11 @@
  "2_conciliacion": {
   "por_escenario": {
    "2017": {
-    "edificaciones_total": 759,
-    "edificaciones_suma_departamentos": 759,
+    "edificaciones_total": 762,
+    "edificaciones_suma_departamentos": 762,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 1024,
-    "personas_suma_departamentos": 1022
+    "personas_total": 1017,
+    "personas_suma_departamentos": 1016
    },
    "2023": {
     "edificaciones_total": 18,
@@ -54,48 +54,49 @@
     "personas_suma_departamentos": 34
    },
    "rp10": {
-    "edificaciones_total": 108156,
-    "edificaciones_suma_departamentos": 108156,
+    "edificaciones_total": 108231,
+    "edificaciones_suma_departamentos": 108231,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 277632,
-    "personas_suma_departamentos": 277634
+    "personas_total": 278343,
+    "personas_suma_departamentos": 278341
    },
    "rp100": {
-    "edificaciones_total": 148348,
-    "edificaciones_suma_departamentos": 148348,
+    "edificaciones_total": 148431,
+    "edificaciones_suma_departamentos": 148431,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 399506,
-    "personas_suma_departamentos": 399506
+    "personas_total": 400198,
+    "personas_suma_departamentos": 400198
    }
   },
   "rp100_sin_distrito_por_zona": {
    "sur de la caja (Lambayeque)": 1871,
-   "borde distrital simplificado / interior": 1828,
-   "norte de la caja (frontera con Ecuador)": 439
+   "borde distrital simplificado / interior": 1724,
+   "norte de la caja (frontera con Ecuador)": 439,
+   "borde costero": 21
   },
   "rp100_sin_distrito_lat_lon_cuantiles": {
    "lat": {
     "0.05": -6.396,
-    "0.5": -6.23,
+    "0.5": -6.236,
     "0.95": -3.382
    },
    "lon": {
-    "0.05": -80.287,
-    "0.5": -79.834,
-    "0.95": -79.472
+    "0.05": -80.283,
+    "0.5": -79.833,
+    "0.95": -79.471
    }
   }
  },
  "3_radar": {
   "2017": {
-   "km2_mancha": 950.8,
-   "edificaciones": 759,
-   "personas": 1024,
+   "km2_mancha": 939.8,
+   "edificaciones": 762,
+   "personas": 1017,
    "qa": {
     "km2_deteccion_bruta_caja": 4410.8,
-    "km2_agua_permanente_tierra": 102.5,
-    "km2_tras_mascara_tierra_y_limpieza": 950.8,
-    "fraccion_retenida": 0.216,
+    "km2_agua_permanente_tierra": 99.5,
+    "km2_tras_mascara_tierra_y_limpieza": 939.8,
+    "fraccion_retenida": 0.213,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
@@ -112,33 +113,33 @@
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 785.82
+     "Sechura": 775.42
     },
     {
-     "La Brea": 36.21
+     "La Brea": 35.86
     },
     {
-     "Cristo Nos Valga": 33.99
+     "Cristo Nos Valga": 34.0
     },
     {
-     "Vichayal": 21.37
+     "Vichayal": 21.1
     },
     {
-     "Colan": 9.78
+     "Colán": 9.99
     }
    ],
-   "fraccion_en_sechura": 0.826,
-   "fraccion_bruta_en_poligonos_distritales": 0.218
+   "fraccion_en_sechura": 0.825,
+   "fraccion_bruta_en_poligonos_distritales": 0.216
   },
   "2023": {
-   "km2_mancha": 717.2,
+   "km2_mancha": 708.6,
    "edificaciones": 18,
    "personas": 59,
    "qa": {
     "km2_deteccion_bruta_caja": 3917.0,
-    "km2_agua_permanente_tierra": 102.5,
-    "km2_tras_mascara_tierra_y_limpieza": 717.2,
-    "fraccion_retenida": 0.183,
+    "km2_agua_permanente_tierra": 99.5,
+    "km2_tras_mascara_tierra_y_limpieza": 708.6,
+    "fraccion_retenida": 0.181,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
@@ -155,32 +156,32 @@
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 635.57
+     "Sechura": 627.74
     },
     {
-     "La Brea": 36.45
+     "La Brea": 36.06
     },
     {
-     "Vichayal": 16.36
+     "Vichayal": 16.09
     },
     {
      "Cristo Nos Valga": 15.52
     },
     {
-     "Lancones": 4.19
+     "Lancones": 4.24
     }
    ],
    "fraccion_en_sechura": 0.886,
-   "fraccion_bruta_en_poligonos_distritales": 0.185
+   "fraccion_bruta_en_poligonos_distritales": 0.183
   },
   "vivo": {
-   "km2_mancha": 80.5,
+   "km2_mancha": 80.3,
    "edificaciones": 8,
    "personas": 34,
    "qa": {
     "km2_deteccion_bruta_caja": 1500.9,
-    "km2_agua_permanente_tierra": 102.5,
-    "km2_tras_mascara_tierra_y_limpieza": 80.5,
+    "km2_agua_permanente_tierra": 99.5,
+    "km2_tras_mascara_tierra_y_limpieza": 80.3,
     "fraccion_retenida": 0.054,
     "umbral_db": -17.0,
     "caida_db": 3.0,
@@ -198,7 +199,7 @@
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 73.93
+     "Sechura": 73.64
     },
     {
      "La Brea": 2.34
@@ -213,19 +214,19 @@
      "Castilla": 0.52
     }
    ],
-   "fraccion_en_sechura": 0.918,
+   "fraccion_en_sechura": 0.917,
    "fraccion_bruta_en_poligonos_distritales": 0.055
   }
  },
  "5_poblacion": {
   "worldpop_2026_en_distritos": {
-   "Piura": 2120106,
-   "Tumbes": 254537
+   "Piura": 2117823,
+   "Tumbes": 255993
   },
   "estimacion_2020_tabla_ubigeo": {
    "PIURA": 2069446.0,
    "TUMBES": 248097.0
   },
-  "nota": "La estimación 2020 incluye 2 distritos ausentes en GADM (200115, 240203). Para validar con cifras oficiales use el Censo 2017 (INEI) o las proyecciones distritales oficiales vigentes."
+  "nota": "El mapa es el del INEI (78 distritos, incluidos 200115 y 240203). Para validar con cifras oficiales use el Censo 2017 (INEI) o las proyecciones distritales oficiales vigentes."
  }
 }

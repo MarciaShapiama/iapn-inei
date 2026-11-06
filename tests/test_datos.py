@@ -80,16 +80,16 @@ def test_capas_geojson_validas_y_dentro_de_la_caja(inund):
         assert (xy[:, 1] >= s - 0.01).all() and (xy[:, 1] <= n + 0.01).all(), k
 
 
-def test_distritos_76_nombres_corregidos():
+def test_distritos_78_nombres_corregidos():
     g = json.load(open(DD / "distritos_tumbes_piura.geojson", encoding="utf-8"))
     nombres = {f["properties"]["distrito"] for f in g["features"]}
-    assert len(g["features"]) == 76
-    assert "Miguel Checa" in nombres and not any("de la" in x and "ade la" in x for x in nombres)
+    assert len(g["features"]) == 78
+    assert {"Miguel Checa", "Veintiséis de Octubre", "Canoas de Punta Sal", "Máncora", "Los Órganos"} <= nombres
 
 
 def test_panel_dimensiones_separadas():
     p = json.load(open(DD / "panel_distritos.json", encoding="utf-8"))["distritos"]
-    assert len(p) == 76
+    assert len(p) == 78
     for r in p:
         for k in ("p_peligro", "p_exposicion", "p_vulnerabilidad"):
             assert r[k] is None or 0 <= r[k] <= 100
@@ -135,6 +135,20 @@ def test_poblacion_distrital_plausible():
     p = pd.read_csv(DD / "descargas" / "panel_distritos.csv", dtype={"ubigeo": str})
     g = p[p.poblacion_2020_est > 50000]
     razon = g.poblacion_worldpop_distrito / g.poblacion_2020_est
-    # Piura (200101) absorbe Veintiséis de Octubre (200115), ausente en GADM: se excluye de la comparación
-    razon = razon[g.ubigeo != "200101"]
+    # Con el mapa del INEI (78 distritos) Piura ya no absorbe a Veintiséis de Octubre: se compara también.
     assert razon.between(0.5, 2.0).all(), g.assign(razon=razon)[["distrito", "razon"]]
+
+
+def test_mapa_78_distritos_oficiales():
+    """El mapa de distritos es el del INEI: 78 distritos (65 de Piura y 13 de Tumbes), con UBIGEO único."""
+    import json
+    from exposicion import CARPETA
+    g = json.load(open(CARPETA / "distritos.geojson", encoding="utf-8"))
+    ub = [f["properties"]["ubigeo"] for f in g["features"]]
+    assert len(ub) == 78 and len(set(ub)) == 78
+    assert sum(u.startswith("20") for u in ub) == 65 and sum(u.startswith("24") for u in ub) == 13
+    assert {"200115", "240203"} <= set(ub)
+    tabla = pd.read_csv(CARPETA / "ubigeo_peru_completo.csv", dtype=str)
+    assert set(ub) <= set(tabla["inei"])
+    for f in g["features"]:
+        assert set(f["properties"]) == {"departamento", "provincia", "distrito", "ubigeo"}

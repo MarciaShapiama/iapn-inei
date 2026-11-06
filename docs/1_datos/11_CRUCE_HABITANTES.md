@@ -47,7 +47,7 @@ Si falta una columna, el programa se detiene y muestra las columnas que sí trae
 5. **Supresión.**
    - Se oculta todo distrito con menos de 10 viviendas en la zona (supresión primaria).
    - Si en un departamento queda **un solo** distrito oculto, se oculta también el siguiente más chico (supresión secundaria). Si no, alguien podría restar el total del departamento menos los demás distritos y despejar el oculto. Es la práctica normal de las oficinas de estadística, y el jurado del INEI la va a reconocer.
-6. **Cruce con el aviso de lluvia.** Agrega a cada distrito del aviso (`dashboard/data/aviso_lluvia.json`) las personas de su zona inundable. Veintiséis de Octubre y Canoas de Punta Sal se suman a Piura y a Zorritos, porque el aviso usa los 76 polígonos del mapa actual.
+6. **Cruce con el aviso de lluvia.** Agrega a cada distrito del aviso (`dashboard/data/aviso_lluvia.json`) las personas de su zona inundable. Desde el 6/11/2026 el aviso usa los 78 distritos del INEI, así que Veintiséis de Octubre y Canoas de Punta Sal ya tienen su propia fila (antes se sumaban a Piura y a Zorritos).
 
 ## 4. Qué produce
 

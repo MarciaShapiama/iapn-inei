@@ -2,7 +2,7 @@
  "fuente": "INDECI - SINPAD, «Emergencias y daños a nivel nacional por departamento»",
  "dataset": "https://www.datosabiertos.gob.pe/dataset/emergencias-y-da%C3%B1os-nivel-nacional-por-departamento",
  "licencia": "Open Data Commons Attribution License (ODC-By)",
- "generado": "2026-11-06T02:18:22+00:00",
+ "generado": "2026-11-06T22:15:20+00:00",
  "fin_etiqueta": "2025-12-29",
  "archivos": {
   "BD_2003-2025_EMERGENCIAS.csv": {
@@ -51,22 +51,19 @@
    "codigos_descartados": []
   },
   {
-   "paso": "5. Distrito identificado (con fusión de distritos nuevos)",
+   "paso": "5. Distrito identificado por UBIGEO (78 distritos)",
    "registros": 3363,
    "sin_distrito": 0,
    "ubigeos_sin_distrito": [],
-   "fusionados": {
-    "200115": 17,
-    "240203": 33
-   }
+   "fusionados": {}
   },
   {
    "paso": "6. Distrito-semanas con al menos una emergencia de agua",
-   "registros": 2678,
-   "distritos": 75,
+   "registros": 2691,
+   "distritos": 78,
    "desde": "2003-01-27",
    "hasta": "2026-06-29",
-   "hasta_fin_etiqueta": 2431
+   "hasta_fin_etiqueta": 2442
   }
  ],
  "peligros_tumbes_piura_todos": {
@@ -141,17 +138,17 @@
   "2012": 174,
   "2013": 47,
   "2014": 26,
-  "2015": 85,
-  "2016": 93,
-  "2017": 322,
+  "2015": 86,
+  "2016": 95,
+  "2017": 324,
   "2018": 53,
   "2019": 80,
   "2020": 22,
-  "2021": 147,
+  "2021": 148,
   "2022": 121,
-  "2023": 398,
+  "2023": 401,
   "2024": 142,
-  "2025": 266,
-  "2026": 247
+  "2025": 268,
+  "2026": 249
  }
 }

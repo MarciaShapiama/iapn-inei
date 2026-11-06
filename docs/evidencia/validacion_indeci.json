@@ -1,71 +1,71 @@
 {
  "distritos_indeci": 78,
- "distritos_panel": 76,
- "distritos_empatados_con_indeci": 76,
+ "distritos_panel": 78,
+ "distritos_empatados_con_indeci": 78,
  "sin_empate": [],
  "correlaciones_spearman": {
   "indeci_afectados": {
    "personas_rp100": {
-    "rho": 0.192,
-    "p": 0.0963,
-    "n": 76
+    "rho": 0.22,
+    "p": 0.0533,
+    "n": 78
    },
    "edificaciones_rp100": {
-    "rho": 0.179,
-    "p": 0.121,
-    "n": 76
+    "rho": 0.206,
+    "p": 0.0699,
+    "n": 78
    },
    "pct_area_rp100": {
-    "rho": -0.089,
-    "p": 0.446,
-    "n": 76
+    "rho": -0.073,
+    "p": 0.5261,
+    "n": 78
    },
    "km2_radar_2017": {
-    "rho": 0.144,
-    "p": 0.2155,
-    "n": 76
+    "rho": 0.162,
+    "p": 0.1566,
+    "n": 78
    },
    "riesgo_estimado": {
-    "rho": 0.114,
-    "p": 0.3257,
-    "n": 76
+    "rho": 0.144,
+    "p": 0.2076,
+    "n": 78
    },
    "poblacion_worldpop_distrito": {
-    "rho": 0.514,
+    "rho": 0.523,
     "p": 0.0,
-    "n": 76
+    "n": 78
    }
   },
   "indeci_damnificados": {
    "personas_rp100": {
-    "rho": 0.052,
-    "p": 0.657,
-    "n": 76
+    "rho": 0.111,
+    "p": 0.3315,
+    "n": 78
    },
    "edificaciones_rp100": {
-    "rho": 0.035,
-    "p": 0.7633,
-    "n": 76
+    "rho": 0.087,
+    "p": 0.4494,
+    "n": 78
    },
    "pct_area_rp100": {
-    "rho": -0.176,
-    "p": 0.1284,
-    "n": 76
+    "rho": -0.137,
+    "p": 0.23,
+    "n": 78
    },
    "km2_radar_2017": {
-    "rho": 0.126,
-    "p": 0.2768,
-    "n": 76
+    "rho": 0.114,
+    "p": 0.3222,
+    "n": 78
    },
    "riesgo_estimado": {
-    "rho": 0.23,
-    "p": 0.0459,
-    "n": 76
+    "rho": 0.275,
+    "p": 0.0147,
+    "n": 78
    },
    "poblacion_worldpop_distrito": {
-    "rho": 0.452,
+    "rho": 0.484,
     "p": 0.0,
-    "n": 76
+    "n": 78
    }
   }
  },
@@ -74,17 +74,17 @@
    "Castilla",
    "Catacaos",
    "Chulucanas",
-   "Colan",
+   "Colán",
    "La Arena",
    "La Cruz",
-   "La Union",
+   "La Unión",
    "Las Lomas",
    "Marcavelica",
-   "Montero",
    "Pacaipampa",
    "Piura",
    "Tambo Grande",
    "Tumbes",
+   "Veintiséis de Octubre",
    "Yamango"
   ],
   "personas_rp100": [
@@ -93,28 +93,28 @@
    "Castilla",
    "Catacaos",
    "Chulucanas",
-   "Colan",
+   "Colán",
    "Cura Mori",
    "La Arena",
-   "La Brea",
-   "La Union",
+   "La Unión",
    "Pariñas",
    "Piura",
    "Sechura",
    "Tambo Grande",
-   "Tumbes"
+   "Tumbes",
+   "Veintiséis de Octubre"
   ],
   "riesgo_estimado": [
-   "Bellavista de la Union",
+   "Bellavista de la Unión",
    "Bernal",
    "Catacaos",
    "Chulucanas",
-   "Colan",
+   "Colán",
    "Cristo Nos Valga",
    "Cura Mori",
-   "El Tallan",
+   "El Tallán",
    "La Arena",
-   "La Union",
+   "La Unión",
    "Rinconada Llicuar",
    "Sechura",
    "Tambo Grande",
@@ -125,69 +125,70 @@
    "Castilla",
    "Catacaos",
    "Chulucanas",
-   "Colan",
+   "Colán",
    "La Arena",
-   "La Union",
+   "La Unión",
    "Piura",
    "Tambo Grande",
-   "Tumbes"
+   "Tumbes",
+   "Veintiséis de Octubre"
   ],
   "coinciden_afectados_y_riesgo": [
    "Catacaos",
    "Chulucanas",
-   "Colan",
+   "Colán",
    "La Arena",
-   "La Union",
+   "La Unión",
    "Tambo Grande"
   ]
  },
  "tasa_afectados_por_mil_vs_pct_poblacion_expuesta": {
-  "rho": -0.133,
-  "p": 0.2534,
-  "n": 76
+  "rho": -0.147,
+  "p": 0.1986,
+  "n": 78
  },
  "por_tipo_de_peligro_afectados": {
   "solo_inundacion": {
    "personas_rp100": {
-    "rho": 0.35,
-    "p": 0.0019
-   },
-   "edificaciones_rp100": {
-    "rho": 0.379,
+    "rho": 0.376,
     "p": 0.0007
    },
+   "edificaciones_rp100": {
+    "rho": 0.411,
+    "p": 0.0002
+   },
    "pct_area_rp100": {
-    "rho": 0.231,
-    "p": 0.0445
+    "rho": 0.244,
+    "p": 0.0316
    },
    "km2_radar_2017": {
-    "rho": 0.303,
-    "p": 0.0078
+    "rho": 0.332,
+    "p": 0.003
    },
    "poblacion_worldpop_distrito": {
-    "rho": 0.212,
-    "p": 0.0663
+    "rho": 0.234,
+    "p": 0.0389
    }
   },
   "solo_lluvia_intensa": {
    "personas_rp100": {
-    "rho": 0.159,
-    "p": 0.1699
+    "rho": 0.17,
+    "p": 0.1361
    },
    "edificaciones_rp100": {
-    "rho": 0.141,
-    "p": 0.2238
+    "rho": 0.15,
+    "p": 0.1913
    },
    "pct_area_rp100": {
-    "rho": -0.132,
-    "p": 0.2572
+    "rho": -0.123,
+    "p": 0.2848
    },
    "km2_radar_2017": {
-    "rho": 0.111,
-    "p": 0.3383
+    "rho": 0.135,
+    "p": 0.2386
    },
    "poblacion_worldpop_distrito": {
-    "rho": 0.518,
+    "rho": 0.514,
     "p": 0.0
    }
   }

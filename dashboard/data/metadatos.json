@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-06T15:02-05:00",
+ "generado": "2026-11-06T17:31-05:00",
  "hoy": "2026-11-06",
  "resumen_estado": {
   "vigente": 10,
@@ -473,7 +473,7 @@
    "dato_mas_reciente": "2019-12-31",
    "tolerancia_dias": null,
    "frecuencia": "sin actualización en la compilación",
-   "metodo": "Empate por nombre normalizado con los distritos GADM (76/76 empatados).",
+   "metodo": "Empate por UBIGEO con los 78 distritos del mapa oficial del INEI (78/78).",
    "advertencias": [
     "Verificado el 4/11/2026 en 5 distritos contra los documentos originales: el IDH coincide con el PNUD hasta la sexta cifra decimal y la pobreza con el punto medio del intervalo del INEI (anexo 03.21, pág. 193). PNUD: https://www.undp.org/sites/g/files/zskgke326/files/migration/pe/IDH-2019.xlsx",
     "No incluye discapacidad, edad, material de vivienda ni saneamiento (requiere Censo 2017 / REDATAM)."
