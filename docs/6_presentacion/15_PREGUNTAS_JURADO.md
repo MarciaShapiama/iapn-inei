@@ -106,9 +106,9 @@ Solo publicamos totales por distrito, nunca por manzana. Ocultamos los distritos
 - Cifra: regla de 10 viviendas, con supresión secundaria.
 - Fuente: `dashboard/data/viviendas_censo.json` (método); `02_cruce_habitantes.md`.
 
-**18. ¿Por qué el mapa tiene 76 distritos si Tumbes y Piura tienen 78?**
-Porque el mapa de límites que usamos (GADM 4.1) no tiene Veintiséis de Octubre ni Canoas de Punta Sal. Sus cifras se suman a Piura y a Zorritos. Lo correcto es usar los límites oficiales del INEI, y está pendiente.
-- Cifra: faltan los ubigeos 200115 y 240203. Veintiséis de Octubre tiene 7 718 viviendas en la zona inundable según el censo.
+**18. ¿El mapa tiene los 78 distritos de Tumbes y Piura?**
+Sí, desde el 6/11/2026. Antes usábamos GADM 4.1, que tiene 76: no separaba Veintiséis de Octubre ni Canoas de Punta Sal. Ahora los límites salen del servicio oficial del INEI (Infraestructura de Datos Espaciales, capa Distrito), con su UBIGEO. Los totales casi no cambiaron: en la zona de 1 en 100 años, 400 198 personas (antes 399 506, +0,2 %) y 148 431 edificaciones (antes 148 348, +0,1 %).
+- Cifra: 78 distritos (65 de Piura y 13 de Tumbes), incluidos 200115 y 240203. Detalle en `docs/1_datos/20_MAPA_78_DISTRITOS_INEI.md`.
 - Fuente: `docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md`, sección 10.6; `dashboard/data/viviendas_censo.json`.
 
 **19. ¿Qué tan grave es este El Niño frente al de 1997-98?**

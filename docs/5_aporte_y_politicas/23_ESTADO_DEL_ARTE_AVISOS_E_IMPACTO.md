@@ -1,0 +1,88 @@
+# 23 · Estado del arte: avisos de impacto, daños y El Niño costero
+
+*6 de noviembre de 2026. Complementa el doc 04, que ya cubre la detección con radar (incluidos los dos trabajos de Breña Aliaga de 2026 sobre el río Tumbes), la exposición, el peligro del JRC, el aprendizaje automático y El Niño costero de 2017 (Garreaud 2018; Rodríguez-Morata et al. 2019). Aquí no se repiten. La lista completa, con DOI, está en `23_REFERENCIAS.csv` (en el .zip, `02_referencias.csv`).*
+
+## Cómo se verificó
+
+- Los 21 DOI se consultaron en la API de Crossref el 6/11/2026 y los 21 respondieron HTTP 200. Autores, año, título, revista y páginas salen de esa respuesta.
+- **No abrí ningún trabajo completo.** De 12 leí el resumen que publica Crossref y de uno (Saito y Rehmsmeier) el de OpenAlex. De los otros 8 solo tengo el título y los metadatos: lo que digo de ellos sale del título y está marcado en la tabla.
+- 19 trabajos son de 2015 o después. Se agregaron dos anteriores: Merz et al. (2013), porque se cita en la Parte 3, y Lavado-Casimiro y Espinoza (2014), porque es la referencia peruana básica sobre El Niño y la lluvia.
+- **No hay trabajos de la UDEP ni de la UNP** en esta lista: no llegué a buscarlos ni a verificarlos. Tampoco cito informes del SENAMHI, el IGP, el ENFEN o el CENEPRED con fecha y enlace verificados. Es un hueco: conviene pedirlos a los asesores.
+
+## 1. Avisos basados en impacto
+
+**Trabajos:** Merz et al. (2020); Coughlan de Perez et al. (2015, 2016); Bischiniotis et al. (2019); Speight et al. (2021).
+
+**Qué hacen ellos.** Merz et al. (2020) revisan los sistemas de alerta y concluyen que casi todos dicen cuánta lluvia o caudal habrá, pero rara vez cuánto daño. Proponen pronosticar el impacto: daños, personas y servicios. Coughlan de Perez et al. (2015) proponen el financiamiento basado en pronósticos: se fija de antemano qué acción se hace cuando la probabilidad pasa cierto umbral, y el dinero se libera solo. En 2016 muestran cómo elegir ese umbral para cada acción, aun con pocos datos. Bischiniotis et al. (2019) analizan el compromiso entre anticipación, costo y calidad del aviso. Speight et al. (2021) explican por qué la inundación por lluvia (no por río) es la más difícil de pronosticar: es local y depende de dónde cae la tormenta.
+
+**Qué hacemos igual.** La variable que predecimos es un impacto (una emergencia registrada en el SINPAD y sus viviendas afectadas), no la lluvia. Damos la probabilidad por distrito y plazo.
+
+**Qué hacemos distinto.** No tenemos acciones ni costos asociados a cada umbral. Además, el 93 % de los registros de agua del SINPAD en Tumbes y Piura son «lluvia intensa» (3 135 de 3 363, `data/modelo/sinpad/procedencia.json`): es justo el tipo de evento que Speight et al. describen como el más difícil.
+
+**Idea para antes del 15.** Con `data/modelo/resultados_plazo/predicciones_validacion.csv.gz` armar una tabla para la semana siguiente con tres umbrales de probabilidad: en cuántas semanas habría aviso, cuántas de esas tuvieron emergencia y cuántas emergencias quedaron sin aviso. Así el usuario elige el umbral según lo que cueste actuar, como proponen Coughlan de Perez et al. (2016). No necesita datos nuevos.
+
+## 2. Validación de avisos
+
+**Trabajos:** Saito y Rehmsmeier (2015); Coughlan de Perez et al. (2016).
+
+**Qué hacen ellos.** Saito y Rehmsmeier muestran que, cuando los positivos son pocos, la curva ROC se ve bien aunque el clasificador falle mucho; la curva de precisión y exhaustividad es más informativa. Coughlan de Perez et al. (2016) evalúan cada umbral con la tasa de aciertos y de falsas alarmas.
+
+**Qué hacemos igual.** Usamos PR-AUC y no ROC, porque la emergencia ocurre en el 3,1 % de las distrito-semanas (`metricas_por_plazo.csv`). Comparamos con la climatología y con reglas simples.
+
+**Qué hacemos distinto.** Validamos año por año, que es más exigente que mezclar todas las semanas. En cambio, no mostramos la curva completa ni las falsas alarmas del modelo por plazo.
+
+**Idea para antes del 15.** Agregar al doc 21 la curva de precisión y exhaustividad a 1 semana, con la climatología al lado, y la tabla de umbrales del punto 1.
+
+## 3. Modelos de daños y bases de desastres
+
+**Trabajos:** Wagenaar et al. (2017); Merz et al. (2013); Gerl et al. (2016); Rosvold y Buhaug (2021); Jongman et al. (2015).
+
+**Qué hacen ellos.** Merz et al. (2013) y Wagenaar et al. (2017) muestran que los modelos con varias variables (árboles y aprendizaje supervisado) estiman mejor el daño que las curvas que solo usan la profundidad del agua, aun con pocos datos. Trabajan con daños por vivienda, no por distrito. Gerl et al. (2016) revisan modelos de pérdidas para compararlos entre sí. Rosvold y Buhaug (2021) ubican en el mapa los desastres de EM-DAT (9 924 desastres de 1960 a 2018). Jongman et al. (2015) encuentran que la vulnerabilidad a las crecidas baja a medida que sube el ingreso.
+
+**Qué hacemos igual.** El modelo de viviendas usa varias variables y compara un modelo de dos etapas con uno de conteo y con LightGBM.
+
+**Qué hacemos distinto.** Predecimos un conteo administrativo por distrito y semana (viviendas afectadas del SINPAD), no el daño de cada vivienda. Solo hay dos años extremos (2017 y 2023), y el modelo se queda corto en ambos (−41 % y −74 %, `data/modelo/resultados_afectados/ranking_2017_2023.csv`).
+
+**Idea para antes del 15.** Siguiendo a Jongman et al., revisar si las viviendas afectadas por emergencia cambian con los años en el SINPAD 2003-2025. Si bajan, hay que decirlo: el modelo aprende de 2017 un daño que quizá ya no se repita igual. Se calcula con `data/modelo/sinpad/eventos_agua_tumbes_piura.csv`. Comparar con EM-DAT y GDIS queda para después, porque EM-DAT exige registrarse.
+
+## 4. El Niño costero y la lluvia en la costa norte
+
+**Trabajos:** Peng et al. (2019); Ramírez y Briones (2017); Rau et al. (2017); Sanabria et al. (2018); Takahashi y Martínez (2019); French et al. (2020); Lavado-Casimiro y Espinoza (2014). En el doc 04: Garreaud (2018) y Rodríguez-Morata et al. (2019).
+
+**Qué hacen ellos.** Peng et al. explican el Niño costero de 2017: el mar frente al Perú pasó los 28 °C con La Niña débil en el Pacífico central, por ondas Kelvin y vientos costeros que se refuerzan con el calentamiento. Ramírez y Briones discuten que la definición misma de «Niño costero» complicó el pronóstico y la respuesta. Sanabria et al. estudian la lluvia de la costa en los Niños fuertes con 145 estaciones (1964-2016), y Rau et al. dividen la costa en regiones de lluvia. Lavado-Casimiro y Espinoza encuentran, con 155 estaciones, que el efecto en la lluvia se ve sobre todo en los Niños fuertes. Takahashi y Martínez describen el Niño costero de 1925, muy fuerte. French et al. analizan las causas sociales y políticas de que los desastres se repitan.
+
+**Qué hacemos igual.** Usamos la anomalía del mar en Niño 1+2 y el ICEN, que miden el calentamiento costero y no el central.
+
+**Qué hacemos distinto.** Usamos lluvia de NASA POWER (~50 km), no estaciones, y la serie del SINPAD empieza en 2003: no incluye 1983 ni 1998. Lo de Takahashi y Martínez recuerda que puede haber eventos más fuertes que los de nuestra serie.
+
+**Idea para antes del 15.** Agregar al informe un párrafo sobre la serie: el modelo nunca vio un Niño como 1983 o 1998, y su escala de viviendas viene casi solo de 2017. Las estaciones del SENAMHI (Sanabria et al. usan 145) son la mejora de datos más clara, pero son para después del 15.
+
+## 5. GloFAS, Sentinel-1 y tableros parecidos
+
+**Trabajos:** Harrigan et al. (2020); Hirpa et al. (2018); Salamon et al. (2021). Para el Tumbes, los dos trabajos de Breña Aliaga (2026) del doc 04.
+
+**Qué hacen ellos.** Harrigan et al. describen el reanálisis de caudal GloFAS-ERA5, de 1979 a hoy, que combina el modelo meteorológico con un modelo de ríos. Hirpa et al. calibran GloFAS con caudal diario observado; no verifiqué si usaron estaciones peruanas. Salamon et al. presentan el Global Flood Monitoring (GFM) de Copernicus, que mapea el agua con Sentinel-1 en todo el mundo cada vez que pasa el satélite.
+
+**Tableros parecidos** (enlaces revisados el 6/11/2026, HTTP 200):
+
+| Tablero | Qué muestra | Qué no muestra |
+|---|---|---|
+| Copernicus GFM y GloFAS (https://global-flood.emergency.copernicus.eu/) | Agua detectada por radar y pronóstico de caudal de ríos grandes | Daños por distrito ni lluvia urbana |
+| SIGRID del CENEPRED (https://sigrid.cenepred.gob.pe/sigridv3/) | Escenarios de riesgo y estudios oficiales del Perú | Una probabilidad semanal por distrito |
+| DesInventar (https://www.desinventar.net/) y EM-DAT (https://www.emdat.be/) | Daños de desastres pasados | Pronóstico |
+
+**Qué hacemos igual.** Usamos el caudal de GloFAS (vía Open-Meteo) y el radar Sentinel-1, como GFM.
+
+**Qué hacemos distinto.** Juntamos peligro, exposición e impacto registrado en un solo tablero, por distrito, con probabilidad a 1-4 semanas. Ninguno de los tableros de arriba hace eso para Tumbes y Piura.
+
+**Idea para antes del 15.** Usar la prueba con GFM que ya está en el repositorio (`docs/evidencia/prueba_gfm.json`) como respuesta al jurado. En el Bajo Piura de 2017, GFM marcó hasta 67,74 km² de agua. En los desbordes del río Tumbes de 2023 y 2025, como mucho 0,75 y 0,39 km². Es decir, el radar casi no ve los desbordes urbanos, igual que nuestro Sentinel-1. Eso respalda no usar el satélite para predecir.
+
+## Resumen de ideas para antes del 15
+
+| Idea | Viene de | ¿Necesita datos nuevos? |
+|---|---|---|
+| Tabla de umbrales: avisos, aciertos y emergencias sin aviso a 1 semana | Coughlan de Perez et al. (2016) | No |
+| Curva de precisión y exhaustividad a 1 semana | Saito y Rehmsmeier (2015) | No |
+| ¿Bajan las viviendas afectadas por emergencia con los años? | Jongman et al. (2015) | No |
+| Párrafo sobre los Niños que el modelo no vio (1925, 1983, 1998) | Takahashi y Martínez (2019) | No |
+| GFM como prueba de que el radar no ve los desbordes urbanos | Salamon et al. (2021) | No (ya está) |

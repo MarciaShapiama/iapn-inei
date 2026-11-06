@@ -69,7 +69,9 @@ PROFUNDIDAD_CSV = INEI / "manzanas_profundidad.csv"
 MINIMO_VIVIENDAS = 10                                # regla de supresión
 # =========================================================================================== FIN CONFIGURACIÓN
 
-FUSION = {"200115": "200101", "240203": "240201"}   # distritos nuevos -> polígono GADM que los contiene (aviso)
+# El aviso ya usa los 78 distritos del INEI (6/11/2026): no se une ningún distrito. Con el mapa GADM de 76 era
+# {"200115": "200101", "240203": "240201"}.
+FUSION: dict[str, str] = {}
 
 
 def normal(x) -> str:
@@ -196,11 +198,12 @@ def suprimir(t: pd.DataFrame) -> pd.DataFrame:
 def con_aviso(t: pd.DataFrame) -> pd.DataFrame:
     a = json.load(open(DASH / "aviso_lluvia.json", encoding="utf-8"))
     av = pd.DataFrame(a["distritos"])[["departamento", "provincia", "distrito", "nivel", "mm_dia_max", "fecha_max"]]
-    av["clave"] = av["departamento"].map(normal) + av["distrito"].map(normal)
+    from ubigeo import clave_distrito
+    av["clave"] = [clave_distrito(a, b, c) for a, b, c in zip(av["departamento"], av["provincia"], av["distrito"])]
     z = t[t["escenario"] == "rp100"].copy()
-    z["ubigeo_mapa"] = z["ubigeo"].replace(FUSION)        # el aviso usa los 76 polígonos GADM
+    z["ubigeo_mapa"] = z["ubigeo"].replace(FUSION)
     ub = pd.read_csv(EXPO / "ubigeo_distritos.csv", dtype={"inei": str})
-    ub["clave"] = ub["departamento"].map(normal) + ub["distrito"].map(normal)
+    ub["clave"] = [clave_distrito(a, b, c) for a, b, c in zip(ub["departamento"], ub["provincia"], ub["distrito"])]
     z = z.merge(ub[["inei", "clave"]].rename(columns={"inei": "ubigeo_mapa"}), on="ubigeo_mapa", how="left")
     z = z.groupby("clave", as_index=False).agg({**{c: lambda s: s.sum(min_count=len(s)) for c in CIFRAS},
                                                "reservado": "max"})

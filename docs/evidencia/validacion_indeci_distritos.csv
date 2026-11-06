@@ -1,77 +1,79 @@
 ﻿ubigeo,departamento,provincia,distrito,personas_rp100,pct_poblacion_rp100,riesgo_estimado,indeci_afectados,indeci_damnificados
-200109,Piura,Piura,La Arena,23909,56.4,83.8,44585.0,1576.0
-200803,Piura,Sechura,Bernal,7140,91.6,80.9,4156.0,125.0
-200110,Piura,Piura,La Union,29090,62.1,79.0,27544.0,5307.0
-200108,Piura,Piura,El Tallan,2186,36.7,78.1,7720.0,862.0
-200504,Piura,Paita,Colan,9269,54.3,76.3,41648.0,5259.0
-200107,Piura,Piura,Cura Mori,13147,62.1,75.4,11211.0,600.0
-200804,Piura,Sechura,Cristo Nos Valga,3810,75.6,75.4,9297.0,2390.0
-200114,Piura,Piura,Tambo Grande,12646,9.9,72.4,87555.0,9166.0
-200806,Piura,Sechura,Rinconada Llicuar,2646,79.6,71.7,5003.0,115.0
-200507,Piura,Paita,Vichayal,3874,60.6,71.0,17308.0,2235.0
-200801,Piura,Sechura,Sechura,7123,14.2,69.5,17326.0,3659.0
-200802,Piura,Sechura,Bellavista de la Union,2954,56.6,69.3,3005.0,150.0
-200105,Piura,Piura,Catacaos,70167,85.0,69.3,80715.0,29749.0
-200401,Piura,Morropón,Chulucanas,10469,11.1,67.1,40125.0,4814.0
-200805,Piura,Sechura,Vice,1042,5.8,66.5,8712.0,1684.0
-200104,Piura,Piura,Castilla,71184,39.0,62.7,22706.0,19329.0
-240302,Tumbes,Zarumilla,Aguas Verdes,5213,26.9,61.2,9422.0,355.0
-200402,Piura,Morropón,Buenos Aires,1210,11.4,60.1,14015.0,2267.0
-200703,Piura,Talara,La Brea,5390,38.3,59.9,2194.0,389.0
-240102,Tumbes,Tumbes,Corrales,1930,7.3,59.0,11131.0,345.0
-240101,Tumbes,Tumbes,Tumbes,11732,10.0,58.8,134113.0,1464.0
-200404,Piura,Morropón,La Matanza,530,3.4,58.8,13344.0,1223.0
-200604,Piura,Sullana,Lancones,790,5.6,58.3,15963.0,657.0
-200502,Piura,Paita,Amotape,1029,39.3,57.7,6063.0,1370.0
-200601,Piura,Sullana,Sullana,2843,1.5,57.4,11496.0,2107.0
-200505,Piura,Paita,La Huaca,1891,13.0,57.2,14293.0,1050.0
-200101,Piura,Piura,Piura,55762,14.8,57.0,34862.0,8697.0
-200603,Piura,Sullana,Ignacio Escudero,388,1.7,55.9,9441.0,1711.0
-200111,Piura,Piura,Las Lomas,352,1.1,55.7,49458.0,1984.0
-200406,Piura,Morropón,Salitral,444,4.6,55.3,13527.0,746.0
-200607,Piura,Sullana,Querecotillo,551,1.9,54.2,10480.0,832.0
-200204,Piura,Ayabaca,Lagunas,132,2.1,54.2,11614.0,3109.0
-200308,Piura,Huancabamba,Sondorillo,75,0.6,53.9,13031.0,3546.0
-200304,Piura,Huancabamba,Huarmaca,363,0.9,53.5,15096.0,4747.0
-200207,Piura,Ayabaca,Paimas,302,2.7,53.5,14668.0,2410.0
-200405,Piura,Morropón,Morropon,422,2.5,53.1,15098.0,2256.0
-200506,Piura,Paita,Tamarindo,285,5.1,52.9,8240.0,436.0
-200206,Piura,Ayabaca,Pacaipampa,167,0.7,51.3,30985.0,1671.0
-240301,Tumbes,Zarumilla,Zarumilla,606,2.4,51.1,14675.0,360.0
-200201,Piura,Ayabaca,Ayabaca,198,0.5,50.9,11165.0,3203.0
-200210,Piura,Ayabaca,Suyo,383,3.0,50.9,7348.0,1510.0
-200701,Piura,Talara,Pariñas,20170,18.5,50.6,18953.0,3909.0
-200608,Piura,Sullana,Salitral,351,4.7,50.4,11196.0,162.0
-200606,Piura,Sullana,Miguel Checa,221,2.4,48.9,8471.0,679.0
-200203,Piura,Ayabaca,Jilili,18,0.6,47.6,8514.0,1962.0
-200605,Piura,Sullana,Marcavelica,1113,3.3,47.1,49875.0,678.0
-200706,Piura,Talara,Mancora,1925,13.6,46.0,1759.0,22.0
-200705,Piura,Talara,Los Organos,4026,33.6,45.8,11088.0,89.0
-200501,Piura,Paita,Paita,2180,2.1,44.3,14194.0,5760.0
-200307,Piura,Huancabamba,Sondor,9,0.1,43.9,4819.0,2978.0
-200407,Piura,Morropón,San Juan de Bigote,16,0.2,43.9,16503.0,1451.0
-240106,Tumbes,Tumbes,San Juan de la Virgen,619,12.3,43.2,12699.0,126.0
-240103,Tumbes,Tumbes,La Cruz,1611,15.3,42.3,19520.0,755.0
-200303,Piura,Huancabamba,El Carmen de la Frontera,6,0.0,42.1,13654.0,3791.0
-200205,Piura,Ayabaca,Montero,10,0.1,40.3,19394.0,5307.0
-200202,Piura,Ayabaca,Frias,0,0.0,39.5,17802.0,2521.0
-200503,Piura,Paita,Arenal,19,1.4,38.6,1364.0,621.0
-240104,Tumbes,Tumbes,Pampas de Hospital,712,9.1,38.2,18906.0,111.0
-240105,Tumbes,Tumbes,San Jacinto,370,3.9,37.9,16949.0,142.0
-200208,Piura,Ayabaca,Sapillica,0,0.0,37.3,19325.0,2156.0
-240201,Tumbes,Contralmirante Villar,Zorritos,1949,9.9,36.6,8483.0,109.0
-200410,Piura,Morropón,Yamango,0,0.0,36.0,21703.0,2428.0
-200306,Piura,Huancabamba,San Miguel de El Faique,1,0.0,36.0,10738.0,1391.0
+200109,Piura,Piura,La Arena,25753,57.3,84.6,44585.0,1576.0
+200803,Piura,Sechura,Bernal,7232,91.7,81.0,4156.0,125.0
+200108,Piura,Piura,El Tallán,2143,38.4,78.6,7720.0,862.0
+200110,Piura,Piura,La Unión,27436,61.7,77.4,27544.0,5307.0
+200504,Piura,Paita,Colán,9288,54.8,76.5,41648.0,5259.0
+200107,Piura,Piura,Cura Mori,12871,61.4,76.1,11211.0,600.0
+200804,Piura,Sechura,Cristo Nos Valga,3758,73.9,76.0,9297.0,2390.0
+200114,Piura,Piura,Tambo Grande,12651,9.7,72.6,87555.0,9166.0
+200806,Piura,Sechura,Rinconada Llicuar,2653,79.6,72.0,5003.0,115.0
+200507,Piura,Paita,Vichayal,3871,60.7,71.4,17308.0,2235.0
+200105,Piura,Piura,Catacaos,70717,85.6,70.1,80715.0,29749.0
+200801,Piura,Sechura,Sechura,7092,14.2,69.8,17326.0,3659.0
+200802,Piura,Sechura,Bellavista de la Unión,3012,56.5,69.6,3005.0,150.0
+200805,Piura,Sechura,Vice,1050,5.9,68.2,8712.0,1684.0
+200401,Piura,Morropón,Chulucanas,10435,11.4,67.5,40125.0,4814.0
+200104,Piura,Piura,Castilla,73194,39.6,63.5,22706.0,19329.0
+240302,Tumbes,Zarumilla,Aguas Verdes,5717,29.7,61.4,9422.0,355.0
+200402,Piura,Morropón,Buenos Aires,1209,11.4,60.7,14015.0,2267.0
+200101,Piura,Piura,Piura,31564,17.9,60.3,34862.0,8697.0
+200404,Piura,Morropón,La Matanza,522,3.4,59.8,13344.0,1223.0
+200703,Piura,Talara,La Brea,5375,39.7,59.6,2194.0,389.0
+240101,Tumbes,Tumbes,Tumbes,11797,10.0,59.0,134113.0,1464.0
+200115,Piura,Piura,Veintiséis de Octubre,21685,11.4,58.8,27083.0,8114.0
+200604,Piura,Sullana,Lancones,738,5.4,58.6,15963.0,657.0
+240102,Tumbes,Tumbes,Corrales,1820,7.0,58.3,11131.0,345.0
+200502,Piura,Paita,Amotape,1031,38.6,58.3,6063.0,1370.0
+200505,Piura,Paita,La Huaca,1881,13.0,57.9,14293.0,1050.0
+200601,Piura,Sullana,Sullana,2863,1.4,56.9,11496.0,2107.0
+200111,Piura,Piura,Las Lomas,387,1.2,56.2,49458.0,1984.0
+200603,Piura,Sullana,Ignacio Escudero,394,1.8,56.2,9441.0,1711.0
+200406,Piura,Morropón,Salitral,430,4.4,55.1,13527.0,746.0
+200607,Piura,Sullana,Querecotillo,519,1.8,54.5,10480.0,832.0
+200405,Piura,Morropón,Morropón,458,2.7,54.3,15098.0,2256.0
+200506,Piura,Paita,Tamarindo,285,5.1,54.1,8240.0,436.0
+200207,Piura,Ayabaca,Paimas,264,2.4,53.0,14668.0,2410.0
+200608,Piura,Sullana,Salitral,393,5.0,52.6,11196.0,162.0
+200308,Piura,Huancabamba,Sondorillo,45,0.4,52.3,13031.0,3546.0
+200304,Piura,Huancabamba,Huarmaca,373,0.9,52.1,15096.0,4747.0
+200204,Piura,Ayabaca,Lagunas,82,1.3,52.1,11614.0,3109.0
+200210,Piura,Ayabaca,Suyo,402,3.1,51.7,7348.0,1510.0
+200701,Piura,Talara,Pariñas,20148,18.5,51.1,18953.0,3909.0
+200206,Piura,Ayabaca,Pacaipampa,198,0.8,50.8,30985.0,1671.0
+200606,Piura,Sullana,Miguel Checa,220,2.1,50.6,8471.0,679.0
+200201,Piura,Ayabaca,Ayabaca,218,0.6,49.8,11165.0,3203.0
+240301,Tumbes,Zarumilla,Zarumilla,640,2.5,49.8,14675.0,360.0
+200205,Piura,Ayabaca,Montero,93,1.2,48.5,19394.0,5307.0
+200605,Piura,Sullana,Marcavelica,1093,3.3,47.6,49875.0,678.0
+200706,Piura,Talara,Máncora,1938,13.7,47.4,1759.0,22.0
+200203,Piura,Ayabaca,Jilili,27,0.9,47.0,8514.0,1962.0
+200307,Piura,Huancabamba,Sondor,39,0.5,46.6,4819.0,2978.0
+200705,Piura,Talara,Los Órganos,4026,33.6,45.5,11088.0,89.0
+200501,Piura,Paita,Paita,2180,2.1,45.3,14194.0,5760.0
+200407,Piura,Morropón,San Juan de Bigote,16,0.2,43.8,16503.0,1451.0
+240106,Tumbes,Tumbes,San Juan de la Virgen,616,12.3,43.4,12699.0,126.0
+240103,Tumbes,Tumbes,La Cruz,1740,16.3,43.1,19520.0,755.0
+200303,Piura,Huancabamba,El Carmen de la Frontera,4,0.0,41.0,13654.0,3791.0
+200202,Piura,Ayabaca,Frías,0,0.0,39.3,17802.0,2521.0
+240104,Tumbes,Tumbes,Pampas de Hospital,714,9.1,38.4,18906.0,111.0
+240201,Tumbes,Contralmirante Villar,Zorritos,1919,14.3,37.8,8483.0,109.0
+200208,Piura,Ayabaca,Sapillica,0,0.0,37.2,19325.0,2156.0
+240105,Tumbes,Tumbes,San Jacinto,369,3.9,36.5,16949.0,142.0
+200410,Piura,Morropón,Yamango,0,0.0,35.9,21703.0,2428.0
+200306,Piura,Huancabamba,San Miguel de El Faique,1,0.0,35.9,10738.0,1391.0
+200503,Piura,Paita,Arenal,8,0.6,35.0,1364.0,621.0
 200305,Piura,Huancabamba,Lalaquiz,0,0.0,33.8,4389.0,1067.0
 200403,Piura,Morropón,Chalaco,0,0.0,32.9,15383.0,1775.0
-200209,Piura,Ayabaca,Sicchez,0,0.0,32.0,8078.0,1911.0
-240304,Tumbes,Zarumilla,Papayal,141,1.9,31.1,12543.0,173.0
-200408,Piura,Morropón,Santa Catalina de Mossa,0,0.0,30.7,11110.0,696.0
+200209,Piura,Ayabaca,Sicchez,0,0.0,32.1,8078.0,1911.0
+240304,Tumbes,Zarumilla,Papayal,149,2.1,31.2,12543.0,173.0
+200408,Piura,Morropón,Santa Catalina de Mossa,0,0.0,30.8,11110.0,696.0
 200301,Piura,Huancabamba,Huancabamba,0,0.0,30.3,17044.0,3769.0
-200409,Piura,Morropón,Santo Domingo,0,0.0,29.0,13426.0,1516.0
-200302,Piura,Huancabamba,Canchaque,0,0.0,27.6,17948.0,2208.0
-200704,Piura,Talara,Lobitos,285,18.8,26.1,3010.0,458.0
-240202,Tumbes,Contralmirante Villar,Casitas,18,0.6,24.8,14915.0,7.0
-200702,Piura,Talara,El Alto,48,0.5,21.7,712.0,207.0
-240303,Tumbes,Zarumilla,Matapalo,44,1.2,18.8,18230.0,284.0
-200602,Piura,Sullana,Bellavista,0,0.0,14.5,9123.0,685.0
+200409,Piura,Morropón,Santo Domingo,0,0.0,29.1,13426.0,1516.0
+200302,Piura,Huancabamba,Canchaque,0,0.0,27.8,17948.0,2208.0
+200704,Piura,Talara,Lobitos,285,18.8,26.7,3010.0,458.0
+240202,Tumbes,Contralmirante Villar,Casitas,19,0.7,24.3,14915.0,7.0
+200702,Piura,Talara,El Alto,48,0.5,21.6,712.0,207.0
+240203,Tumbes,Contralmirante Villar,Canoas de Punta Sal,66,0.9,21.4,11590.0,54.0
+240303,Tumbes,Zarumilla,Matapalo,34,0.9,16.9,18230.0,284.0
+200602,Piura,Sullana,Bellavista,0,0.0,15.0,9123.0,685.0

@@ -205,14 +205,14 @@ def main() -> None:
                   "poblacion_expuesta": "Población modelada (WorldPop 2026) dentro de la mancha. No equivale a afectados ni damnificados.",
                   "edificaciones": "Huellas de Google Open Buildings v3 (confianza ≥ 0,75) con su centro dentro de la mancha. Cualquier uso; no son viviendas censales.",
                   "anillos": "dentro (d = 0), anillo_0_500m (0 < d ≤ 500 m), anillo_500m_1km (500 < d ≤ 1000 m); acum_500m y acum_1km son acumulados.",
-                  "sin_distrito": "Lo que cae dentro de la caja de estudio pero fuera de los 76 polígonos distritales (GADM 4.1)."},
+                  "sin_distrito": "Lo que cae dentro de la caja de estudio pero fuera de los 78 polígonos distritales del INEI."},
               "fuentes_exposicion": {"poblacion": "WorldPop 2026, 100 m (R2025A, constrained)",
                                      "edificaciones": "Google Open Buildings v3 (confianza ≥ 0,75), vía VIDA / source.coop",
                                      "salud": "RENIPRESS (SUSALUD), corte 30-09-2026",
                                      "colegios": tablas["colegios"]["fuente"].iloc[0] if "colegios" in tablas else None,
                                      "peligro": "JRC CEMS-GloFAS flood hazard v2 (90 m)",
-                                     "distritos": "GADM 4.1 (76 distritos; faltan 200115 Veintiséis de Octubre y 240203 Canoas de Punta Sal)",
-                                     "ubigeo": "Tabla UBIGEO INEI compilada por jmcastagnetto/ubigeo-peru-aumentado (MIT)"}}
+                                     "distritos": "INEI, Infraestructura de Datos Espaciales, capa Distrito (78 distritos de Tumbes y Piura, con UBIGEO)",
+                                     "ubigeo": "UBIGEO del propio mapa del INEI; variables de contexto de la tabla compilada por jmcastagnetto/ubigeo-peru-aumentado (MIT)"}}
     filas_csv = []
     for clave, (nombre, tipo, valor, t, meta) in cargar_capas().items():
         inund = valor > 0

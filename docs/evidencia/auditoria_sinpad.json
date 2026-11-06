@@ -17,18 +17,6 @@
     "en_sinpad_14_dias": true,
     "registros_sinpad": [
      {
-      "codigo": "86295",
-      "fecha": "2017-03-16",
-      "peligro": "INUNDACION",
-      "dias": -11
-     },
-     {
-      "codigo": "86188",
-      "fecha": "2017-03-19",
-      "peligro": "INUNDACION",
-      "dias": -8
-     },
-     {
       "codigo": "84203",
       "fecha": "2017-03-21",
       "peligro": "LLUVIA INTENSA",
@@ -236,17 +224,17 @@
   ]
  },
  "comparacion_desinventar_2003_2015": {
-  "semanas_con_registro_desinventar": 118,
-  "semanas_con_registro_sinpad": 787,
+  "semanas_con_registro_desinventar": 119,
+  "semanas_con_registro_sinpad": 788,
   "desinventar_en_sinpad_misma_semana": 37,
-  "desinventar_en_sinpad_mas_menos_2_semanas": 51,
+  "desinventar_en_sinpad_mas_menos_2_semanas": 53,
   "lectura": "Las fuentes registran cosas distintas: no se deben unir en una sola serie."
  },
  "distribucion_Y": {
-  "filas": 90896,
-  "y1": 7173,
-  "pct_y1": 7.89,
-  "semanas_con_registro": 2431,
+  "filas": 93288,
+  "y1": 7243,
+  "pct_y1": 7.76,
+  "semanas_con_registro": 2442,
   "fin_etiqueta": "2025-12-29",
   "por_anio": {
    "2003": {
@@ -275,7 +263,7 @@
    },
    "2009": {
     "semanas_con_registro": 73,
-    "y1": 173
+    "y1": 176
    },
    "2010": {
     "semanas_con_registro": 80,
@@ -287,7 +275,7 @@
    },
    "2012": {
     "semanas_con_registro": 174,
-    "y1": 513
+    "y1": 516
    },
    "2013": {
     "semanas_con_registro": 47,
@@ -298,16 +286,16 @@
     "y1": 93
    },
    "2015": {
-    "semanas_con_registro": 85,
-    "y1": 290
+    "semanas_con_registro": 86,
+    "y1": 294
    },
    "2016": {
-    "semanas_con_registro": 93,
-    "y1": 347
+    "semanas_con_registro": 95,
+    "y1": 355
    },
    "2017": {
-    "semanas_con_registro": 322,
-    "y1": 857
+    "semanas_con_registro": 324,
+    "y1": 874
    },
    "2018": {
     "semanas_con_registro": 53,
@@ -315,38 +303,38 @@
    },
    "2019": {
     "semanas_con_registro": 80,
-    "y1": 263
+    "y1": 268
    },
    "2020": {
     "semanas_con_registro": 22,
     "y1": 101
    },
    "2021": {
-    "semanas_con_registro": 147,
-    "y1": 395
+    "semanas_con_registro": 148,
+    "y1": 399
    },
    "2022": {
     "semanas_con_registro": 121,
     "y1": 367
    },
    "2023": {
-    "semanas_con_registro": 398,
-    "y1": 971
+    "semanas_con_registro": 401,
+    "y1": 986
    },
    "2024": {
     "semanas_con_registro": 142,
-    "y1": 452
+    "y1": 455
    },
    "2025": {
-    "semanas_con_registro": 266,
-    "y1": 648
+    "semanas_con_registro": 268,
+    "y1": 656
    }
   },
   "semanas_con_registro_por_mes": {
    "1": 259,
-   "2": 720,
-   "3": 841,
-   "4": 343,
+   "2": 724,
+   "3": 847,
+   "4": 344,
    "5": 101,
    "6": 26,
    "7": 20,
@@ -367,14 +355,14 @@
    "Sondorillo": 61,
    "Las Lomas": 60,
    "Chulucanas": 59,
-   "Zorritos": 57,
    "San Jacinto": 56,
    "La Cruz": 56,
    "El Carmen de la Frontera": 54,
-   "Canchaque": 50
+   "Canchaque": 50,
+   "Pampas de Hospital": 49
   },
   "distritos_sin_registro": 0,
-  "distritos": 76
+  "distritos": 78
  },
  "muestra_revision_manual": [
   {

@@ -59,6 +59,8 @@ R = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(R / "src"))
 
 UMBRALES = R / "data" / "normales" / "umbrales_lluvia_distritos.csv"
+# Tabla de umbrales con la que se armó docs/evidencia/aviso_temporada_niveles.txt (76 distritos GADM, 5/11/2026)
+UMBRALES_NIVELES = R / "data" / "normales" / "umbrales_lluvia_distritos_mapa_gadm76.csv"
 CAUDAL = R / "data" / "modelo" / "caudal_rios.csv"
 SINPAD = R / "data" / "modelo" / "sinpad_tumbes_piura_semanal.csv"
 CATALOGO = R / "data" / "eventos" / "catalogo_verificado.csv"
@@ -75,7 +77,10 @@ TEMPORADAS = {"2025_ene_abr": ("2025-01-01", "2025-04-30"), "2026_oct_nov": ("20
 N = (1, 2, 3)
 BLOQUE = 10          # distritos por consulta (Open-Meteo cuenta cada punto)
 PAUSA_S = 6          # entre consultas, para no pasar el límite por minuto
-FUSION = {"200115": "200101", "240203": "240201"}   # distritos que el mapa GADM incluye en otro
+# Esta prueba se hizo con los pronósticos guardados de los 76 puntos del mapa GADM anterior
+# (docs/evidencia/aviso_temporada_niveles.txt). Mientras no se vuelva a correr con red para los 78 distritos del INEI,
+# conserva la misma unión de distritos para que sus cifras sigan siendo las publicadas en el documento 18.
+FUSION = {"200115": "200101", "240203": "240201"}
 
 
 def norm(s) -> str:
@@ -147,9 +152,10 @@ def niveles(p: pd.DataFrame) -> pd.DataFrame:
 def leer_niveles_compactos(ruta: Path) -> pd.DataFrame:
     """Formato de docs/evidencia/aviso_temporada_niveles.txt, una línea por temporada y distrito:
         t2025|<i>:<primera fecha>:<días>:<grupos separados por ;>
-    <i> es la fila del distrito en umbrales_lluvia_distritos.csv. Cada grupo es un número (tantos días seguidos
+    <i> es la fila del distrito en la tabla de umbrales de la corrida del 5/11/2026, que tenía los 76 distritos del
+    mapa GADM en otro orden (se guarda tal cual en UMBRALES_NIVELES). Cada grupo es un número (tantos días seguidos
     en «nnn») o tres letras con el nivel pronosticado 1, 2 y 3 días antes (n normal, f fuerte, e extremo)."""
-    u = pd.read_csv(UMBRALES)
+    u = pd.read_csv(UMBRALES_NIVELES)
     tem = {"t2025": "2025_ene_abr", "t2026": "2026_oct_nov"}
     filas = []
     for linea in ruta.read_text(encoding="utf-8").strip().splitlines():

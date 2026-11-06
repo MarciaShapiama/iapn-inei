@@ -1,0 +1,14 @@
+{
+ "fuente": "INEI, Infraestructura de Datos Espaciales, capa «Distrito» (ig_distrito)",
+ "portal": "https://ide.inei.gob.pe/",
+ "servicio": "https://geoespacial.inei.gob.pe/geoserver/Interoperabilidad/ows",
+ "capa": "Interoperabilidad:ig_distrito",
+ "filtro": "ccdd IN ('20','24')",
+ "campo_fuente_del_inei": "V Censo Nacional Economico",
+ "fecha_registro_del_inei": "2022-07-22T01:39:29Z",
+ "descargado": "2026-11-06T22:39:35+00:00",
+ "sha256_respuesta": "a02ab3b96f675343e57a704f75fb36dd5b42696278001b4a41f51450561d4232",
+ "distritos": 78,
+ "simplificacion_grados": 0.0015,
+ "licencia": "El portal del INEI no declara una licencia; uso con cita a la fuente (ver LEEME)."
+}

@@ -1,0 +1,77 @@
+departamento,provincia,distrito,lat,lon,dias_con_lluvia,p95,p99,max_diaria,periodo
+Piura,Ayabaca,Ayabaca,-4.6877,-79.6448,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Frias,-4.9067,-79.9661,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Jilili,-4.5299,-79.8341,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Lagunas,-4.7815,-79.8469,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Montero,-4.6472,-79.8487,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Pacaipampa,-4.9294,-79.6348,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Paimas,-4.653,-80.017,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Sapillica,-4.7842,-79.9901,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Sicchez,-4.5698,-79.7775,7347,34.8,54.8,112.7,1991-2020
+Piura,Ayabaca,Suyo,-4.4465,-80.0404,7347,34.8,54.8,112.7,1991-2020
+Piura,Huancabamba,Canchaque,-5.3005,-79.6172,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,El Carmen de la Frontera,-5.004,-79.3555,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,Huancabamba,-5.1871,-79.4855,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,Huarmaca,-5.6936,-79.5734,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,Lalaquiz,-5.1792,-79.6676,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,San Miguel de El Faique,-5.4136,-79.58,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,Sondor,-5.3947,-79.3589,6257,26.5,42.3,105.2,1991-2020
+Piura,Huancabamba,Sondorillo,-5.4126,-79.4419,6257,26.5,42.3,105.2,1991-2020
+Piura,Morropón,Buenos Aires,-5.2794,-79.9472,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Chalaco,-5.0733,-79.7721,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Chulucanas,-5.1273,-80.1968,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,La Matanza,-5.3685,-80.0927,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Morropon,-5.1411,-79.9946,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Salitral,-5.4466,-79.8446,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,San Juan de Bigote,-5.2942,-79.7442,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Santa Catalina de Mossa,-5.1318,-79.8786,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Santo Domingo,-5.0495,-79.9235,2990,32.5,73.4,184.7,1991-2020
+Piura,Morropón,Yamango,-5.1484,-79.7739,2990,32.5,73.4,184.7,1991-2020
+Piura,Paita,Amotape,-4.8431,-81.0027,830,19.6,40.9,134.1,1991-2020
+Piura,Paita,Arenal,-4.9005,-81.0302,830,19.6,40.9,134.1,1991-2020
+Piura,Paita,Colan,-4.9426,-81.067,830,19.6,40.9,134.1,1991-2020
+Piura,Paita,La Huaca,-5.0725,-80.9055,830,19.6,40.9,134.1,1991-2020
+Piura,Paita,Paita,-5.1608,-81.0654,830,19.6,40.9,134.1,1991-2020
+Piura,Paita,Tamarindo,-4.8329,-80.9617,830,19.6,40.9,134.1,1991-2020
+Piura,Paita,Vichayal,-4.8474,-81.1034,830,19.6,40.9,134.1,1991-2020
+Piura,Piura,Castilla,-5.1206,-80.5344,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,Catacaos,-5.4814,-80.3571,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,Cura Mori,-5.3664,-80.6019,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,El Tallan,-5.4397,-80.6061,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,La Arena,-5.31,-80.7726,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,La Union,-5.3282,-80.8688,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,Las Lomas,-4.7073,-80.1042,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,Piura,-5.0765,-80.6689,1521,24.2,52.0,202.9,1991-2020
+Piura,Piura,Tambo Grande,-4.9162,-80.3555,1521,24.2,52.0,202.9,1991-2020
+Piura,Sechura,Bellavista de la Union,-5.4306,-80.7447,936,21.6,45.8,110.4,1991-2020
+Piura,Sechura,Bernal,-5.4582,-80.695,936,21.6,45.8,110.4,1991-2020
+Piura,Sechura,Cristo Nos Valga,-5.5517,-80.6348,936,21.6,45.8,110.4,1991-2020
+Piura,Sechura,Rinconada Llicuar,-5.4813,-80.7766,936,21.6,45.8,110.4,1991-2020
+Piura,Sechura,Sechura,-5.9233,-80.7184,936,21.6,45.8,110.4,1991-2020
+Piura,Sechura,Vice,-5.4306,-80.8574,936,21.6,45.8,110.4,1991-2020
+Piura,Sullana,Bellavista,-4.8896,-80.6749,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Ignacio Escudero,-4.8247,-80.8873,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Lancones,-4.4261,-80.5914,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Marcavelica,-4.5398,-80.7897,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Miguel Checa,-5.0706,-80.7823,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Querecotillo,-4.7438,-80.6126,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Salitral,-4.8418,-80.6855,1484,28.3,59.9,134.2,1991-2020
+Piura,Sullana,Sullana,-4.8125,-80.5075,1484,28.3,59.9,134.2,1991-2020
+Piura,Talara,El Alto,-4.3022,-81.0941,1325,19.9,36.0,67.8,1991-2020
+Piura,Talara,La Brea,-4.7146,-81.0811,1325,19.9,36.0,67.8,1991-2020
+Piura,Talara,Lobitos,-4.4061,-81.2024,1325,19.9,36.0,67.8,1991-2020
+Piura,Talara,Los Organos,-4.1772,-81.0687,1325,19.9,36.0,67.8,1991-2020
+Piura,Talara,Mancora,-4.1577,-81.0042,1325,19.9,36.0,67.8,1991-2020
+Piura,Talara,Pariñas,-4.4882,-81.0628,1325,19.9,36.0,67.8,1991-2020
+Tumbes,Contralmirante Villar,Casitas,-4.0198,-80.6202,3005,22.8,45.0,128.8,1991-2020
+Tumbes,Contralmirante Villar,Zorritos,-3.9091,-80.7741,3005,22.8,45.0,128.8,1991-2020
+Tumbes,Tumbes,Corrales,-3.5925,-80.5037,3342,26.9,56.6,150.2,1991-2020
+Tumbes,Tumbes,La Cruz,-3.6681,-80.5657,3342,26.9,56.6,150.2,1991-2020
+Tumbes,Tumbes,Pampas de Hospital,-3.8384,-80.3527,3342,26.9,56.6,150.2,1991-2020
+Tumbes,Tumbes,San Jacinto,-3.9268,-80.4933,3342,26.9,56.6,150.2,1991-2020
+Tumbes,Tumbes,San Juan de la Virgen,-3.6877,-80.3198,3342,26.9,56.6,150.2,1991-2020
+Tumbes,Tumbes,Tumbes,-3.5641,-80.41,3342,26.9,56.6,150.2,1991-2020
+Tumbes,Zarumilla,Aguas Verdes,-3.4969,-80.2482,3917,28.1,56.4,167.7,1991-2020
+Tumbes,Zarumilla,Matapalo,-3.7624,-80.2453,3917,28.1,56.4,167.7,1991-2020
+Tumbes,Zarumilla,Papayal,-3.5577,-80.2825,3917,28.1,56.4,167.7,1991-2020
+Tumbes,Zarumilla,Zarumilla,-3.4627,-80.3126,3917,28.1,56.4,167.7,1991-2020

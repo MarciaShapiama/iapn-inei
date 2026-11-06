@@ -1,0 +1,95 @@
+# 20 · El mapa con los 78 distritos oficiales del INEI
+
+*6 de noviembre de 2026. Scripts: `src/exposicion.py` (función `distritos`), `herramientas/pruebas/comparar_mapa_distritos.py`. Evidencia: `data/exposicion/distritos_procedencia.json`, `docs/evidencia/mapa_78_antes_despues_distritos.csv`.*
+
+## El problema
+
+El mapa de distritos del tablero venía de GADM 4.1 y tenía 76 distritos. No separaba **Veintiséis de Octubre** (200115) de Piura ni **Canoas de Punta Sal** (240203) de Zorritos. El censo, el SINPAD y el INEI usan 78: 65 en Piura y 13 en Tumbes. Además, la licencia de GADM no permite redistribuir sus polígonos.
+
+## La fuente nueva
+
+| | |
+|---|---|
+| Quién la produce | INEI, Infraestructura de Datos Espaciales |
+| Portal | https://ide.inei.gob.pe/ («Descarga de capas cartográficas»: Distrital, actualizado al 2023) |
+| Cómo se descarga | Servicio WFS `https://geoespacial.inei.gob.pe/geoserver/Interoperabilidad/ows`, capa `Interoperabilidad:ig_distrito`, en GeoJSON, con el filtro `ccdd IN ('20','24')` (Piura y Tumbes) |
+| Qué trae | 1 890 distritos de todo el Perú; para Piura y Tumbes, 78. Campos: `ubigeo`, `nombdist`, `ccdd`, `ccpp`, `ccdi`, `fuente` («V Censo Nacional Economico»), `fec_reg` (22/07/2022) |
+| Licencia | El portal no declara una licencia. Se usa citando la fuente. Es mejor que GADM, que prohíbe redistribuir |
+| Trazabilidad | `data/exposicion/distritos_procedencia.json`: URL, capa, filtro, fecha de descarga y SHA-256 de la respuesta |
+
+Otras fuentes revisadas:
+
+- **HDX, «Peru - Subnational Administrative Boundaries» (COD-AB)**: fuente IGN, licencia CC BY-IGO, actualizado el 26/01/2026. Hay shapefile, GeoJSON y GDB. Es una buena alternativa, pero cita al IGN y no al INEI.
+- **GEO GPS Perú**: blog que redistribuye capas del INEI en Google Drive. No es fuente primaria.
+- **geoBoundaries**: CC BY 4.0; no se pudo verificar qué versión tiene para Perú.
+
+Se eligió el WFS del INEI porque es la fuente oficial, trae el UBIGEO en cada polígono y permite bajar solo Tumbes y Piura (2 MB).
+
+## Nombres
+
+El INEI escribe los nombres en mayúsculas y sin tildes. `data/exposicion/nombres_distritos.csv` guarda, para cada UBIGEO, el nombre oficial del INEI y su escritura con tildes. Se agregaron 9 tildes claras: El Tallán, La Unión, Veintiséis de Octubre, Frías, Morropón, Colán, Los Órganos, Máncora y Bellavista de la Unión. Jilili y Sondor quedan sin tilde porque no se pudo verificar su escritura. Tambo Grande se escribe como el INEI.
+
+Los 78 UBIGEO están en `data/exposicion/ubigeo_peru_completo.csv`, y el nombre del INEI coincide con el de esa tabla en los 78.
+
+## Qué se cambió en el código
+
+| Archivo | Cambio |
+|---|---|
+| `src/exposicion.py` | `distritos()` baja el mapa del INEI. Propiedades: `departamento`, `provincia`, `distrito`, `ubigeo`. Falla si el INEI devuelve otros distritos o si un nombre no coincide con la tabla de nombres. Pone el anillo exterior de cada polígono en sentido horario: el INEI lo entrega al revés y el mapa SVG de la pestaña «Alerta por distrito» (d3) dibujaba un rectángulo lleno. Leaflet y deck.gl no dependen de esto y ninguna cifra cambia |
+| `src/ubigeo.py` | Usa el UBIGEO del propio mapa (78/78); el empate por nombre queda solo para mapas sin UBIGEO. Nueva función `clave_distrito()`: separa los dos Salitral (Morropón y Sullana), que antes compartían clave |
+| `src/base_modelo.py` | Usa los 78 distritos, guarda el UBIGEO y usa `clave_distrito()`. La base pasó de 75 claves (76 distritos, con los dos Salitral mezclados) a 78 |
+| `src/etiqueta_sinpad.py`, `src/modelo_afectados.py`, `src/cruce_habitantes.py` | Se quitó la fusión 200115 → Piura y 240203 → Zorritos (`FUSION` quedó vacía) y usan `clave_distrito()` |
+| `src/aviso_lluvia.py` | El aviso ya tiene 78 filas y guarda el UBIGEO del distrito |
+| `src/impacto.py`, `src/panel.py`, `src/metadatos.py`, `src/auditoria.py` | Textos: 78 distritos y fuente INEI |
+| `herramientas/pruebas/prueba_aviso_temporada.py` | **Conserva** la fusión y la tabla de umbrales de 76 (`data/normales/umbrales_lluvia_distritos_mapa_gadm76.csv`), porque su archivo de pronósticos guardados se hizo con los 76 puntos del mapa anterior. Hay que volver a correrla con red para tener las 78 |
+| `dashboard/index.html`, `dashboard/mapa2d.html` | Textos de fuentes y del número de distritos. Además se corrigieron dos errores de consola que no tenían que ver con el mapa: los gráficos del mar se dibujaban con la pestaña oculta y quedaban con ancho negativo |
+| `tests/test_datos.py` | Prueba nueva `test_mapa_78_distritos_oficiales`; las que esperaban 76 ahora esperan 78 |
+
+## Antes y después
+
+Zona inundable de JRC, suma de los distritos de Tumbes y Piura. El «antes» es el cálculo con el mapa GADM de 76 distritos.
+
+| | 1 en 10 años: antes | después | diferencia | 1 en 100 años: antes | después | diferencia |
+|---|---|---|---|---|---|---|
+| Personas (WorldPop) | 277 634 | 278 341 | +0,3 % | 399 506 | 400 198 | +0,2 % |
+| Edificaciones (Open Buildings) | 108 156 | 108 231 | +0,1 % | 148 348 | 148 431 | +0,1 % |
+| Locales escolares dentro | 449 | 452 | +3 | 682 | 685 | +3 |
+| Establecimientos de salud dentro | 95 | 96 | +1 | 145 | 146 | +1 |
+| km² inundables | 3 263,9 | 3 214,8 | −1,5 % | 3 793,1 | 3 734,9 | −1,5 % |
+
+**Por qué bajan los km²:** el INEI dibuja distinto el límite entre Piura y Lambayeque en el desierto de Sechura. Unos 81 km² inundables, alrededor de 5,85° S y 80,43° O (zona de la laguna La Niña), estaban dentro de Sechura en GADM y quedan fuera en el INEI. Ahí casi no hay población ni edificaciones, por eso las personas no bajan. Al revés, entran unos 22 km² en otros bordes. Sechura pasa de 1 730,9 a 1 671,2 km² inundables.
+
+**Los distritos nuevos** (zona de 1 en 100 años):
+
+| Distrito | Personas | Edificaciones | Colegios dentro | Salud dentro |
+|---|---|---|---|---|
+| Veintiséis de Octubre (200115) | 21 685 | 8 851 | 19 | 0 |
+| Piura (200101), sin Veintiséis de Octubre | 31 564 | 8 711 | 55 | 17 |
+| Canoas de Punta Sal (240203) | 66 | 23 | 0 | 0 |
+| Zorritos (240201), sin Canoas de Punta Sal | 1 919 | 795 | 2 | 3 |
+
+**Por distrito**, 57 de 69 distritos con zona inundable cambian más de 1 % en alguna cifra. La causa son los límites entre distritos vecinos, que GADM y el INEI trazan distinto, sobre todo en la ciudad de Piura. Las personas pasan de un distrito al vecino y el total queda igual. Los cambios más grandes en personas (zona de 1 en 100 años):
+
+| Distrito | Antes | Después | Diferencia |
+|---|---|---|---|
+| Piura (con Veintiséis de Octubre) | 55 762 | 53 249 | −4,5 % |
+| Castilla | 71 184 | 73 194 | +2,8 % |
+| La Arena | 23 909 | 25 753 | +7,7 % |
+| La Unión | 29 090 | 27 436 | −5,7 % |
+| Catacaos | 70 167 | 70 717 | +0,8 % |
+| Aguas Verdes | 5 213 | 5 717 | +9,7 % |
+
+La tabla completa por distrito está en `docs/evidencia/mapa_78_antes_despues_distritos.csv`.
+
+## Comprobaciones
+
+- Se corrió dos veces todo (mapa, etiqueta del SINPAD, impacto, panel y modelo de alerta), y las salidas son idénticas, sin contar la fecha de cálculo.
+- `python -m pytest -q`: 79 pruebas pasan (68 de datos y unidades y 11 del sitio local).
+- Tablero 2D: 78 polígonos, los 78 se pueden pulsar; al pulsar Veintiséis de Octubre el panel muestra sus cifras. Sin errores en la consola.
+- Tablero 3D: la capa de distritos tiene 78 polígonos con UBIGEO y se puede seleccionar. Sin errores en la consola.
+
+## Lo que falta
+
+- `src/vivienda_inei.py` (censo por manzana) lo corre Marcia con los datos del INEI. Ya trae el UBIGEO de cada manzana, así que no depende del mapa.
+- `herramientas/pruebas/prueba_aviso_temporada.py` necesita red y miles de consultas para tener los pronósticos de los 78 distritos.
+- Los documentos 01, 06, 18 y el informe final describen el mapa de 76 como estaba en su fecha. No se reescribieron.

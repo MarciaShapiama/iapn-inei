@@ -80,14 +80,16 @@ def emergencias() -> pd.DataFrame:
 
 
 def distritos() -> pd.DataFrame:
-    """Distritos de Tumbes y Piura con su ubigeo (DesInventar) y su centro (GADM)."""
+    """Los 78 distritos de Tumbes y Piura (mapa del INEI) con su UBIGEO, su punto interior y su clave."""
+    from ubigeo import clave_distrito
     g = json.load(open(DATA / "exposicion" / "distritos.geojson", encoding="utf-8"))
     filas = []
     for f in g["features"]:
         p = f["properties"]
         c = shape(f["geometry"]).representative_point()
         filas.append({"departamento": p["departamento"], "provincia": p["provincia"], "distrito": p["distrito"],
-                      "lat": round(c.y, 3), "lon": round(c.x, 3), "clave": normal(p["departamento"]) + normal(p["distrito"])})
+                      "ubigeo": p.get("ubigeo"), "lat": round(c.y, 3), "lon": round(c.x, 3),
+                      "clave": clave_distrito(p["departamento"], p["provincia"], p["distrito"])})
     return pd.DataFrame(filas)
 
 
@@ -160,7 +162,8 @@ def exposicion_distrito() -> pd.DataFrame:
         for f in ev["distritos"]:
             if f["departamento"] == "Sin distrito asignado":
                 continue
-            k = normal(f["departamento"]) + normal(f["distrito"])
+            from ubigeo import clave_distrito
+            k = clave_distrito(f["departamento"], f.get("provincia", ""), f["distrito"])
             fila = filas.setdefault(k, {"clave": k})
             fila[f"km2_inundable_{sufijo}"] = f["km2"]
             # nombre de columna heredado ("viviendas_*"); son edificaciones de Open Buildings
@@ -196,7 +199,8 @@ def main() -> None:
     tablas_indeci()
     em = emergencias()
     d = distritos()
-    em["clave"] = em["name0"].apply(normal) + em["name2"].apply(normal)
+    from ubigeo import clave_distrito
+    em["clave"] = [clave_distrito(a, b, c) for a, b, c in zip(em["name0"], em["name1"], em["name2"])]
     sin = sorted(set(em["clave"]) - set(d["clave"]))
     print(f"  registros cuyo distrito no se encontró en el mapa: {em['clave'].isin(sin).sum()} ({sin[:8]})")
     ll = lluvia(d)
@@ -227,7 +231,8 @@ def main() -> None:
     qs["caudal_max_4s"] = qs.groupby("rio")["caudal"].transform(lambda s: s.rolling(4, min_periods=1).max())
     pos = {k: v for k, v in RIOS.items() if k in ("Tumbes", "Chira", "Piura")}
     d["rio"] = d.apply(lambda r: min(pos, key=lambda k: (pos[k][0] - r["lat"]) ** 2 + (pos[k][1] - r["lon"]) ** 2), axis=1)
-    sem = sem.merge(d[["clave", "departamento", "provincia", "distrito", "rio"]], on="clave", how="left")
+    sem = sem[sem["clave"].isin(d["clave"])]          # lluvia_distritos.csv puede guardar claves antiguas
+    sem = sem.merge(d[["clave", "ubigeo", "departamento", "provincia", "distrito", "rio"]], on="clave", how="left")
     sem = sem.merge(qs[["rio", "semana", "caudal", "caudal_razon", "caudal_max_4s"]], on=["rio", "semana"], how="left")
     # mar
     n = pd.read_csv(DATA / "noaa_semanal.csv")

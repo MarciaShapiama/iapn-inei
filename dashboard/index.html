@@ -227,16 +227,17 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 <!-- ALERTA POR DISTRITO -->
 <section class="vista" id="v-alerta">
   <p class="titular" id="a-titular">Alerta por distrito</p>
-  <p class="bajada">Un modelo de machine learning estima, para cada distrito y cada semana, qué tan probable es que haya una emergencia por inundación o lluvias en las <b>próximas 4 semanas</b>. Aprendió de las emergencias registradas por INDECI entre 2001 y 2015 y usa la lluvia acumulada, el caudal del río, la temperatura del mar y la época del año.</p>
+  <p class="bajada">Un modelo de machine learning estima, para cada distrito y cada semana, qué tan probable es que haya una emergencia por inundación o lluvias en las <b>próximas 4 semanas</b>. Aprendió de las emergencias registradas por INDECI en el SINPAD entre 2003 y 2025 y usa la lluvia acumulada, el caudal del río, la temperatura del mar y la época del año.</p>
   <div class="panel" id="a-aviso" style="margin-bottom:16px" hidden></div>
   <div class="grid g32">
-    <div class="panel"><h2 id="a-t-mapa">Riesgo esta semana</h2><p class="nota">0 = como una semana tranquila; 100 = más alto que cualquier semana de 2001 a 2015. Pasa el cursor sobre un distrito.</p><svg id="a-mapa" style="width:100%;display:block"></svg><div class="leyenda" id="a-ley"></div></div>
+    <div class="panel"><h2 id="a-t-mapa">Riesgo esta semana</h2><p class="nota">0 = como una semana tranquila; 100 = más alto que cualquier semana de 2003 a 2025. Pasa el cursor sobre un distrito.</p><svg id="a-mapa" style="width:100%;display:block"></svg><div class="leyenda" id="a-ley"></div></div>
     <div class="panel"><h2>Distritos con más riesgo</h2><p class="nota" id="a-nota-lista"></p><div id="a-lista"></div></div>
   </div>
   <div class="grid g2" style="margin-top:16px">
-    <div class="panel"><h2>¿Funciona?</h2><p class="nota"><b>Límite importante:</b> el modelo pesa sobre todo dónde y en qué época del año se ha inundado antes; la lluvia, el caudal y el mar aportan poco a su resultado. Supera solo por poco a la referencia sin modelo (tabla de al lado). Úsalo para ordenar distritos, no como pronóstico.</p><div id="a-valida"></div></div>
-    <div class="panel"><h2>Modelos comparados</h2><p class="nota">Mismos datos y misma prueba: se entrena con los años anteriores y se evalúa en el año siguiente (2008 a 2015).</p><div id="a-modelos"></div></div>
+    <div class="panel"><h2>¿Funciona?</h2><p class="nota"><b>Límite importante:</b> el modelo pesa sobre todo dónde y en qué época del año se ha inundado antes; la lluvia, el caudal y el mar suman, pero no le gana con claridad a la referencia sin modelo (tabla de al lado). Úsalo para ordenar distritos, no como pronóstico.</p><div id="a-valida"></div></div>
+    <div class="panel"><h2>Modelos comparados</h2><p class="nota">Mismos datos y misma prueba: se entrena con los años anteriores y se evalúa en el año siguiente (2008 a 2025).</p><div id="a-modelos"></div></div>
   </div>
+  <div class="panel" id="a-plazo" style="margin-top:16px" hidden></div>
 </section>
 
 <!-- INUNDACIONES -->
@@ -383,7 +384,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
 
   <h3>3. Alerta por distrito (machine learning)</h3>
   <ul>
-    <li>Base de 75 distritos por semana desde 2001. Las emergencias por inundación y lluvias vienen de DesInventar (registros de INDECI, con fecha hasta 2015).</li>
+    <li>Base de 78 distritos por semana desde 2001. Las emergencias por inundación y lluvia intensa vienen del SINPAD del INDECI (datos abiertos, 2003-2025).</li>
     <li>Variables: lluvia de 30 días (NASA POWER), caudal del río más cercano (GloFAS), temperatura del mar (Niño 1+2), historia del distrito y época del año.</li>
     <li>Se compararon cuatro modelos con validación temporal: se entrena con los años anteriores y se prueba en el siguiente. Ganó una regresión logística simple. El índice de 0 a 100 compara cada semana con todas las semanas de 2001 a 2015; 95 o más es alerta.</li>
   </ul>
@@ -410,7 +411,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;font-size:12px;color:v
     <li>ENFEN, comunicados oficiales (gob.pe).</li>
     <li>DesInventar (UNDRR), registros de INDECI; tablas estadísticas del INDECI 2003-2024.</li>
     <li>NASA POWER; Open-Meteo y reanálisis ERA5 (ECMWF); NOAA OISST v2.1 y NOAA CPC; IGP (ICEN).</li>
-    <li>Límites distritales: GADM 4.1 con UBIGEO del INEI. Relieve: AWS Terrain Tiles. Imagen de fondo: Esri World Imagery.</li>
+    <li>Límites distritales: INEI, Infraestructura de Datos Espaciales (capa Distrito, 78 distritos con UBIGEO). Relieve: AWS Terrain Tiles. Imagen de fondo: Esri World Imagery.</li>
   </ul>
 
   <h3>Autores</h3>
@@ -462,6 +463,7 @@ Promise.all([get("resumen"),get("regiones"),get("mar"),get("indices"),geo("depar
   pestanas(); estado();
   const seguro=(f,n)=>{try{f()}catch(e){console.error(n,e)}};
   seguro(resumenVista,"resumen"); seguro(censoVista,"censo"); seguro(avisoVista,"aviso"); seguro(mar,"mar"); seguro(indices,"indices"); seguro(sateliteVista,"satelite"); seguro(alertaVista,"alerta");
+  get("prediccion_semanal").then(P=>seguro(()=>prediccionVista(P),"prediccion"));
   try{ const ini=()=>{if(visible("v-inundaciones")&&!I3.deck)setTimeout(inundacionesVista,30)}; ini(); window.addEventListener("hashchange",ini);
     document.querySelector('[data-v="inundaciones"]').addEventListener("click",ini); }catch(e){console.error(e)}
   try{ if(visible("v-zonas"))zonasVista(); else document.querySelector('[data-v="zonas"]').addEventListener("click",()=>{if(!Z3.deck)setTimeout(zonasVista,30)},{once:true}); window.addEventListener("hashchange",()=>{if(visible("v-zonas")&&!Z3.deck)setTimeout(zonasVista,30)}); }catch(e){console.error(e)}
@@ -558,12 +560,34 @@ function sateliteVista(){
   zs.onchange=pinta; ps.onchange=pinta; pinta();
 }
 
+/* ---------- PROBABILIDAD POR PLAZO (src/prediccion_semanal.py) ---------- */
+function prediccionVista(P){
+  const el=document.getElementById("a-plazo"); if(!P||!P.distritos||!el)return;
+  const pct=x=>x==null?"–":fmtN(100*x,0)+" %";
+  const barra=x=>`<span style="display:inline-block;vertical-align:middle;width:46px;height:8px;background:var(--line,#e5e2da);border-radius:4px;overflow:hidden;margin-right:6px"><i style="display:block;height:100%;width:${Math.min(100,100*x)}%;background:#d4472c"></i></span>${pct(x)}`;
+  const C=P.calidad_por_plazo||[];
+  const calidad=`<table class="tabla"><tr><th>Plazo</th><th style="text-align:right">PR-AUC del modelo</th><th style="text-align:right">Sin modelo (tasa)</th><th style="text-align:right">Climatología</th><th style="text-align:right">Año por año: modelo / climatología</th><th style="text-align:right">Años que gana</th><th style="text-align:right">Puntaje Brier (BSS)</th><th style="text-align:right">Acierta del top 10</th></tr>`+
+    C.map(c=>`<tr><td>${c.h} semana${c.h>1?"s":""}</td><td class="n"><b>${fmtN(c.pr_auc,3)}</b></td><td class="n">${fmtN(c.tasa_sin_modelo,3)}</td><td class="n">${fmtN(c.pr_auc_climatologia,3)}</td><td class="n">${c.pr_auc_promedio_anual==null?"–":fmtN(c.pr_auc_promedio_anual,3)+" / "+fmtN(c.pr_auc_promedio_anual_climatologia,3)}</td><td class="n">${c.anios_que_gana==null?"–":c.anios_que_gana+" de "+c.anios}</td><td class="n">${fmtN(c.bss,3)}</td><td class="n">${fmtN(10*c.top10_promedio,1)} de 10</td></tr>`).join("")+"</table>";
+  const top=P.distritos.slice(0,15);
+  const lista=`<table class="tabla"><tr><th>Distrito</th><th>1 semana</th><th>2 semanas</th><th>3 semanas</th><th>4 semanas</th><th style="text-align:right">Viviendas si ocurre</th><th style="text-align:right">Personas si ocurre</th></tr>`+
+    top.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--ink-3)">${d.provincia}</span></td><td>${barra(d.prob_h1)}</td><td>${barra(d.prob_h2)}</td><td>${barra(d.prob_h3)}</td><td>${barra(d.prob_h4)}</td>`+
+      `<td class="n">${fmtN(d.viviendas_si_ocurre,0)}${d.viviendas_rango_historico&&d.viviendas_rango_historico[0]!=null?`<br><span style="color:var(--ink-3)">antes: ${fmtN(d.viviendas_rango_historico[0],0)} a ${fmtN(d.viviendas_rango_historico[1],0)}</span>`:""}</td><td class="n">${fmtN(d.personas_si_ocurre,0)}</td></tr>`).join("")+"</table>";
+  el.innerHTML=`<h2>Probabilidad de emergencia por plazo: 1 a 4 semanas</h2>
+    <p class="nota">Con los datos hasta la semana del ${fechaTxt(P.semana_base)}: probabilidad de que el SINPAD registre una emergencia por inundación o lluvia intensa en cada una de las cuatro semanas siguientes. Se entrenó con las emergencias de 2003 a 2025 y se probó año por año sin mirar el futuro.</p>
+    <h3 style="margin:10px 0 6px">¿Qué tan bien funciona en cada plazo?</h3>${calidad}
+    <p class="nota">PR-AUC: qué tan bien encuentra las semanas con emergencia (un modelo al azar saca la tasa). La climatología es la historia del distrito en ese mes. «Año por año» promedia cada año de prueba por separado: ahí se ve que el modelo es más fuerte a 1 y 2 semanas y que a 4 semanas empata con la climatología.</p>
+    <h3 style="margin:14px 0 6px">Los 15 distritos con más probabilidad la próxima semana</h3>${lista}
+    <p class="aviso">${P.como_leer}</p>`;
+  el.hidden=false;
+}
+
 /* ---------- ALERTA POR DISTRITO ---------- */
 const sinTilde=x=>String(x).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z]/g,"");
 function alertaVista(){
   const RIE=D.RIE, DIST=D.DIST; if(!RIE||!DIST)return;
-  const porNombre={}; RIE.distritos_hoy.forEach(d=>porNombre[sinTilde(d.departamento)+sinTilde(d.distrito)]=d);
-  const dato=f=>porNombre[sinTilde(f.properties.departamento)+sinTilde(f.properties.distrito)];
+  // con la provincia: hay dos distritos Salitral (Morropón y Sullana)
+  const porNombre={}; RIE.distritos_hoy.forEach(d=>porNombre[sinTilde(d.departamento)+sinTilde(d.provincia)+sinTilde(d.distrito)]=d);
+  const dato=f=>porNombre[sinTilde(f.properties.departamento)+sinTilde(f.properties.provincia)+sinTilde(f.properties.distrito)];
   const esc=d3.scaleThreshold().domain([50,75,90,95]).range(["#f1eee6","#f7d29c","#ef9550","#d4472c","#8b1a1a"]);
   const n=RIE.distritos_hoy.filter(d=>d.alerta).length;
   document.getElementById("a-titular").textContent=`Alerta por distrito: ${n} de ${RIE.distritos_hoy.length} distritos en alerta esta semana`;
@@ -586,11 +610,11 @@ function alertaVista(){
   const rv=RIE.revision||{};
   document.getElementById("a-valida").innerHTML=`<p>Se probó con años que el modelo <b>no vio</b> al entrenarse: cada año lo predice un modelo entrenado solo con los años anteriores, y las emergencias reales vienen del SINPAD del INDECI. Entre 2016 y 2025, comparando los meses de enero a abril, el modelo puso a <b>2017 en el puesto ${rv.puesto_2017}</b> y a <b>2023 en el puesto ${rv.puesto_2023}</b> de ${rv.anios_comparados} años. Fueron justamente los dos años con más inundaciones.</p>
     <p>Lo que más pesa es la historia de cada distrito y la época del año. La lluvia, el caudal y el mar suben el riesgo, pero con un efecto moderado.</p>
-    <p class="aviso">Límites: las emergencias con fecha llegan solo hasta 2015 y la lluvia viene en cuadros de unos 50 km, así que distritos vecinos comparten valores. Es una herramienta para priorizar, no un aviso oficial.</p>`;
+    <p class="aviso">Límites: el SINPAD se publica cada seis meses (la etiqueta llega hasta diciembre de 2025) y la lluvia viene en cuadros de unos 50 km, así que distritos vecinos comparten valores. Es una herramienta para priorizar, no un aviso oficial.</p>`;
   const NOM={climatologia:"Referencia sin modelo (historia y época)",logistica_simple:"Regresión logística (el que se usa)",logistica_completa:"Regresión logística con 20 variables",lightgbm:"LightGBM (árboles)"};
   document.getElementById("a-modelos").innerHTML=`<table class="tabla"><tr><th>Modelo</th><th style="text-align:right">PR-AUC</th><th style="text-align:right">ROC-AUC</th></tr>`+
     RIE.metricas.map(m=>`<tr${m.modelo===RIE.modelo_principal?' style="font-weight:700"':""}><td>${NOM[m.modelo]||m.modelo}</td><td class="n">${fmtN(m.pr_auc,3)}</td><td class="n">${fmtN(m.roc_auc,3)}</td></tr>`).join("")+
-    `</table><p class="nota" style="margin-top:8px">PR-AUC es la medida principal cuando el evento es raro (aquí, 0,3 % de las semanas). Se eligió la logística simple: casi iguala a la de 20 variables, todos sus efectos tienen sentido y sí reconoce 2017; LightGBM no superó a la referencia con tan pocos casos.</p>`;
+    `</table><p class="nota" style="margin-top:8px">PR-AUC es la medida principal cuando el evento es poco frecuente (aquí, 7,8 % de las semanas tienen una emergencia en las 4 siguientes). Se eligió la logística simple porque todos sus efectos tienen sentido; ningún modelo supera con claridad a la referencia sin modelo. El modelo por plazo (abajo) sí le gana a 1 y 2 semanas.</p>`;
 }
 
 /* ---------- MAPA ---------- */
@@ -991,6 +1015,7 @@ function indices(){
   document.getElementById("ley-sem").innerHTML=SER.map(s=>`<span><i style="background:var(${s[2]});height:3px"></i>${s[1]}</span>`).join("");
   let anios=5;
   if(S){const dib=()=>{
+    if(document.getElementById("g-semanal").parentNode.clientWidth<80)return;   // pestaña oculta: se dibuja al abrirla
     const el=document.getElementById("g-semanal"),w=el.parentNode.clientWidth-36,h=Math.max(260,Math.min(360,w*.4)),m={t:12,r:12,b:26,l:36},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
     const x=S.semana.map(dia), desde=d3.timeYear.offset(x.at(-1),-anios), idx=x.map((d,i)=>i).filter(i=>x[i]>=desde);
     const X=d3.scaleTime().domain([x[idx[0]],x.at(-1)]).range([m.l,w-m.r]), vals=idx.flatMap(i=>SER.map(s=>S[s[0]][i]));
@@ -1004,6 +1029,7 @@ function indices(){
   document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{anios=+b.dataset.r;dib()});
   dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-mar"))dib()},150));}
   const IC=I.icen; if(IC){const dib=()=>{
+    if(document.getElementById("g-icen").parentNode.clientWidth<80)return;      // pestaña oculta: se dibuja al abrirla
     const el=document.getElementById("g-icen"),w=el.parentNode.clientWidth-36,h=240,m={t:12,r:10,b:26,l:36},svg=d3.select(el).attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
     const d=IC.fecha.map((f,i)=>({x:mes(f),f,y:IC.valor[i]}));
     const X=d3.scaleTime().domain([d[0].x,d3.timeMonth.offset(d.at(-1).x,1)]).range([m.l,w-m.r]),Y=d3.scaleLinear().domain([Math.min(-2,d3.min(d,v=>v.y)),Math.max(3.5,d3.max(d,v=>v.y))]).nice().range([h-m.b,m.t]);

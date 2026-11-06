@@ -4,7 +4,7 @@
     viviendas.parquet    centro de cada edificación de Google Open Buildings v3 (confianza ≥ 0,75)
     salud.csv            establecimientos de salud activos (RENIPRESS, SUSALUD): hospitales, centros, postas
     colegios.csv         locales educativos: padrón ESCALE (MINEDU) si se puede descargar; si no, OpenStreetMap
-    distritos.geojson    distritos de Tumbes y Piura (GADM 4.1)
+    distritos.geojson    los 78 distritos de Tumbes y Piura (límites oficiales del INEI, con UBIGEO)
     peligro_rp{N}.tif    profundidad de inundación de ríos con periodo de retorno N años (JRC CEMS-GloFAS v2, 90 m)
 
 Método de viviendas y población tomado del repositorio del curso (alexanderquispe/incendios-peru).
@@ -16,7 +16,6 @@ from __future__ import annotations
 import io
 import json
 import sys
-import zipfile
 
 import numpy as np
 import pandas as pd
@@ -34,7 +33,11 @@ WORLDPOP = ("https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/20
 VIDA = "https://data.source.coop/vida/google-microsoft-open-buildings/geoparquet/by_country_s2/country_iso=PER/{}.parquet"
 VIDA_CELDAS = ["10394307939971104768", "10466365534009032704", "10502394331027996672"]
 RENIPRESS = "https://www.datosabiertos.gob.pe/sites/default/files/RENIPRESS_30-09-2026.csv"
-GADM3 = "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_PER_3.json.zip"
+# Límites distritales oficiales del INEI: servicio WFS de su Infraestructura de Datos Espaciales (https://ide.inei.gob.pe/,
+# capa «Distrito», ig_distrito). La capa nacional tiene 1 890 distritos; se piden solo los de Piura (20) y Tumbes (24).
+INEI_WFS = "https://geoespacial.inei.gob.pe/geoserver/Interoperabilidad/ows"
+INEI_CAPA = "Interoperabilidad:ig_distrito"
+INEI_FILTRO = "ccdd IN ('20','24')"
 OVERPASS = "https://overpass-api.de/api/interpreter"
 
 
@@ -172,35 +175,55 @@ def colegios(forzar: bool) -> None:
 
 
 def distritos(forzar: bool) -> None:
+    """Los 78 distritos oficiales de Tumbes y Piura (INEI), con UBIGEO y nombres con tildes.
+
+    Antes se usaba GADM 4.1, que tiene 76: no separa Veintiséis de Octubre (200115) de Piura ni Canoas de Punta Sal
+    (240203) de Zorritos. Los nombres con tildes salen de data/exposicion/nombres_distritos.csv (nombre oficial del INEI
+    en mayúsculas y su escritura con tildes; la columna tilde_agregada marca los 9 que se corrigieron).
+    """
+    import hashlib
+    from datetime import datetime, timezone
     destino = CARPETA / "distritos.geojson"
-    if destino.exists() and not forzar and "Juande" not in destino.read_text(encoding="utf-8"):
+    if destino.exists() and not forzar and '"ubigeo"' in destino.read_text(encoding="utf-8"):
         return
-    z = zipfile.ZipFile(io.BytesIO(bajar(GADM3)))
-    g = json.loads(z.read(z.namelist()[0]))
-    import re
+    r = requests.get(INEI_WFS, params={"service": "WFS", "version": "1.0.0", "request": "GetFeature", "typeName": INEI_CAPA,
+                                       "outputFormat": "application/json", "CQL_FILTER": INEI_FILTRO}, headers=UA, timeout=600)
+    r.raise_for_status()
+    g = r.json()
+    nombres = pd.read_csv(CARPETA / "nombres_distritos.csv", dtype=str).set_index("ubigeo")
+    recibidos = {f["properties"]["ubigeo"] for f in g["features"]}
+    if recibidos != set(nombres.index):
+        raise RuntimeError(f"El INEI devolvió otros distritos: faltan {sorted(set(nombres.index) - recibidos)}, "
+                           f"sobran {sorted(recibidos - set(nombres.index))}")
+    from shapely.geometry import MultiPolygon, mapping, shape
+    from shapely.geometry.polygon import orient
 
-    def nombre(x: str) -> str:  # GADM pega las palabras: "SanJuandeBigote" -> "San Juan de Bigote"
-        x = re.sub(r"(?<=[a-záéíóúñ])(de|del|la|las|los|el)(?=[A-ZÁÉÍÓÚÑ])", r" \1 ", x)
-        x = re.sub(r"(?<=[a-záéíóúñ])(de|del)(?= (la|las|los|el) )", r" \1", x)    # "Juandela Virgen"
-        x = re.sub(r"(?<=[a-záéíóúñ])(?=[A-ZÁÉÍÓÚÑ])", " ", x).replace("  ", " ").strip()
-        return CORRECCIONES_NOMBRE.get(x, x)
+    def horario(geom):
+        """Anillo exterior en sentido horario: así lo espera d3-geo (los mapas SVG del tablero). El INEI los entrega en
+        sentido antihorario y d3 dibuja entonces «todo el mundo menos el distrito». Leaflet y deck.gl no dependen de esto."""
+        if geom.geom_type == "Polygon":
+            return orient(geom, sign=-1.0)
+        return MultiPolygon([orient(p, sign=-1.0) for p in geom.geoms])
     feats = []
-    for f in g["features"]:
-        p = f["properties"]
-        dep = p["NAME_1"].upper()
-        if dep in DEPARTAMENTOS:
-            feats.append({"type": "Feature", "geometry": f["geometry"],
-                          "properties": {"departamento": p["NAME_1"], "provincia": nombre(p["NAME_2"]), "distrito": nombre(p["NAME_3"])}})
-    from shapely.geometry import mapping, shape
-    for f in feats:
-        f["geometry"] = mapping(shape(f["geometry"]).simplify(0.0015))
+    for f in sorted(g["features"], key=lambda f: f["properties"]["ubigeo"]):
+        ub = f["properties"]["ubigeo"]
+        n = nombres.loc[ub]
+        if n["nombre_inei"] != f["properties"]["nombdist"]:
+            raise RuntimeError(f"{ub}: el INEI lo llama {f['properties']['nombdist']}, la tabla de nombres {n['nombre_inei']}")
+        feats.append({"type": "Feature", "geometry": mapping(horario(shape(f["geometry"]).simplify(0.0015))),
+                      "properties": {"departamento": n["departamento"], "provincia": n["provincia"],
+                                     "distrito": n["distrito"], "ubigeo": ub}})
     json.dump({"type": "FeatureCollection", "features": feats}, open(destino, "w", encoding="utf-8"), ensure_ascii=False)
-    print(f"  distritos: {len(feats)}")
-
-
-# Casos que la regla de separación de palabras de GADM deja mal (verificados contra la tabla UBIGEO del INEI).
-CORRECCIONES_NOMBRE = {"Bellavistade la Union": "Bellavista de la Union", "El Carmende la Frontera": "El Carmen de la Frontera",
-                       "San Juande la Virgen": "San Juan de la Virgen", "Migu el Checa": "Miguel Checa"}
+    q = g["features"][0]["properties"]
+    proc = {"fuente": "INEI, Infraestructura de Datos Espaciales, capa «Distrito» (ig_distrito)",
+            "portal": "https://ide.inei.gob.pe/", "servicio": INEI_WFS, "capa": INEI_CAPA, "filtro": INEI_FILTRO,
+            "campo_fuente_del_inei": q.get("fuente"), "fecha_registro_del_inei": q.get("fec_reg"),
+            "descargado": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "sha256_respuesta": hashlib.sha256(r.content).hexdigest(), "distritos": len(feats),
+            "simplificacion_grados": 0.0015,
+            "licencia": "El portal del INEI no declara una licencia; uso con cita a la fuente (ver LEEME)."}
+    (CARPETA / "distritos_procedencia.json").write_text(json.dumps(proc, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"  distritos: {len(feats)} (INEI)")
 
 JRC = "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/CEMS-GLOFAS/flood_hazard/"
 

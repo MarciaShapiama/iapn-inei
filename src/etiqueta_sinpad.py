@@ -14,7 +14,8 @@ Qué hace, paso a paso (cada paso deja su conteo en data/modelo/sinpad/procedenc
        LLUVIAS INTENSAS e INUNDACIÓN POR DESBORDE DE RIO/CANALES). Quedan fuera marejadas, incendios, sismos, etc.
     4. Lee la fecha. El diccionario oficial dice «DD/MM/AAAA o MM/DD/AA»: la columna MES decide el orden.
        Se comprueba que la fecha leída coincida con las columnas AÑO y MES; las que no coinciden se descartan.
-    5. Une los distritos creados después del mapa GADM: Veintiséis de Octubre -> Piura y Canoas de Punta Sal -> Zorritos.
+    5. Identifica el distrito por su UBIGEO. Desde el 6/11/2026 el mapa del INEI tiene los 78 distritos, así que ya no se
+       unen Veintiséis de Octubre (200115) con Piura ni Canoas de Punta Sal (240203) con Zorritos (FUSION queda vacía).
     6. Agrupa por distrito y semana (lunes a domingo).
 
 Salidas:
@@ -56,8 +57,7 @@ ARCHIVOS = {
 COLUMNAS = {0: "codigo", 1: "fecha_txt", 2: "anio", 3: "mes", 4: "ubigeo", 5: "dpto", 6: "prov", 7: "dist",
             8: "peligro", 14: "damnificados", 15: "afectados", 16: "viv_destruidas", 17: "viv_afectadas"}
 PELIGRO_AGUA = r"INUND|LLUVI"
-FUSION = {"200115": "200101",   # Veintiséis de Octubre -> Piura (su territorio cae en el polígono GADM de Piura)
-          "240203": "240201"}   # Canoas de Punta Sal -> Zorritos
+FUSION: dict[str, str] = {}     # antes (mapa GADM de 76): {"200115": "200101", "240203": "240201"}
 MESES = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
          "SETIEMBRE": 9, "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
 # Última semana con etiqueta confiable: el archivo 2026-I trae VIVIENDAS DESTRUIDAS = AFECTADOS (personas) en muchos
@@ -142,13 +142,14 @@ def main(forzar: bool = False) -> dict:
                   "descartados": len(malas), "codigos_descartados": malas["codigo"].tolist()[:50]})
 
     t["ubigeo_modelo"] = t["ubigeo"].replace(FUSION)
+    from ubigeo import clave_distrito
     ub = pd.read_csv(UBIGEO, dtype={"inei": str})
-    ub["clave"] = ub["departamento"].map(normal) + ub["distrito"].map(normal)
-    # Hay dos distritos llamados Salitral (Morropón y Sullana): la provincia los distingue.
+    # La clave es la misma de la base del modelo; los dos Salitral (Morropón y Sullana) llevan la provincia.
+    ub["clave"] = [clave_distrito(a, b, c) for a, b, c in zip(ub["departamento"], ub["provincia"], ub["distrito"])]
     ub["prov_n"] = ub["provincia"].map(normal)
     t = t.merge(ub[["inei", "clave", "prov_n"]].rename(columns={"inei": "ubigeo_modelo"}), on="ubigeo_modelo", how="left")
     sin = t[t["clave"].isna()]
-    pasos.append({"paso": "5. Distrito identificado (con fusión de distritos nuevos)", "registros": int(t["clave"].notna().sum()),
+    pasos.append({"paso": "5. Distrito identificado por UBIGEO (78 distritos)", "registros": int(t["clave"].notna().sum()),
                   "sin_distrito": len(sin), "ubigeos_sin_distrito": sorted(sin["ubigeo"].unique().tolist()),
                   "fusionados": {k: int((t["ubigeo"] == k).sum()) for k in FUSION}})
     t = t[t["clave"].notna()].copy()

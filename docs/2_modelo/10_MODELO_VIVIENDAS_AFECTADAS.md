@@ -42,7 +42,7 @@ En total quedan **3 363 emergencias en 2 691 distrito-semanas**, de enero de 200
 
 1. **Fechas con dos formatos.** Hasta 2024 vienen como día/mes/año (11/02/2003). En 2025 y 2026 vienen como mes/día/año corto (03/26/25). Sin corregirlo, 330 registros de 2025 se pierden o quedan en el mes equivocado. El código usa la columna MES para decidir el orden.
 2. **El archivo de 2026 tiene una columna mal llenada.** En 132 de sus 302 registros de lluvias, inundaciones y deslizamientos, «viviendas destruidas» repite el número de «afectados», que son personas. Por eso, para 2026 solo se usan las viviendas afectadas, y el modelo se entrena y valida hasta diciembre de 2025.
-3. **Dos distritos nuevos.** El mapa de distritos del repositorio (GADM) no tiene Veintiséis de Octubre (200115) ni Canoas de Punta Sal (240203). Sus registros se suman a Piura y a Zorritos, que son los polígonos que los contienen; lo comprobamos con puntos de su territorio. Cuando el repositorio tenga los límites oficiales del INEI, se quita esa fusión (`FUSION` en el código).
+3. **Dos distritos nuevos.** Con el mapa GADM (76 distritos), los registros de Veintiséis de Octubre (200115) y Canoas de Punta Sal (240203) se sumaban a Piura y a Zorritos. Desde el 6/11/2026 el repositorio usa los límites oficiales del INEI (78 distritos) y esa fusión se quitó (`FUSION` quedó vacía). Ver `docs/1_datos/20_MAPA_78_DISTRITOS_INEI.md`.
 4. **«Inundación» y «lluvia intensa» se mezclan.** En Tumbes y Piura el SINPAD registra casi todo como lluvia intensa (3 135 contra 228). Una misma crecida puede quedar en cualquiera de los dos. Por eso la Y suma ambos, y la variable `eventos_inundacion` permite separar solo los desbordes si el profesor lo pide.
 
 ---

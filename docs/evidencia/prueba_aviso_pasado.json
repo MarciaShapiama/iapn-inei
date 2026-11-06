@@ -1,6 +1,6 @@
 {
  "metodo": "Prueba del aviso de lluvia con el pasado: ¿la lluvia fuerte o extrema aparece ANTES de los daños reportados?\n\nPedido: «jugar con el pasado». Si el aviso hubiera estado funcionando, ¿habría marcado lluvia fuerte o extrema en los\ndías previos a las inundaciones que salieron en las noticias y que registró INDECI? ¿Y cuántas veces habría avisado\nsin que pasara nada?\n\nQué se usa (todo ya está en el repositorio, no necesita red):\n    lluvia diaria observada por distrito 2001-2026, NASA POWER (satélite + reanálisis), punto en el centro del\n        distrito: data/modelo/lluvia_distritos.csv (src/base_modelo.py)\n    umbrales del MISMO dato: percentiles 95 y 99 de los días con lluvia (>= 1 mm) 2001-2020 de cada distrito\n    emergencias de INDECI (SINPAD, datos abiertos) por distrito y semana 2003-2026:\n        data/modelo/sinpad_tumbes_piura_semanal.csv\n    eventos verificados con noticias: data/eventos/catalogo_verificado.csv, más dos desbordes del río Tumbes con\n        noticias (29/4/2023 y 12/2/2025, docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md)\n\nLímite importante: se usa la lluvia que REALMENTE cayó, no la que se pronosticó. Mide si la regla del aviso (lluvia\nde un día sobre el percentil 95 o 99 del lugar) separa los días de daño de los demás, suponiendo un pronóstico\nperfecto. Es la mejor nota posible del aviso; con el pronóstico real será igual o peor.",
- "umbrales_distritos": 75,
+ "umbrales_distritos": 79,
  "umbrales_caudal_2001_2020": {
   "Chira": {
    "p90": 884,
@@ -509,145 +509,142 @@
   }
  ],
  "sinpad": {
-  "semanas_distrito": 92031,
-  "distritos": 75,
+  "semanas_distrito": 96939,
+  "distritos": 79,
   "periodo": [
    "2002-12-30",
    "2026-06-29"
   ],
-  "distritos_sinpad_sin_lluvia": [
-   "PIURAVEINTISEISDEOCTUBRE",
-   "TUMBESCANOASDEPUNTASAL"
-  ],
+  "distritos_sinpad_sin_lluvia": [],
   "definiciones": {
    "inundacion": "semana con al menos una emergencia por inundación en SINPAD",
    "viviendas": "semana con al menos una vivienda afectada en SINPAD (inundación o lluvia intensa)"
   },
   "inundacion_p95": {
    "ambito": "todos los distritos",
-   "avisos": 3830,
-   "eventos": 197,
-   "aciertos": 59,
-   "falsas_alarmas": 3771,
-   "no_avisados": 138,
-   "deteccion_pct": 29.9,
+   "avisos": 3965,
+   "eventos": 202,
+   "aciertos": 61,
+   "falsas_alarmas": 3904,
+   "no_avisados": 141,
+   "deteccion_pct": 30.2,
    "falsa_alarma_pct": 98.5,
    "prob_evento_con_aviso_pct": 1.54,
-   "prob_evento_sin_aviso_pct": 0.16,
-   "veces_mas_probable": 9.6,
-   "viviendas_afectadas_en_semanas_con_aviso_pct": 49.4,
-   "avisos_por_distrito_y_anio": 2.17
+   "prob_evento_sin_aviso_pct": 0.15,
+   "veces_mas_probable": 10.3,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 49.9,
+   "avisos_por_distrito_y_anio": 2.13
   },
   "inundacion_p99": {
    "ambito": "todos los distritos",
-   "avisos": 1181,
-   "eventos": 197,
-   "aciertos": 19,
-   "falsas_alarmas": 1162,
-   "no_avisados": 178,
-   "deteccion_pct": 9.6,
+   "avisos": 1235,
+   "eventos": 202,
+   "aciertos": 20,
+   "falsas_alarmas": 1215,
+   "no_avisados": 182,
+   "deteccion_pct": 9.9,
    "falsa_alarma_pct": 98.4,
-   "prob_evento_con_aviso_pct": 1.61,
-   "prob_evento_sin_aviso_pct": 0.2,
-   "veces_mas_probable": 8.1,
+   "prob_evento_con_aviso_pct": 1.62,
+   "prob_evento_sin_aviso_pct": 0.19,
+   "veces_mas_probable": 8.5,
    "viviendas_afectadas_en_semanas_con_aviso_pct": 19.3,
-   "avisos_por_distrito_y_anio": 0.67
+   "avisos_por_distrito_y_anio": 0.66
   },
   "inundacion_caudal_p95": {
    "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
-   "avisos": 5260,
-   "eventos": 133,
-   "aciertos": 87,
-   "falsas_alarmas": 5173,
-   "no_avisados": 46,
-   "deteccion_pct": 65.4,
+   "avisos": 5362,
+   "eventos": 137,
+   "aciertos": 90,
+   "falsas_alarmas": 5272,
+   "no_avisados": 47,
+   "deteccion_pct": 65.7,
    "falsa_alarma_pct": 98.3,
-   "prob_evento_con_aviso_pct": 1.65,
+   "prob_evento_con_aviso_pct": 1.68,
    "prob_evento_sin_aviso_pct": 0.11,
-   "veces_mas_probable": 15.0,
-   "viviendas_afectadas_en_semanas_con_aviso_pct": 82.9,
-   "avisos_por_distrito_y_anio": 5.89
+   "veces_mas_probable": 15.3,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 83.0,
+   "avisos_por_distrito_y_anio": 5.85
   },
   "inundacion_lluvia_o_caudal": {
    "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
-   "avisos": 5667,
-   "eventos": 133,
-   "aciertos": 93,
-   "falsas_alarmas": 5574,
-   "no_avisados": 40,
-   "deteccion_pct": 69.9,
-   "falsa_alarma_pct": 98.4,
-   "prob_evento_con_aviso_pct": 1.64,
+   "avisos": 5778,
+   "eventos": 137,
+   "aciertos": 96,
+   "falsas_alarmas": 5682,
+   "no_avisados": 41,
+   "deteccion_pct": 70.1,
+   "falsa_alarma_pct": 98.3,
+   "prob_evento_con_aviso_pct": 1.66,
    "prob_evento_sin_aviso_pct": 0.1,
-   "veces_mas_probable": 16.4,
-   "viviendas_afectadas_en_semanas_con_aviso_pct": 85.8,
-   "avisos_por_distrito_y_anio": 6.34
+   "veces_mas_probable": 16.6,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 86.0,
+   "avisos_por_distrito_y_anio": 6.3
   },
   "viviendas_p95": {
    "ambito": "todos los distritos",
-   "avisos": 3830,
-   "eventos": 2131,
-   "aciertos": 680,
-   "falsas_alarmas": 3150,
-   "no_avisados": 1451,
-   "deteccion_pct": 31.9,
-   "falsa_alarma_pct": 82.2,
-   "prob_evento_con_aviso_pct": 17.75,
-   "prob_evento_sin_aviso_pct": 1.65,
-   "veces_mas_probable": 10.8,
-   "viviendas_afectadas_en_semanas_con_aviso_pct": 49.4,
-   "avisos_por_distrito_y_anio": 2.17
+   "avisos": 3965,
+   "eventos": 2163,
+   "aciertos": 692,
+   "falsas_alarmas": 3273,
+   "no_avisados": 1471,
+   "deteccion_pct": 32.0,
+   "falsa_alarma_pct": 82.5,
+   "prob_evento_con_aviso_pct": 17.45,
+   "prob_evento_sin_aviso_pct": 1.58,
+   "veces_mas_probable": 11.0,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 49.9,
+   "avisos_por_distrito_y_anio": 2.13
   },
   "viviendas_p99": {
    "ambito": "todos los distritos",
-   "avisos": 1181,
-   "eventos": 2131,
-   "aciertos": 238,
-   "falsas_alarmas": 943,
-   "no_avisados": 1893,
-   "deteccion_pct": 11.2,
-   "falsa_alarma_pct": 79.8,
-   "prob_evento_con_aviso_pct": 20.15,
-   "prob_evento_sin_aviso_pct": 2.08,
+   "avisos": 1235,
+   "eventos": 2163,
+   "aciertos": 241,
+   "falsas_alarmas": 994,
+   "no_avisados": 1922,
+   "deteccion_pct": 11.1,
+   "falsa_alarma_pct": 80.5,
+   "prob_evento_con_aviso_pct": 19.51,
+   "prob_evento_sin_aviso_pct": 2.01,
    "veces_mas_probable": 9.7,
    "viviendas_afectadas_en_semanas_con_aviso_pct": 19.3,
-   "avisos_por_distrito_y_anio": 0.67
+   "avisos_por_distrito_y_anio": 0.66
   },
   "viviendas_caudal_p95": {
    "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
-   "avisos": 5260,
-   "eventos": 823,
-   "aciertos": 573,
-   "falsas_alarmas": 4687,
-   "no_avisados": 250,
-   "deteccion_pct": 69.6,
-   "falsa_alarma_pct": 89.1,
-   "prob_evento_con_aviso_pct": 10.89,
+   "avisos": 5362,
+   "eventos": 834,
+   "aciertos": 579,
+   "falsas_alarmas": 4783,
+   "no_avisados": 255,
+   "deteccion_pct": 69.4,
+   "falsa_alarma_pct": 89.2,
+   "prob_evento_con_aviso_pct": 10.8,
    "prob_evento_sin_aviso_pct": 0.6,
-   "veces_mas_probable": 18.2,
-   "viviendas_afectadas_en_semanas_con_aviso_pct": 82.9,
-   "avisos_por_distrito_y_anio": 5.89
+   "veces_mas_probable": 18.0,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 83.0,
+   "avisos_por_distrito_y_anio": 5.85
   },
   "viviendas_lluvia_o_caudal": {
    "ambito": "solo distritos de los ríos Piura, Chira y Tumbes",
-   "avisos": 5667,
-   "eventos": 823,
-   "aciertos": 608,
-   "falsas_alarmas": 5059,
-   "no_avisados": 215,
-   "deteccion_pct": 73.9,
-   "falsa_alarma_pct": 89.3,
-   "prob_evento_con_aviso_pct": 10.73,
+   "avisos": 5778,
+   "eventos": 834,
+   "aciertos": 615,
+   "falsas_alarmas": 5163,
+   "no_avisados": 219,
+   "deteccion_pct": 73.7,
+   "falsa_alarma_pct": 89.4,
+   "prob_evento_con_aviso_pct": 10.64,
    "prob_evento_sin_aviso_pct": 0.52,
-   "veces_mas_probable": 20.6,
-   "viviendas_afectadas_en_semanas_con_aviso_pct": 85.8,
-   "avisos_por_distrito_y_anio": 6.34
+   "veces_mas_probable": 20.5,
+   "viviendas_afectadas_en_semanas_con_aviso_pct": 86.0,
+   "avisos_por_distrito_y_anio": 6.3
   },
   "rios_solo_lluvia_p95_inundacion": {
-   "avisos": 1200,
-   "eventos": 133,
-   "aciertos": 34,
-   "deteccion_pct": 25.6
+   "avisos": 1226,
+   "eventos": 137,
+   "aciertos": 35,
+   "deteccion_pct": 25.5
   },
   "por_anio_inundacion_p95": {
    "2002": {
@@ -657,13 +654,13 @@
     "viv_afectadas": 0
    },
    "2003": {
-    "avisos": 177,
+    "avisos": 179,
     "eventos": 3,
     "aciertos": 0,
     "viv_afectadas": 108
    },
    "2004": {
-    "avisos": 136,
+    "avisos": 139,
     "eventos": 5,
     "aciertos": 3,
     "viv_afectadas": 713
@@ -675,7 +672,7 @@
     "viv_afectadas": 1011
    },
    "2006": {
-    "avisos": 66,
+    "avisos": 68,
     "eventos": 12,
     "aciertos": 1,
     "viv_afectadas": 19072
@@ -687,79 +684,79 @@
     "viv_afectadas": 1327
    },
    "2008": {
-    "avisos": 224,
+    "avisos": 234,
     "eventos": 28,
     "aciertos": 11,
     "viv_afectadas": 48283
    },
    "2009": {
-    "avisos": 59,
+    "avisos": 60,
     "eventos": 6,
     "aciertos": 0,
     "viv_afectadas": 2777
    },
    "2010": {
-    "avisos": 99,
+    "avisos": 105,
     "eventos": 7,
     "aciertos": 1,
     "viv_afectadas": 3494
    },
    "2011": {
-    "avisos": 126,
+    "avisos": 128,
     "eventos": 4,
     "aciertos": 1,
     "viv_afectadas": 867
    },
    "2012": {
-    "avisos": 152,
+    "avisos": 159,
     "eventos": 24,
     "aciertos": 5,
     "viv_afectadas": 16969
    },
    "2013": {
-    "avisos": 191,
+    "avisos": 197,
     "eventos": 0,
     "aciertos": 0,
-    "viv_afectadas": 861
+    "viv_afectadas": 864
    },
    "2014": {
-    "avisos": 68,
+    "avisos": 69,
     "eventos": 3,
     "aciertos": 0,
     "viv_afectadas": 682
    },
    "2015": {
-    "avisos": 162,
+    "avisos": 169,
     "eventos": 16,
     "aciertos": 7,
     "viv_afectadas": 40891
    },
    "2016": {
-    "avisos": 133,
-    "eventos": 5,
+    "avisos": 136,
+    "eventos": 7,
     "aciertos": 4,
-    "viv_afectadas": 14119
+    "viv_afectadas": 14634
    },
    "2017": {
-    "avisos": 612,
-    "eventos": 10,
-    "aciertos": 6,
-    "viv_afectadas": 80035
+    "avisos": 642,
+    "eventos": 12,
+    "aciertos": 7,
+    "viv_afectadas": 85960
    },
    "2018": {
-    "avisos": 63,
+    "avisos": 64,
     "eventos": 0,
     "aciertos": 0,
     "viv_afectadas": 1752
    },
    "2019": {
-    "avisos": 203,
-    "eventos": 12,
-    "aciertos": 3,
-    "viv_afectadas": 4583
+    "avisos": 212,
+    "eventos": 13,
+    "aciertos": 4,
+    "viv_afectadas": 4639
    },
    "2020": {
-    "avisos": 109,
+    "avisos": 111,
     "eventos": 0,
     "aciertos": 0,
     "viv_afectadas": 1281
@@ -768,7 +765,7 @@
     "avisos": 93,
     "eventos": 8,
     "aciertos": 3,
-    "viv_afectadas": 9709
+    "viv_afectadas": 9905
    },
    "2022": {
     "avisos": 63,
@@ -777,28 +774,28 @@
     "viv_afectadas": 4269
    },
    "2023": {
-    "avisos": 431,
+    "avisos": 453,
     "eventos": 12,
     "aciertos": 7,
-    "viv_afectadas": 113364
+    "viv_afectadas": 118241
    },
    "2024": {
-    "avisos": 149,
+    "avisos": 156,
     "eventos": 2,
     "aciertos": 1,
-    "viv_afectadas": 15141
+    "viv_afectadas": 15159
    },
    "2025": {
-    "avisos": 279,
+    "avisos": 288,
     "eventos": 8,
     "aciertos": 0,
-    "viv_afectadas": 27329
+    "viv_afectadas": 27892
    },
    "2026": {
-    "avisos": 105,
+    "avisos": 110,
     "eventos": 10,
     "aciertos": 2,
-    "viv_afectadas": 25456
+    "viv_afectadas": 25973
    }
   },
   "top15_viviendas_afectadas": [
