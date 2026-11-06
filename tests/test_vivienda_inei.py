@@ -58,3 +58,20 @@ def test_partes_menores_que_el_todo(viv):
         for c in ("paredes_tierra", "paredes_precarias", "piso_tierra", "precarias"):
             if c in d:
                 assert 0 <= d[c] <= d["viviendas"], (d["ubigeo"], c)
+
+
+def test_personas_sin_celdas_pequenas(viv):
+    """Ninguna cifra de personas (total, sexo o edad) menor a 10 dentro de un distrito publicado."""
+    for d in _distritos(viv):
+        for c in ("personas", "hombres", "mujeres", "edad_0_4", "edad_5_14", "edad_15_64", "edad_65_mas"):
+            if d.get(c) is not None:
+                assert d[c] >= 10, (d["ubigeo"], c)
+
+
+def test_personas_coherentes(viv):
+    for k, e in viv["escenarios"].items():
+        if e.get("personas") is None:
+            continue
+        assert e["hombres"] + e["mujeres"] == e["personas"], k
+        assert abs(e["edad_0_4"] + e["edad_5_14"] + e["edad_15_64"] + e["edad_65_mas"] - e["personas"]) <= 2, k
+        assert e["en_centros_poblados"]["viviendas"] <= e["viviendas"], k

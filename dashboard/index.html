@@ -700,23 +700,32 @@ function radarCenso(V){
   const dd=(r.distritos||[]).map(d=>`${d.distrito} (${nf(d.viviendas)})`).join(", ");
   return `<div style="margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,currentColor 5%,transparent);font-size:13.5px"><b>¿Y el radar? Casi no ve viviendas.</b><br>
    En 2017 solo <b>${nf(r.viviendas)}</b> viviendas del censo (${nf(r.manzanas)} manzanas) quedaron dentro del agua que vio el radar${dd?": "+dd:""}.
-   Ese año el SINPAD (INDECI) registró en Piura 65 467 viviendas afectadas y 13 165 destruidas por todas las emergencias (lluvias, inundaciones y huaicos).
+   Ese año el SINPAD (INDECI) registró en Piura 65 467 viviendas afectadas y 13 165 destruidas por lluvias intensas e inundaciones.
    El radar ve agua abierta en el campo, no entre casas ni en calles: por eso el tablero cuenta viviendas con la zona inundable de JRC y no con el radar.
    <table class="tabla" style="margin-top:6px"><tr><th>Capa del radar</th><th style="text-align:right">Viviendas dentro</th><th style="text-align:right">De ellas precarias</th></tr>${fila("2017")}${fila("2023")}${fila("vivo")}</table></div>`;
 }
 function censoVista(){
   const V=D.VC, el=document.getElementById("r-censo"); if(!V||!V.escenarios||!V.escenarios.rp100)return;
   const e=V.escenarios.rp100, e10=V.escenarios.rp10||{}, frag=e.paredes_tierra+e.paredes_precarias, pc=x=>Math.round(x*100)+" %";
-  const filas=e.distritos.slice(0,10).map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td class="n">${nf(d.viviendas)}</td><td class="n">${fmtN(d.pct_fragiles,0)} %</td><td class="n">${nf(d.piso_tierra)}</td></tr>`).join("");
-  el.innerHTML=`<h2>Viviendas del Censo 2025 en la zona inundable</h2>
-  <p class="nota">Crecida de 1 en 100 años. Viviendas ocupadas por manzana de los Censos Nacionales 2025 (INEI), cruzadas con el mapa de JRC.</p>
+  const hayP=e.personas!=null, cel=x=>x==null?"<10":nf(x);
+  const filas=e.distritos.slice(0,10).map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--muted)">${d.provincia}</span></td><td class="n">${nf(d.viviendas)}</td>${hayP?`<td class="n">${cel(d.personas)}</td><td class="n">${cel(d.edad_0_4)}</td><td class="n">${cel(d.edad_65_mas)}</td>`:""}<td class="n">${fmtN(d.pct_fragiles,0)} %</td><td class="n">${nf(d.piso_tierra)}</td></tr>`).join("");
+  const wp=(D.IN&&D.IN.eventos&&D.IN.eventos.rp100&&D.IN.eventos.rp100.personas)||null;
+  const pers=hayP?`<div class="grid g4" style="margin:0 0 14px">
+   <div><div class="eti">Personas (censo)</div><div class="r-cifra" style="font-size:32px">${nf(e.personas)}</div><div class="det">Mujeres ${nf(e.mujeres)} · hombres ${nf(e.hombres)}; con una crecida de 1 en 10 años, ${nf(e10.personas)}</div></div>
+   <div><div class="eti">Niños de 0 a 4 años</div><div class="r-cifra" style="font-size:32px">${nf(e.edad_0_4)}</div><div class="det">${pc(e.edad_0_4/e.personas)} de las personas en la zona; de 5 a 14 años, ${nf(e.edad_5_14)}</div></div>
+   <div><div class="eti">Adultos de 65 años o más</div><div class="r-cifra" style="font-size:32px">${nf(e.edad_65_mas)}</div><div class="det">${pc(e.edad_65_mas/e.personas)} de las personas en la zona</div></div>
+   <div><div class="eti">Fuera de manzanas</div><div class="r-cifra" style="font-size:32px">${nf(e.en_centros_poblados.personas)}</div><div class="det">personas en ${nf(e.en_centros_poblados.viviendas)} viviendas de centros poblados rurales (ubicadas por el punto del centro poblado)</div></div>
+  </div>`:"";
+  el.innerHTML=`<h2>Viviendas y personas del Censo 2025 en la zona inundable</h2>
+  <p class="nota">Crecida de 1 en 100 años. Viviendas ocupadas y personas por manzana y por centro poblado de los Censos Nacionales 2025 (INEI), cruzadas con el mapa de JRC.${hayP&&wp?` El modelo de población WorldPop, que usa el resto del tablero, da ${nf(wp)} personas en la misma zona: una diferencia de ${fmtN(Math.abs(e.personas/wp-1)*100,1)} % con el censo.`:""}</p>
   <div class="grid g4" style="margin:10px 0 14px">
    <div><div class="eti">Viviendas ocupadas</div><div class="r-cifra" style="font-size:32px">${nf(e.viviendas)}</div><div class="det">Piura ${nf(e.por_departamento.Piura)} · Tumbes ${nf(e.por_departamento.Tumbes)}; con una crecida de 1 en 10 años, ${nf(e10.viviendas)}</div></div>
    <div><div class="eti">Con paredes frágiles</div><div class="r-cifra" style="font-size:32px">${nf(frag)}</div><div class="det">${pc(frag/e.viviendas)} del total: ${nf(e.paredes_tierra)} de adobe, tapia o quincha y ${nf(e.paredes_precarias)} de madera, triplay o estera</div></div>
    <div><div class="eti">Con piso de tierra</div><div class="r-cifra" style="font-size:32px">${nf(e.piso_tierra)}</div><div class="det">${pc(e.piso_tierra/e.viviendas)} de las viviendas en la zona</div></div>
    <div><div class="eti">Con más de 1,5 m de agua</div><div class="r-cifra" style="font-size:32px">${nf(e.viviendas_mas_1_5m)}</div><div class="det">según la profundidad del mapa de JRC</div></div>
   </div>
-  <table class="tabla"><tr><th>Distrito</th><th style="text-align:right">Viviendas en la zona</th><th style="text-align:right">Paredes frágiles</th><th style="text-align:right">Piso de tierra</th></tr>${filas}</table>
+  ${pers}
+  <table class="tabla"><tr><th>Distrito</th><th style="text-align:right">Viviendas en la zona</th>${hayP?`<th style="text-align:right">Personas</th><th style="text-align:right">0-4 años</th><th style="text-align:right">65 o más</th>`:""}<th style="text-align:right">Paredes frágiles</th><th style="text-align:right">Piso de tierra</th></tr>${filas}</table>
   <p class="nota" style="margin-top:8px">${V.limite} Paredes frágiles: ${V.definiciones.paredes_tierra}, o ${V.definiciones.paredes_precarias}. Techo precario (${V.definiciones.techo_precario}): ${nf(e.techo_precario)} viviendas en la zona. Son viviendas en la zona inundable (exposición), no viviendas afectadas.</p>
   ${radarCenso(V)}`;
   el.hidden=false;

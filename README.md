@@ -60,7 +60,7 @@ Los datos confidenciales del INEI (viviendas por manzana) **no están en este re
 | Datos | [01 Auditoría técnica y de datos](docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md) | Arquitectura, fuentes y licencias, errores corregidos y actualización del 4/11 |
 | Datos | [07 Refuerzo](docs/1_datos/07_REFUERZO.md) | Padrón ESCALE de colegios y verificación de pobreza e IDH |
 | Datos | [11 Cruce de habitantes](docs/1_datos/11_CRUCE_HABITANTES.md) | Cómo cruzar la data de habitantes del INEI (personas, sexo y edad) |
-| Datos | [17 Viviendas del Censo 2025](docs/1_datos/17_VIVIENDAS_INEI_MATERIALES.md) | Un solo cálculo: viviendas en la zona inundable, materiales precarios y viviendas dentro del agua del radar |
+| Datos | [17 Viviendas y personas del Censo 2025](docs/1_datos/17_VIVIENDAS_INEI_MATERIALES.md) | Viviendas y personas (sexo y edad) en la zona inundable, materiales precarios, centros poblados rurales y radar |
 | Modelo | [02 Plan de machine learning](docs/2_modelo/02_PLAN_MACHINE_LEARNING.md) | Modelo de alerta por distrito y su evaluación |
 | Modelo | [08 Diseño del modelo de viviendas](docs/2_modelo/08_DISENO_MODELO_VIVIENDAS.md) | Primer diseño de la pregunta del profesor |
 | Modelo | [10 Modelo de viviendas afectadas](docs/2_modelo/10_MODELO_VIVIENDAS_AFECTADAS.md) | Etiqueta real del SINPAD (INDECI), variables, 6 modelos y validación 2012-2025 |
