@@ -222,7 +222,11 @@ def main() -> None:
     for k, e in radar.items():
         filas += [{"capa": k, **d} for d in e["distritos"]]
     SALIDA_CSV.parent.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(filas).to_csv(SALIDA_CSV, index=False, encoding="utf-8")
+    tabla = pd.DataFrame(filas)
+    for c in tabla.columns:
+        if c not in ("capa", "ubigeo", "departamento", "provincia", "distrito", "pct_fragiles"):
+            tabla[c] = pd.to_numeric(tabla[c]).round().astype("Int64")   # vacío = celda con menos de 10 (no se publica)
+    tabla.to_csv(SALIDA_CSV, index=False, encoding="utf-8")
     print("total:", tot["viviendas_ocupadas"], tot.get("personas"), "· rp10:", esc["rp10"]["viviendas"],
           esc["rp10"].get("personas"), "· rp100:", esc["rp100"]["viviendas"], esc["rp100"].get("personas"),
           esc["rp100"]["en_centros_poblados"], "· radar:", {k: (r["viviendas"], r.get("personas")) for k, r in radar.items()})
