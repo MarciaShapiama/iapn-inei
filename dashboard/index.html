@@ -487,17 +487,22 @@ const redondo=v=>v==null?"—":v>=1e5?`${Math.round(v/1e3).toLocaleString("es-PE
 function resumenVista(){
   const IN=D.IN, R=D.R, RIE=D.RIE, Z=D.ZON; if(!IN||!IN.eventos.rp100)return;
   const e=IN.eventos.rp100, e10=IN.eventos.rp10, sa=e.salud||{}, co=e.colegios||{};
-  document.getElementById("r-titular").textContent=`En Tumbes y Piura, unas ${redondo(e.personas)} personas viven donde una crecida grande de los ríos puede inundar.`;
-  document.getElementById("r-bajada").innerHTML=`Una crecida «de 1 en 100 años» es la que tiene 1 % de probabilidad de ocurrir cada año. Con una crecida más frecuente, de 1 en 10 años, la zona inundable abarcaría a unas ${redondo(e10&&e10.personas)} personas. Son cifras de <b>exposición</b>: dicen quién está en la zona inundable, no cuántos resultarán damnificados.`;
-  const k=[["Personas en zona inundable",redondo(e.personas),"WorldPop 2026, crecida de 1 en 100 años"],
+  // Personas: primero el Censo 2025 (INEI, fuente oficial); WorldPop queda como comparación
+  const C=D.VC&&D.VC.escenarios&&D.VC.escenarios.rp100&&D.VC.escenarios.rp100.personas!=null?D.VC.escenarios:null;
+  const per=C?C.rp100.personas:e.personas, per10=C?(C.rp10||{}).personas:(e10&&e10.personas);
+  document.getElementById("r-titular").textContent=`En Tumbes y Piura, unas ${redondo(per)} personas viven donde una crecida grande de los ríos puede inundar.`;
+  document.getElementById("r-bajada").innerHTML=`Una crecida «de 1 en 100 años» es la que tiene 1 % de probabilidad de ocurrir cada año. Con una crecida más frecuente, de 1 en 10 años, la zona inundable abarcaría a unas ${redondo(per10)} personas. Son cifras de <b>exposición</b>: dicen quién está en la zona inundable, no cuántos resultarán damnificados.${C?" Personas: Censo 2025 (INEI).":""}`;
+  const k=[["Personas en zona inundable",redondo(per),C?`Censo 2025 (INEI), crecida de 1 en 100 años · WorldPop 2026 estima ${redondo(e.personas)}`:"WorldPop 2026, crecida de 1 en 100 años"],
     ["Edificaciones en zona inundable",redondo(e.edificaciones),`viviendas, locales y otros · ${redondo(e.edificaciones_profundidad&&e.edificaciones_profundidad["más de 1,5 m"])} con más de 1,5 m de agua`],
     ["Locales escolares dentro de la zona",miles(co.dentro),co.alumnos?`donde estudian ${miles(co.alumnos.dentro)} alumnos · ${miles(co.acum_1km)} locales a 1 km o menos (ESCALE, Censo Educativo 2025)`:`y ${miles(co.acum_1km)} a 1 km o menos del agua (padrón ESCALE)`],
     ["Centros de salud dentro de la zona",miles(sa.dentro),`y ${miles(sa.acum_1km)} a 1 km o menos (postas, centros y hospitales)`]];
   document.getElementById("r-kpis").innerHTML=k.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");
   const X=D.EX&&D.EX.capas&&D.EX.capas.rp100;
   if(X){const k2=[];
-    if(X.ninos_0a4!=null)k2.push(["Niños de 0 a 4 años",redondo(X.ninos_0a4),"en la misma zona inundable"]);
-    if(X.mayores_65!=null)k2.push(["Personas de 65 años o más",redondo(X.mayores_65),"en la misma zona inundable"]);
+    if(C){k2.push(["Niños de 0 a 4 años",redondo(C.rp100.edad_0_4),`en la misma zona (Censo 2025)${X.ninos_0a4!=null?" · WorldPop estima "+redondo(X.ninos_0a4):""}`]);
+      k2.push(["Personas de 65 años o más",redondo(C.rp100.edad_65_mas),`en la misma zona (Censo 2025)${X.mayores_65!=null?" · WorldPop estima "+redondo(X.mayores_65):""}`]);}
+    else{if(X.ninos_0a4!=null)k2.push(["Niños de 0 a 4 años",redondo(X.ninos_0a4),"en la misma zona inundable (WorldPop 2026)"]);
+      if(X.mayores_65!=null)k2.push(["Personas de 65 años o más",redondo(X.mayores_65),"en la misma zona inundable (WorldPop 2026)"]);}
     if(X.cultivo_ha!=null)k2.push(["Cultivos en zona inundable",redondo(X.cultivo_ha)+" ha","tierras de cultivo (ESA WorldCover 2021)"]);
     if(X.vias_km_total!=null)k2.push(["Carreteras principales",miles(X.vias_km_total)+" km",X.puentes!=null?`y ${miles(X.puentes)} puentes dentro o junto a la zona`:"dentro de la zona"]);
     if(k2.length)document.getElementById("r-kpis2").innerHTML=k2.map(x=>`<div class="panel kpi"><div class="eti">${x[0]}</div><div class="r-cifra" style="font-size:32px">${x[1]}</div><div class="det">${x[2]}</div></div>`).join("");}
