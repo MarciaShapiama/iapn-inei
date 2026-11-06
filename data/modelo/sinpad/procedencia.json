@@ -1,0 +1,157 @@
+{
+ "fuente": "INDECI - SINPAD, «Emergencias y daños a nivel nacional por departamento»",
+ "dataset": "https://www.datosabiertos.gob.pe/dataset/emergencias-y-da%C3%B1os-nivel-nacional-por-departamento",
+ "licencia": "Open Data Commons Attribution License (ODC-By)",
+ "generado": "2026-11-06T02:18:22+00:00",
+ "fin_etiqueta": "2025-12-29",
+ "archivos": {
+  "BD_2003-2025_EMERGENCIAS.csv": {
+   "url": "https://www.datosabiertos.gob.pe/sites/default/files/BD_2003-2025_EMERGENCIAS.csv",
+   "bytes": 27040446,
+   "sha256": "a1fe63f0a7c836b8ff7dd1c87271d3bd3144f8444e41f93b7db205c85fef2687",
+   "descargado": "2026-11-06T02:09:37+00:00"
+  },
+  "BD_2026_Semestre_I.csv": {
+   "url": "https://www.datosabiertos.gob.pe/sites/default/files/BD_2026_Semestre_I.csv",
+   "bytes": 1742009,
+   "sha256": "acb09730fd53ee65175a1584bb043d0259c6932cc979f7bc6e452d670be52280",
+   "descargado": "2026-11-06T02:09:38+00:00"
+  },
+  "Diccionario_de_datos.xlsx": {
+   "url": "https://www.datosabiertos.gob.pe/sites/default/files/Diccionario%20de%20datos_9.xlsx",
+   "bytes": 13752,
+   "sha256": "23476f4f47e8a6954c1e37d71369140e392adf58ffdf272b211ec715a01aa015",
+   "descargado": "2026-11-06T02:09:38+00:00"
+  }
+ },
+ "pasos": [
+  {
+   "paso": "1. Registros en los archivos oficiales",
+   "registros": 151491
+  },
+  {
+   "paso": "2. Tumbes y Piura (UBIGEO 20xxxx, 24xxxx)",
+   "registros": 8556
+  },
+  {
+   "paso": "3. Peligros de agua (contienen INUND o LLUVI)",
+   "registros": 3363,
+   "peligros_incluidos": {
+    "LLUVIA INTENSA": 2844,
+    "LLUVIAS INTENSAS": 291,
+    "INUNDACION": 218,
+    "INUNDACIÓN POR DESBORDE DE RIO": 9,
+    "INUNDACIÓN POR DESBORDE DE CANALES": 1
+   }
+  },
+  {
+   "paso": "4. Fecha válida y coherente con las columnas AÑO y MES",
+   "registros": 3363,
+   "descartados": 0,
+   "codigos_descartados": []
+  },
+  {
+   "paso": "5. Distrito identificado (con fusión de distritos nuevos)",
+   "registros": 3363,
+   "sin_distrito": 0,
+   "ubigeos_sin_distrito": [],
+   "fusionados": {
+    "200115": 17,
+    "240203": 33
+   }
+  },
+  {
+   "paso": "6. Distrito-semanas con al menos una emergencia de agua",
+   "registros": 2678,
+   "distritos": 75,
+   "desde": "2003-01-27",
+   "hasta": "2026-06-29",
+   "hasta_fin_etiqueta": 2431
+  }
+ ],
+ "peligros_tumbes_piura_todos": {
+  "LLUVIA INTENSA": 2844,
+  "INCENDIO URB. E INDUST.": 2564,
+  "VIENTOS FUERTES": 1687,
+  "LLUVIAS INTENSAS": 291,
+  "INUNDACION": 218,
+  "SEQUIA": 122,
+  "INCENDIO FORESTAL": 120,
+  "INCENDIOS URBANOS": 115,
+  "SISMO": 107,
+  "EROSION": 105,
+  "DESLIZAMIENTO": 97,
+  "BAJAS TEMPERATURAS": 85,
+  "MAREJADA": 39,
+  "PLAGAS": 29,
+  "EPIDEMIAS": 27,
+  "zOTROS": 24,
+  "HUAYCO": 14,
+  "DERRUMBE DE CERRO": 14,
+  "CONTAMINACION": 12,
+  "INUNDACIÓN POR DESBORDE DE RIO": 9,
+  "EXPLOSION": 8,
+  "INCENDIOS FORESTALES": 6,
+  "TORMENTA ELECTRICA": 5,
+  "COLAPSO DE ESTRUCTURA POR AGENTE CLIMÁTICO": 4,
+  "COLAPSO DE ESTRUCTURA POR ACTIVIDAD HUMANA": 3,
+  "DERRAME DE SUSTANCIAS PELIGROSAS": 2,
+  "INCENDIOS INDUSTRIALES": 1,
+  "INUNDACIÓN POR DESBORDE DE CANALES": 1,
+  "CONTAMINA AMB, DE SUELOS": 1,
+  "VANDALISMO": 1,
+  "OLEAJE ANÓMALO": 1
+ },
+ "registros_por_anio": {
+  "2003": 12,
+  "2004": 11,
+  "2005": 24,
+  "2006": 78,
+  "2007": 52,
+  "2008": 135,
+  "2009": 87,
+  "2010": 118,
+  "2011": 25,
+  "2012": 247,
+  "2013": 56,
+  "2014": 30,
+  "2015": 118,
+  "2016": 120,
+  "2017": 496,
+  "2018": 60,
+  "2019": 106,
+  "2020": 23,
+  "2021": 181,
+  "2022": 137,
+  "2023": 466,
+  "2024": 158,
+  "2025": 322,
+  "2026": 301
+ },
+ "semanas_por_anio": {
+  "2003": 11,
+  "2004": 11,
+  "2005": 20,
+  "2006": 68,
+  "2007": 48,
+  "2008": 122,
+  "2009": 73,
+  "2010": 80,
+  "2011": 22,
+  "2012": 174,
+  "2013": 47,
+  "2014": 26,
+  "2015": 85,
+  "2016": 93,
+  "2017": 322,
+  "2018": 53,
+  "2019": 80,
+  "2020": 22,
+  "2021": 147,
+  "2022": 121,
+  "2023": 398,
+  "2024": 142,
+  "2025": 266,
+  "2026": 247
+ }
+}

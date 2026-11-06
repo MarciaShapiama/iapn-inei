@@ -15,3 +15,6 @@ preguntas_vivienda.xlsx
 Acuerdo_de_confidencialidad*
 data/modelo/resultados_afectados/predicciones_validacion.csv
 data/cache/
+
+# Crudos del SINPAD (~29 MB): se bajan con python src/etiqueta_sinpad.py --descargar; su SHA-256 queda en procedencia.json
+data/modelo/sinpad/crudo/

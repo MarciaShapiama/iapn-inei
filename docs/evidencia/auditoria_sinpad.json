@@ -1,0 +1,561 @@
+{
+ "registros_agua": 3363,
+ "periodo": [
+  "2003-01-31",
+  "2026-06-30"
+ ],
+ "eventos_verificados": {
+  "total": 13,
+  "con_registro_7_dias": 5,
+  "con_registro_14_dias": 6,
+  "detalle": [
+   {
+    "evento": "2017-piura-desborde",
+    "fecha_noticia": "2017-03-27",
+    "ubigeo": "200101",
+    "en_sinpad_7_dias": true,
+    "en_sinpad_14_dias": true,
+    "registros_sinpad": [
+     {
+      "codigo": "86295",
+      "fecha": "2017-03-16",
+      "peligro": "INUNDACION",
+      "dias": -11
+     },
+     {
+      "codigo": "86188",
+      "fecha": "2017-03-19",
+      "peligro": "INUNDACION",
+      "dias": -8
+     },
+     {
+      "codigo": "84203",
+      "fecha": "2017-03-21",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -6
+     },
+     {
+      "codigo": "84822",
+      "fecha": "2017-03-27",
+      "peligro": "INUNDACION",
+      "dias": 0
+     },
+     {
+      "codigo": "90877",
+      "fecha": "2017-03-31",
+      "peligro": "LLUVIA INTENSA",
+      "dias": 4
+     }
+    ]
+   },
+   {
+    "evento": "2017-catacaos",
+    "fecha_noticia": "2017-03-27",
+    "ubigeo": "200105",
+    "en_sinpad_7_dias": true,
+    "en_sinpad_14_dias": true,
+    "registros_sinpad": [
+     {
+      "codigo": "87370",
+      "fecha": "2017-03-16",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -11
+     },
+     {
+      "codigo": "84821",
+      "fecha": "2017-03-27",
+      "peligro": "INUNDACION",
+      "dias": 0
+     },
+     {
+      "codigo": "86430",
+      "fecha": "2017-03-29",
+      "peligro": "LLUVIA INTENSA",
+      "dias": 2
+     }
+    ]
+   },
+   {
+    "evento": "2017-cura-mori",
+    "fecha_noticia": "2017-03-27",
+    "ubigeo": "200107",
+    "en_sinpad_7_dias": true,
+    "en_sinpad_14_dias": true,
+    "registros_sinpad": [
+     {
+      "codigo": "86087",
+      "fecha": "2017-03-27",
+      "peligro": "INUNDACION",
+      "dias": 0
+     }
+    ]
+   },
+   {
+    "evento": "2017-chulucanas",
+    "fecha_noticia": "2017-03-26",
+    "ubigeo": "200401",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": true,
+    "registros_sinpad": [
+     {
+      "codigo": "85602",
+      "fecha": "2017-03-18",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -8
+     },
+     {
+      "codigo": "90892",
+      "fecha": "2017-03-18",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -8
+     }
+    ]
+   },
+   {
+    "evento": "2017-tambogrande",
+    "fecha_noticia": "2017-03-26",
+    "ubigeo": "200114",
+    "en_sinpad_7_dias": true,
+    "en_sinpad_14_dias": true,
+    "registros_sinpad": [
+     {
+      "codigo": "83444",
+      "fecha": "2017-03-15",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -11
+     },
+     {
+      "codigo": "84252",
+      "fecha": "2017-03-15",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -11
+     },
+     {
+      "codigo": "83711",
+      "fecha": "2017-03-18",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -8
+     },
+     {
+      "codigo": "84021",
+      "fecha": "2017-03-19",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -7
+     },
+     {
+      "codigo": "84025",
+      "fecha": "2017-03-19",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -7
+     }
+    ]
+   },
+   {
+    "evento": "2023-tambogrande",
+    "fecha_noticia": "2023-03-10",
+    "ubigeo": "200114",
+    "en_sinpad_7_dias": true,
+    "en_sinpad_14_dias": true,
+    "registros_sinpad": [
+     {
+      "codigo": "165860",
+      "fecha": "2023-03-07",
+      "peligro": "LLUVIA INTENSA",
+      "dias": -3
+     },
+     {
+      "codigo": "168113",
+      "fecha": "2023-03-16",
+      "peligro": "INUNDACION",
+      "dias": 6
+     },
+     {
+      "codigo": "169079",
+      "fecha": "2023-03-24",
+      "peligro": "LLUVIA INTENSA",
+      "dias": 14
+     }
+    ]
+   },
+   {
+    "evento": "2026-piura-calles",
+    "fecha_noticia": "2026-10-20",
+    "ubigeo": "200101",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   },
+   {
+    "evento": "2026-chulucanas",
+    "fecha_noticia": "2026-10-20",
+    "ubigeo": "200401",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   },
+   {
+    "evento": "2026-serran",
+    "fecha_noticia": "2026-10-29",
+    "ubigeo": "200302",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   },
+   {
+    "evento": "2026-puerto-peru",
+    "fecha_noticia": "2026-11-02",
+    "ubigeo": "240302",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   },
+   {
+    "evento": "2026-vaqueria",
+    "fecha_noticia": "2026-11-02",
+    "ubigeo": "240105",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   },
+   {
+    "evento": "2026-tumbes-calles",
+    "fecha_noticia": "2026-11-02",
+    "ubigeo": "240101",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   },
+   {
+    "evento": "2026-mancora",
+    "fecha_noticia": "2026-11-02",
+    "ubigeo": "200706",
+    "en_sinpad_7_dias": false,
+    "en_sinpad_14_dias": false,
+    "registros_sinpad": []
+   }
+  ]
+ },
+ "comparacion_desinventar_2003_2015": {
+  "semanas_con_registro_desinventar": 118,
+  "semanas_con_registro_sinpad": 787,
+  "desinventar_en_sinpad_misma_semana": 37,
+  "desinventar_en_sinpad_mas_menos_2_semanas": 51,
+  "lectura": "Las fuentes registran cosas distintas: no se deben unir en una sola serie."
+ },
+ "distribucion_Y": {
+  "filas": 90896,
+  "y1": 7173,
+  "pct_y1": 7.89,
+  "semanas_con_registro": 2431,
+  "fin_etiqueta": "2025-12-29",
+  "por_anio": {
+   "2003": {
+    "semanas_con_registro": 11,
+    "y1": 48
+   },
+   "2004": {
+    "semanas_con_registro": 11,
+    "y1": 36
+   },
+   "2005": {
+    "semanas_con_registro": 20,
+    "y1": 84
+   },
+   "2006": {
+    "semanas_con_registro": 68,
+    "y1": 215
+   },
+   "2007": {
+    "semanas_con_registro": 48,
+    "y1": 176
+   },
+   "2008": {
+    "semanas_con_registro": 122,
+    "y1": 445
+   },
+   "2009": {
+    "semanas_con_registro": 73,
+    "y1": 173
+   },
+   "2010": {
+    "semanas_con_registro": 80,
+    "y1": 224
+   },
+   "2011": {
+    "semanas_con_registro": 22,
+    "y1": 110
+   },
+   "2012": {
+    "semanas_con_registro": 174,
+    "y1": 513
+   },
+   "2013": {
+    "semanas_con_registro": 47,
+    "y1": 175
+   },
+   "2014": {
+    "semanas_con_registro": 26,
+    "y1": 93
+   },
+   "2015": {
+    "semanas_con_registro": 85,
+    "y1": 290
+   },
+   "2016": {
+    "semanas_con_registro": 93,
+    "y1": 347
+   },
+   "2017": {
+    "semanas_con_registro": 322,
+    "y1": 857
+   },
+   "2018": {
+    "semanas_con_registro": 53,
+    "y1": 190
+   },
+   "2019": {
+    "semanas_con_registro": 80,
+    "y1": 263
+   },
+   "2020": {
+    "semanas_con_registro": 22,
+    "y1": 101
+   },
+   "2021": {
+    "semanas_con_registro": 147,
+    "y1": 395
+   },
+   "2022": {
+    "semanas_con_registro": 121,
+    "y1": 367
+   },
+   "2023": {
+    "semanas_con_registro": 398,
+    "y1": 971
+   },
+   "2024": {
+    "semanas_con_registro": 142,
+    "y1": 452
+   },
+   "2025": {
+    "semanas_con_registro": 266,
+    "y1": 648
+   }
+  },
+  "semanas_con_registro_por_mes": {
+   "1": 259,
+   "2": 720,
+   "3": 841,
+   "4": 343,
+   "5": 101,
+   "6": 26,
+   "7": 20,
+   "8": 13,
+   "9": 9,
+   "10": 29,
+   "11": 24,
+   "12": 46
+  },
+  "top_distritos": {
+   "Tumbes": 109,
+   "Huancabamba": 87,
+   "Pacaipampa": 71,
+   "Zarumilla": 69,
+   "Ayabaca": 65,
+   "Huarmaca": 63,
+   "Casitas": 62,
+   "Sondorillo": 61,
+   "Las Lomas": 60,
+   "Chulucanas": 59,
+   "Zorritos": 57,
+   "San Jacinto": 56,
+   "La Cruz": 56,
+   "El Carmen de la Frontera": 54,
+   "Canchaque": 50
+  },
+  "distritos_sin_registro": 0,
+  "distritos": 76
+ },
+ "muestra_revision_manual": [
+  {
+   "codigo": "26118",
+   "fecha": "2008-02-17",
+   "dist": "SANTA CATALINA DE MOSSA",
+   "prov": "MORROPON",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 1422,
+   "viv_afectadas": 237
+  },
+  {
+   "codigo": "37780",
+   "fecha": "2010-03-03",
+   "dist": "CASITAS",
+   "prov": "CONTRALMIRANTE VILLAR",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 5,
+   "viv_afectadas": 1
+  },
+  {
+   "codigo": "49451",
+   "fecha": "2012-02-07",
+   "dist": "MORROPON",
+   "prov": "MORROPON",
+   "peligro": "INUNDACION",
+   "afectados": 1155,
+   "viv_afectadas": 231
+  },
+  {
+   "codigo": "53780",
+   "fecha": "2012-02-23",
+   "dist": "ZORRITOS",
+   "prov": "CONTRALMIRANTE VILLAR",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 109,
+   "viv_afectadas": 26
+  },
+  {
+   "codigo": "51364",
+   "fecha": "2012-03-18",
+   "dist": "MARCAVELICA",
+   "prov": "SULLANA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 25,
+   "viv_afectadas": 5
+  },
+  {
+   "codigo": "50894",
+   "fecha": "2012-03-18",
+   "dist": "CATACAOS",
+   "prov": "PIURA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 0,
+   "viv_afectadas": 10
+  },
+  {
+   "codigo": "50926",
+   "fecha": "2012-03-19",
+   "dist": "PAIMAS",
+   "prov": "AYABACA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 636,
+   "viv_afectadas": 121
+  },
+  {
+   "codigo": "69959",
+   "fecha": "2015-03-25",
+   "dist": "SAN JUAN DE BIGOTE",
+   "prov": "MORROPON",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 3000,
+   "viv_afectadas": 600
+  },
+  {
+   "codigo": "69591",
+   "fecha": "2015-03-26",
+   "dist": "SAN JUAN DE LA VIRGEN",
+   "prov": "TUMBES",
+   "peligro": "INUNDACION",
+   "afectados": 1750,
+   "viv_afectadas": 318
+  },
+  {
+   "codigo": "81471",
+   "fecha": "2017-02-02",
+   "dist": "MONTERO",
+   "prov": "AYABACA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 445,
+   "viv_afectadas": 112
+  },
+  {
+   "codigo": "82441",
+   "fecha": "2017-02-25",
+   "dist": "JILILI",
+   "prov": "AYABACA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 250,
+   "viv_afectadas": 50
+  },
+  {
+   "codigo": "83007",
+   "fecha": "2017-03-08",
+   "dist": "TAMBO GRANDE",
+   "prov": "PIURA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 601,
+   "viv_afectadas": 164
+  },
+  {
+   "codigo": "99208",
+   "fecha": "2019-02-17",
+   "dist": "LAGUNAS",
+   "prov": "AYABACA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 48,
+   "viv_afectadas": 16
+  },
+  {
+   "codigo": "136552",
+   "fecha": "2021-03-16",
+   "dist": "LA CRUZ",
+   "prov": "TUMBES",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 43,
+   "viv_afectadas": 32
+  },
+  {
+   "codigo": "151808",
+   "fecha": "2022-03-31",
+   "dist": "LA MATANZA",
+   "prov": "MORROPON",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 124,
+   "viv_afectadas": 54
+  },
+  {
+   "codigo": "167234",
+   "fecha": "2023-03-15",
+   "dist": "BELLAVISTA DE LA UNION",
+   "prov": "SECHURA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 48,
+   "viv_afectadas": 31
+  },
+  {
+   "codigo": "168941",
+   "fecha": "2023-03-23",
+   "dist": "CRISTO NOS VALGA",
+   "prov": "SECHURA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 12,
+   "viv_afectadas": 4
+  },
+  {
+   "codigo": "171519",
+   "fecha": "2023-04-16",
+   "dist": "HUANCABAMBA",
+   "prov": "HUANCABAMBA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 524,
+   "viv_afectadas": 290
+  },
+  {
+   "codigo": "223494",
+   "fecha": "2025-02-19",
+   "dist": "HUARMACA",
+   "prov": "HUANCABAMBA",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 225,
+   "viv_afectadas": 101
+  },
+  {
+   "codigo": "232856",
+   "fecha": "2025-03-31",
+   "dist": "SALITRAL",
+   "prov": "MORROPON",
+   "peligro": "LLUVIA INTENSA",
+   "afectados": 406,
+   "viv_afectadas": 245
+  }
+ ]
+}
