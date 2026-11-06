@@ -8,7 +8,7 @@ Responde: ¿la Y es real y concuerda con lo que pasó? Cuatro pruebas, todas con
     4. Muestra aleatoria de 20 registros (semilla fija) con su código SINPAD, para revisarlos a mano.
 
 Salida: docs/evidencia/auditoria_sinpad.json
-Uso: python herramientas/auditoria_sinpad.py   (antes: python src/etiqueta_sinpad.py)
+Uso: python herramientas/pruebas/auditoria_sinpad.py   (antes: python src/etiqueta_sinpad.py)
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pandas as pd
 
-RAIZ = Path(__file__).resolve().parents[1]
+RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(RAIZ / "src"))
 from etiqueta_sinpad import EVENTOS, FIN_ETIQUETA, FUSION, normal  # noqa: E402
 

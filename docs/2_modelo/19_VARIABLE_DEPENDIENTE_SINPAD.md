@@ -1,6 +1,6 @@
 # 10 · La variable dependiente ahora sale del SINPAD (fuente oficial)
 
-*5 de noviembre de 2026. Scripts: `src/etiqueta_sinpad.py`, `src/modelo_inundacion.py`, `herramientas/auditoria_sinpad.py`. Evidencia: `data/modelo/sinpad/procedencia.json`, `docs/evidencia/auditoria_sinpad.json`, `docs/evidencia/ml_evaluacion.json`.*
+*5 de noviembre de 2026. Scripts: `src/etiqueta_sinpad.py`, `src/modelo_inundacion.py`, `herramientas/pruebas/auditoria_sinpad.py`. Evidencia: `data/modelo/sinpad/procedencia.json`, `docs/evidencia/auditoria_sinpad.json`, `docs/evidencia/ml_evaluacion.json`.*
 
 ## Por qué se cambió
 
@@ -72,7 +72,7 @@ Antes, con DesInventar (2008-2015): climatología 0,095 y logística simple 0,11
 python src/etiqueta_sinpad.py --descargar
 python src/modelo_inundacion.py
 python src/ml_evaluacion.py
-python herramientas/auditoria_sinpad.py
+python herramientas/pruebas/auditoria_sinpad.py
 python -m pytest -q tests/test_sinpad.py
 ```
 
