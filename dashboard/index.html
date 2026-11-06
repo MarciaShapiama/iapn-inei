@@ -835,7 +835,14 @@ function panelInund(){
   if(e.edificaciones_profundidad)extra=`<div class="i-valida"><b>Edificaciones en zona inundable, según la profundidad del agua</b><br>`+Object.entries(e.edificaciones_profundidad).map(([a,b])=>`${a}: <b>${nf(b)}</b>`).join(" · ")+
     `<br>Piura <b>${nf(g("Piura","edificaciones"))}</b> · Tumbes <b>${nf(g("Tumbes","edificaciones"))}</b> · fuera de los distritos <b>${nf(g("Sin distrito asignado","edificaciones"))}</b> (la suma da el total)</div>`;
   if(v)extra+=`<div class="i-valida"><b>¿Cuadra con lo oficial?</b> Edificaciones en la mancha del radar o hasta 500 m: Piura <b>${nf(g("Piura","edificaciones_500m"))}</b>, Tumbes <b>${nf(g("Tumbes","edificaciones_500m"))}</b>. INDECI reportó viviendas afectadas: Piura <b>${nf(v.Piura)}</b>, Tumbes <b>${nf(v.Tumbes)}</b>. ${v.nota} El radar no ve el agua entre casas: su cifra es un mínimo y solo sirve como orden de magnitud. <a href="${v.url}" target="_blank" rel="noopener" style="color:#7fb4e0">Fuente</a></div>`;
-  if(I3.ev==="vivo")extra+=`<div class="i-aviso">Es temporada seca: el agua nueva de estos días es sobre todo riego por inundación de arrozales (Bajo Piura, San Lorenzo), no desbordes. Las lluvias fuertes suelen llegar entre enero y abril; esta capa se actualiza los lunes y jueves.</div>`;
+  if(I3.ev==="vivo"){
+    // El mensaje depende de lo que pasa estos días (noticias del periodo y lluvia de los últimos 20 días), no de una fecha fija
+    const nrep=(typeof reportesVisibles==="function"?reportesVisibles():[]).length;
+    const zz=(D.ZON&&D.ZON.zonas)||[], llueve=zz.some(z=>z.lluvia_20d!=null&&z.normal_20d!=null&&z.lluvia_20d>1.5*z.normal_20d&&z.lluvia_20d>=20);
+    extra+=(nrep||llueve)
+      ?`<div class="i-aviso">Estos días hay lluvias fuertes${nrep?` y <b>${nrep}</b> inundaciones reportadas en la prensa`:""}. El radar ve el agua en campo abierto; no ve las calles inundadas, las quebradas ni la sierra, por eso marca poca agua frente a lo que reportan las noticias (puntos ◆). Parte del agua nueva también puede ser riego por inundación de arrozales (Bajo Piura, San Lorenzo). Esta capa se actualiza los lunes y jueves.</div>`
+      :`<div class="i-aviso">Estos días no hay lluvias fuertes ni inundaciones reportadas: el agua nueva es sobre todo riego por inundación de arrozales (Bajo Piura, San Lorenzo), no desbordes. Esta capa se actualiza los lunes y jueves.</div>`;
+  }
   const VCe=D.VC&&D.VC.escenarios&&D.VC.escenarios[I3.ev];
   if(VCe)extra+=`<div class="i-valida"><b>Viviendas del Censo 2025 (INEI) en esta zona</b><br><b>${nf(VCe.viviendas)}</b> viviendas ocupadas (Piura ${nf(VCe.por_departamento.Piura)} · Tumbes ${nf(VCe.por_departamento.Tumbes)}); <b>${nf(VCe.paredes_tierra+VCe.paredes_precarias)}</b> con paredes de tierra o precarias y <b>${nf(VCe.piso_tierra)}</b> con piso de tierra. Solo viviendas en manzanas: la vivienda rural dispersa no está.</div>`;
   const X=D.EX&&D.EX.capas&&D.EX.capas[I3.ev];

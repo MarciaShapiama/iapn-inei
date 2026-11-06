@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-06T17:31-05:00",
+ "generado": "2026-11-06T18:36-05:00",
  "hoy": "2026-11-06",
  "resumen_estado": {
   "vigente": 10,
@@ -191,7 +191,7 @@
     "El radar no detecta agua bajo vegetación densa ni entre edificios: subestima en ciudades.",
     "Umbral fijo VV −17 dB y caída ≥ 3 dB, compuesto mínimo del periodo: tiende a sobredetectar en arena lisa y salinas.",
     "Puede confundir riego por inundación (arrozales), humedales y lagunas temporales con inundación.",
-    "Noviembre es temporada seca: el agua nueva corresponde sobre todo a riego y humedales, no a desbordes."
+    "Parte del agua nueva puede ser riego por inundación (arrozales) y humedales, sobre todo cuando no llueve; el radar no ve las calles inundadas ni las quebradas."
    ],
    "estado": "vigente",
    "archivo": "capa_vivo.geojson",

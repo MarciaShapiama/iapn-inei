@@ -78,6 +78,26 @@ RADIO_KM = 3.0
 DETECTADO_KM2 = 0.05
 
 
+
+# Nombres para mostrar: el nomenclátor viene en mayúsculas y sin tildes.
+_MINUSC = {"De", "Del", "La", "Las", "Los", "Y", "El"}
+_TILDES = {"Peru": "Perú", "Mancora": "Máncora", "Vaqueria": "Vaquería", "Morropon": "Morropón", "Organos": "Órganos",
+           "Colan": "Colán", "Union": "Unión", "Tallan": "Tallán", "Rio": "Río", "Jose": "José", "Maria": "María",
+           "Veintiseis": "Veintiséis", "Frias": "Frías", "Jilili": "Jililí", "Belen": "Belén", "Simon": "Simón",
+           "Lucia": "Lucía", "Martin": "Martín", "Ramon": "Ramón", "Andres": "Andrés", "Jesus": "Jesús", "Angel": "Ángel",
+           "Bolivar": "Bolívar", "Huarmaca": "Huarmaca", "Paijan": "Paiján", "Sullana": "Sullana", "Pariñas": "Pariñas"}
+
+
+def bonito(nombre: str) -> str:
+    """'PAMPAS DE HOSPITAL' -> 'Pampas de Hospital'; 'PUERTO PERU' -> 'Puerto Perú'."""
+    palabras = str(nombre).title().split()
+    out = []
+    for i, w in enumerate(palabras):
+        w = _TILDES.get(w, w)
+        out.append(w.lower() if i > 0 and w in _MINUSC else w)
+    return " ".join(out)
+
+
 def norm(s: str) -> str:
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
     return " ".join(re.sub(r"[^A-Za-z0-9 ]", " ", s).upper().split())
@@ -284,9 +304,9 @@ def agregar(grupos: dict, n, l, precision: str) -> None:
         return
     grupos[(l["nombre"], l["ubigeo"], f)] = {
         "id": f"n-{n['fecha']}-{norm(l['nombre']).lower().replace(' ', '-')}", "origen": "noticias (automático)",
-        "fecha": n["fecha"], "fecha_fin": n["fecha"], "lugar": l["nombre"].title(), "ubigeo": l["ubigeo"],
-        "distrito": l["distrito"].title(), "provincia": l["provincia"].title(),
-        "departamento": l["departamento"].title(), "lat": float(l["lat"]), "lon": float(l["lon"]),
+        "fecha": n["fecha"], "fecha_fin": n["fecha"], "lugar": bonito(l["nombre"]), "ubigeo": l["ubigeo"],
+        "distrito": bonito(l["distrito"]), "provincia": bonito(l["provincia"]),
+        "departamento": bonito(l["departamento"]), "lat": float(l["lat"]), "lon": float(l["lon"]),
         "altura_m": int(l["altura_m"]), "precision": precision, "tipo": clasificar(n["titulo"]),
         "titulo": n["titulo"], "articulos": [art]}
 
@@ -299,8 +319,8 @@ def eventos_verificados(lug: pd.DataFrame) -> list[dict]:
         if e["fuente2"]:
             arts.append({"titulo": e["descripcion"], "medio": e["medio2"], "fecha": e["fecha"], "url": e["fuente2"]})
         out.append({"id": e["id"], "origen": "verificado por el equipo", "fecha": e["fecha"], "fecha_fin": e["fecha"],
-                    "lugar": l["nombre"].title(), "ubigeo": e["ubigeo"], "distrito": l["distrito"].title(),
-                    "provincia": l["provincia"].title(), "departamento": l["departamento"].title(),
+                    "lugar": bonito(l["nombre"]), "ubigeo": e["ubigeo"], "distrito": bonito(l["distrito"]),
+                    "provincia": bonito(l["provincia"]), "departamento": bonito(l["departamento"]),
                     "lat": float(l["lat"]), "lon": float(l["lon"]), "altura_m": int(l["altura_m"]),
                     "precision": "centro del poblado", "tipo": "desborde de río o quebrada" if e["tipo"] == "desborde de río"
                     else e["tipo"], "titulo": e["descripcion"], "articulos": arts})

@@ -94,7 +94,8 @@ def capas(hoy: date | None = None) -> list[dict]:
             adv.insert(0, "CONTROL DE CALIDAD FALLIDO: la referencia seca se solapa con el periodo del evento "
                           f"({h['referencia'][0]}–{h['referencia'][1]} vs {h['periodo'][0]}–{h['periodo'][1]}). Recalcular con src/huellas.py.")
         if clave == "vivo":
-            adv.append("Noviembre es temporada seca: el agua nueva corresponde sobre todo a riego y humedales, no a desbordes.")
+            adv.append("Parte del agua nueva puede ser riego por inundación (arrozales) y humedales, sobre todo cuando no llueve; "
+                       "el radar no ve las calles inundadas ni las quebradas.")
         capa(f"radar_{clave}", nombre, fuente="Copernicus Sentinel-1 RTC (ESA), vía Microsoft Planetary Computer",
              url="https://planetarycomputer.microsoft.com/dataset/sentinel-1-rtc", licencia="Datos Copernicus: libre y abierto (atribución)",
              definicion="Píxeles con retrodispersión VV baja en el evento y caída frente a una referencia de temporada seca.",
