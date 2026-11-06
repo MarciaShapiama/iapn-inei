@@ -64,6 +64,7 @@ Los datos confidenciales del INEI (viviendas por manzana) **no están en este re
 | Modelo | [02 Plan de machine learning](docs/2_modelo/02_PLAN_MACHINE_LEARNING.md) | Modelo de alerta por distrito y su evaluación |
 | Modelo | [08 Diseño del modelo de viviendas](docs/2_modelo/08_DISENO_MODELO_VIVIENDAS.md) | Primer diseño de la pregunta del profesor |
 | Modelo | [10 Modelo de viviendas afectadas](docs/2_modelo/10_MODELO_VIVIENDAS_AFECTADAS.md) | Etiqueta real del SINPAD (INDECI), variables, 6 modelos y validación 2012-2025 |
+| Modelo | [19 Variable dependiente desde el SINPAD](docs/2_modelo/19_VARIABLE_DEPENDIENTE_SINPAD.md) | El modelo de alerta usa el SINPAD 2003-2025 en lugar de DesInventar: trazabilidad, auditoría y resultados |
 | Modelo | [Modelo de inundación](docs/2_modelo/modelo_inundacion.md) | Documento original del modelo de alerta |
 | Validación | [06 Validación y viabilidad](docs/3_validacion/06_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación contra INDECI y costo de expandir |
 | Validación | [09 El radar frente a las noticias](docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md) | Tres pruebas (6 lugares recientes, 13 eventos verificados, cultivos inundados) y la capa de inundaciones reportadas del tablero |
@@ -78,6 +79,7 @@ Los datos confidenciales del INEI (viviendas por manzana) **no están en este re
 | Presentación | [Informe final](docs/6_presentacion/informe_final/INFORME_FINAL_PROYECTO_INTEGRADOR.md) · `.docx` | Informe para la evaluación del curso |
 | Presentación | `docs/6_presentacion/presentacion/` | Presentaciones en LaTeX (avance, validación, de dónde sale el agua) |
 | Presentación | `docs/6_presentacion/avance_latex/` | Informe de avance en LaTeX |
+| Presentación | `docs/6_presentacion/Guia_didactica_modelo.pdf` | Guía didáctica del modelo de alerta, variable por variable (con la Y del SINPAD) |
 
 ## Instalación desde cero
 
@@ -129,7 +131,8 @@ Pasos sueltos útiles:
 |---|---|
 | `python src/reparar_poblacion.py` | Verifica y corrige la alineación del ráster de población (idempotente) |
 | `python src/ubigeo.py` | Descarga la tabla UBIGEO y la empata con los distritos |
-| `python src/modelo_inundacion.py` | Reentrena y evalúa el modelo de emergencias |
+| `python src/etiqueta_sinpad.py` | Arma la variable dependiente del modelo de alerta desde el SINPAD (INDECI), con huella SHA-256 y conteos por filtro (`--descargar` vuelve a bajar los CSV oficiales) |
+| `python src/modelo_inundacion.py` | Reentrena y evalúa el modelo de emergencias (Y del SINPAD; `--fuente desinventar` para la versión anterior) |
 | `python src/ml_evaluacion.py` | Bootstrap por años, calibración y falsos negativos |
 | `python src/auditoria.py` | Regenera `docs/evidencia/auditoria_cifras.json` |
 | `python src/aviso_lluvia.py` | Recalcula el aviso de lluvia por distrito |
@@ -143,6 +146,7 @@ Pasos sueltos útiles:
 | `python herramientas/pruebas/prueba_aviso_pasado.py` | Aviso de lluvia y caudal frente a eventos con noticias y emergencias de SINPAD 2003-2026 |
 | `python herramientas/pruebas/prueba_aviso_pronostico_real.py` | Aviso con los pronósticos reales hechos 1-3 días antes de cada evento (necesita red) |
 | `python herramientas/pruebas/validacion_indeci.py` | Validación externa con registros INDECI 2003-2024 |
+| `python herramientas/pruebas/auditoria_sinpad.py` | Auditoría de la variable dependiente del SINPAD: eventos verificados, comparación con DesInventar y distribución de Y |
 | `python herramientas/pruebas/viabilidad_expansion.py` | Estima el costo de expandir a otros departamentos |
 | `python herramientas/figuras/figuras_presentacion.py` | Figuras de la presentación |
 

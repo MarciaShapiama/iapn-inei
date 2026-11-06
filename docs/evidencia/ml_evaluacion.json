@@ -1,380 +1,380 @@
 {
- "calculado": "2026-11-04T01:09-05:00",
+ "calculado": "2026-11-05T21:19-05:00",
  "archivo": "data\\modelo\\resultados\\predicciones_validacion.csv",
- "n": 31008,
- "positivos": 311,
+ "n": 71060,
+ "positivos": 6614,
  "incertidumbre": {
   "climatologia": {
-   "pr_auc": 0.095,
+   "pr_auc": 0.397,
    "pr_auc_ic90": [
-    0.057,
-    0.165
-   ],
-   "roc_auc": 0.829,
-   "roc_auc_ic90": [
-    0.779,
-    0.871
-   ]
-  },
-  "logistica_simple": {
-   "pr_auc": 0.111,
-   "pr_auc_ic90": [
-    0.08,
-    0.17
+    0.301,
+    0.493
    ],
    "roc_auc": 0.865,
    "roc_auc_ic90": [
-    0.842,
-    0.9
+    0.847,
+    0.882
+   ]
+  },
+  "logistica_simple": {
+   "pr_auc": 0.372,
+   "pr_auc_ic90": [
+    0.295,
+    0.449
+   ],
+   "roc_auc": 0.875,
+   "roc_auc_ic90": [
+    0.86,
+    0.887
    ],
    "dif_pr_auc_vs_climatologia_ic90": [
-    -0.003,
-    0.039
+    -0.068,
+    0.016
    ],
-   "prob_supera_climatologia": 0.921
+   "prob_supera_climatologia": 0.138
   },
   "logistica_completa": {
-   "pr_auc": 0.121,
+   "pr_auc": 0.385,
    "pr_auc_ic90": [
-    0.074,
-    0.212
+    0.289,
+    0.472
    ],
-   "roc_auc": 0.845,
+   "roc_auc": 0.867,
    "roc_auc_ic90": [
-    0.801,
-    0.895
+    0.842,
+    0.883
    ],
    "dif_pr_auc_vs_climatologia_ic90": [
-    0.0,
-    0.07
+    -0.065,
+    0.035
    ],
-   "prob_supera_climatologia": 0.953
+   "prob_supera_climatologia": 0.293
   },
   "lightgbm": {
-   "pr_auc": 0.079,
+   "pr_auc": 0.396,
    "pr_auc_ic90": [
-    0.054,
-    0.148
+    0.295,
+    0.501
    ],
-   "roc_auc": 0.811,
+   "roc_auc": 0.869,
    "roc_auc_ic90": [
-    0.786,
-    0.866
+    0.848,
+    0.886
    ],
    "dif_pr_auc_vs_climatologia_ic90": [
     -0.048,
-    0.014
+    0.045
    ],
-   "prob_supera_climatologia": 0.21
+   "prob_supera_climatologia": 0.469
   },
-  "_nota": "2000 remuestreos de los 8 años de prueba (bloques anuales). Tasa base de positivos: 0.0100 (PR-AUC de un modelo al azar ≈ tasa base)."
+  "_nota": "2000 remuestreos de los 18 años de prueba (bloques anuales). Tasa base de positivos: 0.0931 (PR-AUC de un modelo al azar ≈ tasa base)."
  },
  "calibracion": {
   "climatologia": {
-   "brier": 0.0096,
-   "brier_recalibrado_loyo": 0.0097,
-   "brier_referencia_tasa_base": 0.0099,
+   "brier": 0.0712,
+   "brier_recalibrado_loyo": 0.0691,
+   "brier_referencia_tasa_base": 0.0844,
    "deciles": [
     {
      "dec": 0,
-     "prob_media": 0.0004,
-     "prob_recalibrada": 0.0002,
-     "tasa_observada": 0.0003,
-     "n": 3101
+     "prob_media": 0.0022,
+     "prob_recalibrada": 0.0032,
+     "tasa_observada": 0.0034,
+     "n": 7106
     },
     {
      "dec": 1,
-     "prob_media": 0.0009,
-     "prob_recalibrada": 0.0004,
-     "tasa_observada": 0.0013,
-     "n": 3101
+     "prob_media": 0.0031,
+     "prob_recalibrada": 0.0077,
+     "tasa_observada": 0.0099,
+     "n": 7106
     },
     {
      "dec": 2,
-     "prob_media": 0.0014,
-     "prob_recalibrada": 0.0009,
-     "tasa_observada": 0.0,
-     "n": 3101
+     "prob_media": 0.0038,
+     "prob_recalibrada": 0.0093,
+     "tasa_observada": 0.01,
+     "n": 7106
     },
     {
      "dec": 3,
-     "prob_media": 0.0019,
-     "prob_recalibrada": 0.0023,
-     "tasa_observada": 0.0042,
-     "n": 3100
+     "prob_media": 0.0044,
+     "prob_recalibrada": 0.01,
+     "tasa_observada": 0.008,
+     "n": 7106
     },
     {
      "dec": 4,
-     "prob_media": 0.0024,
-     "prob_recalibrada": 0.0028,
-     "tasa_observada": 0.0026,
-     "n": 3101
+     "prob_media": 0.0057,
+     "prob_recalibrada": 0.0121,
+     "tasa_observada": 0.0111,
+     "n": 7106
     },
     {
      "dec": 5,
-     "prob_media": 0.0036,
-     "prob_recalibrada": 0.0034,
-     "tasa_observada": 0.001,
-     "n": 3101
+     "prob_media": 0.0158,
+     "prob_recalibrada": 0.0274,
+     "tasa_observada": 0.0273,
+     "n": 7106
     },
     {
      "dec": 6,
-     "prob_media": 0.0085,
-     "prob_recalibrada": 0.0068,
-     "tasa_observada": 0.0077,
-     "n": 3100
+     "prob_media": 0.0336,
+     "prob_recalibrada": 0.0711,
+     "tasa_observada": 0.0816,
+     "n": 7106
     },
     {
      "dec": 7,
-     "prob_media": 0.0156,
-     "prob_recalibrada": 0.0131,
-     "tasa_observada": 0.0197,
-     "n": 3101
+     "prob_media": 0.0744,
+     "prob_recalibrada": 0.1541,
+     "tasa_observada": 0.1479,
+     "n": 7106
     },
     {
      "dec": 8,
-     "prob_media": 0.0215,
-     "prob_recalibrada": 0.0192,
-     "tasa_observada": 0.0158,
-     "n": 3101
+     "prob_media": 0.1448,
+     "prob_recalibrada": 0.225,
+     "tasa_observada": 0.2252,
+     "n": 7106
     },
     {
      "dec": 9,
-     "prob_media": 0.0692,
-     "prob_recalibrada": 0.0522,
-     "tasa_observada": 0.0477,
-     "n": 3101
+     "prob_media": 0.2542,
+     "prob_recalibrada": 0.4102,
+     "tasa_observada": 0.4064,
+     "n": 7106
     }
    ]
   },
   "logistica_simple": {
-   "brier": 0.1438,
-   "brier_recalibrado_loyo": 0.0095,
-   "brier_referencia_tasa_base": 0.0099,
+   "brier": 0.1403,
+   "brier_recalibrado_loyo": 0.068,
+   "brier_referencia_tasa_base": 0.0844,
    "deciles": [
     {
      "dec": 0,
-     "prob_media": 0.0228,
-     "prob_recalibrada": 0.0,
-     "tasa_observada": 0.0,
-     "n": 3101
+     "prob_media": 0.0086,
+     "prob_recalibrada": 0.0015,
+     "tasa_observada": 0.0017,
+     "n": 7106
     },
     {
      "dec": 1,
-     "prob_media": 0.0376,
-     "prob_recalibrada": 0.0,
-     "tasa_observada": 0.0,
-     "n": 3101
+     "prob_media": 0.0182,
+     "prob_recalibrada": 0.0043,
+     "tasa_observada": 0.0045,
+     "n": 7106
     },
     {
      "dec": 2,
-     "prob_media": 0.0622,
-     "prob_recalibrada": 0.0001,
-     "tasa_observada": 0.0003,
-     "n": 3101
+     "prob_media": 0.0352,
+     "prob_recalibrada": 0.0077,
+     "tasa_observada": 0.008,
+     "n": 7106
     },
     {
      "dec": 3,
-     "prob_media": 0.1042,
-     "prob_recalibrada": 0.0017,
-     "tasa_observada": 0.0023,
-     "n": 3100
+     "prob_media": 0.0673,
+     "prob_recalibrada": 0.0127,
+     "tasa_observada": 0.0129,
+     "n": 7106
     },
     {
      "dec": 4,
-     "prob_media": 0.1675,
-     "prob_recalibrada": 0.0019,
-     "tasa_observada": 0.0016,
-     "n": 3101
+     "prob_media": 0.1282,
+     "prob_recalibrada": 0.0136,
+     "tasa_observada": 0.0132,
+     "n": 7106
     },
     {
      "dec": 5,
-     "prob_media": 0.2539,
-     "prob_recalibrada": 0.0023,
-     "tasa_observada": 0.0019,
-     "n": 3101
+     "prob_media": 0.2343,
+     "prob_recalibrada": 0.0224,
+     "tasa_observada": 0.0225,
+     "n": 7106
     },
     {
      "dec": 6,
-     "prob_media": 0.3513,
-     "prob_recalibrada": 0.0058,
-     "tasa_observada": 0.009,
-     "n": 3100
+     "prob_media": 0.383,
+     "prob_recalibrada": 0.0658,
+     "tasa_observada": 0.067,
+     "n": 7106
     },
     {
      "dec": 7,
-     "prob_media": 0.4397,
-     "prob_recalibrada": 0.0118,
-     "tasa_observada": 0.009,
-     "n": 3101
+     "prob_media": 0.5379,
+     "prob_recalibrada": 0.1382,
+     "tasa_observada": 0.1385,
+     "n": 7106
     },
     {
      "dec": 8,
-     "prob_media": 0.5699,
-     "prob_recalibrada": 0.021,
-     "tasa_observada": 0.0203,
-     "n": 3101
+     "prob_media": 0.6943,
+     "prob_recalibrada": 0.2453,
+     "tasa_observada": 0.2457,
+     "n": 7106
     },
     {
      "dec": 9,
-     "prob_media": 0.842,
-     "prob_recalibrada": 0.0557,
-     "tasa_observada": 0.0558,
-     "n": 3101
+     "prob_media": 0.8744,
+     "prob_recalibrada": 0.4155,
+     "tasa_observada": 0.4167,
+     "n": 7106
     }
    ]
   },
   "logistica_completa": {
-   "brier": 0.1468,
-   "brier_recalibrado_loyo": 0.0096,
-   "brier_referencia_tasa_base": 0.0099,
+   "brier": 0.1334,
+   "brier_recalibrado_loyo": 0.0682,
+   "brier_referencia_tasa_base": 0.0844,
    "deciles": [
     {
      "dec": 0,
-     "prob_media": 0.0234,
-     "prob_recalibrada": 0.0,
-     "tasa_observada": 0.0,
-     "n": 3101
+     "prob_media": 0.0111,
+     "prob_recalibrada": 0.0024,
+     "tasa_observada": 0.0031,
+     "n": 7106
     },
     {
      "dec": 1,
-     "prob_media": 0.0416,
-     "prob_recalibrada": 0.0005,
-     "tasa_observada": 0.0006,
-     "n": 3101
+     "prob_media": 0.0232,
+     "prob_recalibrada": 0.0042,
+     "tasa_observada": 0.0039,
+     "n": 7106
     },
     {
      "dec": 2,
-     "prob_media": 0.0604,
-     "prob_recalibrada": 0.0013,
-     "tasa_observada": 0.0013,
-     "n": 3101
+     "prob_media": 0.0396,
+     "prob_recalibrada": 0.0126,
+     "tasa_observada": 0.0137,
+     "n": 7106
     },
     {
      "dec": 3,
-     "prob_media": 0.0892,
-     "prob_recalibrada": 0.0018,
-     "tasa_observada": 0.0023,
-     "n": 3100
+     "prob_media": 0.0675,
+     "prob_recalibrada": 0.0134,
+     "tasa_observada": 0.0127,
+     "n": 7106
     },
     {
      "dec": 4,
-     "prob_media": 0.1354,
-     "prob_recalibrada": 0.002,
-     "tasa_observada": 0.0023,
-     "n": 3101
+     "prob_media": 0.1128,
+     "prob_recalibrada": 0.0197,
+     "tasa_observada": 0.02,
+     "n": 7106
     },
     {
      "dec": 5,
-     "prob_media": 0.2077,
-     "prob_recalibrada": 0.0055,
-     "tasa_observada": 0.0071,
-     "n": 3101
+     "prob_media": 0.1926,
+     "prob_recalibrada": 0.0342,
+     "tasa_observada": 0.0343,
+     "n": 7106
     },
     {
      "dec": 6,
-     "prob_media": 0.305,
-     "prob_recalibrada": 0.0056,
-     "tasa_observada": 0.0035,
-     "n": 3100
+     "prob_media": 0.327,
+     "prob_recalibrada": 0.0639,
+     "tasa_observada": 0.0639,
+     "n": 7106
     },
     {
      "dec": 7,
-     "prob_media": 0.4304,
-     "prob_recalibrada": 0.0088,
-     "tasa_observada": 0.0084,
-     "n": 3101
+     "prob_media": 0.4928,
+     "prob_recalibrada": 0.1211,
+     "tasa_observada": 0.1214,
+     "n": 7106
     },
     {
      "dec": 8,
-     "prob_media": 0.6073,
-     "prob_recalibrada": 0.0223,
-     "tasa_observada": 0.0229,
-     "n": 3101
+     "prob_media": 0.6767,
+     "prob_recalibrada": 0.2313,
+     "tasa_observada": 0.2321,
+     "n": 7106
     },
     {
      "dec": 9,
-     "prob_media": 0.8758,
-     "prob_recalibrada": 0.0531,
-     "tasa_observada": 0.0519,
-     "n": 3101
+     "prob_media": 0.894,
+     "prob_recalibrada": 0.4233,
+     "tasa_observada": 0.4257,
+     "n": 7106
     }
    ]
   },
   "lightgbm": {
-   "brier": 0.0127,
-   "brier_recalibrado_loyo": 0.0098,
-   "brier_referencia_tasa_base": 0.0099,
+   "brier": 0.0691,
+   "brier_recalibrado_loyo": 0.068,
+   "brier_referencia_tasa_base": 0.0844,
    "deciles": [
     {
      "dec": 0,
-     "prob_media": 0.0007,
-     "prob_recalibrada": 0.0,
-     "tasa_observada": 0.0,
-     "n": 3101
+     "prob_media": 0.0033,
+     "prob_recalibrada": 0.0005,
+     "tasa_observada": 0.0006,
+     "n": 7106
     },
     {
      "dec": 1,
-     "prob_media": 0.0011,
-     "prob_recalibrada": 0.0001,
-     "tasa_observada": 0.0003,
-     "n": 3101
+     "prob_media": 0.0072,
+     "prob_recalibrada": 0.003,
+     "tasa_observada": 0.0032,
+     "n": 7106
     },
     {
      "dec": 2,
-     "prob_media": 0.0017,
-     "prob_recalibrada": 0.0031,
-     "tasa_observada": 0.0035,
-     "n": 3101
+     "prob_media": 0.012,
+     "prob_recalibrada": 0.0077,
+     "tasa_observada": 0.0075,
+     "n": 7106
     },
     {
      "dec": 3,
-     "prob_media": 0.0028,
-     "prob_recalibrada": 0.0042,
-     "tasa_observada": 0.0048,
-     "n": 3100
+     "prob_media": 0.0192,
+     "prob_recalibrada": 0.0174,
+     "tasa_observada": 0.0179,
+     "n": 7106
     },
     {
      "dec": 4,
-     "prob_media": 0.0048,
-     "prob_recalibrada": 0.0045,
-     "tasa_observada": 0.0074,
-     "n": 3101
+     "prob_media": 0.0298,
+     "prob_recalibrada": 0.0285,
+     "tasa_observada": 0.0304,
+     "n": 7106
     },
     {
      "dec": 5,
-     "prob_media": 0.0088,
-     "prob_recalibrada": 0.0044,
-     "tasa_observada": 0.0032,
-     "n": 3101
+     "prob_media": 0.0488,
+     "prob_recalibrada": 0.0371,
+     "tasa_observada": 0.035,
+     "n": 7106
     },
     {
      "dec": 6,
-     "prob_media": 0.0168,
-     "prob_recalibrada": 0.0055,
-     "tasa_observada": 0.0039,
-     "n": 3100
+     "prob_media": 0.0839,
+     "prob_recalibrada": 0.0623,
+     "tasa_observada": 0.0637,
+     "n": 7106
     },
     {
      "dec": 7,
-     "prob_media": 0.0317,
-     "prob_recalibrada": 0.0074,
-     "tasa_observada": 0.0074,
-     "n": 3101
+     "prob_media": 0.1511,
+     "prob_recalibrada": 0.1126,
+     "tasa_observada": 0.112,
+     "n": 7106
     },
     {
      "dec": 8,
-     "prob_media": 0.0622,
-     "prob_recalibrada": 0.0193,
-     "tasa_observada": 0.0193,
-     "n": 3101
+     "prob_media": 0.2972,
+     "prob_recalibrada": 0.2261,
+     "tasa_observada": 0.2284,
+     "n": 7106
     },
     {
      "dec": 9,
-     "prob_media": 0.2068,
-     "prob_recalibrada": 0.0533,
-     "tasa_observada": 0.0503,
-     "n": 3101
+     "prob_media": 0.5704,
+     "prob_recalibrada": 0.4317,
+     "tasa_observada": 0.432,
+     "n": 7106
     }
    ]
   }
@@ -382,62 +382,77 @@
  "falsos_negativos": {
   "modelo": "logistica_simple",
   "umbral_top": 0.05,
-  "positivos": 311,
-  "capturados": 94,
-  "falsos_negativos": 217,
+  "positivos": 6614,
+  "capturados": 1594,
+  "falsos_negativos": 5020,
   "fn_por_mes": {
-   "1": 39,
-   "2": 54,
-   "3": 65,
-   "4": 24,
-   "5": 3,
-   "6": 3,
-   "10": 11,
-   "11": 6,
-   "12": 12
+   "1": 1144,
+   "2": 1474,
+   "3": 1098,
+   "4": 469,
+   "5": 155,
+   "6": 73,
+   "7": 51,
+   "8": 20,
+   "9": 75,
+   "10": 102,
+   "11": 87,
+   "12": 272
   },
   "fn_por_anio": {
-   "2008": 29,
-   "2009": 15,
-   "2010": 73,
-   "2011": 17,
-   "2012": 1,
-   "2013": 21,
-   "2014": 24,
-   "2015": 37
+   "2008": 391,
+   "2009": 96,
+   "2010": 168,
+   "2011": 76,
+   "2012": 391,
+   "2013": 117,
+   "2014": 77,
+   "2015": 224,
+   "2016": 280,
+   "2017": 637,
+   "2018": 169,
+   "2019": 178,
+   "2020": 66,
+   "2021": 324,
+   "2022": 291,
+   "2023": 795,
+   "2024": 318,
+   "2025": 422
   },
   "fn_top_distritos": {
-   "Pampas de Hospital": 20,
-   "San Jacinto": 20,
-   "San Juande la Virgen": 17,
-   "Zarumilla": 17,
-   "Sullana": 12,
-   "Corrales": 11,
-   "Huancabamba": 9,
-   "Ayabaca": 8,
-   "Mancora": 8,
-   "Castilla": 8
+   "Lagunas": 132,
+   "Pacaipampa": 131,
+   "Sondorillo": 122,
+   "Matapalo": 118,
+   "Frias": 118,
+   "Sondor": 117,
+   "Paimas": 108,
+   "Sapillica": 108,
+   "Sicchez": 104,
+   "Pampas de Hospital": 102
   },
   "captura_por_mes": {
-   "1": 0.391,
-   "2": 0.341,
-   "3": 0.235,
-   "4": 0.2,
-   "5": 0.4,
+   "1": 0.239,
+   "2": 0.299,
+   "3": 0.298,
+   "4": 0.141,
+   "5": 0.061,
    "6": 0.0,
-   "9": 1.0,
-   "10": 0.083,
-   "11": 0.0,
-   "12": 0.429
+   "7": 0.0,
+   "8": 0.0,
+   "9": 0.0,
+   "10": 0.0,
+   "11": 0.044,
+   "12": 0.155
   },
   "fn_por_departamento": {
-   "Piura": 112,
-   "Tumbes": 105
+   "Piura": 4084,
+   "Tumbes": 936
   },
   "captura_por_departamento": {
-   "Piura": 0.051,
-   "Tumbes": 0.456
+   "Piura": 0.179,
+   "Tumbes": 0.429
   },
-  "lectura": "217 de 311 emergencias (70%) quedan fuera del 5 % de mayor riesgo. El 84% de esos falsos negativos ocurre entre enero y abril (meses con más casos: 3, 2, 1), es decir, en plena temporada de lluvias, no fuera de ella. Por departamento: Piura 52% de los falsos negativos (captura 5%), Tumbes 48% de los falsos negativos (captura 46%)."
+  "lectura": "5020 de 6614 emergencias (76%) quedan fuera del 5 % de mayor riesgo. El 83% de esos falsos negativos ocurre entre enero y abril (meses con más casos: 2, 1, 3), es decir, en plena temporada de lluvias, no fuera de ella. Por departamento: Piura 81% de los falsos negativos (captura 18%), Tumbes 19% de los falsos negativos (captura 43%)."
  }
 }

@@ -1,0 +1,5 @@
+modelo,pr_auc,roc_auc,brier,captura_top5,positivos,n
+climatologia,0.0949,0.8286,0.0096,0.3730,311,31008
+logistica_simple,0.1144,0.8651,0.1438,0.3023,311,31008
+logistica_completa,0.1239,0.8453,0.1468,0.3505,311,31008
+lightgbm,0.0785,0.8105,0.0127,0.3183,311,31008
