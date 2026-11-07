@@ -1,0 +1,105 @@
+{
+ "perfil": "diario",
+ "inicio": "2026-11-07T06:38-05:00",
+ "fin": "2026-11-07T06:41-05:00",
+ "pasos": [
+  {
+   "paso": "descargar_mar.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.9,
+   "salida_final": [
+    "Último día disponible: 2026-11-05. Faltan 0 de los últimos 20 días.",
+    "Histórico: 23 días guardados."
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "descargar_indicadores.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 1.7,
+   "salida_final": [
+    "noaa_semanal: 2357 filas",
+    "  icen: 921 filas"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "descargar_zonas.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 4.9,
+   "salida_final": [
+    "Lluvia: 1036 filas",
+    "Caudal: 756 filas",
+    "  normal de caudal para 27 de 27 ríos",
+    "  normal de lluvia con 30 de 30 años"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "construir.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 1.2,
+   "salida_final": [
+    "Histórico del mar: 23 días",
+    "  indices.json: 28 KB",
+    "  regiones.json: 9 KB",
+    "  mar.json: 134 KB",
+    "  resumen.json: 0 KB",
+    "  zonas.json: 50 KB"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "aviso_lluvia.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 142.7,
+   "salida_final": [
+    "flood-api.open-meteo.com: HTTPSConnectionPool(host='flood-api.open-meteo.com', port=443): Read timed out. (read timeout=120)",
+    "aviso: {'extremo': 0, 'fuerte': 5, 'normal': 73} · solo lluvia: {'extremo': 0, 'fuerte': 5, 'normal': 73} · motivo: {'lluvia': 5, 'caudal': 0, 'lluvia y caudal': 0} · caudal: ok {'Chira': ('normal', 1118.4, 1387.7), 'Piura': ('normal', 239.4, 305.9), 'Tumbes': ('normal', 650.6, 764.2)}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "noticias.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 1.6,
+   "salida_final": [
+    "RSS: 199 titulares",
+    "20 eventos (13 verificados); radar: {'detectado': 4, 'no detectado': 3, 'fuera de alcance': 13, 'sin pasada': 0, 'sin radar': 0}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "metadatos.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.3,
+   "salida_final": [
+    "  vigente        mar                último dato 2026-11-05",
+    "  vigente        nino12             último dato 2026-10-28",
+    "  vigente        icen               último dato 2026-09",
+    "  estimado       lluvia             último dato 2026-11-06",
+    "  estimado       caudal             último dato 2026-11-06",
+    "  estimado       indice_provincial  último dato 2026-11-06",
+    "  vigente        vulnerabilidad     último dato 2019-12-31",
+    "Resumen: {'vigente': 10, 'rezagado': 0, 'no disponible': 0, 'estimado': 6}"
+   ],
+   "error_final": []
+  }
+ ],
+ "ok": true,
+ "fallidos": []
+}
