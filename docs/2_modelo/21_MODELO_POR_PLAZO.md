@@ -75,6 +75,18 @@ Script: `herramientas/pruebas/umbrales_e_intervalos.py` → `docs/evidencia/umbr
 - Es la misma lógica de fases que usa el protocolo de acción temprana de la Cruz Roja Peruana para El Niño costero (documento 24): avisar antes con más falsas alarmas y actuar fuerte con más certeza.
 - El tablero colorea cada probabilidad según su fase.
 
+**Práctica con el pasado: 2017 y 2023, semana a semana** (predicción calibrada hecha una semana antes, con un modelo que nunca vio ese año):
+
+| Año | Semanas-distrito con emergencia | Con aviso de atención (≥ 5 %) la semana anterior | Con alerta (≥ 15 %) | Primera emergencia de cada distrito con atención |
+|---|---|---|---|---|
+| 2017 | 324 | 82 % | 52 % | 41 de 78 |
+| 2023 | 401 | 76 % | 36 % | 41 de 78 |
+
+Ejemplo, Catacaos en 2017 (la probabilidad de cada semana se calculó la semana anterior; * = el SINPAD registró emergencia):
+16/01 3 % · 23/01 10 % · 30/01 5 %* · 06/02 22 % · 13/02 12 % · 20/02 22 %* · 27/02 20 % · 06/03 23 % · **13/03 40 %*** · 20/03 35 % · 27/03 33 %* · 03/04 28 % · 10/04 5 %.
+
+La probabilidad sube desde fines de enero, se mantiene en alerta en febrero y marzo, llega al máximo la semana del gran desborde y baja en abril. Lo más difícil es la **primera** emergencia de cada distrito: solo la mitad tuvo aviso de atención la semana anterior.
+
 **Margen de error de la ventaja sobre la climatología.** Bootstrap por bloques de años: se sortean años completos con reemplazo 2 000 veces, porque las semanas de un mismo año no son independientes.
 
 | Plazo | PR-AUC modelo − climatología | Margen al 95 % | Réplicas en que el modelo gana |
