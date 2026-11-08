@@ -1,0 +1,32 @@
+# 24 · Trabajos parecidos en el mundo y qué tomamos de ellos
+
+*8 de noviembre de 2026. Complementa el documento 23 (estado del arte) sin repetir sus referencias.*
+
+**Cómo se verificó:** cada trabajo se confirmó en la página del editor o del organismo. De la mayoría solo se leyó el resumen, y se dice cuando fue así. Dos se revisaron otra vez a mano: Morales et al. (2026) y el protocolo de la Cruz Roja en el Perú.
+
+## Los más útiles para nosotros
+
+| Trabajo | Qué hicieron | Qué tomamos | Estado |
+|---|---|---|---|
+| Morales, Kaltenbrunner, Lapedriza y Llort (2026), *Using machine learning for the prediction of flood-related 112 calls*, NHESS 26:3943-3967 ([enlace](https://nhess.copernicus.org/articles/26/3943/2026/)) | XGBoost que predice llamadas de emergencia por inundación por municipio y hora en Cataluña (2018-2025), con lluvia, llamadas recientes y capas de exposición. Validan en el tiempo, como nosotros. El modelo funciona en municipios densos y falla en los poco poblados, porque hay pocos registros | Es el trabajo más parecido al nuestro (registros oficiales como etiqueta, por unidad administrativa). Tomamos dos ideas: intervalos con bootstrap por bloques de tiempo y resultados separados por densidad | Pendiente |
+| Van Calster et al. (2019), BMC Medicine 17:230, [doi:10.1186/s12916-019-1466-7](https://doi.org/10.1186/s12916-019-1466-7) | Guía sobre calibración de modelos de probabilidad | Recomiendan corregir primero el nivel (intercepto) y reportar intercepto y pendiente de calibración. Es lo que hicimos con Platt usando los 5 años más recientes | **Hecho el 8/11** (doc 21) |
+| Davis (2017), tesis, Vanderbilt ([enlace](https://ir.vanderbilt.edu/handle/1803/11533)) y CRED, documentación de EM-DAT sobre sesgos ([enlace](https://doc.emdat.be/docs/known-issues-and-limitations/specific-biases/)) | Con el tiempo, un modelo sigue ordenando bien, pero sus probabilidades se descalibran si cambia la tasa de registro; las bases de desastres registran más en años recientes | Explica por qué nuestro modelo subestimaba: el SINPAD registra más emergencias en los años recientes. Justifica recalibrar cada año | Hecho (calibración); se podría agregar una variable de «esfuerzo de registro» |
+| Cruz Roja Peruana, Cruz Roja Alemana, Climate Centre y 510: *Implementing the FbF mechanism in Peru*, Anticipation Hub ([enlace](https://www.anticipation-hub.org/experience/anticipatory-action-in-the-world/peru/implementing-the-fbf-mechanism-in-peru)) | Protocolo de acción temprana para inundaciones costeras por El Niño; Tumbes y Piura figuran «en desarrollo». Activación en tres fases: (1) el ENFEN prevé 50 % de probabilidad de Niño fuerte y el pronóstico estacional, más de 70 % de superar el p95 de lluvia; (2) pronóstico mensual con más de 70 % sobre el p95; (3) pronóstico de corto plazo con lluvia sobre el p99 y más de 60 % de probabilidad | **Usa los mismos percentiles (p95 y p99) que nuestro aviso.** Valida el criterio del tablero y sugiere presentar los avisos en fases | Pendiente: tabla de umbrales en fases |
+| Keating, Lee, Bazo y Block (2021), NHESS 21:2215, [doi:10.5194/nhess-21-2215-2021](https://doi.org/10.5194/nhess-21-2215-2021) | Pronóstico estacional de caudal en el **río Piura** para disparar la acción temprana; el modelo basado en El Niño fue el mejor | Respalda usar El Niño 1+2 para el plazo largo | Ya usamos Niño 1+2; mejorarlo con las categorías del ENFEN |
+| Aguirre et al. (2019), IJDRS 10:493-510, [doi:10.1007/s13753-019-00245-x](https://doi.org/10.1007/s13753-019-00245-x) | Evaluación de la acción temprana de 2016 en Lambayeque | Las viviendas que recibieron apoyo antes tuvieron alrededor de 63 % menos daño (según el resumen): argumento del valor de anticipar | Para la presentación |
+| Funk et al. (2015), *Scientific Data* 2:150066, [doi:10.1038/sdata.2015.66](https://doi.org/10.1038/sdata.2015.66) (CHIRPS) y Aybar et al. (2020), [doi:10.1080/02626667.2019.1649411](https://doi.org/10.1080/02626667.2019.1649411) (PISCO) | Lluvia diaria de alta resolución: CHIRPS a 0,05° desde 1981 y PISCO del SENAMHI a 0,1° | **PISCO diario solo es público hasta 2016-2018**; para 2017-2025 hay que pedírselo al SENAMHI. CHIRPS sí cubre hasta hoy y es unas 100 veces más fino en área que NASA POWER | Pendiente: es la mejora de más esfuerzo (10 a 16 horas) |
+| Kooshki Forooshani et al. (2024), NHESS 24:309, [doi:10.5194/nhess-24-309-2024](https://doi.org/10.5194/nhess-24-309-2024) | Modelo en dos etapas (¿hay daño? y ¿cuánto?) para viviendas dañadas por tifones, con validación en el tiempo | Predecir la **fracción** de viviendas expuestas (con el Censo 2025) y entrenar la segunda etapa con los eventos grandes, para no subestimar los años extremos | Pendiente |
+| Peng et al. (2024), *Science Advances* 10:eadk8646, [doi:10.1126/sciadv.adk8646](https://doi.org/10.1126/sciadv.adk8646) | El Niño costero de 2023 y el ciclón Yaku fueron predecibles con alrededor de 1 mes de anticipación | Tope realista para el plazo de 4 semanas; el viento costero sería una variable futura | Después del 15/11 |
+
+## Cómo se compara nuestro resultado
+
+En el preprint DELUGE (Kawakami et al., 2026, arXiv:2607.16050), un problema parecido (daño por lluvia por píxel y día, con una tasa de positivos de 0,25 %) obtiene un PR-AUC de 0,23 a 0,24 con LightGBM y su modelo propio. Nuestro PR-AUC a 1 semana (0,219, con una tasa de 3,1 %) no es directamente comparable, porque la tasa base es distinta, pero está en el mismo orden. Lo que conviene destacar es la mejora sobre la tasa y la climatología, no el número aislado.
+
+## Mejoras ordenadas (próximos pasos)
+
+1. **Tabla de umbrales en fases**, alineada con el protocolo de la Cruz Roja: aciertos, falsas alarmas y emergencias sin aviso para cada umbral. 3 a 4 horas.
+2. **Intervalos de confianza del PR-AUC** con bootstrap por años, y resultados separados por distritos urbanos y rurales (Morales et al., 2026). 3 a 4 horas.
+3. **Niño 1+2 por categorías del ENFEN y su interacción con la temporada de diciembre a abril.** 2 a 4 horas.
+4. **Variable de «esfuerzo de registro» del SINPAD.** Es una propuesta nuestra, inspirada en los sesgos de registro de EM-DAT. 4 a 6 horas.
+5. **CHIRPS en lugar de NASA POWER.** 10 a 16 horas; arriesgado antes del 15/11.
+6. **Viviendas afectadas como fracción del censo, en dos etapas.** 8 a 12 horas; como prueba, no como reemplazo.
