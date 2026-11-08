@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-07T13:06-05:00",
- "hoy": "2026-11-07",
+ "generado": "2026-11-08T06:40-05:00",
+ "hoy": "2026-11-08",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
   "verificados": "data/eventos/catalogo_verificado.csv (revisión manual del equipo)",
@@ -141,6 +141,12 @@
      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNbUpZN05zVUVxelFOQVJoZWZsWmdzRWd5NmRHWlBReXpWdjVIdXBNbVAwYXlWcktSUzJQaEVpRER1a1pZc1A3S05qUDZUeHVCNExPNTNwNFZ3VE9LR1lUWWlGZnhRT25BcmRWOFY0OEFvVU1iY0FNNDdOdEhFRFcyNW1CWnBsUUdzUzJqUjV1cG8yMy1yU3FTcDJ5VFVKeExvNGJZZjBIUFVwUjM2YUlDRWt4YUNFTHJ0blZmVUdZMUY2Vjc4c2VMWkN2RV8zbnFuY2NoR1E4Rk1TRjczcUNrNVB5Znlld9IB-gFBVV95cUxQOGpONm9pSWZSMldLc0k1NGMxbUlMOHZuZ2JzV21iRVI3eTZReTU2akdkV3U0R2Ntc1p6THlLX083dXpxNnlBbjgycktpSllDOXpxaFNmZEFoODRabnlSd090Rmw5Y3A0UzQxdVI4Q2xtSVdyTUJtaUU1MThySkt5eUV3WlMyU3BkaUxpLW5WNktFU1lPRUN1b1A0TzBnZlFnTVI3VlJVd0t5SlNvdklvYUI4UU00QWxGOHlQMldwOHV4SVVRR25UNHJ3THY2WWt0M1M3X3RsUDZjdHhVMmc2dzN6clF1RmFQekZuVll6ckhHdzBKeE8zQmxn?oc=5"
     },
     {
+     "titulo": "Tumbes: alojamiento temporal para damnificados por lluvias no cuenta con baños ni techo de protección",
+     "medio": "La República",
+     "fecha": "2026-11-02",
+     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxObmNnY1VQVG1MQmhQSmRNRTBObjFqT0ZHRWxsNzhlcEJ3UFRadzg0VndFaldPTEhXRXJ0T2FnQXg0QldIYklVbmEyX2tpanN1YkR5a0tHZXliN3pvRVFyc0RxNGhfYUNmZHNjMjNTZURQekZza1pROUNLb0t2N0J6UU9OMVFXb3VvLWFMZEU4c3Rnb3dOY2F0VWtvaE9LQ202NGdrRG1ocFB3aHpNSEpZNWNfcFl3QVV6NGsyejdsWTU1UDFuWEdYcl9Fa3VCUnpaeTBOdjFKVzFELTFUdlBtcDRUN0rSAeoBQVVfeXFMTVZ5YlI4cDVMMk92cFp2Umo3cV83cWtKRmJLOXZqLWZMSTBaYzAtM1hNZklmZFVodURwX2FMYnY1ZGwyMzBTYkxJa2swdHZCUXVhdjZPaFNEU0RfekxTdnYyMDlZTGdTZEgzNkZjU1hfZkZzRi1OM1JTZWRoeDhoZHZmLVF4em5Wdm1lcWtlNXJSRmFSUVZPUVZOR25OVGpNeE8xeHhJb0tzMC1jNi1wdFBVMmc5RVY3RnhmdWxyWkg0VWhMdmtEMmhNWHExZTZ0a0FxS1ZINjhhOHJObG1XQXgtX2duWWtJVjdB?oc=5"
+    },
+    {
      "titulo": "Tumbes: Mindef evacua a afectados por inundaciones hacia albergues",
      "medio": "TVPerú",
      "fecha": "2026-11-02",
@@ -151,12 +157,6 @@
      "medio": "Diario Correo",
      "fecha": "2026-11-02",
      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPMktRYndiUkZETnl2Y0o1d0E2RUw5UlRHM3pUSnFmbG9CS1laclQ5dXppU0JiZXlDeFRDNXVXbVA5amg1NU1jeWFrY0FOUE5OX0ZtV2lBVVE0UzBubEYwM1BkdWI1YVF3WlBISnI1Nml1TUFkMWVSSURsc0l1ajd2RWNXX1F2Qk0tM29aS3FUVnpYdWp0dHFFU256YWNHQjN1ZG54RnJfSVlhYVd5NEEyT3F3eGY0a3c2c3lDNlRmazNOd0lBNnR30gHbAUFVX3lxTE1LRHlUNEY3MVRrYVhvQk11Zi1ZTVAySEk1b1U1ck1YVmpXMzhpOHFySzJGbFljUHZlRU5lQWo0ekZmQVF3akN4alZXVlB2NjBOZWFZUDFzVVp6NTZtNV9pb1hBYTU3aTJqVE5oOTZORllJbkViWWNFa1dGZTJVQzRfVVBraHpCN2RyYm9fLUpQOWpON3lvMC1jTUtGbHpIcExSMFpkRFBQWnJocEU1SC1fanRReU80anAxUEFibWdacjdWSVVQb2R1T29pbVR4NVNuRG5Da3RyNURoRQ?oc=5"
-    },
-    {
-     "titulo": "Tumbes: alojamiento temporal para damnificados por lluvias no cuenta con baños ni techo de protección",
-     "medio": "La República",
-     "fecha": "2026-11-02",
-     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxObmNnY1VQVG1MQmhQSmRNRTBObjFqT0ZHRWxsNzhlcEJ3UFRadzg0VndFaldPTEhXRXJ0T2FnQXg0QldIYklVbmEyX2tpanN1YkR5a0tHZXliN3pvRVFyc0RxNGhfYUNmZHNjMjNTZURQekZza1pROUNLb0t2N0J6UU9OMVFXb3VvLWFMZEU4c3Rnb3dOY2F0VWtvaE9LQ202NGdrRG1ocFB3aHpNSEpZNWNfcFl3QVV6NGsyejdsWTU1UDFuWEdYcl9Fa3VCUnpaeTBOdjFKVzFELTFUdlBtcDRUN0rSAeoBQVVfeXFMTVZ5YlI4cDVMMk92cFp2Umo3cV83cWtKRmJLOXZqLWZMSTBaYzAtM1hNZklmZFVodURwX2FMYnY1ZGwyMzBTYkxJa2swdHZCUXVhdjZPaFNEU0RfekxTdnYyMDlZTGdTZEgzNkZjU1hfZkZzRi1OM1JTZWRoeDhoZHZmLVF4em5Wdm1lcWtlNXJSRmFSUVZPUVZOR25OVGpNeE8xeHhJb0tzMC1jNi1wdFBVMmc5RVY3RnhmdWxyWkg0VWhMdmtEMmhNWHExZTZ0a0FxS1ZINjhhOHJObG1XQXgtX2duWWtJVjdB?oc=5"
     },
     {
      "titulo": "Fuertes lluvias golpean Piura y Tumbes: activación de quebradas e inundaciones generan preocupación",
@@ -327,16 +327,16 @@
      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPczc3NFZjR2xSVE42dWxwVHc2QUpmOTV2ZTRwVmNod3RGeXdZRUppTHg5N2Nyd2xGdktnTXN1d1cwdEtYbDZucGd1TDdob0s3UkpvdkdDYktxUERjZHRQN25sRjRmSlA5VTQ4MzRFU0tHdl9BNGJQWGk5cERHTjROa1dGdGxPcDlpRmd6ZEMtMGE0T1c1czFmMUlvQ2R5T0xEUXdxNC1qMC1pTk5MTWFfemtQbXV0WDVsTXNjRkEyV0hwaFF2SDFCQzNSTU1sRjJYYVHSAeYBQVVfeXFMT1g3ckZ3b0pvSG5PMnE1cW9UNHExRFV0Q2UzWmhLNElNVFBhNnNGN1lwMjZ4YVZBSGNkajN4SHU5Z0w5ZkdaTGtreVJjYVJMdjFsYkV4bWVoaGZCZmpTY1daRkRzWldPbVBORFpxOWVsVC1oc08xdTRtelVXcFlqalo4TDI5S2QzYUtIdnpPRFRHWWdfY3ktYXkxaXIwWHlJWmk1Y2k1RFJQLVF5OEdpYk5DWV9MU04xYXVoMUZHUjNkeHc5NVFWVEtqZ1FKOU9UX05zdjFvVW9ndTZhSklmcjlZN25WNmc?oc=5"
     },
     {
-     "titulo": "Lluvias afectan a Tumbes y Lambayeque: reportan aniegos y vías de acceso bloqueadas",
-     "medio": "Radio Nacional",
-     "fecha": "2026-11-05",
-     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPTl95T040NzlvOERnZGhxOVZkNlotMlE0QUswbUZ1aEgtbXRxUnNqUEJlU1NjSzk2RW5vUGFsVmpXampzdGxrVTN2ZTkwdVJNbjg0SE80M3BCWlloclRXMnFHSDNKaTVheWxVeWRrS3dWQ3hlSk9zbjA5Wm9SVFRjRFV5ZWlRdkZIbEhKalBBSXQ1ZWJSVkRKUGJZTmhMeFRZNUg3OVJpbXJDeGdBVERQTlFBRElFeThVTEpxTzh2clZkSDR1VUpVYUt2TFVOcUlx?oc=5"
-    },
-    {
      "titulo": "Las lluvias intensas inundan Tumbes, activan quebradas y afectan la circulación en tres provincias",
      "medio": "Infobae",
      "fecha": "2026-11-05",
      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPaWJmMi1lRUVxSEpWX0RKanh1U0hMMkZXcjZEMWxRUW9UOUc1RHpMa185Z0E5Yk92eExUUkhqdV9mUDVtZThSWkhUU0VxOHU5ZlBmQ200SGNKMF9aM1lXLTkzTTdWSk1tRjJCbWJsR1lqTVZXSThYOXY2UW02V1E0NmRwWDEyQjQwcWdFYnNVZml1QXhTLTdLM3BsX1Fpa09FTjhfTF9zYW9NREdjeGhEclNHOEc3amJleE5wdFR4QnNidTdydDE0a05CWE9oR1VfbWRSbNIB7wFBVV95cUxNNjMxYXR0RWNrVXVialNlZ1NDWTZDektjbDk4UVVEX3BJWm5GMThLVy1pR3ZjakhSNnktQnJZMUxzS2dtSVJjZ2FWbElBVHNWbVdRXzhRNEt3dUZnOVZsQjRNVG9ZSzVvTFd6bzgwX0xLOHdnSk5fY1pFckJLRGhnV1NQVElXVURRR1M1dEN3YlBJdWgxSTRTcFpXUnVnTFlvLVVBd3VPY1p6Z1d2aVdhUDFDS2RYNmtDQUgyTTBOa3N5SkNtUVNBUC15OTFnNEpJTlJ2SnFjYzRCcUNsYXdHQjJfdlN2RzAxdGZ6QTN2cw?oc=5"
+    },
+    {
+     "titulo": "Lluvias afectan a Tumbes y Lambayeque: reportan aniegos y vías de acceso bloqueadas",
+     "medio": "TVPerú",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOUkpNYVJ2cUgzNUV2cnE5bkc0bGN5MER2cWJ5LVVhM2pvV2NqT1h0LWFUeGR0NjRqSmpGUXYxXy0wYjBVRlF6X2kwYkZVVGNET24xOWdqNkpaQ3BLRXJpOW93VTFCVlgxTU13MHdvdDd0b3ZTUjdFdWU2N0w2Zm1fYmM4QmNFWTlVejE3SkYzb091WWw0bWJOVUlfdDR3bk9ZakZYaUJGZThEakNYT01lWUR2SjlFek10MG81T28wamZmVlEtU3o4?oc=5"
     },
     {
      "titulo": "Se implementó en 36 horas y terminó inundado en un día: el fiasco del hospital de campaña del gobierno de Keiko Fujimori en Tumbes (VIDEO)",
