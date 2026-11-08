@@ -70,6 +70,11 @@ CON_AVISO = SIN_AVISO + ["lluvia_sobre_p95", "lluvia_sobre_p99", "log_lluvia_7d"
 # solo como regla de comparación. Costo medido: PR-AUC a 1 semana 0,227 -> 0,219.
 MODELO = "logística con variables del aviso"
 CALIBRADO = "logística con aviso, calibrada"
+# Fases de aviso sobre la probabilidad calibrada (herramientas/pruebas/umbrales_e_intervalos.py, validación 2008-2025):
+#   atención >= 5 %: a 1 semana captura 71 % de las emergencias; 15 de cada 100 avisos aciertan (tasa base: 3 de 100)
+#   alerta   >= 15 %: captura 35 %; 26 de cada 100 avisos aciertan (8 veces la tasa base)
+FASES = {"atencion": 0.05, "alerta": 0.15}
+EVIDENCIA = DATA.parent / "docs" / "evidencia" / "umbrales_e_intervalos.json"
 ANIOS_CALIBRACION = 5      # Platt con las predicciones fuera de muestra de los 5 años anteriores (la tasa de registro
                            # del SINPAD sube con el tiempo: los años recientes representan mejor el nivel actual)
 
@@ -368,6 +373,17 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
                                     "anios_que_gana": int((mod.loc[h] > cli.loc[h]).sum()), "anios": int(mod.loc[h].size),
                                     "bss": round(float(calb.loc[h, "bss"]), 3),
                                     "top10_promedio": round(float(cal.loc[h, "top10_promedio"]), 2)} for h in PLAZOS]
+    # Fases de aviso y margen de error (bootstrap por años), si la evidencia ya se calculó
+    salida["fases"] = {"umbrales": FASES}
+    if EVIDENCIA.exists():
+        ev = json.load(open(EVIDENCIA, encoding="utf-8"))["plazos"]
+        for c in salida["calidad_por_plazo"]:
+            b = ev[f"h{c['h']}"]["bootstrap_por_anios"]
+            c["ventaja_sobre_climatologia_ic95"] = b["ic95"]
+            c["pct_replicas_modelo_gana"] = b["pct_replicas_modelo_gana"]
+        salida["fases"]["desempeno"] = {f"h{h}": {n: next((f for f in ev[f"h{h}"]["umbrales_modelo_calibrado"]
+                                                           if abs(f["umbral"] - u) < 1e-9), None)
+                                                  for n, u in FASES.items()} for h in PLAZOS}
     salida["modelo"] = ("Regresión logística con variables del aviso (lluvia sobre p95/p99, lluvia de 7 y 30 días, caudal "
                         "sobre p95, Niño 1+2, % inundable, censo, época, historia del distrito), calibrada con Platt usando "
                         f"las predicciones fuera de muestra de los últimos {ANIOS_CALIBRACION} años. Etiqueta: SINPAD (INDECI) 2003-2025.")

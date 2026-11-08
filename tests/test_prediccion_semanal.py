@@ -66,3 +66,18 @@ def test_salida_json():
             assert 0 <= d[f"prob_h{h}"] <= 1
         assert d["viviendas_si_ocurre"] >= 0
     assert [c["h"] for c in j["calidad_por_plazo"]] == [1, 2, 3, 4]
+
+
+def test_fases_y_margen_publicados():
+    import json
+    from pathlib import Path
+    ruta = Path(__file__).resolve().parents[1] / "dashboard" / "data" / "prediccion_semanal.json"
+    if not ruta.exists():
+        return
+    p = json.loads(ruta.read_text(encoding="utf-8"))
+    f = p["fases"]["umbrales"]
+    assert 0 < f["atencion"] < f["alerta"] < 1
+    for c in p["calidad_por_plazo"]:
+        ic = c.get("ventaja_sobre_climatologia_ic95")
+        if ic:
+            assert ic[0] <= ic[1]

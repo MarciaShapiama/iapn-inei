@@ -1,0 +1,449 @@
+{
+ "metodo": "Umbrales de aviso en fases e intervalos de confianza del modelo por plazo (src/prediccion_semanal.py).\n\nUsa SOLO las predicciones fuera de muestra de la validación por años (2008-2025), sin volver a entrenar:\n    data/modelo/resultados_plazo/predicciones_validacion.csv.gz\n    data/modelo/resultados_plazo/metricas_por_anio.csv\n\n1. Umbrales: para cada plazo y umbral de probabilidad (modelo calibrado, el que se publica), cuántos avisos habría\n   dado, cuántos acertaron (precisión), qué parte de las emergencias tuvo aviso (captura), cuántas emergencias\n   quedaron sin aviso y cuántos avisos por distrito y año. Con eso se eligen dos fases: «atención» y «alerta».\n2. Intervalos: bootstrap por bloques de AÑOS (se sortean años completos con reemplazo, 2 000 veces), porque las\n   semanas de un mismo año no son independientes. Para la diferencia de PR-AUC modelo − climatología y de BSS.\n3. Por densidad: distritos en tercios por densidad de población (INEI 2020, data/exposicion/ubigeo_distritos.csv),\n   como en Morales et al. (2026), que encontraron que estos modelos fallan donde hay pocos registros.",
+ "anios_validacion": [
+  2008,
+  2025
+ ],
+ "distritos_sin_densidad": [
+  "PIURASALITRAL_MORROPON",
+  "PIURASALITRAL_SULLANA"
+ ],
+ "plazos": {
+  "h1": {
+   "umbrales_modelo_calibrado": [
+    {
+     "umbral": 0.03,
+     "avisos": 15939,
+     "aciertos": 1876,
+     "precision_pct": 11.8,
+     "captura_pct": 82.1,
+     "emergencias_sin_aviso": 408,
+     "avisos_por_distrito_y_anio": 11.35
+    },
+    {
+     "umbral": 0.05,
+     "avisos": 10649,
+     "aciertos": 1612,
+     "precision_pct": 15.1,
+     "captura_pct": 70.6,
+     "emergencias_sin_aviso": 672,
+     "avisos_por_distrito_y_anio": 7.58
+    },
+    {
+     "umbral": 0.075,
+     "avisos": 7307,
+     "aciertos": 1366,
+     "precision_pct": 18.7,
+     "captura_pct": 59.8,
+     "emergencias_sin_aviso": 918,
+     "avisos_por_distrito_y_anio": 5.2
+    },
+    {
+     "umbral": 0.1,
+     "avisos": 5400,
+     "aciertos": 1152,
+     "precision_pct": 21.3,
+     "captura_pct": 50.4,
+     "emergencias_sin_aviso": 1132,
+     "avisos_por_distrito_y_anio": 3.85
+    },
+    {
+     "umbral": 0.15,
+     "avisos": 3146,
+     "aciertos": 802,
+     "precision_pct": 25.5,
+     "captura_pct": 35.1,
+     "emergencias_sin_aviso": 1482,
+     "avisos_por_distrito_y_anio": 2.24
+    },
+    {
+     "umbral": 0.2,
+     "avisos": 1907,
+     "aciertos": 528,
+     "precision_pct": 27.7,
+     "captura_pct": 23.1,
+     "emergencias_sin_aviso": 1756,
+     "avisos_por_distrito_y_anio": 1.36
+    },
+    {
+     "umbral": 0.3,
+     "avisos": 734,
+     "aciertos": 222,
+     "precision_pct": 30.2,
+     "captura_pct": 9.7,
+     "emergencias_sin_aviso": 2062,
+     "avisos_por_distrito_y_anio": 0.52
+    }
+   ],
+   "bootstrap_por_anios": {
+    "pr_auc_modelo_menos_climatologia": 0.058,
+    "ic95": [
+     0.024,
+     0.083
+    ],
+    "pct_replicas_modelo_gana": 100.0,
+    "bss_calibrado_menos_climatologia_ic95": [
+     -0.003,
+     0.078
+    ],
+    "pct_replicas_bss_gana": 96.6
+   },
+   "por_densidad": [
+    {
+     "densidad": "baja",
+     "distritos": 26,
+     "pr_auc_modelo": 0.214,
+     "tasa": 0.0338,
+     "emergencias": 826,
+     "pr_auc_climatologia": 0.162,
+     "veces_sobre_tasa": 6.3
+    },
+    {
+     "densidad": "media",
+     "distritos": 25,
+     "pr_auc_modelo": 0.206,
+     "tasa": 0.0331,
+     "emergencias": 777,
+     "pr_auc_climatologia": 0.156,
+     "veces_sobre_tasa": 6.2
+    },
+    {
+     "densidad": "alta",
+     "distritos": 25,
+     "pr_auc_modelo": 0.246,
+     "tasa": 0.0276,
+     "emergencias": 647,
+     "pr_auc_climatologia": 0.168,
+     "veces_sobre_tasa": 8.9
+    }
+   ]
+  },
+  "h2": {
+   "umbrales_modelo_calibrado": [
+    {
+     "umbral": 0.03,
+     "avisos": 17824,
+     "aciertos": 1882,
+     "precision_pct": 10.6,
+     "captura_pct": 82.4,
+     "emergencias_sin_aviso": 402,
+     "avisos_por_distrito_y_anio": 12.7
+    },
+    {
+     "umbral": 0.05,
+     "avisos": 11655,
+     "aciertos": 1627,
+     "precision_pct": 14.0,
+     "captura_pct": 71.2,
+     "emergencias_sin_aviso": 657,
+     "avisos_por_distrito_y_anio": 8.3
+    },
+    {
+     "umbral": 0.075,
+     "avisos": 7459,
+     "aciertos": 1263,
+     "precision_pct": 16.9,
+     "captura_pct": 55.3,
+     "emergencias_sin_aviso": 1021,
+     "avisos_por_distrito_y_anio": 5.31
+    },
+    {
+     "umbral": 0.1,
+     "avisos": 5065,
+     "aciertos": 971,
+     "precision_pct": 19.2,
+     "captura_pct": 42.5,
+     "emergencias_sin_aviso": 1313,
+     "avisos_por_distrito_y_anio": 3.61
+    },
+    {
+     "umbral": 0.15,
+     "avisos": 2693,
+     "aciertos": 596,
+     "precision_pct": 22.1,
+     "captura_pct": 26.1,
+     "emergencias_sin_aviso": 1688,
+     "avisos_por_distrito_y_anio": 1.92
+    },
+    {
+     "umbral": 0.2,
+     "avisos": 1603,
+     "aciertos": 390,
+     "precision_pct": 24.3,
+     "captura_pct": 17.1,
+     "emergencias_sin_aviso": 1894,
+     "avisos_por_distrito_y_anio": 1.14
+    },
+    {
+     "umbral": 0.3,
+     "avisos": 634,
+     "aciertos": 202,
+     "precision_pct": 31.9,
+     "captura_pct": 8.8,
+     "emergencias_sin_aviso": 2082,
+     "avisos_por_distrito_y_anio": 0.45
+    }
+   ],
+   "bootstrap_por_anios": {
+    "pr_auc_modelo_menos_climatologia": 0.037,
+    "ic95": [
+     0.008,
+     0.059
+    ],
+    "pct_replicas_modelo_gana": 99.6,
+    "bss_calibrado_menos_climatologia_ic95": [
+     -0.015,
+     0.054
+    ],
+    "pct_replicas_bss_gana": 91.0
+   },
+   "por_densidad": [
+    {
+     "densidad": "baja",
+     "distritos": 26,
+     "pr_auc_modelo": 0.2,
+     "tasa": 0.0338,
+     "emergencias": 826,
+     "pr_auc_climatologia": 0.161,
+     "veces_sobre_tasa": 5.9
+    },
+    {
+     "densidad": "media",
+     "distritos": 25,
+     "pr_auc_modelo": 0.185,
+     "tasa": 0.0331,
+     "emergencias": 777,
+     "pr_auc_climatologia": 0.156,
+     "veces_sobre_tasa": 5.6
+    },
+    {
+     "densidad": "alta",
+     "distritos": 25,
+     "pr_auc_modelo": 0.215,
+     "tasa": 0.0276,
+     "emergencias": 647,
+     "pr_auc_climatologia": 0.168,
+     "veces_sobre_tasa": 7.8
+    }
+   ]
+  },
+  "h3": {
+   "umbrales_modelo_calibrado": [
+    {
+     "umbral": 0.03,
+     "avisos": 18599,
+     "aciertos": 1879,
+     "precision_pct": 10.1,
+     "captura_pct": 82.3,
+     "emergencias_sin_aviso": 405,
+     "avisos_por_distrito_y_anio": 13.25
+    },
+    {
+     "umbral": 0.05,
+     "avisos": 12080,
+     "aciertos": 1565,
+     "precision_pct": 13.0,
+     "captura_pct": 68.5,
+     "emergencias_sin_aviso": 719,
+     "avisos_por_distrito_y_anio": 8.6
+    },
+    {
+     "umbral": 0.075,
+     "avisos": 7524,
+     "aciertos": 1167,
+     "precision_pct": 15.5,
+     "captura_pct": 51.1,
+     "emergencias_sin_aviso": 1117,
+     "avisos_por_distrito_y_anio": 5.36
+    },
+    {
+     "umbral": 0.1,
+     "avisos": 5022,
+     "aciertos": 834,
+     "precision_pct": 16.6,
+     "captura_pct": 36.5,
+     "emergencias_sin_aviso": 1450,
+     "avisos_por_distrito_y_anio": 3.58
+    },
+    {
+     "umbral": 0.15,
+     "avisos": 2616,
+     "aciertos": 504,
+     "precision_pct": 19.3,
+     "captura_pct": 22.1,
+     "emergencias_sin_aviso": 1780,
+     "avisos_por_distrito_y_anio": 1.86
+    },
+    {
+     "umbral": 0.2,
+     "avisos": 1501,
+     "aciertos": 335,
+     "precision_pct": 22.3,
+     "captura_pct": 14.7,
+     "emergencias_sin_aviso": 1949,
+     "avisos_por_distrito_y_anio": 1.07
+    },
+    {
+     "umbral": 0.3,
+     "avisos": 536,
+     "aciertos": 142,
+     "precision_pct": 26.5,
+     "captura_pct": 6.2,
+     "emergencias_sin_aviso": 2142,
+     "avisos_por_distrito_y_anio": 0.38
+    }
+   ],
+   "bootstrap_por_anios": {
+    "pr_auc_modelo_menos_climatologia": 0.014,
+    "ic95": [
+     -0.01,
+     0.033
+    ],
+    "pct_replicas_modelo_gana": 86.6,
+    "bss_calibrado_menos_climatologia_ic95": [
+     -0.026,
+     0.031
+    ],
+    "pct_replicas_bss_gana": 73.5
+   },
+   "por_densidad": [
+    {
+     "densidad": "baja",
+     "distritos": 26,
+     "pr_auc_modelo": 0.177,
+     "tasa": 0.0338,
+     "emergencias": 826,
+     "pr_auc_climatologia": 0.161,
+     "veces_sobre_tasa": 5.2
+    },
+    {
+     "densidad": "media",
+     "distritos": 25,
+     "pr_auc_modelo": 0.166,
+     "tasa": 0.0331,
+     "emergencias": 777,
+     "pr_auc_climatologia": 0.156,
+     "veces_sobre_tasa": 5.0
+    },
+    {
+     "densidad": "alta",
+     "distritos": 25,
+     "pr_auc_modelo": 0.187,
+     "tasa": 0.0276,
+     "emergencias": 647,
+     "pr_auc_climatologia": 0.168,
+     "veces_sobre_tasa": 6.8
+    }
+   ]
+  },
+  "h4": {
+   "umbrales_modelo_calibrado": [
+    {
+     "umbral": 0.03,
+     "avisos": 19466,
+     "aciertos": 1891,
+     "precision_pct": 9.7,
+     "captura_pct": 82.8,
+     "emergencias_sin_aviso": 393,
+     "avisos_por_distrito_y_anio": 13.86
+    },
+    {
+     "umbral": 0.05,
+     "avisos": 12560,
+     "aciertos": 1522,
+     "precision_pct": 12.1,
+     "captura_pct": 66.6,
+     "emergencias_sin_aviso": 762,
+     "avisos_por_distrito_y_anio": 8.95
+    },
+    {
+     "umbral": 0.075,
+     "avisos": 7644,
+     "aciertos": 1086,
+     "precision_pct": 14.2,
+     "captura_pct": 47.5,
+     "emergencias_sin_aviso": 1198,
+     "avisos_por_distrito_y_anio": 5.44
+    },
+    {
+     "umbral": 0.1,
+     "avisos": 4976,
+     "aciertos": 799,
+     "precision_pct": 16.1,
+     "captura_pct": 35.0,
+     "emergencias_sin_aviso": 1485,
+     "avisos_por_distrito_y_anio": 3.54
+    },
+    {
+     "umbral": 0.15,
+     "avisos": 2480,
+     "aciertos": 450,
+     "precision_pct": 18.1,
+     "captura_pct": 19.7,
+     "emergencias_sin_aviso": 1834,
+     "avisos_por_distrito_y_anio": 1.77
+    },
+    {
+     "umbral": 0.2,
+     "avisos": 1339,
+     "aciertos": 279,
+     "precision_pct": 20.8,
+     "captura_pct": 12.2,
+     "emergencias_sin_aviso": 2005,
+     "avisos_por_distrito_y_anio": 0.95
+    },
+    {
+     "umbral": 0.3,
+     "avisos": 437,
+     "aciertos": 96,
+     "precision_pct": 22.0,
+     "captura_pct": 4.2,
+     "emergencias_sin_aviso": 2188,
+     "avisos_por_distrito_y_anio": 0.31
+    }
+   ],
+   "bootstrap_por_anios": {
+    "pr_auc_modelo_menos_climatologia": -0.0,
+    "ic95": [
+     -0.019,
+     0.016
+    ],
+    "pct_replicas_modelo_gana": 50.5,
+    "bss_calibrado_menos_climatologia_ic95": [
+     -0.031,
+     0.022
+    ],
+    "pct_replicas_bss_gana": 51.7
+   },
+   "por_densidad": [
+    {
+     "densidad": "baja",
+     "distritos": 26,
+     "pr_auc_modelo": 0.164,
+     "tasa": 0.0338,
+     "emergencias": 826,
+     "pr_auc_climatologia": 0.161,
+     "veces_sobre_tasa": 4.9
+    },
+    {
+     "densidad": "media",
+     "distritos": 25,
+     "pr_auc_modelo": 0.151,
+     "tasa": 0.0331,
+     "emergencias": 777,
+     "pr_auc_climatologia": 0.155,
+     "veces_sobre_tasa": 4.6
+    },
+    {
+     "densidad": "alta",
+     "distritos": 25,
+     "pr_auc_modelo": 0.17,
+     "tasa": 0.0276,
+     "emergencias": 647,
+     "pr_auc_climatologia": 0.168,
+     "veces_sobre_tasa": 6.2
+    }
+   ]
+  }
+ }
+}

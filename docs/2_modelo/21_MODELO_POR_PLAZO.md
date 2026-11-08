@@ -56,6 +56,46 @@ Lo que queda pendiente para mejorar la probabilidad:
 - umbrales operativos (niveles) elegidos con precisión y captura;
 - intervalos de confianza de la ventaja sobre la climatología.
 
+### Fases de aviso, margen de error y desempeño por densidad (8/11/2026)
+
+Script: `herramientas/pruebas/umbrales_e_intervalos.py` → `docs/evidencia/umbrales_e_intervalos.json`. Usa solo las predicciones fuera de muestra de 2008-2025, sin volver a entrenar. Se corrió dos veces y dio el mismo archivo.
+
+**Fases de aviso** (probabilidad calibrada a 1 semana; sin modelo, 3,2 de cada 100 semanas-distrito tienen emergencia):
+
+| Umbral | Avisos por distrito y año | De cada 100 avisos, aciertan | De cada 100 emergencias, tuvieron aviso |
+|---|---|---|---|
+| 3 % | 11,4 | 12 | 82 |
+| **5 % → atención** | 7,6 | 15 | **71** |
+| 10 % | 3,9 | 21 | 50 |
+| **15 % → alerta** | 2,2 | **26** | 35 |
+| 30 % | 0,5 | 30 | 10 |
+
+- **Atención** (5 %) es el umbral que todavía avisa antes de 7 de cada 10 emergencias.
+- **Alerta** (15 %) es donde 1 de cada 4 avisos acierta, unas 8 veces la tasa sin modelo, con unos 2 avisos por distrito al año.
+- Es la misma lógica de fases que usa el protocolo de acción temprana de la Cruz Roja Peruana para El Niño costero (documento 24): avisar antes con más falsas alarmas y actuar fuerte con más certeza.
+- El tablero colorea cada probabilidad según su fase.
+
+**Margen de error de la ventaja sobre la climatología.** Bootstrap por bloques de años: se sortean años completos con reemplazo 2 000 veces, porque las semanas de un mismo año no son independientes.
+
+| Plazo | PR-AUC modelo − climatología | Margen al 95 % | Réplicas en que el modelo gana |
+|---|---|---|---|
+| 1 semana | +0,058 | +0,024 a +0,083 | 100 % |
+| 2 semanas | +0,037 | +0,008 a +0,059 | 99,6 % |
+| 3 semanas | +0,014 | −0,010 a +0,033 | 86,6 % |
+| 4 semanas | 0,000 | −0,019 a +0,016 | 50,5 % |
+
+**Conclusión con respaldo estadístico:** la ventaja del modelo sobre la historia del distrito es real a 1 y 2 semanas. A 3 semanas no es segura y a 4 semanas no existe. La calidad de la probabilidad (BSS calibrado frente a la climatología) es mejor en el 96,6 % de las réplicas a 1 semana y en el 91,0 % a 2 semanas.
+
+**Por densidad de población** (tercios de los 76 distritos con densidad del INEI 2020; los dos Salitral quedaron sin asignar porque su nombre se repite). A 1 semana:
+
+| Densidad | Distritos | PR-AUC modelo | Climatología | Tasa |
+|---|---|---|---|---|
+| Baja | 26 | 0,214 | 0,162 | 0,034 |
+| Media | 25 | 0,206 | 0,156 | 0,033 |
+| Alta | 25 | 0,246 | 0,168 | 0,028 |
+
+A diferencia del modelo de Cataluña (Morales et al., 2026), que falla en los municipios poco poblados, el nuestro le gana a la climatología en los tres grupos. Es mejor en los distritos densos.
+
 *Las secciones que siguen describen la versión del 6/11/2026 (con la variable «emergencia en la semana t» y sin calibrar). Las cifras vigentes están en `data/modelo/resultados_plazo/metricas_por_plazo.csv`.*
 
 ## La pregunta
