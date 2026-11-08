@@ -64,7 +64,14 @@ PLAZOS = (1, 2, 3, 4)
 ANIOS_PRUEBA = list(range(2008, 2026))
 SIN_AVISO = ["log_lluvia_30d", "log_caudal_razon", "nino12", "sen_obj", "cos_obj", "hist_frec"]
 CON_AVISO = SIN_AVISO + ["lluvia_sobre_p95", "lluvia_sobre_p99", "log_lluvia_7d", "caudal_sobre_p95", "pct_inundable",
-                         "log_censo_viviendas", "log_censo_personas", "emergencia_t"]
+                         "log_censo_viviendas", "log_censo_personas"]
+# «emergencia en la semana t» se quitó del modelo (8/11/2026): el SINPAD publica cada seis meses, así que en tiempo real
+# no se conoce y el modelo publicado la llenaba con 0 («no hubo»), justo cuando sí había emergencias. Se mantiene
+# solo como regla de comparación. Costo medido: PR-AUC a 1 semana 0,227 -> 0,219.
+MODELO = "logística con variables del aviso"
+CALIBRADO = "logística con aviso, calibrada"
+ANIOS_CALIBRACION = 5      # Platt con las predicciones fuera de muestra de los 5 años anteriores (la tasa de registro
+                           # del SINPAD sube con el tiempo: los años recientes representan mejor el nivel actual)
 
 
 def plano(x) -> str:
@@ -224,6 +231,22 @@ def evaluar_anio(tr, te) -> dict[str, tuple[np.ndarray, np.ndarray]]:
     return res
 
 
+def platt(p_cal: np.ndarray, y_cal: np.ndarray):
+    """Calibración de Platt: regresión logística de y sobre logit(p). Devuelve una función p -> p calibrada."""
+    z = lambda p: np.log(np.clip(p, 1e-6, 1 - 1e-6) / (1 - np.clip(p, 1e-6, 1 - 1e-6))).reshape(-1, 1)  # noqa: E731
+    m = LogisticRegression(C=1e6, max_iter=1000).fit(z(p_cal), y_cal.astype(int))
+    return lambda p: m.predict_proba(z(np.asarray(p, dtype=float)))[:, 1]
+
+
+def calibrar(oos: pd.DataFrame, anio: int, p: np.ndarray) -> np.ndarray:
+    """Calibra las probabilidades del año `anio` SOLO con predicciones fuera de muestra de los años anteriores
+    (ventana de ANIOS_CALIBRACION años). Sin al menos 2 años previos con eventos, devuelve p sin cambios."""
+    c = oos[(oos.anio < anio) & (oos.anio >= anio - ANIOS_CALIBRACION)]
+    if c.anio.nunique() < 2 or c.y.sum() < 20:
+        return p
+    return platt(c.p.to_numpy(), c.y.to_numpy())(p)
+
+
 # ---------------------------------------------------------------------------------------------- 3. métricas
 def top10(te: pd.DataFrame, esperado: np.ndarray) -> float:
     r = te.assign(e=esperado).groupby("clave").agg(real=("v", "sum"), pred=("e", "sum"))
@@ -239,6 +262,7 @@ def correr(sin_anio: int | None = None) -> tuple[pd.DataFrame, pd.DataFrame, pd.
     for h in PLAZOS:
         e = ejemplos(p, h)
         e = e[e.y.notna() & (e.semana_obj <= FIN_ETIQUETA)]
+        oos = pd.DataFrame(columns=["anio", "p", "y"])      # predicciones fuera de muestra del modelo, años ya probados
         for anio in ANIOS_PRUEBA:
             if anio == sin_anio:
                 continue
@@ -249,7 +273,12 @@ def correr(sin_anio: int | None = None) -> tuple[pd.DataFrame, pd.DataFrame, pd.
             assert tr.semana_obj.max() < te.semana_obj.min() and (te.semana < te.semana_obj).all()
             tr, te = con_historia(tr, te)
             prev = tr.y.mean()
-            for modelo, (prob, esp) in evaluar_anio(tr, te).items():
+            res_anio = evaluar_anio(tr, te)
+            p_mod, e_mod = res_anio[MODELO]
+            p_cal = calibrar(oos, anio, p_mod)
+            res_anio[CALIBRADO] = (p_cal, e_mod * np.divide(p_cal, p_mod, out=np.ones_like(p_cal), where=p_mod > 0))
+            oos = pd.concat([oos, pd.DataFrame({"anio": anio, "p": p_mod, "y": te.y.to_numpy()})], ignore_index=True)
+            for modelo, (prob, esp) in res_anio.items():
                 y = te.y.to_numpy()
                 bs, bs_ref = brier_score_loss(y, prob), brier_score_loss(y, np.full(len(y), prev))
                 filas.append({"h": h, "anio": anio, "modelo": modelo, "n": len(y), "positivos": int(y.sum()),
@@ -286,7 +315,7 @@ def resumen(m: pd.DataFrame, pr: pd.DataFrame) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------------------------------ 4. predicción hoy
-def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame) -> dict:
+def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> dict:
     """Entrena con todo lo etiquetado (semana objetivo hasta FIN_ETIQUETA) y predice desde la última semana con datos."""
     p = panel()
     ok = p.groupby("semana")["lluvia_30d"].apply(lambda s: s.notna().mean())
@@ -301,6 +330,11 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame) -> dict:
         hoy = e[e.semana == t].copy()
         tr, hoy = con_historia(tr, hoy)
         prob, _, _ = logistica(tr, hoy, CON_AVISO)
+        # misma calibración que en la validación: Platt con las predicciones fuera de muestra de los últimos años
+        o = pr[(pr.h == h) & (pr.modelo == MODELO)]
+        o = o.assign(anio=pd.to_datetime(o.semana_obj).dt.year)
+        o = o[o.anio > o.anio.max() - ANIOS_CALIBRACION]
+        prob = platt(o.p.to_numpy(), o.y.to_numpy())(prob)
         vc, _, _ = viviendas_si_ocurre(tr, hoy, CON_AVISO)
         hist = tr[(tr.y == 1) & (tr.v > 0)].groupby("clave")["v"]
         q10, q90 = hist.quantile(0.1), hist.quantile(0.9)
@@ -317,10 +351,10 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame) -> dict:
                 d["personas_por_vivienda"] = round(float(ppv), 2)
     salida["distritos"] = sorted(salida["distritos"].values(), key=lambda d: -d["prob_h1"])
     salida["semana_objetivo"] = {f"h{h}": str((t + pd.Timedelta(weeks=h)).date()) for h in PLAZOS}
-    cal = res[res.modelo == "logística con variables del aviso"].set_index("h")
+    cal = res[res.modelo == CALIBRADO].set_index("h")
     ref = res[res.modelo == "climatología distrito y mes"].set_index("h")
     anual = m.pivot_table(index=["h", "anio"], columns="modelo", values="pr_auc")
-    mod, cli = anual["logística con variables del aviso"], anual["climatología distrito y mes"]
+    mod, cli = anual[CALIBRADO], anual["climatología distrito y mes"]
     salida["calidad_por_plazo"] = [{"h": int(h), "pr_auc": round(float(cal.loc[h, "pr_auc"]), 3),
                                     "tasa_sin_modelo": round(float(cal.loc[h, "tasa_sin_modelo"]), 3),
                                     "pr_auc_climatologia": round(float(ref.loc[h, "pr_auc"]), 3),
@@ -330,13 +364,13 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame) -> dict:
                                     "bss": round(float(cal.loc[h, "bss"]), 3),
                                     "top10_promedio": round(float(cal.loc[h, "top10_promedio"]), 2)} for h in PLAZOS]
     salida["modelo"] = ("Regresión logística con variables del aviso (lluvia sobre p95/p99, lluvia de 7 y 30 días, caudal "
-                        "sobre p95, Niño 1+2, % inundable, censo, emergencia de la semana t, época, historia del distrito). "
-                        "Etiqueta: SINPAD (INDECI) 2003-2025.")
+                        "sobre p95, Niño 1+2, % inundable, censo, época, historia del distrito), calibrada con Platt usando "
+                        f"las predicciones fuera de muestra de los últimos {ANIOS_CALIBRACION} años. Etiqueta: SINPAD (INDECI) 2003-2025.")
     salida["como_leer"] = ("prob_hN = probabilidad de que el SINPAD registre una emergencia por inundación o lluvia intensa en "
                            "la semana objetivo hN. viviendas_si_ocurre: estimación si ocurre (modelo Gamma); el rango es el "
                            "10 % y 90 % de las viviendas afectadas en las emergencias pasadas del distrito. Personas = "
                            "viviendas × personas por vivienda del censo en la zona inundable del distrito. No es una alerta oficial.")
-    salida["limites"] = ["El SINPAD publica cada seis meses: la variable «emergencia en la semana t» no se conoce en tiempo real.",
+    salida["limites"] = ["El modelo no usa si hubo emergencia esta semana: el SINPAD publica cada seis meses y ese dato no existe en tiempo real.",
                          "La lluvia de NASA POWER llega con unos días de retraso; por eso la semana base puede ser anterior a hoy.",
                          "Ver docs/2_modelo/21_MODELO_POR_PLAZO.md para la calidad por plazo."]
     return salida
@@ -350,7 +384,7 @@ def main(sin_anio: int | None) -> None:
     res.to_csv(SALIDA / f"metricas_por_plazo{sufijo}.csv", index=False, float_format="%.4f")
     if not sin_anio:
         pr.to_csv(SALIDA / "predicciones_validacion.csv.gz", index=False, float_format="%.5f")
-        out = prediccion_actual(res, m)
+        out = prediccion_actual(res, m, pr)
         JSON.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         print(f"  {JSON.name}: semana base {out['semana_base']}, {len(out['distritos'])} distritos")
     pd.set_option("display.width", 220)

@@ -26,11 +26,12 @@ jobs:
       - run: pip install -q scikit-learn lightgbm
       - run: python -u src/base_modelo.py
       - run: python -u src/modelo_inundacion.py
+      - run: python -u src/prediccion_semanal.py
       - name: Guardar
         run: |
           git config user.name "Actualización automática"
           git config user.email "actions@users.noreply.github.com"
-          git add data/modelo dashboard/data/riesgo.json
+          git add data/modelo dashboard/data/riesgo.json dashboard/data/prediccion_semanal.json
           git diff --cached --quiet && echo "Sin cambios" && exit 0
           git commit -m "Base distrito-semana $(date -u +%Y-%m-%d)"
           git pull --rebase --autostash origin main
