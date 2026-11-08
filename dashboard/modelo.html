@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pronóstico de emergencias · Tumbes y Piura</title>
+<meta name="description" content="Probabilidad de emergencia por lluvia o inundación en cada distrito de Tumbes y Piura a 1, 2, 3 y 4 semanas, con un modelo de aprendizaje automático validado con 18 años de emergencias del SINPAD y la exposición de los Censos Nacionales 2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400..700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root{
+  --bg:#f3f1ec; --panel:#fff; --panel-2:#f7f5f1; --ink:#13202b; --ink-2:#3d4a55; --ink-3:#6b7680;
+  --line:#e0dbd2; --line-2:#c9c2b6; --accent:#0d5c73; --accent-soft:#e2eef1;
+  --barra:#0c2230; --barra-ink:#eef3f5; --barra-ink-2:#9fb3bf;
+  --f0:#dfe6dc; --f1:#f2bf4a; --f2:#d4472c; --sinf:#ecebe7;
+  --sube:#c0392b; --baja:#2e7d6b; --clima:#9aa3ad; --modelo:#0d5c73;
+  --sombra:0 1px 2px rgba(19,32,43,.06),0 4px 16px rgba(19,32,43,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:15px;line-height:1.5}
+h1,h2,h3,.cifra,.tab,.seg button{font-family:"Archivo",system-ui,sans-serif}
+a{color:var(--accent)}
+.barra{background:var(--barra);color:var(--barra-ink);padding:14px 20px 0}
+.barra .fila{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1280px;margin:0 auto}
+.barra h1{margin:0;font-size:24px;font-weight:800;font-stretch:88%;letter-spacing:-.01em}
+.barra h1 span{color:#ef9550}
+.barra .sub{color:var(--barra-ink-2);font-size:13px;margin-top:2px}
+.estado{font-size:12.5px;color:var(--barra-ink-2);text-align:right}
+.estado b{color:var(--barra-ink);font-weight:600}
+nav{max-width:1280px;margin:12px auto 0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;color:var(--barra-ink-2);font-size:14px;font-weight:600;font-stretch:92%;padding:10px 14px;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap}
+.tab:hover{color:var(--barra-ink)}
+.tab[aria-selected=true]{background:var(--bg);color:var(--ink)}
+main{max-width:1280px;margin:0 auto;padding:20px 20px 60px}
+section.vista{display:none}
+section.vista.activa{display:block}
+.titular{font-family:Archivo;font-size:clamp(22px,3vw,32px);font-weight:750;font-stretch:90%;line-height:1.15;margin:0 0 6px;letter-spacing:-.015em;max-width:960px}
+.bajada{color:var(--ink-2);max-width:860px;margin:0 0 16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--sombra);min-width:0}
+.panel h2{font-size:16px;margin:0 0 2px;font-weight:700}
+.panel h3{font-size:14px;margin:14px 0 6px;font-weight:700}
+.nota{font-size:12.5px;color:var(--ink-3);margin:0 0 10px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.principal{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:980px){.principal,.g2{grid-template-columns:1fr}.g3,.g4{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.g3,.g4{grid-template-columns:1fr}main{padding:16px 16px 48px}.barra{padding:12px 16px 0}}
+/* controles */
+.controles{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;margin-bottom:12px}
+.campo{display:flex;flex-direction:column;gap:3px;min-width:0}
+.campo label{font-size:11.5px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line-2);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:none;font-size:13.5px;font-weight:650;color:var(--ink-2);padding:6px 11px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed=true]{background:var(--accent);color:#fff}
+.seg button small{font-weight:500;opacity:.8}
+select,input[type=search]{font:500 14px "Public Sans";border:1px solid var(--line-2);border-radius:9px;padding:7px 10px;background:var(--panel);color:var(--ink);min-width:0}
+input[type=search]{width:240px}
+@media (max-width:560px){input[type=search]{width:100%}.campo{flex:1 1 100%}select{width:100%}.seg button small{display:none}.seg button{padding:6px 8px;font-size:13px}}
+.buscador{position:relative}
+.sugerencias{position:absolute;z-index:20;top:100%;left:0;right:0;background:var(--panel);border:1px solid var(--line-2);border-radius:10px;margin-top:4px;box-shadow:var(--sombra);max-height:280px;overflow:auto;display:none}
+.sugerencias button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;border:0;background:none;padding:8px 11px;font:500 14px "Public Sans";cursor:pointer;color:var(--ink)}
+.sugerencias button:hover,.sugerencias button.foco{background:var(--accent-soft)}
+.sugerencias small{color:var(--ink-3)}
+button.btn{font:600 13px "Public Sans";background:var(--accent);color:#fff;border:0;border-radius:8px;padding:7px 14px;cursor:pointer}
+button.btn.sec{background:var(--panel-2);color:var(--ink);border:1px solid var(--line-2)}
+/* aviso de plazo */
+.aviso-plazo{display:none;background:#fff7e6;border:1px solid #f2d59b;color:#5c4510;border-radius:10px;padding:8px 12px;font-size:13.5px;margin:-2px 0 12px}
+.aviso-plazo.ver{display:block}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+@media (max-width:980px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;box-shadow:var(--sombra)}
+.kpi .eti{font-size:11.5px;color:var(--ink-3);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.kpi .cifra{font-size:28px;font-weight:800;font-stretch:85%;line-height:1.1;margin:2px 0}
+.kpi .det{font-size:12.5px;color:var(--ink-2)}
+/* mapa */
+.mapa-caja{position:relative}
+#mapa,#mapa-repaso{width:100%;display:block;touch-action:none}
+#mapa path.d,#mapa-repaso path.d{stroke:#fff;stroke-width:.6;cursor:pointer;vector-effect:non-scaling-stroke}
+#mapa path.d:hover,#mapa-repaso path.d:hover{stroke:var(--ink);stroke-width:1.4}
+path.prov{fill:none;stroke:#5d6a74;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none}
+path.dep{fill:none;stroke:var(--ink);stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none}
+path.sel{fill:none;stroke:var(--ink);stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+text.eti-mapa{font:700 10.5px "Public Sans";fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;pointer-events:none;text-anchor:middle}
+text.eti-dep{font:800 13px Archivo;font-stretch:90%;fill:var(--ink-2);letter-spacing:.12em;paint-order:stroke;stroke:var(--bg);stroke-width:4px;pointer-events:none;text-anchor:middle}
+.zoom-btns{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px}
+.zoom-btns button{width:32px;height:32px;border-radius:8px;border:1px solid var(--line-2);background:var(--panel);font:700 16px "Public Sans";cursor:pointer;color:var(--ink)}
+.tooltip{position:fixed;z-index:50;pointer-events:none;background:var(--barra);color:var(--barra-ink);font-size:13px;padding:7px 10px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.2);display:none;max-width:260px}
+.tooltip b{font-family:Archivo;font-size:14px}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-2);margin-top:8px}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:14px;height:11px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+/* lista */
+.lista{max-height:560px;overflow:auto;margin:0 -6px}
+.fila-d{display:grid;grid-template-columns:22px minmax(0,1fr) 92px 50px;gap:8px;align-items:center;padding:6px 6px;border-radius:8px;cursor:pointer;border:0;background:none;width:100%;text-align:left;font:inherit;color:inherit}
+.fila-d:hover{background:var(--panel-2)}
+.fila-d.activa{background:var(--accent-soft)}
+.fila-d .n{font-size:12px;color:var(--ink-3);text-align:right}
+.fila-d .nom{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fila-d .nom small{display:block;font-weight:400;color:var(--ink-3);font-size:12px}
+.barrita{height:8px;background:var(--panel-2);border-radius:4px;overflow:hidden}
+.barrita i{display:block;height:100%;border-radius:4px}
+.fila-d .p{font:700 14px Archivo;text-align:right}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.chip.f0{background:#eef2ec;color:#3e5a3a}.chip.f1{background:#fdf0cf;color:#7a5300}.chip.f2{background:#f9dcd5;color:#8e2414}
+/* ficha */
+.ficha-cab{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ficha-cab h2{font-size:22px;font-family:Archivo;font-stretch:90%;margin:0}
+.ficha-cab .ubic{color:var(--ink-3);font-size:13px}
+.cerrar{border:0;background:var(--panel-2);border-radius:8px;padding:4px 10px;cursor:pointer;font:600 12.5px "Public Sans";color:var(--ink-2)}
+.prob-grande{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0 2px}
+.prob-grande .cifra{font-size:46px;font-weight:850;font-stretch:82%;line-height:1}
+.prob-grande .veces{font-size:13.5px;color:var(--ink-2)}
+.plazos-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 4px}
+.plazos-mini div{background:var(--panel-2);border-radius:8px;padding:6px 8px;font-size:12px;color:var(--ink-3);border:2px solid transparent}
+.plazos-mini div.act{border-color:var(--accent)}
+.plazos-mini b{display:block;font:800 17px Archivo;color:var(--ink)}
+.porque .f{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 58px;gap:8px;align-items:center;font-size:13px;padding:3px 0}
+.porque .eje{position:relative;height:14px;background:linear-gradient(90deg,transparent calc(50% - .5px),var(--line-2) calc(50% - .5px),var(--line-2) calc(50% + .5px),transparent calc(50% + .5px))}
+.porque .eje i{position:absolute;top:2px;height:10px;border-radius:3px}
+.porque .v{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.senal{font-size:13px;color:var(--ink-2);margin:2px 0}
+.alerta-dato{background:#fff7e6;border:1px solid #f2d59b;border-radius:8px;padding:6px 10px;font-size:12.5px;color:#5c4510;margin-top:6px}
+table.tabla{width:100%;border-collapse:collapse;font-size:13.5px}
+table.tabla th{text-align:left;font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em;border-bottom:1px solid var(--line-2);padding:6px 6px}
+table.tabla td{border-bottom:1px solid var(--line);padding:6px 6px;font-variant-numeric:tabular-nums}
+table.tabla tr.pub td{background:var(--accent-soft);font-weight:700}
+td.num,th.num{text-align:right}
+.tabla-scroll{overflow-x:auto}
+.pasos{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;counter-reset:p}
+.pasos div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;position:relative;font-size:13px;color:var(--ink-2)}
+.pasos div b{display:block;font-family:Archivo;font-size:15px;color:var(--ink);margin-bottom:3px}
+.pasos div::before{counter-increment:p;content:counter(p);position:absolute;top:10px;right:12px;font:800 22px Archivo;color:var(--line-2)}
+@media (max-width:980px){.pasos{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.pasos{grid-template-columns:1fr}}
+.graf svg{width:100%;height:auto;display:block}
+.graf text{font:11.5px "Public Sans";fill:var(--ink-3)}
+.graf .ax line,.graf .ax path{stroke:var(--line-2)}
+.graf .grid line{stroke:var(--line)}
+.graf .grid path{display:none}
+.mejoras li{margin:4px 0}
+.repaso-ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0 0 6px}
+.semana-eti{font:800 18px Archivo;min-width:150px}
+.punto-em{fill:var(--ink);stroke:#fff;stroke-width:1.5;vector-effect:non-scaling-stroke;pointer-events:none}
+.tarjetas-ctx{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:980px){.tarjetas-ctx{grid-template-columns:1fr}}
+.tarjetas-ctx a{display:block;text-decoration:none;color:inherit}
+.tarjetas-ctx a:hover .panel{border-color:var(--accent)}
+.pie{font-size:12.5px;color:var(--ink-3);margin-top:28px;border-top:1px solid var(--line);padding-top:12px}
+.oculto{display:none!important}
+</style>
+</head>
+<body>
+<header class="barra">
+  <div class="fila">
+    <div>
+      <h1>Pronóstico de emergencias por inundación · <span>Tumbes y Piura</span></h1>
+      <div class="sub">Modelo de aprendizaje automático por distrito · 1 a 4 semanas · Censos Nacionales 2025</div>
+    </div>
+    <div class="estado" id="estado">Cargando…</div>
+  </div>
+  <nav role="tablist" id="pestanas">
+    <button class="tab" role="tab" data-v="pronostico">Pronóstico</button>
+    <button class="tab" role="tab" data-v="acierta">¿Acierta? 2017 y 2023</button>
+    <button class="tab" role="tab" data-v="modelo">Cómo funciona el modelo</button>
+    <button class="tab" role="tab" data-v="contexto">Datos y contexto</button>
+  </nav>
+</header>
+
+<main>
+<!-- ============================ PRONÓSTICO ============================ -->
+<section class="vista" id="v-pronostico">
+  <p class="titular" id="p-titular">¿Dónde puede haber una emergencia por lluvia o inundación?</p>
+  <p class="bajada" id="p-bajada"></p>
+
+  <div class="controles">
+    <div class="campo">
+      <label id="eti-plazo">Plazo</label>
+      <div class="seg" id="seg-plazo" role="group" aria-labelledby="eti-plazo">
+        <button data-h="1" aria-pressed="true">1 semana</button>
+        <button data-h="2" aria-pressed="false">2 semanas</button>
+        <button data-h="3" aria-pressed="false">3 sem. <small>orientativo</small></button>
+        <button data-h="4" aria-pressed="false">4 sem. <small>orientativo</small></button>
+      </div>
+    </div>
+    <div class="campo buscador">
+      <label for="buscar">Buscar distrito</label>
+      <input type="search" id="buscar" placeholder="Escribe un distrito, p. ej. Catacaos" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugerencias">
+      <div class="sugerencias" id="sugerencias" role="listbox"></div>
+    </div>
+    <div class="campo"><label for="sel-dep">Departamento</label><select id="sel-dep"><option value="">Todos</option></select></div>
+    <div class="campo"><label for="sel-prov">Provincia</label><select id="sel-prov"><option value="">Todas</option></select></div>
+    <div class="campo"><label for="sel-dist">Distrito</label><select id="sel-dist"><option value="">Elegir…</option></select></div>
+  </div>
+  <div class="aviso-plazo" id="aviso-plazo">A 3 y 4 semanas el modelo y la historia del distrito dicen casi lo mismo: estas probabilidades sirven como orientación para prepararse, no como aviso de una semana concreta. El pronóstico fuerte es a 1 y 2 semanas.</div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="principal">
+    <div class="panel">
+      <h2 id="mapa-titulo">Probabilidad de emergencia por distrito</h2>
+      <p class="nota">Toca un distrito para ver por qué tiene esa probabilidad. Usa la rueda o los botones para acercar.</p>
+      <div class="mapa-caja">
+        <svg id="mapa" viewBox="0 0 600 640" role="img" aria-label="Mapa de distritos de Tumbes y Piura coloreados según la probabilidad de emergencia"></svg>
+        <div class="zoom-btns"><button id="z-mas" aria-label="Acercar">+</button><button id="z-menos" aria-label="Alejar">−</button><button id="z-reset" aria-label="Ver todo" title="Ver todo">⤢</button></div>
+      </div>
+      <div class="leyenda" id="leyenda"></div>
+    </div>
+    <div>
+      <div class="panel" id="ficha" style="display:none"></div>
+      <div class="panel" id="panel-lista">
+        <h2>Los 78 distritos, de mayor a menor probabilidad</h2>
+        <p class="nota" id="lista-nota">Toca uno para verlo en el mapa.</p>
+        <div class="lista" id="lista"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ¿ACIERTA? ============================ -->
+<section class="vista" id="v-acierta">
+  <p class="titular">¿El modelo habría avisado a tiempo en 2017 y 2023?</p>
+  <p class="bajada">Cada semana se pinta con la probabilidad que el modelo calculó <b>la semana anterior</b>, con un modelo que nunca vio ese año. Los distritos con un punto negro tuvieron una emergencia registrada por el INDECI (SINPAD) esa semana. Dale a «Reproducir» o mueve la barra.</p>
+  <div class="principal">
+    <div class="panel">
+      <div class="repaso-ctrl">
+        <div class="seg" id="seg-anio"><button data-a="2017" aria-pressed="true">2017</button><button data-a="2023" aria-pressed="false">2023</button></div>
+        <button class="btn" id="play">▶ Reproducir</button>
+        <span class="semana-eti" id="semana-eti"></span>
+      </div>
+      <input type="range" id="rango-semana" min="0" max="21" value="0" aria-label="Semana">
+      <div class="mapa-caja"><svg id="mapa-repaso" viewBox="0 0 600 640" role="img" aria-label="Mapa de la probabilidad semana a semana"></svg></div>
+      <div class="leyenda" id="leyenda-repaso"></div>
+    </div>
+    <div>
+      <div class="panel">
+        <h2 id="r-sem-tit">Esta semana</h2>
+        <div id="r-semana"></div>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <h2>Resumen de la temporada (enero a mayo)</h2>
+        <p class="nota">Semanas-distrito con emergencia en el SINPAD y qué había dicho el modelo la semana anterior.</p>
+        <div id="r-resumen"></div>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <h2 id="r-dist-tit">Un distrito semana a semana</h2>
+        <p class="nota">Toca un distrito en el mapa. Los círculos son semanas con emergencia.</p>
+        <div class="graf" id="r-serie"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CÓMO FUNCIONA ============================ -->
+<section class="vista" id="v-modelo">
+  <p class="titular">Cómo funciona el modelo y qué tan confiable es</p>
+  <p class="bajada">Es un modelo de <b>aprendizaje automático supervisado</b>: aprende de 18 años de emergencias registradas por el INDECI qué combinaciones de lluvia, río, mar, época, historia y exposición anteceden a una emergencia, y se evalúa siempre con años que no vio.</p>
+  <div class="pasos">
+    <div><b>Datos</b>Emergencias del SINPAD (2003–2025), lluvia (NASA POWER), caudal de ríos (GloFAS), mar (Niño 1+2), zona inundable (JRC) y Censos Nacionales 2025.</div>
+    <div><b>Variables</b>13 variables por distrito y semana, todas conocidas al cerrar la semana: nada mira el futuro.</div>
+    <div><b>Modelos</b>Se comparan regresión logística, LightGBM y reglas simples. Se publica la logística: casi tan buena y explicable.</div>
+    <div><b>Validación</b>Año por año (2008–2025): se entrena con el pasado y se prueba con un año nunca visto. Margen de error con 2 000 remuestreos.</div>
+    <div><b>Calibración y fases</b>Platt con los 5 años previos, para que 20 % signifique 20 %. Fases: atención (5 %) y alerta (15 %).</div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="panel">
+      <h2>Comparación de modelos</h2>
+      <p class="nota">PR-AUC: qué tan bien ordena las semanas con emergencia arriba (más es mejor). Un modelo al azar obtiene la tasa sin modelo.</p>
+      <div class="tabla-scroll" id="m-comparacion"></div>
+    </div>
+    <div class="panel">
+      <h2>¿Le gana a la historia del distrito?</h2>
+      <p class="nota">Diferencia de PR-AUC entre el modelo y la climatología (cuántas emergencias tuvo ese distrito en ese mes en el pasado), con su margen de error al 95 %.</p>
+      <div class="graf" id="m-ventaja"></div>
+      <div id="m-ventaja-texto"></div>
+    </div>
+    <div class="panel">
+      <h2>Precisión frente a captura (1 semana)</h2>
+      <p class="nota">Si se quiere avisar antes de más emergencias (captura), cae la parte de avisos que acierta (precisión). El modelo está por encima de la climatología en toda la curva.</p>
+      <div class="graf" id="m-pr"></div>
+    </div>
+    <div class="panel">
+      <h2>¿Las probabilidades son creíbles? (calibración)</h2>
+      <p class="nota">Para cada rango de probabilidad: lo que dijo el modelo y lo que realmente pasó (1 semana, 2010–2025). Sobre la diagonal, lo dicho coincide con lo ocurrido.</p>
+      <div class="graf" id="m-cal"></div>
+    </div>
+    <div class="panel">
+      <h2>Año por año (1 semana)</h2>
+      <p class="nota">PR-AUC de cada año de prueba: modelo frente a climatología.</p>
+      <div class="graf" id="m-anual"></div>
+    </div>
+    <div class="panel">
+      <h2>Qué pesa más en el modelo (1 semana)</h2>
+      <p class="nota">Cuánto cambia el riesgo cuando la variable sube una desviación estándar (coeficiente estandarizado, después de calibrar).</p>
+      <div class="graf" id="m-pesos"></div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="panel">
+      <h2>Fases de aviso: qué significa cada una</h2>
+      <div class="tabla-scroll" id="m-fases"></div>
+    </div>
+    <div class="panel">
+      <h2>Funciona en distritos rurales y urbanos</h2>
+      <p class="nota">Distritos en tercios por densidad de población (1 semana).</p>
+      <div class="tabla-scroll" id="m-densidad"></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <h2>Qué mejoraríamos con más datos</h2>
+    <ul class="mejoras">
+      <li><b>Lluvia más fina.</b> Hoy se usa NASA POWER (celdas de unos 50 km). Con PISCO del SENAMHI o CHIRPS el modelo vería la lluvia local.</li>
+      <li><b>La primera emergencia de la temporada</b> es la más difícil: en 2017 y 2023, 41 de 78 distritos tuvieron aviso antes de su primera emergencia.</li>
+      <li><b>Viviendas afectadas en años extremos.</b> La estimación se queda corta (2017: −35 %; 2023: −66 %); por eso el tablero muestra un rango con el censo como techo.</li>
+      <li><b>Registro más oportuno.</b> El SINPAD se publica cada seis meses; con datos más rápidos se podría evaluar el modelo durante la temporada.</li>
+      <li><b>Más allá de 2 semanas</b> el modelo no supera a la historia del distrito: es el límite natural del fenómeno, no solo del modelo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CONTEXTO ============================ -->
+<section class="vista" id="v-contexto">
+  <p class="titular">Datos y contexto</p>
+  <p class="bajada">Las capas de exposición, el aviso de lluvia de 1 a 3 días y el seguimiento del mar están en el tablero de datos.</p>
+  <div class="tarjetas-ctx">
+    <a href="index.html#inundaciones"><div class="panel"><h2>Mapa de inundación y Censo 2025</h2><p class="nota">Zona inundable (JRC), viviendas y personas del censo, colegios y salud.</p></div></a>
+    <a href="index.html#alerta"><div class="panel"><h2>Aviso de lluvia y ríos, 1 a 3 días</h2><p class="nota">Pronóstico de lluvia y caudal frente a sus percentiles 95 y 99: el respaldo operativo del modelo.</p></div></a>
+    <a href="index.html#mar"><div class="panel"><h2>El mar y El Niño</h2><p class="nota">Temperatura del mar día a día y comparación con 1983, 1998, 2017 y 2023.</p></div></a>
+    <a href="index.html#satelite"><div class="panel"><h2>Antes y después (radar)</h2><p class="nota">Agua detectada por Sentinel-1 en 2017 y 2023, para confirmar eventos.</p></div></a>
+    <a href="index.html#metodo"><div class="panel"><h2>Método y fuentes</h2><p class="nota">Cada capa con su fuente, licencia, fecha y advertencias.</p></div></a>
+    <a href="https://github.com/MarciaShapiama/iapn-inei"><div class="panel"><h2>Código y documentos</h2><p class="nota">Repositorio abierto: todo se puede reproducir.</p></div></a>
+  </div>
+</section>
+
+<div class="pie">Proyecto integrador PEU-CD · INEI 2026 · Christopher Calle, Luz Ángela Mendizábal, Maykol Ramírez y Marcia Shapiama De La Cruz. No es una alerta oficial: los avisos oficiales son del INDECI, el SENAMHI y el ENFEN.</div>
+</main>
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const loc = d3.formatLocale({decimal: ",", thousands: " ", grouping: [3], currency: ["S/ ", ""]});
+const fN = loc.format(",d"), f1 = loc.format(",.1f"), f2 = loc.format(",.2f"), f3 = loc.format(",.3f");
+const pct = p => p == null ? "—" : (p < 0.0095 ? "<1 %" : Math.round(p * 100) + " %");
+const MESES = ["ene","feb","mar","abr","may","jun","jul","ago","set","oct","nov","dic"];
+const fecha = s => { const d = new Date(s + "T12:00:00"); return d.getDate() + " " + MESES[d.getMonth()] + " " + d.getFullYear(); };
+const fechaC = s => { const d = new Date(s + "T12:00:00"); return d.getDate() + " " + MESES[d.getMonth()]; };
+const sinT = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const GRUPOS = {lluvia: "Lluvia de los últimos 7 y 30 días", rio: "Caudal del río", mar: "Temperatura del mar (Niño 1+2)",
+  epoca: "Época del año", historia: "Historia de emergencias del distrito", exposicion: "Zona inundable y viviendas (censo)"};
+const VAR = {log_lluvia_30d: "Lluvia de 30 días", log_lluvia_7d: "Lluvia de 7 días", lluvia_sobre_p95: "Día de lluvia sobre su p95",
+  lluvia_sobre_p99: "Día de lluvia sobre su p99", log_caudal_razon: "Caudal frente a lo normal", caudal_sobre_p95: "Caudal sobre su p95",
+  nino12: "Mar: Niño 1+2", sen_obj: "Época del año (seno)", cos_obj: "Época del año (coseno)", hist_frec: "Historia del distrito",
+  pct_inundable: "% del distrito inundable", log_censo_viviendas: "Viviendas en zona inundable", log_censo_personas: "Personas en zona inundable"};
+
+let P, M, CENSO = {}, GEO, LIM, U = {atencion: .05, alerta: .15}, TASA = .031;
+let h = 1, sel = null, filtroDep = "", filtroProv = "";
+
+const fase = p => p >= U.alerta ? 2 : p >= U.atencion ? 1 : 0;
+const FASE_NOM = ["Normal", "Atención", "Alerta"];
+const color = p => p == null ? css("--sinf") : [css("--f0"), css("--f1"), css("--f2")][fase(p)];
+const chip = p => `<span class="chip f${fase(p)}">${FASE_NOM[fase(p)]}</span>`;
+
+Promise.all([
+  d3.json("data/prediccion_semanal.json"), d3.json("data/modelo_explicado.json"), d3.json("data/viviendas_censo.json"),
+  d3.json("data/distritos_tumbes_piura.geojson"), d3.json("data/limites_tumbes_piura.geojson")
+]).then(([p, m, c, g, l]) => {
+  P = p; M = m; GEO = g; LIM = l;
+  P.porUbigeo = Object.fromEntries(P.distritos.map(d => [d.ubigeo, d]));
+  (c.escenarios.rp100.distritos || []).forEach(d => CENSO[d.ubigeo] = d);
+  if (P.fases && P.fases.umbrales) U = P.fases.umbrales;
+  TASA = (P.calidad_por_plazo.find(q => q.h === 1) || {}).tasa_sin_modelo || TASA;
+  document.getElementById("estado").innerHTML = `Datos hasta la semana del <b>${fecha(P.semana_base)}</b><br>Se actualiza cada lunes`;
+  iniciarPronostico(); iniciarRepaso(); iniciarModelo();
+  rutas();
+}).catch(e => { document.getElementById("estado").textContent = "No se pudieron cargar los datos"; console.error(e); });
+
+/* ---------------------------- pestañas ---------------------------- */
+function rutas() {
+  const ir = v => {
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.v === v));
+    document.querySelectorAll("section.vista").forEach(s => s.classList.toggle("activa", s.id === "v-" + v));
+  };
+  document.querySelectorAll(".tab").forEach(t => t.onclick = () => { history.replaceState(null, "", "#" + t.dataset.v); ir(t.dataset.v); });
+  const ini = location.hash.slice(1);
+  ir(["pronostico", "acierta", "modelo", "contexto"].includes(ini) ? ini : "pronostico");
+}
+
+/* ---------------------------- mapa base ---------------------------- */
+function crearMapa(svgId, alClic, alPasar) {
+  const svg = d3.select("#" + svgId), W = 600, H = 640;
+  const proy = d3.geoMercator().fitExtent([[10, 10], [W - 10, H - 10]], GEO);
+  const ruta = d3.geoPath(proy);
+  const g = svg.append("g");
+  const capaD = g.append("g"), capaP = g.append("g"), capaE = g.append("g"), capaS = g.append("g"), capaT = g.append("g");
+  const dist = capaD.selectAll("path").data(GEO.features).join("path").attr("class", "d").attr("d", ruta)
+    .on("click", (e, f) => alClic(f.properties.ubigeo))
+    .on("mousemove", (e, f) => alPasar(e, f)).on("mouseleave", () => tip(null));
+  capaP.selectAll("path").data(LIM.features.filter(f => f.properties.nivel === "provincia")).join("path").attr("class", "prov").attr("d", ruta);
+  capaP.selectAll("path.dep").data(LIM.features.filter(f => f.properties.nivel === "departamento")).join("path").attr("class", "dep").attr("d", ruta);
+  // nombres de departamento
+  LIM.features.filter(f => f.properties.nivel === "departamento").forEach(f => {
+    const [x, y] = ruta.centroid(f);
+    const dy = f.properties.nombre === "Tumbes" ? -20 : 30;
+    capaT.append("text").attr("class", "eti-dep").attr("x", f.properties.nombre === "Tumbes" ? x + 40 : x + 70).attr("y", y + dy).text(f.properties.nombre.toUpperCase());
+  });
+  // nombres de las capitales de provincia (distrito con el mismo nombre que su provincia)
+  const capitales = GEO.features.filter(f => sinT(f.properties.distrito) === sinT(f.properties.provincia));
+  const etiq = capaT.selectAll("text.eti-mapa").data(capitales).join("text").attr("class", "eti-mapa")
+    .attr("x", f => ruta.centroid(f)[0]).attr("y", f => ruta.centroid(f)[1] + 4).text(f => f.properties.distrito);
+  const zoom = d3.zoom().scaleExtent([1, 12]).on("zoom", e => {
+    g.attr("transform", e.transform);
+    capaT.selectAll("text").attr("font-size", null).style("font-size", t => null);
+    capaT.selectAll("text.eti-mapa").style("font-size", (10.5 / e.transform.k) + "px").style("stroke-width", (3 / e.transform.k) + "px");
+    capaT.selectAll("text.eti-dep").style("font-size", (13 / e.transform.k) + "px").style("stroke-width", (4 / e.transform.k) + "px");
+  });
+  svg.call(zoom).on("dblclick.zoom", null);
+  const irA = (ubigeo) => {
+    const f = GEO.features.find(x => x.properties.ubigeo === ubigeo);
+    capaS.selectAll("*").remove();
+    capaT.selectAll("text.eti-sel").remove();
+    if (!f) { svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity); return; }
+    capaS.append("path").attr("class", "sel").attr("d", ruta(f));
+    const [[x0, y0], [x1, y1]] = ruta.bounds(f);
+    const k = Math.min(8, 0.45 / Math.max((x1 - x0) / W, (y1 - y0) / H));
+    const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+    svg.transition().duration(700).call(zoom.transform, t);
+    if (!capitales.includes(f)) {
+      const [cx, cy] = ruta.centroid(f);
+      capaT.append("text").attr("class", "eti-mapa eti-sel").attr("x", cx).attr("y", cy + 4).text(f.properties.distrito)
+        .style("font-size", (10.5 / k) + "px").style("stroke-width", (3 / k) + "px");
+    }
+  };
+  const verZona = (feats) => {
+    if (!feats.length) return svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity);
+    const [[x0, y0], [x1, y1]] = ruta.bounds({type: "FeatureCollection", features: feats});
+    const k = Math.min(8, 0.9 / Math.max((x1 - x0) / W, (y1 - y0) / H));
+    svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2));
+  };
+  return {dist, irA, verZona, ruta, capaS, svg, zoom};
+}
+
+function tip(e, html) {
+  const t = document.getElementById("tooltip");
+  if (!e) { t.style.display = "none"; return; }
+  t.innerHTML = html; t.style.display = "block";
+  const x = Math.min(e.clientX + 14, innerWidth - t.offsetWidth - 8), y = Math.min(e.clientY + 14, innerHeight - t.offsetHeight - 8);
+  t.style.left = x + "px"; t.style.top = y + "px";
+}
+
+/* ---------------------------- PRONÓSTICO ---------------------------- */
+let MAPA;
+function iniciarPronostico() {
+  const so = P.semana_objetivo;
+  MAPA = crearMapa("mapa", ubigeo => seleccionar(ubigeo), (e, f) => {
+    const d = P.porUbigeo[f.properties.ubigeo]; const p = d ? d["prob_h" + h] : null;
+    tip(e, `<b>${f.properties.distrito}</b><br>${f.properties.provincia}, ${f.properties.departamento}<br>${pct(p)} · ${FASE_NOM[fase(p || 0)]}`);
+  });
+  document.getElementById("z-mas").onclick = () => MAPA.svg.transition().call(MAPA.zoom.scaleBy, 1.6);
+  document.getElementById("z-menos").onclick = () => MAPA.svg.transition().call(MAPA.zoom.scaleBy, 1 / 1.6);
+  document.getElementById("z-reset").onclick = () => { seleccionar(null); };
+  document.getElementById("leyenda").innerHTML =
+    `<span><i style="background:${css("--f0")}"></i>Normal (menos de ${Math.round(U.atencion * 100)} %)</span>` +
+    `<span><i style="background:${css("--f1")}"></i>Atención (${Math.round(U.atencion * 100)} a ${Math.round(U.alerta * 100)} %)</span>` +
+    `<span><i style="background:${css("--f2")}"></i>Alerta (${Math.round(U.alerta * 100)} % o más)</span>` +
+    `<span>Líneas: <b style="margin-left:4px">— departamento</b>, provincia</span>`;
+  document.querySelectorAll("#seg-plazo button").forEach(b => b.onclick = () => {
+    h = +b.dataset.h; document.querySelectorAll("#seg-plazo button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    pintar();
+  });
+  // menús en cascada
+  const deps = [...new Set(P.distritos.map(d => d.departamento))].sort();
+  const sDep = document.getElementById("sel-dep"), sProv = document.getElementById("sel-prov"), sDist = document.getElementById("sel-dist");
+  deps.forEach(d => sDep.add(new Option(d, d)));
+  const llenarProv = () => {
+    sProv.length = 1;
+    [...new Set(P.distritos.filter(d => !filtroDep || d.departamento === filtroDep).map(d => d.provincia))].sort((a, b) => a.localeCompare(b, "es")).forEach(p => sProv.add(new Option(p, p)));
+    sProv.value = filtroProv;
+  };
+  const llenarDist = () => {
+    sDist.length = 1;
+    P.distritos.filter(d => (!filtroDep || d.departamento === filtroDep) && (!filtroProv || d.provincia === filtroProv))
+      .sort((a, b) => a.distrito.localeCompare(b.distrito, "es")).forEach(d => sDist.add(new Option(d.distrito + (filtroProv ? "" : " (" + d.provincia + ")"), d.ubigeo)));
+    sDist.value = sel || "";
+  };
+  sDep.onchange = () => { filtroDep = sDep.value; filtroProv = ""; llenarProv(); llenarDist(); sel = null; pintar(); zonaFiltro(); };
+  sProv.onchange = () => { filtroProv = sProv.value; if (filtroProv) filtroDep = P.distritos.find(d => d.provincia === filtroProv).departamento; sDep.value = filtroDep; llenarDist(); sel = null; pintar(); zonaFiltro(); };
+  sDist.onchange = () => seleccionar(sDist.value || null);
+  window._llenar = () => { sDep.value = filtroDep; llenarProv(); llenarDist(); };
+  llenarProv(); llenarDist();
+  // buscador
+  const inp = document.getElementById("buscar"), sug = document.getElementById("sugerencias");
+  let foco = -1, res = [];
+  const cerrar = () => { sug.style.display = "none"; inp.setAttribute("aria-expanded", "false"); foco = -1; };
+  inp.oninput = () => {
+    const q = sinT(inp.value.trim());
+    if (!q) return cerrar();
+    res = P.distritos.filter(d => sinT(d.distrito).includes(q) || sinT(d.provincia).includes(q))
+      .sort((a, b) => (sinT(a.distrito).startsWith(q) ? 0 : 1) - (sinT(b.distrito).startsWith(q) ? 0 : 1) || a.distrito.localeCompare(b.distrito, "es")).slice(0, 10);
+    sug.innerHTML = res.length ? res.map((d, i) => `<button role="option" data-u="${d.ubigeo}">${d.distrito} <small>${d.provincia}, ${d.departamento}</small></button>`).join("")
+      : `<div style="padding:8px 11px;color:var(--ink-3);font-size:13.5px">No hay distritos con ese nombre en Tumbes ni Piura.</div>`;
+    sug.style.display = "block"; inp.setAttribute("aria-expanded", "true"); foco = -1;
+    sug.querySelectorAll("button").forEach(b => b.onmousedown = ev => { ev.preventDefault(); elegir(b.dataset.u); });
+  };
+  const elegir = u => { inp.value = P.porUbigeo[u].distrito; cerrar(); seleccionar(u); };
+  inp.onkeydown = ev => {
+    const bs = [...sug.querySelectorAll("button")];
+    if (ev.key === "ArrowDown") { foco = Math.min(bs.length - 1, foco + 1); }
+    else if (ev.key === "ArrowUp") { foco = Math.max(0, foco - 1); }
+    else if (ev.key === "Enter") { if (bs.length) elegir(bs[Math.max(0, foco)].dataset.u); ev.preventDefault(); return; }
+    else if (ev.key === "Escape") { cerrar(); return; } else return;
+    bs.forEach((b, i) => b.classList.toggle("foco", i === foco)); ev.preventDefault();
+  };
+  inp.onblur = () => setTimeout(cerrar, 150);
+  pintar();
+}
+
+function zonaFiltro() {
+  const f = GEO.features.filter(x => (!filtroDep || x.properties.departamento === filtroDep) && (!filtroProv || x.properties.provincia === filtroProv));
+  if (!filtroDep && !filtroProv) MAPA.verZona([]); else MAPA.verZona(f);
+}
+
+function seleccionar(u) {
+  sel = u;
+  if (u) { const d = P.porUbigeo[u]; filtroDep = d.departamento; filtroProv = d.provincia; }
+  else { filtroDep = ""; filtroProv = ""; document.getElementById("buscar").value = ""; }
+  window._llenar();
+  MAPA.irA(u);
+  pintar();
+  if (u && innerWidth < 980) document.getElementById("ficha").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+function pintar() {
+  const k = "prob_h" + h, so = P.semana_objetivo["h" + h];
+  const fin = new Date(so + "T12:00:00"); fin.setDate(fin.getDate() + 6);
+  document.getElementById("p-bajada").innerHTML = `Probabilidad de que el INDECI registre una emergencia por lluvia o inundación en cada distrito en la semana del <b>${fechaC(so)} al ${fecha(fin.toISOString().slice(0, 10))}</b>, calculada con datos hasta la semana del ${fecha(P.semana_base)}. En una semana cualquiera, la probabilidad promedio es ${Math.round(TASA * 100)} %.`;
+  document.getElementById("aviso-plazo").classList.toggle("ver", h >= 3);
+  document.getElementById("mapa-titulo").textContent = `Probabilidad de emergencia por distrito · ${h === 1 ? "próxima semana" : "en " + h + " semanas"}`;
+  MAPA.dist.attr("fill", f => { const d = P.porUbigeo[f.properties.ubigeo]; return color(d ? d[k] : null); })
+    .attr("opacity", f => (!filtroDep || f.properties.departamento === filtroDep) && (!filtroProv || f.properties.provincia === filtroProv) ? 1 : .35);
+  // kpis
+  const al = P.distritos.filter(d => fase(d[k]) === 2), at = P.distritos.filter(d => fase(d[k]) === 1);
+  const pers = al.reduce((s, d) => s + ((CENSO[d.ubigeo] || {}).personas || 0), 0);
+  const cal = P.calidad_por_plazo.find(q => q.h === h) || {};
+  const fd = ((P.fases || {}).desempeno || {})["h" + h] || {};
+  document.getElementById("kpis").innerHTML = `
+    <div class="kpi"><div class="eti">Distritos en alerta</div><div class="cifra" style="color:${css("--f2")}">${al.length}</div><div class="det">probabilidad de ${Math.round(U.alerta * 100)} % o más</div></div>
+    <div class="kpi"><div class="eti">Distritos en atención</div><div class="cifra" style="color:#a87400">${at.length}</div><div class="det">entre ${Math.round(U.atencion * 100)} % y ${Math.round(U.alerta * 100)} %</div></div>
+    <div class="kpi"><div class="eti">Personas en zona inundable</div><div class="cifra">${fN(pers)}</div><div class="det">en los distritos en alerta (Censo 2025)</div></div>
+    <div class="kpi"><div class="eti">Qué tan bien avisa</div><div class="cifra">${fd.atencion ? Math.round(fd.atencion.captura_pct / 10) + " de 10" : "—"}</div><div class="det">emergencias pasadas tuvieron atención o alerta ${h === 1 ? "una semana" : h + " semanas"} antes</div></div>`;
+  // lista
+  const lista = P.distritos.filter(d => (!filtroDep || d.departamento === filtroDep) && (!filtroProv || d.provincia === filtroProv))
+    .slice().sort((a, b) => b[k] - a[k]);
+  const max = Math.max(.3, ...P.distritos.map(d => d[k]));
+  document.querySelector("#panel-lista h2").textContent = filtroProv ? `Distritos de la provincia de ${filtroProv}` : filtroDep ? `Distritos de ${filtroDep}` : "Los 78 distritos, de mayor a menor probabilidad";
+  document.getElementById("lista").innerHTML = lista.map((d, i) => `<button class="fila-d${d.ubigeo === sel ? " activa" : ""}" data-u="${d.ubigeo}">
+    <span class="n">${i + 1}</span><span class="nom">${d.distrito}<small>${d.provincia}, ${d.departamento}</small></span>
+    <span class="barrita"><i style="width:${100 * d[k] / max}%;background:${color(d[k])}"></i></span><span class="p">${pct(d[k])}</span></button>`).join("");
+  document.querySelectorAll("#lista .fila-d").forEach(b => b.onclick = () => seleccionar(b.dataset.u));
+  ficha();
+}
+
+function ficha() {
+  const el = document.getElementById("ficha");
+  if (!sel) { el.style.display = "none"; return; }
+  const d = P.porUbigeo[sel], k = "prob_h" + h, p = d[k], c = CENSO[sel], s = d.senales || {};
+  const pq = d["porque_h" + h] || {};
+  const filas = Object.entries(pq).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+  const lim = Math.max(1, ...filas.map(x => Math.abs(x[1])));
+  const barras = filas.map(([g, v]) => {
+    const w = 50 * Math.min(1, Math.abs(v) / lim), f = Math.exp(v);
+    const txt = Math.abs(v) < 0.05 ? "≈ igual" : (v > 0 ? "×" + f1(f) : "÷" + f1(1 / f));
+    return `<div class="f"><span>${GRUPOS[g]}</span><span class="eje"><i style="${v >= 0 ? `left:50%;width:${w}%` : `left:${50 - w}%;width:${w}%`};background:${v >= 0 ? css("--sube") : css("--baja")}"></i></span><span class="v" style="color:${v >= 0.05 ? css("--sube") : v <= -0.05 ? css("--baja") : css("--ink-3")}">${txt}</span></div>`;
+  }).join("");
+  const R = M.rangos_entrenamiento || {};
+  const mar = s.nino12 != null && R.nino12_max != null && s.nino12 > R.nino12_max
+    ? `<div class="alerta-dato">El mar frente a Piura está ${f1(s.nino12)} °C sobre lo normal: más que el máximo con que se entrenó el modelo (${f1(R.nino12_max)} °C en ${R.nino12_anio_max}). Con valores nunca vistos, la probabilidad es más incierta.</div>` : "";
+  const veces = p / TASA;
+  const viv = c ? c.viviendas : null;
+  const vh = d.viviendas_si_ocurre, rg = d.viviendas_rango_historico || [];
+  el.style.display = "block";
+  el.innerHTML = `
+    <div class="ficha-cab"><div><h2>${d.distrito}</h2><div class="ubic">Provincia de ${d.provincia}, ${d.departamento}</div></div><button class="cerrar" id="cerrar-ficha">Cerrar ✕</button></div>
+    <div class="prob-grande"><span class="cifra" style="color:${fase(p) === 2 ? css("--f2") : fase(p) === 1 ? "#a87400" : css("--ink")}">${pct(p)}</span>${chip(p)}
+      <span class="veces">${veces >= 1.5 ? "unas <b>" + f1(veces) + " veces</b> la probabilidad de una semana cualquiera" : veces < 0.7 ? "por debajo de una semana cualquiera" : "parecida a una semana cualquiera"}</span></div>
+    <div class="plazos-mini">${[1, 2, 3, 4].map(x => `<div class="${x === h ? "act" : ""}">${x === 1 ? "1 semana" : x + " semanas"}<b>${pct(d["prob_h" + x])}</b></div>`).join("")}</div>
+    <h3>¿Por qué esta probabilidad?</h3>
+    <p class="nota" style="margin:0 0 4px">Cuánto sube (rojo) o baja (verde) el riesgo cada factor, frente a una semana promedio de los distritos.</p>
+    <div class="porque">${barras}</div>
+    ${mar}
+    <h3>Lo que el modelo vio</h3>
+    <div class="senal">Lluvia de los últimos 7 días: <b>${s.lluvia_7d != null ? fN(Math.round(s.lluvia_7d)) + " mm" : "sin dato"}</b>${s.lluvia_sobre_p99 ? " · hubo un día de lluvia <b>extrema</b> (sobre su p99)" : s.lluvia_sobre_p95 ? " · hubo un día de lluvia <b>fuerte</b> (sobre su p95)" : ""}</div>
+    <div class="senal">Lluvia de los últimos 30 días: <b>${s.lluvia_30d != null ? fN(Math.round(s.lluvia_30d)) + " mm" : "sin dato"}</b></div>
+    <div class="senal">Río más cercano: <b>${s.caudal_razon != null ? f1(s.caudal_razon) + " veces su caudal normal" : "sin dato"}</b>${s.caudal_sobre_p95 ? " · sobre su p95" : ""}</div>
+    <div class="senal">Mar (Niño 1+2): <b>${s.nino12 != null ? (s.nino12 > 0 ? "+" : "") + f1(s.nino12) + " °C" : "sin dato"}</b> frente a lo normal</div>
+    <h3>¿A cuántos podría afectar? (Censo 2025)</h3>
+    ${c ? `<div class="senal">En zona inundable de crecidas de 1 en 100 años: <b>${fN(c.viviendas)} viviendas</b> y <b>${fN(c.personas)} personas</b>${c.edad_0_4 != null ? `, de ellas ${fN(c.edad_0_4)} niños de 0 a 4 años y ${fN(c.edad_65_mas)} personas de 65 o más` : ""}.</div>
+      <div class="senal">${c.pct_fragiles != null ? `${f1(c.pct_fragiles)} % de esas viviendas tiene paredes o techos frágiles.` : ""}</div>` :
+      `<div class="senal">El mapa de zona inundable (JRC) no marca viviendas de este distrito: solo modela ríos grandes, no quebradas ni lluvia en la ciudad.</div>`}
+    ${vh != null ? `<div class="senal" style="margin-top:4px">Si ocurre una emergencia, el modelo estima <b>unas ${fN(vh)} viviendas afectadas</b>${rg[0] != null ? ` (en emergencias pasadas del distrito: entre ${fN(rg[0])} y ${fN(rg[1])})` : ""}${viv ? `; el techo son las ${fN(viv)} viviendas en zona inundable` : ""}.</div>` : ""}
+    <p class="nota" style="margin-top:10px">No es una alerta oficial. ${h >= 3 ? "A este plazo la probabilidad es orientativa." : ""}</p>`;
+  document.getElementById("cerrar-ficha").onclick = () => seleccionar(null);
+}
+
+/* ---------------------------- ¿ACIERTA? ---------------------------- */
+let RM, anio = "2017", semI = 0, rSel = null, timer = null;
+function iniciarRepaso() {
+  RM = crearMapa("mapa-repaso", u => { rSel = u; serie(); }, (e, f) => {
+    const r = M.repaso[anio], i = semI, p = (r.prob[f.properties.ubigeo] || [])[i], y = (r.emergencia[f.properties.ubigeo] || [])[i];
+    tip(e, `<b>${f.properties.distrito}</b><br>${f.properties.provincia}<br>Modelo: ${pct(p)} · ${FASE_NOM[fase(p || 0)]}<br>${y ? "<b>Hubo emergencia</b>" : "Sin emergencia registrada"}`);
+  });
+  RM.capaEm = RM.capaS;
+  document.getElementById("leyenda-repaso").innerHTML = document.getElementById("leyenda").innerHTML.replace(/<span>Líneas.*<\/span>/, "") + `<span><i style="background:var(--ink);border-radius:50%;width:11px"></i>Hubo emergencia esa semana (SINPAD)</span>`;
+  const rango = document.getElementById("rango-semana");
+  rango.oninput = () => { semI = +rango.value; pintarRepaso(); };
+  document.querySelectorAll("#seg-anio button").forEach(b => b.onclick = () => {
+    anio = b.dataset.a; document.querySelectorAll("#seg-anio button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    semI = 0; rango.max = M.repaso[anio].semanas.length - 1; rango.value = 0; pintarRepaso(); resumenRepaso(); serie();
+  });
+  document.getElementById("play").onclick = () => {
+    if (timer) { clearInterval(timer); timer = null; document.getElementById("play").textContent = "▶ Reproducir"; return; }
+    document.getElementById("play").textContent = "❚❚ Pausa";
+    if (semI >= M.repaso[anio].semanas.length - 1) semI = 0;
+    timer = setInterval(() => {
+      semI++; rango.value = semI; pintarRepaso();
+      if (semI >= M.repaso[anio].semanas.length - 1) { clearInterval(timer); timer = null; document.getElementById("play").textContent = "▶ Reproducir"; }
+    }, 900);
+  };
+  rango.max = M.repaso[anio].semanas.length - 1;
+  rSel = (GEO.features.find(f => f.properties.distrito === "Catacaos") || {}).properties?.ubigeo;
+  pintarRepaso(); resumenRepaso(); serie();
+}
+function pintarRepaso() {
+  const r = M.repaso[anio], i = semI, sem = r.semanas[i];
+  document.getElementById("semana-eti").textContent = "Semana del " + fecha(sem);
+  RM.dist.attr("fill", f => color((r.prob[f.properties.ubigeo] || [])[i]));
+  const em = GEO.features.filter(f => (r.emergencia[f.properties.ubigeo] || [])[i]);
+  RM.capaEm.selectAll("circle").data(em, f => f.properties.ubigeo).join("circle").attr("class", "punto-em")
+    .attr("cx", f => RM.ruta.centroid(f)[0]).attr("cy", f => RM.ruta.centroid(f)[1]).attr("r", 5);
+  const conAviso = em.filter(f => fase((r.prob[f.properties.ubigeo] || [])[i] || 0) >= 1);
+  const nAl = GEO.features.filter(f => fase((r.prob[f.properties.ubigeo] || [])[i] || 0) === 2).length;
+  document.getElementById("r-sem-tit").textContent = "Semana del " + fecha(sem);
+  document.getElementById("r-semana").innerHTML = `
+    <div class="grid g2" style="gap:10px">
+      <div class="kpi"><div class="eti">Distritos con emergencia</div><div class="cifra">${em.length}</div><div class="det">registradas en el SINPAD</div></div>
+      <div class="kpi"><div class="eti">De ellos, con aviso previo</div><div class="cifra" style="color:${css("--accent")}">${em.length ? conAviso.length : "—"}</div><div class="det">atención o alerta la semana anterior</div></div>
+    </div>
+    <p class="nota" style="margin-top:8px">${nAl} distritos estaban en alerta para esta semana.${em.length ? " Con emergencia: " + em.map(f => f.properties.distrito).sort((a, b) => a.localeCompare(b, "es")).join(", ") + "." : ""}</p>`;
+  serieMarca();
+}
+function resumenRepaso() {
+  const fila = a => {
+    const r = M.repaso[a]; let n = 0, at = 0, al = 0, pri = 0, priAt = 0;
+    Object.keys(r.emergencia).forEach(u => {
+      let primera = true;
+      r.emergencia[u].forEach((y, i) => { if (!y) return; const p = r.prob[u][i] || 0; n++; if (p >= U.atencion) at++; if (p >= U.alerta) al++;
+        if (primera) { pri++; if (p >= U.atencion) priAt++; primera = false; } });
+    });
+    return `<tr><td>${a}</td><td class="num">${n}</td><td class="num">${Math.round(100 * at / n)} %</td><td class="num">${Math.round(100 * al / n)} %</td><td class="num">${priAt} de ${pri}</td></tr>`;
+  };
+  document.getElementById("r-resumen").innerHTML = `<div class="tabla-scroll"><table class="tabla"><tr><th>Año</th><th class="num">Semanas con emergencia</th><th class="num">Con atención antes</th><th class="num">Con alerta antes</th><th class="num">Primera emergencia del distrito con aviso</th></tr>${fila("2017")}${fila("2023")}</table></div>`;
+}
+let serieMarca = () => {};
+function serie() {
+  const el = document.getElementById("r-serie"); el.innerHTML = "";
+  if (!rSel) return;
+  const r = M.repaso[anio], p = r.prob[rSel] || [], y = r.emergencia[rSel] || [], f = GEO.features.find(x => x.properties.ubigeo === rSel);
+  document.getElementById("r-dist-tit").textContent = `${f.properties.distrito} en ${anio}, semana a semana`;
+  const W = 520, H = 220, m = {l: 38, r: 10, t: 10, b: 30};
+  const x = d3.scaleLinear([0, r.semanas.length - 1], [m.l, W - m.r]);
+  const ymax = Math.max(.3, d3.max(p) || 0) * 1.1, sy = d3.scaleLinear([0, ymax], [H - m.b, m.t]);
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+  svg.append("rect").attr("x", m.l).attr("width", W - m.l - m.r).attr("y", sy(Math.min(ymax, 1))).attr("height", sy(U.alerta) - sy(Math.min(ymax, 1))).attr("fill", "#f9dcd5").attr("opacity", .6);
+  svg.append("rect").attr("x", m.l).attr("width", W - m.l - m.r).attr("y", sy(U.alerta)).attr("height", sy(U.atencion) - sy(U.alerta)).attr("fill", "#fdf0cf").attr("opacity", .8);
+  svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(i => fechaC(r.semanas[Math.round(i)] || r.semanas[0])));
+  svg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(sy).ticks(5).tickFormat(v => Math.round(v * 100) + " %"));
+  svg.append("path").datum(p).attr("fill", "none").attr("stroke", css("--modelo")).attr("stroke-width", 2)
+    .attr("d", d3.line().defined(v => v != null).x((v, i) => x(i)).y(v => sy(v)));
+  svg.selectAll("circle.em").data(p.map((v, i) => ({v, i})).filter(o => y[o.i])).join("circle").attr("cx", o => x(o.i)).attr("cy", o => sy(o.v || 0)).attr("r", 5.5)
+    .attr("fill", "#fff").attr("stroke", css("--sube")).attr("stroke-width", 2.2);
+  const marca = svg.append("line").attr("y1", m.t).attr("y2", H - m.b).attr("stroke", css("--ink")).attr("stroke-dasharray", "3 3");
+  serieMarca = () => marca.attr("x1", x(semI)).attr("x2", x(semI));
+  serieMarca();
+}
+
+/* ---------------------------- CÓMO FUNCIONA ---------------------------- */
+function iniciarModelo() {
+  const t = M.tasa_sin_modelo;
+  document.getElementById("m-comparacion").innerHTML = `<table class="tabla"><tr><th>Modelo o regla</th><th class="num">1 sem.</th><th class="num">2 sem.</th><th class="num">3 sem.</th><th class="num">4 sem.</th></tr>` +
+    M.comparacion.map(c => `<tr class="${c.publicado ? "pub" : ""}"><td>${c.modelo}</td>${[1, 2, 3, 4].map(x => `<td class="num">${f3(c.pr_auc["h" + x])}</td>`).join("")}</tr>`).join("") +
+    `<tr><td><i>Sin modelo (tasa de emergencias)</i></td>${[1, 2, 3, 4].map(x => `<td class="num">${f3(t["h" + x])}</td>`).join("")}</tr></table>
+    <p class="nota" style="margin-top:8px">LightGBM ordena un poco mejor, pero es más difícil de explicar y no mejora la estimación de viviendas; por eso se publica la logística.</p>`;
+  // ventaja con IC
+  {
+    const q = P.calidad_por_plazo, W = 520, H = 200, m = {l: 90, r: 20, t: 10, b: 30};
+    const x = d3.scaleLinear([-.03, .1], [m.l, W - m.r]), y = d3.scaleBand(q.map(d => d.h), [m.t, H - m.b]).padding(.45);
+    const svg = d3.select("#m-ventaja").append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v => (v > 0 ? "+" : "") + f2(v)));
+    svg.append("line").attr("x1", x(0)).attr("x2", x(0)).attr("y1", m.t).attr("y2", H - m.b).attr("stroke", css("--ink-3"));
+    q.forEach(d => {
+      const [a, b] = d.ventaja_sobre_climatologia_ic95 || [null, null], c = d.pr_auc - d.pr_auc_climatologia, gana = a > 0;
+      const yy = y(d.h) + y.bandwidth() / 2;
+      svg.append("text").attr("x", m.l - 8).attr("y", yy + 4).attr("text-anchor", "end").text(d.h === 1 ? "1 semana" : d.h + " semanas");
+      if (a != null) svg.append("line").attr("x1", x(a)).attr("x2", x(b)).attr("y1", yy).attr("y2", yy).attr("stroke", gana ? css("--modelo") : css("--clima")).attr("stroke-width", 4).attr("stroke-linecap", "round");
+      svg.append("circle").attr("cx", x(c)).attr("cy", yy).attr("r", 6).attr("fill", gana ? css("--modelo") : css("--clima")).attr("stroke", "#fff").attr("stroke-width", 2);
+    });
+    document.getElementById("m-ventaja-texto").innerHTML = `<p class="nota">A <b>1 y 2 semanas</b> todo el margen está a la derecha del cero: la ventaja es real (gana en ${f1(q[0].pct_replicas_modelo_gana)} % y ${f1(q[1].pct_replicas_modelo_gana)} % de los remuestreos). A 3 y 4 semanas el margen cruza el cero: el modelo y la historia del distrito dicen lo mismo.</p>`;
+  }
+  // curva PR
+  {
+    const c = M.curva_pr_h1, W = 520, H = 260, m = {l: 44, r: 22, t: 10, b: 36};
+    const x = d3.scaleLinear([0, 1], [m.l, W - m.r]), y = d3.scaleLinear([0, .4], [H - m.b, m.t]);
+    const svg = d3.select("#m-pr").append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    svg.append("g").attr("class", "grid").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(""));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(5).tickFormat(v => Math.round(v * 100) + " %"));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(v => Math.round(v * 100) + " %"));
+    svg.append("text").attr("x", (m.l + W) / 2).attr("y", H - 4).attr("text-anchor", "middle").text("Captura: emergencias con aviso");
+    svg.append("line").attr("x1", x(0)).attr("x2", x(1)).attr("y1", y(TASA)).attr("y2", y(TASA)).attr("stroke", css("--ink-3")).attr("stroke-dasharray", "4 3");
+    svg.append("text").attr("x", x(1)).attr("y", y(TASA) - 5).attr("text-anchor", "end").text("al azar");
+    [["climatologia", css("--clima"), "Historia del distrito"], ["modelo", css("--modelo"), "Modelo"]].forEach(([k, col, nom], i) => {
+      svg.append("path").datum(c[k]).attr("fill", "none").attr("stroke", col).attr("stroke-width", 2.4).attr("d", d3.line().x(d => x(d[0])).y(d => y(d[1])));
+      svg.append("rect").attr("x", W - 160).attr("y", 14 + i * 18).attr("width", 14).attr("height", 4).attr("fill", col);
+      svg.append("text").attr("x", W - 140).attr("y", 20 + i * 18).text(nom);
+    });
+    svg.append("text").attr("transform", `translate(12,${(H - m.b) / 2}) rotate(-90)`).attr("text-anchor", "middle").text("Precisión");
+  }
+  // calibración
+  {
+    const c = M.calibracion.filter(d => d.n >= 50), W = 520, H = 260, m = {l: 44, r: 10, t: 10, b: 36};
+    const x = d3.scaleLinear([0, .65], [m.l, W - m.r]), y = d3.scaleLinear([0, .45], [H - m.b, m.t]);
+    const svg = d3.select("#m-cal").append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v => Math.round(v * 100) + " %"));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => Math.round(v * 100) + " %"));
+    svg.append("line").attr("x1", x(0)).attr("y1", y(0)).attr("x2", x(.45)).attr("y2", y(.45)).attr("stroke", css("--ink-3")).attr("stroke-dasharray", "4 3");
+    svg.append("text").attr("x", (m.l + W) / 2).attr("y", H - 4).attr("text-anchor", "middle").text("Lo que dijo el modelo");
+    svg.append("text").attr("transform", `translate(12,${(H - m.b) / 2}) rotate(-90)`).attr("text-anchor", "middle").text("Lo que pasó");
+    [["sin_calibrar", css("--clima"), "Antes de calibrar"], ["calibrado", css("--modelo"), "Calibrado (lo publicado)"]].forEach(([k, col, nom], i) => {
+      const d = c.filter(z => z.version === k).map(z => [z.dijo / 100, z.paso / 100]);
+      svg.append("path").datum(d).attr("fill", "none").attr("stroke", col).attr("stroke-width", 2.2).attr("d", d3.line().x(v => x(v[0])).y(v => y(v[1])));
+      svg.selectAll(null).data(d).join("circle").attr("cx", v => x(v[0])).attr("cy", v => y(v[1])).attr("r", 4.5).attr("fill", col).attr("stroke", "#fff").attr("stroke-width", 1.5);
+      svg.append("rect").attr("x", m.l + 10).attr("y", 14 + i * 18).attr("width", 14).attr("height", 4).attr("fill", col);
+      svg.append("text").attr("x", m.l + 30).attr("y", 20 + i * 18).text(nom);
+    });
+  }
+  // anual
+  {
+    const a = M.anual.h1, W = 520, H = 240, m = {l: 40, r: 10, t: 24, b: 30};
+    const x = d3.scaleBand(a.map(d => d.anio), [m.l, W - m.r]).padding(.25), y = d3.scaleLinear([0, d3.max(a, d => Math.max(d.modelo, d.climatologia)) * 1.1], [H - m.b, m.t]);
+    const svg = d3.select("#m-anual").append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    svg.append("g").attr("class", "grid").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(""));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(a.map(d => d.anio).filter((v, i) => i % 2 === 0)).tickFormat(v => "'" + String(v).slice(2)));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(f2));
+    const bw = x.bandwidth() / 2 - 1;
+    svg.selectAll(null).data(a).join("rect").attr("x", d => x(d.anio)).attr("width", bw).attr("y", d => y(d.modelo)).attr("height", d => y(0) - y(d.modelo)).attr("fill", css("--modelo")).attr("rx", 2);
+    svg.selectAll(null).data(a).join("rect").attr("x", d => x(d.anio) + bw + 2).attr("width", bw).attr("y", d => y(d.climatologia)).attr("height", d => y(0) - y(d.climatologia)).attr("fill", css("--clima")).attr("rx", 2);
+    const gana = a.filter(d => d.modelo > d.climatologia).length;
+    [["Modelo", css("--modelo")], ["Historia del distrito", css("--clima")]].forEach(([n, c], i) => {
+      svg.append("rect").attr("x", m.l + i * 120).attr("y", 4).attr("width", 12).attr("height", 10).attr("fill", c).attr("rx", 2);
+      svg.append("text").attr("x", m.l + 16 + i * 120).attr("y", 13).text(n);
+    });
+    svg.append("text").attr("x", W - m.r).attr("y", 13).attr("text-anchor", "end").text(`El modelo gana ${gana} de ${a.length} años`);
+  }
+  // pesos
+  {
+    const w = Object.entries(P.pesos.h1).map(([k, v]) => ({k, v})).sort((a, b) => Math.abs(b.v) - Math.abs(a.v));
+    const W = 520, H = 30 + w.length * 22, m = {l: 190, r: 50, t: 6, b: 24};
+    const lim = d3.max(w, d => Math.abs(d.v));
+    const x = d3.scaleLinear([-lim, lim], [m.l, W - m.r]), y = d3.scaleBand(w.map(d => d.k), [m.t, H - m.b]).padding(.25);
+    const svg = d3.select("#m-pesos").append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    svg.append("line").attr("x1", x(0)).attr("x2", x(0)).attr("y1", m.t).attr("y2", H - m.b).attr("stroke", css("--line-2"));
+    w.forEach(d => {
+      svg.append("text").attr("x", m.l - 8).attr("y", y(d.k) + y.bandwidth() / 2 + 4).attr("text-anchor", "end").text(VAR[d.k] || d.k);
+      svg.append("rect").attr("x", Math.min(x(0), x(d.v))).attr("width", Math.abs(x(d.v) - x(0))).attr("y", y(d.k)).attr("height", y.bandwidth()).attr("rx", 2).attr("fill", d.v >= 0 ? css("--sube") : css("--baja"));
+      svg.append("text").attr("x", d.v >= 0 ? x(d.v) + 4 : x(d.v) - 4).attr("y", y(d.k) + y.bandwidth() / 2 + 4).attr("text-anchor", d.v >= 0 ? "start" : "end").text((d.v >= 0 ? "×" : "÷") + f1(Math.exp(Math.abs(d.v))));
+    });
+    svg.append("text").attr("x", 4).attr("y", H - 4).text("Las que más mueven el riesgo: " + w.slice(0, 3).map(d => VAR[d.k] || d.k).join(" · "));
+  }
+  // fases
+  {
+    const fd = P.fases.desempeno;
+    document.getElementById("m-fases").innerHTML = `<table class="tabla"><tr><th>Plazo</th><th>Fase</th><th class="num">Emergencias con aviso</th><th class="num">Avisos que aciertan</th><th class="num">Avisos por distrito al año</th></tr>` +
+      [1, 2, 3, 4].map(x => ["atencion", "alerta"].map((f, i) => { const r = fd["h" + x][f];
+        return `<tr><td>${i ? "" : (x === 1 ? "1 semana" : x + " semanas")}</td><td>${chip(i ? U.alerta : U.atencion)}</td><td class="num">${f1(r.captura_pct)} %</td><td class="num">${f1(r.precision_pct)} %</td><td class="num">${f1(r.avisos_por_distrito_y_anio)}</td></tr>`; }).join("")).join("") +
+      `</table><p class="nota" style="margin-top:8px"><b>Atención</b> avisa antes de 7 de cada 10 emergencias, con más falsas alarmas: sirve para prepararse. <b>Alerta</b> acierta 1 de cada 4 veces a 1 semana, unas 8 veces más que al azar: sirve para actuar. Es la lógica de los protocolos de acción temprana.</p>`;
+  }
+  // densidad
+  {
+    const d = M.por_densidad_h1;
+    document.getElementById("m-densidad").innerHTML = `<table class="tabla"><tr><th>Densidad</th><th class="num">Distritos</th><th class="num">Modelo</th><th class="num">Historia del distrito</th></tr>` +
+      d.map(r => `<tr><td>${r.densidad[0].toUpperCase() + r.densidad.slice(1)}</td><td class="num">${r.distritos}</td><td class="num"><b>${f3(r.pr_auc_modelo)}</b></td><td class="num">${f3(r.pr_auc_climatologia)}</td></tr>`).join("") +
+      `</table><p class="nota" style="margin-top:8px">PR-AUC a 1 semana. Un modelo parecido en Cataluña (Morales et al., 2026) falla en los municipios poco poblados; este le gana a la historia del distrito en los tres grupos.</p>`;
+  }
+}
+</script>
+</body>
+</html>

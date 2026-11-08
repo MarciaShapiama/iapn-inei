@@ -243,6 +243,23 @@ def platt(p_cal: np.ndarray, y_cal: np.ndarray):
     return lambda p: m.predict_proba(z(np.asarray(p, dtype=float)))[:, 1]
 
 
+def pendiente_platt(f) -> float:
+    """La calibración de Platt es lineal en el logit: logit(f(p)) = a + b·logit(p). Devuelve b."""
+    lg = lambda q: np.log(q / (1 - q))  # noqa: E731
+    p = np.array([0.02, 0.2])
+    q = f(p)
+    return float((lg(q[1]) - lg(q[0])) / (lg(p[1]) - lg(p[0])))
+
+
+# Grupos de variables para explicar cada predicción en el tablero
+GRUPOS = {"lluvia": ["log_lluvia_30d", "log_lluvia_7d", "lluvia_sobre_p95", "lluvia_sobre_p99"],
+          "rio": ["log_caudal_razon", "caudal_sobre_p95"],
+          "mar": ["nino12"],
+          "epoca": ["sen_obj", "cos_obj"],
+          "historia": ["hist_frec"],
+          "exposicion": ["pct_inundable", "log_censo_viviendas", "log_censo_personas"]}
+
+
 def calibrar(oos: pd.DataFrame, anio: int, p: np.ndarray) -> np.ndarray:
     """Calibra las probabilidades del año `anio` SOLO con predicciones fuera de muestra de los años anteriores
     (ventana de ANIOS_CALIBRACION años). Sin al menos 2 años previos con eventos, devuelve p sin cambios."""
@@ -324,7 +341,9 @@ def resumen(m: pd.DataFrame, pr: pd.DataFrame) -> pd.DataFrame:
 def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> dict:
     """Entrena con todo lo etiquetado (semana objetivo hasta FIN_ETIQUETA) y predice desde la última semana con datos."""
     p = panel()
-    ok = p.groupby("semana")["lluvia_30d"].apply(lambda s: s.notna().mean())
+    # última semana COMPLETA: con lluvia de 7 días en casi todos los distritos (NASA POWER llega con días de retraso;
+    # una semana a medias deja lluvia_7d vacía y el modelo la reemplazaría por la mediana)
+    ok = p.groupby("semana")[["lluvia_7d", "lluvia_30d"]].apply(lambda s: s.notna().all(axis=1).mean())
     t = ok[ok >= 0.9].index.max()
     salida = {"semana_base": str(t.date()), "distritos": {}}
     j = json.load(open(CENSO, encoding="utf-8"))
@@ -335,19 +354,33 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
         tr = e[e.y.notna() & (e.semana_obj <= FIN_ETIQUETA)]
         hoy = e[e.semana == t].copy()
         tr, hoy = con_historia(tr, hoy)
-        prob, _, _ = logistica(tr, hoy, CON_AVISO)
+        prob, modelo_h, med = logistica(tr, hoy, CON_AVISO)
         # misma calibración que en la validación: Platt con las predicciones fuera de muestra de los últimos años
         o = pr[(pr.h == h) & (pr.modelo == MODELO)]
         o = o.assign(anio=pd.to_datetime(o.semana_obj).dt.year)
         o = o[o.anio > o.anio.max() - ANIOS_CALIBRACION]
-        prob = platt(o.p.to_numpy(), o.y.to_numpy())(prob)
+        f_cal = platt(o.p.to_numpy(), o.y.to_numpy())
+        pendiente = pendiente_platt(f_cal)
+        prob = f_cal(prob)
+        # Explicación de cada predicción. En una regresión logística, el aporte de cada variable al logit es
+        # coeficiente × valor estandarizado (es el valor SHAP exacto con el promedio del entrenamiento como base).
+        # Se multiplica por la pendiente de Platt porque la calibración es lineal en el logit.
+        z = modelo_h[0].transform(_x(hoy, CON_AVISO, med))
+        coef = modelo_h[-1].coef_[0] * pendiente
+        aporte = z * coef
+        salida.setdefault("pesos", {})[f"h{h}"] = {c: round(float(w), 4) for c, w in zip(CON_AVISO, coef)}
         vc, _, _ = viviendas_si_ocurre(tr, hoy, CON_AVISO)
         hist = tr[(tr.y == 1) & (tr.v > 0)].groupby("clave")["v"]
         q10, q90 = hist.quantile(0.1), hist.quantile(0.9)
-        for r, pr_, v in zip(hoy.itertuples(), prob, vc):
+        for r, pr_, v, ap in zip(hoy.itertuples(), prob, vc, aporte):
             d = salida["distritos"].setdefault(r.ubigeo, {"ubigeo": r.ubigeo, "departamento": r.departamento,
                                                           "provincia": r.provincia, "distrito": r.distrito})
             d[f"prob_h{h}"] = round(float(pr_), 4)
+            d[f"porque_h{h}"] = {g: round(float(sum(ap[CON_AVISO.index(c)] for c in cs)), 3) for g, cs in GRUPOS.items()}
+            if h == 1:
+                d["senales"] = {k: (None if pd.isna(getattr(r, k)) else round(float(getattr(r, k)), 2))
+                                for k in ("lluvia_7d", "lluvia_30d", "lluvia_sobre_p95", "lluvia_sobre_p99",
+                                          "caudal_razon", "caudal_sobre_p95", "nino12")}
             if h == 1:
                 ppv = (r.censo_personas / r.censo_viviendas) if r.censo_viviendas > 0 else pers_por_viv
                 lo, hi = q10.get(r.clave, np.nan), q90.get(r.clave, np.nan)
@@ -397,8 +430,16 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
     return salida
 
 
-def main(sin_anio: int | None) -> None:
+def main(sin_anio: int | None, solo_actual: bool = False) -> None:
     SALIDA.mkdir(parents=True, exist_ok=True)
+    if solo_actual:  # reusa la validación ya guardada y solo rehace la predicción de esta semana
+        m = pd.read_csv(SALIDA / "metricas_por_anio.csv")
+        res = pd.read_csv(SALIDA / "metricas_por_plazo.csv")
+        pr = pd.read_csv(SALIDA / "predicciones_validacion.csv.gz")
+        out = prediccion_actual(res, m, pr)
+        JSON.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        print(f"  {JSON.name}: semana base {out['semana_base']}, {len(out['distritos'])} distritos")
+        return
     m, pr, res = correr(sin_anio)
     sufijo = f"_sin_{sin_anio}" if sin_anio else ""
     m.to_csv(SALIDA / f"metricas_por_anio{sufijo}.csv", index=False, float_format="%.5f")
@@ -416,4 +457,6 @@ def main(sin_anio: int | None) -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--sin-anio", type=int, default=None, help="evaluar sin entrenar nunca con ese año (p. ej. 2017)")
-    main(ap.parse_args().sin_anio)
+    ap.add_argument("--solo-actual", action="store_true", help="no reevalúa: usa la validación guardada")
+    args = ap.parse_args()
+    main(args.sin_anio, args.solo_actual)
