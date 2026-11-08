@@ -11,7 +11,7 @@ Qué se usa (todo ya está en el repositorio, no necesita red):
     emergencias de INDECI (SINPAD, datos abiertos) por distrito y semana 2003-2026:
         data/modelo/sinpad_tumbes_piura_semanal.csv
     eventos verificados con noticias: data/eventos/catalogo_verificado.csv, más dos desbordes del río Tumbes con
-        noticias (29/4/2023 y 12/2/2025, docs/3_validacion/09_PRUEBA_DETECTOR_NOTICIAS.md)
+        noticias (29/4/2023 y 12/2/2025, docs/3_validacion/3.2_RADAR_FRENTE_A_NOTICIAS.md)
 
 Límite importante: se usa la lluvia que REALMENTE cayó, no la que se pronosticó. Mide si la regla del aviso (lluvia
 de un día sobre el percentil 95 o 99 del lugar) separa los días de daño de los demás, suponiendo un pronóstico
@@ -45,7 +45,7 @@ CUENCA = {"Piura": ["Piura", "Castilla", "Catacaos", "Cura Mori", "El Tallan", "
 
 LUGARES = R / "data" / "eventos" / "lugares.csv"
 DIAS_ANTES = 3        # el aviso mira los próximos 3 días: cuenta si la lluvia fuerte cayó hasta 3 días antes del evento
-EXTRA = [  # desbordes del río Tumbes con cultivos inundados varios días (noticias de Andina, ver documento 09)
+EXTRA = [  # desbordes del río Tumbes con cultivos inundados varios días (noticias de Andina, ver documento 3.2)
     {"id": "2023-tumbes-cultivos", "fecha": "2023-04-29", "dep": "TUMBES", "distrito": "SAN JACINTO",
      "descripcion": "Desborde del río Tumbes: unas 1 600 ha de cultivo afectadas"},
     {"id": "2025-tumbes-cultivos", "fecha": "2025-02-12", "dep": "TUMBES", "distrito": "SAN JACINTO",

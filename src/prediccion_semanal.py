@@ -393,7 +393,7 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
                            "viviendas × personas por vivienda del censo en la zona inundable del distrito. No es una alerta oficial.")
     salida["limites"] = ["El modelo no usa si hubo emergencia esta semana: el SINPAD publica cada seis meses y ese dato no existe en tiempo real.",
                          "La lluvia de NASA POWER llega con unos días de retraso; por eso la semana base puede ser anterior a hoy.",
-                         "Ver docs/2_modelo/21_MODELO_POR_PLAZO.md para la calidad por plazo."]
+                         "Ver docs/2_modelo/2.2_MODELO_POR_PLAZO.md para la calidad por plazo."]
     return salida
 
 

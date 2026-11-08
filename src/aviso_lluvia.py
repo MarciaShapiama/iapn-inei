@@ -11,7 +11,7 @@ El radar solo ve el agua cuando el satélite pasa y después de que ocurre. Para
 
 2. CAUDAL (solo los distritos de los valles de los ríos Piura, Chira y Tumbes, lista CUENCA). Muchas crecidas vienen
    de la lluvia aguas arriba (en Tumbes, de Ecuador), no de la que cae en el distrito: el desborde del río Tumbes de
-   febrero de 2025 no tuvo aviso de lluvia (docs/3_validacion/18_PRUEBA_AVISO_CON_EL_PASADO.md).
+   febrero de 2025 no tuvo aviso de lluvia (docs/3_validacion/3.1_PRUEBA_AVISO_CON_EL_PASADO.md).
    Pronóstico (cada día): GloFAS v4 (Open-Meteo Flood API, river_discharge) de los próximos 7 días en la misma celda
    del río que usan src/descargar_zonas.py y data/modelo/caudal_rios.csv (data/normales/rios_celdas.csv).
    Umbrales: percentiles 95 y 99 del caudal diario 2001-2020 de esa celda (data/modelo/caudal_rios.csv).

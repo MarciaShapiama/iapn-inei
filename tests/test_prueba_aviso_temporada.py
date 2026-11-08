@@ -36,7 +36,7 @@ def test_niveles_cubren_las_dos_temporadas(niveles):
 
 
 def test_san_jacinto_1_de_noviembre(niveles):
-    """Mismo caso del documento 18: 105,1 / 84,9 / 32,4 mm con p95 26,9 y p99 56,6."""
+    """Mismo caso del documento 3.1: 105,1 / 84,9 / 32,4 mm con p95 26,9 y p99 56,6."""
     f = niveles[(niveles.distrito == "San Jacinto") & (niveles.fecha == "2026-11-01")].iloc[0]
     assert (f.lluvia_1d, f.lluvia_2d, f.lluvia_3d) == ("e", "e", "f")
 

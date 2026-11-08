@@ -11,7 +11,7 @@
 
 **Problema.** Piura y Tumbes sufren inundaciones recurrentes con El Niño (1983, 1998, 2017) y con eventos como el ciclón Yaku (2023). Las autoridades necesitan saber **dónde** y **cuánta** población, edificaciones, colegios y establecimientos de salud quedarían expuestos, con cifras cuyo origen se pueda revisar.
 
-**Qué hicimos.** Partimos del tablero del equipo, que ya integraba el peligro JRC, el radar Sentinel-1, WorldPop, Open Buildings, colegios, salud, el mar y la lluvia. Lo **auditamos** (doc 01) y construimos un **MVP reproducible**:
+**Qué hicimos.** Partimos del tablero del equipo, que ya integraba el peligro JRC, el radar Sentinel-1, WorldPop, Open Buildings, colegios, salud, el mar y la lluvia. Lo **auditamos** (doc 1.1) y construimos un **MVP reproducible**:
 
 1. ETL con reintentos, registro de fallos y conservación del último resultado válido.
 2. Metadatos y estado por capa: `vigente`, `rezagado`, `no disponible` o `estimado`.
@@ -34,7 +34,7 @@
 
 **Aporte al INEI.** Una estadística territorial de **población y edificaciones potencialmente expuestas por UBIGEO**, con metadatos, diccionario y periodicidad, que puede integrarse al Sistema Estadístico Nacional. El INEI produce estadística; las alertas y las obras corresponden a otras entidades.
 
-**Políticas.** Siete opciones para evaluar (doc 05): continuidad educativa y de salud, ordenamiento territorial, mantenimiento focalizado de drenes, rutas y refugios, comunicación de riesgo y levantamiento de datos.
+**Políticas.** Siete opciones para evaluar (doc 5.2): continuidad educativa y de salud, ordenamiento territorial, mantenimiento focalizado de drenes, rutas y refugios, comunicación de riesgo y levantamiento de datos.
 
 **Limitaciones principales.** El JRC es un escenario (90 m, sin defensas ni inundación pluvial). El radar subdetecta en ciudades (Catacaos 2017: 1,1 km²). La población es modelada. Faltan 2 distritos en los límites usados. Los colegios no vienen del padrón oficial. El umbral adaptativo del radar está implementado, pero aún no se eligió con una referencia independiente.
 
@@ -57,7 +57,7 @@
 6. Proponer un aporte estadístico al INEI y opciones de política pública.
 
 **1.5 Preguntas analíticas (en lugar de hipótesis causales).**
-- H1: la exposición se concentra en el Bajo Piura y en la cuenca baja del Tumbes. → **Se confirma** (doc 05, P3).
+- H1: la exposición se concentra en el Bajo Piura y en la cuenca baja del Tumbes. → **Se confirma** (doc 5.2, P3).
 - H2: el radar con umbral fijo subestima la inundación urbana. → **Se confirma** (Catacaos 2017).
 - H3: un modelo con lluvia, caudal y mar supera a la climatología para anticipar emergencias. → **No se demuestra** con 8 años de prueba.
 
@@ -71,7 +71,7 @@
 | SENAMHI | Avisos y datos observados | El tablero enlaza y diferencia «modelado» de «observado» |
 | INDECI / COEN | Registro de daños | Exposición **antes** del evento; no estima daños |
 | Tablero del equipo (inicio) | Mapa 3D atractivo con muchas capas | Cifras corregidas, trazabilidad, pruebas, mapa 2D y panel de decisiones |
-| Monitor complementario (Maykol) | Lluvia, Sentinel-2 antes/después, agua SAR a −18 dB | Comparación metodológica del umbral SAR (doc 01 §4.5); no se modificó |
+| Monitor complementario (Maykol) | Lluvia, Sentinel-2 antes/después, agua SAR a −18 dB | Comparación metodológica del umbral SAR (doc 1.1 §4.5); no se modificó |
 
 **Beneficiarios:** gobiernos regionales y municipalidades, DRE/UGEL, DIRESA, el INEI y la academia. **Sostenibilidad:** costo cero (GitHub Pages + Actions y fuentes abiertas), código documentado y pruebas automáticas.
 
@@ -103,7 +103,7 @@ Fuentes abiertas ──► src/etl.py (perfiles diario / inundacion / local)
 - **Peligro:** porcentaje del área distrital en la zona 1/100.
 - **Vulnerabilidad:** porcentaje de pobreza monetaria 2018.
 - **Riesgo estimado:** promedio de los percentiles de las tres dimensiones.
-- **Radar:** VV con detección de cambios frente a la temporada seca, con máscaras DEM y de agua permanente (doc 01 §4.5).
+- **Radar:** VV con detección de cambios frente a la temporada seca, con máscaras DEM y de agua permanente (doc 1.1 §4.5).
 
 ### 3.3 Validación estadística
 
@@ -115,9 +115,9 @@ Fuentes abiertas ──► src/etl.py (perfiles diario / inundacion / local)
 
 ### 3.4 Limitaciones
 
-Ver doc 01 §5 y §6. Las principales: el JRC no es un pronóstico; el radar no es verdad-terreno; la población es modelada; los límites son GADM (licencia y distritos faltantes); los colegios vienen de OSM.
+Ver doc 1.1 §5 y §6. Las principales: el JRC no es un pronóstico; el radar no es verdad-terreno; la población es modelada; los límites son GADM (licencia y distritos faltantes); los colegios vienen de OSM.
 
-## 4. Machine learning (síntesis del doc 02)
+## 4. Machine learning (síntesis del doc 2.5)
 
 | Caso | Decisión | Por qué |
 |---|---|---|
@@ -127,9 +127,9 @@ Ver doc 01 §5 y §6. Las principales: el JRC no es un pronóstico; el radar no 
 
 ## 5. Aporte, políticas, bibliografía, riesgos y ética
 
-- **Aporte al INEI:** doc 03. Indicador principal: población potencialmente expuesta a la zona 1/100 por UBIGEO (408.970 en total; Catacaos 85 % de su población modelada).
-- **Políticas:** doc 05 (P1–P7).
-- **Bibliografía:** doc 04 (21 referencias: 19 artículos arbitrados, incluido Otsu (1979); 1 en actas de congreso y 1 preprint; 20 DOI verificados en Crossref y el preprint en arXiv).
+- **Aporte al INEI:** doc 5.1. Indicador principal: población potencialmente expuesta a la zona 1/100 por UBIGEO (408.970 en total; Catacaos 85 % de su población modelada).
+- **Políticas:** doc 5.2 (P1–P7).
+- **Bibliografía:** doc 5.3 (21 referencias: 19 artículos arbitrados, incluido Otsu (1979); 1 en actas de congreso y 1 preprint; 20 DOI verificados en Crossref y el preprint en arXiv).
 - **Ética de datos:**
   - no usar «damnificados» ni «afectados» para la exposición;
   - no publicar datos personales;
@@ -147,7 +147,7 @@ Ver doc 01 §5 y §6. Las principales: el JRC no es un pronóstico; el radar no 
 | `python src/modelo_inundacion.py` | Métricas idénticas a las documentadas por el equipo |
 | `python src/ml_evaluacion.py` | Bootstrap, calibración y falsos negativos (`docs/evidencia/ml_evaluacion.json`) |
 | Crossref API | 20/20 DOI con HTTP 200 (`docs/evidencia/crossref_verificacion.txt`) |
-| Recorrido en el navegador | Piura → Catacaos → Radar 2017 → metadatos → CSV/GeoJSON; móvil 375 px; `?sin3d=1` (doc 01 §9) |
+| Recorrido en el navegador | Piura → Catacaos → Radar 2017 → metadatos → CSV/GeoJSON; móvil 375 px; `?sin3d=1` (doc 1.1 §9) |
 
 No hay capturas de pantalla en el repositorio: no se pidió autorización para guardarlas.
 
@@ -183,17 +183,17 @@ No hay capturas de pantalla en el repositorio: no se pidió autorización para g
 
 | Requisito | Estado | Evidencia | Notas |
 |---|---|---|---|
-| Inspección y síntesis | Hecho | doc 01 §2 | — |
+| Inspección y síntesis | Hecho | doc 1.1 §2 | — |
 | Auditoría técnica (`docs/01`) | Hecho | archivo + `auditoria.py` | — |
 | Coherencia dentro ≤ 500 m ≤ 1 km | Hecho | `test_acumulados_monotonos` | — |
 | Suma subregiones = total | Hecho | `test_suma_de_departamentos_igual_al_total` | — |
-| Caso 2023 verificado | Hecho | doc 01 §4.3 | Además se encontró y corrigió E1 |
+| Caso 2023 verificado | Hecho | doc 1.1 §4.3 | Además se encontró y corrigió E1 |
 | Rótulo edificaciones / exposición | Hecho | `test_sin_rotulos_engañosos` | — |
-| Unidades, ICEN, fechas Lima/UTC | Parcial | doc 01 §4.6 | No verifiqué el comunicado ENFEN vigente |
+| Unidades, ICEN, fechas Lima/UTC | Parcial | doc 1.1 §4.6 | No verifiqué el comunicado ENFEN vigente |
 | Mapa 2D sin WebGL | Hecho | recorrido; `test_respaldo_sin_webgl_presente` | Simulado con `?sin3d=1`; sin probar en una máquina real sin GPU |
 | ETL reproducible con reintentos, registro y degradación | Hecho (local) / Parcial (en línea) | `etl.py`, `test_descargar_*` | Perfiles `diario` e `inundacion` no ejecutados aquí (necesitan red y varios GB) |
 | Metadatos y estado por capa | Hecho | `metadatos.json`, `test_metadatos_completos` | — |
-| Mapa usable: selectores, escenarios, capas, leyenda, escala, filtros, descargas, móvil | Hecho | recorrido doc 01 §9 | «Cuenca» = agrupación aproximada de distritos, no límites ANA |
+| Mapa usable: selectores, escenarios, capas, leyenda, escala, filtros, descargas, móvil | Hecho | recorrido doc 1.1 §9 | «Cuenca» = agrupación aproximada de distritos, no límites ANA |
 | Cifras por UBIGEO, anillos y acumulados | Hecho | `exposicion_distritos.csv`, `test_csv_por_distrito_concilia` | — |
 | Validación contra totales INEI | Parcial | `test_poblacion_distrital_plausible` | Se usó una estimación 2020 de terceros, no la proyección oficial |
 | Comparador temporal del radar | Hecho | `mapa2d.html` | — |

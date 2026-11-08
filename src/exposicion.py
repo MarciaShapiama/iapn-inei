@@ -59,7 +59,7 @@ def poblacion(forzar: bool) -> None:
     with rasterio.open(tmp) as src:
         # La caja sale del borde oeste del archivo de Perú (-81,33°). Sin recortar la ventana al ráster, rasterio
         # lee solo la parte que existe pero window_transform() conserva el origen pedido (-81,40°): la población
-        # quedaba desplazada ~7,9 km al oeste (corregido 2026-11-04; ver docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md).
+        # quedaba desplazada ~7,9 km al oeste (corregido 2026-11-04; ver docs/1_datos/1.1_AUDITORIA_TECNICA_Y_DATOS.md).
         ventana = from_bounds(*CAJA, transform=src.transform).round_offsets().round_lengths()
         ventana = ventana.intersection(Window(0, 0, src.width, src.height))
         datos = src.read(1, window=ventana)

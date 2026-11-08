@@ -1,6 +1,6 @@
-"""Falsas alarmas del aviso con PRONÓSTICOS REALES, todos los días de una temporada (documento 18, sección C).
+"""Falsas alarmas del aviso con PRONÓSTICOS REALES, todos los días de una temporada (documento 3.1, sección C).
 
-La prueba A del documento 18 solo miró días con daño: no mide falsas alarmas. Esta mira TODOS los días y TODOS los
+La prueba A del documento 3.1 solo miró días con daño: no mide falsas alarmas. Esta mira TODOS los días y TODOS los
 distritos de dos temporadas:
     enero a abril de 2025 (temporada de lluvias completa; daños = SINPAD del INDECI)
     15 de octubre al 4 de noviembre de 2026 (inicio de El Niño costero; daños = catálogo verificado + noticias)
@@ -79,7 +79,7 @@ BLOQUE = 10          # distritos por consulta (Open-Meteo cuenta cada punto)
 PAUSA_S = 6          # entre consultas, para no pasar el límite por minuto
 # Esta prueba se hizo con los pronósticos guardados de los 76 puntos del mapa GADM anterior
 # (docs/evidencia/aviso_temporada_niveles.txt). Mientras no se vuelva a correr con red para los 78 distritos del INEI,
-# conserva la misma unión de distritos para que sus cifras sigan siendo las publicadas en el documento 18.
+# conserva la misma unión de distritos para que sus cifras sigan siendo las publicadas en el documento 3.1.
 FUSION = {"200115": "200101", "240203": "240201"}
 
 

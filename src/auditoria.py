@@ -1,4 +1,4 @@
-"""Diagnóstico reproducible de las cifras de exposición (evidencia para docs/1_datos/01_AUDITORIA_TECNICA_Y_DATOS.md).
+"""Diagnóstico reproducible de las cifras de exposición (evidencia para docs/1_datos/1.1_AUDITORIA_TECNICA_Y_DATOS.md).
 
 Responde, con los archivos del repositorio:
     1. ¿Los conteos de colegios/salud son anillos o acumulados? ¿Se cumple dentro ≤ 500 m ≤ 1 km?
