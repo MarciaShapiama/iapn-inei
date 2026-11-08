@@ -2,6 +2,62 @@
 
 *6 de noviembre de 2026. Script: `src/prediccion_semanal.py`. Pruebas: `tests/test_prediccion_semanal.py`. Salidas: `data/modelo/resultados_plazo/` y `dashboard/data/prediccion_semanal.json`.*
 
+## Actualización del 8 de noviembre de 2026: lo que se corrigió
+
+Se hizo una revisión crítica del modelo publicado y se encontraron tres problemas. Se corrigieron, y el script se corrió dos veces con resultados idénticos (misma huella SHA-256 de `metricas_por_plazo.csv` y `metricas_por_anio.csv`).
+
+**1. Se quitó la variable «¿hubo emergencia en la semana t?».** El SINPAD publica cada seis meses, así que en tiempo real ese dato no existe. Para 2026 el modelo publicado la llenaba con 0 («no hubo»), justo cuando Tumbes tenía emergencias, y eso bajaba la probabilidad. Sin esa variable, el PR-AUC con todas las semanas juntas baja poco:
+
+| Plazo | Con la variable | Sin la variable (publicado) |
+|---|---|---|
+| 1 semana | 0,227 | 0,219 |
+| 2 semanas | 0,207 | 0,198 |
+| 3 semanas | 0,191 | 0,175 |
+| 4 semanas | 0,176 | 0,160 |
+
+La regla «hubo emergencia en la semana t» se mantiene solo como comparación.
+
+**2. Las probabilidades se calibraron.** El modelo ordenaba bien las semanas, pero sus probabilidades eran bajas. En la validación 2010-2025, a 1 semana:
+- dijo en promedio 2,0 % y la tasa real fue 3,2 %;
+- cuando decía 14 %, pasaba 24 %;
+- cuando decía 7 %, pasaba 12 %.
+
+La causa principal es que el SINPAD registra más emergencias en los años recientes que en los antiguos. Se aplicó la **calibración de Platt** (una regresión logística sobre el logit de la probabilidad), ajustada en cada año de prueba **solo con las predicciones fuera de muestra de los 5 años anteriores**. Así no se usa información del año que se evalúa. Resultado a 1 semana (2010-2025):
+
+| El modelo dijo (rango) | Antes: pasó | Después: pasó |
+|---|---|---|
+| 5-10 % | 12,4 % | 8,5 % |
+| 10-20 % | 24,1 % | 17,7 % |
+| 20-30 % | 28,8 % | 26,1 % |
+| 30-50 % | 37,1 % | 30,1 % |
+| Promedio dicho / tasa real | 2,0 % / 3,2 % | 3,0 % / 3,2 % |
+
+- El BSS mejora un poco: de 0,105 a 0,110 a 1 semana y de 0,088 a 0,092 a 2 semanas.
+- Las viviendas de los años extremos se subestiman menos: 2017, −35 % en vez de −44 %; 2023, −66 % en vez de −68 %.
+- Por encima de 50 % el modelo todavía exagera: dice 61 % y pasa 34 %. Son pocos casos (120 semanas-distrito).
+- La calibración no cambia el orden de las semanas dentro de un año. Por eso el tablero muestra el PR-AUC del modelo sin calibrar como medida de orden y el BSS del calibrado como medida de la probabilidad.
+
+**3. Se actualiza solo.** `src/prediccion_semanal.py` se agregó al flujo de los lunes (`.github/workflows/base_modelo.yml`), después de `src/modelo_inundacion.py`, y `dashboard/data/prediccion_semanal.json` se guarda en el mismo paso.
+
+**Lectura honesta después de los cambios** (PR-AUC promedio por año, frente a la climatología del distrito y su mes):
+
+| Plazo | Modelo | Climatología | Años en que gana |
+|---|---|---|---|
+| 1 semana | 0,183 | 0,168 | 12 de 18 |
+| 2 semanas | 0,171 | 0,168 | 14 de 18 |
+| 3 semanas | 0,164 | 0,168 | 9 de 18 |
+| 4 semanas | 0,160 | 0,167 | 9 de 18 |
+
+**El modelo aporta sobre la climatología a 1 y 2 semanas; a 3 y 4 semanas no le gana.** Para un mes vista, la historia del distrito y la época dicen lo mismo o más.
+
+Lo que queda pendiente para mejorar la probabilidad:
+- lluvia de mejor resolución, como PISCO del SENAMHI o CHIRPS, en vez de NASA POWER (~50 km);
+- lluvia aguas arriba (Ecuador y la sierra);
+- umbrales operativos (niveles) elegidos con precisión y captura;
+- intervalos de confianza de la ventaja sobre la climatología.
+
+*Las secciones que siguen describen la versión del 6/11/2026 (con la variable «emergencia en la semana t» y sin calibrar). Las cifras vigentes están en `data/modelo/resultados_plazo/metricas_por_plazo.csv`.*
+
 ## La pregunta
 
 Con lo que se sabe al terminar la semana t (lunes a domingo), ¿cuál es la probabilidad de que el SINPAD registre una emergencia por inundación o lluvia intensa en el distrito **exactamente en la semana t+h**, para h = 1, 2, 3 y 4? Y si ocurre, ¿cuántas viviendas y personas podrían verse afectadas?

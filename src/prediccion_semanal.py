@@ -234,7 +234,7 @@ def evaluar_anio(tr, te) -> dict[str, tuple[np.ndarray, np.ndarray]]:
 def platt(p_cal: np.ndarray, y_cal: np.ndarray):
     """Calibración de Platt: regresión logística de y sobre logit(p). Devuelve una función p -> p calibrada."""
     z = lambda p: np.log(np.clip(p, 1e-6, 1 - 1e-6) / (1 - np.clip(p, 1e-6, 1 - 1e-6))).reshape(-1, 1)  # noqa: E731
-    m = LogisticRegression(C=1e6, max_iter=1000).fit(z(p_cal), y_cal.astype(int))
+    m = LogisticRegression(C=1e6, max_iter=1000).fit(z(np.asarray(p_cal, dtype=float)), np.asarray(y_cal, dtype=float).astype(int))
     return lambda p: m.predict_proba(z(np.asarray(p, dtype=float)))[:, 1]
 
 
@@ -262,7 +262,8 @@ def correr(sin_anio: int | None = None) -> tuple[pd.DataFrame, pd.DataFrame, pd.
     for h in PLAZOS:
         e = ejemplos(p, h)
         e = e[e.y.notna() & (e.semana_obj <= FIN_ETIQUETA)]
-        oos = pd.DataFrame(columns=["anio", "p", "y"])      # predicciones fuera de muestra del modelo, años ya probados
+        oos = pd.DataFrame({"anio": pd.Series(dtype=int), "p": pd.Series(dtype=float), "y": pd.Series(dtype=float)})
+        # (oos: predicciones fuera de muestra del modelo en los años ya probados)
         for anio in ANIOS_PRUEBA:
             if anio == sin_anio:
                 continue
@@ -351,7 +352,11 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
                 d["personas_por_vivienda"] = round(float(ppv), 2)
     salida["distritos"] = sorted(salida["distritos"].values(), key=lambda d: -d["prob_h1"])
     salida["semana_objetivo"] = {f"h{h}": str((t + pd.Timedelta(weeks=h)).date()) for h in PLAZOS}
-    cal = res[res.modelo == CALIBRADO].set_index("h")
+    # Capacidad de ordenar: PR-AUC del modelo sin calibrar (la calibración de Platt no cambia el orden dentro de un año;
+    # juntar años calibrados por separado baja el PR-AUC conjunto sin que el modelo ordene peor).
+    # Calidad de la probabilidad (BSS): la del modelo calibrado, que es el que se publica.
+    cal = res[res.modelo == MODELO].set_index("h")
+    calb = res[res.modelo == CALIBRADO].set_index("h")
     ref = res[res.modelo == "climatología distrito y mes"].set_index("h")
     anual = m.pivot_table(index=["h", "anio"], columns="modelo", values="pr_auc")
     mod, cli = anual[CALIBRADO], anual["climatología distrito y mes"]
@@ -361,7 +366,7 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
                                     "pr_auc_promedio_anual": round(float(mod.loc[h].mean()), 3),
                                     "pr_auc_promedio_anual_climatologia": round(float(cli.loc[h].mean()), 3),
                                     "anios_que_gana": int((mod.loc[h] > cli.loc[h]).sum()), "anios": int(mod.loc[h].size),
-                                    "bss": round(float(cal.loc[h, "bss"]), 3),
+                                    "bss": round(float(calb.loc[h, "bss"]), 3),
                                     "top10_promedio": round(float(cal.loc[h, "top10_promedio"]), 2)} for h in PLAZOS]
     salida["modelo"] = ("Regresión logística con variables del aviso (lluvia sobre p95/p99, lluvia de 7 y 30 días, caudal "
                         "sobre p95, Niño 1+2, % inundable, censo, época, historia del distrito), calibrada con Platt usando "

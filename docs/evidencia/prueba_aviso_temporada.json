@@ -1,6 +1,6 @@
 {
  "metodo": "Falsas alarmas del aviso con PRONÓSTICOS REALES, todos los días de una temporada (documento 18, sección C).\n\nLa prueba A del documento 18 solo miró días con daño: no mide falsas alarmas. Esta mira TODOS los días y TODOS los\ndistritos de dos temporadas:\n    enero a abril de 2025 (temporada de lluvias completa; daños = SINPAD del INDECI)\n    15 de octubre al 4 de noviembre de 2026 (inicio de El Niño costero; daños = catálogo verificado + noticias)\ny responde: ¿cuántos avisos habría dado el tablero?, ¿cuántos fueron seguidos de daño?, ¿cuántos daños tuvieron aviso\nantes?, con y sin el caudal de los ríos.\n\nLLUVIA. Lo que Open-Meteo pronosticaba 1, 2 y 3 días antes (Previous Runs API: precipitation_previous_day1..3), suma\n    horaria por día en hora de Lima, en el punto central de cada distrito (data/normales/umbrales_lluvia_distritos.csv),\n    con los MISMOS umbrales del tablero (p95 y p99 de ERA5 1991-2020 por provincia). Nivel: fuerte > p95, extremo > p99.\nCAUDAL (distritos de los ríos Piura, Chira y Tumbes, lista CUENCA de src/aviso_lluvia.py). Open-Meteo NO guarda los\n    pronósticos de caudal tal como se emitieron (solo el reanálisis/serie continua de GloFAS). Por eso se dan dos\n    versiones que encierran al pronóstico real:\n      \"caudal conocido\": el caudal GloFAS del día en que se habría emitido el aviso (T-n): lo que ya se sabía,\n                         sin pronóstico del río.\n      \"caudal real\":     el caudal GloFAS del mismo día T: un pronóstico perfecto del río (cota alta).\n    Umbrales: p95 y p99 del caudal diario 2001-2020 (data/modelo/caudal_rios.csv). El aviso usa p95 para «fuerte»;\n    las variantes «sobre p99» muestran qué pasaría si el río solo avisara cuando pasa su p99.\n\nDAÑOS\n    2025: SINPAD (INDECI, datos abiertos) por distrito y semana, data/modelo/sinpad_tumbes_piura_semanal.csv:\n          semanas con registro de lluvia intensa o inundación (y, aparte, con viviendas afectadas o destruidas).\n          Unidad distrito-semana, como la prueba B: una semana tiene aviso si algún día de ella o de los 3 últimos\n          días de la semana anterior tuvo aviso.\n    2026: SINPAD aún no publica el segundo semestre. Se usan data/eventos/catalogo_verificado.csv (revisado por el\n          equipo) y los titulares de data/eventos/noticias_registro.csv que src/noticias.py ubicó por distrito\n          (dashboard/data/eventos_reportados.json, origen «noticias (automático)»). Unidad distrito-día: un aviso para\n          el día T es «seguido de daño» si hubo evento el día T o T+1; un daño del día E «tuvo aviso previo» si hubo\n          aviso para E o E-1.",
- "origen_de_los_pronosticos": "Open-Meteo Previous Runs API (descarga propia, data/cache/aviso_temporada/)",
+ "origen_de_los_pronosticos": "niveles leídos de docs/evidencia/aviso_temporada_niveles.txt",
  "umbrales_caudal_m3s": {
   "p95": {
    "Chira": 1387.7,
@@ -654,9 +654,9 @@
     },
     {
      "k": "HUANCABAMBA|HUANCABAMBA",
-     "fecha": "2026-10-30",
+     "fecha": "2026-10-29",
      "origen": "noticias",
-     "id": "n-2026-10-30-huancabamba"
+     "id": "n-2026-10-29-huancabamba"
     },
     {
      "k": "PIURA|PIURA",
