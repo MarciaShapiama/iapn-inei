@@ -14,8 +14,8 @@ viviendas_rp100,0.00820
 lluvia_90d,0.00613
 caudal_razon,0.00511
 lluvia_7d_anom,0.00404
-lluvia_90d_anom,0.00000
 lluvia_30d_anom,0.00000
+lluvia_90d_anom,0.00000
+viviendas_rp10,0.00000
 km2_inundable_rp10,0.00000
 km2_inundable_rp100,0.00000
-viviendas_rp10,0.00000
