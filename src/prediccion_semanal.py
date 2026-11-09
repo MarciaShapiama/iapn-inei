@@ -346,6 +346,15 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
     ok = p.groupby("semana")[["lluvia_7d", "lluvia_30d"]].apply(lambda s: s.notna().all(axis=1).mean())
     t = ok[ok >= 0.9].index.max()
     salida = {"semana_base": str(t.date()), "distritos": {}}
+    # ¿la lluvia de la semana base incluye días provisionales de Open-Meteo (NASA POWER aún no los publica)?
+    ll = pd.read_csv(LLUVIA, parse_dates=["fecha"])
+    if "fuente" in ll:
+        sb = ll[(ll.fecha >= t) & (ll.fecha < t + pd.Timedelta(days=7))]
+        prov = sorted(sb.loc[sb.fuente == "open-meteo", "fecha"].dt.strftime("%Y-%m-%d").unique())
+        if prov:
+            salida["lluvia_provisional"] = {"dias": prov, "fuente": "Open-Meteo (pronóstico de los últimos días)",
+                                            "nota": "NASA POWER publica la lluvia con unos días de retraso; esos días se "
+                                                    "completaron con Open-Meteo y se reemplazan en la siguiente corrida."}
     j = json.load(open(CENSO, encoding="utf-8"))
     tot = j["escenarios"]["rp100"]
     pers_por_viv = tot["personas"] / tot["viviendas"]

@@ -5,7 +5,8 @@ Cada fila = un distrito en una semana (lunes a domingo). Columnas:
                                       avenida en el distrito esa semana
                  emergencia_1a4       1 si la hay en alguna de las 4 semanas SIGUIENTES (lo que se quiere predecir)
     lluvia       lluvia_7d, lluvia_30d, lluvia_90d (mm) y sus anomalías frente al promedio 2001-2020 de esa semana
-                 NASA POWER (precipitación corregida, satélite + reanálisis), punto en el centro del distrito
+                 NASA POWER (precipitación corregida, satélite + reanálisis), punto en el centro del distrito; los últimos
+                 días que POWER aún no publica se completan con Open-Meteo (columna «fuente») hasta que llegue el dato
     ríos         caudal semanal del río más cercano (GloFAS v4 vía Open-Meteo) y su razón frente a la mediana
     mar          Niño 1+2 semanal (NOAA CPC)
     exposición   % del distrito en zona inundable 1 en 10 y 1 en 100 años, viviendas y personas expuestas (fijo)
@@ -37,6 +38,7 @@ CARPETA = DATA / "modelo"
 DESINVENTAR = "https://www.desinventar.net/DesInventar/download/DI_export_per.zip"
 POWER = "https://power.larc.nasa.gov/api/temporal/daily/point"
 FLOOD = "https://flood-api.open-meteo.com/v1/flood"
+OPEN_METEO = "https://api.open-meteo.com/v1/forecast"
 DEPARTAMENTOS = {"20": "PIURA", "24": "TUMBES"}
 EVENTOS = ["inundaci", "lluvia", "desborde", "avenida", "aluvi", "huaico", "marejada", "tormenta"]
 INICIO = "2001-01-01"
@@ -93,14 +95,51 @@ def distritos() -> pd.DataFrame:
     return pd.DataFrame(filas)
 
 
+def relleno_open_meteo(d: pd.DataFrame, faltan: pd.DataFrame) -> pd.DataFrame:
+    """NASA POWER publica la lluvia con unos días de retraso. Para no perder la última semana, los días que aún no
+    tiene se completan con la lluvia diaria de Open-Meteo (modelo meteorológico, últimos días) en el mismo punto.
+    Quedan marcados con fuente = «open-meteo» y se reemplazan por NASA POWER en cuanto este publica el dato."""
+    if faltan.empty:
+        return pd.DataFrame(columns=["clave", "fecha", "lluvia", "fuente"])
+    pts = d[d["clave"].isin(faltan["clave"].unique())].reset_index(drop=True)
+    dias = int((pd.Timestamp.today().normalize() - pd.to_datetime(faltan["fecha"]).min()).days) + 1
+    out = []
+    for i in range(0, len(pts), 40):
+        g = pts.iloc[i:i + 40]
+        try:
+            j = requests.get(OPEN_METEO, params={"latitude": ",".join(map(str, g["lat"])), "longitude": ",".join(map(str, g["lon"])),
+                                                 "daily": "precipitation_sum", "past_days": min(max(dias, 1), 92),
+                                                 "forecast_days": 1, "timezone": "America/Lima"}, headers=UA, timeout=120).json()
+            j = j if isinstance(j, list) else [j]
+            for (_, r), x in zip(g.iterrows(), j):
+                out.append(pd.DataFrame({"clave": r["clave"], "fecha": x["daily"]["time"], "lluvia": x["daily"]["precipitation_sum"]}))
+        except Exception as error:
+            print(f"  Open-Meteo (relleno de lluvia): {error}")
+    if not out:
+        return pd.DataFrame(columns=["clave", "fecha", "lluvia", "fuente"])
+    om = pd.concat(out, ignore_index=True).assign(fuente="open-meteo")
+    om = om.merge(faltan[["clave", "fecha"]], on=["clave", "fecha"])       # solo los días que faltan, nunca el futuro
+    return om[om["lluvia"].notna()]
+
+
 def lluvia(d: pd.DataFrame) -> pd.DataFrame:
     ruta = CARPETA / "lluvia_distritos.csv"
     previo = pd.read_csv(ruta) if ruta.exists() else pd.DataFrame(columns=["clave", "fecha", "lluvia"])
+    if "fuente" not in previo:
+        previo["fuente"] = "power"
+    previo["fuente"] = previo["fuente"].fillna("power")
     hoy = pd.Timestamp.today().strftime("%Y%m%d")
+    # se vuelven a pedir a NASA POWER los días de las últimas 6 semanas que quedaron vacíos o rellenados
+    reciente = pd.to_datetime(previo["fecha"]) >= pd.Timestamp.today().normalize() - pd.Timedelta(days=42)
+    pendiente = previo[reciente & (previo["lluvia"].isna() | (previo["fuente"] != "power"))]
+    previo = previo.drop(pendiente.index)
     partes = [previo]
     for _, r in d.iterrows():
         ya = previo[previo["clave"] == r["clave"]]
         inicio = (pd.to_datetime(ya["fecha"]).max() + pd.Timedelta(days=1)).strftime("%Y%m%d") if len(ya) else INICIO.replace("-", "")
+        pend = pendiente[pendiente["clave"] == r["clave"]]
+        if len(pend):
+            inicio = min(inicio, pd.to_datetime(pend["fecha"]).min().strftime("%Y%m%d"))
         if inicio >= hoy:
             continue
         for intento in range(3):
@@ -110,7 +149,7 @@ def lluvia(d: pd.DataFrame) -> pd.DataFrame:
                                  headers=UA, timeout=180).json()
                 serie = j["properties"]["parameter"]["PRECTOTCORR"]
                 partes.append(pd.DataFrame({"clave": r["clave"], "fecha": pd.to_datetime(list(serie), format="%Y%m%d").strftime("%Y-%m-%d"),
-                                            "lluvia": list(serie.values())}))
+                                            "lluvia": list(serie.values()), "fuente": "power"}))
                 break
             except Exception as error:
                 print(f"  POWER {r['distrito']}: {error}"); time.sleep(10 * (intento + 1))
@@ -119,6 +158,17 @@ def lluvia(d: pd.DataFrame) -> pd.DataFrame:
     t["lluvia"] = pd.to_numeric(t["lluvia"], errors="coerce")
     t.loc[t["lluvia"] < 0, "lluvia"] = np.nan                       # -999 = sin dato en POWER
     t = t.drop_duplicates(["clave", "fecha"], keep="last")
+    # días que NASA POWER todavía no publica (hasta ayer): se completan con Open-Meteo y quedan marcados
+    ayer = (pd.Timestamp.today().normalize() - pd.Timedelta(days=1))
+    fechas = pd.date_range(ayer - pd.Timedelta(days=41), ayer).strftime("%Y-%m-%d")
+    malla = pd.MultiIndex.from_product([d["clave"].unique(), fechas], names=["clave", "fecha"]).to_frame(index=False)
+    conocidos = t[t["lluvia"].notna()][["clave", "fecha"]]
+    faltan = malla.merge(conocidos, how="left", indicator=True).query("_merge == 'left_only'")[["clave", "fecha"]]
+    om = relleno_open_meteo(d, faltan)
+    if len(om):
+        t = pd.concat([t[~t.set_index(["clave", "fecha"]).index.isin(om.set_index(["clave", "fecha"]).index)], om], ignore_index=True)
+        print(f"  lluvia: {len(om)} días-distrito completados con Open-Meteo ({om['fecha'].min()} a {om['fecha'].max()})")
+    t = t.sort_values(["clave", "fecha"]).reset_index(drop=True)
     t.to_csv(ruta, index=False)
     return t
 
