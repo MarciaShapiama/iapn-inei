@@ -18,12 +18,14 @@ Proyecto integrador del Programa de Extensión Universitaria: Ciencia del Dato (
 
 | Pestaña | Qué muestra |
 |---|---|
+| Selector de distrito (arriba, en casi todas las pestañas) | Buscador por nombre y menús de departamento, provincia y distrito; enfoca todo el tablero y abre la ficha del distrito: censo por sexo, edad, material de la vivienda y zona urbana o rural; probabilidad a 1-4 semanas; emergencias del SINPAD 2003-2025 |
 | Resumen | Cifras principales (personas, viviendas del Censo 2025, edificaciones, colegios con alumnos, salud, niños, adultos mayores, cultivos y carreteras en zona inundable), estado oficial del ENFEN y lo que pasa esta semana |
 | Mapa de inundación | Vista 3D sobre el relieve: zona inundable por profundidad, agua vista por radar, edificaciones, colegios y salud |
 | Antes y después | Fotos Sentinel-2 de 2017, 2023 y de estos días, con comparador deslizable |
-| Alerta por distrito | Aviso de lluvia de los próximos 3 días y riesgo de emergencia por distrito (machine learning), con su validación |
+| Alerta por distrito | Aviso de lluvia de los próximos 3 días y probabilidad de emergencia por distrito a 1-4 semanas (machine learning, doc 2.2), con su validación |
+| ¿Dónde actuar primero? | Distritos ordenados por personas en riesgo esperado (probabilidad × personas expuestas), riesgo frente a vulnerabilidad, y colegios y salud en la zona inundable de los distritos en alerta |
 | Lluvia y ríos | Las 11 provincias de Tumbes y Piura: lluvia de 20 días frente a lo normal, caudal y pronóstico de 7 días |
-| El mar y El Niño | Anomalía diaria del mar, Niño 1+2 semanal e ICEN |
+| El mar y El Niño | Anomalía diaria del mar, comparación de la temporada con 2017 y 2023, Niño 1+2 semanal e ICEN |
 | Método y fuentes | De dónde sale cada cifra, sus límites y la comparación con el mapa oficial de 2017 |
 
 ## Cómo está organizado el repositorio
