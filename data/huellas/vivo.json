@@ -23,7 +23,8 @@
   "2026-11-02",
   "2026-11-03",
   "2026-11-05",
-  "2026-11-06"
+  "2026-11-06",
+  "2026-11-08"
  ],
  "imagenes_referencia": [
   "2026-08-01",
@@ -71,7 +72,7 @@
   "2026-10-12",
   "2026-10-13"
  ],
- "km2": 700.5,
+ "km2": 706.3,
  "resolucion_grados": 0.0005,
  "metodo": "Sentinel-1 RTC VV, detección de cambios",
  "umbral_db": -17.0,
@@ -81,5 +82,5 @@
  "compuesto_evento": "minimo",
  "polarizacion": "VV",
  "agua_permanente": "JRC Global Surface Water, ocurrencia >= 75 %",
- "calculado": "2026-11-09T06:52-05:00"
+ "calculado": "2026-11-09T18:39-05:00"
 }

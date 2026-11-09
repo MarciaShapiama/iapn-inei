@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-09T18:02-05:00",
+ "generado": "2026-11-09T18:40-05:00",
  "hoy": "2026-11-09",
  "resumen_estado": {
   "vigente": 10,
@@ -182,7 +182,7 @@
     "2026-10-16",
     "2026-11-09"
    ],
-   "dato_mas_reciente": "2026-11-06",
+   "dato_mas_reciente": "2026-11-08",
    "tolerancia_dias": 12,
    "frecuencia": "lunes y jueves",
    "metodo": "Detección de cambios VV; máscaras de agua permanente, altura > 250 m, pendiente > 5°, manchas < 5 px.",
@@ -209,10 +209,11 @@
     "2026-11-02",
     "2026-11-03",
     "2026-11-05",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-08"
    ],
    "imagenes_referencia": 44,
-   "calculado": "2026-11-09T06:52-05:00"
+   "calculado": "2026-11-09T18:39-05:00"
   },
   {
    "id": "poblacion",

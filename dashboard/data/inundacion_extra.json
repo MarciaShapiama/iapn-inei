@@ -60,15 +60,15 @@
    "nombre": "Últimos 24 días",
    "ninos_0a4": 3,
    "ninos_0a4_por_departamento": {
-    "Piura": 2,
+    "Piura": 3,
     "Tumbes": 0
    },
-   "mayores_65": 2,
+   "mayores_65": 3,
    "mayores_65_por_departamento": {
-    "Piura": 2,
+    "Piura": 3,
     "Tumbes": 0
    },
-   "cultivo_ha": 1,
+   "cultivo_ha": 2,
    "vias_km": {
     "Terciaria": 0.2,
     "Secundaria": 0.1
