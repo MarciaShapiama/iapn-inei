@@ -81,9 +81,12 @@ def historia(b: pd.DataFrame) -> dict:
 def comparacion(b: pd.DataFrame) -> dict:
     """Mar, lluvia y caudal semana a semana del año en curso frente a 2017 y 2023 (mismas semanas del año)."""
     actual = int(b.anio.max())
-    out = {"anio_actual": actual, "anios": [*ANIOS_COMPARAR, actual], "series": {}}
+    # semana de referencia: la última semana completa del año en curso (con lluvia de 7 días en casi todos los distritos)
+    completa = b[b.anio == actual].groupby("semana_anio").lluvia_7d.apply(lambda x: x.notna().mean())
+    ref = int(completa[completa >= 0.9].index.max())
+    out = {"anio_actual": actual, "anios": [*ANIOS_COMPARAR, actual], "semana_referencia": ref, "series": {}}
     for a in out["anios"]:
-        x = b[b.anio == a]
+        x = b[(b.anio == a) & ((b.anio != actual) | (b.semana_anio <= ref))]   # el año en curso llega hasta la semana completa
         mar = x.groupby("semana_anio").nino12.first()
         lluvia = x.groupby(["semana_anio", "departamento"]).lluvia_30d.mean().unstack()
         rio = x[x.rio.notna()].groupby(["semana_anio", "rio"]).caudal_razon.median().unstack()
@@ -103,7 +106,7 @@ def main() -> None:
     pobreza = {d["ubigeo"]: d.get("pct_pobreza_total") for d in panel["distritos"]}
     b = pd.read_csv(BASE, dtype={"ubigeo": str},
                     usecols=["clave", "ubigeo", "semana", "semana_anio", "departamento", "rio", "nino12", "lluvia_30d",
-                             "caudal_razon", "emergencias", "viv_afectadas"])
+                             "lluvia_7d", "caudal_razon", "emergencias", "viv_afectadas"])
     b["ubigeo"] = b.ubigeo.str.zfill(6)
     b["anio"] = b.semana.str[:4].astype(int)
     serv = servicios(feats)

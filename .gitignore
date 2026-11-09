@@ -6,7 +6,7 @@ __pycache__/
 # Caché de Sentinel-1 de herramientas/figuras_agua.py (~50 MB; se vuelve a descargar)
 data/validacion/ventana_bajo_piura_2017.npz
 
-# Datos confidenciales del INEI (nunca se suben)
+# Archivos por manzana y centro poblado entregados por el INEI (el repositorio publica solo totales por distrito)
 datos_inei/
 docs_recibidos/
 manz_*.csv

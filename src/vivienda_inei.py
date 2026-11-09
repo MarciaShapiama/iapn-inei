@@ -1,6 +1,6 @@
 """Viviendas del Censo 2025 (INEI) en la zona inundable y en el agua que vio el radar. Un solo cálculo para el tablero.
 
-Entrada CONFIDENCIAL (no se sube; carpeta configurable con IAPN_INEI_MANZANAS, por defecto datos_inei/manzana/):
+Entrada: archivos entregados por el INEI (no se suben al repositorio; carpeta configurable con IAPN_INEI_MANZANAS, por defecto datos_inei/manzana/):
     manz_tumbes.csv, manz_piura.csv   una fila por manzana o centro poblado: viviendas ocupadas y proporción de cada
                                       material de paredes (S2_P1), techos (S2_P2) y pisos (S2_P3), según la cédula
     pob_tumbes.csv, pob_piura.csv     las mismas unidades: personas por sexo y grupo de edad (0-4, 5-14, 15-64, 65+)
@@ -12,7 +12,7 @@ Entrada CONFIDENCIAL (no se sube; carpeta configurable con IAPN_INEI_MANZANAS, p
 Salidas públicas, SOLO totales (ninguna cifra por manzana):
     dashboard/data/viviendas_censo.json              lo que muestra el tablero
     dashboard/data/descargas/viviendas_censo_distritos.csv
-Reglas de confidencialidad: un distrito con menos de 10 viviendas en una capa no se detalla (entra solo en el total), y
+Reglas de publicación: un distrito con menos de 10 viviendas en una capa no se detalla (entra solo en el total), y
 dentro de un distrito detallado no se publica ninguna cifra de personas (sexo o edad) menor a 10.
 
 Método:

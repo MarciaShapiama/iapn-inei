@@ -447,7 +447,7 @@ body[data-vista=satelite] #selector,body[data-vista=mar] #selector,body[data-vis
 <!-- MÉTODO -->
 <section class="vista metodo" id="v-metodo">
   <p class="titular">Método y fuentes</p>
-  <p class="bajada">Todas las cifras salen de fuentes públicas y se pueden volver a calcular con el código del repositorio. Aquí se explica de dónde viene cada una y qué no puede decir.</p>
+  <p class="bajada">Las cifras salen de fuentes públicas y de los Censos Nacionales 2025, que el INEI entregó al proyecto. Aquí se explica de dónde viene cada una y qué no puede decir.</p>
 
   <h3>1. ¿Dónde se inunda?</h3>
   <ul>
@@ -466,21 +466,26 @@ body[data-vista=satelite] #selector,body[data-vista=mar] #selector,body[data-vis
 
   <h3>2. ¿A quién afecta?</h3>
   <ul>
-    <li><b>Personas:</b> WorldPop 2026, población estimada cada 100 m. Se cuenta la población de las celdas que caen en la zona inundable.</li>
-    <li><b>Viviendas del censo:</b> viviendas ocupadas por manzana de los Censos Nacionales 2025 y el material predominante de paredes, techo y piso, entregados al proyecto por el INEI. Cada manzana se ubica por un punto interior y se ve si cae en la zona inundable. Solo se publican totales por distrito; los distritos con menos de 10 viviendas en la zona no se detallan. No incluye la vivienda rural dispersa, que no se organiza en manzanas.</li>
+    <li><b>Viviendas y personas:</b> Censos Nacionales 2025 (INEI). El INEI entregó al proyecto las viviendas ocupadas por manzana con el material de paredes, techo y piso, y las personas por sexo y grupo de edad; las viviendas rurales vienen agrupadas por centro poblado. Cada manzana se ubica por un punto interior y cada centro poblado por su punto, y se ve si cae en la zona inundable. Se publican totales por distrito; las cifras menores de 10 no se muestran.</li>
+    <li><b>Comparación:</b> WorldPop 2026 (población estimada cada 100 m) da 400 198 personas en la misma zona, 1,9 % menos que el censo. WorldPop se usa en el mapa 3D, donde hace falta la población celda por celda.</li>
     <li><b>Edificaciones:</b> Google Open Buildings v3 (confianza ≥ 0,75). Incluye viviendas y cualquier otro tipo de construcción, por eso se habla de edificaciones y no de viviendas.</li>
-    <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales escolares del padrón de servicios educativos ESCALE (MINEDU, corte del 30 de octubre de 2026). Un local con inicial, primaria y secundaria cuenta una vez. <b>Alumnos:</b> matrícula del Censo Educativo 2025 (ESCALE, MINEDU), sumada por local; el 96 % de los locales tiene el dato y en el 8 % de los servicios la cifra fue estimada por MINEDU porque el colegio no respondió. Por eso el total de alumnos es un mínimo.</li>
-    <li><b>Niños y adultos mayores:</b> WorldPop 2026 por edad y sexo (100 m): de 0 a 4 años y de 65 años a más. <b>Cultivos:</b> ESA WorldCover 2021 (10 m), clase «tierras de cultivo». <b>Carreteras y puentes:</b> OpenStreetMap, vías troncales, primarias, secundarias y terciarias.</li>
+    <li><b>Salud:</b> establecimientos activos del RENIPRESS (SUSALUD), de puestos de salud a hospitales. <b>Colegios:</b> locales escolares del padrón ESCALE (MINEDU, corte del 30 de octubre de 2026). Un local con inicial, primaria y secundaria cuenta una vez. <b>Alumnos:</b> matrícula del Censo Educativo 2025, sumada por local; el 96 % de los locales tiene el dato, por eso el total de alumnos es un mínimo.</li>
+    <li><b>Cultivos:</b> ESA WorldCover 2021 (10 m), clase «tierras de cultivo». <b>Carreteras y puentes:</b> OpenStreetMap, vías troncales, primarias, secundarias y terciarias. <b>Pobreza:</b> INEI, Mapa de Pobreza Monetaria 2018.</li>
     <li><b>Estado oficial:</b> último Comunicado Oficial del ENFEN, leído de su documento publicado en gob.pe.</li>
     <li>Las distancias se cuentan de dos formas: <b>dentro</b> de la zona y <b>acumulado</b> hasta 500 m o 1 km.</li>
     <li>Es <b>exposición</b>: dice quién está en la zona, no cuántos resultarán afectados. Para comparar, en 2017 INDECI registró 74 348 viviendas afectadas en Piura y 11 395 en Tumbes (OCHA, informe n.º 10, mayo de 2017).</li>
   </ul>
 
-  <h3>3. Alerta por distrito (machine learning)</h3>
+  <h3>3. Probabilidad de emergencia por distrito (machine learning)</h3>
   <ul>
-    <li>Base de 78 distritos por semana desde 2001. Las emergencias por inundación y lluvia intensa vienen del SINPAD del INDECI (datos abiertos, 2003-2025).</li>
-    <li>Variables: lluvia de 30 días (NASA POWER), caudal del río más cercano (GloFAS), temperatura del mar (Niño 1+2), historia del distrito y época del año.</li>
-    <li>Se compararon cuatro modelos con validación temporal: se entrena con los años anteriores y se prueba en el siguiente. Ganó una regresión logística simple. El índice de 0 a 100 compara cada semana con todas las semanas de 2001 a 2015; 95 o más es alerta.</li>
+    <li><b>Qué predice:</b> la probabilidad de que el SINPAD del INDECI registre una emergencia por lluvia intensa o inundación en un distrito, en cada una de las cuatro semanas siguientes. Se entrenó con las emergencias de 2003 a 2025 en los 78 distritos.</li>
+    <li><b>Variables:</b> lluvia de 7 y 30 días y días de lluvia extrema (NASA POWER), caudal del río más cercano (GloFAS), temperatura del mar (Niño 1+2), época del año, historia de emergencias del distrito, y porcentaje del distrito, viviendas y personas en zona inundable (Censo 2025). Todas se conocen al cerrar la semana.</li>
+    <li><b>Modelo:</b> regresión logística. Se comparó con LightGBM y con reglas simples; LightGBM ordena un poco mejor, pero la logística permite explicar cada predicción.</li>
+    <li><b>Prueba:</b> año por año de 2008 a 2025, entrenando solo con los años anteriores. Las probabilidades se calibran con los cinco años previos (método de Platt) para que coincidan con la frecuencia real.</li>
+    <li><b>Fases:</b> atención desde 5 % y alerta desde 15 %, elegidas con lo que habría pasado en esos 18 años.</li>
+    <li><b>Lluvia reciente:</b> NASA POWER publica con unos cuatro días de retraso; esos días se completan con Open-Meteo y se reemplazan cuando llega el dato.</li>
+    <li><b>¿Dónde actuar primero?:</b> las personas en riesgo esperado son la probabilidad por las personas en zona inundable. La vulnerabilidad es un índice de 0 a 100 que compara a los distritos entre sí en cuatro indicadores: niños de 0 a 4 años y adultos de 65 o más, paredes frágiles, piso de tierra y pobreza.</li>
+    <li><b>Límites:</b> a 3 y 4 semanas no supera a la historia del distrito; la cantidad de viviendas afectadas se queda corta en años extremos; el SINPAD recoge lo registrado, no todo lo ocurrido.</li>
   </ul>
 
   <h3>4. Lluvia, ríos y mar</h3>
@@ -500,6 +505,8 @@ body[data-vista=satelite] #selector,body[data-vista=mar] #selector,body[data-vis
   <ul>
     <li>Copernicus Sentinel-1 y Sentinel-2 (ESA), vía Microsoft Planetary Computer.</li>
     <li>JRC, CEMS-GloFAS flood hazard maps v2; GloFAS v4 (Copernicus Emergency Management Service).</li>
+    <li>INEI, Censos Nacionales 2025: viviendas y población por manzana y centro poblado de Tumbes y Piura.</li>
+    <li>INDECI, SINPAD: emergencias y daños, 2003-2025 (datos abiertos).</li>
     <li>WorldPop (2026), población total y por edad y sexo; Google Open Buildings v3; RENIPRESS (SUSALUD); padrón ESCALE (MINEDU); OpenStreetMap (carreteras); ESA WorldCover 2021.</li>
     <li>Pobreza: INEI, Mapa de Pobreza Monetaria Provincial y Distrital 2018. IDH: PNUD, Índice de Desarrollo Humano Perú 2019.</li>
     <li>ENFEN, comunicados oficiales (gob.pe).</li>
@@ -509,11 +516,11 @@ body[data-vista=satelite] #selector,body[data-vista=mar] #selector,body[data-vis
   </ul>
 
   <h3>Autores</h3>
-  <p>Marcia, Christopher, Maykol y Luz Ángela.</p>
+  <p>Christopher Calle, Luz Ángela Mendizábal, Maykol Ramírez y Marcia Shapiama De La Cruz. Asesor: Prof. Alexander Quispe.</p>
   <p class="aviso">Código y datos: <a href="https://github.com/MarciaShapiama/iapn-inei">github.com/MarciaShapiama/iapn-inei</a> · Mapa 2D para equipos sin tarjeta gráfica: <a href="mapa2d.html">mapa2d.html</a>.</p>
 </section>
 </main>
-<footer id="pie">Autores: Marcia, Christopher, Maykol y Luz Ángela · Proyecto integrador del Programa de Extensión Universitaria: Ciencia del Dato (PEU-CD), INEI · 2026</footer>
+<footer id="pie">Christopher Calle, Luz Ángela Mendizábal, Maykol Ramírez y Marcia Shapiama De La Cruz · Proyecto integrador del Programa de Extensión Universitaria: Ciencia del Dato (PEU-CD), INEI · 2026</footer>
 <div class="tip" id="tip"></div>
 
 <script>
@@ -689,18 +696,14 @@ function comparacionVista(){
   const C=D.PR&&D.PR.comparacion; if(!C)return;
   const A=C.anios.map(String), act=String(C.anio_actual), S=C.series[act];
   const COLA={"2017":"#d4472c","2023":"#5f97c7"}; COLA[act]="#13202b";
-  let k=S.nino12.length-1; while(k>0&&S.nino12[k]==null)k--;
-  const wk=S.semana_anio[k];
-  const en=(a,campo,sub)=>{const s=C.series[a],i=s.semana_anio.indexOf(wk);if(i<0)return null;const v=sub?(s[campo]||{})[sub]:s[campo];return v?v[i]:null};
-  let kl=S.lluvia_30d_piura.length-1; while(kl>0&&S.lluvia_30d_piura[kl]==null)kl--; const wkl=S.semana_anio[kl];
-  const enL=(a,campo)=>{const s=C.series[a],i=s.semana_anio.indexOf(wkl);return i<0?null:s[campo][i]};
-  const filas=[["Mar frente a Piura (Niño 1+2)",a=>en(a,"nino12"),v=>(v>0?"+":"")+fmtN(v,1)+" °C",wk],
-    ["Lluvia de 30 días, promedio de Piura",a=>enL(a,"lluvia_30d_piura"),v=>fmtN(v,0)+" mm",wkl],
-    ["Lluvia de 30 días, promedio de Tumbes",a=>enL(a,"lluvia_30d_tumbes"),v=>fmtN(v,0)+" mm",wkl],
-    ...["Piura","Chira","Tumbes"].filter(r=>S.caudal_razon[r]&&S.caudal_razon[r].some(v=>v!=null)).map(r=>{let kr=S.caudal_razon[r].length-1;while(kr>0&&S.caudal_razon[r][kr]==null)kr--;const wr=S.semana_anio[kr];
-      return [`Caudal del río ${r}, veces lo normal`,a=>{const q=C.series[a],i=q.semana_anio.indexOf(wr);return i<0||!q.caudal_razon[r]?null:q.caudal_razon[r][i]},v=>fmtN(v,1)+"×",wr]})];
-  document.getElementById("c-tabla").innerHTML=`<table class="tabla"><tr><th>Misma semana del año</th>${A.map(a=>`<th style="text-align:right">${a===act?"<b>"+a+" (hoy)</b>":a}</th>`).join("")}</tr>`+
-    filas.map(f=>`<tr><td>${f[0]} <span style="color:var(--ink-3)">· semana ${f[3]}</span></td>${A.map(a=>{const v=f[1](a);return `<td class="n">${v==null?"—":a===act?"<b>"+f[2](v)+"</b>":f[2](v)}</td>`}).join("")}</tr>`).join("")+`</table>`;
+  const wk=C.semana_referencia||S.semana_anio[S.semana_anio.length-1], wkl=wk;
+  const en=(a,campo,sub)=>{const q=C.series[a],i=q.semana_anio.indexOf(wk);if(i<0)return null;const v=sub?(q[campo]||{})[sub]:q[campo];return v?v[i]:null};
+  const filas=[["Mar frente a Piura (Niño 1+2)",a=>en(a,"nino12"),v=>(v>0?"+":"")+fmtN(v,1)+" °C"],
+    ["Lluvia de 30 días, promedio de Piura",a=>en(a,"lluvia_30d_piura"),v=>fmtN(v,0)+" mm"],
+    ["Lluvia de 30 días, promedio de Tumbes",a=>en(a,"lluvia_30d_tumbes"),v=>fmtN(v,0)+" mm"],
+    ...["Piura","Chira","Tumbes"].filter(r=>S.caudal_razon[r]&&S.caudal_razon[r].some(v=>v!=null)).map(r=>[`Caudal del río ${r}, veces lo normal`,a=>en(a,"caudal_razon",r),v=>fmtN(v,1)+"×"])];
+  document.getElementById("c-tabla").innerHTML=`<table class="tabla"><tr><th>Semana ${wk} del año</th>${A.map(a=>`<th style="text-align:right">${a===act?"<b>"+a+"</b>":a}</th>`).join("")}</tr>`+
+    filas.map(f=>`<tr><td>${f[0]}</td>${A.map(a=>{const v=f[1](a);return `<td class="n">${v==null?"—":a===act?"<b>"+f[2](v)+"</b>":f[2](v)}</td>`}).join("")}</tr>`).join("")+`</table>`;
   const m17=en("2017","nino12"), mh=en(act,"nino12");
   document.getElementById("c-titular").textContent=mh!=null&&m17!=null?`¿Se parece a 2017? El mar está ${mh>m17?"más caliente":"menos caliente"} que en la misma semana de 2017`:"¿Se parece a 2017?";
   const graf=(id,campo,fy)=>{const el=document.getElementById(id),w=Math.max(240,el.parentNode.clientWidth),h=170,m={l:36,r:8,t:8,b:22};
@@ -716,8 +719,8 @@ function comparacionVista(){
   const dib=()=>{graf("c-mar","nino12",v=>fmtN(v,0));graf("c-llp","lluvia_30d_piura",v=>fmtN(v,0));graf("c-llt","lluvia_30d_tumbes",v=>fmtN(v,0))};
   dib(); window.addEventListener("resize",debounce(()=>{if(visible("v-mar"))dib()},150));
   document.querySelector('[data-v="mar"]').addEventListener("click",()=>setTimeout(dib,30));
-  document.getElementById("c-ley").innerHTML=A.map(a=>`<span><i style="background:${COLA[a]};height:3px"></i>${a===act?a+" (esta temporada)":a}</span>`).join("")+`<span>- - - semana actual</span>`;
-  document.getElementById("c-nota").textContent=`Niño 1+2: NOAA CPC (semanal). Lluvia: NASA POWER, promedio de los distritos de cada departamento; llega con unos días de retraso, por eso la lluvia se compara en la semana ${wkl}. Caudal: GloFAS, mediana de los distritos del río. En 2017 la lluvia fuerte llegó en febrero y marzo, cuando el mar ya estaba caliente.`;
+  document.getElementById("c-ley").innerHTML=A.map(a=>`<span><i style="background:${COLA[a]};height:3px"></i>${a===act?a+" (esta temporada)":a}</span>`).join("")+`<span>- - - semana ${wk}</span>`;
+  document.getElementById("c-nota").textContent=`Niño 1+2: NOAA CPC (semanal). Lluvia: NASA POWER, promedio de los distritos de cada departamento; la del año en curso llega hasta la última semana completa. Caudal: GloFAS, mediana de los distritos del río. En 2017 la lluvia fuerte llegó en febrero y marzo, cuando el mar ya estaba caliente.`;
 }
 
 /* ---------- SELECTOR DE DISTRITO ---------- */
@@ -908,7 +911,8 @@ function resumenVista(){
   document.getElementById("r-pasado").innerHTML=pas.map(f=>`<div class="r-fila" style="display:block"><b style="font-size:15px">${f[0]}</b><div style="color:var(--ink-2);margin-top:2px">${f[1]}</div></div>`).join("");
   const guia=[["inundaciones","Mapa de inundación","Qué quedaría bajo el agua, en 3D: zonas, edificaciones, colegios y salud."],
     ["satelite","Antes y después","Fotos reales del satélite de 2017, 2023 y de estos días."],
-    ["alerta","Alerta por distrito","Aviso de lluvia de los próximos días y riesgo en las próximas semanas."],
+    ["alerta","Alerta por distrito","Aviso de lluvia de los próximos 3 días y probabilidad de emergencia a 1-4 semanas."],
+    ["prioridad","¿Dónde actuar primero?","Los distritos ordenados por personas en riesgo, su vulnerabilidad, colegios y salud."],
     ["zonas","Lluvia y ríos","Cuánto llovió y cómo van los ríos en cada provincia."],
     ["mar","El mar y El Niño","La temperatura del mar, que es donde empieza El Niño."],
     ["metodo","Método y fuentes","De dónde sale cada cifra y sus límites."]];
@@ -945,24 +949,20 @@ function prediccionVista(P){
   const el=document.getElementById("a-plazo"); if(!P||!P.distritos||!el)return;
   const pct=x=>x==null?"–":fmtN(100*x,0)+" %";
   const F=(P.fases&&P.fases.umbrales)||null;
-  const fase=x=>!F||x==null?null:x>=F.alerta?"alerta":x>=F.atencion?"atención":null;
-  const colF={"alerta":"#b3261e","atención":"#e08a2b"};
-  const barra=x=>{const f=fase(x);return `<span style="display:inline-block;vertical-align:middle;width:46px;height:8px;background:var(--line,#e5e2da);border-radius:4px;overflow:hidden;margin-right:6px"><i style="display:block;height:100%;width:${Math.min(100,100*x)}%;background:${f?colF[f]:"#9aa3ab"}"></i></span>${pct(x)}${f?` <b style="color:${colF[f]};font-size:12px">${f}</b>`:""}`};
   const C=P.calidad_por_plazo||[];
-  const calidad=`<table class="tabla"><tr><th>Plazo</th><th style="text-align:right">PR-AUC del modelo</th><th style="text-align:right">Sin modelo (tasa)</th><th style="text-align:right">Climatología</th><th style="text-align:right">Año por año: modelo / climatología</th><th style="text-align:right">Años que gana</th><th style="text-align:right">Puntaje Brier (BSS)</th><th style="text-align:right">Acierta del top 10</th><th style="text-align:right">Ventaja sobre la climatología (margen al 95 %)</th></tr>`+
-    C.map(c=>`<tr><td>${c.h} semana${c.h>1?"s":""}</td><td class="n"><b>${fmtN(c.pr_auc,3)}</b></td><td class="n">${fmtN(c.tasa_sin_modelo,3)}</td><td class="n">${fmtN(c.pr_auc_climatologia,3)}</td><td class="n">${c.pr_auc_promedio_anual==null?"–":fmtN(c.pr_auc_promedio_anual,3)+" / "+fmtN(c.pr_auc_promedio_anual_climatologia,3)}</td><td class="n">${c.anios_que_gana==null?"–":c.anios_que_gana+" de "+c.anios}</td><td class="n">${fmtN(c.bss,3)}</td><td class="n">${fmtN(10*c.top10_promedio,1)} de 10</td><td class="n">${c.ventaja_sobre_climatologia_ic95?`${fmtN(c.ventaja_sobre_climatologia_ic95[0],3)} a ${fmtN(c.ventaja_sobre_climatologia_ic95[1],3)}${c.ventaja_sobre_climatologia_ic95[0]>0?" · <b>real</b>":" · no seguro"}`:"–"}</td></tr>`).join("")+"</table>";
-  const D1=P.fases&&P.fases.desempeno&&P.fases.desempeno.h1;
-  const fasesTxt=F&&D1&&D1.atencion&&D1.alerta?`<p class="nota"><b>Fases de aviso</b> (probabilidad a 1 semana, probadas en 2008-2025): <b style="color:${colF["atención"]}">atención</b> desde ${pct(F.atencion)}: habría dado aviso antes de ${fmtN(D1.atencion.captura_pct,0)} de cada 100 emergencias, y ${fmtN(D1.atencion.precision_pct,0)} de cada 100 avisos acertaron. <b style="color:${colF["alerta"]}">Alerta</b> desde ${pct(F.alerta)}: avisa ${fmtN(D1.alerta.captura_pct,0)} de cada 100 emergencias, y acierta ${fmtN(D1.alerta.precision_pct,0)} de cada 100 avisos. Sin modelo, solo 3 de cada 100 semanas-distrito tienen emergencia.</p>`:"";
-  const top=P.distritos.slice(0,15);
-  const lista=`<table class="tabla"><tr><th>Distrito</th><th>1 semana</th><th>2 semanas</th><th>3 semanas</th><th>4 semanas</th><th style="text-align:right">Viviendas si ocurre</th><th style="text-align:right">Personas si ocurre</th></tr>`+
-    top.map(d=>`<tr><td><b>${d.distrito}</b> <span style="color:var(--ink-3)">${d.provincia}</span></td><td>${barra(d.prob_h1)}</td><td>${barra(d.prob_h2)}</td><td>${barra(d.prob_h3)}</td><td>${barra(d.prob_h4)}</td>`+
-      `<td class="n">${fmtN(d.viviendas_si_ocurre,0)}${d.viviendas_rango_historico&&d.viviendas_rango_historico[0]!=null?`<br><span style="color:var(--ink-3)">antes: ${fmtN(d.viviendas_rango_historico[0],0)} a ${fmtN(d.viviendas_rango_historico[1],0)}</span>`:""}</td><td class="n">${fmtN(d.personas_si_ocurre,0)}</td></tr>`).join("")+"</table>";
-  el.innerHTML=`<h2>Probabilidad de emergencia por plazo: 1 a 4 semanas</h2>
-    <p class="nota">Con los datos hasta la semana del ${fechaTxt(P.semana_base)}: probabilidad de que el SINPAD registre una emergencia por inundación o lluvia intensa en cada una de las cuatro semanas siguientes. Se entrenó con las emergencias de 2003 a 2025 y se probó año por año sin mirar el futuro.</p>
-    <h3 style="margin:10px 0 6px">¿Qué tan bien funciona en cada plazo?</h3>${calidad}
-    <p class="nota">PR-AUC: qué tan bien encuentra las semanas con emergencia (un modelo al azar saca la tasa). La climatología es la historia del distrito en ese mes. «Año por año» promedia cada año de prueba por separado: ahí se ve que el modelo es más fuerte a 1 y 2 semanas y que a 4 semanas empata con la climatología. El margen al 95 % sale de repetir el cálculo sorteando años completos 2 000 veces: si todo el margen es mayor que 0, la ventaja es real y no suerte.</p>
-    <h3 style="margin:14px 0 6px">Los 15 distritos con más probabilidad ${etqSem(1)}</h3>${fasesTxt}${lista}
-    <p class="aviso">${P.como_leer}</p>`;
+  const calidad=`<table class="tabla"><tr><th>Plazo</th><th style="text-align:right">Modelo</th><th style="text-align:right">Historia del distrito</th><th style="text-align:right">Sin modelo</th><th style="text-align:right">Años en que gana el modelo</th><th style="text-align:right">Ventaja del modelo (margen al 95 %)</th></tr>`+
+    C.map(c=>{const v=c.ventaja_sobre_climatologia_ic95;return `<tr><td>${c.h} semana${c.h>1?"s":""}</td><td class="n"><b>${fmtN(c.pr_auc,3)}</b></td><td class="n">${fmtN(c.pr_auc_climatologia,3)}</td><td class="n">${fmtN(c.tasa_sin_modelo,3)}</td><td class="n">${c.anios_que_gana==null?"–":c.anios_que_gana+" de "+c.anios}</td><td class="n">${v?`${fmtN(v[0],3)} a ${fmtN(v[1],3)}${v[0]>0?" · <b>gana</b>":" · empate"}`:"–"}</td></tr>`}).join("")+"</table>";
+  const fd=P.fases&&P.fases.desempeno;
+  const fases=F&&fd?`<table class="tabla"><tr><th>Plazo</th><th>Fase</th><th style="text-align:right">Emergencias que tuvieron aviso</th><th style="text-align:right">Avisos que acertaron</th><th style="text-align:right">Avisos por distrito al año</th></tr>`+
+    [1,2,3,4].filter(h=>fd["h"+h]).map(h=>[["atencion","Atención",F.atencion],["alerta","Alerta",F.alerta]].map(([k,n,u],i)=>{const r=fd["h"+h][k];
+      return `<tr><td>${i?"":h+" semana"+(h>1?"s":"")}</td><td><span class="fase ${k}">${n} · ${pct(u)} o más</span></td><td class="n">${fmtN(r.captura_pct,0)} %</td><td class="n">${fmtN(r.precision_pct,0)} %</td><td class="n">${fmtN(r.avisos_por_distrito_y_anio,1)}</td></tr>`}).join("")).join("")+"</table>":"";
+  el.innerHTML=`<h2>¿Qué tan bien funciona el modelo?</h2>
+    <p class="nota">Se probó con cada año de 2008 a 2025: para predecir un año, el modelo solo conoce los anteriores. La medida es el PR-AUC, que indica si las semanas con emergencia quedan entre las de mayor probabilidad; sin modelo el resultado es la tasa de emergencias, 3 de cada 100 semanas por distrito.</p>
+    ${calidad}
+    <p class="nota">«Historia del distrito» es cuántas emergencias tuvo ese distrito en ese mes en años anteriores. El modelo le gana a 1 y 2 semanas; a 3 y 4 semanas dicen casi lo mismo, por eso esos plazos son solo orientativos. El margen sale de repetir la comparación 2 000 veces sorteando años completos.</p>
+    <h3 style="margin:14px 0 6px">Fases de aviso</h3>
+    ${fases}
+    <p class="nota">La fase de atención avisa antes de la mayoría de las emergencias, con más falsas alarmas: sirve para prepararse. La de alerta acierta más y da menos avisos: sirve para actuar. Con datos hasta la semana del ${fechaTxt(P.semana_base)}. No es una alerta oficial.</p>`;
   el.hidden=false;
 }
 
@@ -1237,7 +1237,7 @@ function panelInund(){
       :`<div class="i-aviso">Estos días no hay lluvias fuertes ni inundaciones reportadas: el agua nueva es sobre todo riego por inundación de arrozales (Bajo Piura, San Lorenzo), no desbordes. Esta capa se actualiza los lunes y jueves.</div>`;
   }
   const VCe=D.VC&&D.VC.escenarios&&D.VC.escenarios[I3.ev];
-  if(VCe)extra+=`<div class="i-valida"><b>Viviendas del Censo 2025 (INEI) en esta zona</b><br><b>${nf(VCe.viviendas)}</b> viviendas ocupadas (Piura ${nf(VCe.por_departamento.Piura)} · Tumbes ${nf(VCe.por_departamento.Tumbes)}); <b>${nf(VCe.paredes_tierra+VCe.paredes_precarias)}</b> con paredes de tierra o precarias y <b>${nf(VCe.piso_tierra)}</b> con piso de tierra. Solo viviendas en manzanas: la vivienda rural dispersa no está.</div>`;
+  if(VCe)extra+=`<div class="i-valida"><b>Viviendas del Censo 2025 (INEI) en esta zona</b><br><b>${nf(VCe.viviendas)}</b> viviendas ocupadas (Piura ${nf(VCe.por_departamento.Piura)} · Tumbes ${nf(VCe.por_departamento.Tumbes)}); <b>${nf(VCe.paredes_tierra+VCe.paredes_precarias)}</b> con paredes de tierra o precarias y <b>${nf(VCe.piso_tierra)}</b> con piso de tierra. Incluye las viviendas rurales, ubicadas por el punto de su centro poblado.</div>`;
   const X=D.EX&&D.EX.capas&&D.EX.capas[I3.ev];
   if(X){const f=[];
     if(X.ninos_0a4!=null)f.push(`Niños de 0 a 4 años: <b>${nf(X.ninos_0a4)}</b>`);
