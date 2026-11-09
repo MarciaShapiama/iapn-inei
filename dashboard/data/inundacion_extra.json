@@ -9,15 +9,15 @@
    "nombre": "El Niño costero 2017",
    "ninos_0a4": 93,
    "ninos_0a4_por_departamento": {
-    "Piura": 93,
+    "Piura": 92,
     "Tumbes": 1
    },
-   "mayores_65": 116,
+   "mayores_65": 115,
    "mayores_65_por_departamento": {
-    "Piura": 115,
+    "Piura": 114,
     "Tumbes": 1
    },
-   "cultivo_ha": 2487,
+   "cultivo_ha": 2494,
    "vias_km": {
     "Terciaria": 19.4,
     "Primaria": 7.1,
@@ -60,15 +60,15 @@
    "nombre": "Últimos 24 días",
    "ninos_0a4": 3,
    "ninos_0a4_por_departamento": {
-    "Piura": 3,
+    "Piura": 2,
     "Tumbes": 0
    },
-   "mayores_65": 3,
+   "mayores_65": 2,
    "mayores_65_por_departamento": {
     "Piura": 2,
     "Tumbes": 0
    },
-   "cultivo_ha": 2,
+   "cultivo_ha": 1,
    "vias_km": {
     "Terciaria": 0.2,
     "Secundaria": 0.1
@@ -79,26 +79,26 @@
   },
   "rp10": {
    "nombre": "Zona inundable: crecida de 1 en 10 años",
-   "ninos_0a4": 25319,
+   "ninos_0a4": 25392,
    "ninos_0a4_por_departamento": {
-    "Piura": 23760,
-    "Tumbes": 1558
+    "Piura": 23765,
+    "Tumbes": 1627
    },
-   "mayores_65": 22067,
+   "mayores_65": 22104,
    "mayores_65_por_departamento": {
-    "Piura": 20877,
-    "Tumbes": 1189
+    "Piura": 20882,
+    "Tumbes": 1221
    },
    "cultivo_ha": 48112,
    "vias_km": {
-    "Terciaria": 403.1,
-    "Secundaria": 130.3,
-    "Primaria": 103.0,
-    "Troncal (red nacional)": 51.4,
+    "Terciaria": 403.3,
+    "Secundaria": 130.9,
+    "Primaria": 102.9,
+    "Troncal (red nacional)": 53.6,
     "Autopista": 11.2
    },
-   "vias_km_total": 699.0,
-   "puentes": 213,
+   "vias_km_total": 701.9,
+   "puentes": 214,
    "puentes_nombres": [
     "Antigua Carretera Panamericana Norte",
     "Avenida Andrés Avelino Cáceres",
@@ -119,25 +119,25 @@
   },
   "rp100": {
    "nombre": "Zona inundable: crecida de 1 en 100 años",
-   "ninos_0a4": 36239,
+   "ninos_0a4": 36309,
    "ninos_0a4_por_departamento": {
-    "Piura": 34026,
-    "Tumbes": 2213
+    "Piura": 34030,
+    "Tumbes": 2279
    },
-   "mayores_65": 32161,
+   "mayores_65": 32198,
    "mayores_65_por_departamento": {
-    "Piura": 30423,
-    "Tumbes": 1737
+    "Piura": 30429,
+    "Tumbes": 1769
    },
-   "cultivo_ha": 52678,
+   "cultivo_ha": 52679,
    "vias_km": {
-    "Terciaria": 465.9,
-    "Secundaria": 163.6,
-    "Primaria": 148.5,
-    "Troncal (red nacional)": 68.4,
+    "Terciaria": 466.3,
+    "Secundaria": 164.2,
+    "Primaria": 148.3,
+    "Troncal (red nacional)": 70.9,
     "Autopista": 11.7
    },
-   "vias_km_total": 858.1,
+   "vias_km_total": 861.4,
    "puentes": 229,
    "puentes_nombres": [
     "Antigua Carretera Panamericana Norte",
