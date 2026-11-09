@@ -53,15 +53,21 @@ GRUPOS = {
     "paredes_precarias": (1, (7, 8)),         # madera; triplay, calamina o estera
     "techo_precario": (2, (5, 6, 7)),         # caña o estera con barro; triplay, estera o carrizo; paja u hoja de palmera
     "piso_tierra": (3, (6,)),
+    "material_noble": (1, (1, 2)),            # ladrillo o bloque de cemento; piedra o sillar con cal o cemento
 }
 DEFINICIONES = {"paredes_tierra": "adobe, tapia, quincha o piedra con barro",
                 "paredes_precarias": "madera, triplay, calamina o estera",
                 "techo_precario": "caña o estera con barro, triplay, estera, carrizo o paja",
                 "piso_tierra": "piso de tierra",
+                "material_noble": "paredes de ladrillo o bloque de cemento, o piedra o sillar con cal o cemento",
+                "rural": "viviendas y personas fuera de manzanas, agrupadas en su centro poblado",
                 "precarias": "paredes de tierra o precarias, o piso de tierra (se toma el mayor de los dos: cota inferior)"}
 POB = {"personas": None, "hombres": ["h_0_4", "h_5_14", "h_15_64", "h_65plus"],
        "mujeres": ["m_0_4", "m_5_14", "m_15_64", "m_65plus"], "edad_0_4": ["h_0_4", "m_0_4"],
-       "edad_5_14": ["h_5_14", "m_5_14"], "edad_15_64": ["h_15_64", "m_15_64"], "edad_65_mas": ["h_65plus", "m_65plus"]}
+       "edad_5_14": ["h_5_14", "m_5_14"], "edad_15_64": ["h_15_64", "m_15_64"], "edad_65_mas": ["h_65plus", "m_65plus"],
+       # sexo y edad cruzados
+       "mujeres_0_4": ["m_0_4"], "mujeres_5_14": ["m_5_14"], "mujeres_15_64": ["m_15_64"], "mujeres_65_mas": ["m_65plus"],
+       "hombres_0_4": ["h_0_4"], "hombres_5_14": ["h_5_14"], "hombres_15_64": ["h_15_64"], "hombres_65_mas": ["h_65plus"]}
 RADAR = {"2017": "Radar 2017 (Niño costero)", "2023": "Radar 2023 (ciclón Yaku)", "vivo": "Radar, últimos 24 días"}
 DEP = {"20": "Piura", "24": "Tumbes"}
 
@@ -124,6 +130,10 @@ def leer() -> pd.DataFrame:
             m[k] = (m["pob_total"].astype(float).fillna(0) if cols is None
                     else m[cols].astype(float).fillna(0).sum(axis=1))
     m["departamento"] = m["ubigeo"].str[:2].map(DEP)
+    rural = (m["unidad"] == "centro poblado").astype(float)
+    m["viviendas_rural"] = m["viviendas"] * rural
+    if "personas" in m:
+        m["personas_rural"] = m["personas"] * rural
     return m
 
 
@@ -145,7 +155,7 @@ def por_distrito(t: pd.DataFrame, cols: list[str]) -> list[dict]:
     d = t.groupby(["ubigeo", "departamento", "provincia", "distrito"])[cols].sum().round().astype(int).reset_index()
     d = d[d["viviendas"] >= MINIMO].sort_values("viviendas", ascending=False)
     # ninguna cifra de personas menor a 10 dentro de un distrito detallado
-    for k in POB:
+    for k in list(POB) + ["personas_rural"]:
         if k in d:
             d[k] = d[k].astype(object).where(d[k] >= MINIMO, None)
     if "paredes_tierra" in d:
@@ -174,8 +184,9 @@ def main() -> None:
                   "en_centros_poblados": {"viviendas": round(float(t.loc[t.unidad == "centro poblado", "viviendas"].sum())),
                                           **({"personas": round(float(t.loc[t.unidad == "centro poblado", "personas"].sum()))}
                                              if "personas" in t else {})},
-                  "distritos": por_distrito(t, ["viviendas", "paredes_tierra", "paredes_precarias", "piso_tierra", "precarias"]
-                                            + pobc)}
+                  "distritos": por_distrito(t, ["viviendas", "paredes_tierra", "paredes_precarias", "piso_tierra", "precarias",
+                                                "techo_precario", "material_noble", "viviendas_rural"]
+                                            + pobc + (["personas_rural"] if "personas_rural" in t else []))}
         m[f"en_{k}"] = v > 0
     # Radar: la capa PUBLICADA (impacto.cargar_capas), no el .tif crudo: el crudo marca también agua permanente (2),
     # el mar y la orilla, que el tablero quita con la máscara de tierra y la limpieza de manchas pequeñas.
