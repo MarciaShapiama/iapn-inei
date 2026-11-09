@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-08T13:25-05:00",
- "hoy": "2026-11-08",
+ "generado": "2026-11-09T06:39-05:00",
+ "hoy": "2026-11-09",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
   "verificados": "data/eventos/catalogo_verificado.csv (revisión manual del equipo)",

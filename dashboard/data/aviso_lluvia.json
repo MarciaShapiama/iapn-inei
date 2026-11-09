@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-08T13:25-05:00",
+ "calculado": "2026-11-09T06:39-05:00",
  "ventana_dias": 3,
  "dias_pronostico": 7,
  "conteo": {
@@ -30,22 +30,22 @@
     "p95": 1387.7,
     "p99": 2419.8,
     "fechas": [
-     "2026-11-08",
      "2026-11-09",
      "2026-11-10",
      "2026-11-11",
      "2026-11-12",
      "2026-11-13",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "m3s": [
-     866.0,
      921.6,
      759.3,
      420.7,
      268.1,
      205.1,
-     218.8
+     218.8,
+     381.8
     ],
     "veces_p95": 0.66
    },
@@ -57,51 +57,51 @@
     "p95": 305.9,
     "p99": 854.0,
     "fechas": [
-     "2026-11-08",
      "2026-11-09",
      "2026-11-10",
      "2026-11-11",
      "2026-11-12",
      "2026-11-13",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "m3s": [
-     194.9,
      254.3,
      242.8,
      207.9,
      179.7,
      156.8,
-     142.6
+     142.6,
+     138.3
     ],
     "veces_p95": 0.83
    },
    "Tumbes": {
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
     "fechas": [
-     "2026-11-08",
      "2026-11-09",
      "2026-11-10",
      "2026-11-11",
      "2026-11-12",
      "2026-11-13",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "m3s": [
-     581.1,
      543.5,
      361.2,
      207.9,
      151.1,
      141.6,
-     203.2
+     203.2,
+     357.9
     ],
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    }
   },
   "umbrales": {
@@ -182,38 +182,38 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 3.4,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 62.9,
+   "mm_dia_max": 3.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 83.6,
    "p95": 26.9,
    "p99": 56.6,
    "lluvia_diaria": [
-    2.8,
-    3.4,
-    3.0,
-    1.2,
-    7.6,
-    11.5,
-    33.4
+    3.3,
+    3.5,
+    3.6,
+    16.7,
+    23.8,
+    19.1,
+    13.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Tumbes",
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    },
    "personas_zona_inundable": 11797,
    "colegios_zona_inundable": 33,
@@ -227,38 +227,38 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 3.5,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 49.5,
+   "mm_dia_max": 3.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 81.9,
    "p95": 26.9,
    "p99": 56.6,
    "lluvia_diaria": [
-    1.5,
-    3.1,
-    3.5,
-    1.0,
-    8.9,
-    9.9,
-    21.6
+    2.4,
+    1.9,
+    3.6,
+    17.5,
+    24.2,
+    16.1,
+    16.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Tumbes",
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    },
    "personas_zona_inundable": 1820,
    "colegios_zona_inundable": 8,
@@ -272,38 +272,38 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 3.9,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 49.0,
+   "mm_dia_max": 6.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 107.6,
    "p95": 26.9,
    "p99": 56.6,
    "lluvia_diaria": [
-    0.4,
-    3.9,
     1.8,
-    1.0,
-    8.4,
-    14.7,
-    18.8
+    1.7,
+    6.6,
+    28.0,
+    38.9,
+    20.2,
+    10.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Tumbes",
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    },
    "personas_zona_inundable": 1740,
    "colegios_zona_inundable": 8,
@@ -317,38 +317,38 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 10.1,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 112.7,
+   "mm_dia_max": 16.7,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 206.5,
    "p95": 26.9,
    "p99": 56.6,
    "lluvia_diaria": [
-    4.6,
-    10.0,
-    10.1,
-    7.4,
-    20.3,
-    19.1,
-    41.2
+    7.8,
+    11.8,
+    16.7,
+    38.5,
+    59.7,
+    36.0,
+    36.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Tumbes",
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    },
    "personas_zona_inundable": 714,
    "colegios_zona_inundable": 3,
@@ -362,38 +362,38 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 13.4,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 89.0,
+   "mm_dia_max": 17.4,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 223.6,
    "p95": 26.9,
    "p99": 56.6,
    "lluvia_diaria": [
-    4.7,
-    13.4,
-    9.0,
-    7.0,
-    11.7,
-    21.0,
-    22.2
+    13.2,
+    13.0,
+    17.4,
+    41.0,
+    91.3,
+    32.7,
+    15.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Tumbes",
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    },
    "personas_zona_inundable": 369,
    "colegios_zona_inundable": 0,
@@ -407,81 +407,41 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 8.3,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 78.9,
+   "mm_dia_max": 11.5,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 144.7,
    "p95": 26.9,
    "p99": 56.6,
    "lluvia_diaria": [
-    0.1,
-    6.4,
-    8.3,
-    4.2,
-    13.3,
-    15.8,
-    30.8
+    8.1,
+    3.8,
+    11.5,
+    30.5,
+    27.0,
+    25.2,
+    38.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Tumbes",
     "estado": "ok",
     "nivel": "normal",
-    "m3s_max": 581.1,
-    "fecha_max": "2026-11-08",
+    "m3s_max": 543.5,
+    "fecha_max": "2026-11-09",
     "p95": 764.2,
     "p99": 1277.9,
-    "veces_p95": 0.76
+    "veces_p95": 0.71
    },
    "personas_zona_inundable": 616,
    "colegios_zona_inundable": 7,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Huancabamba",
-   "distrito": "Canchaque",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 19.0,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 125.8,
-   "p95": 26.5,
-   "p99": 42.3,
-   "lluvia_diaria": [
-    8.6,
-    19.0,
-    13.5,
-    8.9,
-    13.1,
-    25.1,
-    37.6
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 0,
-   "colegios_zona_inundable": 0,
    "salud_zona_inundable": 0
   },
   {
@@ -492,28 +452,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.2,
+   "mm_dia_max": 0.1,
    "fecha_max": "2026-11-09",
-   "mm_7d": 8.7,
+   "mm_7d": 29.8,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
-    0.0,
-    0.2,
-    0.0,
+    0.1,
     0.0,
     0.0,
-    1.5,
-    7.0
+    0.0,
+    0.7,
+    5.6,
+    23.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -537,28 +497,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.3,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 23.1,
+   "mm_dia_max": 0.7,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 70.7,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
-    0.0,
-    0.3,
-    0.0,
+    0.1,
+    0.2,
+    0.7,
     1.5,
-    4.1,
-    5.6,
-    11.6
+    2.7,
+    17.3,
+    48.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -582,28 +542,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.2,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 10.0,
+   "mm_dia_max": 0.5,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 39.1,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
     0.0,
-    0.2,
     0.0,
+    0.5,
     0.6,
-    0.9,
-    3.5,
-    4.8
+    1.2,
+    7.4,
+    29.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -627,28 +587,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.1,
+   "mm_dia_max": 0.3,
    "fecha_max": "2026-11-09",
-   "mm_7d": 8.1,
+   "mm_7d": 37.3,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
-    0.0,
-    0.1,
-    0.0,
-    0.1,
     0.3,
-    2.4,
-    5.2
+    0.0,
+    0.1,
+    0.2,
+    0.7,
+    6.2,
+    29.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -674,26 +634,26 @@
    "motivo": null,
    "mm_dia_max": 2.2,
    "fecha_max": "2026-11-09",
-   "mm_7d": 18.1,
+   "mm_7d": 49.2,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
-    0.0,
     2.2,
-    0.2,
     0.0,
     0.0,
-    5.1,
-    10.6
+    0.0,
+    2.3,
+    10.9,
+    33.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -717,28 +677,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.3,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 23.1,
+   "mm_dia_max": 0.7,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 70.7,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
-    0.0,
-    0.3,
-    0.0,
+    0.1,
+    0.2,
+    0.7,
     1.5,
-    4.1,
-    5.6,
-    11.6
+    2.7,
+    17.3,
+    48.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -762,28 +722,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 12.2,
+   "mm_dia_max": 0.1,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 33.2,
    "p95": 19.6,
    "p99": 40.9,
    "lluvia_diaria": [
     0.0,
     0.0,
-    0.0,
-    0.4,
-    2.1,
-    4.3,
-    5.4
+    0.1,
+    0.6,
+    1.2,
+    8.3,
+    23.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -807,28 +767,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 1.5,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 35.5,
+   "mm_dia_max": 4.8,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 130.7,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
-    0.0,
-    1.5,
-    0.6,
-    2.3,
-    1.2,
+    2.2,
+    1.1,
+    4.8,
+    4.6,
     7.5,
-    22.4
+    34.3,
+    76.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -852,28 +812,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.9,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 33.8,
+   "mm_dia_max": 4.3,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 123.6,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
-    0.0,
+    1.4,
     0.6,
-    0.9,
-    3.6,
-    0.7,
-    7.8,
-    20.2
+    4.3,
+    2.7,
+    7.9,
+    22.5,
+    84.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -897,28 +857,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.7,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 30.5,
+   "mm_dia_max": 0.9,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 100.7,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
-    0.2,
-    0.7,
     0.3,
-    1.4,
-    2.2,
-    6.3,
-    19.4
+    0.4,
+    0.9,
+    2.4,
+    3.7,
+    22.2,
+    70.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -942,28 +902,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 1.3,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 71.5,
+   "mm_dia_max": 7.8,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 115.1,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
-    1.1,
+    0.5,
     0.7,
-    1.3,
-    4.5,
-    5.6,
-    22.7,
-    35.6
+    7.8,
+    5.1,
+    11.1,
+    41.7,
+    48.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -987,28 +947,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 2.6,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 114.1,
+   "mm_dia_max": 4.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 120.1,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
-    2.6,
-    0.5,
-    0.6,
-    6.1,
-    3.7,
-    17.6,
-    83.0
+    1.5,
+    0.2,
+    4.6,
+    3.2,
+    14.5,
+    51.3,
+    44.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -1032,28 +992,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 3.8,
+   "mm_dia_max": 4.3,
    "fecha_max": "2026-11-09",
-   "mm_7d": 29.6,
+   "mm_7d": 65.5,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
+    4.3,
     0.0,
-    3.8,
-    0.3,
-    0.3,
-    0.4,
-    8.6,
-    16.2
+    0.0,
+    1.2,
+    3.9,
+    12.9,
+    43.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -1077,28 +1037,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 1.6,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 36.8,
+   "mm_dia_max": 3.7,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 121.7,
    "p95": 28.3,
    "p99": 59.9,
    "lluvia_diaria": [
-    0.3,
-    1.6,
-    0.4,
-    1.0,
-    1.7,
-    6.8,
-    25.0
+    0.8,
+    0.2,
+    3.7,
+    6.6,
+    5.4,
+    42.4,
+    62.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Chira",
@@ -1116,74 +1076,34 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Talara",
-   "distrito": "El Alto",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 11.5,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 158.2,
-   "p95": 19.9,
-   "p99": 36.0,
-   "lluvia_diaria": [
-    2.4,
-    11.5,
-    2.3,
-    5.6,
-    9.8,
-    74.0,
-    52.6
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 48,
-   "colegios_zona_inundable": 1,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
    "provincia": "Ayabaca",
    "distrito": "Frías",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 17.2,
+   "mm_dia_max": 18.7,
    "fecha_max": "2026-11-09",
-   "mm_7d": 160.6,
+   "mm_7d": 262.3,
    "p95": 34.8,
    "p99": 54.8,
    "lluvia_diaria": [
-    12.1,
-    17.2,
-    10.4,
-    16.6,
-    26.9,
-    35.2,
-    42.2
+    18.7,
+    14.5,
+    13.0,
+    26.0,
+    29.6,
+    51.3,
+    109.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -1196,34 +1116,119 @@
   },
   {
    "departamento": "Piura",
+   "provincia": "Talara",
+   "distrito": "El Alto",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 11.7,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 143.0,
+   "p95": 19.9,
+   "p99": 36.0,
+   "lluvia_diaria": [
+    11.7,
+    0.6,
+    8.3,
+    5.9,
+    15.2,
+    39.7,
+    61.6
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 48,
+   "colegios_zona_inundable": 1,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Piura",
+   "distrito": "Tambo Grande",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": "normal",
+   "motivo": null,
+   "mm_dia_max": 16.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 117.2,
+   "p95": 24.2,
+   "p99": 52.0,
+   "lluvia_diaria": [
+    6.3,
+    0.9,
+    16.6,
+    8.4,
+    8.7,
+    22.9,
+    53.4
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": "Piura",
+    "estado": "ok",
+    "nivel": "normal",
+    "m3s_max": 254.3,
+    "fecha_max": "2026-11-09",
+    "p95": 305.9,
+    "p99": 854.0,
+    "veces_p95": 0.83
+   },
+   "personas_zona_inundable": 12651,
+   "colegios_zona_inundable": 12,
+   "salud_zona_inundable": 3
+  },
+  {
+   "departamento": "Piura",
    "provincia": "Piura",
    "distrito": "Piura",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.1,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 20.6,
+   "mm_dia_max": 0.0,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 63.4,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
     0.0,
     0.0,
-    0.1,
     0.0,
-    0.1,
-    4.4,
-    16.0
+    0.0,
+    2.5,
+    14.3,
+    46.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1247,28 +1252,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.6,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 29.6,
+   "mm_dia_max": 1.0,
+   "fecha_max": "2026-11-10",
+   "mm_7d": 110.0,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
-    0.4,
+    0.1,
+    1.0,
     0.6,
-    0.2,
-    4.2,
-    0.6,
-    8.8,
-    14.8
+    1.2,
+    3.5,
+    44.6,
+    59.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1292,28 +1297,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.7,
+   "mm_dia_max": 1.9,
    "fecha_max": "2026-11-10",
-   "mm_7d": 15.7,
+   "mm_7d": 47.8,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
-    0.2,
     0.0,
-    0.7,
-    1.6,
+    1.9,
+    0.2,
     0.3,
-    5.1,
-    7.8
+    2.4,
+    10.6,
+    32.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1337,28 +1342,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 17.7,
+   "mm_dia_max": 0.2,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 36.0,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
     0.0,
     0.0,
+    0.2,
     0.0,
-    0.9,
-    0.0,
-    7.0,
-    9.8
+    1.6,
+    8.6,
+    25.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1383,27 +1388,27 @@
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 17.9,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 41.8,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
     0.0,
     0.0,
     0.0,
-    1.2,
     0.0,
-    5.3,
-    11.4
+    0.6,
+    13.0,
+    28.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1427,28 +1432,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 14.7,
+   "mm_dia_max": 0.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 54.1,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
     0.0,
     0.0,
+    0.6,
     0.0,
-    0.0,
-    0.0,
-    3.7,
-    11.0
+    2.9,
+    15.6,
+    35.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1472,28 +1477,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 15.6,
+   "mm_dia_max": 0.7,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 46.9,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
     0.0,
     0.0,
+    0.7,
     0.0,
-    0.0,
-    0.0,
-    3.4,
-    12.2
+    2.3,
+    10.9,
+    33.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1512,59 +1517,14 @@
   {
    "departamento": "Piura",
    "provincia": "Piura",
-   "distrito": "Tambo Grande",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": "normal",
-   "motivo": null,
-   "mm_dia_max": 3.5,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 44.6,
-   "p95": 24.2,
-   "p99": 52.0,
-   "lluvia_diaria": [
-    1.9,
-    3.5,
-    0.6,
-    6.9,
-    6.1,
-    8.2,
-    17.4
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": "Piura",
-    "estado": "ok",
-    "nivel": "normal",
-    "m3s_max": 254.3,
-    "fecha_max": "2026-11-09",
-    "p95": 305.9,
-    "p99": 854.0,
-    "veces_p95": 0.83
-   },
-   "personas_zona_inundable": 12651,
-   "colegios_zona_inundable": 12,
-   "salud_zona_inundable": 3
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Piura",
    "distrito": "Veintiséis de Octubre",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 16.0,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 59.2,
    "p95": 24.2,
    "p99": 52.0,
    "lluvia_diaria": [
@@ -1572,18 +1532,18 @@
     0.0,
     0.0,
     0.0,
-    0.0,
-    3.8,
-    12.2
+    2.9,
+    11.5,
+    44.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1607,28 +1567,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 3.7,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 41.8,
+   "mm_dia_max": 7.0,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 111.3,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    2.5,
-    1.0,
+    1.7,
     3.7,
-    4.0,
-    4.9,
-    10.3,
-    15.4
+    7.0,
+    11.2,
+    12.4,
+    23.1,
+    52.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1652,28 +1612,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 2.3,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 25.6,
+   "mm_dia_max": 1.3,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 90.2,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    2.3,
-    2.0,
-    1.2,
-    2.0,
-    1.6,
-    7.5,
-    9.0
+    1.3,
+    0.6,
+    1.1,
+    1.7,
+    3.1,
+    26.2,
+    56.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1697,28 +1657,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.9,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 14.1,
+   "mm_dia_max": 0.4,
+   "fecha_max": "2026-11-10",
+   "mm_7d": 110.6,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
+    0.0,
+    0.4,
+    0.4,
+    1.2,
     0.9,
-    0.2,
-    0.9,
-    0.8,
-    0.8,
-    2.1,
-    8.4
+    29.7,
+    78.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1742,28 +1702,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 2.7,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 37.8,
+   "mm_dia_max": 2.6,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 97.5,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    2.7,
-    0.8,
-    1.0,
-    4.6,
-    10.0,
-    10.1,
-    8.6
+    2.6,
+    1.9,
+    2.0,
+    7.1,
+    11.0,
+    24.3,
+    48.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1788,8 +1748,8 @@
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 1.9,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 8.4,
    "p95": 21.6,
    "p99": 45.8,
    "lluvia_diaria": [
@@ -1798,17 +1758,17 @@
     0.0,
     0.0,
     0.0,
-    0.3,
-    1.6
+    0.4,
+    8.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1833,27 +1793,27 @@
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 13.0,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 44.1,
    "p95": 21.6,
    "p99": 45.8,
    "lluvia_diaria": [
     0.0,
     0.0,
     0.0,
-    0.3,
     0.0,
-    4.3,
-    8.4
+    1.7,
+    14.4,
+    28.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1877,28 +1837,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": "normal",
    "motivo": null,
-   "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 14.7,
+   "mm_dia_max": 0.1,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 44.0,
    "p95": 21.6,
    "p99": 45.8,
    "lluvia_diaria": [
     0.0,
     0.0,
+    0.1,
     0.0,
-    0.6,
-    0.0,
-    4.3,
-    9.8
+    1.2,
+    12.1,
+    30.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1923,8 +1883,8 @@
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 5.7,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 50.9,
    "p95": 21.6,
    "p99": 45.8,
    "lluvia_diaria": [
@@ -1932,18 +1892,18 @@
     0.0,
     0.0,
     0.3,
-    0.0,
-    0.6,
-    4.8
+    0.9,
+    22.7,
+    27.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -1968,27 +1928,27 @@
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 11.5,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 27.8,
    "p95": 21.6,
    "p99": 45.8,
    "lluvia_diaria": [
     0.0,
     0.0,
     0.0,
-    0.3,
     0.0,
-    3.2,
-    8.0
+    0.8,
+    9.4,
+    17.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -2013,27 +1973,27 @@
    "nivel_caudal": "normal",
    "motivo": null,
    "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 13.0,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 44.1,
    "p95": 21.6,
    "p99": 45.8,
    "lluvia_diaria": [
     0.0,
     0.0,
     0.0,
-    0.3,
     0.0,
-    4.3,
-    8.4
+    1.7,
+    14.4,
+    28.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": "Piura",
@@ -2051,34 +2011,34 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Ayabaca",
-   "distrito": "Sapillica",
+   "provincia": "Huancabamba",
+   "distrito": "Canchaque",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 15.8,
+   "mm_dia_max": 10.8,
    "fecha_max": "2026-11-09",
-   "mm_7d": 131.0,
-   "p95": 34.8,
-   "p99": 54.8,
+   "mm_7d": 204.6,
+   "p95": 26.5,
+   "p99": 42.3,
    "lluvia_diaria": [
-    6.6,
-    15.8,
-    9.9,
-    12.9,
-    30.6,
-    23.4,
-    31.8
+    10.8,
+    7.4,
+    9.8,
+    13.3,
+    10.9,
+    84.0,
+    68.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2091,121 +2051,41 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Talara",
-   "distrito": "Los Órganos",
+   "provincia": "Ayabaca",
+   "distrito": "Sapillica",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 10.0,
+   "mm_dia_max": 13.1,
    "fecha_max": "2026-11-09",
-   "mm_7d": 209.2,
-   "p95": 19.9,
-   "p99": 36.0,
+   "mm_7d": 194.6,
+   "p95": 34.8,
+   "p99": 54.8,
    "lluvia_diaria": [
-    1.8,
-    10.0,
-    2.9,
-    4.1,
-    48.7,
-    81.9,
-    59.8
+    13.1,
+    11.5,
+    13.1,
+    27.2,
+    26.3,
+    30.6,
+    72.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 4026,
-   "colegios_zona_inundable": 17,
-   "salud_zona_inundable": 2
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Talara",
-   "distrito": "Máncora",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 10.0,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 209.2,
-   "p95": 19.9,
-   "p99": 36.0,
-   "lluvia_diaria": [
-    1.8,
-    10.0,
-    2.9,
-    4.1,
-    48.7,
-    81.9,
-    59.8
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 1938,
-   "colegios_zona_inundable": 2,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Tumbes",
-   "provincia": "Contralmirante Villar",
-   "distrito": "Canoas de Punta Sal",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 12.4,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 132.1,
-   "p95": 22.8,
-   "p99": 45.0,
-   "lluvia_diaria": [
-    1.9,
-    12.4,
-    6.5,
-    5.0,
-    34.2,
-    29.1,
-    43.0
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 66,
+   "personas_zona_inundable": 0,
    "colegios_zona_inundable": 0,
    "salud_zona_inundable": 0
   },
@@ -2217,28 +2097,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 10.3,
+   "mm_dia_max": 9.9,
    "fecha_max": "2026-11-09",
-   "mm_7d": 26.1,
+   "mm_7d": 25.5,
    "p95": 26.5,
    "p99": 42.3,
    "lluvia_diaria": [
-    2.7,
-    10.3,
-    5.0,
-    1.5,
-    2.4,
-    1.8,
-    2.4
+    9.9,
+    3.0,
+    1.9,
+    3.6,
+    2.9,
+    3.6,
+    0.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2250,6 +2130,86 @@
    "salud_zona_inundable": 0
   },
   {
+   "departamento": "Piura",
+   "provincia": "Ayabaca",
+   "distrito": "Suyo",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 11.8,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 124.1,
+   "p95": 34.8,
+   "p99": 54.8,
+   "lluvia_diaria": [
+    6.2,
+    4.5,
+    11.8,
+    14.1,
+    21.2,
+    35.1,
+    31.2
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 402,
+   "colegios_zona_inundable": 2,
+   "salud_zona_inundable": 1
+  },
+  {
+   "departamento": "Tumbes",
+   "provincia": "Contralmirante Villar",
+   "distrito": "Casitas",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 9.3,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 177.6,
+   "p95": 22.8,
+   "p99": 45.0,
+   "lluvia_diaria": [
+    8.0,
+    8.7,
+    9.3,
+    23.1,
+    64.9,
+    36.8,
+    26.8
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 19,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
    "departamento": "Tumbes",
    "provincia": "Contralmirante Villar",
    "distrito": "Zorritos",
@@ -2257,28 +2217,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 10.0,
+   "mm_dia_max": 8.4,
    "fecha_max": "2026-11-10",
-   "mm_7d": 76.7,
+   "mm_7d": 195.0,
    "p95": 22.8,
    "p99": 45.0,
    "lluvia_diaria": [
-    2.9,
-    9.1,
-    10.0,
-    3.0,
-    10.6,
-    12.1,
-    29.0
+    7.1,
+    8.4,
+    8.0,
+    45.7,
+    78.6,
+    34.8,
+    12.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2291,234 +2251,34 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Huancabamba",
-   "distrito": "Lalaquiz",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 9.0,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 99.0,
-   "p95": 26.5,
-   "p99": 42.3,
-   "lluvia_diaria": [
-    6.8,
-    5.1,
-    9.0,
-    6.3,
-    11.7,
-    30.9,
-    29.2
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 0,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
    "provincia": "Ayabaca",
    "distrito": "Sicchez",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 10.9,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 113.7,
+   "mm_dia_max": 9.9,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 147.5,
    "p95": 34.8,
    "p99": 54.8,
    "lluvia_diaria": [
-    8.1,
-    10.9,
-    10.0,
-    14.8,
-    21.2,
-    17.1,
-    31.6
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 0,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Tumbes",
-   "provincia": "Contralmirante Villar",
-   "distrito": "Casitas",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 8.9,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 78.6,
-   "p95": 22.8,
-   "p99": 45.0,
-   "lluvia_diaria": [
-    3.9,
-    8.9,
-    7.5,
-    10.7,
-    12.9,
-    11.1,
-    23.6
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 19,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Huancabamba",
-   "distrito": "Sondor",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 8.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 28.2,
-   "p95": 26.5,
-   "p99": 42.3,
-   "lluvia_diaria": [
-    8.0,
-    7.7,
-    3.9,
-    1.7,
-    4.5,
-    1.2,
-    1.2
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 39,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Ayabaca",
-   "distrito": "Suyo",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 9.3,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 110.9,
-   "p95": 34.8,
-   "p99": 54.8,
-   "lluvia_diaria": [
-    1.6,
-    9.3,
-    3.3,
-    11.4,
-    14.4,
-    43.9,
+    9.4,
+    9.7,
+    9.9,
+    20.5,
+    18.7,
+    52.3,
     27.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 402,
-   "colegios_zona_inundable": 2,
-   "salud_zona_inundable": 1
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Morropón",
-   "distrito": "Santa Catalina de Mossa",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 10.6,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 92.1,
-   "p95": 32.5,
-   "p99": 73.4,
-   "lluvia_diaria": [
-    4.1,
-    10.6,
-    8.0,
-    9.9,
-    8.1,
-    24.0,
-    27.4
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2537,28 +2297,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 9.8,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 97.3,
+   "mm_dia_max": 12.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 183.3,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    7.5,
-    8.5,
-    9.8,
-    10.7,
-    9.9,
-    21.9,
-    29.0
+    9.4,
+    10.5,
+    12.6,
+    14.1,
+    16.5,
+    27.2,
+    93.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2571,114 +2331,154 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Talara",
-   "distrito": "Pariñas",
+   "provincia": "Huancabamba",
+   "distrito": "San Miguel de El Faique",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 4.2,
+   "mm_dia_max": 7.2,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 108.7,
+   "p95": 26.5,
+   "p99": 42.3,
+   "lluvia_diaria": [
+    0.7,
+    1.7,
+    7.2,
+    10.5,
+    9.6,
+    37.8,
+    41.2
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 1,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Talara",
+   "distrito": "Los Órganos",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 6.1,
    "fecha_max": "2026-11-09",
-   "mm_7d": 80.1,
+   "mm_7d": 133.9,
    "p95": 19.9,
    "p99": 36.0,
    "lluvia_diaria": [
-    0.3,
-    4.2,
-    1.4,
-    4.0,
-    4.7,
-    25.5,
+    6.1,
+    1.6,
+    4.9,
+    7.7,
+    29.3,
+    44.3,
     40.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 20148,
-   "colegios_zona_inundable": 16,
-   "salud_zona_inundable": 9
+   "personas_zona_inundable": 4026,
+   "colegios_zona_inundable": 17,
+   "salud_zona_inundable": 2
   },
   {
    "departamento": "Piura",
    "provincia": "Talara",
-   "distrito": "Lobitos",
+   "distrito": "Máncora",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 4.2,
+   "mm_dia_max": 6.1,
    "fecha_max": "2026-11-09",
-   "mm_7d": 90.9,
+   "mm_7d": 133.9,
    "p95": 19.9,
    "p99": 36.0,
    "lluvia_diaria": [
-    0.3,
-    4.2,
-    0.0,
-    1.9,
-    3.6,
-    48.9,
-    32.0
+    6.1,
+    1.6,
+    4.9,
+    7.7,
+    29.3,
+    44.3,
+    40.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 285,
-   "colegios_zona_inundable": 0,
+   "personas_zona_inundable": 1938,
+   "colegios_zona_inundable": 2,
    "salud_zona_inundable": 0
   },
   {
    "departamento": "Piura",
    "provincia": "Morropón",
-   "distrito": "Chalaco",
+   "distrito": "Santa Catalina de Mossa",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 8.1,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 83.4,
+   "mm_dia_max": 12.4,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 138.9,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    2.0,
-    1.7,
-    8.1,
+    12.4,
     8.9,
-    9.6,
-    24.9,
-    28.2
+    10.1,
+    10.0,
+    18.0,
+    30.9,
+    48.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2691,34 +2491,34 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Morropón",
-   "distrito": "Yamango",
+   "provincia": "Huancabamba",
+   "distrito": "Lalaquiz",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 8.1,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 83.4,
-   "p95": 32.5,
-   "p99": 73.4,
+   "mm_dia_max": 7.0,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 192.2,
+   "p95": 26.5,
+   "p99": 42.3,
    "lluvia_diaria": [
-    2.0,
-    1.7,
-    8.1,
-    8.9,
-    9.6,
-    24.9,
-    28.2
+    5.0,
+    6.0,
+    7.0,
+    17.2,
+    19.8,
+    69.6,
+    67.6
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2737,28 +2537,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 5.8,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 71.0,
+   "mm_dia_max": 8.2,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 125.9,
    "p95": 28.1,
    "p99": 56.4,
    "lluvia_diaria": [
-    0.2,
-    5.0,
-    5.8,
-    4.3,
-    14.0,
-    14.5,
-    27.2
+    5.4,
+    3.6,
+    8.2,
+    23.9,
+    26.9,
+    23.7,
+    34.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2770,83 +2570,323 @@
    "salud_zona_inundable": 0
   },
   {
-   "departamento": "Tumbes",
-   "provincia": "Zarumilla",
-   "distrito": "Aguas Verdes",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 5.5,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 80.5,
-   "p95": 28.1,
-   "p99": 56.4,
-   "lluvia_diaria": [
-    0.4,
-    5.5,
-    2.9,
-    2.3,
-    7.0,
-    13.0,
-    49.4
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 5717,
-   "colegios_zona_inundable": 6,
-   "salud_zona_inundable": 1
-  },
-  {
    "departamento": "Piura",
-   "provincia": "Ayabaca",
-   "distrito": "Paimas",
+   "provincia": "Talara",
+   "distrito": "Pariñas",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
    "mm_dia_max": 5.1,
    "fecha_max": "2026-11-09",
-   "mm_7d": 59.7,
-   "p95": 34.8,
-   "p99": 54.8,
+   "mm_7d": 136.9,
+   "p95": 19.9,
+   "p99": 36.0,
    "lluvia_diaria": [
-    0.8,
     5.1,
-    0.4,
-    3.8,
-    7.2,
-    18.0,
-    24.4
+    0.6,
+    3.5,
+    2.9,
+    6.3,
+    46.7,
+    71.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 264,
-   "colegios_zona_inundable": 2,
+   "personas_zona_inundable": 20148,
+   "colegios_zona_inundable": 16,
+   "salud_zona_inundable": 9
+  },
+  {
+   "departamento": "Tumbes",
+   "provincia": "Contralmirante Villar",
+   "distrito": "Canoas de Punta Sal",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 6.3,
+   "fecha_max": "2026-11-10",
+   "mm_7d": 148.3,
+   "p95": 22.8,
+   "p99": 45.0,
+   "lluvia_diaria": [
+    6.0,
+    6.3,
+    5.1,
+    11.2,
+    36.2,
+    58.1,
+    25.4
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 66,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Piura",
+   "distrito": "Las Lomas",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 6.3,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 89.6,
+   "p95": 24.2,
+   "p99": 52.0,
+   "lluvia_diaria": [
+    4.5,
+    1.4,
+    6.3,
+    10.9,
+    11.1,
+    21.2,
+    34.2
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 387,
+   "colegios_zona_inundable": 1,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Ayabaca",
+   "distrito": "Jilili",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 6.1,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 128.0,
+   "p95": 34.8,
+   "p99": 54.8,
+   "lluvia_diaria": [
+    1.8,
+    1.8,
+    6.1,
+    21.6,
+    14.9,
+    53.2,
+    28.6
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 27,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Talara",
+   "distrito": "Lobitos",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 4.0,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 86.1,
+   "p95": 19.9,
+   "p99": 36.0,
+   "lluvia_diaria": [
+    3.9,
+    0.0,
+    4.0,
+    1.7,
+    5.9,
+    27.2,
+    43.4
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 285,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Tumbes",
+   "provincia": "Zarumilla",
+   "distrito": "Papayal",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 6.2,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 103.5,
+   "p95": 28.1,
+   "p99": 56.4,
+   "lluvia_diaria": [
+    2.7,
+    2.4,
+    6.2,
+    21.0,
+    22.9,
+    25.5,
+    22.8
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 149,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Morropón",
+   "distrito": "Chalaco",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 7.7,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 131.3,
+   "p95": 32.5,
+   "p99": 73.4,
+   "lluvia_diaria": [
+    7.7,
+    6.2,
+    6.6,
+    12.9,
+    24.0,
+    42.5,
+    31.4
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 0,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Piura",
+   "provincia": "Morropón",
+   "distrito": "Yamango",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 7.7,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 131.3,
+   "p95": 32.5,
+   "p99": 73.4,
+   "lluvia_diaria": [
+    7.7,
+    6.2,
+    6.6,
+    12.9,
+    24.0,
+    42.5,
+    31.4
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 0,
+   "colegios_zona_inundable": 0,
    "salud_zona_inundable": 0
   },
   {
@@ -2857,28 +2897,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 6.7,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 65.1,
+   "mm_dia_max": 7.5,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 146.8,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    3.5,
-    6.7,
-    6.1,
-    6.6,
-    6.0,
-    12.4,
-    23.8
+    7.3,
+    5.4,
+    7.5,
+    14.0,
+    9.6,
+    45.0,
+    58.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2890,42 +2930,42 @@
    "salud_zona_inundable": 0
   },
   {
-   "departamento": "Tumbes",
-   "provincia": "Zarumilla",
-   "distrito": "Papayal",
+   "departamento": "Piura",
+   "provincia": "Sullana",
+   "distrito": "Salitral",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 5.0,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 73.7,
-   "p95": 28.1,
-   "p99": 56.4,
+   "mm_dia_max": 6.1,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 140.6,
+   "p95": 28.3,
+   "p99": 59.9,
    "lluvia_diaria": [
+    0.8,
     0.2,
-    5.0,
-    2.6,
-    3.4,
-    10.3,
-    8.2,
-    44.0
+    6.1,
+    4.6,
+    8.0,
+    29.7,
+    91.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 149,
+   "personas_zona_inundable": 393,
    "colegios_zona_inundable": 0,
    "salud_zona_inundable": 0
   },
@@ -2939,26 +2979,26 @@
    "motivo": null,
    "mm_dia_max": 4.8,
    "fecha_max": "2026-11-09",
-   "mm_7d": 58.1,
+   "mm_7d": 113.3,
    "p95": 34.8,
    "p99": 54.8,
    "lluvia_diaria": [
-    2.0,
     4.8,
-    2.9,
-    4.1,
-    10.1,
-    15.8,
-    18.4
+    1.9,
+    3.3,
+    9.5,
+    8.8,
+    56.6,
+    28.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -2970,6 +3010,86 @@
    "salud_zona_inundable": 0
   },
   {
+   "departamento": "Piura",
+   "provincia": "Huancabamba",
+   "distrito": "Sondor",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 3.5,
+   "fecha_max": "2026-11-10",
+   "mm_7d": 26.4,
+   "p95": 26.5,
+   "p99": 42.3,
+   "lluvia_diaria": [
+    3.0,
+    3.5,
+    1.4,
+    3.7,
+    3.3,
+    2.5,
+    9.0
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 39,
+   "colegios_zona_inundable": 0,
+   "salud_zona_inundable": 0
+  },
+  {
+   "departamento": "Tumbes",
+   "provincia": "Zarumilla",
+   "distrito": "Aguas Verdes",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 4.6,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 86.1,
+   "p95": 28.1,
+   "p99": 56.4,
+   "lluvia_diaria": [
+    1.9,
+    2.1,
+    4.6,
+    10.4,
+    16.5,
+    27.4,
+    23.2
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 5717,
+   "colegios_zona_inundable": 6,
+   "salud_zona_inundable": 1
+  },
+  {
    "departamento": "Tumbes",
    "provincia": "Zarumilla",
    "distrito": "Zarumilla",
@@ -2978,27 +3098,27 @@
    "nivel_caudal": null,
    "motivo": null,
    "mm_dia_max": 4.3,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 75.9,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 84.8,
    "p95": 28.1,
    "p99": 56.4,
    "lluvia_diaria": [
-    0.3,
+    2.0,
+    2.8,
     4.3,
-    3.3,
-    1.6,
-    5.7,
-    13.1,
-    47.6
+    8.9,
+    19.0,
+    29.0,
+    18.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -3011,74 +3131,34 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Huancabamba",
-   "distrito": "San Miguel de El Faique",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 2.6,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 67.2,
-   "p95": 26.5,
-   "p99": 42.3,
-   "lluvia_diaria": [
-    0.4,
-    0.5,
-    2.6,
-    6.7,
-    9.0,
-    18.0,
-    30.0
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 1,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
    "provincia": "Ayabaca",
    "distrito": "Ayabaca",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 3.2,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 57.5,
+   "mm_dia_max": 4.1,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 94.1,
    "p95": 34.8,
    "p99": 54.8,
    "lluvia_diaria": [
-    3.2,
-    0.5,
-    2.0,
-    5.9,
-    10.3,
-    19.0,
-    16.6
+    0.1,
+    3.1,
+    4.1,
+    4.8,
+    12.1,
+    20.5,
+    49.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -3091,123 +3171,123 @@
   },
   {
    "departamento": "Piura",
-   "provincia": "Piura",
-   "distrito": "Las Lomas",
+   "provincia": "Ayabaca",
+   "distrito": "Paimas",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 3.0,
+   "mm_dia_max": 3.6,
    "fecha_max": "2026-11-09",
-   "mm_7d": 65.2,
-   "p95": 24.2,
-   "p99": 52.0,
+   "mm_7d": 96.2,
+   "p95": 34.8,
+   "p99": 54.8,
    "lluvia_diaria": [
-    0.8,
-    3.0,
-    1.3,
-    12.5,
-    9.6,
-    15.2,
-    22.8
+    3.6,
+    1.7,
+    2.6,
+    9.0,
+    11.5,
+    31.0,
+    36.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 387,
-   "colegios_zona_inundable": 1,
+   "personas_zona_inundable": 264,
+   "colegios_zona_inundable": 2,
    "salud_zona_inundable": 0
   },
   {
    "departamento": "Piura",
    "provincia": "Huancabamba",
-   "distrito": "Sondorillo",
+   "distrito": "Huarmaca",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 2.1,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 24.7,
+   "mm_dia_max": 1.8,
+   "fecha_max": "2026-11-10",
+   "mm_7d": 55.7,
    "p95": 26.5,
    "p99": 42.3,
    "lluvia_diaria": [
     1.4,
-    2.1,
-    0.4,
-    0.1,
-    0.9,
-    7.2,
-    12.6
+    1.8,
+    1.4,
+    6.0,
+    5.1,
+    11.8,
+    28.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 45,
+   "personas_zona_inundable": 373,
    "colegios_zona_inundable": 0,
    "salud_zona_inundable": 0
   },
   {
    "departamento": "Piura",
-   "provincia": "Ayabaca",
-   "distrito": "Jilili",
+   "provincia": "Talara",
+   "distrito": "La Brea",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 2.7,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 64.7,
-   "p95": 34.8,
-   "p99": 54.8,
+   "mm_dia_max": 1.1,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 86.0,
+   "p95": 19.9,
+   "p99": 36.0,
    "lluvia_diaria": [
-    1.5,
-    2.3,
-    2.7,
-    9.0,
-    12.4,
-    15.0,
-    21.8
+    0.0,
+    0.0,
+    1.1,
+    1.0,
+    3.1,
+    15.6,
+    65.2
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 27,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
+   "personas_zona_inundable": 5375,
+   "colegios_zona_inundable": 14,
+   "salud_zona_inundable": 1
   },
   {
    "departamento": "Piura",
@@ -3219,26 +3299,26 @@
    "motivo": null,
    "mm_dia_max": 2.1,
    "fecha_max": "2026-11-09",
-   "mm_7d": 23.0,
+   "mm_7d": 106.9,
    "p95": 32.5,
    "p99": 73.4,
    "lluvia_diaria": [
-    1.8,
     2.1,
-    2.0,
-    1.3,
     1.2,
-    6.0,
-    8.6
+    0.4,
+    1.3,
+    2.1,
+    37.8,
+    62.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -3251,34 +3331,74 @@
   },
   {
    "departamento": "Piura",
+   "provincia": "Ayabaca",
+   "distrito": "Lagunas",
+   "nivel": "normal",
+   "nivel_lluvia": "normal",
+   "nivel_caudal": null,
+   "motivo": null,
+   "mm_dia_max": 1.5,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 38.1,
+   "p95": 34.8,
+   "p99": 54.8,
+   "lluvia_diaria": [
+    0.3,
+    1.1,
+    1.5,
+    1.8,
+    3.9,
+    12.7,
+    16.8
+   ],
+   "fechas": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "caudal": {
+    "rio": null,
+    "estado": "sin río con dato de caudal: solo lluvia",
+    "nivel": null
+   },
+   "personas_zona_inundable": 82,
+   "colegios_zona_inundable": 1,
+   "salud_zona_inundable": 1
+  },
+  {
+   "departamento": "Piura",
    "provincia": "Huancabamba",
    "distrito": "Huancabamba",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 1.2,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 39.6,
+   "mm_dia_max": 0.5,
+   "fecha_max": "2026-11-09",
+   "mm_7d": 69.5,
    "p95": 26.5,
    "p99": 42.3,
    "lluvia_diaria": [
-    1.2,
-    0.9,
-    0.3,
+    0.5,
+    0.1,
     0.0,
-    0.6,
-    9.0,
-    27.6
+    0.7,
+    4.2,
+    14.2,
+    49.8
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
@@ -3292,162 +3412,42 @@
   {
    "departamento": "Piura",
    "provincia": "Huancabamba",
-   "distrito": "Huarmaca",
+   "distrito": "Sondorillo",
    "nivel": "normal",
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 1.2,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 23.9,
+   "mm_dia_max": 0.4,
+   "fecha_max": "2026-11-10",
+   "mm_7d": 54.4,
    "p95": 26.5,
    "p99": 42.3,
    "lluvia_diaria": [
+    0.3,
+    0.4,
+    0.0,
     1.2,
-    0.9,
-    0.8,
-    1.6,
-    3.9,
-    3.3,
-    12.2
+    5.4,
+    15.1,
+    32.0
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
     "estado": "sin río con dato de caudal: solo lluvia",
     "nivel": null
    },
-   "personas_zona_inundable": 373,
+   "personas_zona_inundable": 45,
    "colegios_zona_inundable": 0,
    "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Ayabaca",
-   "distrito": "Lagunas",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 1.0,
-   "fecha_max": "2026-11-10",
-   "mm_7d": 17.3,
-   "p95": 34.8,
-   "p99": 54.8,
-   "lluvia_diaria": [
-    0.8,
-    0.6,
-    1.0,
-    1.9,
-    2.1,
-    6.3,
-    4.6
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 82,
-   "colegios_zona_inundable": 1,
-   "salud_zona_inundable": 1
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Sullana",
-   "distrito": "Salitral",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 0.9,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 33.8,
-   "p95": 28.3,
-   "p99": 59.9,
-   "lluvia_diaria": [
-    0.0,
-    0.9,
-    0.9,
-    1.7,
-    1.4,
-    7.7,
-    21.2
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 393,
-   "colegios_zona_inundable": 0,
-   "salud_zona_inundable": 0
-  },
-  {
-   "departamento": "Piura",
-   "provincia": "Talara",
-   "distrito": "La Brea",
-   "nivel": "normal",
-   "nivel_lluvia": "normal",
-   "nivel_caudal": null,
-   "motivo": null,
-   "mm_dia_max": 0.2,
-   "fecha_max": "2026-11-09",
-   "mm_7d": 24.6,
-   "p95": 19.9,
-   "p99": 36.0,
-   "lluvia_diaria": [
-    0.0,
-    0.2,
-    0.0,
-    1.3,
-    2.9,
-    7.6,
-    12.6
-   ],
-   "fechas": [
-    "2026-11-08",
-    "2026-11-09",
-    "2026-11-10",
-    "2026-11-11",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14"
-   ],
-   "caudal": {
-    "rio": null,
-    "estado": "sin río con dato de caudal: solo lluvia",
-    "nivel": null
-   },
-   "personas_zona_inundable": 5375,
-   "colegios_zona_inundable": 14,
-   "salud_zona_inundable": 1
   },
   {
    "departamento": "Piura",
@@ -3457,28 +3457,28 @@
    "nivel_lluvia": "normal",
    "nivel_caudal": null,
    "motivo": null,
-   "mm_dia_max": 0.0,
-   "fecha_max": "2026-11-08",
-   "mm_7d": 1.8,
+   "mm_dia_max": 0.2,
+   "fecha_max": "2026-11-11",
+   "mm_7d": 16.7,
    "p95": 34.8,
    "p99": 54.8,
    "lluvia_diaria": [
     0.0,
     0.0,
-    0.0,
+    0.2,
     0.3,
-    0.0,
-    0.9,
-    0.6
+    0.4,
+    7.4,
+    8.4
    ],
    "fechas": [
-    "2026-11-08",
     "2026-11-09",
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
     "2026-11-13",
-    "2026-11-14"
+    "2026-11-14",
+    "2026-11-15"
    ],
    "caudal": {
     "rio": null,
