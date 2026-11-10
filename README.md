@@ -1,4 +1,6 @@
-# Inundaciones por El Niño en Tumbes y Piura
+# Del censo a la alerta
+
+**Un sistema que anticipa emergencias por inundación distrito por distrito en Tumbes y Piura**
 
 Sistema que estima, para cada uno de los 78 distritos de Tumbes y Piura, **la probabilidad de una emergencia por lluvia o inundación en las próximas una a cuatro semanas, y cuántas viviendas y personas viven en la zona inundable** según los Censos Nacionales 2025. Tiene tres partes:
 
