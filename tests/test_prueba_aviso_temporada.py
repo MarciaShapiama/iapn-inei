@@ -51,7 +51,10 @@ def test_resultado_publicado_es_coherente(P, niveles, tmp_path, monkeypatch):
     nuevo = json.loads(json.dumps(P.evaluar(niveles, "x"), ensure_ascii=False, default=str))
     viejo = json.loads(SALIDA.read_text(encoding="utf-8"))
     assert nuevo["temporada_2025"] == viejo["temporada_2025"]
-    assert nuevo["temporada_2026"] == viejo["temporada_2026"]
+    # 2026: se compara el catálogo verificado, que es fijo. Las «noticias ubicadas» cambian con cada actualización
+    # diaria de noticias, así que ese bloque no se exige idéntico al publicado.
+    for nombre, var in viejo["temporada_2026"]["variantes"].items():
+        assert nuevo["temporada_2026"]["variantes"][nombre]["eventos verificados"] == var["eventos verificados"], nombre
     for x in nuevo["temporada_2025"]["variantes"].values():
         for g in x.values():
             assert g["avisos_con_dano"] <= min(g["avisos"], g["danos"])
