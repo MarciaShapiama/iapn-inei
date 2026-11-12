@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-12T06:40-05:00",
+ "generado": "2026-11-12T15:59-05:00",
  "hoy": "2026-11-12",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
@@ -9,10 +9,10 @@
  "aviso": "Los eventos de noticias son reportes de prensa ubicados automáticamente por el nombre del lugar: no están verificados ni equivalen a cifras oficiales (INDECI/COEN).",
  "resumen_radar": {
   "detectado": 4,
-  "no detectado": 4,
+  "no detectado": 5,
   "fuera de alcance": 16,
   "sin pasada": 0,
-  "sin radar": 1
+  "sin radar": 0
  },
  "n": 25,
  "eventos": [
@@ -41,9 +41,13 @@
     }
    ],
    "radar": {
-    "capa": null,
-    "veredicto": "sin radar",
-    "explicacion": "No hay una capa de radar calculada para esa fecha."
+    "capa": "Últimos 24 días",
+    "km2_a_3km": 0.0,
+    "pasadas_desde_la_noticia": [
+     "2026-11-11"
+    ],
+    "veredicto": "no detectado",
+    "explicacion": "El radar no encontró agua abierta nueva cerca: la inundación pudo ser breve, angosta o dentro del poblado."
    }
   },
   {
@@ -74,7 +78,9 @@
     "capa": "Últimos 24 días",
     "km2_a_3km": 0.0,
     "pasadas_desde_la_noticia": [
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "no detectado",
     "explicacion": "El radar no encontró agua abierta nueva cerca: la inundación pudo ser breve, angosta o dentro del poblado."
@@ -110,7 +116,9 @@
     "pasadas_desde_la_noticia": [
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -146,7 +154,9 @@
     "pasadas_desde_la_noticia": [
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Está a 2722 m de altura. El detector solo trabaja debajo de 250 m: en la sierra la sombra del relieve se confunde con agua y los ríos son más angostos que un píxel."
@@ -190,7 +200,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -606,7 +618,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -692,7 +706,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -772,7 +788,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -834,7 +852,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -878,7 +898,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -916,7 +938,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Quebrada activada: el agua corre por un cauce de pocos metros y dura horas; el radar (píxel de ~55 m, una pasada cada pocos días) no alcanza a verla."
@@ -980,7 +1004,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Está a 1957 m de altura. El detector solo trabaja debajo de 250 m: en la sierra la sombra del relieve se confunde con agua y los ríos son más angostos que un píxel."
@@ -1056,7 +1082,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -1106,7 +1134,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -1147,7 +1177,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -1207,7 +1239,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Está a 2722 m de altura. El detector solo trabaja debajo de 250 m: en la sierra la sombra del relieve se confunde con agua y los ríos son más angostos que un píxel."
@@ -1275,7 +1309,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -1326,7 +1362,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.049,
     "prueba_km2_sin_limite_altura": 0.049,
@@ -1385,7 +1423,9 @@
      "2026-11-03",
      "2026-11-05",
      "2026-11-06",
-     "2026-11-08"
+     "2026-11-08",
+     "2026-11-09",
+     "2026-11-11"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
