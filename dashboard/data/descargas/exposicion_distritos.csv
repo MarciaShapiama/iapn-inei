@@ -159,14 +159,14 @@
 2023,radar,240304,Tumbes,Zarumilla,Papayal,0.13,0,7100,0,52,0,0,2,2,0,0,9,9
 vivo,radar,,Sin distrito asignado,Sin distrito asignado,Sin distrito asignado,0.0,0,196577,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200101,Piura,Piura,Piura,0.0,0,175283,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200104,Piura,Piura,Castilla,0.54,26,185228,3,693,0,2,41,43,0,1,46,47
-vivo,radar,200105,Piura,Piura,Catacaos,0.12,0,82752,0,2,0,0,0,0,0,0,0,0
-vivo,radar,200107,Piura,Piura,Cura Mori,0.23,0,20933,0,4,0,0,0,0,0,0,0,0
+vivo,radar,200104,Piura,Piura,Castilla,0.55,15,185228,2,682,0,2,41,43,0,1,45,46
+vivo,radar,200105,Piura,Piura,Catacaos,0.13,0,82752,0,2,0,0,0,0,0,0,0,0
+vivo,radar,200107,Piura,Piura,Cura Mori,0.24,0,20933,0,4,0,0,0,0,0,0,0,0
 vivo,radar,200108,Piura,Piura,El Tallán,0.07,0,5588,0,257,0,0,0,0,0,2,7,9
 vivo,radar,200109,Piura,Piura,La Arena,0.0,0,44900,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200110,Piura,Piura,La Unión,0.0,0,44529,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200111,Piura,Piura,Las Lomas,0.0,0,31723,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200114,Piura,Piura,Tambo Grande,0.07,0,129876,0,15,0,0,0,0,0,0,0,0
+vivo,radar,200114,Piura,Piura,Tambo Grande,0.0,0,129876,0,8,0,0,0,0,0,0,0,0
 vivo,radar,200115,Piura,Piura,Veintiséis de Octubre,0.03,1,191392,1,149,0,0,0,0,0,0,0,0
 vivo,radar,200201,Piura,Ayabaca,Ayabaca,0.0,0,36737,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200202,Piura,Ayabaca,Frías,0.0,0,23458,0,0,0,0,0,0,0,0,0,0
@@ -199,40 +199,40 @@ vivo,radar,200410,Piura,Morropón,Yamango,0.0,0,9743,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200501,Piura,Paita,Paita,0.0,0,102785,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200502,Piura,Paita,Amotape,0.0,0,2661,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200503,Piura,Paita,Arenal,0.0,0,1319,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200504,Piura,Paita,Colán,0.0,0,16921,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200505,Piura,Paita,La Huaca,0.25,1,14480,1,97,0,0,0,0,0,0,0,0
+vivo,radar,200504,Piura,Paita,Colán,0.01,0,16921,0,1,0,0,0,0,0,0,0,0
+vivo,radar,200505,Piura,Paita,La Huaca,0.24,1,14480,1,97,0,0,0,0,0,0,0,0
 vivo,radar,200506,Piura,Paita,Tamarindo,0.0,0,5556,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200507,Piura,Paita,Vichayal,0.18,0,6384,0,3,0,0,0,0,0,0,0,0
-vivo,radar,200601,Piura,Sullana,Sullana,0.56,3,199559,0,23,0,0,0,0,0,0,0,0
+vivo,radar,200507,Piura,Paita,Vichayal,0.22,0,6384,0,66,0,0,1,1,0,0,1,1
+vivo,radar,200601,Piura,Sullana,Sullana,0.39,1,199559,0,21,0,0,0,0,0,0,0,0
 vivo,radar,200602,Piura,Sullana,Bellavista,0.0,0,37929,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200603,Piura,Sullana,Ignacio Escudero,0.0,0,22512,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200604,Piura,Sullana,Lancones,0.27,0,13740,0,0,0,0,0,0,0,0,0,0
+vivo,radar,200604,Piura,Sullana,Lancones,0.0,0,13740,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200605,Piura,Sullana,Marcavelica,0.0,0,33447,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200606,Piura,Sullana,Miguel Checa,0.07,0,10419,1,10,0,0,0,0,0,0,1,1
-vivo,radar,200607,Piura,Sullana,Querecotillo,0.03,0,29486,0,3,0,0,0,0,0,0,0,0
+vivo,radar,200607,Piura,Sullana,Querecotillo,0.0,0,29486,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200608,Piura,Sullana,Salitral,0.0,0,7794,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200701,Piura,Talara,Pariñas,0.0,0,109170,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200702,Piura,Talara,El Alto,0.0,0,9235,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200703,Piura,Talara,La Brea,2.04,1,13477,1,1,0,0,0,0,0,0,0,0
+vivo,radar,200703,Piura,Talara,La Brea,2.0,1,13477,1,1,0,0,0,0,0,0,0,0
 vivo,radar,200704,Piura,Talara,Lobitos,0.0,0,1514,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200705,Piura,Talara,Los Órganos,0.0,0,11954,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200706,Piura,Talara,Máncora,0.0,0,14148,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200801,Piura,Sechura,Sechura,81.76,1,49882,0,37,0,1,0,1,0,0,0,0
+vivo,radar,200801,Piura,Sechura,Sechura,87.05,0,49882,0,63,0,1,0,1,0,0,0,0
 vivo,radar,200802,Piura,Sechura,Bellavista de la Unión,0.0,0,5300,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200803,Piura,Sechura,Bernal,0.0,0,7809,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200804,Piura,Sechura,Cristo Nos Valga,0.07,0,5163,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200805,Piura,Sechura,Vice,0.08,0,17923,0,0,0,0,0,0,0,0,0,0
+vivo,radar,200805,Piura,Sechura,Vice,0.16,0,17923,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200806,Piura,Sechura,Rinconada Llicuar,0.0,0,3329,0,0,0,0,0,0,0,0,0,0
-vivo,radar,240101,Tumbes,Tumbes,Tumbes,1.01,2,117421,3,85,0,0,0,0,0,0,0,0
-vivo,radar,240102,Tumbes,Tumbes,Corrales,0.0,0,26233,0,0,0,0,0,0,0,0,0,0
+vivo,radar,240101,Tumbes,Tumbes,Tumbes,1.05,2,117421,4,84,0,0,0,0,0,0,0,0
+vivo,radar,240102,Tumbes,Tumbes,Corrales,0.06,0,26233,0,20,0,0,0,0,0,0,0,0
 vivo,radar,240103,Tumbes,Tumbes,La Cruz,0.0,0,10693,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240104,Tumbes,Tumbes,Pampas de Hospital,0.0,0,7817,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240105,Tumbes,Tumbes,San Jacinto,0.03,0,9460,0,11,0,0,1,1,0,0,18,18
 vivo,radar,240106,Tumbes,Tumbes,San Juan de la Virgen,0.0,0,5016,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240201,Tumbes,Contralmirante Villar,Zorritos,0.1,0,13432,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240202,Tumbes,Contralmirante Villar,Casitas,0.0,0,2778,0,0,0,0,0,0,0,0,0,0
-vivo,radar,240203,Tumbes,Contralmirante Villar,Canoas de Punta Sal,0.11,0,7196,0,2,0,0,0,0,0,0,0,0
-vivo,radar,240301,Tumbes,Zarumilla,Zarumilla,0.47,0,25783,0,36,0,0,0,0,0,0,2,2
+vivo,radar,240203,Tumbes,Contralmirante Villar,Canoas de Punta Sal,0.35,0,7196,0,6,0,0,0,0,0,0,0,0
+vivo,radar,240301,Tumbes,Zarumilla,Zarumilla,0.62,0,25783,0,54,0,0,0,0,0,0,2,2
 vivo,radar,240302,Tumbes,Zarumilla,Aguas Verdes,0.0,0,19373,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240303,Tumbes,Zarumilla,Matapalo,0.0,0,3758,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240304,Tumbes,Zarumilla,Papayal,0.0,0,7100,0,0,0,0,0,0,0,0,0,0

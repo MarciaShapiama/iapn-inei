@@ -58,22 +58,23 @@
   },
   "vivo": {
    "nombre": "Últimos 24 días",
-   "ninos_0a4": 3,
+   "ninos_0a4": 2,
    "ninos_0a4_por_departamento": {
-    "Piura": 3,
+    "Piura": 2,
     "Tumbes": 0
    },
-   "mayores_65": 3,
+   "mayores_65": 2,
    "mayores_65_por_departamento": {
-    "Piura": 3,
+    "Piura": 2,
     "Tumbes": 0
    },
    "cultivo_ha": 2,
    "vias_km": {
     "Terciaria": 0.2,
-    "Secundaria": 0.1
+    "Primaria": 0.0,
+    "Secundaria": 0.0
    },
-   "vias_km_total": 0.3,
+   "vias_km_total": 0.2,
    "puentes": 0,
    "puentes_nombres": []
   },
