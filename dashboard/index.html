@@ -330,7 +330,7 @@ body[data-vista=satelite] #selector,body[data-vista=mar] #selector,body[data-vis
 <!-- INUNDACIONES -->
 <section class="vista" id="v-inundaciones">
   <p class="titular" id="i-titular">Mapa de inundación: ¿qué quedaría bajo el agua?</p>
-  <p class="bajada">Dos miradas a la zona inundada: el <b>mapa de peligro</b> (lo que cubre una crecida de 1 en 10 o 1 en 100 años, con su profundidad) y lo que el <b>radar satelital Sentinel-1</b> vio inundado en 2017, 2023 y estos días. Cada una se cruza con la población (WorldPop 2026), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. La pregunta: <b>si hoy pasara algo así, ¿cuánto quedaría expuesto?</b> «Expuesto» no significa afectado ni damnificado.</p>
+  <p class="bajada">Dos miradas a la zona inundada: el <b>mapa de peligro</b> (lo que cubre una crecida de 1 en 10 o 1 en 100 años, con su profundidad) y lo que el <b>radar satelital Sentinel-1</b> vio inundado en 2017, 2023 y estos días. Cada una se cruza con las personas y viviendas (Censos Nacionales 2025 en los mapas de peligro; WorldPop en el radar), cada edificación (Google Open Buildings), los colegios y los establecimientos de salud. La pregunta: <b>si hoy pasara algo así, ¿cuánto quedaría expuesto?</b> «Expuesto» no significa afectado ni damnificado.</p>
   <div class="z-wrap">
     <div class="z-mapa" id="i-mapa">
       <div class="z-modos" id="i-modos"><button data-m="sat" aria-pressed="true">Satélite</button><button data-m="relieve" aria-pressed="false">Relieve</button><button data-m="calles" aria-pressed="false">Ciudades</button></div>
@@ -351,7 +351,7 @@ body[data-vista=satelite] #selector,body[data-vista=mar] #selector,body[data-vis
       <div class="i-botones" id="i-eventos"></div>
       <div class="z-sub" id="i-periodo" style="margin-top:8px"></div>
       <div class="z-kpis" id="i-kpis" style="margin-top:12px"></div>
-      <div class="i-valida" id="i-aviso"><b>Cómo leer estas cifras</b><br>Son estimaciones, no un conteo: dicen cuántas personas y edificaciones hay dentro de la zona que podría inundarse, no cuántas resultarían afectadas. Los mapas de JRC (Comisión Europea) no consideran diques ni defensas ribereñas, por eso donde existen pueden marcar más área de la real. La población viene de un modelo (WorldPop), con su propio margen de error.</div>
+      <div class="i-valida" id="i-aviso"><b>Cómo leer estas cifras</b><br>Son estimaciones, no un conteo: dicen cuántas personas y edificaciones hay dentro de la zona que podría inundarse, no cuántas resultarían afectadas. Los mapas de JRC (Comisión Europea) no consideran diques ni defensas ribereñas, por eso donde existen pueden marcar más área de la real. En los mapas de peligro las personas y viviendas son del Censo 2025; en el radar la población viene de un modelo (WorldPop), con su propio margen de error.</div>
       <div id="i-valida"></div>
       <div class="eti">Inundaciones reportadas: ¿las ve el radar?</div>
       <div class="z-sub" id="i-rep-resumen"></div>
@@ -1223,11 +1223,16 @@ function panelInund(){
     ?`Mapa de peligro del JRC (Comisión Europea): zona que se inunda con una crecida de ríos que ocurre en promedio <b>una vez cada ${e.periodo_retorno} años</b> · <b>${fmtN(e.km2,1)} km²</b>`
     :`${e.periodo[0]} a ${e.periodo[1]} · ${e.imagenes.length} imágenes de radar Sentinel-1 · <b>${fmtN(e.km2,1)} km²</b> con agua nueva`;
   const s=e.salud||{},c=e.colegios||{};
-  const k=[["Población potencialmente expuesta",nf(e.personas),`${nf(e.personas_500m)} hasta 500 m (acumulado) · WorldPop, modelada`],
+  // En los escenarios de crecida la cifra de personas es la del Censo 2025, la misma del Resumen; WorldPop queda como contraste.
+  // El radar (2017, 2023 y estos días) no tiene cruce con el censo: ahí se mantiene WorldPop, rotulado.
+  const ce=D.VC&&D.VC.escenarios&&D.VC.escenarios[I3.ev], cper=ce&&ce.personas!=null?ce.personas:null;
+  const k=[cper!=null?["Personas en zona inundable",nf(cper),`Censos Nacionales 2025 (INEI) · WorldPop estima ${nf(e.personas)}`]
+      :["Población potencialmente expuesta",nf(e.personas),`${nf(e.personas_500m)} hasta 500 m (acumulado) · WorldPop, estimación por satélite`],
+    ...(ce&&ce.viviendas!=null?[["Viviendas en zona inundable",nf(ce.viviendas),"ocupadas · Censos Nacionales 2025 (INEI)"]]:[]),
     ["Edificaciones potencialmente expuestas",nf(e.edificaciones),`${nf(e.edificaciones_500m)} hasta 500 m (acumulado) · no son viviendas censales`],
     ["Colegios",nf(c.dentro),`dentro · acumulado ${nf(c.acum_500m)} hasta 500 m · ${nf(c.acum_1km)} hasta 1 km`],
     ...(c.alumnos?[["Alumnos en esos colegios",nf(c.alumnos.dentro),`dentro · acumulado ${nf(c.alumnos.acum_500m)} hasta 500 m · ${nf(c.alumnos.acum_1km)} hasta 1 km · Censo Educativo 2025`]]:[]),
-    ["Salud (hospitales y postas)",nf(s.dentro),`dentro · acumulado ${nf(s.acum_500m)} hasta 500 m · ${nf(s.acum_1km)} hasta 1 km`]];
+    ["Salud (públicos y clínicas)",nf(s.dentro),`dentro · acumulado ${nf(s.acum_500m)} hasta 500 m · ${nf(s.acum_1km)} hasta 1 km`]];
   document.getElementById("i-kpis").innerHTML=k.map(x=>`<div><div class="k">${x[0]}</div><div class="i-big">${x[1]}</div><div class="d">${x[2]}</div></div>`).join("");
   const v=IN.validacion[I3.ev], pd_=e.por_departamento||{}, g=(d,c)=>(pd_[d]||{})[c];
   let extra="";
