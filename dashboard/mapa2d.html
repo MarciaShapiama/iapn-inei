@@ -148,8 +148,8 @@ let D={},mapa,base,grp={};
 function hayWebGL(){try{const c=document.createElement("canvas");return !!(c.getContext("webgl2")||c.getContext("webgl"))}catch(e){return false}}
 
 async function inicio(){
-  const [IN,DIST,PANEL,META,EST,EVR]=await Promise.all([jget("inundacion.json"),jget("distritos_tumbes_piura.geojson"),jget("panel_distritos.json"),jget("metadatos.json"),jget("estado_actualizacion.json"),jget("eventos_reportados.json")]);
-  D={IN,DIST,PANEL,META,EST,EVR};
+  const [IN,DIST,PANEL,META,EST,EVR,CEN]=await Promise.all([jget("inundacion.json"),jget("distritos_tumbes_piura.geojson"),jget("panel_distritos.json"),jget("metadatos.json"),jget("estado_actualizacion.json"),jget("eventos_reportados.json"),jget("viviendas_censo.json")]);
+  D={IN,DIST,PANEL,META,EST,EVR,CEN};
   if(!IN||!DIST){$("#estado-global").innerHTML="<span class='chip no-disponible'>Sin datos</span> No se pudieron cargar los archivos del mapa. Revise que <code>dashboard/data/</code> exista y sirva el sitio con un servidor HTTP.";return}
   $("#estado-global").innerHTML=`Datos calculados ${esc((IN.calculado||"").replace("T"," "))} · WebGL ${hayWebGL()?"disponible (este mapa no lo usa)":"no disponible: use este mapa"}`;
   const claves=["rp100","rp10","2017","2023","vivo"].filter(k=>IN.eventos[k]);
@@ -288,7 +288,11 @@ function actualizar(volar){
   }
   $("#kpis").innerHTML=[
     ["Superficie de la mancha",nf(K.km2,1)+" km²",e.tipo==="peligro"?"escenario JRC":"detección radar (mínimo)"],
-    ["Población potencialmente expuesta",nf(K.personas),K.personas_500m!=null?`${nf(K.personas_500m)} hasta 500 m · WorldPop 2026`:"WorldPop 2026 (modelada)"],
+    (()=>{ // En los escenarios de crecida la cifra es la del Censo 2025, igual que en el tablero principal; WorldPop queda como contraste
+      const ce=D.CEN&&D.CEN.escenarios&&D.CEN.escenarios[S.esc];
+      if(!ce)return ["Población potencialmente expuesta",nf(K.personas),K.personas_500m!=null?`${nf(K.personas_500m)} hasta 500 m · WorldPop 2026 (estimación por satélite)`:"WorldPop 2026 (estimación por satélite)"];
+      const ub=new Set(filasSel().map(r=>r.ubigeo)), per=todo?ce.personas:(ce.distritos||[]).filter(d=>ub.has(d.ubigeo)).reduce((a,d)=>a+(d.personas||0),0);
+      return ["Personas en zona inundable",nf(per),`Censos Nacionales 2025 (INEI) · WorldPop estima ${nf(K.personas)}`]})(),
     ["Edificaciones potencialmente expuestas",nf(K.edif),`${nf(K.edif500)} hasta 500 m · Open Buildings`],
     ["Locales escolares",nf(K.col[0])+" dentro",`acumulado: ${nf(K.col[1])} hasta 500 m · ${nf(K.col[2])} hasta 1 km`],
     ["Establecimientos de salud",nf(K.sal[0])+" dentro",`acumulado: ${nf(K.sal[1])} hasta 500 m · ${nf(K.sal[2])} hasta 1 km`],

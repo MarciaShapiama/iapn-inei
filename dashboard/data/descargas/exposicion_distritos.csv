@@ -1,14 +1,14 @@
 ﻿escenario,tipo,ubigeo,departamento,provincia,distrito,km2,personas,poblacion_worldpop_distrito,edificaciones,edificaciones_500m,salud_dentro,salud_anillo_0_500m,salud_anillo_500m_1km,salud_acum_1km,colegios_dentro,colegios_anillo_0_500m,colegios_anillo_500m_1km,colegios_acum_1km
 2017,radar,,Sin distrito asignado,Sin distrito asignado,Sin distrito asignado,0.0,0,196577,0,0,0,0,0,0,0,0,0,0
-2017,radar,200101,Piura,Piura,Piura,3.76,27,175283,15,1596,0,0,3,3,0,8,20,28
-2017,radar,200104,Piura,Piura,Castilla,2.25,16,185228,9,901,0,0,6,6,0,4,15,19
-2017,radar,200105,Piura,Piura,Catacaos,1.01,8,82752,0,1921,0,0,4,4,0,4,19,23
+2017,radar,200101,Piura,Piura,Piura,3.76,27,175283,15,1596,0,0,1,1,0,8,20,28
+2017,radar,200104,Piura,Piura,Castilla,2.25,16,185228,9,901,0,0,4,4,0,4,15,19
+2017,radar,200105,Piura,Piura,Catacaos,1.01,8,82752,0,1921,0,0,3,3,0,4,19,23
 2017,radar,200107,Piura,Piura,Cura Mori,6.08,14,20933,1,2616,0,2,1,3,0,9,20,29
 2017,radar,200108,Piura,Piura,El Tallán,5.35,1,5588,0,2,0,0,0,0,0,0,2,2
 2017,radar,200109,Piura,Piura,La Arena,0.04,0,44900,0,127,0,0,0,0,0,2,0,2
 2017,radar,200110,Piura,Piura,La Unión,2.84,3,44529,0,0,0,0,0,0,0,0,0,0
 2017,radar,200111,Piura,Piura,Las Lomas,0.0,0,31723,0,0,0,0,0,0,0,0,0,0
-2017,radar,200114,Piura,Piura,Tambo Grande,5.78,4,129876,3,1135,0,1,2,3,0,10,25,35
+2017,radar,200114,Piura,Piura,Tambo Grande,5.78,4,129876,3,1135,0,1,1,2,0,10,25,35
 2017,radar,200115,Piura,Piura,Veintiséis de Octubre,0.0,0,191392,0,0,0,0,0,0,0,0,0,0
 2017,radar,200201,Piura,Ayabaca,Ayabaca,0.0,0,36737,0,0,0,0,0,0,0,0,0,0
 2017,radar,200202,Piura,Ayabaca,Frías,0.0,0,23458,0,0,0,0,0,0,0,0,0,0
@@ -42,10 +42,10 @@
 2017,radar,200502,Piura,Paita,Amotape,0.1,0,2661,0,4,0,0,0,0,0,0,0,0
 2017,radar,200503,Piura,Paita,Arenal,0.05,0,1319,0,33,0,0,1,1,0,0,6,6
 2017,radar,200504,Piura,Paita,Colán,9.99,238,16921,359,3035,0,0,1,1,0,5,1,6
-2017,radar,200505,Piura,Paita,La Huaca,1.71,0,14480,0,18,0,0,2,2,0,0,7,7
+2017,radar,200505,Piura,Paita,La Huaca,1.71,0,14480,0,18,0,0,1,1,0,0,7,7
 2017,radar,200506,Piura,Paita,Tamarindo,0.06,0,5556,0,0,0,0,0,0,0,0,0,0
 2017,radar,200507,Piura,Paita,Vichayal,21.1,18,6384,3,627,0,0,2,2,0,4,10,14
-2017,radar,200601,Piura,Sullana,Sullana,0.65,8,199559,1,556,0,0,4,4,0,0,18,18
+2017,radar,200601,Piura,Sullana,Sullana,0.65,8,199559,1,556,0,0,2,2,0,0,18,18
 2017,radar,200602,Piura,Sullana,Bellavista,0.0,0,37929,0,347,0,0,1,1,0,0,16,16
 2017,radar,200603,Piura,Sullana,Ignacio Escudero,0.73,0,22512,0,13,0,0,0,0,0,0,0,0
 2017,radar,200604,Piura,Sullana,Lancones,2.38,0,13740,1,23,0,0,0,0,0,0,1,1
@@ -66,7 +66,7 @@
 2017,radar,200805,Piura,Sechura,Vice,9.59,0,17923,0,5,0,0,0,0,0,0,0,0
 2017,radar,200806,Piura,Sechura,Rinconada Llicuar,0.0,0,3329,0,0,0,0,0,0,0,0,0,0
 2017,radar,240101,Tumbes,Tumbes,Tumbes,2.77,0,117421,0,37,0,0,0,0,0,0,5,5
-2017,radar,240102,Tumbes,Tumbes,Corrales,6.89,7,26233,0,661,0,0,5,5,0,2,41,43
+2017,radar,240102,Tumbes,Tumbes,Corrales,6.89,7,26233,0,661,0,0,4,4,0,2,41,43
 2017,radar,240103,Tumbes,Tumbes,La Cruz,0.05,0,10693,0,2,0,0,0,0,0,0,3,3
 2017,radar,240104,Tumbes,Tumbes,Pampas de Hospital,0.0,0,7817,0,0,0,0,0,0,0,0,0,0
 2017,radar,240105,Tumbes,Tumbes,San Jacinto,0.14,0,9460,0,77,0,0,1,1,0,0,14,14
@@ -159,7 +159,7 @@
 2023,radar,240304,Tumbes,Zarumilla,Papayal,0.13,0,7100,0,52,0,0,2,2,0,0,9,9
 vivo,radar,,Sin distrito asignado,Sin distrito asignado,Sin distrito asignado,0.0,0,196577,0,0,0,0,0,0,0,0,0,0
 vivo,radar,200101,Piura,Piura,Piura,0.0,0,175283,0,0,0,0,0,0,0,0,0,0
-vivo,radar,200104,Piura,Piura,Castilla,0.55,15,185228,2,682,0,2,41,43,0,1,45,46
+vivo,radar,200104,Piura,Piura,Castilla,0.55,15,185228,2,682,0,0,6,6,0,1,45,46
 vivo,radar,200105,Piura,Piura,Catacaos,0.13,0,82752,0,2,0,0,0,0,0,0,0,0
 vivo,radar,200107,Piura,Piura,Cura Mori,0.24,0,20933,0,4,0,0,0,0,0,0,0,0
 vivo,radar,200108,Piura,Piura,El Tallán,0.07,0,5588,0,257,0,0,0,0,0,2,7,9
@@ -237,16 +237,16 @@ vivo,radar,240302,Tumbes,Zarumilla,Aguas Verdes,0.0,0,19373,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240303,Tumbes,Zarumilla,Matapalo,0.0,0,3758,0,0,0,0,0,0,0,0,0,0
 vivo,radar,240304,Tumbes,Zarumilla,Papayal,0.0,0,7100,0,0,0,0,0,0,0,0,0,0
 rp10,peligro,,Sin distrito asignado,Sin distrito asignado,Sin distrito asignado,0.0,0,196665,0,0,0,0,0,0,0,2,0,2
-rp10,peligro,200101,Piura,Piura,Piura,22.35,17602,176103,5545,18250,7,43,19,69,28,123,78,229
-rp10,peligro,200104,Piura,Piura,Castilla,50.4,55182,184935,15899,37545,39,57,1,97,66,110,31,207
-rp10,peligro,200105,Piura,Piura,Catacaos,103.93,59753,82647,24221,31313,12,6,0,18,92,34,4,130
+rp10,peligro,200101,Piura,Piura,Piura,22.35,17602,176103,5545,18250,1,8,4,13,28,123,78,229
+rp10,peligro,200104,Piura,Piura,Castilla,50.4,55182,184935,15899,37545,6,12,1,19,66,110,31,207
+rp10,peligro,200105,Piura,Piura,Catacaos,103.93,59753,82647,24221,31313,10,4,0,14,92,34,4,130
 rp10,peligro,200107,Piura,Piura,Cura Mori,36.23,10437,20976,5026,9393,3,0,1,4,18,12,1,31
 rp10,peligro,200108,Piura,Piura,El Tallán,47.83,2098,5586,1041,3168,1,1,0,2,4,14,1,19
-rp10,peligro,200109,Piura,Piura,La Arena,70.18,16454,44947,6986,18420,4,6,0,10,30,43,0,73
+rp10,peligro,200109,Piura,Piura,La Arena,70.18,16454,44947,6986,18420,3,6,0,9,30,43,0,73
 rp10,peligro,200110,Piura,Piura,La Unión,61.75,19507,44454,9027,17926,2,4,0,6,33,45,2,80
-rp10,peligro,200111,Piura,Piura,Las Lomas,17.51,304,31669,143,2393,0,2,7,9,1,6,19,26
-rp10,peligro,200114,Piura,Piura,Tambo Grande,89.19,6762,129946,3322,16223,1,7,8,16,7,47,54,108
-rp10,peligro,200115,Piura,Piura,Veintiséis de Octubre,3.21,18422,190939,7509,15966,0,6,36,42,15,49,36,100
+rp10,peligro,200111,Piura,Piura,Las Lomas,17.51,304,31669,143,2393,0,2,5,7,1,6,19,26
+rp10,peligro,200114,Piura,Piura,Tambo Grande,89.19,6762,129946,3322,16223,0,3,8,11,7,47,54,108
+rp10,peligro,200115,Piura,Piura,Veintiséis de Octubre,3.21,18422,190939,7509,15966,0,2,5,7,15,49,36,100
 rp10,peligro,200201,Piura,Ayabaca,Ayabaca,8.23,206,36716,37,465,0,4,0,4,0,14,2,16
 rp10,peligro,200202,Piura,Ayabaca,Frías,0.2,0,23457,0,6,0,0,0,0,0,0,1,1
 rp10,peligro,200203,Piura,Ayabaca,Jilili,1.35,26,2947,11,189,0,1,0,1,0,4,0,4
@@ -265,7 +265,7 @@ rp10,peligro,200305,Piura,Huancabamba,Lalaquiz,0.0,0,4732,0,0,0,0,0,0,0,0,0,0
 rp10,peligro,200306,Piura,Huancabamba,San Miguel de El Faique,0.27,1,10073,0,86,0,0,0,0,0,0,0,0
 rp10,peligro,200307,Piura,Huancabamba,Sondor,1.86,39,8295,30,147,0,0,0,0,0,0,3,3
 rp10,peligro,200308,Piura,Huancabamba,Sondorillo,3.46,44,11963,24,205,0,0,1,1,0,1,2,3
-rp10,peligro,200401,Piura,Morropón,Chulucanas,48.56,4223,91570,2054,7924,2,2,3,7,5,27,31,63
+rp10,peligro,200401,Piura,Morropón,Chulucanas,48.56,4223,91570,2054,7924,0,2,2,4,5,27,31,63
 rp10,peligro,200402,Piura,Morropón,Buenos Aires,17.35,806,10606,429,3332,0,1,1,2,2,16,3,21
 rp10,peligro,200403,Piura,Morropón,Chalaco,0.0,0,8791,0,0,0,0,0,0,0,0,0,0
 rp10,peligro,200404,Piura,Morropón,La Matanza,42.94,388,15438,246,1872,0,0,3,3,0,3,14,17
@@ -279,31 +279,31 @@ rp10,peligro,200501,Piura,Paita,Paita,2.65,915,102791,419,5095,0,2,3,5,6,26,24,5
 rp10,peligro,200502,Piura,Paita,Amotape,10.92,749,2670,252,843,0,2,0,2,1,6,0,7
 rp10,peligro,200503,Piura,Paita,Arenal,0.66,5,1308,0,385,0,1,0,1,0,3,3,6
 rp10,peligro,200504,Piura,Paita,Colán,82.22,4754,16944,3681,8464,2,1,0,3,10,12,2,24
-rp10,peligro,200505,Piura,Paita,La Huaca,51.25,1343,14480,457,4807,2,3,0,5,4,25,4,33
+rp10,peligro,200505,Piura,Paita,La Huaca,51.25,1343,14480,457,4807,1,3,0,4,4,25,4,33
 rp10,peligro,200506,Piura,Paita,Tamarindo,7.36,19,5555,4,881,0,1,0,1,0,6,1,7
 rp10,peligro,200507,Piura,Paita,Vichayal,57.78,2167,6378,777,2593,0,2,0,2,4,10,0,14
-rp10,peligro,200601,Piura,Sullana,Sullana,41.35,2292,199592,575,11395,0,25,24,49,0,74,62,136
+rp10,peligro,200601,Piura,Sullana,Sullana,41.35,2292,199592,575,11395,0,9,9,18,0,74,62,136
 rp10,peligro,200602,Piura,Sullana,Bellavista,0.0,0,37872,0,1948,0,0,1,1,0,14,23,37
 rp10,peligro,200603,Piura,Sullana,Ignacio Escudero,22.39,237,22510,64,1761,0,1,3,4,0,2,7,9
 rp10,peligro,200604,Piura,Sullana,Lancones,70.93,611,13735,190,1562,1,3,1,5,2,16,4,22
 rp10,peligro,200605,Piura,Sullana,Marcavelica,28.39,492,33414,165,6183,0,4,4,8,0,21,17,38
-rp10,peligro,200606,Piura,Sullana,Miguel Checa,39.23,153,10361,95,2615,0,2,2,4,0,8,4,12
-rp10,peligro,200607,Piura,Sullana,Querecotillo,30.55,381,29492,92,4589,0,4,3,7,0,23,14,37
+rp10,peligro,200606,Piura,Sullana,Miguel Checa,39.23,153,10361,95,2615,0,2,0,2,0,8,4,12
+rp10,peligro,200607,Piura,Sullana,Querecotillo,30.55,381,29492,92,4589,0,3,3,6,0,23,14,37
 rp10,peligro,200608,Piura,Sullana,Salitral,7.02,249,7819,54,2626,0,1,0,1,0,9,0,9
-rp10,peligro,200701,Piura,Talara,Pariñas,15.56,8211,109175,1292,6867,5,13,1,19,3,52,15,70
+rp10,peligro,200701,Piura,Talara,Pariñas,15.56,8211,109175,1292,6867,1,2,0,3,3,52,15,70
 rp10,peligro,200702,Piura,Talara,El Alto,0.13,11,9232,18,245,0,1,0,1,0,2,0,2
 rp10,peligro,200703,Piura,Talara,La Brea,110.97,2922,13548,803,3062,1,2,0,3,7,19,0,26
 rp10,peligro,200704,Piura,Talara,Lobitos,1.29,78,1514,101,765,0,1,0,1,0,2,1,3
 rp10,peligro,200705,Piura,Talara,Los Órganos,1.3,753,11969,372,3427,1,2,0,3,3,11,9,23
-rp10,peligro,200706,Piura,Talara,Máncora,2.41,1264,14144,533,3875,0,1,1,2,2,10,9,21
-rp10,peligro,200801,Piura,Sechura,Sechura,1412.87,5080,49852,2243,8469,3,5,4,12,19,42,24,85
+rp10,peligro,200706,Piura,Talara,Máncora,2.41,1264,14144,533,3875,0,1,0,1,2,10,9,21
+rp10,peligro,200801,Piura,Sechura,Sechura,1412.87,5080,49852,2243,8469,2,4,1,7,19,42,24,85
 rp10,peligro,200802,Piura,Sechura,Bellavista de la Unión,12.77,2168,5327,739,2044,1,1,0,2,3,5,0,8
-rp10,peligro,200803,Piura,Sechura,Bernal,68.04,5864,7890,2768,3728,2,1,0,3,19,6,0,25
+rp10,peligro,200803,Piura,Sechura,Bernal,68.04,5864,7890,2768,3728,1,0,0,1,19,6,0,25
 rp10,peligro,200804,Piura,Sechura,Cristo Nos Valga,107.54,2768,5086,1015,1804,0,1,1,2,6,5,4,15
-rp10,peligro,200805,Piura,Sechura,Vice,60.02,844,17919,276,2978,2,3,3,8,3,15,9,27
+rp10,peligro,200805,Piura,Sechura,Vice,60.02,844,17919,276,2978,2,2,2,6,3,15,9,27
 rp10,peligro,200806,Piura,Sechura,Rinconada Llicuar,19.1,1927,3331,772,1475,0,1,0,1,5,6,0,11
-rp10,peligro,240101,Tumbes,Tumbes,Tumbes,45.78,7507,117477,2714,13449,1,22,4,27,16,104,55,175
-rp10,peligro,240102,Tumbes,Tumbes,Corrales,61.82,1152,26185,494,5643,0,6,1,7,6,39,23,68
+rp10,peligro,240101,Tumbes,Tumbes,Tumbes,45.78,7507,117477,2714,13449,1,8,1,10,16,104,55,175
+rp10,peligro,240102,Tumbes,Tumbes,Corrales,61.82,1152,26185,494,5643,0,5,1,6,6,39,23,68
 rp10,peligro,240103,Tumbes,Tumbes,La Cruz,1.83,1286,10686,450,3395,0,2,0,2,8,18,0,26
 rp10,peligro,240104,Tumbes,Tumbes,Pampas de Hospital,21.88,544,7823,251,3866,0,2,2,4,2,26,14,42
 rp10,peligro,240105,Tumbes,Tumbes,San Jacinto,22.9,264,9452,181,3891,0,3,2,5,0,39,17,56
@@ -316,16 +316,16 @@ rp10,peligro,240302,Tumbes,Zarumilla,Aguas Verdes,31.27,4830,19231,2569,7843,1,3
 rp10,peligro,240303,Tumbes,Zarumilla,Matapalo,1.92,32,3759,3,580,0,1,0,1,0,10,2,12
 rp10,peligro,240304,Tumbes,Zarumilla,Papayal,6.41,113,7110,83,1632,0,4,2,6,0,12,17,29
 rp100,peligro,,Sin distrito asignado,Sin distrito asignado,Sin distrito asignado,0.0,0,196665,0,0,0,0,0,0,0,2,0,2
-rp100,peligro,200101,Piura,Piura,Piura,25.07,31564,176103,8711,20920,17,45,26,88,55,122,63,240
-rp100,peligro,200104,Piura,Piura,Castilla,56.56,73194,184935,21164,38566,50,46,1,97,98,83,27,208
-rp100,peligro,200105,Piura,Piura,Catacaos,113.46,70717,82647,28032,31470,14,4,0,18,110,18,3,131
+rp100,peligro,200101,Piura,Piura,Piura,25.07,31564,176103,8711,20920,2,9,2,13,55,122,63,240
+rp100,peligro,200104,Piura,Piura,Castilla,56.56,73194,184935,21164,38566,11,7,1,19,98,83,27,208
+rp100,peligro,200105,Piura,Piura,Catacaos,113.46,70717,82647,28032,31470,11,3,0,14,110,18,3,131
 rp100,peligro,200107,Piura,Piura,Cura Mori,45.75,12871,20976,6180,10194,3,0,1,4,20,11,1,32
 rp100,peligro,200108,Piura,Piura,El Tallán,50.96,2143,5586,1048,3309,1,1,0,2,4,15,0,19
-rp100,peligro,200109,Piura,Piura,La Arena,77.28,25753,44947,10921,18533,7,3,0,10,44,29,0,73
+rp100,peligro,200109,Piura,Piura,La Arena,77.28,25753,44947,10921,18533,6,3,0,9,44,29,0,73
 rp100,peligro,200110,Piura,Piura,La Unión,67.62,27436,44454,12225,18135,3,3,0,6,53,27,0,80
-rp100,peligro,200111,Piura,Piura,Las Lomas,18.98,387,31669,174,2695,0,2,7,9,1,6,21,28
-rp100,peligro,200114,Piura,Piura,Tambo Grande,106.62,12651,129946,5764,17675,3,6,7,16,12,53,47,112
-rp100,peligro,200115,Piura,Piura,Veintiséis de Octubre,3.6,21685,190939,8851,16558,0,25,17,42,19,54,34,107
+rp100,peligro,200111,Piura,Piura,Las Lomas,18.98,387,31669,174,2695,0,2,5,7,1,6,21,28
+rp100,peligro,200114,Piura,Piura,Tambo Grande,106.62,12651,129946,5764,17675,2,2,7,11,12,53,47,112
+rp100,peligro,200115,Piura,Piura,Veintiséis de Octubre,3.6,21685,190939,8851,16558,0,3,4,7,19,54,34,107
 rp100,peligro,200201,Piura,Ayabaca,Ayabaca,8.44,218,36716,39,465,0,4,0,4,0,14,2,16
 rp100,peligro,200202,Piura,Ayabaca,Frías,0.2,0,23457,0,6,0,0,0,0,0,0,1,1
 rp100,peligro,200203,Piura,Ayabaca,Jilili,1.39,27,2947,11,189,0,1,0,1,0,4,0,4
@@ -344,7 +344,7 @@ rp100,peligro,200305,Piura,Huancabamba,Lalaquiz,0.0,0,4732,0,0,0,0,0,0,0,0,0,0
 rp100,peligro,200306,Piura,Huancabamba,San Miguel de El Faique,0.39,1,10073,1,86,0,0,0,0,0,0,0,0
 rp100,peligro,200307,Piura,Huancabamba,Sondor,1.94,39,8295,30,147,0,0,0,0,0,0,3,3
 rp100,peligro,200308,Piura,Huancabamba,Sondorillo,3.55,45,11963,24,205,0,0,1,1,0,1,2,3
-rp100,peligro,200401,Piura,Morropón,Chulucanas,66.07,10435,91570,3964,13008,4,5,10,19,19,35,27,81
+rp100,peligro,200401,Piura,Morropón,Chulucanas,66.07,10435,91570,3964,13008,2,2,3,7,19,35,27,81
 rp100,peligro,200402,Piura,Morropón,Buenos Aires,23.84,1209,10606,698,3583,0,1,1,2,4,16,3,23
 rp100,peligro,200403,Piura,Morropón,Chalaco,0.0,0,8791,0,0,0,0,0,0,0,0,0,0
 rp100,peligro,200404,Piura,Morropón,La Matanza,51.39,522,15438,349,2482,0,1,2,3,0,6,11,17
@@ -354,35 +354,35 @@ rp100,peligro,200407,Piura,Morropón,San Juan de Bigote,2.25,16,7330,5,1120,0,1,
 rp100,peligro,200408,Piura,Morropón,Santa Catalina de Mossa,0.0,0,4218,0,0,0,0,0,0,0,0,0,0
 rp100,peligro,200409,Piura,Morropón,Santo Domingo,0.0,0,6907,0,0,0,0,0,0,0,0,0,0
 rp100,peligro,200410,Piura,Morropón,Yamango,0.0,0,9730,0,0,0,0,0,0,0,0,0,0
-rp100,peligro,200501,Piura,Paita,Paita,5.02,2180,102791,1006,6463,0,3,3,6,10,28,26,64
+rp100,peligro,200501,Piura,Paita,Paita,5.02,2180,102791,1006,6463,0,3,2,5,10,28,26,64
 rp100,peligro,200502,Piura,Paita,Amotape,11.42,1031,2670,349,851,2,0,0,2,4,3,0,7
 rp100,peligro,200503,Piura,Paita,Arenal,0.82,8,1308,3,456,0,1,0,1,0,3,3,6
 rp100,peligro,200504,Piura,Paita,Colán,85.02,9288,16944,5503,9011,3,0,0,3,17,6,1,24
-rp100,peligro,200505,Piura,Paita,La Huaca,60.26,1881,14480,711,5090,2,3,0,5,4,26,3,33
+rp100,peligro,200505,Piura,Paita,La Huaca,60.26,1881,14480,711,5090,1,3,0,4,4,26,3,33
 rp100,peligro,200506,Piura,Paita,Tamarindo,9.13,285,5555,33,1494,0,1,0,1,0,7,0,7
 rp100,peligro,200507,Piura,Paita,Vichayal,64.71,3871,6378,1565,2670,1,1,0,2,8,6,0,14
-rp100,peligro,200601,Piura,Sullana,Sullana,50.48,2863,199592,803,12498,1,24,25,50,1,77,62,140
+rp100,peligro,200601,Piura,Sullana,Sullana,50.48,2863,199592,803,12498,1,8,10,19,1,77,62,140
 rp100,peligro,200602,Piura,Sullana,Bellavista,0.0,0,37872,0,2082,0,1,0,1,0,17,20,37
 rp100,peligro,200603,Piura,Sullana,Ignacio Escudero,30.29,394,22510,82,1818,0,1,3,4,0,2,8,10
 rp100,peligro,200604,Piura,Sullana,Lancones,78.59,738,13735,240,1695,1,3,2,6,3,15,6,24
 rp100,peligro,200605,Piura,Sullana,Marcavelica,35.99,1093,33414,571,6615,1,3,4,8,1,20,18,39
-rp100,peligro,200606,Piura,Sullana,Miguel Checa,51.86,220,10361,125,2737,0,2,2,4,0,8,4,12
-rp100,peligro,200607,Piura,Sullana,Querecotillo,33.29,519,29492,122,4974,0,5,2,7,0,23,14,37
+rp100,peligro,200606,Piura,Sullana,Miguel Checa,51.86,220,10361,125,2737,0,2,0,2,0,8,4,12
+rp100,peligro,200607,Piura,Sullana,Querecotillo,33.29,519,29492,122,4974,0,4,2,6,0,23,14,37
 rp100,peligro,200608,Piura,Sullana,Salitral,7.65,393,7819,99,2626,0,1,0,1,0,9,0,9
-rp100,peligro,200701,Piura,Talara,Pariñas,20.6,20148,109175,3054,8427,9,10,8,27,16,51,7,74
+rp100,peligro,200701,Piura,Talara,Pariñas,20.6,20148,109175,3054,8427,2,1,1,4,16,51,7,74
 rp100,peligro,200702,Piura,Talara,El Alto,0.25,48,9232,56,282,0,1,0,1,1,1,0,2
 rp100,peligro,200703,Piura,Talara,La Brea,127.68,5375,13548,1397,3160,1,2,0,3,14,12,0,26
 rp100,peligro,200704,Piura,Talara,Lobitos,5.01,285,1514,315,948,0,1,0,1,0,3,0,3
 rp100,peligro,200705,Piura,Talara,Los Órganos,2.5,4026,11969,1177,5049,2,1,0,3,17,6,0,23
-rp100,peligro,200706,Piura,Talara,Máncora,2.72,1938,14144,934,4357,0,1,1,2,2,17,2,21
-rp100,peligro,200801,Piura,Sechura,Sechura,1671.23,7092,49852,2834,9113,3,5,4,12,24,41,20,85
+rp100,peligro,200706,Piura,Talara,Máncora,2.72,1938,14144,934,4357,0,1,0,1,2,17,2,21
+rp100,peligro,200801,Piura,Sechura,Sechura,1671.23,7092,49852,2834,9113,2,4,1,7,24,41,20,85
 rp100,peligro,200802,Piura,Sechura,Bellavista de la Unión,13.33,3012,5327,1043,2044,1,1,0,2,5,3,0,8
-rp100,peligro,200803,Piura,Sechura,Bernal,69.69,7232,7890,3398,3728,3,0,0,3,23,2,0,25
+rp100,peligro,200803,Piura,Sechura,Bernal,69.69,7232,7890,3398,3728,1,0,0,1,23,2,0,25
 rp100,peligro,200804,Piura,Sechura,Cristo Nos Valga,116.0,3758,5086,1333,1820,1,0,1,2,8,3,4,15
-rp100,peligro,200805,Piura,Sechura,Vice,79.78,1050,17919,354,3497,2,4,2,8,3,17,9,29
+rp100,peligro,200805,Piura,Sechura,Vice,79.78,1050,17919,354,3497,2,2,2,6,3,17,9,29
 rp100,peligro,200806,Piura,Sechura,Rinconada Llicuar,19.47,2653,3331,1142,1475,1,0,0,1,7,4,0,11
-rp100,peligro,240101,Tumbes,Tumbes,Tumbes,48.83,11797,117477,3892,14790,3,22,2,27,33,94,57,184
-rp100,peligro,240102,Tumbes,Tumbes,Corrales,64.28,1820,26185,715,6452,0,7,0,7,8,41,20,69
+rp100,peligro,240101,Tumbes,Tumbes,Tumbes,48.83,11797,117477,3892,14790,2,7,1,10,33,94,57,184
+rp100,peligro,240102,Tumbes,Tumbes,Corrales,64.28,1820,26185,715,6452,0,6,0,6,8,41,20,69
 rp100,peligro,240103,Tumbes,Tumbes,La Cruz,2.22,1740,10686,629,3451,0,2,0,2,8,18,0,26
 rp100,peligro,240104,Tumbes,Tumbes,Pampas de Hospital,23.74,714,7823,355,4031,0,3,1,4,3,26,13,42
 rp100,peligro,240105,Tumbes,Tumbes,San Jacinto,26.15,369,9452,231,4368,0,4,1,5,0,42,14,56

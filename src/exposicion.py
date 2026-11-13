@@ -2,7 +2,7 @@
 
     poblacion_100m.tif   WorldPop 2026, 100 m, restringida a zonas con edificaciones (recorte Tumbes-Piura)
     viviendas.parquet    centro de cada edificación de Google Open Buildings v3 (confianza ≥ 0,75)
-    salud.csv            establecimientos de salud activos (RENIPRESS, SUSALUD): hospitales, centros, postas
+    salud.csv            establecimientos de salud activos (RENIPRESS, SUSALUD): públicos y clínicas privadas con internamiento
     colegios.csv         locales educativos: padrón ESCALE (MINEDU) si se puede descargar; si no, OpenStreetMap
     distritos.geojson    los 78 distritos de Tumbes y Piura (límites oficiales del INEI, con UBIGEO)
     peligro_rp{N}.tif    profundidad de inundación de ríos con periodo de retorno N años (JRC CEMS-GloFAS v2, 90 m)
@@ -90,6 +90,9 @@ def viviendas(forzar: bool) -> None:
     print(f"  edificaciones: {len(df):,}")
 
 
+PRIVADOS = {"PRIVADO", "OTRO"}
+
+
 def salud(forzar: bool) -> None:
     destino = CARPETA / "salud.csv"
     if destino.exists() and not forzar:
@@ -103,6 +106,10 @@ def salud(forzar: bool) -> None:
     r["tipo"] = np.select([cat.str.match(r"^(II|III)-"), cat.str.match(r"^I-[34]"), cat.str.match(r"^I-[12]")],
                           ["Hospital / clínica", "Centro de salud", "Posta de salud"], "Otro")
     r = r[r["tipo"] != "Otro"]
+    # Solo servicios que atienden una emergencia: todos los públicos (gobierno regional, MINSA, EsSalud, sanidades,
+    # municipales) y, de los privados, los que tienen internamiento (categorías II y III). Quedan fuera los consultorios
+    # y centros privados de atención ambulatoria (dentales, ópticos, estéticos), que el registro también incluye.
+    r = r[~r["INSTITUCION"].fillna("").str.upper().isin(PRIVADOS) | cat.loc[r.index].str.match(r"^(II|III)-")]
     r = r.rename(columns={"NOMBRE": "nombre", "CATEGORIA": "categoria", "INSTITUCION": "institucion",
                           "PROVINCIA": "provincia", "DISTRITO": "distrito", "DEPARTAMENTO": "departamento"})
     r[["nombre", "tipo", "categoria", "institucion", "departamento", "provincia", "distrito", "lat", "lon"]].to_csv(

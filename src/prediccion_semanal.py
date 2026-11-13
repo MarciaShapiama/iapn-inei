@@ -417,6 +417,11 @@ def prediccion_actual(res: pd.DataFrame, m: pd.DataFrame, pr: pd.DataFrame) -> d
                                     "top10_promedio": round(float(cal.loc[h, "top10_promedio"]), 2)} for h in PLAZOS]
     # Fases de aviso y margen de error (bootstrap por años), si la evidencia ya se calculó
     salida["fases"] = {"umbrales": FASES}
+    # mayor temperatura del mar que el modelo vio al entrenarse: si la semana actual la supera, el modelo extrapola
+    ent = p[p.semana <= FIN_ETIQUETA].drop_duplicates("semana")
+    if ent.nino12.notna().any():
+        i = ent.nino12.idxmax()
+        salida["rango_entrenamiento"] = {"nino12_max": round(float(ent.nino12[i]), 2), "nino12_max_anio": int(ent.semana[i].year)}
     if EVIDENCIA.exists():
         ev = json.load(open(EVIDENCIA, encoding="utf-8"))["plazos"]
         for c in salida["calidad_por_plazo"]:
