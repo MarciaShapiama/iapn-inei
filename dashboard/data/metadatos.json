@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-12T16:41-05:00",
- "hoy": "2026-11-12",
+ "generado": "2026-11-13T06:38-05:00",
+ "hoy": "2026-11-13",
  "resumen_estado": {
   "vigente": 10,
   "rezagado": 0,
@@ -395,13 +395,13 @@
    "version": "API v1",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-11",
+   "dato_mas_reciente": "2026-11-12",
    "tolerancia_dias": 2,
    "frecuencia": "diaria",
    "metodo": "Mejor combinación de modelos numéricos para días pasados; pronóstico de 7 días.",
    "advertencias": [
     "No son lecturas de pluviómetros del SENAMHI.",
-    "Incluye pronóstico hasta 2026-11-19: el pronóstico no es observación.",
+    "Incluye pronóstico hasta 2026-11-20: el pronóstico no es observación.",
     "Los avisos oficiales los emite SENAMHI."
    ],
    "estado": "estimado",
@@ -420,7 +420,7 @@
    "version": "GloFAS v4",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-11",
+   "dato_mas_reciente": "2026-11-12",
    "tolerancia_dias": 3,
    "frecuencia": "diaria",
    "metodo": "Modelo hidrológico LISFLOOD forzado con meteorología.",
@@ -443,7 +443,7 @@
    "version": "2026-11",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-11",
+   "dato_mas_reciente": "2026-11-12",
    "tolerancia_dias": 2,
    "frecuencia": "diaria",
    "metodo": "Suma ponderada con topes; pesos fijados por el equipo, sin calibrar.",
