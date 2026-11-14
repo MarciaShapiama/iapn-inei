@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-11 17:53",
+ "generado": "2026-11-13 19:13",
  "zonas": [
   {
    "id": "bajo_piura",
@@ -18,7 +18,8 @@
      "fecha": "2016-12-08",
      "nubes_en_zona_pct": 0.1,
      "agua_pct": 0.1,
-     "escena": "S2A_MSIL2A_20161208T153612_R068_T17MNQ_20210213T190407"
+     "escena": "S2A_MSIL2A_20161208T153612_R068_T17MNQ_20210213T190407",
+     "mosaico": true
     },
     {
      "periodo": "despues_2017",
@@ -26,7 +27,8 @@
      "fecha": "2017-04-07",
      "nubes_en_zona_pct": 1.8,
      "agua_pct": 1.2,
-     "escena": "S2A_MSIL2A_20170407T153621_R068_T17MNQ_20210209T053655"
+     "escena": "S2A_MSIL2A_20170407T153621_R068_T17MNQ_20210209T053655",
+     "mosaico": true
     },
     {
      "periodo": "antes_2023",
@@ -34,23 +36,26 @@
      "fecha": "2022-12-05",
      "nubes_en_zona_pct": 0.1,
      "agua_pct": 0.1,
-     "escena": "S2B_MSIL2A_20221205T155219_R111_T17MNQ_20250205T180104"
+     "escena": "S2B_MSIL2A_20221205T155219_R111_T17MNQ_20250205T180104 + S2B_MSIL2A_20221205T155219_R111_T17MNQ_20221206T045910",
+     "mosaico": true
     },
     {
      "periodo": "despues_2023",
      "etiqueta": "Después del ciclón Yaku 2023",
-     "fecha": "2023-04-14",
-     "nubes_en_zona_pct": 0.6,
-     "agua_pct": 0.1,
-     "escena": "S2B_MSIL2A_20230414T155219_R111_T17MNQ_20240808T180318"
+     "fecha": "2023-05-04",
+     "nubes_en_zona_pct": 0.2,
+     "agua_pct": 0.0,
+     "escena": "S2B_MSIL2A_20230504T155229_R111_T17MNQ_20240812T072325 + S2B_MSIL2A_20230504T155229_R111_T17MNQ_20230504T212833",
+     "mosaico": true
     },
     {
      "periodo": "hoy",
-     "etiqueta": "Lo más reciente (últimos 45 días)",
-     "fecha": "2026-10-05",
-     "nubes_en_zona_pct": 38.0,
+     "etiqueta": "Lo más reciente con menos nubes (últimos 90 días)",
+     "fecha": "2026-08-28",
+     "nubes_en_zona_pct": 8.7,
      "agua_pct": 0.1,
-     "escena": "S2B_MSIL2A_20261005T155219_R111_T17MNQ_20261005T204634"
+     "escena": "S2C_MSIL2A_20260828T153621_R068_T17MNQ_20260828T212517",
+     "mosaico": true
     }
    ]
   },
@@ -69,41 +74,46 @@
      "periodo": "antes_2017",
      "etiqueta": "Antes de 2017 (temporada seca 2016)",
      "fecha": "2016-11-21",
-     "nubes_en_zona_pct": 0.0,
-     "agua_pct": 0.3,
-     "escena": "S2A_MSIL2A_20161121T155222_R111_T17MNR_20210414T184142"
+     "nubes_en_zona_pct": 0.8,
+     "agua_pct": 9.2,
+     "escena": "S2A_MSIL2A_20161121T155222_R111_T17MNS_20210414T184146 + S2A_MSIL2A_20161121T155222_R111_T17MNR_20210414T184142",
+     "mosaico": true
     },
     {
      "periodo": "despues_2017",
      "etiqueta": "Después de las inundaciones de 2017",
      "fecha": "2017-04-20",
-     "nubes_en_zona_pct": 12.8,
-     "agua_pct": 0.1,
-     "escena": "S2A_MSIL2A_20170420T155221_R111_T17MNR_20210209T091659"
+     "nubes_en_zona_pct": 35.5,
+     "agua_pct": 0.9,
+     "escena": "S2A_MSIL2A_20170420T155221_R111_T17MNS_20210209T091659 + S2A_MSIL2A_20170420T155221_R111_T17MNR_20210209T091659",
+     "mosaico": true
     },
     {
      "periodo": "antes_2023",
      "etiqueta": "Antes de 2023 (temporada seca 2022)",
-     "fecha": "2022-12-05",
-     "nubes_en_zona_pct": 0.6,
-     "agua_pct": 0.2,
-     "escena": "S2B_MSIL2A_20221205T155219_R111_T17MNR_20250205T180104"
+     "fecha": "2022-10-13",
+     "nubes_en_zona_pct": 0.4,
+     "agua_pct": 0.0,
+     "escena": "S2B_MSIL2A_20221013T153619_R068_T17MNR_20240724T084606 + S2B_MSIL2A_20221013T153619_R068_T17MNR_20221015T020120",
+     "mosaico": true
     },
     {
      "periodo": "despues_2023",
      "etiqueta": "Después del ciclón Yaku 2023",
-     "fecha": "2023-05-04",
-     "nubes_en_zona_pct": 1.9,
-     "agua_pct": 0.2,
-     "escena": "S2B_MSIL2A_20230504T155229_R111_T17MNR_20240812T072325"
+     "fecha": "2023-05-06",
+     "nubes_en_zona_pct": 3.4,
+     "agua_pct": 0.1,
+     "escena": "S2A_MSIL2A_20230506T153621_R068_T17MNS_20240810T082431 + S2A_MSIL2A_20230506T153621_R068_T17MNS_20230506T233141 + S2A_MSIL2A_20230506T153621_R068_T17MNR_20240810T082431 + S2A_MSIL2A_20230506T153621_R068_T17MNR_20230506T234829",
+     "mosaico": true
     },
     {
      "periodo": "hoy",
      "etiqueta": "Lo más reciente (últimos 45 días)",
      "fecha": "2026-10-05",
-     "nubes_en_zona_pct": 0.7,
-     "agua_pct": 0.2,
-     "escena": "S2B_MSIL2A_20261005T155219_R111_T17MNR_20261005T204634"
+     "nubes_en_zona_pct": 8.7,
+     "agua_pct": 3.1,
+     "escena": "S2B_MSIL2A_20261005T155219_R111_T17MNS_20261005T204634 + S2B_MSIL2A_20261005T155219_R111_T17MNR_20261005T204634",
+     "mosaico": true
     }
    ]
   },
@@ -124,7 +134,8 @@
      "fecha": "2016-12-18",
      "nubes_en_zona_pct": 0.8,
      "agua_pct": 0.0,
-     "escena": "S2A_MSIL2A_20161218T153612_R068_T17MNP_20210213T221949"
+     "escena": "S2A_MSIL2A_20161218T153612_R068_T17MNP_20210213T221949",
+     "mosaico": true
     },
     {
      "periodo": "despues_2017",
@@ -132,7 +143,8 @@
      "fecha": "2017-04-07",
      "nubes_en_zona_pct": 0.4,
      "agua_pct": 6.8,
-     "escena": "S2A_MSIL2A_20170407T153621_R068_T17MNP_20210209T053657"
+     "escena": "S2A_MSIL2A_20170407T153621_R068_T17MNP_20210209T053657",
+     "mosaico": true
     },
     {
      "periodo": "antes_2023",
@@ -140,7 +152,8 @@
      "fecha": "2022-12-02",
      "nubes_en_zona_pct": 0.4,
      "agua_pct": 0.0,
-     "escena": "S2B_MSIL2A_20221202T153619_R068_T17MNP_20221203T225120"
+     "escena": "S2B_MSIL2A_20221202T153619_R068_T17MNP_20221203T225120",
+     "mosaico": true
     },
     {
      "periodo": "despues_2023",
@@ -148,15 +161,17 @@
      "fecha": "2023-04-26",
      "nubes_en_zona_pct": 0.4,
      "agua_pct": 5.3,
-     "escena": "S2A_MSIL2A_20230426T153621_R068_T17MNP_20230427T002606"
+     "escena": "S2A_MSIL2A_20230426T153621_R068_T17MNP_20230427T002606",
+     "mosaico": true
     },
     {
      "periodo": "hoy",
-     "etiqueta": "Lo más reciente (últimos 45 días)",
-     "fecha": "2026-10-09",
-     "nubes_en_zona_pct": 45.7,
-     "agua_pct": 0.0,
-     "escena": "S2A_MSIL2A_20261009T153641_R068_T17MNP_20261009T215605"
+     "etiqueta": "Lo más reciente con menos nubes (últimos 90 días)",
+     "fecha": "2026-08-30",
+     "nubes_en_zona_pct": 0.0,
+     "agua_pct": 0.4,
+     "escena": "S2A_MSIL2A_20260830T153641_R068_T17MNP_20260831T025609",
+     "mosaico": true
     }
    ]
   }
