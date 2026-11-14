@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-13T15:32-05:00",
- "hoy": "2026-11-13",
+ "generado": "2026-11-14T06:41-05:00",
+ "hoy": "2026-11-14",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
   "verificados": "data/eventos/catalogo_verificado.csv (revisión manual del equipo)",
@@ -412,6 +412,12 @@
      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOUXRBUXZaNWlqd2pkQ3ZqOFQ4ZDRBbGVWbVBDdkpZbVNmSUJIcmVvQjk0eU5UenZDQTVyc19SZGNTd00waU96TjRuWUxWb01Ja0VxaV84ell0aWx6Z1dueFNUWWhwd1JPLVE3MHdrSGF5bFNHOVlPMlQ2d0NHUURSQl9rWDZkc3NkTDdFTkdNLWVsN1hiRGREcTM2M2J6UUpEeDR0VzVqQTd3WEVNTGd4TTBOZXM1Y2VoOU1vNGl2d29XYklyNkJEOA?oc=5"
     },
     {
+     "titulo": "Fenómeno de El Niño: las lluvias en Tumbes causan 324 damnificados y 625 afectados",
+     "medio": "Crónica Viva",
+     "fecha": "2026-11-03",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOT05YRk44N1ZYY3VBTEk3NHEwTUs5S1FRQTFUNWhwTmhkejY5OXF0VTVaaFJnNjg0d0dnZTA4OUlTU2V0TkYyVjVUUkhGZU9rWDlnc3MySUlHdFdMUFB3ZVNWMEhWYTMzbWdoQ3RwRDVKbjlvNnprdzVwUGVFR0FkU1V0RUNHdmdVa0wya2cyaFdWNms0WXczNUZKdi0?oc=5"
+    },
+    {
      "titulo": "Hildebrando Antón, alcalde provincial de Tumbes: \"Ya van más de 200 casas que han sido afectadas por las lluvias\"",
      "medio": "Canal N",
      "fecha": "2026-11-03",
@@ -422,12 +428,6 @@
      "medio": "Gestión",
      "fecha": "2026-11-03",
      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNSmExTGkza25IdG9rdFdzSkNQdnNYbkM0Q0k2T1lEZ2FuNE1KbWpjTFNyQ0k5d09IY3ZjU0FFTzlKUFNTVjdMZ2lvc1JfaWQ2MzhIYU1lSi1Ld0NxdkJHYjBzM0RwNkU1Yk5iRWZQTlVqamVpMFhYUGhJMk4zUW1EelFVQXk3UTg2RW9nX05ILThZRVJNMHc?oc=5"
-    },
-    {
-     "titulo": "Fenómeno de El Niño: las lluvias en Tumbes causan 324 damnificados y 625 afectados",
-     "medio": "Crónica Viva",
-     "fecha": "2026-11-03",
-     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOT05YRk44N1ZYY3VBTEk3NHEwTUs5S1FRQTFUNWhwTmhkejY5OXF0VTVaaFJnNjg0d0dnZTA4OUlTU2V0TkYyVjVUUkhGZU9rWDlnc3MySUlHdFdMUFB3ZVNWMEhWYTMzbWdoQ3RwRDVKbjlvNnprdzVwUGVFR0FkU1V0RUNHdmdVa0wya2cyaFdWNms0WXczNUZKdi0?oc=5"
     },
     {
      "titulo": "Tumbes: Sector Vivienda atiende a familias afectadas por desborde del río Zarumilla",
@@ -550,16 +550,16 @@
      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPSy1VQTZSOFhySEwtM2F0T0dDTjk2bDhveVIwakNxbFpUd2l1d3lsbWR1eUstbFBhclB3Uk1xdWQwcEZUU0hfcjFiYm1nS2loNUJySURNSmxWQnF0LVpJR2RndEtWUHZQZE1tck9CQTVfRUg5eDA2UGd1M3pmenhmaE9mZjFvUEcxZ2dyRkRLQ0QwbGUxaWFhYW9Hd1lCanhUQ2xNcWdFNEFJbUJvZ3V4SDN3VHZQY2pNcXVHRzRsbmpHNlZfVHI1d3llY3hSS3V3MlZrU1V3?oc=5"
     },
     {
-     "titulo": "Fenómeno El Niño: Keiko Fujimori lleva ayuda humanitaria a afectados por lluvias en Tumbes",
-     "medio": "El Comercio Perú",
-     "fecha": "2026-11-06",
-     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxONFZMUGtLZlA4X2lXdTl2aHc2QjhwME9hdXJIVUVaVFROeUpDV0RoZUZUUmVhaEUwZEhLYkpHSjdNa0xZd0RXejF1SU83azdJMlNYLVVsTUdaRkdxREFVSTZ1Rlo4RXpacDUybnBCaTNZSzgxLXdvMGp5OFRMV3JHZGlEWHVLc2NTU0Q4aDhhOGx6WnB4WDRYT3BrVUxDRmJiNmlxVURrWE82MUUydmd0N1hEOWRNS1BMYkpVM0hIcTlxdWJhblcyaHlTYmFxbTMydUhORU5WME1kNlozMVBpRTQ3eEzSAfgBQVVfeXFMUFdHb1o1a3lqM3gySVZSQjBrUVpmcEVyVzRCcWxQaFNiTldITFdUZXduWU16S2tWaTUzYXVGWHMwZ2hsV0d2MEdWRzFuWU53TGdJZXRGSnh6VVhucXZuUDhodHVncWxKY1hRY0pnVEpuTXpFNjRUQ0xldlpkdWlMVUJPVE9ISko5VlBuQzJpN3BadXAtVG02dHJKb2VTWVBOMzAxYk5yM1BwSHNiYUl6bkNCb0VBNWZUNGxTSGNXcHRMQnB0TlpkT2stVGlNZktuN3JUa1JIclQ4RmNzdXZiOUloMXpfNURRc19uOFVrQmZkbnVuRjNicXA?oc=5"
-    },
-    {
      "titulo": "Fenómeno El Niño: lluvias intensas en región Tumbes dejan 324 damnificados y 808 afectados",
      "medio": "Agencia Andina",
      "fecha": "2026-11-06",
      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnp1aUd1SGVVSUdqS1dUR01BcDVPekF6b3lyVG15b0xoa3FfNk1LMzUxR3VoaEJSbW13LUk4Q0s3dm1jMVlDMnRRX2xZa01pLVJBS0lwX00yRmN6Q1hFQ1ZLS2MxVTZDNXU4UGpXZ25Ta3I3UEU5dlBQRkVKQ2Q2S3JOOC03dGhOU185ZGhYTEV1N3VpUTk1MURZQk9BSjRMYk52UXB0bFRxZ1dYV1F3QjY5WUhKem04eE9kYWpfaFQ0Qy1rTHpIRWRR?oc=5"
+    },
+    {
+     "titulo": "Fenómeno El Niño: Keiko Fujimori lleva ayuda humanitaria a afectados por lluvias en Tumbes",
+     "medio": "El Comercio Perú",
+     "fecha": "2026-11-06",
+     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxONFZMUGtLZlA4X2lXdTl2aHc2QjhwME9hdXJIVUVaVFROeUpDV0RoZUZUUmVhaEUwZEhLYkpHSjdNa0xZd0RXejF1SU83azdJMlNYLVVsTUdaRkdxREFVSTZ1Rlo4RXpacDUybnBCaTNZSzgxLXdvMGp5OFRMV3JHZGlEWHVLc2NTU0Q4aDhhOGx6WnB4WDRYT3BrVUxDRmJiNmlxVURrWE82MUUydmd0N1hEOWRNS1BMYkpVM0hIcTlxdWJhblcyaHlTYmFxbTMydUhORU5WME1kNlozMVBpRTQ3eEzSAfgBQVVfeXFMUFdHb1o1a3lqM3gySVZSQjBrUVpmcEVyVzRCcWxQaFNiTldITFdUZXduWU16S2tWaTUzYXVGWHMwZ2hsV0d2MEdWRzFuWU53TGdJZXRGSnh6VVhucXZuUDhodHVncWxKY1hRY0pnVEpuTXpFNjRUQ0xldlpkdWlMVUJPVE9ISko5VlBuQzJpN3BadXAtVG02dHJKb2VTWVBOMzAxYk5yM1BwSHNiYUl6bkNCb0VBNWZUNGxTSGNXcHRMQnB0TlpkT2stVGlNZktuN3JUa1JIclQ4RmNzdXZiOUloMXpfNURRc19uOFVrQmZkbnVuRjNicXA?oc=5"
     },
     {
      "titulo": "Keiko Fujimori anuncia reubicación de familias afectadas por las lluvias durante visita a Tumbes",
