@@ -24,6 +24,7 @@ STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 CARPETA = DASH_DATA / "sat"
 LADO = 1400                      # píxeles de la imagen final
 NUBE_SCL = {0, 1, 3, 8, 9, 10}   # sin dato, saturado, sombra de nube, nube media, nube alta, cirro
+NUBES_MAX_HOY = 0.20             # si la mejor foto reciente tiene más nubes que esto, se busca en un periodo más largo
 
 ZONAS = {
     "bajo_piura": {"nombre": "Piura, Castilla y Bajo Piura", "nota": "Ciudad de Piura y valle bajo (Catacaos, Cura Mori)",
@@ -87,9 +88,14 @@ def mejor_escena(cat, caja, t0, t1):
     return mejor
 
 
-def realce(rgb: np.ndarray) -> np.ndarray:
-    """Estiramiento por percentiles (2-98 %) común a las tres bandas + gamma, para que se lean cultivos, agua y ciudad."""
-    v = rgb[np.isfinite(rgb).all(axis=-1) & (rgb.sum(axis=-1) > 0)]
+def realce(rgb: np.ndarray, despejado: np.ndarray | None = None) -> np.ndarray:
+    """Estiramiento por percentiles (2-98 %) común a las tres bandas + gamma, para que se lean cultivos, agua y ciudad.
+    Los percentiles se calculan solo con los píxeles despejados: si entran las nubes (muy brillantes), el suelo sale
+    oscuro y la foto no se puede comparar con la de la temporada seca."""
+    ok = np.isfinite(rgb).all(axis=-1) & (rgb.sum(axis=-1) > 0)
+    if despejado is not None and (ok & despejado).mean() > 0.05:
+        ok &= despejado
+    v = rgb[ok]
     if v.size == 0:
         return np.zeros(rgb.shape, dtype="uint8")
     lo, hi = np.percentile(v, 2), np.percentile(v, 98)
@@ -131,15 +137,23 @@ def main() -> None:
                 registro["escenas"].append(anterior[pid]); continue          # los eventos pasados no cambian
             print(f"{zid} · {pid}: buscando escenas {t0} a {t1}")
             m = mejor_escena(cat, z["caja"], t0, t1)
+            if pid == "hoy" and (m is None or m[1] > NUBES_MAX_HOY):
+                t90 = (datetime.fromisoformat(t1) - timedelta(days=90)).date().isoformat()
+                print(f"   lo mejor de 45 días tiene muchas nubes; se busca desde {t90}")
+                m90 = mejor_escena(cat, z["caja"], t90, t1)
+                if m90 is not None and (m is None or m90[1] < m[1]):
+                    m, etiqueta = m90, "Lo más reciente con menos nubes (últimos 90 días)"
             if m is None:
                 print("   sin escenas"); continue
             grupo, nube = m
             it = grupo[0]
             res = (z["caja"][2] - z["caja"][0]) / LADO
-            ds = odc.stac.load(grupo, bands=["B04", "B03", "B02", "B08"], crs="EPSG:4326", resolution=res,
-                               bbox=z["caja"], resampling="bilinear", groupby="solar_day").isel(time=0)
+            ds = odc.stac.load(grupo, bands=["B04", "B03", "B02", "B08", "SCL"], crs="EPSG:4326", resolution=res,
+                               bbox=z["caja"], resampling={"SCL": "nearest", "*": "bilinear"},
+                               groupby="solar_day").isel(time=0)
             b = {k: ds[k].values.astype("float32") for k in ["B04", "B03", "B02", "B08"]}
-            guardar(realce(np.dstack([b["B04"], b["B03"], b["B02"]])), CARPETA / f"{zid}_{pid}_rgb.jpg")
+            despejado = ~np.isin(ds["SCL"].values, list(NUBE_SCL))
+            guardar(realce(np.dstack([b["B04"], b["B03"], b["B02"]]), despejado), CARPETA / f"{zid}_{pid}_rgb.jpg")
             img_agua, frac_agua = agua(b["B03"], b["B08"])
             guardar(img_agua, CARPETA / f"{zid}_{pid}_agua.jpg")
             registro["escenas"].append({"periodo": pid, "etiqueta": etiqueta, "fecha": str(it.datetime.date()),
