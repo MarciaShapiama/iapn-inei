@@ -587,7 +587,11 @@ function pestanas(){
   window.addEventListener("hashchange",desdeHash); desdeHash();
 }
 function estado(){const R=D.R;if(!R)return;
-  document.getElementById("estado").innerHTML=`Mar al <b>${R.ultimo_dia_mar?fechaTxt(R.ultimo_dia_mar):"—"}</b> · histórico: <b>${R.dias_historico} días</b><br>Actualizado ${R.actualizado}`}
+  // Una sola fecha para el lector: la última actualización, en hora de Lima (UTC−5, sin horario de verano)
+  const lima=t=>{const m=/^(\d{4})-(\d\d)-(\d\d)[ T](\d\d):(\d\d)/.exec(t||""); if(!m)return t||"—";
+    const d=new Date(Date.UTC(+m[1],+m[2]-1,+m[3],+m[4]-5,+m[5])), M=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    return `${d.getUTCDate()} de ${M[d.getUTCMonth()]} de ${d.getUTCFullYear()}, ${String(d.getUTCHours()).padStart(2,"0")}:${String(d.getUTCMinutes()).padStart(2,"0")} (hora de Lima)`};
+  document.getElementById("estado").innerHTML=`Actualizado el <b>${lima(R.actualizado)}</b><br>Datos del mar hasta el ${R.ultimo_dia_mar?fechaTxt(R.ultimo_dia_mar):"—"} · histórico: ${R.dias_historico} días`}
 
 
 
