@@ -52,26 +52,36 @@ def catalogo():
     return pystac_client.Client.open(STAC, modifier=pc.sign_inplace)
 
 
-def nubosidad(item, caja) -> float:
-    """Fracción de la caja con nubes, sombras o sin dato, según la capa SCL (60 m)."""
+def por_dia(items) -> list[list]:
+    """Agrupa las escenas por día de pasada. Una zona puede caer en dos teselas de Sentinel-2: si se usa una sola,
+    la parte que cae en la otra queda sin dato (una franja negra). Las teselas del mismo día se unen en un mosaico."""
+    g: dict = {}
+    for it in items:
+        g.setdefault(it.datetime.date(), []).append(it)
+    return list(g.values())
+
+
+def nubosidad(grupo, caja) -> float:
+    """Fracción de la caja con nubes, sombras o sin dato (SCL = 0), según la capa SCL (60 m)."""
     import odc.stac
-    ds = odc.stac.load([item], bands=["SCL"], crs="EPSG:4326", resolution=0.0006, bbox=caja)
+    ds = odc.stac.load(grupo, bands=["SCL"], crs="EPSG:4326", resolution=0.0006, bbox=caja, groupby="solar_day")
     scl = ds["SCL"].isel(time=0).values
-    return float(np.isin(scl, list(NUBE_SCL)).mean())
+    return float((np.isin(scl, list(NUBE_SCL)) | (scl == 0)).mean())
 
 
 def mejor_escena(cat, caja, t0, t1):
     items = cat.search(collections=["sentinel-2-l2a"], bbox=caja, datetime=f"{t0}/{t1}",
                        query={"eo:cloud_cover": {"lt": 70}}).item_collection()
-    candidatos = sorted(items, key=lambda i: i.properties.get("eo:cloud_cover", 100))[:12]
+    nube_media = lambda g: sum(i.properties.get("eo:cloud_cover", 100) for i in g) / len(g)   # noqa: E731
+    candidatos = sorted(por_dia(items), key=nube_media)[:12]
     mejor = None
-    for it in candidatos:
+    for g in candidatos:
         try:
-            f = nubosidad(it, caja)
+            f = nubosidad(g, caja)
         except Exception as error:
-            print(f"    {it.id}: {error}"); continue
+            print(f"    {g[0].id}: {error}"); continue
         if mejor is None or f < mejor[1]:
-            mejor = (it, f)
+            mejor = (g, f)
         if f < 0.02:
             break
     return mejor
@@ -117,23 +127,24 @@ def main() -> None:
         anterior = {e["periodo"]: e for e in next((x["escenas"] for x in previo.get("zonas", []) if x["id"] == zid), [])}
         registro = {"id": zid, "nombre": z["nombre"], "nota": z["nota"], "caja": z["caja"], "escenas": []}
         for pid, (etiqueta, t0, t1) in periodos().items():
-            if pid != "hoy" and pid in anterior and (CARPETA / f"{zid}_{pid}_rgb.jpg").exists():
+            if pid != "hoy" and pid in anterior and anterior[pid].get("mosaico") and (CARPETA / f"{zid}_{pid}_rgb.jpg").exists():
                 registro["escenas"].append(anterior[pid]); continue          # los eventos pasados no cambian
             print(f"{zid} · {pid}: buscando escenas {t0} a {t1}")
             m = mejor_escena(cat, z["caja"], t0, t1)
             if m is None:
                 print("   sin escenas"); continue
-            it, nube = m
+            grupo, nube = m
+            it = grupo[0]
             res = (z["caja"][2] - z["caja"][0]) / LADO
-            ds = odc.stac.load([it], bands=["B04", "B03", "B02", "B08"], crs="EPSG:4326", resolution=res,
-                               bbox=z["caja"], resampling="bilinear").isel(time=0)
+            ds = odc.stac.load(grupo, bands=["B04", "B03", "B02", "B08"], crs="EPSG:4326", resolution=res,
+                               bbox=z["caja"], resampling="bilinear", groupby="solar_day").isel(time=0)
             b = {k: ds[k].values.astype("float32") for k in ["B04", "B03", "B02", "B08"]}
             guardar(realce(np.dstack([b["B04"], b["B03"], b["B02"]])), CARPETA / f"{zid}_{pid}_rgb.jpg")
             img_agua, frac_agua = agua(b["B03"], b["B08"])
             guardar(img_agua, CARPETA / f"{zid}_{pid}_agua.jpg")
             registro["escenas"].append({"periodo": pid, "etiqueta": etiqueta, "fecha": str(it.datetime.date()),
                                         "nubes_en_zona_pct": round(100 * nube, 1), "agua_pct": round(100 * frac_agua, 1),
-                                        "escena": it.id})
+                                        "escena": " + ".join(i.id for i in grupo), "mosaico": True})
             print(f"   {it.datetime.date()} · nubes en la zona {100 * nube:.1f} % · agua {100 * frac_agua:.1f} %")
         salida["zonas"].append(registro)
     json.dump(salida, open(CARPETA / "satelite.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
