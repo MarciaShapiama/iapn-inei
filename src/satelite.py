@@ -24,6 +24,7 @@ STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 CARPETA = DASH_DATA / "sat"
 LADO = 1400                      # píxeles de la imagen final
 NUBE_SCL = {0, 1, 3, 8, 9, 10}   # sin dato, saturado, sombra de nube, nube media, nube alta, cirro
+VERSION = 3                      # al cambiar la forma de elegir o dibujar las fotos, se vuelven a generar todas
 NUBES_MAX_HOY = 0.20             # si la mejor foto reciente tiene más nubes que esto, se busca en un periodo más largo
 
 ZONAS = {
@@ -63,11 +64,15 @@ def por_dia(items) -> list[list]:
 
 
 def nubosidad(grupo, caja) -> float:
-    """Fracción de la caja con nubes, sombras o sin dato (SCL = 0), según la capa SCL (60 m)."""
+    """Fracción de la caja con nubes, sombras o sin dato, según la capa SCL (60 m).
+    «Sin dato» se comprueba también en la banda roja: fuera de la franja que barrió el satélite la imagen viene vacía
+    (cero o no numérico) y la capa SCL no siempre lo marca."""
     import odc.stac
-    ds = odc.stac.load(grupo, bands=["SCL"], crs="EPSG:4326", resolution=0.0006, bbox=caja, groupby="solar_day")
-    scl = ds["SCL"].isel(time=0).values
-    return float((np.isin(scl, list(NUBE_SCL)) | (scl == 0)).mean())
+    ds = odc.stac.load(grupo, bands=["SCL", "B04"], crs="EPSG:4326", resolution=0.0006, bbox=caja, groupby="solar_day")
+    scl = ds["SCL"].isel(time=0).values.astype("float32")
+    b04 = ds["B04"].isel(time=0).values.astype("float32")
+    vacio = ~np.isfinite(scl) | ~np.isfinite(b04) | (b04 <= 0)
+    return float((np.isin(scl, list(NUBE_SCL)) | vacio).mean())
 
 
 def mejor_escena(cat, caja, t0, t1):
@@ -133,7 +138,7 @@ def main() -> None:
         anterior = {e["periodo"]: e for e in next((x["escenas"] for x in previo.get("zonas", []) if x["id"] == zid), [])}
         registro = {"id": zid, "nombre": z["nombre"], "nota": z["nota"], "caja": z["caja"], "escenas": []}
         for pid, (etiqueta, t0, t1) in periodos().items():
-            if pid != "hoy" and pid in anterior and anterior[pid].get("mosaico") and (CARPETA / f"{zid}_{pid}_rgb.jpg").exists():
+            if pid != "hoy" and pid in anterior and anterior[pid].get("version") == VERSION and (CARPETA / f"{zid}_{pid}_rgb.jpg").exists():
                 registro["escenas"].append(anterior[pid]); continue          # los eventos pasados no cambian
             print(f"{zid} · {pid}: buscando escenas {t0} a {t1}")
             m = mejor_escena(cat, z["caja"], t0, t1)
@@ -152,13 +157,14 @@ def main() -> None:
                                bbox=z["caja"], resampling={"SCL": "nearest", "*": "bilinear"},
                                groupby="solar_day").isel(time=0)
             b = {k: ds[k].values.astype("float32") for k in ["B04", "B03", "B02", "B08"]}
-            despejado = ~np.isin(ds["SCL"].values, list(NUBE_SCL))
+            scl = ds["SCL"].values.astype("float32")
+            despejado = np.isfinite(scl) & ~np.isin(scl, list(NUBE_SCL))
             guardar(realce(np.dstack([b["B04"], b["B03"], b["B02"]]), despejado), CARPETA / f"{zid}_{pid}_rgb.jpg")
             img_agua, frac_agua = agua(b["B03"], b["B08"])
             guardar(img_agua, CARPETA / f"{zid}_{pid}_agua.jpg")
             registro["escenas"].append({"periodo": pid, "etiqueta": etiqueta, "fecha": str(it.datetime.date()),
                                         "nubes_en_zona_pct": round(100 * nube, 1), "agua_pct": round(100 * frac_agua, 1),
-                                        "escena": " + ".join(i.id for i in grupo), "mosaico": True})
+                                        "escena": " + ".join(i.id for i in grupo), "version": VERSION})
             print(f"   {it.datetime.date()} · nubes en la zona {100 * nube:.1f} % · agua {100 * frac_agua:.1f} %")
         salida["zonas"].append(registro)
     json.dump(salida, open(CARPETA / "satelite.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
