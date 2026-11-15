@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-14T13:46-05:00",
- "hoy": "2026-11-14",
+ "generado": "2026-11-15T06:41-05:00",
+ "hoy": "2026-11-15",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
   "verificados": "data/eventos/catalogo_verificado.csv (revisión manual del equipo)",
@@ -526,12 +526,6 @@
      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOZ1RoeUc0blZuc2xsb1hFZkxzbDd6dFdvcDMyaU15b25jZTVKWVE5Qlc5amN1Q2FFOWVUSGtPSGtyRUtIZkVkdzZTVEF6MUNZRGkwb2VnaEoxNl9zc1p4VGlURjI2c3RqeXlYVDhfOE1ZbmRxMWcyTzRpNWFvSXVhdzZfN2Q2NWN0UENWSnVzVEEwSXdKYldKQXk3akZlN0Q5U1ItanJ6bDUybDVKMk1iV3dUSGVnN1k3X1ZoQ3RNNHo0Y0pfNHZLbVROLUZPamNQQWxjenp5M3hNQVU?oc=5"
     },
     {
-     "titulo": "Se implementó en 36 horas y terminó inundado en un día: el fiasco del hospital de campaña del gobierno de Keiko Fujimori en Tumbes (VIDEO)",
-     "medio": "El Búho.pe",
-     "fecha": "2026-11-06",
-     "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPcTA3aWxuanY0VS03SENRZG1pQ1dFYmk2c2JIdWM0QkJYVTFOMVBGTWRaT1ZCQTB5alNvMjJnLVBNSVBOUzFTYzRoNjNtV3lXZnQ5R1ZieFZwOGhsM0lzTnVld042SlVIV25MeDhqQXl6eGRMSTZUb3hVQmEybTNESmpzeU1JVXp2TXpqZmpwMzE1RW8weW1uZ0w5Z1JqSi1HMUwtVWlLTXc3NmlkdnBnTDRKUDFTRFk4NXZJdFFGYUI0YkROVFVuY1F4czFuVWNVcHpyaXZ3X1ZGUGNEMm1CNjduZmNxR19Fd3REb0ZXQ0NLN3pk?oc=5"
-    },
-    {
      "titulo": "Tumbes: brindan soporte emocional a 35 niños de albergue para los afectados por lluvias",
      "medio": "Agencia Andina",
      "fecha": "2026-11-06",
@@ -544,22 +538,28 @@
      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObmlIekJ3Tmd0T0pFclc1T1drOXB2RlhybVpqXzM3VElzekg0N2JsUDFuOEJ1MnNqemFGQjZ5Rl81WllicWM0UGdlVkYxMWp3ZlU3ODRzQlVnSm03czBSUE8zRkp4LXdFbTVpNXZiamFrR25xTWthbXVIYU1EQUZRNDdEMTZ6S0NndHRHT1JGeDg0cmNUbDlLd2Jxc3M0Nndp?oc=5"
     },
     {
+     "titulo": "Se implementó en 36 horas y terminó inundado en un día: el fiasco del hospital de campaña del gobierno de Keiko Fujimori en Tumbes (VIDEO)",
+     "medio": "El Búho.pe",
+     "fecha": "2026-11-06",
+     "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPcTA3aWxuanY0VS03SENRZG1pQ1dFYmk2c2JIdWM0QkJYVTFOMVBGTWRaT1ZCQTB5alNvMjJnLVBNSVBOUzFTYzRoNjNtV3lXZnQ5R1ZieFZwOGhsM0lzTnVld042SlVIV25MeDhqQXl6eGRMSTZUb3hVQmEybTNESmpzeU1JVXp2TXpqZmpwMzE1RW8weW1uZ0w5Z1JqSi1HMUwtVWlLTXc3NmlkdnBnTDRKUDFTRFk4NXZJdFFGYUI0YkROVFVuY1F4czFuVWNVcHpyaXZ3X1ZGUGNEMm1CNjduZmNxR19Fd3REb0ZXQ0NLN3pk?oc=5"
+    },
+    {
      "titulo": "Keiko Fujimori visita a familias afectadas por lluvias en Tumbes y anuncia reubicación de zonas de riesgo",
      "medio": "AP Noticias",
      "fecha": "2026-11-06",
      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPSy1VQTZSOFhySEwtM2F0T0dDTjk2bDhveVIwakNxbFpUd2l1d3lsbWR1eUstbFBhclB3Uk1xdWQwcEZUU0hfcjFiYm1nS2loNUJySURNSmxWQnF0LVpJR2RndEtWUHZQZE1tck9CQTVfRUg5eDA2UGd1M3pmenhmaE9mZjFvUEcxZ2dyRkRLQ0QwbGUxaWFhYW9Hd1lCanhUQ2xNcWdFNEFJbUJvZ3V4SDN3VHZQY2pNcXVHRzRsbmpHNlZfVHI1d3llY3hSS3V3MlZrU1V3?oc=5"
     },
     {
-     "titulo": "Fenómeno El Niño: lluvias intensas en región Tumbes dejan 324 damnificados y 808 afectados",
-     "medio": "Agencia Andina",
-     "fecha": "2026-11-06",
-     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnp1aUd1SGVVSUdqS1dUR01BcDVPekF6b3lyVG15b0xoa3FfNk1LMzUxR3VoaEJSbW13LUk4Q0s3dm1jMVlDMnRRX2xZa01pLVJBS0lwX00yRmN6Q1hFQ1ZLS2MxVTZDNXU4UGpXZ25Ta3I3UEU5dlBQRkVKQ2Q2S3JOOC03dGhOU185ZGhYTEV1N3VpUTk1MURZQk9BSjRMYk52UXB0bFRxZ1dYV1F3QjY5WUhKem04eE9kYWpfaFQ0Qy1rTHpIRWRR?oc=5"
-    },
-    {
      "titulo": "Fenómeno El Niño: Keiko Fujimori lleva ayuda humanitaria a afectados por lluvias en Tumbes",
      "medio": "El Comercio Perú",
      "fecha": "2026-11-06",
      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxONFZMUGtLZlA4X2lXdTl2aHc2QjhwME9hdXJIVUVaVFROeUpDV0RoZUZUUmVhaEUwZEhLYkpHSjdNa0xZd0RXejF1SU83azdJMlNYLVVsTUdaRkdxREFVSTZ1Rlo4RXpacDUybnBCaTNZSzgxLXdvMGp5OFRMV3JHZGlEWHVLc2NTU0Q4aDhhOGx6WnB4WDRYT3BrVUxDRmJiNmlxVURrWE82MUUydmd0N1hEOWRNS1BMYkpVM0hIcTlxdWJhblcyaHlTYmFxbTMydUhORU5WME1kNlozMVBpRTQ3eEzSAfgBQVVfeXFMUFdHb1o1a3lqM3gySVZSQjBrUVpmcEVyVzRCcWxQaFNiTldITFdUZXduWU16S2tWaTUzYXVGWHMwZ2hsV0d2MEdWRzFuWU53TGdJZXRGSnh6VVhucXZuUDhodHVncWxKY1hRY0pnVEpuTXpFNjRUQ0xldlpkdWlMVUJPVE9ISko5VlBuQzJpN3BadXAtVG02dHJKb2VTWVBOMzAxYk5yM1BwSHNiYUl6bkNCb0VBNWZUNGxTSGNXcHRMQnB0TlpkT2stVGlNZktuN3JUa1JIclQ4RmNzdXZiOUloMXpfNURRc19uOFVrQmZkbnVuRjNicXA?oc=5"
+    },
+    {
+     "titulo": "Fenómeno El Niño: lluvias intensas en región Tumbes dejan 324 damnificados y 808 afectados",
+     "medio": "Agencia Andina",
+     "fecha": "2026-11-06",
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnp1aUd1SGVVSUdqS1dUR01BcDVPekF6b3lyVG15b0xoa3FfNk1LMzUxR3VoaEJSbW13LUk4Q0s3dm1jMVlDMnRRX2xZa01pLVJBS0lwX00yRmN6Q1hFQ1ZLS2MxVTZDNXU4UGpXZ25Ta3I3UEU5dlBQRkVKQ2Q2S3JOOC03dGhOU185ZGhYTEV1N3VpUTk1MURZQk9BSjRMYk52UXB0bFRxZ1dYV1F3QjY5WUhKem04eE9kYWpfaFQ0Qy1rTHpIRWRR?oc=5"
     },
     {
      "titulo": "Keiko Fujimori anuncia reubicación de familias afectadas por las lluvias durante visita a Tumbes",
@@ -580,13 +580,13 @@
      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNWEFZTnVXWWtwQ3FuSmkwTnhkVDBFNUxFWjBESWJSc3Niak14MEMtWlZtSGJqVUtzN2p2cXNTVDJJYXlwYndWc3dUMmhfYWExek1Tb3haelFWYU9jbVZjaDMwTWQ2ZTdRb3ppd3kyQVRmWnZZaHBpSmZMcElHSFpPXzk4eW9zbDdFZmNhWEdnaXBGZVdqWTVXZmRlaGI3U1A5WXdRbS1nMXRiMEY0MTZwd2lrTGtMbVU0SzJPOU1RRW9iNWM2UUptaGtXTGwwcE5LOE9XbUVIRGo5VkhkVjl6Nw?oc=5"
     },
     {
-     "titulo": "Tumbes: Oficina Regional de Gestión del Riesgo reporta vías afectadas y más de 10 quebradas activadas por intensas lluvias",
+     "titulo": "Tumbes bajo intensas lluvias: ¿qué vías han sido afectadas y cuáles son las más de 10 quebradas activadas?",
      "medio": "El Comercio Perú",
      "fecha": "2026-11-08",
      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPVTNJSUlJQ2c2SlRwQmRqS3VkVDVQUUFNTm1wRFI2LTNkTDhqbkEtcGIxUHh0ZHVwN3Z4Z2FEVE9SQXg4OUlqYkpmdjE4a2VNZl9kNXN1N0w4TmpLeDEwU0pINlFQWGcwaTBxaF9lTGozMVpOS2hGYUVvT2x3MU1KVFg1SERvWDR3OTlFYlRSMXdOMzFqdEJIZUFFOTlNaE5UYnZObngtTENCT2Q4V29ySjhaMUI1XzF5QkVkRm5KbnJJMFB6cUdqVmpQU05NcmF5STB4czJtLUFWcklTajA3cWdaMUZJOExKMTlLcDIzeENKTHBQSEFqSFBjVjFPMFhrQkN4LdIBmAJBVV95cUxOYXJyWVlyNENjdG1Idk1DT282cml6OWZKTkF3SE9XMFJGNGVTMkxXQ0hHSnc1LUMzVnVwb2JxWkZjMF9aV3RNdVBfaWFRLUhka1RQUkV2c2gydEUtOTRBTlFNSmp5VThNQVR3cm9GbXRpUGpzZWc5a01EUXYzMFNtTzZ5dDhGV2Q4SHNnRlZjaG9qUjA3YmRQSHJ3R0trcm4zN2JVQjV1ZGMzejdBXzdxVHk0X0JiM1FSYWVOOEx2eWp0NU90b1QtT1JSQjM3QlZzOGpDcmlOUzh1UlRmMnNSbDR1Yjc0N0hSYUxZS2RVVG9HdVNjTk9yWm1sSndEQU9MM3hMTjREa3gxWF8yV2tlWTc2MnR6WFZh?oc=5"
     },
     {
-     "titulo": "Tumbes bajo intensas lluvias: ¿qué vías han sido afectadas y cuáles son las más de 10 quebradas activadas?",
+     "titulo": "Tumbes: Oficina Regional de Gestión del Riesgo reporta vías afectadas y más de 10 quebradas activadas por intensas lluvias",
      "medio": "El Comercio Perú",
      "fecha": "2026-11-08",
      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPVTNJSUlJQ2c2SlRwQmRqS3VkVDVQUUFNTm1wRFI2LTNkTDhqbkEtcGIxUHh0ZHVwN3Z4Z2FEVE9SQXg4OUlqYkpmdjE4a2VNZl9kNXN1N0w4TmpLeDEwU0pINlFQWGcwaTBxaF9lTGozMVpOS2hGYUVvT2x3MU1KVFg1SERvWDR3OTlFYlRSMXdOMzFqdEJIZUFFOTlNaE5UYnZObngtTENCT2Q4V29ySjhaMUI1XzF5QkVkRm5KbnJJMFB6cUdqVmpQU05NcmF5STB4czJtLUFWcklTajA3cWdaMUZJOExKMTlLcDIzeENKTHBQSEFqSFBjVjFPMFhrQkN4LdIBmAJBVV95cUxOYXJyWVlyNENjdG1Idk1DT282cml6OWZKTkF3SE9XMFJGNGVTMkxXQ0hHSnc1LUMzVnVwb2JxWkZjMF9aV3RNdVBfaWFRLUhka1RQUkV2c2gydEUtOTRBTlFNSmp5VThNQVR3cm9GbXRpUGpzZWc5a01EUXYzMFNtTzZ5dDhGV2Q4SHNnRlZjaG9qUjA3YmRQSHJ3R0trcm4zN2JVQjV1ZGMzejdBXzdxVHk0X0JiM1FSYWVOOEx2eWp0NU90b1QtT1JSQjM3QlZzOGpDcmlOUzh1UlRmMnNSbDR1Yjc0N0hSYUxZS2RVVG9HdVNjTk9yWm1sSndEQU9MM3hMTjREa3gxWF8yV2tlWTc2MnR6WFZh?oc=5"
