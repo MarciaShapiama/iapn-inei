@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-12T16:41-05:00",
+ "calculado": "2026-11-16T06:56-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
@@ -12,12 +12,12 @@
     "fuera_del_raster": 0
    },
    "salud": {
-    "dentro": 146,
-    "anillo_0_500m": 285,
-    "anillo_500m_1km": 146,
-    "acum_500m": 431,
-    "acum_1km": 577,
-    "total_locales": 1009,
+    "dentro": 73,
+    "anillo_0_500m": 135,
+    "anillo_500m_1km": 70,
+    "acum_500m": 208,
+    "acum_1km": 278,
+    "total_locales": 559,
     "fuera_del_raster": 0
    }
   },
@@ -47,11 +47,11 @@
     "personas_suma_departamentos": 57
    },
    "vivo": {
-    "edificaciones_total": 10,
-    "edificaciones_suma_departamentos": 10,
+    "edificaciones_total": 14,
+    "edificaciones_suma_departamentos": 14,
     "edificaciones_sin_distrito": 0,
-    "personas_total": 22,
-    "personas_suma_departamentos": 21
+    "personas_total": 27,
+    "personas_suma_departamentos": 27
    },
    "rp10": {
     "edificaciones_total": 108231,
@@ -175,47 +175,47 @@
    "fraccion_bruta_en_poligonos_distritales": 0.183
   },
   "vivo": {
-   "km2_mancha": 93.4,
-   "edificaciones": 10,
-   "personas": 22,
+   "km2_mancha": 93.0,
+   "edificaciones": 14,
+   "personas": 27,
    "qa": {
-    "km2_deteccion_bruta_caja": 614.1,
+    "km2_deteccion_bruta_caja": 682.2,
     "km2_agua_permanente_tierra": 99.5,
-    "km2_tras_mascara_tierra_y_limpieza": 93.4,
-    "fraccion_retenida": 0.152,
+    "km2_tras_mascara_tierra_y_limpieza": 93.0,
+    "fraccion_retenida": 0.136,
     "umbral_db": -17.0,
     "caida_db": 3.0,
     "compuesto_evento": "minimo",
     "referencia": [
      "2026-08-01",
-     "2026-10-18"
+     "2026-10-22"
     ],
     "referencia_solapa_evento": false
    },
-   "imagenes": 15,
+   "imagenes": 14,
    "primera_y_ultima_imagen": [
-    "2026-10-19",
-    "2026-11-11"
+    "2026-10-24",
+    "2026-11-14"
    ],
    "top5_distritos_por_km2": [
     {
-     "Sechura": 87.05
+     "Sechura": 86.28
     },
     {
-     "La Brea": 2.0
+     "La Brea": 2.2
     },
     {
-     "Tumbes": 1.05
+     "Tumbes": 0.86
     },
     {
-     "Zarumilla": 0.62
+     "Castilla": 0.77
     },
     {
-     "Castilla": 0.55
+     "Zarumilla": 0.63
     }
    ],
-   "fraccion_en_sechura": 0.932,
-   "fraccion_bruta_en_poligonos_distritales": 0.156
+   "fraccion_en_sechura": 0.928,
+   "fraccion_bruta_en_poligonos_distritales": 0.14
   }
  },
  "5_poblacion": {
