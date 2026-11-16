@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-15T14:25-05:00",
- "hoy": "2026-11-15",
+ "generado": "2026-11-16T06:38-05:00",
+ "hoy": "2026-11-16",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
   "verificados": "data/eventos/catalogo_verificado.csv (revisión manual del equipo)",
@@ -382,6 +382,12 @@
      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNeUpmZEFkYmlFUkMyZUpScnNVOWtCZ2FyRFdoTm1DemhqUHJoTGJEQ0FkUUk3QWpxS1o2ckk2Qmw2MERSNVpkMWRKMjd2S2RNM0tvZVhoblhKNEd6b3RlRFNybWN3UFVKR0FZMThZeUh1cmNGenNrakJIR3B3Qlhnck5nMkItQW5jVFk4UlFZaEt1bl9yV2VkNEROcDZ1a2cxYWVSdks0dUY2MWdzR1VwSjJGONIBuAFBVV95cUxQb1dXbHF0V3FtWlR3QWNBWWJ4bzZVOUpMdF9DckRJb0JER3BncWVNTG41TWZHV3NEUjFjLWdveWRYQlNIM1ZLUnJ0U3NicGJTWVpJa2tsNV9YZkNGY3loS3MwZ1dEUE9uRzZBZEZYQm0xYVA2b0J5ZnRXOWJKa0ZUZTgwWmdaNTI0Zy1mNk1lMnFSZEpMQllxQ2hITG9KWlU1MVhWNVpSMVRfbTNLZnNzOXdGMWE1YV8z?oc=5"
     },
     {
+     "titulo": "Tumbes bajo el agua: lluvias históricas de 104 litros por m² activan quebradas y alertan al norte",
+     "medio": "El Comercio Perú",
+     "fecha": "2026-11-03",
+     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNRW1wLXFCVXRxUFZoRU5jUGdkbTZ5VDhVTzRZaGJXNjUyMXBJREQwSnMyX2NhMUU0bXMyLWNTS0FnMTF0MVM1YmFaZU5aX214Z3pxbDNWazRQU3JweHhfcUVxcmE5SDRwcHZuTTVWMTZnSjdUZXpScjRDTEh3WVdXMXFTNXRmX1M2TEs0RWg0SjBTWEgtRGEzWXRrRXNxQkEwbkJ3RTVVMzF5eDRWT0ExS3dETzNWTC1iZjBGS09EYWpaU2MyLWdJbVRvaUhEeEFEV3dGbGdpSEtfeVhVajVibUxB0gH2AUFVX3lxTE5iMUJ4dDU3T3RqYVRHd2VhclIwXzc5eTh0UE1HNmwxYzdYYy05dlhYTFpzMmIyallIanQ4TlNlWGlNZ2pwTTJLdUN3RmRUZm1LSV9Fa0NybWc3bmJQbzFNcnRWdk4zeHF5UnBqSEtCQU0xMkU3Uy1IWmJ2Y2VxUXBnWHZBWmRJaTAtVmtSSHdLWHMwaGRDQVRuemVDNlFMU1oxNkpaTVN0bjhrR2Vqdl9iLU51WU1aTXo1QVlUQ0h1MHZ1TkNIRUVXdnlTTmNMYi15QjcwLTd2eV9LY0NwOEczRkl1Q2dUei1rcE5Zd3FMRzNjdFd5UQ?oc=5"
+    },
+    {
      "titulo": "Tumbes en emergencia: evacúan a familias tras inundaciones causadas por lluvias intensas",
      "medio": "Diario La Opinión Ica",
      "fecha": "2026-11-03",
@@ -392,12 +398,6 @@
      "medio": "AP Noticias",
      "fecha": "2026-11-03",
      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPYXRaOVp6LWYxTnYzT05kX0tzSnBFVjNoZ2ZQcEZZa0xMaXJTTjN3dmozbHNIanFuMXhORHVKdG1xaDFBRkR6bFBIWDdVMXdUTjM2T2wtdzB2aUVFSFd2QlZnWEowajRfWXhpWEhwdTByZFFXaWVvOXd4VXozVmlUcXVRRDVXNzV3b09Tbw?oc=5"
-    },
-    {
-     "titulo": "Tumbes bajo el agua: lluvias históricas de 104 litros por m² activan quebradas y alertan al norte",
-     "medio": "El Comercio Perú",
-     "fecha": "2026-11-03",
-     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNRW1wLXFCVXRxUFZoRU5jUGdkbTZ5VDhVTzRZaGJXNjUyMXBJREQwSnMyX2NhMUU0bXMyLWNTS0FnMTF0MVM1YmFaZU5aX214Z3pxbDNWazRQU3JweHhfcUVxcmE5SDRwcHZuTTVWMTZnSjdUZXpScjRDTEh3WVdXMXFTNXRmX1M2TEs0RWg0SjBTWEgtRGEzWXRrRXNxQkEwbkJ3RTVVMzF5eDRWT0ExS3dETzNWTC1iZjBGS09EYWpaU2MyLWdJbVRvaUhEeEFEV3dGbGdpSEtfeVhVajVibUxB0gH2AUFVX3lxTE5iMUJ4dDU3T3RqYVRHd2VhclIwXzc5eTh0UE1HNmwxYzdYYy05dlhYTFpzMmIyallIanQ4TlNlWGlNZ2pwTTJLdUN3RmRUZm1LSV9Fa0NybWc3bmJQbzFNcnRWdk4zeHF5UnBqSEtCQU0xMkU3Uy1IWmJ2Y2VxUXBnWHZBWmRJaTAtVmtSSHdLWHMwaGRDQVRuemVDNlFMU1oxNkpaTVN0bjhrR2Vqdl9iLU51WU1aTXo1QVlUQ0h1MHZ1TkNIRUVXdnlTTmNMYi15QjcwLTd2eV9LY0NwOEczRkl1Q2dUei1rcE5Zd3FMRzNjdFd5UQ?oc=5"
     },
     {
      "titulo": "El norte del Perú ya sufre los estragos de El Niño: más de 300 damnificados, calles inundadas y clases suspendidas en Tumbes",
@@ -580,13 +580,13 @@
      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNWEFZTnVXWWtwQ3FuSmkwTnhkVDBFNUxFWjBESWJSc3Niak14MEMtWlZtSGJqVUtzN2p2cXNTVDJJYXlwYndWc3dUMmhfYWExek1Tb3haelFWYU9jbVZjaDMwTWQ2ZTdRb3ppd3kyQVRmWnZZaHBpSmZMcElHSFpPXzk4eW9zbDdFZmNhWEdnaXBGZVdqWTVXZmRlaGI3U1A5WXdRbS1nMXRiMEY0MTZwd2lrTGtMbVU0SzJPOU1RRW9iNWM2UUptaGtXTGwwcE5LOE9XbUVIRGo5VkhkVjl6Nw?oc=5"
     },
     {
-     "titulo": "Tumbes bajo intensas lluvias: ¿qué vías han sido afectadas y cuáles son las más de 10 quebradas activadas?",
+     "titulo": "Tumbes: Oficina Regional de Gestión del Riesgo reporta vías afectadas y más de 10 quebradas activadas por intensas lluvias",
      "medio": "El Comercio Perú",
      "fecha": "2026-11-08",
      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPVTNJSUlJQ2c2SlRwQmRqS3VkVDVQUUFNTm1wRFI2LTNkTDhqbkEtcGIxUHh0ZHVwN3Z4Z2FEVE9SQXg4OUlqYkpmdjE4a2VNZl9kNXN1N0w4TmpLeDEwU0pINlFQWGcwaTBxaF9lTGozMVpOS2hGYUVvT2x3MU1KVFg1SERvWDR3OTlFYlRSMXdOMzFqdEJIZUFFOTlNaE5UYnZObngtTENCT2Q4V29ySjhaMUI1XzF5QkVkRm5KbnJJMFB6cUdqVmpQU05NcmF5STB4czJtLUFWcklTajA3cWdaMUZJOExKMTlLcDIzeENKTHBQSEFqSFBjVjFPMFhrQkN4LdIBmAJBVV95cUxOYXJyWVlyNENjdG1Idk1DT282cml6OWZKTkF3SE9XMFJGNGVTMkxXQ0hHSnc1LUMzVnVwb2JxWkZjMF9aV3RNdVBfaWFRLUhka1RQUkV2c2gydEUtOTRBTlFNSmp5VThNQVR3cm9GbXRpUGpzZWc5a01EUXYzMFNtTzZ5dDhGV2Q4SHNnRlZjaG9qUjA3YmRQSHJ3R0trcm4zN2JVQjV1ZGMzejdBXzdxVHk0X0JiM1FSYWVOOEx2eWp0NU90b1QtT1JSQjM3QlZzOGpDcmlOUzh1UlRmMnNSbDR1Yjc0N0hSYUxZS2RVVG9HdVNjTk9yWm1sSndEQU9MM3hMTjREa3gxWF8yV2tlWTc2MnR6WFZh?oc=5"
     },
     {
-     "titulo": "Tumbes: Oficina Regional de Gestión del Riesgo reporta vías afectadas y más de 10 quebradas activadas por intensas lluvias",
+     "titulo": "Tumbes bajo intensas lluvias: ¿qué vías han sido afectadas y cuáles son las más de 10 quebradas activadas?",
      "medio": "El Comercio Perú",
      "fecha": "2026-11-08",
      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPVTNJSUlJQ2c2SlRwQmRqS3VkVDVQUUFNTm1wRFI2LTNkTDhqbkEtcGIxUHh0ZHVwN3Z4Z2FEVE9SQXg4OUlqYkpmdjE4a2VNZl9kNXN1N0w4TmpLeDEwU0pINlFQWGcwaTBxaF9lTGozMVpOS2hGYUVvT2x3MU1KVFg1SERvWDR3OTlFYlRSMXdOMzFqdEJIZUFFOTlNaE5UYnZObngtTENCT2Q4V29ySjhaMUI1XzF5QkVkRm5KbnJJMFB6cUdqVmpQU05NcmF5STB4czJtLUFWcklTajA3cWdaMUZJOExKMTlLcDIzeENKTHBQSEFqSFBjVjFPMFhrQkN4LdIBmAJBVV95cUxOYXJyWVlyNENjdG1Idk1DT282cml6OWZKTkF3SE9XMFJGNGVTMkxXQ0hHSnc1LUMzVnVwb2JxWkZjMF9aV3RNdVBfaWFRLUhka1RQUkV2c2gydEUtOTRBTlFNSmp5VThNQVR3cm9GbXRpUGpzZWc5a01EUXYzMFNtTzZ5dDhGV2Q4SHNnRlZjaG9qUjA3YmRQSHJ3R0trcm4zN2JVQjV1ZGMzejdBXzdxVHk0X0JiM1FSYWVOOEx2eWp0NU90b1QtT1JSQjM3QlZzOGpDcmlOUzh1UlRmMnNSbDR1Yjc0N0hSYUxZS2RVVG9HdVNjTk9yWm1sSndEQU9MM3hMTjREa3gxWF8yV2tlWTc2MnR6WFZh?oc=5"
