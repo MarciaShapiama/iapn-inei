@@ -1,4 +1,4 @@
-"""Figuras paso a paso: ¿de dónde sale el agua azul del mapa? (docs/6_presentacion/presentacion/figuras/agua_*.png)
+"""Figuras paso a paso: ¿de dónde sale el agua azul del mapa? (docs/6_presentacion/historico/figuras_presentaciones/agua_*.png)
 
 Se usa una ventana pequeña del Bajo Piura (área de Copernicus EMS 10PIURA, marzo de 2017) y se repite, solo en esa
 ventana, el mismo cálculo de src/huellas.py:
@@ -34,7 +34,7 @@ from matplotlib.patches import Patch
 
 R = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(R / "src"))
-F = R / "docs" / "6_presentacion" / "presentacion" / "figuras"
+F = R / "docs" / "6_presentacion" / "historico" / "figuras_presentaciones"
 F.mkdir(parents=True, exist_ok=True)
 CACHE = R / "data" / "validacion" / "ventana_bajo_piura_2017.npz"
 EMS = R / "data" / "validacion" / "ems2017"

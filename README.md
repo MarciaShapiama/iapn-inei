@@ -43,7 +43,7 @@ iapn-inei/
 │   ├── 3_validacion/         Pruebas contra noticias, INDECI y Copernicus
 │   ├── 4_tablero/            Mejoras del tablero (río normal frente a El Niño, calidad visual)
 │   ├── 5_aporte_y_politicas/ Aporte al INEI, estado del arte y políticas públicas
-│   ├── 6_presentacion/       Informe final, guía de preguntas del jurado y avances anteriores
+│   ├── 6_presentacion/       Informe final, presentación y versiones anteriores (histórico)
 │   ├── evidencia/            Salidas de las pruebas (JSON) que respaldan las cifras de los documentos
 │   └── figuras/              Figuras sueltas
 ├── herramientas/         Scripts que no son parte de la actualización diaria
@@ -59,7 +59,7 @@ El INEI entregó al proyecto los datos por manzana y centro poblado de los Censo
 
 ## Documentos
 
-Los documentos están numerados por carpeta: el primer número es el tema y el segundo, el orden de lectura. **Para empezar, lea 1.3, 2.2, 3.1 y 3.3.** Los marcados *(histórico)* documentan versiones anteriores y se conservan por trazabilidad.
+Los documentos están numerados por carpeta: el primer número es el tema y el segundo, el orden de lectura. **Para empezar, lea 1.3, 2.2, 2.7 y 3.3.** Los marcados *(histórico)* documentan versiones anteriores y se conservan por trazabilidad.
 
 | N.° | Documento | Contenido |
 |---|---|---|
@@ -76,10 +76,11 @@ Los documentos están numerados por carpeta: el primer número es el tema y el s
 | 2.4 | [Modelo de viviendas afectadas](docs/2_modelo/2.4_MODELO_VIVIENDAS_AFECTADAS.md) | Dos etapas (¿hay emergencia? → ¿cuántas viviendas?) |
 | 2.5 | [Plan de machine learning](docs/2_modelo/2.5_PLAN_MACHINE_LEARNING.md) | *(histórico)* Plan inicial y su evaluación |
 | 2.6 | [Diseño del modelo de viviendas](docs/2_modelo/2.6_DISENO_MODELO_VIVIENDAS.md) | *(histórico)* Primer diseño de la pregunta del profesor |
+| 2.7 | [Trazabilidad y registro de decisiones](docs/2_modelo/2.7_TRAZABILIDAD_Y_REGISTRO_DE_DECISIONES.md) | Qué se fijó antes de evaluar, qué se cambió y con qué efecto, resultados que no favorecen al modelo, límites de la validación y cómo reproducir las cifras |
 | **3 · Validación** | | |
 | 3.1 | [¿El aviso habría anticipado el pasado?](docs/3_validacion/3.1_PRUEBA_AVISO_CON_EL_PASADO.md) | Pronósticos reales antes de 10 eventos (9 avisados), 24 años de INDECI y falsas alarmas |
 | 3.2 | [El radar frente a las noticias](docs/3_validacion/3.2_RADAR_FRENTE_A_NOTICIAS.md) | Qué ve y qué no ve el satélite; capa de inundaciones reportadas |
-| 3.3 | [Auditoría crítica](docs/3_validacion/3.3_AUDITORIA_CRITICA.md) | ¿El modelo aprende?, de dónde sale cada dato y qué falta: lo que preguntará el jurado |
+| 3.3 | [Auditoría del modelo y de los datos](docs/3_validacion/3.3_AUDITORIA_CRITICA.md) | ¿El modelo aprende?, de dónde sale cada dato, pruebas de fuga de información y mejoras identificadas |
 | 3.4 | [Validación y viabilidad](docs/3_validacion/3.4_VALIDACION_Y_VIABILIDAD_EXPANSION.md) | Validación contra INDECI y costo de expandir a otras regiones |
 | 3.5 | [Prueba del aviso de lluvia (noviembre)](docs/3_validacion/3.5_PRUEBA_AVISO_LLUVIA_NOVIEMBRE.md) | Aviso del 5/11 frente a lo que pasó |
 | **4 · Tablero** | | |
@@ -92,10 +93,9 @@ Los documentos están numerados por carpeta: el primer número es el tema y el s
 | 5.4 | [Estado del arte: avisos e impacto](docs/5_aporte_y_politicas/5.4_ESTADO_DEL_ARTE_AVISOS_E_IMPACTO.md) · [referencias](docs/5_aporte_y_politicas/5.4_REFERENCIAS.csv) | Avisos basados en impacto, daños y El Niño costero |
 | 5.5 | [Trabajos parecidos en el mundo](docs/5_aporte_y_politicas/5.5_TRABAJOS_SIMILARES_Y_MEJORAS.md) | Qué tomamos de trabajos parecidos (Cataluña, Cruz Roja Perú, calibración) y mejoras pendientes |
 | **6 · Presentación** | | |
-| 6.1 | [Preguntas del jurado](docs/6_presentacion/6.1_PREGUNTAS_JURADO.md) | Preguntas con respuesta, cifra y fuente |
-| — | [Informe final (PDF)](docs/6_presentacion/informe_final/Informe_final_proyecto_integrador.pdf) · [Word](docs/6_presentacion/informe_final/Informe_final_proyecto_integrador.docx) | Informe en formato APA 7, con las cifras del 9 de noviembre de 2026 |
-| — | `docs/6_presentacion/presentacion/` y `avance_latex/` | *(histórico)* Presentaciones e informe de avance en LaTeX, anteriores al modelo por plazo |
-| — | `docs/6_presentacion/Guia_didactica_modelo.pdf` | Guía didáctica del modelo de alerta, variable por variable |
+| — | [Informe final (PDF)](docs/6_presentacion/informe_final/Informe_final_proyecto_integrador.pdf) · [Word](docs/6_presentacion/informe_final/Informe_final_proyecto_integrador.docx) | Informe final del proyecto integrador, con la corrida del 16 de noviembre de 2026 |
+| — | [Presentación (PDF)](docs/6_presentacion/presentacion/Presentacion_proyecto_integrador.pdf) · [PowerPoint](docs/6_presentacion/presentacion/Presentacion_proyecto_integrador.pptx) | Presentación del proyecto, con anexos de respaldo |
+| — | `docs/6_presentacion/historico/` | *(histórico)* Informe de avance, presentaciones y guía didáctica anteriores al modelo por plazo |
 
 Las salidas de las pruebas que respaldan cada cifra están en `docs/evidencia/` (JSON y CSV).
 
@@ -190,7 +190,7 @@ Pasos sueltos útiles:
 python -m pytest -q
 ```
 
-Son 38 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, estados); de integración de datos (sumas que concilian, acumulados que crecen, UBIGEO únicos, geometrías dentro de la caja, población alineada con las edificaciones, metadatos completos); y un smoke test del sitio con un servidor local. En GitHub Actions, el workflow **Pruebas** corre en cada push y después de cada actualización. Además, los workflows de actualización **no guardan** si las pruebas de datos fallan.
+Son 87 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, estados); de integración de datos (sumas que concilian, acumulados que crecen, UBIGEO únicos, geometrías dentro de la caja, población alineada con las edificaciones, metadatos completos); y un smoke test del sitio con un servidor local. En GitHub Actions, el workflow **Pruebas** corre en cada push y después de cada actualización. Además, los workflows de actualización **no guardan** si las pruebas de datos fallan.
 
 ## Automatización (GitHub Actions)
 
@@ -199,6 +199,7 @@ Son 38 pruebas: unitarias (anillos, Otsu, referencia del radar, reintentos, esta
 | `actualizar.yml` | Diario 13:20 UTC (8:20 Lima) | `etl.py diario` → pruebas → commit |
 | `inundaciones.yml` | Lunes y jueves | `etl.py inundacion` → pruebas → commit |
 | `base_modelo.yml` | Lunes | Base distrito-semana y modelo |
+| `satelite.yml` | Miércoles | Fotos satelitales del tablero |
 | `pruebas.yml` | Push, PR y tras las actualizaciones | Estado de las capas (`::warning::` si hay datos rezagados) + pytest + smoke test del sitio publicado |
 | `pages.yml` | Push a `dashboard/` o tras cualquiera de las actualizaciones | Publica `dashboard/` en GitHub Pages |
 
