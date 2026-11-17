@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-17T06:39-05:00",
+ "generado": "2026-11-17T16:55-05:00",
  "hoy": "2026-11-17",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
@@ -10,17 +10,77 @@
  "resumen_radar": {
   "detectado": 4,
   "no detectado": 5,
-  "fuera de alcance": 16,
-  "sin pasada": 0,
-  "sin radar": 1
+  "fuera de alcance": 15,
+  "sin pasada": 1,
+  "sin radar": 3
  },
- "n": 26,
+ "n": 28,
  "eventos": [
+  {
+   "id": "n-2026-11-17-tumbes",
+   "origen": "noticias (automático)",
+   "fecha": "2026-11-17",
+   "fecha_fin": "2026-11-17",
+   "lugar": "Tumbes",
+   "ubigeo": "240101",
+   "distrito": "Tumbes",
+   "provincia": "Tumbes",
+   "departamento": "Tumbes",
+   "lat": -3.5683,
+   "lon": -80.4377,
+   "altura_m": 37,
+   "precision": "solo dice «Tumbes»: se ubica en la ciudad (aproximado)",
+   "tipo": "inundación",
+   "titulo": "Alcalde de Tumbes alerta sobre inundaciones en zonas agrícolas: \"El limón, plátano y arroz son los más afectados\"",
+   "articulos": [
+    {
+     "titulo": "Alcalde de Tumbes alerta sobre inundaciones en zonas agrícolas: \"El limón, plátano y arroz son los más afectados\"",
+     "medio": "Revista Caretas",
+     "fecha": "2026-11-17",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQWnozZWJ0dzVYdjZSbEhxWUt0SHhFUjh5ZDNQZm5QV0dIdXNYN1B2VXBpc2g3ckJVbS1vdFRRV2d4Ty03eHhDS1FuQ0FBNUpzbm12RHREYTlYNHI5dWRXZWZXZFdvaWNtamo0STZrb0JrZVJySEpINEtRUGdSU3ZTN2poRnhyczBtczQzTE45NVN3X1JwcjZSeWpoR0lkU1pRN1c3Z1hGZjhxaDJId1Y3bWVpNFJWTzhSX1NuSjVSR3VvV04zODU1Qm01UVZONWFGcGE3MQ?oc=5"
+    }
+   ],
+   "radar": {
+    "capa": null,
+    "veredicto": "sin radar",
+    "explicacion": "No hay una capa de radar calculada para esa fecha."
+   }
+  },
+  {
+   "id": "n-2026-11-17-la-matanza",
+   "origen": "noticias (automático)",
+   "fecha": "2026-11-17",
+   "fecha_fin": "2026-11-17",
+   "lugar": "La Matanza",
+   "ubigeo": "200404",
+   "distrito": "La Matanza",
+   "provincia": "Morropón",
+   "departamento": "Piura",
+   "lat": -5.2138,
+   "lon": -80.0924,
+   "altura_m": 112,
+   "precision": "lugar nombrado en la noticia",
+   "tipo": "lluvia urbana",
+   "titulo": "Piura: fuertes lluvias inundan colegio y obligan a suspender clases en La Matanza",
+   "articulos": [
+    {
+     "titulo": "Piura: fuertes lluvias inundan colegio y obligan a suspender clases en La Matanza",
+     "medio": "Diario Correo",
+     "fecha": "2026-11-17",
+     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPQ0ZlcXAxWDFHVWNMYkFtVTZoTHA1MnhBdk5mTE9zWVF5NWpMVFNRUENLWHpEN21FLTdFVzcyMXo2dElUYnpCMjdlUXlyRHl5OVVDWGxBUWYyb2JqeXZtMlpCWXJ0YXZlRmthZDJ0ZU5iZERmWWxaYXQtTzhxa2YxRXY3OTNnV3RhSy10aUYtb2FsSUc3NEo1eXh2ZG5TcGRtMC1Z0gG3AUFVX3lxTE5TWS1ZNTlFVUFEQzZrTzNLdWZnQVhzeFZ0VkhubWJJdWJpNGZadWVNVXB2Zk4zZ0VIOXNzLUlyN3g4VHhoUUdkSHRKZzlMR0ZNOUpUX3pXQ1F0aUhhMkdpV2hpZmhaRGprc2tLbjRnNHh6UHY2VmZuNkdPSkYtTjM4ZnhzY2RPQnFjMFlMMmlPUndtT2g5ZnN1QTlBU2QwSzh3d3FqN0NCYWg1cnZncW5oSGZsMDhmOA?oc=5"
+    }
+   ],
+   "radar": {
+    "capa": null,
+    "veredicto": "sin radar",
+    "explicacion": "No hay una capa de radar calculada para esa fecha."
+   }
+  },
   {
    "id": "n-2026-11-16-piura",
    "origen": "noticias (automático)",
    "fecha": "2026-11-16",
-   "fecha_fin": "2026-11-16",
+   "fecha_fin": "2026-11-17",
    "lugar": "Piura",
    "ubigeo": "200101",
    "distrito": "Piura",
@@ -30,7 +90,7 @@
    "lon": -80.6402,
    "altura_m": 35,
    "precision": "solo dice «Piura»: se ubica en la ciudad (aproximado)",
-   "tipo": "activación de quebrada",
+   "tipo": "desborde de río o quebrada",
    "titulo": "LLUVIAS INTENSAS ACTIVAN QUEBRADA PALO VERDE PROVOCANDO UNA INUNDACIÓN EN EL COLEGIO PÚBLICO SAN AGUSTÍN EN PIURA",
    "articulos": [
     {
@@ -44,14 +104,20 @@
      "medio": "tvperu.gob.pe",
      "fecha": "2026-11-16",
      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNNFNJbDdpVkpuUnhXbTJzSF9EV2Z4T0xISFFSZFVOM01rcFdTMkk1cWNuY2VzRnYzUUZzMHpyTGIzODl6cG5RbTR0Uy14UVdsdXFCQ2lsSWxWbHpoUk9WYXg2S3VNbFYxNmJvNTRGYXJNQnpYczRUWjJZQVZDeERCWU54alhoUGlBOS1OZU5LOHVfQjlESnItcjNJR3hLbzFHeXotODhXWjBwZ0w0N1F4ZTk3eUtudDZLUVcwQVpFdEFFQQ?oc=5"
+    },
+    {
+     "titulo": "Miniván es arrastrada tras desborde de río en Piura y pasajeros son rescatados",
+     "medio": "ATV.pe",
+     "fecha": "2026-11-17",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMi0xQXZGT1U4QVJOSHJLZzhOemhzaEQyTXZXZG5DYkJWTmVXUHhqRzhMTk83NWl3eko3UEtiYkxWRFpJMk9LT3l1ei1ScG1kQUJobUduNUx3WWVLdm96U0FxNXdzT3puS05HWUZDYXJQR2xNVE9vd3lkcDhHVnlxT3F2VTM2TkQ2?oc=5"
     }
    ],
    "radar": {
     "capa": "Últimos 24 días",
     "km2_a_3km": 0.0,
     "pasadas_desde_la_noticia": [],
-    "veredicto": "fuera de alcance",
-    "explicacion": "Quebrada activada: el agua corre por un cauce de pocos metros y dura horas; el radar (píxel de ~55 m, una pasada cada pocos días) no alcanza a verla."
+    "veredicto": "sin pasada",
+    "explicacion": "El satélite Sentinel-1 todavía no pasó por aquí después de la fecha de la noticia."
    }
   },
   {
@@ -453,6 +519,12 @@
      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNRW1wLXFCVXRxUFZoRU5jUGdkbTZ5VDhVTzRZaGJXNjUyMXBJREQwSnMyX2NhMUU0bXMyLWNTS0FnMTF0MVM1YmFaZU5aX214Z3pxbDNWazRQU3JweHhfcUVxcmE5SDRwcHZuTTVWMTZnSjdUZXpScjRDTEh3WVdXMXFTNXRmX1M2TEs0RWg0SjBTWEgtRGEzWXRrRXNxQkEwbkJ3RTVVMzF5eDRWT0ExS3dETzNWTC1iZjBGS09EYWpaU2MyLWdJbVRvaUhEeEFEV3dGbGdpSEtfeVhVajVibUxB0gH2AUFVX3lxTE5iMUJ4dDU3T3RqYVRHd2VhclIwXzc5eTh0UE1HNmwxYzdYYy05dlhYTFpzMmIyallIanQ4TlNlWGlNZ2pwTTJLdUN3RmRUZm1LSV9Fa0NybWc3bmJQbzFNcnRWdk4zeHF5UnBqSEtCQU0xMkU3Uy1IWmJ2Y2VxUXBnWHZBWmRJaTAtVmtSSHdLWHMwaGRDQVRuemVDNlFMU1oxNkpaTVN0bjhrR2Vqdl9iLU51WU1aTXo1QVlUQ0h1MHZ1TkNIRUVXdnlTTmNMYi15QjcwLTd2eV9LY0NwOEczRkl1Q2dUei1rcE5Zd3FMRzNjdFd5UQ?oc=5"
     },
     {
+     "titulo": "Lluvias y activación de quebradas desde Tacna hasta Tumbes",
+     "medio": "Gestión",
+     "fecha": "2026-11-03",
+     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNSmExTGkza25IdG9rdFdzSkNQdnNYbkM0Q0k2T1lEZ2FuNE1KbWpjTFNyQ0k5d09IY3ZjU0FFTzlKUFNTVjdMZ2lvc1JfaWQ2MzhIYU1lSi1Ld0NxdkJHYjBzM0RwNkU1Yk5iRWZQTlVqamVpMFhYUGhJMk4zUW1EelFVQXk3UTg2RW9nX05ILThZRVJNMHc?oc=5"
+    },
+    {
      "titulo": "El norte del Perú ya sufre los estragos de El Niño: más de 300 damnificados, calles inundadas y clases suspendidas en Tumbes",
      "medio": "Infobae",
      "fecha": "2026-11-03",
@@ -475,12 +547,6 @@
      "medio": "Canal N",
      "fecha": "2026-11-03",
      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOTWZUVjNwZFFUSVRBV3JDOFFMZFh1RnRtTU9MbDB6ejlhTDdKRF9RTEhrZVM0SlZPWndxY21ZeHBCUktSX3lWZElpNFRyWlBuYkc5Y3NhTEEtbUtpV1hvZ0JLY0dsWDhIWURpSkZIN00teTJFa2lfcjRmSmpqVFZQa3pfbWdPb1Zkb2FPd3pXSU9LX3hMbmZQdGNSemFGbGlBZnFaZFhwVVFaZ0ZndHJPSDVB?oc=5"
-    },
-    {
-     "titulo": "Lluvias y activación de quebradas desde Tacna hasta Tumbes",
-     "medio": "Gestión",
-     "fecha": "2026-11-03",
-     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNSmExTGkza25IdG9rdFdzSkNQdnNYbkM0Q0k2T1lEZ2FuNE1KbWpjTFNyQ0k5d09IY3ZjU0FFTzlKUFNTVjdMZ2lvc1JfaWQ2MzhIYU1lSi1Ld0NxdkJHYjBzM0RwNkU1Yk5iRWZQTlVqamVpMFhYUGhJMk4zUW1EelFVQXk3UTg2RW9nX05ILThZRVJNMHc?oc=5"
     },
     {
      "titulo": "Tumbes: Sector Vivienda atiende a familias afectadas por desborde del río Zarumilla",
@@ -525,12 +591,6 @@
      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQTEhCTTZXZFlIZGhEN3dTQmNDSjY2TURDbF9oQUYzdXVJclRYUWwySUxSYnVQTk0tQW9iOXJtMVR3Ri1hbEdMUVo5WDJ4NWtaR2FQMngyUngwOHN2clhpdHlmVS1xLXFLMHVOMHhnN0dSUFIweHBPQVpxN2x1OHdhUm1STXhWd2F5d2tWeVphd205TU9uWEt5MjZXUmQtdS1veGR4eDlsSGZXNlh2cXlnSHpvdWlHamJsTmo2M0ZEQVZNejItaUVveTF2QVBWbHdrUFdHcmtQczBKallCeVR4WjZ3MEJ1enZpTzRZTmRDNWJmenpOaE1PSkxocjVIQ0YweWpvOFRJd3VyUHRCdzcw?oc=5"
     },
     {
-     "titulo": "Tormenta impresionante e inundaciones aterrorizan a todo Tumbes (VIDEO)",
-     "medio": "El Búho.pe",
-     "fecha": "2026-11-05",
-     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPUnh5aTJPbzhXZ2FncE51NW1uZThlaV9XQlZFcnJUU25DME5UUUpGZGp1MzJaT21UbFJwWkkzWWxQTFRFNW0xbHRWVmhKWWlfWjdLSk9yNENaalZfWUw2aUdpRExsWHo3VEIwREpyX2Z2aGk0a2tDcWdobDZnSTRxc0VBYWxJbmxxYkpCWTQ2cmFLQzRHdmRnNG81c2c?oc=5"
-    },
-    {
      "titulo": "Tumbes bajo el agua: lluvias intensas y tormentas eléctricas inundan calles y aíslan poblados en el norte",
      "medio": "Willax",
      "fecha": "2026-11-05",
@@ -547,6 +607,12 @@
      "medio": "Agencia Andina",
      "fecha": "2026-11-05",
      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOTW5RbHlwakRGcXA1ZWZTSFp3bEtOdHVINVh6V3ZHQUtmSkFnTktPOUpIRnJ0WGFIQmY3LVRuT0VLb3lJLUk3aHJJTkN2NU9OdDdmYWlsbDFnT0tHNWM0YnhiZkNwdU05UjF0VUFhNW1JMU1mZ2t5bmoyWldfVEtsclRlNFlOU0RWLWZFUTg5R09adDdMZ2Z5V0xDanJOWFBEdVJPRVJCVkdrNXpqTWctSVlnelBoQ053N3FJdFBMOWtyNzJwOWc?oc=5"
+    },
+    {
+     "titulo": "Tormenta impresionante e inundaciones aterrorizan a todo Tumbes (VIDEO)",
+     "medio": "El Búho.pe",
+     "fecha": "2026-11-05",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPUnh5aTJPbzhXZ2FncE51NW1uZThlaV9XQlZFcnJUU25DME5UUUpGZGp1MzJaT21UbFJwWkkzWWxQTFRFNW0xbHRWVmhKWWlfWjdLSk9yNENaalZfWUw2aUdpRExsWHo3VEIwREpyX2Z2aGk0a2tDcWdobDZnSTRxc0VBYWxJbmxxYkpCWTQ2cmFLQzRHdmRnNG81c2c?oc=5"
     },
     {
      "titulo": "Colegio José Abelardo Quiñones queda anegado tras tres horas de intensa lluvia en Tumbes",
