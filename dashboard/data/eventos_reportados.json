@@ -1,6 +1,6 @@
 {
- "generado": "2026-11-16T17:57-05:00",
- "hoy": "2026-11-16",
+ "generado": "2026-11-17T06:39-05:00",
+ "hoy": "2026-11-17",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
   "verificados": "data/eventos/catalogo_verificado.csv (revisión manual del equipo)",
@@ -38,6 +38,12 @@
      "medio": "RCR Peru",
      "fecha": "2026-11-16",
      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxORHJRa1F0M3RUSkFIZ2daTm9ENlFRMEhHd181RTREeldBVXlITHJaV0x4ZFc0bU4tZ3YyOVBHQkZRQkNCRDBXYUl4WF9lbGZ5UEtOeHRnTUFabEljYTlCMUxhRzNYWHluRVhhR25CTS1KWktBalBnSjJfbWdseDZESE1QbmxSS2FvTlBKUW5ydlFFdTRsbDRaRjJLRmlpY1BXUklvTVZsMjdMVzk2NHVMTE9UNlc5MDQwZ1NLd0dMVWRwdVZfZGJWSDkzZUtGZURmNU1rSg?oc=5"
+    },
+    {
+     "titulo": "Piura: intensas precipitaciones hacen colapsar desagüe en varios sectores de la ciudad",
+     "medio": "tvperu.gob.pe",
+     "fecha": "2026-11-16",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNNFNJbDdpVkpuUnhXbTJzSF9EV2Z4T0xISFFSZFVOM01rcFdTMkk1cWNuY2VzRnYzUUZzMHpyTGIzODl6cG5RbTR0Uy14UVdsdXFCQ2lsSWxWbHpoUk9WYXg2S3VNbFYxNmJvNTRGYXJNQnpYczRUWjJZQVZDeERCWU54alhoUGlBOS1OZU5LOHVfQjlESnItcjNJR3hLbzFHeXotODhXWjBwZ0w0N1F4ZTk3eUtudDZLUVcwQVpFdEFFQQ?oc=5"
     }
    ],
    "radar": {
@@ -78,7 +84,8 @@
     "pasadas_desde_la_noticia": [
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "no detectado",
     "explicacion": "El radar no encontró agua abierta nueva cerca: la inundación pudo ser breve, angosta o dentro del poblado."
@@ -116,7 +123,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "no detectado",
     "explicacion": "El radar no encontró agua abierta nueva cerca: la inundación pudo ser breve, angosta o dentro del poblado."
@@ -156,7 +164,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -196,7 +205,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Está a 2722 m de altura. El detector solo trabaja debajo de 250 m: en la sierra la sombra del relieve se confunde con agua y los ríos son más angostos que un píxel."
@@ -244,7 +254,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -424,12 +435,6 @@
      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNeUpmZEFkYmlFUkMyZUpScnNVOWtCZ2FyRFdoTm1DemhqUHJoTGJEQ0FkUUk3QWpxS1o2ckk2Qmw2MERSNVpkMWRKMjd2S2RNM0tvZVhoblhKNEd6b3RlRFNybWN3UFVKR0FZMThZeUh1cmNGenNrakJIR3B3Qlhnck5nMkItQW5jVFk4UlFZaEt1bl9yV2VkNEROcDZ1a2cxYWVSdks0dUY2MWdzR1VwSjJGONIBuAFBVV95cUxQb1dXbHF0V3FtWlR3QWNBWWJ4bzZVOUpMdF9DckRJb0JER3BncWVNTG41TWZHV3NEUjFjLWdveWRYQlNIM1ZLUnJ0U3NicGJTWVpJa2tsNV9YZkNGY3loS3MwZ1dEUE9uRzZBZEZYQm0xYVA2b0J5ZnRXOWJKa0ZUZTgwWmdaNTI0Zy1mNk1lMnFSZEpMQllxQ2hITG9KWlU1MVhWNVpSMVRfbTNLZnNzOXdGMWE1YV8z?oc=5"
     },
     {
-     "titulo": "Tumbes bajo el agua: lluvias históricas de 104 litros por m² activan quebradas y alertan al norte",
-     "medio": "El Comercio Perú",
-     "fecha": "2026-11-03",
-     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNRW1wLXFCVXRxUFZoRU5jUGdkbTZ5VDhVTzRZaGJXNjUyMXBJREQwSnMyX2NhMUU0bXMyLWNTS0FnMTF0MVM1YmFaZU5aX214Z3pxbDNWazRQU3JweHhfcUVxcmE5SDRwcHZuTTVWMTZnSjdUZXpScjRDTEh3WVdXMXFTNXRmX1M2TEs0RWg0SjBTWEgtRGEzWXRrRXNxQkEwbkJ3RTVVMzF5eDRWT0ExS3dETzNWTC1iZjBGS09EYWpaU2MyLWdJbVRvaUhEeEFEV3dGbGdpSEtfeVhVajVibUxB0gH2AUFVX3lxTE5iMUJ4dDU3T3RqYVRHd2VhclIwXzc5eTh0UE1HNmwxYzdYYy05dlhYTFpzMmIyallIanQ4TlNlWGlNZ2pwTTJLdUN3RmRUZm1LSV9Fa0NybWc3bmJQbzFNcnRWdk4zeHF5UnBqSEtCQU0xMkU3Uy1IWmJ2Y2VxUXBnWHZBWmRJaTAtVmtSSHdLWHMwaGRDQVRuemVDNlFMU1oxNkpaTVN0bjhrR2Vqdl9iLU51WU1aTXo1QVlUQ0h1MHZ1TkNIRUVXdnlTTmNMYi15QjcwLTd2eV9LY0NwOEczRkl1Q2dUei1rcE5Zd3FMRzNjdFd5UQ?oc=5"
-    },
-    {
      "titulo": "Tumbes en emergencia: evacúan a familias tras inundaciones causadas por lluvias intensas",
      "medio": "Diario La Opinión Ica",
      "fecha": "2026-11-03",
@@ -440,6 +445,12 @@
      "medio": "AP Noticias",
      "fecha": "2026-11-03",
      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPYXRaOVp6LWYxTnYzT05kX0tzSnBFVjNoZ2ZQcEZZa0xMaXJTTjN3dmozbHNIanFuMXhORHVKdG1xaDFBRkR6bFBIWDdVMXdUTjM2T2wtdzB2aUVFSFd2QlZnWEowajRfWXhpWEhwdTByZFFXaWVvOXd4VXozVmlUcXVRRDVXNzV3b09Tbw?oc=5"
+    },
+    {
+     "titulo": "Tumbes bajo el agua: lluvias históricas de 104 litros por m² activan quebradas y alertan al norte",
+     "medio": "El Comercio Perú",
+     "fecha": "2026-11-03",
+     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNRW1wLXFCVXRxUFZoRU5jUGdkbTZ5VDhVTzRZaGJXNjUyMXBJREQwSnMyX2NhMUU0bXMyLWNTS0FnMTF0MVM1YmFaZU5aX214Z3pxbDNWazRQU3JweHhfcUVxcmE5SDRwcHZuTTVWMTZnSjdUZXpScjRDTEh3WVdXMXFTNXRmX1M2TEs0RWg0SjBTWEgtRGEzWXRrRXNxQkEwbkJ3RTVVMzF5eDRWT0ExS3dETzNWTC1iZjBGS09EYWpaU2MyLWdJbVRvaUhEeEFEV3dGbGdpSEtfeVhVajVibUxB0gH2AUFVX3lxTE5iMUJ4dDU3T3RqYVRHd2VhclIwXzc5eTh0UE1HNmwxYzdYYy05dlhYTFpzMmIyallIanQ4TlNlWGlNZ2pwTTJLdUN3RmRUZm1LSV9Fa0NybWc3bmJQbzFNcnRWdk4zeHF5UnBqSEtCQU0xMkU3Uy1IWmJ2Y2VxUXBnWHZBWmRJaTAtVmtSSHdLWHMwaGRDQVRuemVDNlFMU1oxNkpaTVN0bjhrR2Vqdl9iLU51WU1aTXo1QVlUQ0h1MHZ1TkNIRUVXdnlTTmNMYi15QjcwLTd2eV9LY0NwOEczRkl1Q2dUei1rcE5Zd3FMRzNjdFd5UQ?oc=5"
     },
     {
      "titulo": "El norte del Perú ya sufre los estragos de El Niño: más de 300 damnificados, calles inundadas y clases suspendidas en Tumbes",
@@ -568,6 +579,12 @@
      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPaWJmMi1lRUVxSEpWX0RKanh1U0hMMkZXcjZEMWxRUW9UOUc1RHpMa185Z0E5Yk92eExUUkhqdV9mUDVtZThSWkhUU0VxOHU5ZlBmQ200SGNKMF9aM1lXLTkzTTdWSk1tRjJCbWJsR1lqTVZXSThYOXY2UW02V1E0NmRwWDEyQjQwcWdFYnNVZml1QXhTLTdLM3BsX1Fpa09FTjhfTF9zYW9NREdjeGhEclNHOEc3amJleE5wdFR4QnNidTdydDE0a05CWE9oR1VfbWRSbNIB7wFBVV95cUxNNjMxYXR0RWNrVXVialNlZ1NDWTZDektjbDk4UVVEX3BJWm5GMThLVy1pR3ZjakhSNnktQnJZMUxzS2dtSVJjZ2FWbElBVHNWbVdRXzhRNEt3dUZnOVZsQjRNVG9ZSzVvTFd6bzgwX0xLOHdnSk5fY1pFckJLRGhnV1NQVElXVURRR1M1dEN3YlBJdWgxSTRTcFpXUnVnTFlvLVVBd3VPY1p6Z1d2aVdhUDFDS2RYNmtDQUgyTTBOa3N5SkNtUVNBUC15OTFnNEpJTlJ2SnFjYzRCcUNsYXdHQjJfdlN2RzAxdGZ6QTN2cw?oc=5"
     },
     {
+     "titulo": "Lluvias intensas en Tumbes dejan 324 damnificados y 808 afectados",
+     "medio": "Macronorte",
+     "fecha": "2026-11-06",
+     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObmlIekJ3Tmd0T0pFclc1T1drOXB2RlhybVpqXzM3VElzekg0N2JsUDFuOEJ1MnNqemFGQjZ5Rl81WllicWM0UGdlVkYxMWp3ZlU3ODRzQlVnSm03czBSUE8zRkp4LXdFbTVpNXZiamFrR25xTWthbXVIYU1EQUZRNDdEMTZ6S0NndHRHT1JGeDg0cmNUbDlLd2Jxc3M0Nndp?oc=5"
+    },
+    {
      "titulo": "Se implementó en 36 horas y terminó inundado en un día: el fiasco del hospital de campaña del gobierno de Keiko Fujimori en Tumbes (VIDEO)",
      "medio": "El Búho.pe",
      "fecha": "2026-11-06",
@@ -578,12 +595,6 @@
      "medio": "Agencia Andina",
      "fecha": "2026-11-06",
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNRHZFQWN4V00yY0xpVFNoaV82UGU2RGw3aWMwcjUyODBBcHBvZExpek9ZUGRyS3ZuOXVSYlR4bmxNNkVpczlIOEM0eTdQLTB0Nzktd21LeXFBaE9yVGI3N2J6dDNFRU1SSk5mZFZnV0FMZXZGWXgwYjlqRXh1Zm81NDY2SnlfUmQ4VDJPeVFmcm52b3Z1RWZBVnhkTHJVSm9fRWlyclRHWXlUbEFCUGNtT0tWTUFJUmRYRldkSGQ1ZlV4LTg1?oc=5"
-    },
-    {
-     "titulo": "Lluvias intensas en Tumbes dejan 324 damnificados y 808 afectados",
-     "medio": "Macronorte",
-     "fecha": "2026-11-06",
-     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObmlIekJ3Tmd0T0pFclc1T1drOXB2RlhybVpqXzM3VElzekg0N2JsUDFuOEJ1MnNqemFGQjZ5Rl81WllicWM0UGdlVkYxMWp3ZlU3ODRzQlVnSm03czBSUE8zRkp4LXdFbTVpNXZiamFrR25xTWthbXVIYU1EQUZRNDdEMTZ6S0NndHRHT1JGeDg0cmNUbDlLd2Jxc3M0Nndp?oc=5"
     },
     {
      "titulo": "Keiko Fujimori visita a familias afectadas por lluvias en Tumbes y anuncia reubicación de zonas de riesgo",
@@ -664,7 +675,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -754,7 +766,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -808,6 +821,12 @@
      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE85dXpiOVNNTFNlNXg1OE1DcmFFTzkxZ05idHhYbnpYVnpERDJDcW1oZVZtbkozZGFrM1MwTWxqUTlBNTlwdExjWmpZcGN4Yk5MUlZJaXNOR1k4Vkk5UktnOEF2bm5UbXA5TGlj?oc=5"
     },
     {
+     "titulo": "¡Piura colapsa! Casas inundadas y calles inundadas tras fuertes lluvias – Diario Sin Fronteras -Tu",
+     "medio": "Diario Sin Fronteras",
+     "fecha": "2026-11-03",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWHozOU5HUEZTZE9Jc1NSY1NZX1p4Mlp4WGR2b01RRzlHb204LWZXbURGblE5V2VzMUNCaGZEWG5Jb2ZIQWtVaGhHR0ZFLWdBM280bFJ2SU41WkF1bnl0cVVpT09JYU8xcU5UWmdJSUNOakpJTEZYdkNMUTZxemxGLWhWWVpqVjZtMS12Y3hGaEZBS25FWUx4cjhyT2R3ZzI3OWVMTFdybkxhd3k5LVBVdzdsOTVZUdIBuwFBVV95cUxQTkh4eHhRZjVvdHBuVmVWanFuV2JxVUVwNFJWN0VwVGtwTE0xWFB4U3A4SXY2a0dwcGxTYkl0eGxERjNfRDUzZmstbFpPa0dFUEV4N3VENFZYU2M0akNPS0oyaVFQWWQ1dkRrTTNPZ3l4NC1DY3FmN2hoQzNtNHIta2ZHaC1SLUVjdGRleW4waTlnTGVNNWQ5YzA4MHpPZU1NekpQbWFVdnJlTnNtVTNFWEdjQUYzWnVSSWhB?oc=5"
+    },
+    {
      "titulo": "¿Dónde están ubicados los albergues temporales en Piura ante las lluvias e inundaciones?",
      "medio": "Norte Sostenible",
      "fecha": "2026-11-05",
@@ -838,7 +857,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -904,7 +924,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -952,7 +973,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -994,7 +1016,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Quebrada activada: el agua corre por un cauce de pocos metros y dura horas; el radar (píxel de ~55 m, una pasada cada pocos días) no alcanza a verla."
@@ -1062,7 +1085,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Está a 1957 m de altura. El detector solo trabaja debajo de 250 m: en la sierra la sombra del relieve se confunde con agua y los ríos son más angostos que un píxel."
@@ -1142,7 +1166,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "prueba_km2_reglas_actuales": 0.0,
     "prueba_km2_sin_limite_altura": 0.0,
@@ -1196,7 +1221,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -1241,7 +1267,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Calles inundadas por lluvia: el radar no ve el agua entre casas y edificios."
@@ -1305,7 +1332,8 @@
      "2026-11-09",
      "2026-11-11",
      "2026-11-12",
-     "2026-11-14"
+     "2026-11-14",
+     "2026-11-15"
     ],
     "veredicto": "fuera de alcance",
     "explicacion": "Está a 2722 m de altura. El detector solo trabaja debajo de 250 m: en la sierra la sombra del relieve se confunde con agua y los ríos son más angostos que un píxel."
