@@ -598,7 +598,8 @@ function estado(){const R=D.R;if(!R)return;
 function semanaModelo(){const P=D.P,e=document.getElementById("r-modelo");if(!P||!e)return;
   const F=(P.fases&&P.fases.umbrales)||{alerta:.15}, n=P.distritos.filter(d=>d.prob_h1>=F.alerta).length, top=P.distritos.slice().sort((a,b)=>b.prob_h1-a.prob_h1)[0];
   document.getElementById("r-modelo-eti").textContent=`Distritos en alerta según el modelo (semana del ${fechaTxt(P.semana_objetivo.h1)})`;
-  e.textContent=`${n} de ${P.distritos.length}`+(top?` · el más alto: ${top.distrito} (${Math.round(100*top.prob_h1)} %)`:"")}
+  e.textContent=`${n} de ${P.distritos.length}`+(top?` · el más alto: ${top.distrito} (${Math.round(100*top.prob_h1)} %)`:"");
+  const es=document.getElementById("estado");if(es&&!document.getElementById("estado-modelo"))es.insertAdjacentHTML("beforeend",`<br><span id="estado-modelo">Estimación del modelo: semana del <b>${fechaTxt(P.semana_objetivo.h1)}</b> (se recalcula cada lunes)</span>`)}
 
 /* ---------- etiquetas de semana (relativas a hoy) ---------- */
 function etqSem(h,mayus){ // "esta semana", "la próxima semana", "la semana del 23 nov"…

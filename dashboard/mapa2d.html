@@ -114,8 +114,8 @@ tr[data-ub]:hover{background:color-mix(in srgb,var(--acento) 10%,transparent)}
 
 <div class="cuerpo" style="grid-template-columns:1fr">
   <div class="caja" id="panel">
-    <h2>Panel de decisiones: distritos para revisión prioritaria</h2>
-    <p style="font-size:13px;color:var(--tx2);margin:0 0 8px">Cuatro dimensiones separadas. <b>Peligro</b>: % del distrito en zona inundable 1 en 100 años (JRC). <b>Exposición</b>: población modelada dentro de esa zona. <b>Vulnerabilidad</b>: pobreza monetaria 2018. <b>Riesgo estimado</b>: promedio de los percentiles de las tres, 0–100, relativo a estos 78 distritos; sirve para ordenar revisiones, <b>no es una evaluación oficial de riesgo</b> (EVAR/CENEPRED).</p>
+    <h2>Riesgo estructural por distrito: peligro, exposición y vulnerabilidad</h2>
+    <p style="font-size:13px;color:var(--tx2);margin:0 0 8px"><b>Qué mide este orden:</b> lo que es permanente en cada distrito (cuánta zona inundable tiene, cuánta gente vive ahí y qué tan pobre es). <b>No incluye la probabilidad de que ocurra una emergencia en las próximas semanas</b>: ese orden, que sí usa el modelo, está en la pestaña «¿Dónde actuar primero?» del <a href="index.html#prioridad">tablero 3D</a>. Cuatro dimensiones separadas. <b>Peligro</b>: % del distrito en zona inundable 1 en 100 años (JRC). <b>Exposición</b>: población modelada dentro de esa zona. <b>Vulnerabilidad</b>: pobreza monetaria 2018. <b>Índice estructural</b>: promedio de los percentiles de las tres, 0–100, relativo a estos 78 distritos; sirve para ordenar revisiones, <b>no es una evaluación oficial de riesgo</b> (EVAR/CENEPRED).</p>
     <div class="tabla-scroll"><table id="tabla" aria-describedby="panel"><thead></thead><tbody></tbody></table></div>
   </div>
   <div class="caja" id="metadatos">
@@ -203,20 +203,21 @@ function llenarProv(){
   $("#f-prov").innerHTML=`<option value="">Todas</option>`+[...new Set(props.map(x=>x.provincia))].sort().map(p=>`<option>${esc(p)}</option>`).join("");
   llenarDis();
 }
+const lab=p=>D.DIST.features.filter(f=>f.properties.distrito===p.distrito).length>1?`${p.distrito} (${p.provincia})`:p.distrito;
 function llenarDis(){
   const props=D.DIST.features.map(f=>f.properties).filter(x=>(!S.sel.dep||x.departamento===S.sel.dep)&&(!S.sel.prov||x.provincia===S.sel.prov));
-  $("#f-dis").innerHTML=`<option value="">Todos</option>`+props.map(x=>x.distrito).sort().map(d=>`<option>${esc(d)}</option>`).join("");
+  $("#f-dis").innerHTML=`<option value="">Todos</option>`+props.map(lab).sort().map(d=>`<option>${esc(d)}</option>`).join("");
   $("#f-dis").value=S.sel.dis||"";
 }
 function enCuenca(p,c){return (CUENCAS[c]||[]).some(x=>{const [d,pr]=x.split("|");return p.distrito===d&&(!pr||p.provincia===pr)})}
 function coincide(p){
   const s=S.sel;
   if(s.cuenca)return enCuenca(p,s.cuenca);
-  return (!s.dep||p.departamento===s.dep)&&(!s.prov||p.provincia===s.prov)&&(!s.dis||p.distrito===s.dis);
+  return (!s.dep||p.departamento===s.dep)&&(!s.prov||p.provincia===s.prov)&&(!s.dis||lab(p)===s.dis);
 }
 function elegirDistrito(p){
   S.sel={dep:p.departamento,prov:p.provincia,dis:p.distrito,cuenca:""};
-  $("#f-dep").value=p.departamento;$("#f-cuenca").value="";llenarProv();$("#f-prov").value=p.provincia;llenarDis();$("#f-dis").value=p.distrito;
+  $("#f-dep").value=p.departamento;$("#f-cuenca").value="";llenarProv();$("#f-prov").value=p.provincia;llenarDis();$("#f-dis").value=lab(p);
   actualizar(true);
 }
 const cacheGeo={};
@@ -306,7 +307,7 @@ function actualizar(volar){
   $("#sel-nota").innerHTML=(e.tipo==="radar"&&e.qa&&e.qa.referencia_solapa_evento?"<b>Atención:</b> esta capa no pasó el control de calidad (la referencia seca se solapa con el periodo del evento). ":"")+(S.esc==="vivo"?"En temporada seca el agua nueva corresponde sobre todo a riego y humedales, no a desbordes. ":"")+
     "Los locales escolares vienen del padrón ESCALE (MINEDU) y los establecimientos de salud de RENIPRESS; solo se cuenta lo que está dentro de Tumbes y Piura.";
   // ficha y vista
-  if(s.dis){const r=(D.PANEL&&D.PANEL.distritos||[]).find(x=>x.distrito===s.dis&&x.provincia===s.prov);$("#ficha").textContent=r?r.ficha:"Sin ficha para este distrito."}
+  if(s.dis){const r=(D.PANEL&&D.PANEL.distritos||[]).find(x=>lab(x)===s.dis&&x.provincia===s.prov);$("#ficha").textContent=r?r.ficha:"Sin ficha para este distrito."}
   else $("#ficha").innerHTML="<span class='vacio'>Elija un distrito en el selector, en el mapa o en la tabla.</span>";
   grp.dist.setStyle(f=>({color:coincide(f.properties)&&!todo?"#d4145a":"#33424d",weight:coincide(f.properties)&&!todo?2.5:1,opacity:.8,fillOpacity:0}));
   if(volar){
@@ -318,7 +319,7 @@ function actualizar(volar){
 // --- panel de decisiones ---
 const COLS=[["distrito","Distrito"],["provincia","Provincia"],["ubigeo","UBIGEO"],["pct_area_rp100","Peligro: % área 1/100",1],["km2_radar_2017","Radar 2017 km²",1],
   ["personas_rp100","Exposición: población",0],["edificaciones_rp100","Edificaciones",0],["colegios_dentro_rp100","Colegios dentro",0],["salud_dentro_rp100","Salud dentro",0],
-  ["pct_pobreza_total","Vulnerab.: % pobreza 2018",1],["riesgo_estimado","Riesgo estimado (relativo)",0],["prioridad_revision","Prioridad"]];
+  ["pct_pobreza_total","Vulnerab.: % pobreza 2018",1],["riesgo_estimado","Índice estructural (0–100)",0],["prioridad_revision","Prioridad"]];
 let orden={k:"riesgo_estimado",asc:false};
 function tablaPanel(){
   const P=D.PANEL&&D.PANEL.distritos;
