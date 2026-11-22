@@ -1,0 +1,108 @@
+{
+ "perfil": "diario",
+ "inicio": "2026-11-22T15:24-05:00",
+ "fin": "2026-11-22T15:25-05:00",
+ "pasos": [
+  {
+   "paso": "descargar_mar.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 10.7,
+   "salida_final": [
+    "Último día disponible: 2026-11-20. Faltan 2 de los últimos 20 días.",
+    "  coastwatch.p ncdcOisst21NrtAgg_LonPM180 -> HTTP 403: 'Error {\\n    code=403;\\n    message=\"Forbidden: Access Forbidden -- Your IP address is on this ERDDAP\\'s request blacklist.'",
+    "  upwell.pfeg. ncdcOisst21NrtAgg_LonPM180 -> HTTP 403: 'Error {\\n    code=403;\\n    message=\"Forbidden: Access Forbidden -- Your IP address is on this ERDDAP\\'s request blacklist.'",
+    "  coastwatch.p ncdcOisst21Agg_LonPM180 -> HTTP 403: 'Error {\\n    code=403;\\n    message=\"Forbidden: Access Forbidden -- Your IP address is on this ERDDAP\\'s request blacklist.'",
+    "  upwell.pfeg. ncdcOisst21Agg_LonPM180 -> HTTP 403: 'Error {\\n    code=403;\\n    message=\"Forbidden: Access Forbidden -- Your IP address is on this ERDDAP\\'s request blacklist.'",
+    "Histórico: 36 días guardados."
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "descargar_indicadores.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 2.1,
+   "salida_final": [
+    "noaa_semanal: 2359 filas",
+    "  icen: 921 filas"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "descargar_zonas.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 3.4,
+   "salida_final": [
+    "Lluvia: 1036 filas",
+    "Caudal: 756 filas",
+    "  normal de caudal para 27 de 27 ríos",
+    "  normal de lluvia con 30 de 30 años"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "construir.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.9,
+   "salida_final": [
+    "Histórico del mar: 36 días",
+    "  indices.json: 28 KB",
+    "  regiones.json: 13 KB",
+    "  mar.json: 134 KB",
+    "  resumen.json: 0 KB",
+    "  zonas.json: 50 KB"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "aviso_lluvia.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 1.7,
+   "salida_final": [
+    "aviso: {'extremo': 12, 'fuerte': 28, 'normal': 38} · solo lluvia: {'extremo': 12, 'fuerte': 27, 'normal': 39} · motivo: {'lluvia': 34, 'caudal': 1, 'lluvia y caudal': 5} · caudal: ok {'Chira': ('normal', 1055.8, 1387.7), 'Piura': ('normal', 219.8, 305.9), 'Tumbes': ('fuerte', 1121.0, 764.2)}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "noticias.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 1.5,
+   "salida_final": [
+    "RSS: 103 titulares",
+    "32 eventos (13 verificados); radar: {'detectado': 5, 'no detectado': 6, 'fuera de alcance': 15, 'sin pasada': 0, 'sin radar': 6}"
+   ],
+   "error_final": []
+  },
+  {
+   "paso": "metadatos.py",
+   "codigo": 0,
+   "ok": true,
+   "parcial": false,
+   "segundos": 0.3,
+   "salida_final": [
+    "  rezagado       mar                último dato 2026-11-18",
+    "  rezagado       nino12             último dato 2026-11-11",
+    "  rezagado       icen               último dato 2026-09",
+    "  estimado       lluvia             último dato 2026-11-21",
+    "  estimado       caudal             último dato 2026-11-21",
+    "  estimado       indice_provincial  último dato 2026-11-21",
+    "  vigente        vulnerabilidad     último dato 2019-12-31",
+    "Resumen: {'vigente': 7, 'rezagado': 3, 'no disponible': 0, 'estimado': 6}"
+   ],
+   "error_final": []
+  }
+ ],
+ "ok": true,
+ "fallidos": []
+}
