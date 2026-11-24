@@ -2,15 +2,14 @@
  "evento": "vivo",
  "nombre": "Últimos 24 días",
  "periodo": [
-  "2026-10-26",
-  "2026-11-19"
+  "2026-10-30",
+  "2026-11-23"
  ],
  "referencia": [
   "2026-08-01",
-  "2026-10-25"
+  "2026-10-29"
  ],
  "imagenes_evento": [
-  "2026-10-28",
   "2026-10-30",
   "2026-10-31",
   "2026-11-02",
@@ -23,7 +22,8 @@
   "2026-11-12",
   "2026-11-14",
   "2026-11-15",
-  "2026-11-17"
+  "2026-11-17",
+  "2026-11-21"
  ],
  "imagenes_referencia": [
   "2026-08-01",
@@ -76,9 +76,10 @@
   "2026-10-21",
   "2026-10-22",
   "2026-10-24",
-  "2026-10-25"
+  "2026-10-25",
+  "2026-10-28"
  ],
- "km2": 901.6,
+ "km2": 901.5,
  "resolucion_grados": 0.0005,
  "metodo": "Sentinel-1 RTC VV, detección de cambios",
  "umbral_db": -17.0,
@@ -88,5 +89,5 @@
  "compuesto_evento": "minimo",
  "polarizacion": "VV",
  "agua_permanente": "JRC Global Surface Water, ocurrencia >= 75 %",
- "calculado": "2026-11-19T17:33-05:00"
+ "calculado": "2026-11-23T21:02-05:00"
 }

@@ -94,3 +94,7 @@ fecha,etiqueta,archivo,bytes,sha256,cambio
 2026-11-19T17:33-05:00,impacto,iapn-inei/dashboard/data/descargas/exposicion_distritos.csv,32416,0f38b78e38767638bbdf0c64dead7bc8091cd88ad6cc210bb1b7d011d5cb2266,modificado
 2026-11-19T17:33-05:00,panel,iapn-inei/dashboard/data/descargas/panel_distritos.csv,66800,505b47b42fdb0129e662cc559dc912682f82b77b30c83003fe939675def1b97c,igual
 2026-11-19T17:33-05:00,panel,iapn-inei/dashboard/data/panel_distritos.json,110822,73c9ce24c68d27eac7aff3cf25e674c4d9eac98b936786524ffd23d9f60bad79,modificado
+2026-11-23T21:02-05:00,impacto,iapn-inei/dashboard/data/inundacion.json,3433297,1d6a5a1f737bc295c8692498280881840a7e57e71e5792f58e3b31f9a0e1b4f5,modificado
+2026-11-23T21:02-05:00,impacto,iapn-inei/dashboard/data/descargas/exposicion_distritos.csv,32416,0f38b78e38767638bbdf0c64dead7bc8091cd88ad6cc210bb1b7d011d5cb2266,igual
+2026-11-23T21:02-05:00,panel,iapn-inei/dashboard/data/descargas/panel_distritos.csv,66800,505b47b42fdb0129e662cc559dc912682f82b77b30c83003fe939675def1b97c,igual
+2026-11-23T21:02-05:00,panel,iapn-inei/dashboard/data/panel_distritos.json,110822,8f0c6464a33c247020ae482242d661315d7a39aba826117f55fab80dae22a4ba,modificado

@@ -1,5 +1,5 @@
 {
- "calculado": "2026-11-19T17:33-05:00",
+ "calculado": "2026-11-23T21:03-05:00",
  "1_anillos_rp100": {
   "recalculado": {
    "colegios": {
@@ -179,7 +179,7 @@
    "edificaciones": 15,
    "personas": 29,
    "qa": {
-    "km2_deteccion_bruta_caja": 901.6,
+    "km2_deteccion_bruta_caja": 901.5,
     "km2_agua_permanente_tierra": 99.5,
     "km2_tras_mascara_tierra_y_limpieza": 99.3,
     "fraccion_retenida": 0.11,
@@ -188,14 +188,14 @@
     "compuesto_evento": "minimo",
     "referencia": [
      "2026-08-01",
-     "2026-10-25"
+     "2026-10-29"
     ],
     "referencia_solapa_evento": false
    },
    "imagenes": 14,
    "primera_y_ultima_imagen": [
-    "2026-10-28",
-    "2026-11-17"
+    "2026-10-30",
+    "2026-11-21"
    ],
    "top5_distritos_por_km2": [
     {
