@@ -68,13 +68,12 @@
     "Piura": 2,
     "Tumbes": 0
    },
-   "cultivo_ha": 4,
+   "cultivo_ha": 3,
    "vias_km": {
-    "Terciaria": 0.2,
-    "Primaria": 0.0,
-    "Secundaria": 0.0
+    "Terciaria": 1.1,
+    "Primaria": 0.6
    },
-   "vias_km_total": 0.2,
+   "vias_km_total": 1.7,
    "puentes": 0,
    "puentes_nombres": []
   },

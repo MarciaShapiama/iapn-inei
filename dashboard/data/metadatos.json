@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-26T17:27-05:00",
+ "generado": "2026-11-26T18:26-05:00",
  "hoy": "2026-11-26",
  "resumen_estado": {
   "vigente": 8,
@@ -179,10 +179,10 @@
    "version": "RTC (Planetary Computer)",
    "naturaleza": "observado (derivado)",
    "periodo": [
-    "2026-10-30",
-    "2026-11-23"
+    "2026-11-02",
+    "2026-11-26"
    ],
-   "dato_mas_reciente": "2026-11-21",
+   "dato_mas_reciente": "2026-11-24",
    "tolerancia_dias": 12,
    "frecuencia": "lunes y jueves",
    "metodo": "Detección de cambios VV; máscaras de agua permanente, altura > 250 m, pendiente > 5°, manchas < 5 px.",
@@ -196,8 +196,6 @@
    "estado": "vigente",
    "archivo": "capa_vivo.geojson",
    "imagenes": [
-    "2026-10-30",
-    "2026-10-31",
     "2026-11-02",
     "2026-11-03",
     "2026-11-05",
@@ -209,10 +207,13 @@
     "2026-11-14",
     "2026-11-15",
     "2026-11-17",
-    "2026-11-21"
+    "2026-11-18",
+    "2026-11-21",
+    "2026-11-23",
+    "2026-11-24"
    ],
-   "imagenes_referencia": 52,
-   "calculado": "2026-11-23T21:02-05:00"
+   "imagenes_referencia": 54,
+   "calculado": "2026-11-26T18:25-05:00"
   },
   {
    "id": "poblacion",
