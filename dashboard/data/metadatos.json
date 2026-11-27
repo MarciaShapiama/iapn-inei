@@ -1,9 +1,9 @@
 {
- "generado": "2026-11-26T18:26-05:00",
- "hoy": "2026-11-26",
+ "generado": "2026-11-27T01:38-05:00",
+ "hoy": "2026-11-27",
  "resumen_estado": {
-  "vigente": 8,
-  "rezagado": 2,
+  "vigente": 9,
+  "rezagado": 1,
   "no disponible": 0,
   "estimado": 6
  },
@@ -327,7 +327,7 @@
    "version": "v2.1 NRT",
    "naturaleza": "observado (satélite + boyas, interpolado)",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-18",
+   "dato_mas_reciente": "2026-11-25",
    "tolerancia_dias": 3,
    "frecuencia": "diaria (rezago ~1-2 días)",
    "metodo": "Interpolación óptima (OI) de satélite AVHRR, boyas y barcos.",
@@ -335,7 +335,7 @@
     "Una anomalía cálida del mar no determina por sí sola una inundación local.",
     "Las magnitudes ENFEN (débil…extraordinario) se definen para el ICEN trimestral, no para la anomalía diaria: en el tablero son referencia."
    ],
-   "estado": "rezagado",
+   "estado": "vigente",
    "archivo": "mar.json"
   },
   {
@@ -395,13 +395,13 @@
    "version": "API v1",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-25",
+   "dato_mas_reciente": "2026-11-26",
    "tolerancia_dias": 2,
    "frecuencia": "diaria",
    "metodo": "Mejor combinación de modelos numéricos para días pasados; pronóstico de 7 días.",
    "advertencias": [
     "No son lecturas de pluviómetros del SENAMHI.",
-    "Incluye pronóstico hasta 2026-12-03: el pronóstico no es observación.",
+    "Incluye pronóstico hasta 2026-12-04: el pronóstico no es observación.",
     "Los avisos oficiales los emite SENAMHI."
    ],
    "estado": "estimado",
@@ -420,7 +420,7 @@
    "version": "GloFAS v4",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-25",
+   "dato_mas_reciente": "2026-11-26",
    "tolerancia_dias": 3,
    "frecuencia": "diaria",
    "metodo": "Modelo hidrológico LISFLOOD forzado con meteorología.",
@@ -443,7 +443,7 @@
    "version": "2026-11",
    "naturaleza": "modelado",
    "periodo": null,
-   "dato_mas_reciente": "2026-11-25",
+   "dato_mas_reciente": "2026-11-26",
    "tolerancia_dias": 2,
    "frecuencia": "diaria",
    "metodo": "Suma ponderada con topes; pesos fijados por el equipo, sin calibrar.",
