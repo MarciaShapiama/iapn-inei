@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-27T08:01-05:00",
+ "generado": "2026-11-27T17:12-05:00",
  "hoy": "2026-11-27",
  "fuentes": {
   "noticias": "Google Noticias (RSS), últimos 14 días, titulares con palabras de inundación y «Piura» o «Tumbes»; acumulados en data/eventos/noticias_registro.csv",
@@ -12,10 +12,40 @@
   "no detectado": 9,
   "fuera de alcance": 19,
   "sin pasada": 0,
-  "sin radar": 5
+  "sin radar": 6
  },
- "n": 39,
+ "n": 40,
  "eventos": [
+  {
+   "id": "n-2026-11-27-castilla",
+   "origen": "noticias (automático)",
+   "fecha": "2026-11-27",
+   "fecha_fin": "2026-11-27",
+   "lugar": "Castilla",
+   "ubigeo": "200104",
+   "distrito": "Castilla",
+   "provincia": "Piura",
+   "departamento": "Piura",
+   "lat": -5.1938,
+   "lon": -80.6003,
+   "altura_m": 35,
+   "precision": "lugar nombrado en la noticia",
+   "tipo": "lluvia urbana",
+   "titulo": "Piura: vecinos de El Bosque en Castilla piden apoyo tras inundaciones por fuertes lluvias [VIDEO]",
+   "articulos": [
+    {
+     "titulo": "Piura: vecinos de El Bosque en Castilla piden apoyo tras inundaciones por fuertes lluvias [VIDEO]",
+     "medio": "RPP Noticias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNY3F6aG42YUh4Tm5qV24tb0hyb0JUYTNMSTZOR2xzcFg2QnNkT1dLdy1VdlhJc3FheWpYLW5vekhFX3NMeThQTk9WTTR6X3dxZ2ZvbHlOTXljSDVpTXRCZlBzdG9GOUg2UlFmV21ic05uT1JxRWt4X3lIWU16YnVRMlNkN1NOOWNMQkZfVm5fYzN2Y3FOMFBJUUI1UGN1bXozdHB4MnhqM0Nlbi1kSkZQWVFqX2FxQzhJWjJhcUtsQUZhdEF3aVh0WldfZTF0WUZISHRsdWxocnpQSWpRTmtEUHlBeXJMLUxwVGxPeWtGVjZaNlhlbmc?oc=5"
+    }
+   ],
+   "radar": {
+    "capa": null,
+    "veredicto": "sin radar",
+    "explicacion": "No hay una capa de radar calculada para esa fecha."
+   }
+  },
   {
    "id": "n-2026-11-26-ayabaca",
    "origen": "noticias (automático)",
@@ -76,6 +106,18 @@
      "medio": "tvperu.gob.pe",
      "fecha": "2026-11-25",
      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNYkZqSkFrSjFGNkUxR0hHTDFrZ2JUdFdPY3J0cmJCcXRvSzNHTFZpc0xscEZRZ3VkelI1cTBPY1ZyTzhLWFZtNnRkb291OTEtRkNNR1pjbTBQUXBTNS1SaGgwUC05aXU3SkZUTHZQNHpkTEVaUVl6aU90Ykt6ODJLVFJzNS1rODNKTGwyWEtxVWZ3TTBJSVc5SDR3RXVlUFB5eEx3TS1wNHY4NFgzTHhYaWNGdURQWWpRRDBqX2lZVjM?oc=5"
+    },
+    {
+     "titulo": "El Niño: calles de Piura y Sullana inundadas por lluvias y motobombas sin combustible",
+     "medio": "Gestión",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQU1M4SzBRNlp4TFBQWjFya1U0WVVULWZCek9Rc3N0bzFOb1FNWHFwOEZsSktmMXhqcm1vemZ0aF9XUi04YTZtUE9YYVM5ZENFWVd1cy04UVhWZVBVOFJzbW9iVHpiUDJFMFlwWjMtMzVkWDVvWmVTY2t4WlpRWkh1NGVQbmZaOFlUdW8wSU54Yw?oc=5"
+    },
+    {
+     "titulo": "Alcalde de Sullana advierte que lluvias dejaron calles inundadas y pide más apoyo para evacuar aguas pluviales",
+     "medio": "Canal N",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNa3FGek9fMXBSbE1RbkQ3V01icGZBTmlaZXowN3BEem9CQVFuRDV5VHdTZFZrS1RfNXZ3cU1qT19TYjk0QUszQm9WWktlM0s2cVM3Vi1aQkVBSFNKU3VmODlzMmJoSC1seW4yQUNwRUJHSjU0VDYyOUFkb2dGRS1yMWRxOVhtTGlvbXlnbERCRXczdm16NkQ0U3pKODJpMkpRUGR4ekdfRE1ZTVhER2FSeUJPMGJSQXYtRk1iek1MSndkc2g2cGZKajFxaXZLbXE5RkMwNUV3?oc=5"
     },
     {
      "titulo": "Fenómeno El Niño: calles de Piura y Sullana inundadas por lluvias torrenciales",
@@ -182,13 +224,13 @@
      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUEgwZFd5VEdjZ09ObVYxZEFJMXVWU2FkaVROd0ZMcnlROVY4N3Q5Y3dMcUFNbzAtM1oyWXY2T3RiNEtLUE56OEhxRUc3azA1VEZLWXlIOW9jcEg3Nm5WX3BYMjRRYVczaXRESGgzbEdxSHlBRF9QSk1hTHA2cGc0MVV5dHhtT09GN1BNVzdOT1Q2N2NnR1R4UnRxVzRwQjdsSFVEZG1pLW5jOWUxZjRhV3A2VFJXZmPSAcsBQVVfeXFMTWxHSEVTNHJ4VXdEWkg2emVBSThYVEF0c1lZZ2pfZURBTWp6cDNpSEswa0FtVlliczNQNGQ5alI3ODNMQXFXeGlwandSSTNDaWl1cjFiMTJoREo1RTFLWEtQM2RnTjZxMThuSTBRSmpORnBUdWR3cFI4N2xiSGs2MndLN2dxTVhqZlQ3RlVJRllsVVRfMlZHTjNMZ3VxWUdtNnNmblVlTldUdjYxZG94ZEdObHgxeUNrN0RnRGNFc2p2bEtZeUppVC10b1k?oc=5"
     },
     {
-     "titulo": "Fenómeno El Niño: Piura soportó lluvias de hasta 134 litros por m² e inundaciones afectaron Tambogrande, Chulucanas y Paita",
+     "titulo": "Fenómeno El Niño en Piura: lluvia torrencial de 134 litros por m² inunda Tambogrande y causa daños en Chulucanas y Paita",
      "medio": "La República",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
     },
     {
-     "titulo": "Fenómeno El Niño en Piura: lluvia torrencial de 134 litros por m² inunda Tambogrande y causa daños en Chulucanas y Paita",
+     "titulo": "Fenómeno El Niño: Piura soportó lluvias de hasta 134 litros por m² e inundaciones afectaron Tambogrande, Chulucanas y Paita",
      "medio": "La República",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
@@ -229,6 +271,12 @@
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPVEVnYVFGTVRqNXNuUW1qRTBPRmZHVnpsTjZjVkpUUnhPZlBQdkE4N1FLd2NJUUJFa2pMdGVscjlaVkdZc2VYWktXazhIby1oTjM2ellZM2c3VE9Rdl9nQ2Z4b0lMYUowNmcxemRNY180RTZQRkU4NGNFM2FhMTlaVVowTmdfcGtBdUNzekQ1MnJhb1B1dV9FMEplRUY0WEx5b2xXNlBkeTA4Ukk2bVlJYWEtaDJ4N1FsYzQ4dDdpQWpTOHdT?oc=5"
     },
     {
+     "titulo": "Piura inundada: lluvias de extrema intensidad golpean Chulucanas y Tambogrande",
+     "medio": "Exitosa Noticias",
+     "fecha": "2026-11-22",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQm9vc1NNdm8tUmVpemtYR29RRDU1Z1VZTUNQT0syQlMyd2o1UmtFbGhOaEV2THBBaWZHTjhkZndpNVRvdDFEcktMMjZIbmpCaVhDWHdLQTZESHE5TzJNUTZpSWlVenBNNDdTQjMwV1VzSzFLdk0xVXVDVlBPOWlGYmxST082cFlZYW5rT2FUU2xPeFU4Y1RaLV93d0NNTzEwVGN0RzY0UEF4eGlQOTZZenY4Y3oza2NxeVU5WWpvMnlmUQ?oc=5"
+    },
+    {
      "titulo": "Lluvias en Piura: centro de salud de Tambogrande termina anegado tras fuerte tormenta (VIDEO)",
      "medio": "DSN Noticias",
      "fecha": "2026-11-22",
@@ -239,12 +287,6 @@
      "medio": "El Comercio Perú",
      "fecha": "2026-11-22",
      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPSDdtbWc1em00U1o1OTU1cDZveHdINGIyN0dnbFpZeVZhT2pQbG1pUDJxNGhidXY3UjlDeEdFX0tTWmxjam1CTWVUa1ZKTG1ldG5STnQyX25mTDRYMDVlTk1uNjBsOGxHa1p6Ry1VcnZCQlhDOWVFTm5VQVVqZ040R2lUM29lSVNzQ0IxdGRkZFpZUTFrQ21PNTBsVW83YWlnYXlodDFJQi1OcXR5eEp1cU15RzI4VEJjQm10Q0o0NkUwSFZCVXdmdUJUWXJhTGNkLWwyUFN4Q2NkVDg3eFRfdWZIT0VEZXFfanY4RXU0Y05uUURXVGfSAYoCQVVfeXFMTkFjaGFmay03enFNeHQ4bzhMem41NDJmRE1mUi11YUJreVl2c3JhVnZTUjBHVTlhN2QxZjNCV2JTdFZXR3dIWVM0V1k2MHFWTy1mXzVJVWxrOVVNVjg4SUR1VjVsMVp4bFZET3M4UC1hSDVpWkdoVE0za3Rpd00yOHhxaENSVzhfQ1JQcjRCREprVl8zdGZaVURMWDc5ZWF6Y01sanVhVFFONEVLY2gyUDVJT3lRMjZ5RnRxeVRtV25tREVacUNRRVZsaHR4X2NNVmkzT1pZWmk1cXFfRXBjMnBvYUFkcUJNdGxqLWVLX0lmam4zdzNwMUwyOU9DbGhrQVRzNGFMZ29GdUE?oc=5"
-    },
-    {
-     "titulo": "Piura inundada: lluvias de extrema intensidad golpean Chulucanas y Tambogrande",
-     "medio": "Exitosa Noticias",
-     "fecha": "2026-11-22",
-     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQm9vc1NNdm8tUmVpemtYR29RRDU1Z1VZTUNQT0syQlMyd2o1UmtFbGhOaEV2THBBaWZHTjhkZndpNVRvdDFEcktMMjZIbmpCaVhDWHdLQTZESHE5TzJNUTZpSWlVenBNNDdTQjMwV1VzSzFLdk0xVXVDVlBPOWlGYmxST082cFlZYW5rT2FUU2xPeFU4Y1RaLV93d0NNTzEwVGN0RzY0UEF4eGlQOTZZenY4Y3oza2NxeVU5WWpvMnlmUQ?oc=5"
     },
     {
      "titulo": "Piura: lluvias inundan colegio en Tambogrande y dejan a 800 escolares sin clases presenciales",
@@ -259,16 +301,16 @@
      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZFBnNk9ORFM1ektfR2ZUMkFCaTFiR3psYVllaGQtZUtKNFpJcGJXb3ZibEhGZXY1VzdsWGx3UmdZQjFXVVdZNGg4ak9TTUxrTFdkRVdFNmZIRVBRVGs2UjNvZmQ4VXNveG1QRVF0T1dESlZoOEk3aVFyVEQtS19XNlJHbzZKM0RqYUdYTUJjMFpIczl0YW9KVlN4MzMzSFcwRzFKM0RNcHFUU3o0dG1MM1VnZWcySVlsYUE?oc=5"
     },
     {
-     "titulo": "Piura: fuertes lluvias en Tambogrande afectan al menos 12 viviendas y damnificados piden ayuda",
-     "medio": "Exitosa Noticias",
-     "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPa1RZMDhIOU9ZYXhGQlc0dlhWOE5FRnJYdm1IeFlQNm4tb0FMUUE2VWszOGttQnJYNktiSk1UX0JiVE9RWXltRHA0bEc1SUNSd1laazZaZHR2Vnl1emtua2FWS1JPUTdtLWJlc0FDemNDWFo4NmVNcnhKZjE4N29OX0FXV0swOGpHNG4xdXpXb2pwWWNNazFJMjVKRG1PbUxqV3UyRExpdXl4SUo0U3NVbkxFSlNiaUNjZTktS0xENXhMaXVkT2JKVks5UkxxTW1Xcy1z?oc=5"
-    },
-    {
      "titulo": "Piura: Tambogrande amanece inundado tras intensa lluvia de 134 litros por m²",
      "medio": "Walac Noticias",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOdWl1RlRGUDJhenA2ZDNRVDBGbVMtSTE4SGdlTmRSWjZDaGFBQUJvX3FwbjRCa1VLSEswU1d4a255RHhmb1FtUHpKWXhrX1lTbmlManZKWHhsajluR3ZpVnFSUzZBMDdNV3NXSDBwakppNWI5MWtjYXRrdUxVZmsxdGhjYXdGUEdoeEFibGN3N2t0NUVieVpKUS12NmlENHc?oc=5"
+    },
+    {
+     "titulo": "Piura: fuertes lluvias en Tambogrande afectan al menos 12 viviendas y damnificados piden ayuda",
+     "medio": "Exitosa Noticias",
+     "fecha": "2026-11-23",
+     "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPa1RZMDhIOU9ZYXhGQlc0dlhWOE5FRnJYdm1IeFlQNm4tb0FMUUE2VWszOGttQnJYNktiSk1UX0JiVE9RWXltRHA0bEc1SUNSd1laazZaZHR2Vnl1emtua2FWS1JPUTdtLWJlc0FDemNDWFo4NmVNcnhKZjE4N29OX0FXV0swOGpHNG4xdXpXb2pwWWNNazFJMjVKRG1PbUxqV3UyRExpdXl4SUo0U3NVbkxFSlNiaUNjZTktS0xENXhMaXVkT2JKVks5UkxxTW1Xcy1z?oc=5"
     },
     {
      "titulo": "Piura: Lluvias inundan Tambogrande, Chulucanas y Paita",
@@ -277,22 +319,10 @@
      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUEgwZFd5VEdjZ09ObVYxZEFJMXVWU2FkaVROd0ZMcnlROVY4N3Q5Y3dMcUFNbzAtM1oyWXY2T3RiNEtLUE56OEhxRUc3azA1VEZLWXlIOW9jcEg3Nm5WX3BYMjRRYVczaXRESGgzbEdxSHlBRF9QSk1hTHA2cGc0MVV5dHhtT09GN1BNVzdOT1Q2N2NnR1R4UnRxVzRwQjdsSFVEZG1pLW5jOWUxZjRhV3A2VFJXZmPSAcsBQVVfeXFMTWxHSEVTNHJ4VXdEWkg2emVBSThYVEF0c1lZZ2pfZURBTWp6cDNpSEswa0FtVlliczNQNGQ5alI3ODNMQXFXeGlwandSSTNDaWl1cjFiMTJoREo1RTFLWEtQM2RnTjZxMThuSTBRSmpORnBUdWR3cFI4N2xiSGs2MndLN2dxTVhqZlQ3RlVJRllsVVRfMlZHTjNMZ3VxWUdtNnNmblVlTldUdjYxZG94ZEdObHgxeUNrN0RnRGNFc2p2bEtZeUppVC10b1k?oc=5"
     },
     {
-     "titulo": "Fenómeno El Niño en Piura: con motobombas evacúan agua de casas inundadas en Tambogrande",
-     "medio": "Agencia Andina",
+     "titulo": "Piura: Ejército usa motobombas para retirar agua de viviendas inundadas en Tambogrande",
+     "medio": "Diario Correo",
      "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPbWlYai1ValAySkR5bUVGLWhkblpZNjhjVkxYeERDS25DbHdTb3o4bS13WkhCVEZUa3lMQUVFZ0VoSDZGaGw0RmQtR2laaURVd2tmUFNTa1ZYXzBFeEpJTEx5NVBXd3JoaTRVaDZYUl9uXzNWYUNYVHBHMTBXc213LW5wWklyWWNsaGxHNUZaamFUdlBKb3ZsSE1uTkYtTXhqSUZIem03RDd1VVZyTXR6MXpmbWVndUtxdHc?oc=5"
-    },
-    {
-     "titulo": "Fenómeno El Niño: Piura soportó lluvias de hasta 134 litros por m² e inundaciones afectaron Tambogrande, Chulucanas y Paita",
-     "medio": "La República",
-     "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
-    },
-    {
-     "titulo": "Piura: Colegio Agropecuario queda inundado tras intensa lluvia en Tambogrande",
-     "medio": "Walac Noticias",
-     "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMk5fSVFGUDQ0SGp4d0pOWW5Cd1kwX2JhZHpmVnByVTUwdVRjaDhLRzlpZjlSWkQ5dXhPa2RVMmh3ekp6WFhsQ2ZZRDlndFRmUHV3eWRWTmR0aFdCMTFxUS1DM0lpSGZpRjA3S3hvNlUxcG5EQV9SVHE5bzd0bXRiVmJaQXp0eE8wWmF5SHdVUkM3UVFOSENQYkpR?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQTFc3aVhseHhwYmkyNmRaQWQzWUlvbG5UcUNqZUJURi11dHpfWFN6ekRyN1dZekZ0Q21KZzBlYWEyR3gwQ3NRQlhFVXR2TUFfTWRqTDhDT3c2LUk0blRFNzFBblBLLTU4dUJjV1BJYjJpd3dSV0xDMlVOcl9NWS05S0FZR0FSck9xVTY1TnNMQWZjaTUtdi1rR1ZGS0tyVXRUQ2VjRUdZY0RjNnVNcGY4by1wSlZFRW5ydkpjQUpkLTRIVXpYcTB5UndSTUfSAeABQVVfeXFMTS1NUUJ5QWY4anV6XzRSRjBTN0pVcE9wdmdTQmFEVkdFeVRhWWRRZzA5NVhUQTJIVlI0T2VKWWlOS25zRUI1YkdETkNjN1dzWXZIeW9rVmdRU1BqeW9iczJPODFmX0VXWVQxdlc4OXE2eHpjdUM2VS1lY1huaGNodWFaX0k0TFRuX184N1ozSWJyM2lzX2JSSFlkczNOLUxYRC1NVmNPMVVhQkNvRDlCa3QxN3MwT0hiNFRmSzU0ZFRCOUhVNFZtZkNrM3FERnFZWlhhNFI0dXZRVUV1VEk4cWY?oc=5"
     },
     {
      "titulo": "Fenómeno El Niño en Piura: lluvia torrencial de 134 litros por m² inunda Tambogrande y causa daños en Chulucanas y Paita",
@@ -301,10 +331,10 @@
      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
     },
     {
-     "titulo": "Piura: Ejército usa motobombas para retirar agua de viviendas inundadas en Tambogrande",
-     "medio": "Diario Correo",
+     "titulo": "Fenómeno El Niño en Piura: con motobombas evacúan agua de casas inundadas en Tambogrande",
+     "medio": "Agencia Andina",
      "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQTFc3aVhseHhwYmkyNmRaQWQzWUlvbG5UcUNqZUJURi11dHpfWFN6ekRyN1dZekZ0Q21KZzBlYWEyR3gwQ3NRQlhFVXR2TUFfTWRqTDhDT3c2LUk0blRFNzFBblBLLTU4dUJjV1BJYjJpd3dSV0xDMlVOcl9NWS05S0FZR0FSck9xVTY1TnNMQWZjaTUtdi1rR1ZGS0tyVXRUQ2VjRUdZY0RjNnVNcGY4by1wSlZFRW5ydkpjQUpkLTRIVXpYcTB5UndSTUfSAeABQVVfeXFMTS1NUUJ5QWY4anV6XzRSRjBTN0pVcE9wdmdTQmFEVkdFeVRhWWRRZzA5NVhUQTJIVlI0T2VKWWlOS25zRUI1YkdETkNjN1dzWXZIeW9rVmdRU1BqeW9iczJPODFmX0VXWVQxdlc4OXE2eHpjdUM2VS1lY1huaGNodWFaX0k0TFRuX184N1ozSWJyM2lzX2JSSFlkczNOLUxYRC1NVmNPMVVhQkNvRDlCa3QxN3MwT0hiNFRmSzU0ZFRCOUhVNFZtZkNrM3FERnFZWlhhNFI0dXZRVUV1VEk4cWY?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPbWlYai1ValAySkR5bUVGLWhkblpZNjhjVkxYeERDS25DbHdTb3o4bS13WkhCVEZUa3lMQUVFZ0VoSDZGaGw0RmQtR2laaURVd2tmUFNTa1ZYXzBFeEpJTEx5NVBXd3JoaTRVaDZYUl9uXzNWYUNYVHBHMTBXc213LW5wWklyWWNsaGxHNUZaamFUdlBKb3ZsSE1uTkYtTXhqSUZIem03RDd1VVZyTXR6MXpmbWVndUtxdHc?oc=5"
     },
     {
      "titulo": "Lluvias inundan viviendas y calles de Tambogrande y Chulucanas en Piura",
@@ -317,6 +347,18 @@
      "medio": "Diario Correo",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPVDBwaHZKTmNmOFBCN2J1b05DZm9BdHQxbEVlVUNocVdqYnNDUmdKTDQ5S0R5ckhmTXV6SHlCei1PSC01UE5KbEQ1em5qREgyWDZxUkZqdlVlc1F5M1VvY1d6UXFUaTl1Q1V3SDhXWXdDZGN5WjRTTzlwTHhZN0FoTzQwZGU4X0FEeGlsUVhCWXNlUVQzbF9Na1d5X1pqVGtaWGZCN0MwXzR5cW5WZk0xa2VPNURUampQM1hYWWdKcUhwNVd3dV9raTl1Z27SAeABQVVfeXFMTVZOWGRFSlZTbzloVHNtaGtQRThMbHhjOFJvVHppbGJjR2ZyNlFlY3dhNWJvbGlqdU9meTEyRGx4MG8tTGJMcW1XM0NLcXluNE4ybUJ6bHY3UFlZcGFTYjVQdUlaNTNCLTBrMlAwY1o3ejdqTzc2YWZtMi1xOWhWUllWcXh3cTlZWW9MU0J5d28ycTE5Znl1YkNYUTJZc2ZfUkdJMFVGTHY0SUdleFZkcmRYVnAtQ2FqVDRWRWFKazgxdlRoYW1pYmxNWjlTNHh6V1l2b1AybmN0aDhRMjRkeXA?oc=5"
+    },
+    {
+     "titulo": "Piura: Colegio Agropecuario queda inundado tras intensa lluvia en Tambogrande",
+     "medio": "Walac Noticias",
+     "fecha": "2026-11-23",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMk5fSVFGUDQ0SGp4d0pOWW5Cd1kwX2JhZHpmVnByVTUwdVRjaDhLRzlpZjlSWkQ5dXhPa2RVMmh3ekp6WFhsQ2ZZRDlndFRmUHV3eWRWTmR0aFdCMTFxUS1DM0lpSGZpRjA3S3hvNlUxcG5EQV9SVHE5bzd0bXRiVmJaQXp0eE8wWmF5SHdVUkM3UVFOSENQYkpR?oc=5"
+    },
+    {
+     "titulo": "Fenómeno El Niño: Piura soportó lluvias de hasta 134 litros por m² e inundaciones afectaron Tambogrande, Chulucanas y Paita",
+     "medio": "La República",
+     "fecha": "2026-11-23",
+     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
     },
     {
      "titulo": "Piura: Defensoría supervisa atención a familias afectadas por inundaciones en Tambogrande",
@@ -360,16 +402,16 @@
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPVEVnYVFGTVRqNXNuUW1qRTBPRmZHVnpsTjZjVkpUUnhPZlBQdkE4N1FLd2NJUUJFa2pMdGVscjlaVkdZc2VYWktXazhIby1oTjM2ellZM2c3VE9Rdl9nQ2Z4b0lMYUowNmcxemRNY180RTZQRkU4NGNFM2FhMTlaVVowTmdfcGtBdUNzekQ1MnJhb1B1dV9FMEplRUY0WEx5b2xXNlBkeTA4Ukk2bVlJYWEtaDJ4N1FsYzQ4dDdpQWpTOHdT?oc=5"
     },
     {
-     "titulo": "Fuertes lluvias se registran en Piura: Chulucanas y Tambogrande las zonas más afectadas",
-     "medio": "El Comercio Perú",
-     "fecha": "2026-11-22",
-     "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPSDdtbWc1em00U1o1OTU1cDZveHdINGIyN0dnbFpZeVZhT2pQbG1pUDJxNGhidXY3UjlDeEdFX0tTWmxjam1CTWVUa1ZKTG1ldG5STnQyX25mTDRYMDVlTk1uNjBsOGxHa1p6Ry1VcnZCQlhDOWVFTm5VQVVqZ040R2lUM29lSVNzQ0IxdGRkZFpZUTFrQ21PNTBsVW83YWlnYXlodDFJQi1OcXR5eEp1cU15RzI4VEJjQm10Q0o0NkUwSFZCVXdmdUJUWXJhTGNkLWwyUFN4Q2NkVDg3eFRfdWZIT0VEZXFfanY4RXU0Y05uUURXVGfSAYoCQVVfeXFMTkFjaGFmay03enFNeHQ4bzhMem41NDJmRE1mUi11YUJreVl2c3JhVnZTUjBHVTlhN2QxZjNCV2JTdFZXR3dIWVM0V1k2MHFWTy1mXzVJVWxrOVVNVjg4SUR1VjVsMVp4bFZET3M4UC1hSDVpWkdoVE0za3Rpd00yOHhxaENSVzhfQ1JQcjRCREprVl8zdGZaVURMWDc5ZWF6Y01sanVhVFFONEVLY2gyUDVJT3lRMjZ5RnRxeVRtV25tREVacUNRRVZsaHR4X2NNVmkzT1pZWmk1cXFfRXBjMnBvYUFkcUJNdGxqLWVLX0lmam4zdzNwMUwyOU9DbGhrQVRzNGFMZ29GdUE?oc=5"
-    },
-    {
      "titulo": "Piura inundada: lluvias de extrema intensidad golpean Chulucanas y Tambogrande",
      "medio": "Exitosa Noticias",
      "fecha": "2026-11-22",
      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQm9vc1NNdm8tUmVpemtYR29RRDU1Z1VZTUNQT0syQlMyd2o1UmtFbGhOaEV2THBBaWZHTjhkZndpNVRvdDFEcktMMjZIbmpCaVhDWHdLQTZESHE5TzJNUTZpSWlVenBNNDdTQjMwV1VzSzFLdk0xVXVDVlBPOWlGYmxST082cFlZYW5rT2FUU2xPeFU4Y1RaLV93d0NNTzEwVGN0RzY0UEF4eGlQOTZZenY4Y3oza2NxeVU5WWpvMnlmUQ?oc=5"
+    },
+    {
+     "titulo": "Fuertes lluvias se registran en Piura: Chulucanas y Tambogrande las zonas más afectadas",
+     "medio": "El Comercio Perú",
+     "fecha": "2026-11-22",
+     "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPSDdtbWc1em00U1o1OTU1cDZveHdINGIyN0dnbFpZeVZhT2pQbG1pUDJxNGhidXY3UjlDeEdFX0tTWmxjam1CTWVUa1ZKTG1ldG5STnQyX25mTDRYMDVlTk1uNjBsOGxHa1p6Ry1VcnZCQlhDOWVFTm5VQVVqZ040R2lUM29lSVNzQ0IxdGRkZFpZUTFrQ21PNTBsVW83YWlnYXlodDFJQi1OcXR5eEp1cU15RzI4VEJjQm10Q0o0NkUwSFZCVXdmdUJUWXJhTGNkLWwyUFN4Q2NkVDg3eFRfdWZIT0VEZXFfanY4RXU0Y05uUURXVGfSAYoCQVVfeXFMTkFjaGFmay03enFNeHQ4bzhMem41NDJmRE1mUi11YUJreVl2c3JhVnZTUjBHVTlhN2QxZjNCV2JTdFZXR3dIWVM0V1k2MHFWTy1mXzVJVWxrOVVNVjg4SUR1VjVsMVp4bFZET3M4UC1hSDVpWkdoVE0za3Rpd00yOHhxaENSVzhfQ1JQcjRCREprVl8zdGZaVURMWDc5ZWF6Y01sanVhVFFONEVLY2gyUDVJT3lRMjZ5RnRxeVRtV25tREVacUNRRVZsaHR4X2NNVmkzT1pZWmk1cXFfRXBjMnBvYUFkcUJNdGxqLWVLX0lmam4zdzNwMUwyOU9DbGhrQVRzNGFMZ29GdUE?oc=5"
     },
     {
      "titulo": "Piura: Lluvias inundan Tambogrande, Chulucanas y Paita",
@@ -382,12 +424,6 @@
      "medio": "tvperu.gob.pe",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPOUo5SEhlSDQzWFE5MFlfMFJfbHBiSGxpNzNTWDhlNHNHX3JpOW9iaXlQVjNudnJxTzNZanQ3R2ZNWWJCcjNJQlJlazg3b3hzSkNIQXJncjVuclFHQVRUMGpPRGEzdnRZQTZkdnNMbFR2blVkTjNhejhQVXlrTy1WTkV2ZEkyQUxUaWRnV1pQd05Hd25hcWVNb0tfZlFWTE1lWTRtcHJia3NORXdId2dSZTJXRQ?oc=5"
-    },
-    {
-     "titulo": "Fenómeno El Niño: Piura soportó lluvias de hasta 134 litros por m² e inundaciones afectaron Tambogrande, Chulucanas y Paita",
-     "medio": "La República",
-     "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
     },
     {
      "titulo": "Fenómeno El Niño en Piura: lluvia torrencial de 134 litros por m² inunda Tambogrande y causa daños en Chulucanas y Paita",
@@ -406,6 +442,12 @@
      "medio": "Diario Correo",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPVDBwaHZKTmNmOFBCN2J1b05DZm9BdHQxbEVlVUNocVdqYnNDUmdKTDQ5S0R5ckhmTXV6SHlCei1PSC01UE5KbEQ1em5qREgyWDZxUkZqdlVlc1F5M1VvY1d6UXFUaTl1Q1V3SDhXWXdDZGN5WjRTTzlwTHhZN0FoTzQwZGU4X0FEeGlsUVhCWXNlUVQzbF9Na1d5X1pqVGtaWGZCN0MwXzR5cW5WZk0xa2VPNURUampQM1hYWWdKcUhwNVd3dV9raTl1Z27SAeABQVVfeXFMTVZOWGRFSlZTbzloVHNtaGtQRThMbHhjOFJvVHppbGJjR2ZyNlFlY3dhNWJvbGlqdU9meTEyRGx4MG8tTGJMcW1XM0NLcXluNE4ybUJ6bHY3UFlZcGFTYjVQdUlaNTNCLTBrMlAwY1o3ejdqTzc2YWZtMi1xOWhWUllWcXh3cTlZWW9MU0J5d28ycTE5Znl1YkNYUTJZc2ZfUkdJMFVGTHY0SUdleFZkcmRYVnAtQ2FqVDRWRWFKazgxdlRoYW1pYmxNWjlTNHh6V1l2b1AybmN0aDhRMjRkeXA?oc=5"
+    },
+    {
+     "titulo": "Fenómeno El Niño: Piura soportó lluvias de hasta 134 litros por m² e inundaciones afectaron Tambogrande, Chulucanas y Paita",
+     "medio": "La República",
+     "fecha": "2026-11-23",
+     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOaWEyZGtjQW9KX1VqNjBabVNnQktzU05IYk9INm9Eb0MySVRxU3pIUnczajc5LTZLWmp5VktPdnM5d0duZWJGdEh3c0Q2bEtNeHBJczRJMmRoUkpjNXZSeXlVQ2VZMnFiUDIyMWF6ZVc4ekxZXzBSYUxBRURzcHVOSGIwamo2NG9jSjF6dXgwTDJPd2FrRnhkMlhsZGhNOFo1dC1WNWZ4M1c0MkF3SG04dF9LTUtNVzc2QlBUaEZ6TGZZcHhUUXNZbkJ1Z2xVNm5NOTFIdDRSR2lOeGdSM1czUFgwVEJoclJKNHp0bnljR01ya3JHNkJ3bDZWaEFUZ9IBgwJBVV95cUxOMVlxMEM2aUxpcEdzMUNFQ1hrdnlIZUE2RndfYWk0WTJsOVh2TXdXLWQxTUYxVU1WbFZRVUdZeGZsbVZsaTJiVV9ENzBRWUllQTZrdGk2bE0xUS1rdDl0UHJoUWVYUUJsc0NuOUMwTFVKSDFCaE1Nc1NHbUxQVFBhNHNISGR5QTZsdVlDUFdZeE0wVTVoRTVLSlZDbHRKXzBQSE5fZ2UzZmwtNDVZbC1MSm5XOUdWT2dDVF81X2hwWkY3c3ZfZmRLN2hJOHFlanhXVElqbEMzbzk5Sk5KVU1EeWxEUGM4ekxhaHRtOWMwaXh4SE11WVozTW5pQ1JaV09JZnhJ?oc=5"
     }
    ],
    "radar": {
@@ -691,22 +733,28 @@
      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMW9GQ3dmbGprQ0pEU3NmMFJDRGFDNDRKdTdkTi1ZU1hhS3hWeURVRHJLeEdlQl9ER0MxcXFxTkN3Y2pXa1NJczA0Q1NVNWJuUVEyaDNjY1QxOXlSVVpTTF9lUXNRYlZvOFdISFpPTnFpaWlJbVd3OFBtalFRdkdXanU5S2F4emRLMF9UR1lPaUM5aUJJWFZsTkZpQ0hvNzVUU1hzb21sX3RDeFZfd3FuZnd4N3BkbzdsbFY0UjF0bkx5dw?oc=5"
     },
     {
-     "titulo": "Piura: intensas lluvias inundan calles, colegios...",
-     "medio": "Panamericana TV",
-     "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSDAtOEFaNS1mMjRPU1lQNEpGaEI5eE55amVxN2xUeGxZQ25HU2JHUDNzWWVmNmRsaFVpSDhaRmlua3Rta1pXTFNlX0lhUDAyenNkY1FBMy1HTjJFUzFnQVZzOVBnbEl1LTd6U01SbjZzcjg0eWZYUGtleWozclFOX2NUMUVWSVFpTERlSVc5dlZHandSOFVrb2VTMkFidkRRZ0k5bkZfamZFU3VnQUFsdE5qN0puOV950gG-AUFVX3lxTE5OWXlyTkF5YjRZZ084X1B5OWp6al9FTVFsZzF4SzdWMzBLRnZFODdoM2xYYmVsMER4a1dmbVJJOHBNRXp1SjJXSVJBc3o2RnZ0UlBjT3JBdnVfa0RVM2hESnZYQXcweExjVENkczZUaWVWRXVvb3BnVHAzRmZMTjBINHBjdmVOQnZ3bDJLY0tDdDdIQUtwMXhnYVgzaTV4ZVhSaEVma2VsQld1VFdVZXBjNVRhUHhkZjZPbVdLV1E?oc=5"
-    },
-    {
      "titulo": "Piura: Lluvias intensas provocan inundaciones y activan quebradas en diversos distritos -",
      "medio": "Perú Informa",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNUy1BdEdNcWl4VTBtbndYU0dPY1lIYlFUWkZnRVJ1aXJCZndBOC1nR3BuSlZSTkk5WmhMTXNYWlFuQ1lmQmEwSE0zb2Q1TGxYZ29oQ08zZmVoUHVpTEl2UVFLTEYtUXg1UVBmS25zWXY3QmN3cWFHYnlQMXRNTDBneWRDTUhkdHdRcjFqbnhSZXItMEVlUGJydUVnX3NpcF9iOWNpTE9SUkx5NVNacmJxVHU2MHBVdw?oc=5"
     },
     {
+     "titulo": "Piura: intensas lluvias inundan calles, colegios...",
+     "medio": "Panamericana TV",
+     "fecha": "2026-11-23",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSDAtOEFaNS1mMjRPU1lQNEpGaEI5eE55amVxN2xUeGxZQ25HU2JHUDNzWWVmNmRsaFVpSDhaRmlua3Rta1pXTFNlX0lhUDAyenNkY1FBMy1HTjJFUzFnQVZzOVBnbEl1LTd6U01SbjZzcjg0eWZYUGtleWozclFOX2NUMUVWSVFpTERlSVc5dlZHandSOFVrb2VTMkFidkRRZ0k5bkZfamZFU3VnQUFsdE5qN0puOV950gG-AUFVX3lxTE5OWXlyTkF5YjRZZ084X1B5OWp6al9FTVFsZzF4SzdWMzBLRnZFODdoM2xYYmVsMER4a1dmbVJJOHBNRXp1SjJXSVJBc3o2RnZ0UlBjT3JBdnVfa0RVM2hESnZYQXcweExjVENkczZUaWVWRXVvb3BnVHAzRmZMTjBINHBjdmVOQnZ3bDJLY0tDdDdIQUtwMXhnYVgzaTV4ZVhSaEVma2VsQld1VFdVZXBjNVRhUHhkZjZPbVdLV1E?oc=5"
+    },
+    {
      "titulo": "“Parecía el fin del mundo”: vecinos de Piura relatan cómo las lluvias inundaron sus casas y arrasaron con sus pertenencias",
      "medio": "Infobae",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQc2NDOGk4ZURrSFViMWhQWHRTcHc2cGptU0R2V1AwVnBNQ3doS3V6M3ZOajJGODFIY2xGSTM5SFF1VWoxZmtjeWhBeHZpTGVZQ3FubW8wYWVxakxiOWE1YS04VXdodWxiX2llaW9nNHM5WklYQXdrTGprcGFzd214MFBLeW9QX2VRUGp5TXpueVhZYkk0ay03WmtjU1lzOERhSzR2X2d6UUhVXzFTOFllQ0xIMXh3d3FSYnFDN3c5NnRLNmJkLUx4ekZnUjhvMnp6S09sYmJ4X1BDUkZIeWZqdEFMM1FtN0tyc3FiajVnaWpld9IBjAJBVV95cUxOaS1JbElLWmNSN216TjYxQ054a00xTUVVMTl4bTh5SjJSVENuSDljU3gtM21zYU5QMEQ4X3lLRF9kZjBJTnVITEZ3SUVzNXpXTFhtS3RhSFltYy16cjBCWUJYXzhoSXZxT0w1Qk1iX3NpOEY1cEFkOEVmTV9ENzNUYW5EMjY4eHNQdG92OXNvV1lIcjRyd08tT1diOW56a1hsN0xuM3p2RE9oTm1WWVlCZHFKdWJwVWJfemNRVDNZTFpWZnVVZ2tXOG5ObWNmRERHSklPc05tZGJBb2lYR2l2c1FTTXlra3dBeDNrYjlaaGJNMkE4V1NMVGdDbFBUbFczdGJYSzM3Wk54VFAw?oc=5"
+    },
+    {
+     "titulo": "Piura: 200 familias de Las Lomas quedan aisladas por las lluvias y pierden sus cultivos",
+     "medio": "Perú 21",
+     "fecha": "2026-11-23",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOMVI1cmE0OExVYkJXZjFCQmxsSDVwSjJKNDhGR3F0UXdHUWtFVTQ2SnoyZndLYlJXNnZGVUpDRHVTSUxwRUg5VzlkdUVnVlVmZjM5Y2x2NjlWR01aWEhKUDRvcUZyTzg3a1E0WGZyUmVOSTJmYldDa2hTWUMtM0NFU0dvLWg1VEE?oc=5"
     },
     {
      "titulo": "Cuando hay sed, hay sed: Grupo de amigos tomaban cerveza en plena inundación en Piura",
@@ -719,12 +767,6 @@
      "medio": "Gestión",
      "fecha": "2026-11-23",
      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPeXVXLVZfbnEzMVk0RXM1aG81TzdEV3J1ZUxfRXRTR0tuTzBPUFBkb2l2dlByMXl4U0hzNG12VmxGWDd1ZEFzenpwWmNIWGdOMjJmS0FWR2w2SjhqRHdscWpZNkliQlNMYlhnSjNyV0VYeGhwM1pybkJkQ0ZOdTJVcGJWX25oYnZtcmljTDY3d2t0ZU5DbDFuZ1pjMDlEaEp1SmJzQmpzaFhwNUlNSFp2dENn?oc=5"
-    },
-    {
-     "titulo": "Piura: 200 familias de Las Lomas quedan aisladas por las lluvias y pierden sus cultivos",
-     "medio": "Perú 21",
-     "fecha": "2026-11-23",
-     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOMVI1cmE0OExVYkJXZjFCQmxsSDVwSjJKNDhGR3F0UXdHUWtFVTQ2SnoyZndLYlJXNnZGVUpDRHVTSUxwRUg5VzlkdUVnVlVmZjM5Y2x2NjlWR01aWEhKUDRvcUZyTzg3a1E0WGZyUmVOSTJmYldDa2hTWUMtM0NFU0dvLWg1VEE?oc=5"
     },
     {
      "titulo": "Las lluvias torrenciales provocan inundaciones y activan quebradas en varios distritos de Piura",
@@ -745,10 +787,10 @@
      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNMU15QlVGQTRxMVAybllBamxsZkJ0QmtEVVpsbzVmbml5OG5QQVoxNmZlYi1zdWo1WkE3MVVjNGQwdm81VDdQbjItNUZqX0d2cE9lMUlzRE5SYnhPZXQtSVdkUHZCWXJlSktuU1lVcGllYXFWclRiaDNTOFFqUk50dVoyOXc2b0phLTdLamVJck1USGdTMUo5M08yUWd0YzkzNEdwTG0wUHZlMDcxbjZDd1JnYTY4dlhYc3NhSDRqVTJYWHpBcXdiRVhfX2N4ZDh1?oc=5"
     },
     {
-     "titulo": "El Niño en Piura: Luis Galarreta supervisa zonas afectadas por lluvias y destaca despliegue de 1.600 militares y maquinaria",
-     "medio": "Infobae",
+     "titulo": "El Niño vuelve a golpear Piura: lluvias inundan viviendas y evidencian retrasos en obras de prevención",
+     "medio": "Willax",
      "fecha": "2026-11-24",
-     "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPUjU3bEp2dnhidEJJaWtSNlc2b2tfRmlVckNVWS1LMUlERllLWWtveC1YdnIwQ05vYlJGWGYzaTZtQ3lKRHRZTFNWalBuRTh0R0k2b1pJTmZUV0VtYlhqWkNvZGg2Z2Uwb3N0NWNoSDZHalh4WHVPUHBVNmtaR2hVRFdVdDBMaHVLQ1F1ckU2OExUT3pIWDNUNktocE8wUm1aWU0yNGRrbjJYTTFPSUwtUXZzSkY5dFFpMHZpcl9QaEVSamZuUG1nTmFncUNDZUxsVkVfYlBFMk1zM3dWejdvTnNVOE1vbVNRY2dJTlQ4NmIwN3BV0gGPAkFVX3lxTFBRWVp6dmdBRWtLVzczQW4wNjh3djFUTTZHU2ZMLTZOZnRXVWZERVF3TXkwbVZHb2FOcTBacXpKTjdzeHk2WkhHNGNZNHBSWVk2M3dvTDVTclpjdVNzV1NncS11UHRNYk1hc2FCd1V6WnhWRWFjbk5nejFyRUdFUmhNdmpDWWVKakdjbmJTYXdaRXNzZEphVU5SOGFmX3JGQXg1amZpMmc4RXBJSnVLSUdJbjNmdEcxTnB0dTA3WDJzVm43T29nY1JEMTYyQng4UWNEbE1YTDFQeUpJVEhmZlpKb1ZUbHBKaXRGS3diVy01WTBzc2dnVTAyTC1zY3JGVWk3UjBrMFdRbE9zRVd5NXc?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPTDZybEZzSWRsSmNFU1Z0YVdLb0RwRG5ZNWhnTm96NXAxbWRNLWVTODRIUUtOZmd5Z2NwWkNTU19IMUxERVpMSmJONXI2bWZlWktrRTFvZGU0T0lKTllzWm1rdl9PdlU5MjVfZXpSYlFIR2pXamRCN2lIdkl4NDZULXNPQ3g5Nnd4SXB5TWxVcVdLdjA4Mm03R0x0NGt4OGdJNWJvT21CeTlnUzBXU3JvTzc0NmdKbFpFOXFVcmI5c3loTGRueFVBbWZn?oc=5"
     },
     {
      "titulo": "Fenómeno El Niño | Lluvias intensas provocan aniegos y emergencias en Piura",
@@ -757,10 +799,10 @@
      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOZzltbnBYTFBvb2RYYWJiNVpvX0d2bXhpdURjVlBiRmJXYXRkcDExQ1pYT1dtT0Y5OUwyYnlsRjFHRU1FTGVydWJfbTZNNVBUZmVHakEyUEdBR2VMMnhfcUlaTkJMMUFDc3RYLXV4cWV5eEhpaFVDYnF3TVBxWUptcENMWUtCa2lXTWNlNEM3OFFLMkk0V0tvYkdBSElsSGxaS2Nz0gGnAUFVX3lxTE1vVkJadkhNcDhvSmRGcE9LYmhtRm16TFVLVU4tRl9UemZNZ3NfY2sxdjRrU3c1ME9HTl9PMDlwd0dKMVFKMkp6cTVMNWVaY0hySVBMR3N5YTVfOGNtQ2NpZUlwZHk0NGVGLWZ3cHBMRTNYSnVvSDdtM3NXVC1mbVBDaDdzcUR3cUZKdmlQUVJ4b012RW5qdmdOTHp2VWVvM0FZSHU1akI4?oc=5"
     },
     {
-     "titulo": "El Niño vuelve a golpear Piura: lluvias inundan viviendas y evidencian retrasos en obras de prevención",
-     "medio": "Willax",
+     "titulo": "El Niño en Piura: Luis Galarreta supervisa zonas afectadas por lluvias y destaca despliegue de 1.600 militares y maquinaria",
+     "medio": "Infobae",
      "fecha": "2026-11-24",
-     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPTDZybEZzSWRsSmNFU1Z0YVdLb0RwRG5ZNWhnTm96NXAxbWRNLWVTODRIUUtOZmd5Z2NwWkNTU19IMUxERVpMSmJONXI2bWZlWktrRTFvZGU0T0lKTllzWm1rdl9PdlU5MjVfZXpSYlFIR2pXamRCN2lIdkl4NDZULXNPQ3g5Nnd4SXB5TWxVcVdLdjA4Mm03R0x0NGt4OGdJNWJvT21CeTlnUzBXU3JvTzc0NmdKbFpFOXFVcmI5c3loTGRueFVBbWZn?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPUjU3bEp2dnhidEJJaWtSNlc2b2tfRmlVckNVWS1LMUlERllLWWtveC1YdnIwQ05vYlJGWGYzaTZtQ3lKRHRZTFNWalBuRTh0R0k2b1pJTmZUV0VtYlhqWkNvZGg2Z2Uwb3N0NWNoSDZHalh4WHVPUHBVNmtaR2hVRFdVdDBMaHVLQ1F1ckU2OExUT3pIWDNUNktocE8wUm1aWU0yNGRrbjJYTTFPSUwtUXZzSkY5dFFpMHZpcl9QaEVSamZuUG1nTmFncUNDZUxsVkVfYlBFMk1zM3dWejdvTnNVOE1vbVNRY2dJTlQ4NmIwN3BV0gGPAkFVX3lxTFBRWVp6dmdBRWtLVzczQW4wNjh3djFUTTZHU2ZMLTZOZnRXVWZERVF3TXkwbVZHb2FOcTBacXpKTjdzeHk2WkhHNGNZNHBSWVk2M3dvTDVTclpjdVNzV1NncS11UHRNYk1hc2FCd1V6WnhWRWFjbk5nejFyRUdFUmhNdmpDWWVKakdjbmJTYXdaRXNzZEphVU5SOGFmX3JGQXg1amZpMmc4RXBJSnVLSUdJbjNmdEcxTnB0dTA3WDJzVm43T29nY1JEMTYyQng4UWNEbE1YTDFQeUpJVEhmZlpKb1ZUbHBKaXRGS3diVy01WTBzc2dnVTAyTC1zY3JGVWk3UjBrMFdRbE9zRVd5NXc?oc=5"
     },
     {
      "titulo": "Fuertes lluvias provocan inundaciones y aumento del caudal de ríos en Piura",
@@ -841,28 +883,16 @@
      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPbUhJdUxoRTdCbU14Q2RnR2w1NDM0X1lsRVZvNzZJQ081Q3NWdzJNOVU5djBnWXRpaUlOTFNzdWZqWmZ6QXJ1Ylh3N3pBeXlqbEtKZVpBZWc4M001X2JKaWgzMkkwcVlFdm1Rb24xSEs4b1ExSTI3S0U1OFAzWjB5Ug?oc=5"
     },
     {
-     "titulo": "Piura: Cerca de 50 personas quedan atrapadas en un centro comercial por inundaciones",
-     "medio": "Diario Correo",
-     "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNeG1sY1hIalM2cU1GUTlVb3dTSEJfM2lNUGoxM3UtRUUwY3JFelhzMXREbmVMNDJlUXlLU19PSVJEanI4ZzR2VXN1X19WRUFiaXFWMVBaSHRGeDVfUTE4aFlvV2pvWnNnQWJjMXEzT3lIUmU5UEdTZ1hOSWVoX3U4N09Ja1pFOVUyMl91WmhsOERrMk9Pd3p5OElUeFVoczRLaFlnMVlNWXduQ1lqdUNHZE5YV2pZalRwVzFBWUVRQWk1ZVZCVjFfdXVR0gHeAUFVX3lxTE5TbHNyOVdjYmNxQzZ1OHM3b2EtbU9wUmNjN2FmNmdxc0EwZ1BhQjNxaG5ZWkdWYm9neWxkZklUUW9JUzdrWnJxTXQtVUN0ckRVZHFMMm1lVF9yUXhCNi04dDB4R3lCcXR0NnhsOEF6WTIyMDJQWmhNeEMzQmpBX2JBaVMxOGZPWTZTdWJEVXBPMEdBcFJaY1E3MnhsS2piRFBDblZZeW9xOEE0eV93LVgxanBJODltS084c1ZGVlpVSkVNVzg1QXJfNmNCTGNqOFZ0Ukp4S0NrUE9pYl9QUQ?oc=5"
-    },
-    {
-     "titulo": "Piura: 250 militares atienden puntos críticos por inundaciones tras intensas lluvias",
-     "medio": "tvperu.gob.pe",
-     "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPaEhPdUFpWWhQTVRLN280dlZ6YkdjRjR4VVFEVmtEMmFvd0hld1lIaDNqU2N6LVdvYnFoSUxlYTlQenNCR1pSTFZGZzRUbVhjYkE1TDB6RjFXemVreDlKcFhvYlpYb1NuYVlocWNGNk5DdG16a1h1bko3YUs3Q2tzel9SSHYtTWV1ck1Xb3NMUFFibXNManlZUnp3X2NJTFlEamV1dzlkUUpfQ25DQmxhbVhMbUZ6LTczR2d5cE1n?oc=5"
-    },
-    {
      "titulo": "Piura: lluvias dejan más de mil viviendas destruidas y miles de familias afectadas",
      "medio": "Noticias Piura 3.0",
      "fecha": "2026-11-26",
      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQYi1FelFHOE44SjRqWmpyMGxlTC1BZ3VSdm9aT013alBqcm1pR1pIYVF3NkpkRWtPZnJySmp5djZjVklZUVhuSVVCUUNMTU9BeUpxT3ZpeVhpSVo0d3VWcHpFdnNmWVdMOGFscFJyN3Ric0RhM2tuUTJfek5EdG13WVdvRkRJSXY4QUJ0V2l5YmZhLVRjLUJ1TGdJbmwwMFFVX0xmUUVESmlVMEVyM1E?oc=5"
     },
     {
-     "titulo": "Piura: lluvia intensa ha inundado las principales calles de la ciudad [VIDEO]",
+     "titulo": "Piura: inundaciones por fuertes lluvias impidieron a peatones desplazarse a sus viviendas",
      "medio": "RPP Noticias",
      "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPSHZWd3FmOHdYcWtDZ3BLSkFmUmJ3a3U1SzkzLU91dFJJVkcteThENENJMkFCWDNSM2VweG14SHQ5OWIzem9SaVpDeDdzN3I0UVczREY4WFlnMEpWTDJVSVhjbFlzcXpoRjF4V3dJY0htZDYzLWpoX2FWaXExU21RUXBUbVZYdU5CMHp0X3hLNU9DODZSTVhhZ2IwbFE4QkdubUtsNllta0J1UElOZlJr?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNSlFsRHVyNHFZRnlYZmFIWXQtV284MVlYdC15amtYSllhZDZhWUJCUWF5Zk4tQzZYSDJENDMyeDk4VHd3Tnd5VnBQOTZ3eHk0ZV9OVDQ5N2N1dmxLX3ZKXzVpWlllYUw1eXp6Wk9FanV3dHhzZ01mVlZrLUlMOG1GRkZqYW1ncWxGNElTa2pIOUpDbGpfdE9LVjdvaHpqTzY4dzRYVlpXcmducjVTcWJsOS1ESzBSSkRUN29VRTN2c19vTDdaazNGeE4wWTN3MWxFMVdyVUppOFhxZ0xBOEVwTkc2VENzTkRxWkJrdjBmeFlWb2N6TlE?oc=5"
     },
     {
      "titulo": "Piura: despliegan maquinaria y equipos técnicos para drenar zonas inundadas y resguardar viviendas",
@@ -877,6 +907,12 @@
      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNQ1JnWWhwUUVjM2o2M3I0djl5cGlEV3RrWHNvQTJXdzlwTWhfblYxMm5lUGdQSEQ0UFBBOTRGbklreHMzMGhEUzhRalA1aGVpT0tKTkJ2MFU2U0NPWFpQamx6TXNsM3Y5TC1MOG01OEJLcTMwbE15WTBDYjl3ZUdadndVQ3VYRy1nNlZJTUIwcm5FRHRWc2otSEE2c3JNMzQ3YUtWZUtqVzR5SjM2MUlPVVNGNFhEdlVfN0pKSXR1QVVPd1JnWWV6OE5iV0JNcUxDMUtn?oc=5"
     },
     {
+     "titulo": "Piura: lluvia intensa ha inundado las principales calles de la ciudad [VIDEO]",
+     "medio": "RPP Noticias",
+     "fecha": "2026-11-26",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPSHZWd3FmOHdYcWtDZ3BLSkFmUmJ3a3U1SzkzLU91dFJJVkcteThENENJMkFCWDNSM2VweG14SHQ5OWIzem9SaVpDeDdzN3I0UVczREY4WFlnMEpWTDJVSVhjbFlzcXpoRjF4V3dJY0htZDYzLWpoX2FWaXExU21RUXBUbVZYdU5CMHp0X3hLNU9DODZSTVhhZ2IwbFE4QkdubUtsNllta0J1UElOZlJr?oc=5"
+    },
+    {
      "titulo": "Piura: Ministerio de Vivienda activa equipos para evacuar aguas de lluvia y evitar inundaciones",
      "medio": "Diario UNO",
      "fecha": "2026-11-26",
@@ -889,10 +925,22 @@
      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOVllsczdqYVUwN3NCcGw4UFpfVkhCVW4xbVpQUUxWWFlrdHRjbThqeDFEZ2ZSSm1PQlV0Ri10MFlyTnp6N0lnTWN0VnhSRUVrbC1HTmRRRGhOenB5R3Frd3Y0bjVWZnV0aHVjY1dkblIxaXNuaWwtU09ZSUJZcHhTRnVsaEZTUlJlcmF1RlFoN3hmME40QWdzMzEzM3NxR2RPMmk3aWFnSVVHZ3h1N2FPdkpoRy05Smh0a3fSAc4BQVVfeXFMTzhGcFdjVUlYVWJsSUFMZnZ5eENzWUZKZHVINXIzRVBjaU9hclFZeHl0TnVRTFRPRFBuN19WT3QwcVV5aHYzQWpYS3gwZ1NWbG5rVVVlSHI0WEdPdDZuRG5XOHBxZTVFbzJQOERZYmJwRUxyRENocWZIZnN2aWhjYnMyLU5CS1R5OXE0V0RCeW1Yb18tYWxoSV9yTTBCQmx0dEJKTVU0VFlBaERLdXFsNUFTeVptRUN2UjNZTVI4Z3pPc3lWeDFUc2YzbGpOVnc?oc=5"
     },
     {
-     "titulo": "Piura: inundaciones por fuertes lluvias impidieron a peatones desplazarse a sus viviendas",
-     "medio": "RPP Noticias",
+     "titulo": "Piura: Cerca de 50 personas quedan atrapadas en un centro comercial por inundaciones",
+     "medio": "Diario Correo",
      "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNSlFsRHVyNHFZRnlYZmFIWXQtV284MVlYdC15amtYSllhZDZhWUJCUWF5Zk4tQzZYSDJENDMyeDk4VHd3Tnd5VnBQOTZ3eHk0ZV9OVDQ5N2N1dmxLX3ZKXzVpWlllYUw1eXp6Wk9FanV3dHhzZ01mVlZrLUlMOG1GRkZqYW1ncWxGNElTa2pIOUpDbGpfdE9LVjdvaHpqTzY4dzRYVlpXcmducjVTcWJsOS1ESzBSSkRUN29VRTN2c19vTDdaazNGeE4wWTN3MWxFMVdyVUppOFhxZ0xBOEVwTkc2VENzTkRxWkJrdjBmeFlWb2N6TlE?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNeG1sY1hIalM2cU1GUTlVb3dTSEJfM2lNUGoxM3UtRUUwY3JFelhzMXREbmVMNDJlUXlLU19PSVJEanI4ZzR2VXN1X19WRUFiaXFWMVBaSHRGeDVfUTE4aFlvV2pvWnNnQWJjMXEzT3lIUmU5UEdTZ1hOSWVoX3U4N09Ja1pFOVUyMl91WmhsOERrMk9Pd3p5OElUeFVoczRLaFlnMVlNWXduQ1lqdUNHZE5YV2pZalRwVzFBWUVRQWk1ZVZCVjFfdXVR0gHeAUFVX3lxTE5TbHNyOVdjYmNxQzZ1OHM3b2EtbU9wUmNjN2FmNmdxc0EwZ1BhQjNxaG5ZWkdWYm9neWxkZklUUW9JUzdrWnJxTXQtVUN0ckRVZHFMMm1lVF9yUXhCNi04dDB4R3lCcXR0NnhsOEF6WTIyMDJQWmhNeEMzQmpBX2JBaVMxOGZPWTZTdWJEVXBPMEdBcFJaY1E3MnhsS2piRFBDblZZeW9xOEE0eV93LVgxanBJODltS084c1ZGVlpVSkVNVzg1QXJfNmNCTGNqOFZ0Ukp4S0NrUE9pYl9QUQ?oc=5"
+    },
+    {
+     "titulo": "Piura: 250 militares atienden puntos críticos por inundaciones tras intensas lluvias",
+     "medio": "tvperu.gob.pe",
+     "fecha": "2026-11-26",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPaEhPdUFpWWhQTVRLN280dlZ6YkdjRjR4VVFEVmtEMmFvd0hld1lIaDNqU2N6LVdvYnFoSUxlYTlQenNCR1pSTFZGZzRUbVhjYkE1TDB6RjFXemVreDlKcFhvYlpYb1NuYVlocWNGNk5DdG16a1h1bko3YUs3Q2tzel9SSHYtTWV1ck1Xb3NMUFFibXNManlZUnp3X2NJTFlEamV1dzlkUUpfQ25DQmxhbVhMbUZ6LTczR2d5cE1n?oc=5"
+    },
+    {
+     "titulo": "Piura: vecinos del distrito 26 de Octubre exigen apoyo con motobombas tras inundaciones por intensas lluvias [VIDEO]",
+     "medio": "RPP Noticias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNOElWM18taXdrd2JDMFRQZTJITTFOeVBjZVZ1OHBFVUt6OGNUVnF6TWNRNkIwOHp0X2hEXzRHdk5lcGxkTUF2bElxRXZQbHJMNmhMVk83WXNNMDhBWjljWTM4SjdmUUJ5ZHRCWTZDV2JILTlKX2l4UjdpclZyWDFHTjBiTkZTYV96aDdBUjFZV1VTLVhtS2NYSWZTQ3MyRl90UDUySG44MTZodHdVbkJ4ZXd4bmd5R1U2MTZibHlMQkppRjBwS1FNTUZfejlhZE02TkZySnFJQWFhOFR3UnRQdHBHUDFQT1dac01iczJKQTByaDZ1QnRwOA?oc=5"
     },
     {
      "titulo": "Piura: lluvias inundan ambientes del hospital Cayetano Heredia y obligan a reubicar a pacientes [VIDEO]",
@@ -907,10 +955,58 @@
      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQbzlUM2p6RE1ZRFo4alNXR0tfeEZWNGJyeHFVdnZnNFpJN1gzQlJ1OHFjVnJRYXhrTnFTTm84eDdrME91NFpBRkRJQnZmRUFBQktFMDJGaG9MV01MTWxrZlRfWWNfdFRGbFFCbjM4TGlJTEhHakJiMWRHRGZHQ20wZXJQUWJjbkJkMWxnT1hpSF9ITS1fZXVZM2hMRGRxeVhvdEt2eHNMeVFpemljcWt4OUdSQ0JmcWhEVlNxNlJSbzhhOEY1bWtlVERLdDFQUUU?oc=5"
     },
     {
+     "titulo": "Piura: fuertes lluvias provocan inundación en el Hospital Cayetano Heredia",
+     "medio": "Macronorte",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQTGpHYXFRWkZMSk9tUUktZXFhSHdVT3EzZlBmaURWR0hGWjJ3aUFWa0ozMlBsS1NsQ3dNSUN1Q3dOLUdWV2JRYk00YVFnR3hZVHIzVmsxN0tmY1Fzbm1qRkZoTlphZ2c1ZXl1NERRcnRIU2Z0VXZtY2x3azhtaG9Zb2NVeG42SzJ0eEdneVkzTmdUbFY5VjE5M1hFWHpYYXdWNG9jVVBIajN5aW8?oc=5"
+    },
+    {
+     "titulo": "Piura: Calles y viviendas de Ignacio Merino permanecen inundadas tras intensas lluvias",
+     "medio": "Canal N",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxORFNKUUFOeGRxQUNLSFd5UUZuRGZTZFI1dWFUb0JBZHJXWVVuRFVhRkZNUWRkSER6U1VHMWh0eDluamlLTHNlakJDbS1GbkhxZmdLS1pURGtsMk5MTU5mU3owTl9DaFFqcklQN09MSlUySkZtbGpFeGxmZVdUbDR5SXpsTVVmUERrTnlKWUtBU1N5b1AwdGQxb2NxUndyZnJhVk12bWpCNGlfMWxMZnFTMzNyR2J5blY1LVlmM2N2eGNOWHYzeTN2b1RLNDAxSGNSamFkUWRSOGI?oc=5"
+    },
+    {
      "titulo": "Piura y Tumbes bajo el agua: Calles inundadas y vecinos evacuan tras lluvias torrenciales",
      "medio": "www.apnoticias.pe",
      "fecha": "2026-11-27",
      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNSzNaemRBUU9janFMc0MxUS1FR0s0WkZMZHVwRHRpSU1MMW1mNmVfWVdMU1R2ZHBxUTZNVXVYZ0NVbFJSd2FjZlJlNzUybUduc2RwMjg1b2RxcWh0ZjJWc01xdktlNlVCblZyN2x2NktEempJSE1WaEpLOFRJbm5XZnIwMEo5MGFTWVlfZ2E5Uk9jX0Ytdks1QmVXWTY0eUN0U0hVRmJNZ2h4bzVoOWV4WnRuNmlkZDhkOEZhLVJMYTBfaFJmQ2c?oc=5"
+    },
+    {
+     "titulo": "Piura bajo el agua: urbanizaciones El Chilcal, Los Bancarios y Santa Ana lucen completamente anegadas [VIDEO]",
+     "medio": "RPP Noticias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQMm93OGx1UTVHM2tidFJOWnZIc2RYbHVEdExHdExlUXJFT2VUbFNsOWJ6WHNuMTJxNVZxMks3S3FuODRmcUdVanUtSHNwdmt5dmhNMHdObEtCOFRTOXh2Zk9tSUtRdExsUFhsTVVWeGtoNjRuMTF2Uy1Qd250OVJQQlBmZ2JUTXFGSlBOV0NudUZuVzh4eFpCOWplZ1hGSFIzeG94eHRsYjlQM1NjeFU2YlB6SFM5bTBCZUt3VWphNm94QVlIeEh2Q2NqdUhUY1ZvcFF4aXhjbEtxVUFkMV9j?oc=5"
+    },
+    {
+     "titulo": "Piura bajo el agua: lluvias inundan calles y viviendas, mientras el agua supera el metro de altura",
+     "medio": "La República",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOV3BfY3AtQUlqMkViUzlsNWhvQ1J2SlJuUm42dVVTUXJYTm0yRlhLel9XSm9qZ0RjUm5mdVVVNU1iVWk3LUNqNUtrNUtBeDYyY3lsYktxbS05b3JHdlMtc3Z3NE5pYkZROUlqZ0Rydno4UXlKbGdpM1FkYVVkbFpiclc4MFViM0JIRHo4bkctc0txVnpPcl85RTcwT2RyUUV1N3Y2ZVRzNExxeU5WZmlHVkw0cktKOU9zRTZ2eHRPNVFzTkgtZjljbVQxVGxnTF8tMU83ZDQwNXA4Z2ZIVnEtTNIB5gFBVV95cUxPWkhKNjE1OUdMalVKNnBCOU41aVFjS001a1A1SUxLM3BJeTQtbnlYSDJWVVhldDBuS1pNNldTcmdlQ0xJZXE1TGQzcTY4ZFZGZWhyY2hRcmRlNEdNYWNoYXAyTzRUbWEzczByeVJCREQycnVpcGNOLTdyWVRqZl9lRUNyeUFNNnVfQXpzaEthQWFmOVpWNE9nbzNhXzAwanJvWmhFR3dhZ2xzTTRjVWhxNW1BOURtSENMRVktZnJyVXpBMzY1WGFRV184LXF3eE43emxjSHNybGphUlNnNmdYZFM3cWJYUQ?oc=5"
+    },
+    {
+     "titulo": "Perú: lluvias extremas asociadas a El Niño provocan fuertes inundaciones en Piura y Tumbes",
+     "medio": "Primicias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeEZwZXB5cW5yODByRnV1RWlTOE9Ham9tMWVnOF92eWMyTUVnZmZISEtWcjA5U2VGMzZkY05sSHhmeTlHdXVxSlNlejBnTjlSQ09obmVlVVpHNHZQbHJDQ3A0Z1FqN2VWOUhxbHhsZnJCU1k0V1lxTkZHZE43VWxoRVdfTi1aTThNTHBVS1RvSjNhMlAzYjZmVU9ERk5KaWxHcUxaeGtFT0g1U0txVERPeG9yU1JtVndUT2gteExn?oc=5"
+    },
+    {
+     "titulo": "Ministerio de Trabajo dispone facilidades laborales para trabajadores afectados por las lluvias en Piura y Tumbes",
+     "medio": "Exitosa Noticias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOZ05QX0gtOE1pX1M5dWlzaVlVU3l4cGlfMFh4SVBBSGdsbTRpeUplY19XOTNFaDFMdU50LVNNV0JxaERDdnhRaXlHR1h1aERiX3VOamhOWFNHRk5idmpHb3NQdlJtUE43NmZmY3NlZGdORGZoa2ZtaldvbG4ybEpFejNYSUZNbmprWi1wRk9kLWRDZlc4Q2FVc3JTV2ZpVjVob1NScmlLQWRQdUNmS1gxQmZhcnA1TGhPTEktX2tXRlZkT3psbFBKU0JzZDRPMFllRmVYOTNMN2VQZVpq?oc=5"
+    },
+    {
+     "titulo": "Lluvias torrenciales en Piura dejan vehículos de transporte público varados en calles inundadas",
+     "medio": "Canal N",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNQWFNSXhOcEtveWtwTUNJMkV1cHVTMlBwbC1xX2NBZHlwOUQtTUFjcjJZQW8yUHZJNlhLVDFKUFRTd1h4TGpWRHI3RzUzTnZjd2c1dnVSbm5QeGlWSVBHUWVzdk13dG84QW5oTmc3YlJ0QjRRbV9vNF9sOUg3VjdCaTlxaUJyMkFWLVl6eU5URUI4NkdRSVBSUzBUczdjRlJMOXhhb1lQWFpiS1JwTWZaOU9SN1BVbFI1d2FGZ285ZWRael9JeVBLa096VkwteEM2?oc=5"
+    },
+    {
+     "titulo": "Piura está inundada tras 12 horas de lluvias intensas que continuarán hasta el domingo según el Senamhi",
+     "medio": "El Búho.pe",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxONWgwbERnYktkbGstWUlJNnEyTFgtNmJDeDF1MG9ob0FKenJEcllnY0NwSTRSMWhmUGstUEI3aUlFSF9TX0ZONUFHMHpMVi14V1l2UVNVd3dJTDdKLVRkektJUVViRHhwOUgybU5iNS1ORTBDblRzQlNjTG83M042SkxHSlhFS1BSbjcwSzE1bTJGdjNmRlV6SGpGSXkwaGI1Qk5tbzMwUXJiTjRYbmJYOFVUT2ZEZFVNcDhJbTUybUw5eE02WlZ6cUJB?oc=5"
     },
     {
      "titulo": "Lluvias inundan Tumbes y Piura",
@@ -919,10 +1015,94 @@
      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1jTlQ5ME1zQ09YVS0ySXRWdHRQeURQME9SM0V0dnFobzVuS0M1cXFjYzZyMmZrUnp4WEhabF8zZTItOXdkaVhCMXVJR0pfUEozM0xyMlVZMW1GZEVMeGxRdVp2MkVDd1NhcEl6M1FTTlIxUEE?oc=5"
     },
     {
-     "titulo": "Ministerio de Trabajo dispone facilidades laborales para trabajadores afectados por las lluvias en Piura y Tumbes",
-     "medio": "Exitosa Noticias",
+     "titulo": "Lluvias extremas por El Niño inundan Piura y Tumbes en Perú y afectan a más de 2.000 familias",
+     "medio": "ElOriente.com",
      "fecha": "2026-11-27",
-     "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOZ05QX0gtOE1pX1M5dWlzaVlVU3l4cGlfMFh4SVBBSGdsbTRpeUplY19XOTNFaDFMdU50LVNNV0JxaERDdnhRaXlHR1h1aERiX3VOamhOWFNHRk5idmpHb3NQdlJtUE43NmZmY3NlZGdORGZoa2ZtaldvbG4ybEpFejNYSUZNbmprWi1wRk9kLWRDZlc4Q2FVc3JTV2ZpVjVob1NScmlLQWRQdUNmS1gxQmZhcnA1TGhPTEktX2tXRlZkT3psbFBKU0JzZDRPMFllRmVYOTNMN2VQZVpq?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWXhDOTZPSDA3VUpmbHRYbVh1RjZydFJZVktOMTJNOENjb2tQNFFRNEloelBPaFp0RlBxWHg0V2F3QTdQR0FvSlJQRlJTMHFFQkRaZGh1TnQzYXRsRHhoOEpMMUM1QjVZSEpqTFRVaTlHVHJxUmVqSHBYRnhTQjB4UGFINW41aFZvV2N1S2FtVFNESDNHV04tMThpNGxUanlBczMyT2Z0S0JnWHBxODVMbXVxM0NReXhfLWl2blU3d1REelNXcldnYnd4ME5Rdw?oc=5"
+    },
+    {
+     "titulo": "Inundaciones en Piura y Tumbes tras torrenciales lluvias",
+     "medio": "Infobae",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQSlM4UHJPTV9vUlRobUNKS1dwZldzTjZRVWpLSXRIVVFXeTdMQ19qeVFFSTBxVy1OMkQ0UzFXZ1haZmFRZ055UE1XTDRmZGo4clljS3FkV3ZyYVpoN1RQMENOV1dwZmZwTHFZbFVKQ0tlYmQ4Q2R1SUVrS3BNT3hOaXk3WmJ4bm9HRkYxZGl0MEpaM3dmRE9mRmZOS3ZKWXVYS1Z2SHg5ejFFYnc?oc=5"
+    },
+    {
+     "titulo": "Lluvias en Piura: brigadas de la Policía y Ejército rescatan a atrapados por inundaciones",
+     "medio": "Agencia Andina",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOVXFoS3hCQkFfR0tkN3dTM0tMOGRkSWtpdzdud0tEaTZVTEIyMEJFb05zTTRESkozMzJ1bzlOZzQ0czc0OFctazk4QmtyUWU2ZDQya0JySm1MN0xBRko1SEJWQ3VsOFdycDdIQUJxWE03N1N0T25mT2tjWFpFZTB3eUJFSUhlNzVYWW1PbjBISG01U0xrVE9GLVc4RGVMcWE3TGpXV180MlJVRlZNNk1rNTR1TkF1OHVzUFpSLVZHbkZMcXM?oc=5"
+    },
+    {
+     "titulo": "Emergencia en Piura: el drama de las familias de Ignacio Merino que perdieron sus pertenencias tras quedar sus casas bajo el agua",
+     "medio": "Infobae",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOYUY0cWsxaTlrRGN2UHYyUlpVOWdNQjJkdUNyUUIyY0RKVWpPSElUVndiMkc1RUtZLWRzQlFaY0E4YmlNSS04d0w1VkduT1c2ZkJWejlhOHUyVmhRbkNVOVBQdnRFNVpRaFhGaWdIWUZpZXdJLWtYc0h0MjUxN1VtLVNKVXFlUDIwMjgtZjJrOGhtd3c3eTZWdUdxTVJPMTR2VmlOVGFrTmVHTk5xbEhIYzQ1WjhmZ2JSNGZuQTlnMEJvQV9HZXlROUFoTlpyUzdxbWtnSXpIejkyNnAxeVRmazBSOGhXZXJ5ZnlreTZ0UHhrMFJMSjhJcmdTQjhFQdIBmAJBVV95cUxOdUxjNVdvdEZ0eldSN24wVVV2ZkpsYjc4bjU3MnpyVm9Qb01hZFNDeGdFMEZzVGRPa1JLZEEyZE5JU2NQVjB3MU5OWkFrU0ZvNDdZT19vby13VUc1SnFua25oMXV0V1hJNWdBcmZHSll3dG5rWF82cGpEQjkzc21fV1NLTFY1aEh4bW9GNTcwdkVWVFU0RDlrbVZ0UU9tY0w1SFIwdVBwSWFic3djQjM0VW9GSEU4Z08wenF1WGMxcnpQRll5S2hCR3hXTkk0SnNYQXBtQ1FKd3Vyc01pVmxYTFNfdk9HbnZLMnl5SnJwNmlldUVfN2JxdjRjd2JqdTFaa3VEQXNWaUpHbk5PMzN5MDFZdlpzSC1D?oc=5"
+    },
+    {
+     "titulo": "Ejército despliega botes para evacuar a familias aisladas por las inundaciones en Piura",
+     "medio": "La República",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOWG1tVEFSYXBrZWRMWUhmNGZrYW9CdXR1eEp2UkZHWXVzckVBRDZURHVLbUxFVjJKVnB5Y1gwSGZWRVBudkhoaFdQRnR2N2FYWTlSUkhWSTFtaXJaUHRmMFlRamQ3MHF5cklFRk9CcWJFT19sUlFTX0JsSjNBajhGUnBQb0FocTk5VkZMSDNtOG5yOUpqT2tHUGVkckduZ1FtczFwTDlycWptc0ozSjlqaDZXd1JtNEtvT0tRYkhMZFJYQS1xenJ6NkxRM3FxaU9aWGI40gHYAUFVX3lxTFBrX3pwdEFTUUN1ck4tRDdkLWF1cWdrNzBDSWpJOXVWTnNZaTk4X3dLZjNROFN0eVg0M2x6Z09pOE9ZY2M1RmpiNmRsNTdkczdPM2RvVFJXWXRZRE1WcHIzakpHc0pZY2Z4MmJSTUc1U0JMd2hXYmNldHpMbTR3clNBQlNXYkRPeEF4VkU4d2ZHdWcyOWtfSG5MeFZBdVBEZWJrSmNEc2cyUThzTEQ3MV8yM3d4OEdtc01BRkpCQUVTOFRUMmZtYnBoeVNZcUd3MWZqS1dGd0JqYQ?oc=5"
+    },
+    {
+     "titulo": "Defensoría del Pueblo llama la atención a las autoridades y servidores públicos por falta de coordinación que impidió operación oportuna de motobombas provocando inundaciones y aniegos afectando a miles de personas en Piura",
+     "medio": "Defensoria del Pueblo Peru",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxPQmxncFg4Vm91WHVtZ3dXakdMbldtUXhwTlJrbDhsdVI1RjBPRUlVdGkwXzdrTE4yYm9XOUJTMTF6ek55NmE1MngxWml5SEJwaV9DMWdocU9rRk94X3VpWFVfZFlWSVJRWThSbm8zUkFtYzZ0ZVBIVjdudXN3S3NtRDA3azVtRTJuc2pHY1dUX2NrWXp1VlFkdEluSTk0ZUd4SGRCVlNqU1dkY2cwd2tjOXJVZ2N2UklEc3hRbkt3dGh1Yzc0RlZVVkUycVhOTGI4ZmMzM2owVGNaY0JyQkloMnpVRmI4Q3JJU3lDaExYWm43RUJMX3pka2ZYOFE0M2dQWFpDNHdKb1pnSmljaF9oNGZGSzhSVkZMVVVrNU4zbER1NWgyQ1F1ME40S0pXU0psSDF2Yy1OZUNWNUNtelhPUkpOd1pPc29VUmppV3ZWblE?oc=5"
+    },
+    {
+     "titulo": "Ciudadanos de Piura alzan su voz ante las inundaciones por lluvias: “Exigimos solución”",
+     "medio": "El Comercio Perú",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOc29jaXduaHhFUXlfUDdBSXZrREU3LTFJV0FoUWNXck5oTlpMX0FVMllrUFJoVThhY1A4NHAwQzhiNGlyRXpDMnkwOGFjalN1dGRpWFN4X2lYcFlIbWY2YS1nWldRSl9BN0FkTUVNelUyeE40eGhXWHFCeHJ1dVVHV3BfdElUdDZLVDVGZmxhc0wyaE5SLVlHWmV4eklQUzVVY0JxN21jQU9RVHdiTGh2ZnZGakFRU3NRMHNycEhFRTlnVTlTczh5cFd0LTZleWdESVc1V2pQTE81UUQ3WUVIVnN5NnQ5M0J6RmZBRXZJRdIBgwJBVV95cUxOU29vLWpMd2hwWkdGZWIyREF2Y0lUOVZ6VDZHdDhDWHRQV2NHbEFSajRmMWVKaklNVHdYcDg1cExXcEVZMWFlY0w5YmdpZ19fWmRZdS1Eek1PdEh1ams2VjRLaHh3NGlfdU5WZ2JDZXd2RW9iRVFod0NxSHFIbTVEQ2lHWlJsQmVFTWoyeVpKVmhRZlI2OW9ZUy1TeTNpdmFtSW9hOFF3RGZrWTJkek0yT0tWVGtzMnlKd1F2TGZBeWUxanNXMDR1S3pnNU51YVVwN0IzM2NiaFpBeHdwR05SOFotRXRZeXFkeTUwQnRHSXd0Sk1UeWkzdzIwOFZzSFdjVHZv?oc=5"
+    },
+    {
+     "titulo": "Lluvias en Piura: Indeci evacúa afectados y realiza labor de drenaje de calles anegadas",
+     "medio": "Crónica Viva",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPb2tQWmlEeXNFcGNiRnYwSHZ0eVJGcFdmSmxuXzFCRk5EM0wxMXpYSUtVUllzOGhlXzBfTjJ2UkRMUEwtSEl3V1BaeDdwT09GMnhmTFhxOU9MbzRJdkNsME5MQThHZTdRbGdmQ19QNkhvTk90UzFrVkx1cEVmRF91Zlp5MXEzaGprNGdDeVU4Q25PUldkeXQ3VE40RGI?oc=5"
+    },
+    {
+     "titulo": "Lluvias en Piura: Ejército rescata con botes a personas aisladas en sus viviendas",
+     "medio": "tvperu.gob.pe",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNTVZwNjFEc0xkODF2MFhRZTJha3lveHFhLTd6T3RBRGJtRHlZbVhYelA0NlVJS0w2NHlCWHJsejQtU1JFTFl2OXhyQ1RFRTJ2RWRuMk9OaU1pbFVlMzVTUVZndkkzMTF2ODY5bDBXNEpPd2VKM19xZE0xMHFiVW5pVENtYURrNElOa25ld2FlUTJkTzlpM3BJRXNFekVLaGVuWlFfOTRrZ3ZRTUhlc0E4blU0bmhwZjA5MjNzR3FEZWZHUQ?oc=5"
+    },
+    {
+     "titulo": "Lluvias e inundaciones golpean Piura y Tumbes: crece la emergencia por El Niño",
+     "medio": "Forbes Perú",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPVDdHR1pzQUJCZFV5RlVHcFFwa3RxRUswZFVKMkJNbWdHWDFONnc1bjFIV0dCTjI3SEY0bno0Zll5N3FIVFNBNzM0T1Qxbk4xeTVkVVVhRmdIWDBsak01THlRQ2ZwOThZUmtCU0pQcWV1WDA5aldQaXZYbWpkX3M5Vkw0YTh0amhBXzhEOUx3VHJ3WVR4QTA5MzE1eThadVlvV1dxc1Fud0Z4MzJDOVI0TGF0RDBhQ1RXSlE?oc=5"
+    },
+    {
+     "titulo": "Keiko Fujimori suspende viaje a Colombia por inundaciones en Piura: \"Conversé con Abelardo de la Espriella\"",
+     "medio": "Willax",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNUk1obkJVb3kzYzJjUWV6RmdWNjNmZVpsN2ZsVlpwazZhazhtQlcyZVlqUmtaSHI4Tk1FcVliV19HVUl4NjZhTElPQXVPSDhIQWtBbktxYVE2blk4bnNQdU5fZHgwUHJnNnNmNXV2SDByVEpRYnpFMEJPRXBVQWJzWFNOeE13UQ?oc=5"
+    },
+    {
+     "titulo": "Keiko Fujimori suspende su viaje a Colombia ante emergencia por lluvias e inundaciones en Piura",
+     "medio": "RPP Noticias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNM1NsNE16Z2xpVGhvOF9vcFZlMUhYc0hjWXlfcy02TmtPc0FLZ3RiRlUyblJBLVJsU1I2aXAxbFdFeng4ajNQUmhOSHl0ZDlRTF9iUmNnNlY4QzBNT0ZBdVJDY2dFR3NFcWlBY0d5cEdUSjVyc2ptOVBOM2w0cENLdzB6YWJQV2RxRHpsQV9xRERQdXV3dmVMcTBrTTRqU0dfcVlTUnUzVjlMWmRwUjBMbXJ3OXRpNEVUcHlCbEhndDgwbFVBcVltNC1iaGdNUQ?oc=5"
+    },
+    {
+     "titulo": "Keiko Fujimori cambia su agenda por emergencia en Piura: \"Nuestra prioridad es atender a las familias afectadas\"",
+     "medio": "Willax",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNTEJJX1IwaFVyT3B0LVhZdkk3MEZZS04zTDQ1VzBLcE9FaGQwRE5NTEk2VGVfZEx6bEY2dnJRMkhpd1JTNVZ4bEZ5MVNreVNJbUlCSXFMaEk2TXRJRTVBaE9MelQ2OHFERm5mQzdiSUNUYnBXb29fdXc5Y3l6QU1VSi1nWUx5M1pYUFJhNg?oc=5"
+    },
+    {
+     "titulo": "Inundaciones en Piura: jefe del Indeci señala “omisión de funciones” de los alcaldes",
+     "medio": "Perú 21",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOVTZmaE5UY3N0N254eDVHc0pHQjlRcHdkTDNmZjA0SEUwRkI0dnZUTE5wYXBNeURraXg2d1ZrNHQ3Z3UxUVZYUTlESF8tREpHcWZPNnEtRnk1ZG1KQXMwdmxUT2lHTWJJNmZiMkVvbVpib3pBaHQ2YVI4Zm1zbkxySQ?oc=5"
+    },
+    {
+     "titulo": "Inundaciones En Piura",
+     "medio": "Infobae",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1tRDhxUXVXRmN1S1FkZmJzbmxGQi0xa3YwLTM3VVpUTlZIVS1mcmNqZU1Lem9OYVoxeG5lLW1mb1Y3UXQ1M3dPRjUyTG5fWEhHcGVEZXFtSEZMbUlNU3N4ZHNDM1BSWVJGN1RDZmZURVByekl4?oc=5"
     }
    ],
    "radar": {
@@ -981,22 +1161,22 @@
      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQWnozZWJ0dzVYdjZSbEhxWUt0SHhFUjh5ZDNQZm5QV0dIdXNYN1B2VXBpc2g3ckJVbS1vdFRRV2d4Ty03eHhDS1FuQ0FBNUpzbm12RHREYTlYNHI5dWRXZWZXZFdvaWNtamo0STZrb0JrZVJySEpINEtRUGdSU3ZTN2poRnhyczBtczQzTE45NVN3X1JwcjZSeWpoR0lkU1pRN1c3Z1hGZjhxaDJId1Y3bWVpNFJWTzhSX1NuSjVSR3VvV04zODU1Qm01UVZONWFGcGE3MQ?oc=5"
     },
     {
-     "titulo": "Lluvias intensas en Tumbes dejan damnificados y afectados ante calles inundadas",
-     "medio": "Santa Rosa Radio Tv",
-     "fecha": "2026-11-18",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNbFdTbW5POGdmZkpNMjdiTy1JSi15SjFORjNpbmF6ZFNMd1pRNmlwR0N3SFV5VkI5RExjTUtyMGYyS3dCTVdRZk9CRk5yTGludFlhZUFMazFtMGFrMTJYNmZiejJ1RVZ6azlsbUlMaWNfRnBHNlYyT2tEN280R3VNMjZkbTB2cUxmUEZYeHllN2JBQkhEMlhpeFBHS1J3UEZjelJTb3lxeFJWQVNlZUhR0gGvAUFVX3lxTE1sV1Ntbk84Z2ZmSk0yN2JPLUlKLXlKMU5GM2luYXpkU0x3WlE2aXBHQ3dIVXlWQjlETGNNS3IwZjJLd0JNV1FmT0JGTnJMaW50WWFlQUxrMW0wYWsxMlg2ZmJ6MnVFVnprOWxtSUxpY19GcEc2VjJPa0Q3bzRHdU0yNmRtMHZxTGZQRlh4eWU3YkFCSEQyWGl4UEdLUndQRmN6UlNveXF4UlZBU2VlSFE?oc=5"
-    },
-    {
      "titulo": "Emergencia en Tumbes por lluvias asociadas a El Niño: familias y caseríos aislados tras la crecida del río",
      "medio": "Infobae",
      "fecha": "2026-11-18",
      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOeHQ0T0JJbDFLMDRQVzNpUXEzQUJJLWs3dUJhUlZEc0NkMnQ3aDY1VzFSc2RsLXNpUWhqVlBIMThzZ1J2Y1ZneWRaajdzT2VkWUFwVzA0OWV5YWV6bjhnZ05teHBfYmJjaWtYLWVtenVvVWNadXU1R0JkNGRHR2h2T0xGcTlIeVNpU0taY1otTnhqVXdOd0N4cEJwSkgwdUNDTFFUT25oZkRFMHBVWk5qMmxoSVd3N1hTTWNxME9JejA2YnAzaEltR1RpZEZfcFRKUUlZWEd2cnRiT0FxVVZJ0gH6AUFVX3lxTFBEbmEyMnZYS0VDSWRhRGY2NmpVU18zajNJdGZRRXFVcVp3X0FzS0pselI5bzU0T3FnMGpoRDEwUjNxLS1hN0JMbXl0VWJzVjRkU1ZFdnhpRDJIeGVINU1ldE1zanNLYnRyRi1abW1XTVBVYVNpV1RreTZ5b2pPdmIxY2NyZFBmeFp3TWRFRkRtSFYxY1Mza2ZfWUtCYWkyM000Q3haS29SRzMxNDBSbGNzM29kV0FOajVTNUR1UkQ2R0JTR3NhajRwOTBYVnExb09hamxCSV8wN0Z1UzE1OGlNWUZGVGpydWljZG03WkhmU0ZJV1lSVVZ0alE?oc=5"
     },
     {
-     "titulo": "Tumbes: más de S/1.8 millones en indemnizaciones por el Seguro Agrícola para pequeños productores afectados por lluvias",
-     "medio": "tvperu.gob.pe",
+     "titulo": "Lluvias intensas en Tumbes dejan damnificados y afectados ante calles inundadas",
+     "medio": "Santa Rosa Radio Tv",
+     "fecha": "2026-11-18",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNbFdTbW5POGdmZkpNMjdiTy1JSi15SjFORjNpbmF6ZFNMd1pRNmlwR0N3SFV5VkI5RExjTUtyMGYyS3dCTVdRZk9CRk5yTGludFlhZUFMazFtMGFrMTJYNmZiejJ1RVZ6azlsbUlMaWNfRnBHNlYyT2tEN280R3VNMjZkbTB2cUxmUEZYeHllN2JBQkhEMlhpeFBHS1J3UEZjelJTb3lxeFJWQVNlZUhR0gGvAUFVX3lxTE1sV1Ntbk84Z2ZmSk0yN2JPLUlKLXlKMU5GM2luYXpkU0x3WlE2aXBHQ3dIVXlWQjlETGNNS3IwZjJLd0JNV1FmT0JGTnJMaW50WWFlQUxrMW0wYWsxMlg2ZmJ6MnVFVnprOWxtSUxpY19GcEc2VjJPa0Q3bzRHdU0yNmRtMHZxTGZQRlh4eWU3YkFCSEQyWGl4UEdLUndQRmN6UlNveXF4UlZBU2VlSFE?oc=5"
+    },
+    {
+     "titulo": "Tumbes: lluvias e inundaciones dañan 700 hectáreas de cultivo y afectan a 500 agricultores",
+     "medio": "Expreso",
      "fecha": "2026-11-19",
-     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOSU1GUk1aT25KNjdaUHhLQ0F6RVF1TldDLWFFcnpqb2hrMmhsOTNpMFl1VW9SaEdzWVE5eW9zWFZjWmxvYWRRUUxOaUJKdlRLcV9qNC1nLXdCWTlBSmpjdmVGZWRvWDNVd0tfeU4wQmNuRDNFU1ZvUVRNM2huREU1MV93c20wWWwxMl9RSmhPeUpobHRhLWhtSVBnbVJNRTlqT2ppZ05JdnBDczdNQi1sQjZpSVpjS0o1N2hr?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPVXJhcUxEQnZsaUZyR200eWdualRfSTk1MER0YVAyMGxPdG5KYzItRU12cWl5b1A3VS11emNQQUI4VUY3NHVXb05CQl96aWlLaEJld250X25zUVo5N2FjTVRqSUx4Z3ppZzdzQTZ3Y3lyQXpUQTRxak80UXpUS3FpM2tKQWZJSmJ4cUNqdGZRRlR5MnRFM3BpRFhRd2hyTkRUeDIyS3RUeTQyUUc2R0lfOHdyMVl5bW5CdGVTTEIzTFdIRWpLS0ZnNDJ0elh2endrR3FQT1ZWRUVPdmZldURETi1ESjBmNWE0N1UxQXkxYXQ5U0xiOXc4QWQ4VGVuUV9RcWtLNEpkTGpIUEE0OUFuM2hWNA?oc=5"
     },
     {
      "titulo": "Tumbes adelanta fin del año escolar por fuertes lluvias: más de 70 mil alumnos afectados",
@@ -1005,10 +1185,10 @@
      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNVTExS2xEVFQxYU85WlZPWmxtODc3emJnOG1PdUhYNmxCNXcwM3VQTlFOQU5MMWMwQ21uU3RKcno0VUVfS1d1Z043SDZadHpuWmViWmV3cXBYb1IxMkVlbUMxU3lGbG8wV3M0R1N4NVRpNm5pLW9Jbm5mb2VTWXdXYVctbVRwbE1acXhOa2RoWmpBZlRydG4xMjZGWUx4VWptNmY3ZUYzRlVCWVNQN0RCUmF2OXo3TktsRzhLRWh5cEZJNUkyUTdjbm1UMEszRGc3d01EZDN1ZVV1Tm9WTERFdQ?oc=5"
     },
     {
-     "titulo": "Tumbes: lluvias e inundaciones dañan 700 hectáreas de cultivo y afectan a 500 agricultores",
-     "medio": "Expreso",
+     "titulo": "Tumbes: más de S/1.8 millones en indemnizaciones por el Seguro Agrícola para pequeños productores afectados por lluvias",
+     "medio": "tvperu.gob.pe",
      "fecha": "2026-11-19",
-     "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPVXJhcUxEQnZsaUZyR200eWdualRfSTk1MER0YVAyMGxPdG5KYzItRU12cWl5b1A3VS11emNQQUI4VUY3NHVXb05CQl96aWlLaEJld250X25zUVo5N2FjTVRqSUx4Z3ppZzdzQTZ3Y3lyQXpUQTRxak80UXpUS3FpM2tKQWZJSmJ4cUNqdGZRRlR5MnRFM3BpRFhRd2hyTkRUeDIyS3RUeTQyUUc2R0lfOHdyMVl5bW5CdGVTTEIzTFdIRWpLS0ZnNDJ0elh2endrR3FQT1ZWRUVPdmZldURETi1ESjBmNWE0N1UxQXkxYXQ5U0xiOXc4QWQ4VGVuUV9RcWtLNEpkTGpIUEE0OUFuM2hWNA?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOSU1GUk1aT25KNjdaUHhLQ0F6RVF1TldDLWFFcnpqb2hrMmhsOTNpMFl1VW9SaEdzWVE5eW9zWFZjWmxvYWRRUUxOaUJKdlRLcV9qNC1nLXdCWTlBSmpjdmVGZWRvWDNVd0tfeU4wQmNuRDNFU1ZvUVRNM2huREU1MV93c20wWWwxMl9RSmhPeUpobHRhLWhtSVBnbVJNRTlqT2ppZ05JdnBDczdNQi1sQjZpSVpjS0o1N2hr?oc=5"
     },
     {
      "titulo": "Tumbes: río Zarumilla supera el umbral rojo y se desborda",
@@ -1059,22 +1239,10 @@
      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZnNHWDVrNjF6ZmRyLVpLV0tHWmZiTE5nWGV6Z01faFVlZlcyV3k1TUJ3QnUzak1qdmptYWNvc2ZFMEh1czVSS1VRRnEzbWQzMUVIeTNtQ29EaWEya1NrNWdXcDZpOG5QSDVFUzFsVGp5MFp5SnAxU1JhR0RjUHpVaHZIRlBLeTRnR2FQbGg3dVZ2RExLZ3pnVnZXSUNZYnR2WFFfc0tpU2tnZTRhcnpLMGRjZE43eGNJVFZB0gHAAUFVX3lxTE1kaDV5VzhHYmkzM3h6T1dWbFQ5c1ViRXpvdnVZUmgwUjd5amZSQWVmY1NIQ0VfN2ZHTndJUXVvdmt4M1BXT1Vvd1IwRWE5YWFlREpiejk5emtJdXNnRDJlUVlNMWtwZXhkRWRGS2drek5zOFJ6cVpVaDRrQnlvZWF5dDhuaUk1Q3J5WWVQRjJFYVhkeHhPUmpQTkhQWDRGamlKY0lOcUEzbGdzYzhDU3Zralhid1RHRGhBTzNRYkxmMg?oc=5"
     },
     {
-     "titulo": "Tumbes: lluvia de 10 horas inunda viviendas",
-     "medio": "Ozono Televisión",
-     "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1pNXMxQ2RSeGI1bldqV1JqZzhBY01jYVhia3hVc2NyaWRKVFJWUno2b3o1NWo4bk1nd3dZLV9QSnZKSVo3VlBuSzIySzhCUFVJYjlISExYYzR6cV9sazZOTE9wOEVkWXB6NWZodjQwT2k?oc=5"
-    },
-    {
      "titulo": "“El río se mete a mi casa”: lluvias en Tumbes inundan calles enteras y la población sufre los estragos de El Niño",
      "medio": "Infobae",
      "fecha": "2026-11-26",
      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOTlBxb0JZTnJfbW44eXBObERia2ZCcmdiZU13Z3dTU1VvUG5mcnVnblpNdzRWaW1vVVhCZ09LaTNId1EyNGVncVhRdEdqa09aY0paYzA4bVQybmF6bEFKTllfbGpaU0x2d0ltVGJKQTRrR0ZaajE5MERtWWMyaVNJYWM0MUoyUVIxeTV3VVl6LUlXNDktV1k5dEFBalFhelplSENQSjFnNm5iY3k0V2E2M1NZMXZLNEVDaVdOSE9qNjVKRXp4MGZ5ZXBZMFVIN1ZaT2RNakR4RHRST2Q2bTdjdTNzaG5wQdIBgAJBVV95cUxQUnFRR2JRMXRPT1ZRb1JPNFhMMDFFNDFaSUx4RUNVckFONmFzcnhJRWk1ckFkZkNnTVdNZUx2WE5MVDc1LUV1OVJNSVVaWlFkcmVFTW1UTlJyXzBOQjBqNURnSi1Xem1oWk1LTkxCcnRqdXY2SkpwenJxN3FYTWx4bnh4bFZRRW9CQUp4MzJrSjBpcFg5QnJmOGpDMHE1MEg4MUtKSllSaUVBMjg5VWlHOUstanNxa1JmaDVobFJSQzVFdGM5aHhUNFRrbzV2YzJvSGRNbkwwVE1fWUFXb3JsUjRhSms1TmJ1SFcxMlZkbU00QTdhSUVtYXdkc3d4UXBW?oc=5"
-    },
-    {
-     "titulo": "Tumbes: lluvia intensa de 10 horas inunda casas y provoca colapso del cerco de Villa Naval",
-     "medio": "Agencia Andina",
-     "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPVlZVcTZzMl9FdExQcVZRWXA4N2pkLWxsRDFJY2IzekI0TmpVcjNqYWpCSmY1cEVJcnFPQ3pNanJFWFJ6dnpHcWNKRnZfc0tWbkpSYXFJZnV1RS0yX1FvVGxwUWN3NUJUZ3JzNWotT3haR0p5RlRDalJiTDdVQ0NsYlpuRUJsMk5HLVJzWUFMYV9hYXVLMGZ0UktzQkt3TjdyZkRxX0ExQ0dTY1hMaUdNQnNsWmlQS1FPdHAwNVMwdlgydE1rcWFGUVVn?oc=5"
     },
     {
      "titulo": "Tumbes: Una intensa lluvia inundó calles y causó colapso de un muro",
@@ -1083,10 +1251,28 @@
      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUERxaE5aUVBRUVJJaG1sYXRXV0xmbnNVV0Nqc2taOE5lT3hKTjRubEtYdEpIVjBBa0JVT0Qxa0RRc3BZV2JFTWh0S1BQMmlGQ2RkNHJ1NGlFMlhlMi0yOUxkcnlpT3Y0dFJOYlFUaTdnVUxqSFI1Vm50M1lxdnRrWDM5THBoUnF1Vm5VUnlZNXY?oc=5"
     },
     {
+     "titulo": "Tumbes: lluvia intensa de 10 horas inunda casas y provoca colapso del cerco de Villa Naval",
+     "medio": "Agencia Andina",
+     "fecha": "2026-11-26",
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPVlZVcTZzMl9FdExQcVZRWXA4N2pkLWxsRDFJY2IzekI0TmpVcjNqYWpCSmY1cEVJcnFPQ3pNanJFWFJ6dnpHcWNKRnZfc0tWbkpSYXFJZnV1RS0yX1FvVGxwUWN3NUJUZ3JzNWotT3haR0p5RlRDalJiTDdVQ0NsYlpuRUJsMk5HLVJzWUFMYV9hYXVLMGZ0UktzQkt3TjdyZkRxX0ExQ0dTY1hMaUdNQnNsWmlQS1FPdHAwNVMwdlgydE1rcWFGUVVn?oc=5"
+    },
+    {
+     "titulo": "Tumbes: lluvia de 10 horas inunda viviendas",
+     "medio": "Ozono Televisión",
+     "fecha": "2026-11-26",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1pNXMxQ2RSeGI1bldqV1JqZzhBY01jYVhia3hVc2NyaWRKVFJWUno2b3o1NWo4bk1nd3dZLV9QSnZKSVo3VlBuSzIySzhCUFVJYjlISExYYzR6cV9sazZOTE9wOEVkWXB6NWZodjQwT2k?oc=5"
+    },
+    {
      "titulo": "Tumbes: Ejército realiza drenaje en calles inundadas tras intensas lluvias",
      "medio": "Diario UNO",
      "fecha": "2026-11-26",
      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOb3BWcUNQb1FXS2lwdE1CWG9LaTc3b3Z4QW5VTlFhQmN0UkEzSlBMU0pQNi1UbFRjUkt2M1gtRlBGQmVYdzA3N0tpd2tIV3lSLWo2R2pMdkZkSHFrSzB0X2ZQa1EyOEo2VExBTjJTaFBZejZfeUdNMWhMRUM1ZWVBN1hHOTI2dzVGN2pRSmlYbVpSUmxxNl81SlllU0x1ZjdmNXJ1UGxSalhnQQ?oc=5"
+    },
+    {
+     "titulo": "TUMBES BAJO EL AGUA: Ejército despliega maquinaria pesada para drenar calles tras intensas lluvias",
+     "medio": "Perú 21",
+     "fecha": "2026-11-26",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOZ0h6aDFZdDZjMmVpa203Z1FZS2hEeWdQcDFjV3pxM2tzVFNvU3BRS3NxTnJndHZlOFdzMTBUdXd4ZUxoRnREU1k0VFlIRDQ0TEtZR0Vxa1VyNTZhYjczRl9kcFlKSXNtY2pNbWFmbE5QQTNDLUNZTkUybE5kWVpaMGR2MUR3aVQ4YkUxRmZlN211VEViejNjMVNCbUJCT1JhUVFzUzh1eXNXdXJjbFBDdVJJc1FYTFotUmhQLWln?oc=5"
     },
     {
      "titulo": "Senamhi emite alerta roja en la costa norte por lluvias extremas: Tumbes reporta calles anegadas [VIDEO]",
@@ -1095,10 +1281,10 @@
      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOOU91NzEyZVhnZV8yQmVFSnpXejltc09INlRSNzg4bFlzd2dCd29WZVNWWEZYamtRNF95M1lQYXBnNHhyTWI0QjdYWEF3T0JUdERRN0lfSHRJS2tBMXA3S2twNy05Zm82QTdGdzRjNkViU3puNXRxdEVDcF9kTUVzYUVTWFEySlEwTEdRclFpN1ROWlBkZFd1YUp6SVNSeUlaVjFuQm1UcTk1dTNOYnFad3d5cnVRSHlZN1M0Y2YwRlFwTk1XZ3lnOQ?oc=5"
     },
     {
-     "titulo": "TUMBES BAJO EL AGUA: Ejército despliega maquinaria pesada para drenar calles tras intensas lluvias",
-     "medio": "Perú 21",
+     "titulo": "Senamhi activa alerta roja por lluvias extremas en la costa norte: Tumbes reporta aniegos",
+     "medio": "Gestión",
      "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOZ0h6aDFZdDZjMmVpa203Z1FZS2hEeWdQcDFjV3pxM2tzVFNvU3BRS3NxTnJndHZlOFdzMTBUdXd4ZUxoRnREU1k0VFlIRDQ0TEtZR0Vxa1VyNTZhYjczRl9kcFlKSXNtY2pNbWFmbE5QQTNDLUNZTkUybE5kWVpaMGR2MUR3aVQ4YkUxRmZlN211VEViejNjMVNCbUJCT1JhUVFzUzh1eXNXdXJjbFBDdVJJc1FYTFotUmhQLWln?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOcjcyVXRvMGhjZ01xN0VkdU4xTDVDZnVEb0oxaFpvX1pVWXMxOS04RFphZWpnVkJFT3hpc1VZWjVwZG8xamJpY2NtcWQzQWp2aUZlVnhvNlJLaDRkNkNwbWpqeXJ3cllEY3hGMkpMXzB3T1VPNUhIYUR6NUphbHEwSHE4cENwN2l0enI3bXR3MXZSanJJRnNFdGx0QUx6MXJ3a01IWEY4eGFyYURMZGs3NXAtUEpLcGdERnBXR3Vn?oc=5"
     },
     {
      "titulo": "Lluvia intensa de 10 horas en Tumbes inunda viviendas: Senamhi advierte precipitaciones extremas hasta el domingo",
@@ -1113,16 +1299,10 @@
      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNN3NxTVJUOFhqSFlPbTNudDF1M0trbUFLMUdTSjdtbzFXNzRXZGo3WTJIQmRRc25xUVNMTENDcGU2MndTR0NIQjRsRGEzZ0tmcG5kQ1BrelU2TTZUbTliR1J5Q1lLSEVRUXRYdzhGLVg1X3d5UjdPZVJMLVpKZVdKOWpFRlY2NEZNR2Vab2VVUmdncTNiZHpScHRxYjFsWDlHOG5EUExjVy1ETlJhc1dPalQtYWgyR2JvWDVnMW1GNTlFbkdqdjMyTzI5eVl0T21RN0FVWW1YMW9Mc1RSS3FqOUExZjhEbHdhMUZBamNJTHh6MXR2RWlHV2JGZ1BhbWkxQ1dRemRhdjJ6OHR20gGMAkFVX3lxTE03c3FNUlQ4WGpIWU9tM250MXUzS2ttQUsxR1NKN21vMVc3NFdkajdZMkhCZFFzbnFRU0xMQ0NwZTYyd1NHQ0hCNGxEYTNnS2ZwbmRDUGt6VTZNNlRtOWJHUnlDWUtIRVFRdFh3OEYtWDVfd3lSN09lUkwtWkplV0o5akVGVjY0Rk1HZVpvZVVSZ2dxM2JkelJwdHFiMWxYOUc4bkRQTGNXLUROUmFzV09qVC1haDJHYm9YNWcxbUY1OUVuR2p2MzJPMjl5WXRPbVE3QVVZbVgxb0xzVFJLcWo5QTFmOERsd2ExRkFqY0lMeHoxdHZFaUdXYkZnUGFtaTFDV1F6ZGF2Mno4dHY?oc=5"
     },
     {
-     "titulo": "Senamhi activa alerta roja por lluvias extremas en la costa norte: Tumbes reporta aniegos",
-     "medio": "Gestión",
+     "titulo": "Ni las inundaciones impidieron el último adiós: Pobladores cruzan quebrada con ataúd en Tumbes",
+     "medio": "Perú 21",
      "fecha": "2026-11-26",
-     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOcjcyVXRvMGhjZ01xN0VkdU4xTDVDZnVEb0oxaFpvX1pVWXMxOS04RFphZWpnVkJFT3hpc1VZWjVwZG8xamJpY2NtcWQzQWp2aUZlVnhvNlJLaDRkNkNwbWpqeXJ3cllEY3hGMkpMXzB3T1VPNUhIYUR6NUphbHEwSHE4cENwN2l0enI3bXR3MXZSanJJRnNFdGx0QUx6MXJ3a01IWEY4eGFyYURMZGs3NXAtUEpLcGdERnBXR3Vn?oc=5"
-    },
-    {
-     "titulo": "Tumbes: 10 horas de lluvia inundan viviendas y Senamhi advierte más lluvias | El Comercio",
-     "medio": "www.apnoticias.pe",
-     "fecha": "2026-11-27",
-     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOVzJ0RHhzTFdVRUZsVE9NRGNlLWlMNFRQMEVKc2w0czdSOHEtOUJ3NnFfQ21OYml2QWpleDhnM0E2ZUM2b2pBb3RTWmZQTFczVlRsbTRlOW9ieHI4OElzb1ZERVhqUGdPcU80TlJZRW1GOHVXMFBZWGRySXc3dzhVbXlpdktONkdDZDdRQ0FvSDM2OWQ5bXlOakJxOHJvRUVEOGlwMFkyN3N3cnN6cTE0eUszekRrb2hGYXp2LXk5UHg2X3c?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPcjdPZkpRb3k5aGRxOVhFQWNHRXB5REtURDN6VWdFcVlvZk14Yk1IaFRZRmNidlo1MFd0NDYwUGJyTndxU18tRVV6bDU1OXNVRWJHUnNjc1NnVFZTQ1gyYWN4NGwwZGl2TFVSdmJaMk1xTWoyYkJKLUpHcGlTbWFLMGtYbVdJZjRoc1lRWm1ISV9DZXpGczZ0UzFWc0pWUElaYjltZV9MZw?oc=5"
     },
     {
      "titulo": "Piura y Tumbes bajo el agua: Calles inundadas y vecinos evacuan tras lluvias torrenciales",
@@ -1131,10 +1311,40 @@
      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNSzNaemRBUU9janFMc0MxUS1FR0s0WkZMZHVwRHRpSU1MMW1mNmVfWVdMU1R2ZHBxUTZNVXVYZ0NVbFJSd2FjZlJlNzUybUduc2RwMjg1b2RxcWh0ZjJWc01xdktlNlVCblZyN2x2NktEempJSE1WaEpLOFRJbm5XZnIwMEo5MGFTWVlfZ2E5Uk9jX0Ytdks1QmVXWTY0eUN0U0hVRmJNZ2h4bzVoOWV4WnRuNmlkZDhkOEZhLVJMYTBfaFJmQ2c?oc=5"
     },
     {
+     "titulo": "Perú: lluvias extremas asociadas a El Niño provocan fuertes inundaciones en Piura y Tumbes",
+     "medio": "Primicias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeEZwZXB5cW5yODByRnV1RWlTOE9Ham9tMWVnOF92eWMyTUVnZmZISEtWcjA5U2VGMzZkY05sSHhmeTlHdXVxSlNlejBnTjlSQ09obmVlVVpHNHZQbHJDQ3A0Z1FqN2VWOUhxbHhsZnJCU1k0V1lxTkZHZE43VWxoRVdfTi1aTThNTHBVS1RvSjNhMlAzYjZmVU9ERk5KaWxHcUxaeGtFT0g1U0txVERPeG9yU1JtVndUT2gteExn?oc=5"
+    },
+    {
+     "titulo": "Ministerio de Trabajo dispone facilidades laborales para trabajadores afectados por las lluvias en Piura y Tumbes",
+     "medio": "Exitosa Noticias",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOZ05QX0gtOE1pX1M5dWlzaVlVU3l4cGlfMFh4SVBBSGdsbTRpeUplY19XOTNFaDFMdU50LVNNV0JxaERDdnhRaXlHR1h1aERiX3VOamhOWFNHRk5idmpHb3NQdlJtUE43NmZmY3NlZGdORGZoa2ZtaldvbG4ybEpFejNYSUZNbmprWi1wRk9kLWRDZlc4Q2FVc3JTV2ZpVjVob1NScmlLQWRQdUNmS1gxQmZhcnA1TGhPTEktX2tXRlZkT3psbFBKU0JzZDRPMFllRmVYOTNMN2VQZVpq?oc=5"
+    },
+    {
+     "titulo": "Tumbes: 10 horas de lluvia inundan viviendas y Senamhi advierte más lluvias | El Comercio",
+     "medio": "www.apnoticias.pe",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOVzJ0RHhzTFdVRUZsVE9NRGNlLWlMNFRQMEVKc2w0czdSOHEtOUJ3NnFfQ21OYml2QWpleDhnM0E2ZUM2b2pBb3RTWmZQTFczVlRsbTRlOW9ieHI4OElzb1ZERVhqUGdPcU80TlJZRW1GOHVXMFBZWGRySXc3dzhVbXlpdktONkdDZDdRQ0FvSDM2OWQ5bXlOakJxOHJvRUVEOGlwMFkyN3N3cnN6cTE0eUszekRrb2hGYXp2LXk5UHg2X3c?oc=5"
+    },
+    {
      "titulo": "Lluvias inundan Tumbes y Piura",
      "medio": "Ojo",
      "fecha": "2026-11-27",
      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1jTlQ5ME1zQ09YVS0ySXRWdHRQeURQME9SM0V0dnFobzVuS0M1cXFjYzZyMmZrUnp4WEhabF8zZTItOXdkaVhCMXVJR0pfUEozM0xyMlVZMW1GZEVMeGxRdVp2MkVDd1NhcEl6M1FTTlIxUEE?oc=5"
+    },
+    {
+     "titulo": "Lluvias extremas por El Niño inundan Piura y Tumbes en Perú y afectan a más de 2.000 familias",
+     "medio": "ElOriente.com",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWXhDOTZPSDA3VUpmbHRYbVh1RjZydFJZVktOMTJNOENjb2tQNFFRNEloelBPaFp0RlBxWHg0V2F3QTdQR0FvSlJQRlJTMHFFQkRaZGh1TnQzYXRsRHhoOEpMMUM1QjVZSEpqTFRVaTlHVHJxUmVqSHBYRnhTQjB4UGFINW41aFZvV2N1S2FtVFNESDNHV04tMThpNGxUanlBczMyT2Z0S0JnWHBxODVMbXVxM0NReXhfLWl2blU3d1REelNXcldnYnd4ME5Rdw?oc=5"
+    },
+    {
+     "titulo": "Inundaciones en Piura y Tumbes tras torrenciales lluvias",
+     "medio": "Infobae",
+     "fecha": "2026-11-27",
+     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQSlM4UHJPTV9vUlRobUNKS1dwZldzTjZRVWpLSXRIVVFXeTdMQ19qeVFFSTBxVy1OMkQ0UzFXZ1haZmFRZ055UE1XTDRmZGo4clljS3FkV3ZyYVpoN1RQMENOV1dwZmZwTHFZbFVKQ0tlYmQ4Q2R1SUVrS3BNT3hOaXk3WmJ4bm9HRkYxZGl0MEpaM3dmRE9mRmZOS3ZKWXVYS1Z2SHg5ejFFYnc?oc=5"
     },
     {
      "titulo": "Brigadistas de FF. AA. ayudan a población afectada por lluvias intensas en región Tumbes",
@@ -1143,10 +1353,10 @@
      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPZTRmaHZac1BESVJYMzNyZ21WWXNKRGlwSjBCNEt1ZUZiSXUzWFFTcjFhbEVEV09MSVhZQ01YNkRReGprNWt2M21yVGtDN2hNRFVPWEZXREI3LUxlaGR6OG9PaVUxQlNBRGFrZUEwTG1sdEFRd19sWFg1aG5zclRmWGl6clNHTm43enhzaFAxUTlDVlVLa0xDdWlQbTdNNl9TUmZ6Y3dBWHIzT2FFUVgwTE50ekoyVkVWanE5YVJQNTQ?oc=5"
     },
     {
-     "titulo": "Ministerio de Trabajo dispone facilidades laborales para trabajadores afectados por las lluvias en Piura y Tumbes",
-     "medio": "Exitosa Noticias",
+     "titulo": "Lluvias e inundaciones golpean Piura y Tumbes: crece la emergencia por El Niño",
+     "medio": "Forbes Perú",
      "fecha": "2026-11-27",
-     "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOZ05QX0gtOE1pX1M5dWlzaVlVU3l4cGlfMFh4SVBBSGdsbTRpeUplY19XOTNFaDFMdU50LVNNV0JxaERDdnhRaXlHR1h1aERiX3VOamhOWFNHRk5idmpHb3NQdlJtUE43NmZmY3NlZGdORGZoa2ZtaldvbG4ybEpFejNYSUZNbmprWi1wRk9kLWRDZlc4Q2FVc3JTV2ZpVjVob1NScmlLQWRQdUNmS1gxQmZhcnA1TGhPTEktX2tXRlZkT3psbFBKU0JzZDRPMFllRmVYOTNMN2VQZVpq?oc=5"
+     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPVDdHR1pzQUJCZFV5RlVHcFFwa3RxRUswZFVKMkJNbWdHWDFONnc1bjFIV0dCTjI3SEY0bno0Zll5N3FIVFNBNzM0T1Qxbk4xeTVkVVVhRmdIWDBsak01THlRQ2ZwOThZUmtCU0pQcWV1WDA5aldQaXZYbWpkX3M5Vkw0YTh0amhBXzhEOUx3VHJ3WVR4QTA5MzE1eThadVlvV1dxc1Fud0Z4MzJDOVI0TGF0RDBhQ1RXSlE?oc=5"
     }
    ],
    "radar": {
@@ -1486,6 +1696,12 @@
      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOb0VpVjFsY1F3ekFCX0U1YkMzRHJVaTFHTnNkbWFpYUh1czVuY0x0TkdzYnFBbEZsTTY4TGgwXzhTWXN6NTdXSFZTVnpyREhmMHVhYjlQNDdIb1dfakJpcXZ4aWpYcG5uMU41SEs3Y015OEVyZkJQNkZ6U1lqWHYwS2JIT1BBQk11anVwT01mQWFpN3RTWTlYR3ZrOS1nbWFQdTl3OUx2Z1QyUXllSlIyN1FqMzZOS2RVSjE3RDhrNnJHaUdKYWfSAcsBQVVfeXFMTTVRMkhCRGFySnp0M0dUckIyRVM2aFJrUDAydVYxU3ZzbTdfQ19uVmV3R19rc3hkMHRWVXZsaXRTSzVNZFZVQzFFdm13M2JGQzBwLUdWZ0dMY0Npc0R5cU1ScGlFZDZLV0IzbHhHY2Q2c2pXVVBCZHR0Q04xcE5ZYWd6QjdObTdFVEhKbGdha1hzX2pDTWZXWEZGOUw4VTByUnJLNEQtSlMzZnhXZUM2QWZmQkhBelE3UmpnX242d1JwMFdQbVhiVXFGMEk?oc=5"
     },
     {
+     "titulo": "Tumbes: Evacúan a familias tras inundaciones causadas por lluvias intensas",
+     "medio": "El Comercio Perú",
+     "fecha": "2026-11-02",
+     "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNbUpZN05zVUVxelFOQVJoZWZsWmdzRWd5NmRHWlBReXpWdjVIdXBNbVAwYXlWcktSUzJQaEVpRER1a1pZc1A3S05qUDZUeHVCNExPNTNwNFZ3VE9LR1lUWWlGZnhRT25BcmRWOFY0OEFvVU1iY0FNNDdOdEhFRFcyNW1CWnBsUUdzUzJqUjV1cG8yMy1yU3FTcDJ5VFVKeExvNGJZZjBIUFVwUjM2YUlDRWt4YUNFTHJ0blZmVUdZMUY2Vjc4c2VMWkN2RV8zbnFuY2NoR1E4Rk1TRjczcUNrNVB5Znlld9IB-gFBVV95cUxQOGpONm9pSWZSMldLc0k1NGMxbUlMOHZuZ2JzV21iRVI3eTZReTU2akdkV3U0R2Ntc1p6THlLX083dXpxNnlBbjgycktpSllDOXpxaFNmZEFoODRabnlSd090Rmw5Y3A0UzQxdVI4Q2xtSVdyTUJtaUU1MThySkt5eUV3WlMyU3BkaUxpLW5WNktFU1lPRUN1b1A0TzBnZlFnTVI3VlJVd0t5SlNvdklvYUI4UU00QWxGOHlQMldwOHV4SVVRR25UNHJ3THY2WWt0M1M3X3RsUDZjdHhVMmc2dzN6clF1RmFQekZuVll6ckhHdzBKeE8zQmxn?oc=5"
+    },
+    {
      "titulo": "Tumbes: alojamiento temporal para damnificados por lluvias no cuenta con baños ni techo de protección",
      "medio": "La República",
      "fecha": "2026-11-02",
@@ -1504,22 +1720,10 @@
      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPMktRYndiUkZETnl2Y0o1d0E2RUw5UlRHM3pUSnFmbG9CS1laclQ5dXppU0JiZXlDeFRDNXVXbVA5amg1NU1jeWFrY0FOUE5OX0ZtV2lBVVE0UzBubEYwM1BkdWI1YVF3WlBISnI1Nml1TUFkMWVSSURsc0l1ajd2RWNXX1F2Qk0tM29aS3FUVnpYdWp0dHFFU256YWNHQjN1ZG54RnJfSVlhYVd5NEEyT3F3eGY0a3c2c3lDNlRmazNOd0lBNnR30gHbAUFVX3lxTE1LRHlUNEY3MVRrYVhvQk11Zi1ZTVAySEk1b1U1ck1YVmpXMzhpOHFySzJGbFljUHZlRU5lQWo0ekZmQVF3akN4alZXVlB2NjBOZWFZUDFzVVp6NTZtNV9pb1hBYTU3aTJqVE5oOTZORllJbkViWWNFa1dGZTJVQzRfVVBraHpCN2RyYm9fLUpQOWpON3lvMC1jTUtGbHpIcExSMFpkRFBQWnJocEU1SC1fanRReU80anAxUEFibWdacjdWSVVQb2R1T29pbVR4NVNuRG5Da3RyNURoRQ?oc=5"
     },
     {
-     "titulo": "Tumbes: Evacúan a familias tras inundaciones causadas por lluvias intensas",
-     "medio": "El Comercio Perú",
-     "fecha": "2026-11-02",
-     "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNbUpZN05zVUVxelFOQVJoZWZsWmdzRWd5NmRHWlBReXpWdjVIdXBNbVAwYXlWcktSUzJQaEVpRER1a1pZc1A3S05qUDZUeHVCNExPNTNwNFZ3VE9LR1lUWWlGZnhRT25BcmRWOFY0OEFvVU1iY0FNNDdOdEhFRFcyNW1CWnBsUUdzUzJqUjV1cG8yMy1yU3FTcDJ5VFVKeExvNGJZZjBIUFVwUjM2YUlDRWt4YUNFTHJ0blZmVUdZMUY2Vjc4c2VMWkN2RV8zbnFuY2NoR1E4Rk1TRjczcUNrNVB5Znlld9IB-gFBVV95cUxQOGpONm9pSWZSMldLc0k1NGMxbUlMOHZuZ2JzV21iRVI3eTZReTU2akdkV3U0R2Ntc1p6THlLX083dXpxNnlBbjgycktpSllDOXpxaFNmZEFoODRabnlSd090Rmw5Y3A0UzQxdVI4Q2xtSVdyTUJtaUU1MThySkt5eUV3WlMyU3BkaUxpLW5WNktFU1lPRUN1b1A0TzBnZlFnTVI3VlJVd0t5SlNvdklvYUI4UU00QWxGOHlQMldwOHV4SVVRR25UNHJ3THY2WWt0M1M3X3RsUDZjdHhVMmc2dzN6clF1RmFQekZuVll6ckhHdzBKeE8zQmxn?oc=5"
-    },
-    {
      "titulo": "Fuertes lluvias asociadas a fenómeno de El Niño provocan inundaciones en Tumbes",
      "medio": "Forbes Perú",
      "fecha": "2026-11-02",
      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQNlJRRkNTUW9RWHRPRTZCX1NfSEh3MGdHWHpMc2Fsc0dSandYcTF6ZE9FZ3JiZFBzY2VFaEhMem8xOUxGWVlOdEJWUENqZGlac0kwcXROTnhSN21rRlRjLVF1aUJDUnl6Zk1LcXZCYTlJUkc4TzFscDFidGNINDVRWEo1ZDM2RHZhWU1LQ3lIbXE3SWhzclJ0dVRPY1VSUDVMN2NTWDRXZU10UTZxWmRsQ2JPOGNoVklQS0FoOQ?oc=5"
-    },
-    {
-     "titulo": "Fuertes lluvias golpean Piura y Tumbes: activación de quebradas e inundaciones generan preocupación",
-     "medio": "Exitosa Noticias",
-     "fecha": "2026-11-02",
-     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQWkM5YmZSVXRqcER3Z1d2NTdydVJCQkJndTVfUXFqaG05c3lMcDJoSTFCd1E2cnBXeVA4NWlaY2Nxc1dxenZSQk9uTU9EaG00QzJITFo5NDVKczhYVG1hY0ZGOEs1RXE2TjZhRTZVc1NHYlhOLW5kX01ZYk9BTWcwMFRDd2dqVTVLT09IQVk5a1FhMXJBNUZDbmowMmtlcms0Z041M21qZVkxa3FkSTRlanhuY2g1bUdiS254YkhMQUZOVzhMVE4yRkFfZU1MZnIzbmJDejU3eU1nRlBfbEE?oc=5"
     },
     {
      "titulo": "Emergencia en Tumbes: alcalde provincial pide al Gobierno \"ir en auxilio\" de distritos afectados por intensas lluvias",
@@ -1532,6 +1736,12 @@
      "medio": "El Comercio Perú",
      "fecha": "2026-11-02",
      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNYjdRRTNwVHhvS0Z2LTlwY21lcmF3cU4xOGdoWWp0SXNwenNPeTlheWhoaloxQi1IdFY2aWlvUUs1d3BDZFFwQ3VpMEZZRFZ0bjNHODl3VG9WM2dOTERCR0FjdGtlWlFhR1V5MC1XUEpkLTJBY1BDcHVtT3dPOURWQkRkQUJDXzR4YzlKaHN3V2FUM3Y4UEdKMXBXQlA2TWFIUDBIY3JvY2FOY2pNUk1wS0pXTkpRUTVqalZiYWZGRWFYZzNjX3JWbVZURWNtY0ZQdzQxQlhQTXU2MDlNdkpZTmdFWTdZcElGOGNJ0gH_AUFVX3lxTE9vekpEZ3NzMGkwRHJ6c3hLMWNHUDBzalRmeUxpOGRnQ21abXNaQ3RTSjVaaUd2ZUxlWS14SlZ3bUtQVnBhNFNKZE80V2ZLeE5IZ2t1cy1EajFmbVgyVFNnZFdYQ1Z5M2ZtZEVyZXNlR1lRdEgwZENERWE0QWZvenp5a1ZGMi1USGNudkg4ZjViZ2E4M1l0Rkc0d1k5UFk2d00xVVVMd2dkcFR6R3hzaTkzd1FheUlMRThXWFBKVU9nSWV6WWxBUU5iaVVadGNaM2xVZUktVl9kaGo3Z0hzVHBPUHVXd2tWZDV0VW1sZDhycFJwZ0IyZ3MwclNnamNKVQ?oc=5"
+    },
+    {
+     "titulo": "Fuertes lluvias golpean Piura y Tumbes: activación de quebradas e inundaciones generan preocupación",
+     "medio": "Exitosa Noticias",
+     "fecha": "2026-11-02",
+     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQWkM5YmZSVXRqcER3Z1d2NTdydVJCQkJndTVfUXFqaG05c3lMcDJoSTFCd1E2cnBXeVA4NWlaY2Nxc1dxenZSQk9uTU9EaG00QzJITFo5NDVKczhYVG1hY0ZGOEs1RXE2TjZhRTZVc1NHYlhOLW5kX01ZYk9BTWcwMFRDd2dqVTVLT09IQVk5a1FhMXJBNUZDbmowMmtlcms0Z041M21qZVkxa3FkSTRlanhuY2g1bUdiS254YkhMQUZOVzhMVE4yRkFfZU1MZnIzbmJDejU3eU1nRlBfbEE?oc=5"
     },
     {
      "titulo": "Fuertes lluvias provocan aniegos y activan seis quebradas en la región Tumbes",
@@ -1624,16 +1834,16 @@
      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNSmExTGkza25IdG9rdFdzSkNQdnNYbkM0Q0k2T1lEZ2FuNE1KbWpjTFNyQ0k5d09IY3ZjU0FFTzlKUFNTVjdMZ2lvc1JfaWQ2MzhIYU1lSi1Ld0NxdkJHYjBzM0RwNkU1Yk5iRWZQTlVqamVpMFhYUGhJMk4zUW1EelFVQXk3UTg2RW9nX05ILThZRVJNMHc?oc=5"
     },
     {
-     "titulo": "Tumbes: más de 300 familias afectadas por desborde del río Zarumilla",
-     "medio": "ATV.pe",
-     "fecha": "2026-11-04",
-     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNUWRqSFZyUGt0WkdlWHZOaER1cjd5M01ueGY3RWxvVVI5enZLRHRjbzJuSHVOT1pkR0JPTzBaN3NYcU92NTVHSVh3akd3Z2doN1ZmQURNX1R2QWczUVZvaUh3cHlWNTJsbjY3eTZUSVZLeG53alFNVGU5VHZlcU9LSk00N0kyeHc?oc=5"
-    },
-    {
      "titulo": "Tumbes: Sector Vivienda atiende a familias afectadas por desborde del río Zarumilla",
      "medio": "El Peruano",
      "fecha": "2026-11-04",
      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNMUhMUU95d29EQjdRc2VfLUJ6eFpFeWo2Rkttb3NHTnFuZmR4Z0RBeG1PV1U0czRQMXFNeGVlOUZmTmpVS05WR05zMzFlQVQyakU5OXktRmVlQWFSUFhtVXItbFp5YWlTWFhhem53c2dhNE4zU2JPOEJTTjN0QU13TXpVdC1vXzhDVlJ2dEkxbklOTVdZck5WTE5VbFdhT04xNGFEbWFHN01rRW8ydWcya3BtMnhSYl9MbkE?oc=5"
+    },
+    {
+     "titulo": "Tumbes: más de 300 familias afectadas por desborde del río Zarumilla",
+     "medio": "ATV.pe",
+     "fecha": "2026-11-04",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNUWRqSFZyUGt0WkdlWHZOaER1cjd5M01ueGY3RWxvVVI5enZLRHRjbzJuSHVOT1pkR0JPTzBaN3NYcU92NTVHSVh3akd3Z2doN1ZmQURNX1R2QWczUVZvaUh3cHlWNTJsbjY3eTZUSVZLeG53alFNVGU5VHZlcU9LSk00N0kyeHc?oc=5"
     },
     {
      "titulo": "Fenómeno El Niño: Tumbes habilita hospital de campaña para atender a afectados por lluvias",
@@ -1720,16 +1930,16 @@
      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPaWJmMi1lRUVxSEpWX0RKanh1U0hMMkZXcjZEMWxRUW9UOUc1RHpMa185Z0E5Yk92eExUUkhqdV9mUDVtZThSWkhUU0VxOHU5ZlBmQ200SGNKMF9aM1lXLTkzTTdWSk1tRjJCbWJsR1lqTVZXSThYOXY2UW02V1E0NmRwWDEyQjQwcWdFYnNVZml1QXhTLTdLM3BsX1Fpa09FTjhfTF9zYW9NREdjeGhEclNHOEc3amJleE5wdFR4QnNidTdydDE0a05CWE9oR1VfbWRSbNIB7wFBVV95cUxNNjMxYXR0RWNrVXVialNlZ1NDWTZDektjbDk4UVVEX3BJWm5GMThLVy1pR3ZjakhSNnktQnJZMUxzS2dtSVJjZ2FWbElBVHNWbVdRXzhRNEt3dUZnOVZsQjRNVG9ZSzVvTFd6bzgwX0xLOHdnSk5fY1pFckJLRGhnV1NQVElXVURRR1M1dEN3YlBJdWgxSTRTcFpXUnVnTFlvLVVBd3VPY1p6Z1d2aVdhUDFDS2RYNmtDQUgyTTBOa3N5SkNtUVNBUC15OTFnNEpJTlJ2SnFjYzRCcUNsYXdHQjJfdlN2RzAxdGZ6QTN2cw?oc=5"
     },
     {
-     "titulo": "Lluvias intensas en Tumbes dejan 324 damnificados y 808 afectados",
-     "medio": "Macronorte",
-     "fecha": "2026-11-06",
-     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObmlIekJ3Tmd0T0pFclc1T1drOXB2RlhybVpqXzM3VElzekg0N2JsUDFuOEJ1MnNqemFGQjZ5Rl81WllicWM0UGdlVkYxMWp3ZlU3ODRzQlVnSm03czBSUE8zRkp4LXdFbTVpNXZiamFrR25xTWthbXVIYU1EQUZRNDdEMTZ6S0NndHRHT1JGeDg0cmNUbDlLd2Jxc3M0Nndp?oc=5"
-    },
-    {
      "titulo": "Se implementó en 36 horas y terminó inundado en un día: el fiasco del hospital de campaña del gobierno de Keiko Fujimori en Tumbes (VIDEO)",
      "medio": "El Búho.pe",
      "fecha": "2026-11-06",
      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPcTA3aWxuanY0VS03SENRZG1pQ1dFYmk2c2JIdWM0QkJYVTFOMVBGTWRaT1ZCQTB5alNvMjJnLVBNSVBOUzFTYzRoNjNtV3lXZnQ5R1ZieFZwOGhsM0lzTnVld042SlVIV25MeDhqQXl6eGRMSTZUb3hVQmEybTNESmpzeU1JVXp2TXpqZmpwMzE1RW8weW1uZ0w5Z1JqSi1HMUwtVWlLTXc3NmlkdnBnTDRKUDFTRFk4NXZJdFFGYUI0YkROVFVuY1F4czFuVWNVcHpyaXZ3X1ZGUGNEMm1CNjduZmNxR19Fd3REb0ZXQ0NLN3pk?oc=5"
+    },
+    {
+     "titulo": "Lluvias intensas en Tumbes dejan 324 damnificados y 808 afectados",
+     "medio": "Macronorte",
+     "fecha": "2026-11-06",
+     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObmlIekJ3Tmd0T0pFclc1T1drOXB2RlhybVpqXzM3VElzekg0N2JsUDFuOEJ1MnNqemFGQjZ5Rl81WllicWM0UGdlVkYxMWp3ZlU3ODRzQlVnSm03czBSUE8zRkp4LXdFbTVpNXZiamFrR25xTWthbXVIYU1EQUZRNDdEMTZ6S0NndHRHT1JGeDg0cmNUbDlLd2Jxc3M0Nndp?oc=5"
     },
     {
      "titulo": "Tumbes: brindan soporte emocional a 35 niños de albergue para los afectados por lluvias",
@@ -1744,16 +1954,16 @@
      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPSy1VQTZSOFhySEwtM2F0T0dDTjk2bDhveVIwakNxbFpUd2l1d3lsbWR1eUstbFBhclB3Uk1xdWQwcEZUU0hfcjFiYm1nS2loNUJySURNSmxWQnF0LVpJR2RndEtWUHZQZE1tck9CQTVfRUg5eDA2UGd1M3pmenhmaE9mZjFvUEcxZ2dyRkRLQ0QwbGUxaWFhYW9Hd1lCanhUQ2xNcWdFNEFJbUJvZ3V4SDN3VHZQY2pNcXVHRzRsbmpHNlZfVHI1d3llY3hSS3V3MlZrU1V3?oc=5"
     },
     {
-     "titulo": "Fenómeno El Niño: lluvias intensas en región Tumbes dejan 324 damnificados y 808 afectados",
-     "medio": "Agencia Andina",
-     "fecha": "2026-11-06",
-     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnp1aUd1SGVVSUdqS1dUR01BcDVPekF6b3lyVG15b0xoa3FfNk1LMzUxR3VoaEJSbW13LUk4Q0s3dm1jMVlDMnRRX2xZa01pLVJBS0lwX00yRmN6Q1hFQ1ZLS2MxVTZDNXU4UGpXZ25Ta3I3UEU5dlBQRkVKQ2Q2S3JOOC03dGhOU185ZGhYTEV1N3VpUTk1MURZQk9BSjRMYk52UXB0bFRxZ1dYV1F3QjY5WUhKem04eE9kYWpfaFQ0Qy1rTHpIRWRR?oc=5"
-    },
-    {
      "titulo": "Fenómeno El Niño: Keiko Fujimori lleva ayuda humanitaria a afectados por lluvias en Tumbes",
      "medio": "El Comercio Perú",
      "fecha": "2026-11-06",
      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxONFZMUGtLZlA4X2lXdTl2aHc2QjhwME9hdXJIVUVaVFROeUpDV0RoZUZUUmVhaEUwZEhLYkpHSjdNa0xZd0RXejF1SU83azdJMlNYLVVsTUdaRkdxREFVSTZ1Rlo4RXpacDUybnBCaTNZSzgxLXdvMGp5OFRMV3JHZGlEWHVLc2NTU0Q4aDhhOGx6WnB4WDRYT3BrVUxDRmJiNmlxVURrWE82MUUydmd0N1hEOWRNS1BMYkpVM0hIcTlxdWJhblcyaHlTYmFxbTMydUhORU5WME1kNlozMVBpRTQ3eEzSAfgBQVVfeXFMUFdHb1o1a3lqM3gySVZSQjBrUVpmcEVyVzRCcWxQaFNiTldITFdUZXduWU16S2tWaTUzYXVGWHMwZ2hsV0d2MEdWRzFuWU53TGdJZXRGSnh6VVhucXZuUDhodHVncWxKY1hRY0pnVEpuTXpFNjRUQ0xldlpkdWlMVUJPVE9ISko5VlBuQzJpN3BadXAtVG02dHJKb2VTWVBOMzAxYk5yM1BwSHNiYUl6bkNCb0VBNWZUNGxTSGNXcHRMQnB0TlpkT2stVGlNZktuN3JUa1JIclQ4RmNzdXZiOUloMXpfNURRc19uOFVrQmZkbnVuRjNicXA?oc=5"
+    },
+    {
+     "titulo": "Fenómeno El Niño: lluvias intensas en región Tumbes dejan 324 damnificados y 808 afectados",
+     "medio": "Agencia Andina",
+     "fecha": "2026-11-06",
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnp1aUd1SGVVSUdqS1dUR01BcDVPekF6b3lyVG15b0xoa3FfNk1LMzUxR3VoaEJSbW13LUk4Q0s3dm1jMVlDMnRRX2xZa01pLVJBS0lwX00yRmN6Q1hFQ1ZLS2MxVTZDNXU4UGpXZ25Ta3I3UEU5dlBQRkVKQ2Q2S3JOOC03dGhOU185ZGhYTEV1N3VpUTk1MURZQk9BSjRMYk52UXB0bFRxZ1dYV1F3QjY5WUhKem04eE9kYWpfaFQ0Qy1rTHpIRWRR?oc=5"
     },
     {
      "titulo": "Keiko Fujimori anuncia reubicación de familias afectadas por las lluvias durante visita a Tumbes",
